@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<netcdf xmlns='http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2'
+    location='http://thredds.met.no:80/thredds/cdmremote/cryoclim/met.no/sie-mar/sie-mar_osisaf_monthly_mean_sie_mar.nc' >
+
+  <dimension name='time' length='33' />
+
+  <attribute name='Conventions' value='CF- 1.4' />
+  <attribute name='start_date' value='1979-03-15 12:00:00 UTC' />
+  <attribute name='stop_date' value='2011-03-15 12:00:00 UTC' />
+  <attribute name='history' value='2011-04-25 creation' />
+  <attribute name='title' value='Sea Ice Extent' />
+  <attribute name='abstract' value='Arctic Sea Ice Extent estimates based upon EUMETSAT Ocean and Sea Ice SAF products. Both reprocessed and operational datasets have been used. See http://cryoclim.met.no/indicators/seaiceextent/ for details.' />
+  <attribute name='PI_name' value='Thomas Lavergne, Mari Anne Killie' />
+  <attribute name='contact' value='t.lavergne@met.no' />
+  <attribute name='institution' value='Norwegian Meteorological Institute' />
+  <attribute name='url' value='http://cryoclim.met.no/indicators/seaiceextent.html' />
+  <attribute name='project_name' value='Not available' />
+  <attribute name='Platform_name' value='Not available' />
+  <attribute name='topiccategory' value='ClimatologyMeteorologyAtmosphere' />
+  <attribute name='keywords' value='sie ice extent' />
+  <attribute name='gcmd_keywords' value='Atmosphere &gt; Atmospheric Radiation &gt; Shortwave Radiation&#10;Atmosphere &gt; Atmospheric Radiation &gt; Longwave Radiation' />
+  <attribute name='southernmost_latitude' value='56.5 ' type='double' />
+  <attribute name='northernmost_latitude' value='56.5 ' type='double' />
+  <attribute name='westernmost_longitude' value='3.2 ' type='double' />
+  <attribute name='easternmost_longitude' value='3.2 ' type='double' />
+  <attribute name='quality_statement' value='Quality controlled' />
+  <attribute name='distribution_statement' value='Restricted to CryoClim' />
+  <attribute name='activity_type' value='Climate indicator' />
+
+  <variable name='time' type='double' shape='time' >
+    <attribute name='standard_name' value='time' />
+    <attribute name='long_name' value='time of the observation (centered)' />
+    <attribute name='units' value='seconds since 1970-01-01 00:00:00 UTC' />
+    <attribute name='axis' value='T' />
+  </variable>
+  <variable name='sie' type='double' shape='time' >
+    <attribute name='standard_name' value='sea_ice_extent' />
+    <attribute name='units' value='1e6 km^2' />
+    <attribute name='_FillValue' value='-999.0 ' type='double' />
+    <attribute name='cell_method' value='time: mean over months' />
+  </variable>
+</netcdf>

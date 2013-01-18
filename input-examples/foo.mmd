@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mmd xmlns="http://www.met.no/schema/mmd" xmlns:gml="http://www.opengis.net/gml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+	<metadata_identifier>foo-bar-baz-1234</metadata_identifier>
+
+	<title xml:lang="en_GB">Foo Ice Charts for Sognsvann</title>
+	<abstract xml:lang="en_GB">Foo is high resolution bla bla bla
+	</abstract>
+
+	<last_metadata_update>2012-12-11</last_metadata_update>
+
+	<iso_topic_category>climatologyMeteorologyAtmosphere
+	</iso_topic_category>
+
+	<data_center>
+		<data_center_name>
+			<short_name>METNO</short_name>
+			<long_name>Norwegian Meteorological Institute
+			</long_name>
+		</data_center_name>
+		<data_center_url>http://met.no</data_center_url>
+		<dataset_id>hmmm?</dataset_id>
+		<contact>
+			<role>DATA CENTER CONTACT</role>
+			<name>Kristin Lyng</name>
+			<email>kristin.lyng@met.no</email>
+			<phone></phone>
+			<fax></fax>
+			<contact_address>
+				<address>Henrik Mohnsplass 1</address>
+				<city>Oslo</city>
+				<province_or_state>Oslo</province_or_state>
+				<postal_code>Oslo</postal_code>
+				<country>Norway</country>
+			</contact_address>
+		</contact>
+	</data_center>
+	
+	<vocabulary id="cf">
+	  <description>...</description>
+	  <resource>http://</resource>
+	</vocabulary>
+
+	<keywords vocabulary="none">
+		<keyword>ice_chart</keyword>
+		<keyword>water</keyword>
+		<keyword>ice</keyword>
+	</keywords>
+
+	<temporal_extent>
+		<start_date>2012-01-01</start_date>
+		<end_date>2012-03-01</end_date>
+	</temporal_extent>
+
+	<temporal_extent>
+		<start_date>2012-10-01</start_date>
+		<end_date>2012-12-31</end_date>
+	</temporal_extent>
+
+
+	<geographic_extent>
+		<rectangle>
+			<north>90</north>
+			<south>-90</south>
+			<east>180</east>
+			<west>-180</west>
+		</rectangle>
+		<polygon>
+			<gml:Polygon id="polygon" srsName="EPSG:4326">
+				<gml:exterior>
+					<gml:LinearRing>
+						<gml:pos>
+							-180 -90
+						</gml:pos>
+						<gml:pos>
+							180 -90
+						</gml:pos>
+						<gml:pos>
+							180 90
+						</gml:pos>
+						<gml:pos>
+							-180 90
+						</gml:pos>
+						<gml:pos>
+							-180 -90
+						</gml:pos>
+					</gml:LinearRing>
+				</gml:exterior>
+			</gml:Polygon>
+		</polygon>
+	</geographic_extent>
+
+	<!-- ulike kontaktpersoner -->
+	<contact>
+		<role>data owner</role>
+		<name>Ole Dole</name>
+		<email>...</email>
+		<phone>...</phone>
+		<fax></fax>
+		<organisation></organisation>
+	</contact>
+
+	<!-- ulike måter å hente dataene på. WMS, http etc. -->
+	<data_access>
+		<type>WMS 1.3</type>
+		<name>WMS layers</name>
+		<resource>http://wms.met.no</resource>
+		<description>WMS layers for ice</description>
+	</data_access>
+
+	<data_access>
+		<type>THREDDS 3.4</type>
+		<name>THREDDS access to data</name>
+		<resource>http://thredds.met.no</resource>
+		<description>THREDDS</description>
+	</data_access>
+
+	<dataset_citation>
+		<dataset_creator>OMI SIPS</dataset_creator>
+		<dataset_editor>J. Smith, D. Johnson, M. Davis
+		</dataset_editor>
+		<dataset_title>OMI/Aura Level 1B VIS Global Geolocated Earth Shine
+			Radiances 1-orbit L2 Swath 13x24 km
+		</dataset_title>
+		<dataset_series_name>OML1BRVG</dataset_series_name>
+		<dataset_release_date>2009</dataset_release_date>
+		<dataset_release_place>NASA Goddard Space Flight Center
+		</dataset_release_place>
+		<dataset_publisher>U.S. Geological Survey</dataset_publisher>
+		<version>004</version>
+		<data_presentation_form>Digital Science Data
+		</data_presentation_form>
+		<online_resource>http://disc.gsfc.nasa.gov/Aura/OMI/oml1brvg_v004.shtml
+		</online_resource>
+	</dataset_citation>
+
+	<project>
+		<short_name>ICE</short_name>
+		<long_name>Ice Coverage Everywhere</long_name>
+	</project>
+
+	<instrument>
+		<short_name>MODIS</short_name>
+		<long_name>MooooDiiiis</long_name>
+	</instrument>
+
+	<platform>
+		<short_name>SAT</short_name>
+		<long_name>satellite</long_name>
+	</platform>
+	
+	<access_constraint>Free for all</access_constraint>
+	<use_constraint>CC-BY</use_constraint>
+
+    <dataset_production_status>unknown</dataset_production_status>
+    <dataset_language>en</dataset_language>
+
+	<metadata_version>1</metadata_version>
+
+	<system_metadata for="halo">
+		<product_category>RADAR</product_category>
+		<product_relevance>10</product_relevance>
+	</system_metadata>
+
+	<system_metadata for="metamod">
+
+		<dataset xmlns="http://www.met.no/schema/metamod/dataset2">
+			<!-- everything inside here is controlled by metamod and must be validated 
+				separately -->
+			<info name="catnip/barentswatch" status="active" creationDate="2012-04-19T12:17:45Z"
+				datestamp="2012-08-21T14:28:10Z" ownertag="DAM" metadataFormat="MM2" />
+			<VisualizationInfo>
+
+				<!-- keep supporting ncWmsSetup to avoid having to change existing databases 
+					and documents -->
+				<w:ncWmsSetup xmlns:w="http://www.met.no/schema/metamod/ncWmsSetup"
+					aggregate_url="http://bw-wms.met.no/barentswatch/default.map"
+					xsi:schemaLocation="http://www.met.no/schema/metamod/ncWmsSetup ncWmsSetup.xsd ">
+					<w:displayArea crs="EPSG:3575" left="-1000000" right="2000000"
+						bottom="-4000000" top="-1000000" units="meters" />
+					<w:baselayer name="kart" style="default" />
+					<w:thumbnail name="proff.t2m,kart"
+						url="http://bw-wms.met.no/barentswatch/default.map" style=",contour" />
+				</w:ncWmsSetup>
+
+				<timeSeries variables="time,sea_ice_extent"
+					dapUrl="http://thredds.met.no/thredds/dodsC/cryoclim/met.no/sie-mar/sie-mar_osisaf_monthly_mean_sie_mar.nc" />
+
+			</VisualizationInfo>
+		</dataset>
+	</system_metadata>
+
+</mmd>

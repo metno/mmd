@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<DIF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" xsi:schemaLocation="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/ http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/dif.xsd">
+  <Entry_ID>org.polarresearch-451</Entry_ID>
+  <Entry_Title>COPOL pelagic 2007 </Entry_Title>
+  <Data_Set_Citation>
+    <Dataset_Creator>Hallanger IG</Dataset_Creator>
+    <Dataset_Title>Dataset for COPOL project</Dataset_Title>
+  </Data_Set_Citation>
+  <Personnel>
+    <Role>Investigator</Role>
+    <First_Name>Geir</First_Name>
+    <Middle_Name>Wing</Middle_Name>
+    <Last_Name>Gabrielsen</Last_Name>
+    <Email>geir@npolar.no</Email>
+    <Phone>+47 77750529</Phone>
+    <Fax>+47 77750501</Fax>
+    <Contact_Address>
+      <Address>Norwegian Polar Institute (Norsk Polarinstitutt)</Address>
+      <Address>Polar Environmental Centre</Address>
+      <City>Troms&#xF8;</City>
+      <Province_or_State>Troms</Province_or_State>
+      <Postal_Code>N-9296</Postal_Code>
+      <Country>Norway</Country>
+    </Contact_Address>
+  </Personnel>
+  <Personnel>
+    <Role>Investigator</Role>
+    <First_Name>Ingeborg</First_Name>
+    <Middle_Name>Gammels&#xE6;ter</Middle_Name>
+    <Last_Name>Hallanger</Last_Name>
+    <Email>hallanger@npolar.no</Email>
+    <Phone>+47 77750544</Phone>
+    <Contact_Address>
+      <Address>Norwegian Polar Institute (Norsk Polarinstitutt)</Address>
+      <Address>Polar Environmental Centre</Address>
+      <City>Troms&#xF8;</City>
+      <Province_or_State>Troms</Province_or_State>
+      <Postal_Code>N-9296</Postal_Code>
+      <Country>Norway</Country>
+    </Contact_Address>
+  </Personnel>
+  <Personnel>
+    <Role>Investigator</Role>
+    <First_Name>Anders</First_Name>
+    <Last_Name>Ruus</Last_Name>
+    <Email>anders.ruus@niva.no</Email>
+    <Phone>22185100</Phone>
+    <Fax>22185200</Fax>
+    <Contact_Address>
+      <Address>Norwegian Institute for Water Research</Address>
+      <Address>Gaustadalleen 21</Address>
+      <City>Oslo</City>
+      <Province_or_State/>
+      <Postal_Code>N-0349</Postal_Code>
+      <Country>Norway</Country>
+    </Contact_Address>
+  </Personnel>
+  <Personnel>
+    <Role>Investigator</Role>
+    <First_Name>Anita</First_Name>
+    <Last_Name>Evenset</Last_Name>
+    <Email>ae@akvaplan.niva.no</Email>
+    <Phone>+47 777 50 311</Phone>
+    <Fax>+47 777 50 301</Fax>
+    <Contact_Address>
+      <Address>Akvaplan-Niva</Address>
+      <Address>Polar Environmental Centre</Address>
+      <City>Troms&#xF8;</City>
+      <Province_or_State/>
+      <Postal_Code>9296</Postal_Code>
+      <Country>Norway</Country>
+    </Contact_Address>
+  </Personnel>
+  <Personnel>
+    <Role>Investigator</Role>
+    <First_Name>Eldbj&#xF8;rg</First_Name>
+    <Middle_Name>Sofie</Middle_Name>
+    <Last_Name>Heimstad</Last_Name>
+    <Email>esh@nilu.no</Email>
+    <Phone>+4777750384</Phone>
+    <Contact_Address>
+      <Address>Norwegian Institute for Air Research</Address>
+      <Address>P.O.Box 100</Address>
+      <City>Kjeller</City>
+      <Province_or_State/>
+      <Postal_Code>2027</Postal_Code>
+      <Country>Norway</Country>
+    </Contact_Address>
+  </Personnel>
+  <Personnel>
+    <Role>Investigator</Role>
+    <First_Name>Guttorm</First_Name>
+    <Last_Name>Christensen</Last_Name>
+    <Email>gc@akvaplan.niva.no</Email>
+    <Phone>+4777750330</Phone>
+    <Fax>+4777750301</Fax>
+    <Contact_Address>
+      <Address>Akvaplan-Niva</Address>
+      <Address>Polar Environmental Centre</Address>
+      <City>Troms&#xF8;</City>
+      <Province_or_State/>
+      <Postal_Code>9296</Postal_Code>
+      <Country>Norway</Country>
+    </Contact_Address>
+  </Personnel>
+  <Parameters>
+    <Category>EARTH SCIENCE</Category>
+    <Topic>ATMOSPHERE</Topic>
+    <Term>ATMOSPHERIC CHEMISTRY</Term>
+    <Variable_Level_1>CARBON AND HYDROCARBON COMPOUNDS</Variable_Level_1>
+    <Variable_Level_2>CHLORINATED HYDROCARBONS</Variable_Level_2>
+  </Parameters>
+  <ISO_Topic_Category>ENVIRONMENT</ISO_Topic_Category>
+  <Keyword>Biomagnification</Keyword>
+  <Keyword>Ecotoxicology</Keyword>
+  <Keyword>Kongsfjorden</Keyword>
+  <Keyword>Pelagic food webs</Keyword>
+  <Keyword>Persistent organic pollutants</Keyword>
+  <Temporal_Coverage>
+    <Start_Date>2007-05-10</Start_Date>
+    <Stop_Date>2009-07-28</Stop_Date>
+  </Temporal_Coverage>
+  <Data_Set_Progress>Complete</Data_Set_Progress>
+  <Spatial_Coverage>
+    <Southernmost_Latitude>78.94</Southernmost_Latitude>
+    <Northernmost_Latitude>78.94</Northernmost_Latitude>
+    <Westernmost_Longitude>8.54</Westernmost_Longitude>
+    <Easternmost_Longitude>8.54</Easternmost_Longitude>
+  </Spatial_Coverage>
+  <Spatial_Coverage>
+    <Southernmost_Latitude>78.96</Southernmost_Latitude>
+    <Northernmost_Latitude>78.96</Northernmost_Latitude>
+    <Westernmost_Longitude>11.94</Westernmost_Longitude>
+    <Easternmost_Longitude>11.94</Easternmost_Longitude>
+  </Spatial_Coverage>
+  <Location>
+    <Location_Category>OCEAN</Location_Category>
+    <Location_Type>ATLANTIC OCEAN</Location_Type>
+    <Location_Subregion1>NORTH ATLANTIC OCEAN</Location_Subregion1>
+    <Location_Subregion2>SVALBARD AND JAN MAYEN</Location_Subregion2>
+    <Detailed_Location>Kongsfjorden</Detailed_Location>
+  </Location>
+  <Location>
+    <Location_Category>GEOGRAPHIC REGION</Location_Category>
+    <Location_Type>ARCTIC</Location_Type>
+  </Location>
+  <Location>
+    <Location_Category>GEOGRAPHIC REGION</Location_Category>
+    <Location_Type>POLAR</Location_Type>
+  </Location>
+  <Data_Resolution>
+    <Horizontal_Resolution_Range>50 km - &lt; 100 km or approximately .5 degree - &lt; 1 degree</Horizontal_Resolution_Range>
+    <Vertical_Resolution_Range>100 meters - &lt; 1 km</Vertical_Resolution_Range>
+    <Temporal_Resolution_Range>Monthly - &lt; Annual</Temporal_Resolution_Range>
+  </Data_Resolution>
+  <Project>
+    <Short_Name>COPOL</Short_Name>
+    <Long_Name>Contaminants in Polar Regions: Dynamic range of contaminants in polar marine ecosystems</Long_Name>
+  </Project>
+  <Project>
+    <Short_Name>IPY</Short_Name>
+    <Long_Name>INTERNATIONAL POLAR YEAR</Long_Name>
+  </Project>
+  <Access_Constraints>withold from public</Access_Constraints>
+  <Data_Set_Language>English</Data_Set_Language>
+  <Data_Center>
+    <Data_Center_Name>
+      <Short_Name>NO/NPI</Short_Name>
+      <Long_Name>Norwegian Polar Institute, Norway</Long_Name>
+    </Data_Center_Name>
+    <Data_Center_URL>http://www.npolar.no</Data_Center_URL>
+    <Personnel>
+      <Role>Data Center Contact</Role>
+      <First_Name>Geir</First_Name>
+      <Middle_Name>Wing</Middle_Name>
+      <Last_Name>Gabrielsen</Last_Name>
+      <Email>geir@npolar.no</Email>
+      <Phone>+47 77750529</Phone>
+      <Fax>+47 77750501</Fax>
+      <Contact_Address>
+        <Address>Norwegian Polar Institute (Norsk Polarinstitutt)</Address>
+        <Address>Polar Environmental Centre</Address>
+        <City>Troms&#xF8;</City>
+        <Province_or_State>Troms</Province_or_State>
+        <Postal_Code>N-9296</Postal_Code>
+        <Country>Norway</Country>
+      </Contact_Address>
+    </Personnel>
+    <Personnel>
+      <Role>Data Center Contact</Role>
+      <First_Name>Ingeborg</First_Name>
+      <Middle_Name>Gammels&#xE6;ter</Middle_Name>
+      <Last_Name>Hallanger</Last_Name>
+      <Email>hallanger@npolar.no</Email>
+      <Phone>+47 77750544</Phone>
+      <Contact_Address>
+        <Address>Norwegian Polar Institute (Norsk Polarinstitutt)</Address>
+        <Address>Polar Environmental Centre</Address>
+        <City>Troms&#xF8;</City>
+        <Province_or_State>Troms</Province_or_State>
+        <Postal_Code>N-9296</Postal_Code>
+        <Country>Norway</Country>
+      </Contact_Address>
+    </Personnel>
+  </Data_Center>
+  <Data_Center>
+    <Data_Center_Name>
+      <Short_Name>NILU</Short_Name>
+      <Long_Name>Norwegian Institute for Air Research</Long_Name>
+    </Data_Center_Name>
+    <Data_Center_URL>http://nilu.no</Data_Center_URL>
+    <Personnel>
+      <Role>Data Center Contact</Role>
+      <First_Name>Eldbj&#xF8;rg</First_Name>
+      <Middle_Name>Sofie</Middle_Name>
+      <Last_Name>Heimstad</Last_Name>
+      <Email>esh@nilu.no</Email>
+      <Phone>+4777750384</Phone>
+      <Contact_Address>
+        <Address>Norwegian Institute for Air Research</Address>
+        <Address>P.O.Box 100</Address>
+        <City>Kjeller</City>
+        <Province_or_State/>
+        <Postal_Code>2027</Postal_Code>
+        <Country>Norway</Country>
+      </Contact_Address>
+    </Personnel>
+  </Data_Center>
+  <Data_Center>
+    <Data_Center_Name>
+      <Short_Name>NO/NIVA</Short_Name>
+      <Long_Name>Norwegian Institute for Water Research, Norway</Long_Name>
+    </Data_Center_Name>
+    <Data_Center_URL>http://www.niva.no</Data_Center_URL>
+    <Personnel>
+      <Role>Data Center Contact</Role>
+      <First_Name>Anders</First_Name>
+      <Last_Name>Ruus</Last_Name>
+      <Email>anders.ruus@niva.no</Email>
+      <Phone>22185100</Phone>
+      <Fax>22185200</Fax>
+      <Contact_Address>
+        <Address>Norwegian Institute for Water Research</Address>
+        <Address>Gaustadalleen 21</Address>
+        <City>Oslo</City>
+        <Province_or_State/>
+        <Postal_Code>N-0349</Postal_Code>
+        <Country>Norway</Country>
+      </Contact_Address>
+    </Personnel>
+  </Data_Center>
+  <Data_Center>
+    <Data_Center_Name>
+      <Short_Name>NO/NIVA/AKVAPLAN</Short_Name>
+      <Long_Name>Akvaplan, Norwegian Institute for Water Research, Norway</Long_Name>
+    </Data_Center_Name>
+    <Data_Center_URL>http://www.akvaplan.niva.no</Data_Center_URL>
+    <Personnel>
+      <Role>Data Center Contact</Role>
+      <First_Name>Anita</First_Name>
+      <Last_Name>Evenset</Last_Name>
+      <Email>ae@akvaplan.niva.no</Email>
+      <Phone>+47 777 50 311</Phone>
+      <Fax>+47 777 50 301</Fax>
+      <Contact_Address>
+        <Address>Akvaplan-Niva</Address>
+        <Address>Polar Environmental Centre</Address>
+        <City>Troms&#xF8;</City>
+        <Province_or_State/>
+        <Postal_Code>9296</Postal_Code>
+        <Country>Norway</Country>
+      </Contact_Address>
+    </Personnel>
+    <Personnel>
+      <Role>Data Center Contact</Role>
+      <First_Name>Guttorm</First_Name>
+      <Last_Name>Christensen</Last_Name>
+      <Email>gc@akvaplan.niva.no</Email>
+      <Phone>+4777750330</Phone>
+      <Fax>+4777750301</Fax>
+      <Contact_Address>
+        <Address>Akvaplan-Niva</Address>
+        <Address>Polar Environmental Centre</Address>
+        <City>Troms&#xF8;</City>
+        <Province_or_State/>
+        <Postal_Code>9296</Postal_Code>
+        <Country>Norway</Country>
+      </Contact_Address>
+    </Personnel>
+  </Data_Center>
+  <Summary>
+    <Abstract>Zooplankton samples were collected at two stations in Kongsfjorden, one in the middle of the fjord (inner station; 78&#xB0;96 N, 11&#xB0;94 E) and one outside on the shelf break (outer station; 78&#xB0;94 N, 8&#xB0;54 E) Samples were collected during three cruises with R/V Lance and R/V Jan Mayen, during May 12 to 18, July 26 to 29, and October 1 to 10 in 2007. 
+Zooplankton was sampled using WP-3 (1000 &#x3BC;m mesh, 1 m2 opening) net and MIK (Method Isaac Kid) (mesh size 1000 &#x3BC;m and 500 &#x3BC;m at the end, 3.14 m2 opening). Samples were taken from the whole water column (depth at inner and outer station were 329 m and 291 m, respectively, hauling speed ~1ms-1). Live zooplankton were sorted to species, within maximum 5 hours, and frozen at -20 &#xB0;C for further persistent organic pollutant (PCBs, pesticides and PBDEs, analysed at NILU, Troms&#xF8;) and stable isotope analysis (stable isotope of carbon and nitrogen exists, but these some other people than me have the &#x201C;rights&#x201D; for, analysed at IFE, Kjeller).
+Seven species of zooplankton were sampled. Calanus hyperboreus, C. glacialis and C. finmarchicus. All samples consisted of specimens from copepod stage CIV to adult female (CVI). Krill (Euphausiids) - mostly Thysanoessa inermis (all samples consisted of individuals of size 1.2 to 2.2 cm). Arrow worms consisted of pooled samples of Sagitta elegans and Eukrohnia hamata (all samples consisted of individuals of size 1.4 to 2.7 cm), while amphipods were represented by Themisto abyssorum (all samples consisted of individuals of size 0.3 to 0.7 cm), and T. libellula (all samples consisted of individuals of size 0.7 to 1.5 cm). However, only C. finmarchicus was sampled at both stations at all seasons.</Abstract>
+  </Summary>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>VIEW PROJECT HOME PAGE</Type>
+    </URL_Content_Type>
+    <URL>http://www.copol.net</URL>
+  </Related_URL>
+  <Parent_DIF>org.polarresearch-451</Parent_DIF>
+  <IDN_Node>
+    <Short_Name>IPY</Short_Name>
+  </IDN_Node>
+  <IDN_Node>
+    <Short_Name>ARCTIC/NO</Short_Name>
+  </IDN_Node>
+  <IDN_Node>
+    <Short_Name>ARCTIC</Short_Name>
+  </IDN_Node>
+  <IDN_Node>
+    <Short_Name>DOKIPY</Short_Name>
+  </IDN_Node>
+  <Originating_Metadata_Node>NPI/RiS</Originating_Metadata_Node>
+  <Metadata_Name>CEOS IDN DIF</Metadata_Name>
+  <Metadata_Version>9.8.2</Metadata_Version>
+  <DIF_Creation_Date>2008-06-23</DIF_Creation_Date>
+  <Last_DIF_Revision_Date>2011-04-08</Last_DIF_Revision_Date>
+  <Private>False</Private>
+</DIF>

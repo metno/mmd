@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.met.no/schema/mmd" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:mmd="http://www.met.no/schema/mmd">
+    <element name="mmd" type="mmd:mmd_type"></element>
+    
+    <complexType name="contact_type">
+    	<sequence>
+    		<element name="role" type="mmd:role_type"></element>
+    		<element name="name" type="string"></element>
+    		<element name="email" type="string"></element>
+    		<element name="phone" type="string"></element>
+    		<element name="fax" type="string"></element>
+    	</sequence>
+    </complexType>
+    
+
+    <complexType name="mmd_type">
+    	<sequence>
+    		<element name="metadata_identifier" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="title" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="abstract" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="last_metadata_update" type="dateTime"
+    			maxOccurs="1" minOccurs="0">
+    		</element>
+    		<element name="dataset_production_status"
+    			type="mmd:dataset_production_status_type" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="dataset_language" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="iso_topic_category"
+    			type="mmd:iso_topic_category_type" maxOccurs="unbounded"
+    			minOccurs="1">
+    		</element>
+    		<element name="temporal_extent" type="mmd:temporal_extent_type"
+    			maxOccurs="1" minOccurs="0">
+    		</element>
+    		<element name="geographic_extent"
+    			type="mmd:geographic_extent_type" maxOccurs="1" minOccurs="0">
+    		</element>
+    		<element name="access_constraint" type="string"
+    			maxOccurs="1" minOccurs="0">
+    		</element>
+    		<element name="use_constraint" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="project" type="mmd:project_type" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="instrument" type="mmd:instrument_type"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="platform" type="mmd:platform_type"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="keywords" type="mmd:keywords_type"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="contact" type="mmd:contact_type"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="dataset_citation" type="mmd:dataset_citation_type"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="data_access" type="mmd:data_access_type"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="reference" type="mmd:reference_type"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="temporal_extent_type">
+    	<sequence>
+    		<element name="start_date" type="date"></element>
+    		<element name="end_date" type="date"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="geographic_rectangle_type">
+    	<sequence>
+    		<element name="north" type="double" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="south" type="double" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="east" type="double" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="west" type="double" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="geographic_extent_type">
+    	<sequence>
+    		<element name="rectangle" type="mmd:geographic_rectangle_type"
+    			maxOccurs="1" minOccurs="0">
+    		</element>
+    		<element name="polygon" type="mmd:geographic_polygon_type" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="geographic_polygon_type"></complexType>
+
+    <complexType name="project_type">
+    	<sequence>
+    		<element name="short_name" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="long_name" type="string" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="instrument_type">
+    	<sequence>
+    		<element name="short_name" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="long_name" type="string" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+
+    <simpleType name="role_type">
+    	<restriction base="string">
+    		<enumeration value="Principal investigator"></enumeration>
+    		<enumeration value="Metadata author"></enumeration>
+    		<enumeration value="Technical contact"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="dataset_production_status_type">
+    	<restriction base="string">
+    		<enumeration value="value"></enumeration>
+    	</restriction>
+    </simpleType>
+
+
+    <simpleType name="iso_topic_category_type">
+    	<restriction base="string">
+    		<enumeration value="farming"></enumeration>
+    		<enumeration value="biota"></enumeration>
+    		<enumeration value="boundaries"></enumeration>
+    		<enumeration value="climatologyMeteorologyAtmosphere"></enumeration>
+    		<enumeration value="economy"></enumeration>
+    		<enumeration value="elevation"></enumeration>
+    		<enumeration value="environment"></enumeration>
+    		<enumeration value="geoscientificinformation"></enumeration>
+    		<enumeration value="health"></enumeration>
+    		<enumeration value="imageryBaseMapsEarthCover"></enumeration>
+    		<enumeration value="intelligenceMilitary"></enumeration>
+    		<enumeration value="inlandWaters"></enumeration>
+    		<enumeration value="location"></enumeration>
+    		<enumeration value="oceans"></enumeration>
+    		<enumeration value="planningCadastre"></enumeration>
+    		<enumeration value="society"></enumeration>
+    		<enumeration value="structure"></enumeration>
+    		<enumeration value="transportation"></enumeration>
+    		<enumeration value="utilitiesCommunications"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="platform_type">
+    	<sequence>
+    		<element name="short_name" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="long_name" type="string" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="keywords_type">
+    	<sequence>
+    		<element name="vocabulary" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="keyword" type="string" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="data_access_type">
+    	<sequence>
+    		<element name="name" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="type" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="description" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="resource" type="string" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="dataset_citation_type">
+    	<sequence>
+    		<element name="dataset_creator" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="dataset_editor" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="dataset_title" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="dataset_series_name" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="dataset_release_date" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="dataset_release_place" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="dataset_publisher" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="version" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="data_presentation_form" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="other_citation_details" type="string" maxOccurs="1" minOccurs="0"></element>
+            <element name="dataset_doi" type="string" maxOccurs="1" minOccurs="0"></element>
+            <element name="online_resource" type="string" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="data_center_type">
+    	<sequence>
+    		<element name="data_center_name"
+    			type="mmd:data_center_name_type" maxOccurs="1" minOccurs="1">
+    		</element>
+    		<element name="data_center_url" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="dataset_id" type="string" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="reference_type">
+    	<sequence>
+            <element name="title" type="string" maxOccurs="1" minOccurs="1"></element>
+            <element name="author" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="publication_date" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="series" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="edition" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="volume" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="issue" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="report_number" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="publication_place" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="pages" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="isbn" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="doi" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="online_resource" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="other_reference_details" type="string" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="data_center_name_type">
+    	<sequence>
+    		<element name="short_name" type="string"></element>
+    		<element name="long_name" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>

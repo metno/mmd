@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset xmlns:ns_1="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.met.no/schema/metamod/dataset" ns_1:schemaLocation="http://www.met.no/schema/metamod/dataset https://wiki.met.no/_media/metamod/dataset.xsd">
+  <info name="SIOS/NP_org.polarresearch-2d451" status="active" creationDate="2008-06-23T00:00:00Z" datestamp="2011-04-08" ownertag="NP" metadataFormat="DIF"/>
+  <datasetRegion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.met.no/schema/metamod/datasetRegion" isValid="true" xsi:schemaLocation="http://www.met.no/schema/metamod/datasetRegion https://wiki.met.no/_media/metamod/datasetRegion.xsd">
+  <boundingBox north="78.96" south="78.94" east="11.94" west="8.54"/>
+  <lonLatPoints>
+  8.54 78.94,11.94 78.96
+  </lonLatPoints>
+</datasetRegion>
+</dataset>
