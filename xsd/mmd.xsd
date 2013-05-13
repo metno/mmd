@@ -16,14 +16,14 @@
     <complexType name="mmd_type">
     	<sequence>
     		<element name="metadata_identifier" type="string" maxOccurs="1" minOccurs="1"></element>
-    		<element name="title" type="string" maxOccurs="1"
+    		<element name="title" type="string" maxOccurs="unbounded"
     			minOccurs="1">
     		</element>
-    		<element name="abstract" type="string" maxOccurs="1"
+    		<element name="abstract" type="string" maxOccurs="unbounded"
     			minOccurs="1">
     		</element>
     		<element name="last_metadata_update" type="dateTime"
-    			maxOccurs="1" minOccurs="0">
+    			maxOccurs="1" minOccurs="1">
     		</element>
     		<element name="dataset_production_status"
     			type="mmd:dataset_production_status_type" maxOccurs="1"
