@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use Pod::Usage;
 use FindBin;
+use File::Basename;
 
 if( scalar(@ARGV) != 3 ){
     pod2usage(1);    
@@ -94,7 +95,7 @@ convert-from-mmd.pl - Convert files from MMD from different formats.
 
 =head1 SYNOPSIS
 
-convert-from-mmd-convert.pl <from format> <input file or dir> <output file or dir>
+convert-from-mmd.pl <to format> <input file or dir> <output file or dir>
 
 =head1 DESCRIPTION
 
