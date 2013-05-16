@@ -14,11 +14,15 @@
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="gmd:MD_Metadata">
-        
+
+            <gmd:language>
+                <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng">English</gmd:LanguageCode>
+            </gmd:language>        
             <gmd:characterSet>
                 <gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode"
                                codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
             </gmd:characterSet>
+            
             <gmd:locale>
                 <gmd:PT_Locale id="locale-nob">
                     <gmd:languageCode>
@@ -240,6 +244,9 @@
             <xsl:element name="gmd:EX_TemporalExtent">
                 <xsl:element name="gmd:extent">
                     <xsl:element name="gml:TimePeriod">
+                        <xsl:attribute name="id">
+                            <xsl:number />
+                        </xsl:attribute>
                         <xsl:element name="gml:beginPosition">
                             <xsl:value-of select="mmd:start_date" />
                         </xsl:element>
