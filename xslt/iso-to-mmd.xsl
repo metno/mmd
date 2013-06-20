@@ -160,7 +160,7 @@
     </xsl:template>    
     
     <xsl:template match="gmd:contact/gmd:CI_ResponsibleParty">
-        <xsl:element name="mmd:personell">
+        <xsl:element name="mmd:personnel">
             <xsl:element name="mmd:role">
                 <xsl:choose>
                     <xsl:when test="gmd:role/gmd:CI_RoleCode[@codeListValue='principalInvestigator']">

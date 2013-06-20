@@ -5,14 +5,14 @@
 
 	<metadata_identifier>foo-bar-baz-1234</metadata_identifier>
 
-	<title xml:lang="en_GB">Foo Ice Charts for Sognsvann</title>
-	<abstract xml:lang="en_GB">Foo is high resolution bla bla bla
+	<title xml:lang="en">Foo Ice Charts for Sognsvann</title>
+    <title xml:lang="no">Foo Is kart for Sognsvann</title>
+	<abstract xml:lang="en">Foo is high resolution bla bla bla
 	</abstract>
 
 	<last_metadata_update>2012-12-11</last_metadata_update>
 
-	<iso_topic_category>climatologyMeteorologyAtmosphere
-	</iso_topic_category>
+	<iso_topic_category>climatologyMeteorologyAtmosphere</iso_topic_category>
 
 	<data_center>
 		<data_center_name>
@@ -50,13 +50,13 @@
 	</keywords>
 
 	<temporal_extent>
-		<start_date>2012-01-01</start_date>
-		<end_date>2012-03-01</end_date>
+		<start_date>2012-01-01T00:00:00Z</start_date>
+		<end_date>2012-03-01T00:00:00Z</end_date>
 	</temporal_extent>
 
 	<temporal_extent>
-		<start_date>2012-10-01</start_date>
-		<end_date>2012-12-31</end_date>
+		<start_date>2012-10-01T00:00:00Z</start_date>
+		<end_date>2012-12-31T00:00:00Z</end_date>
 	</temporal_extent>
 
 
@@ -93,14 +93,25 @@
 	</geographic_extent>
 
 	<!-- ulike kontaktpersoner -->
-	<contact>
-		<role>data owner</role>
+	<personnel>
+		<role>Technical investigator</role>
 		<name>Ole Dole</name>
 		<email>...</email>
 		<phone>...</phone>
 		<fax></fax>
 		<organisation></organisation>
-	</contact>
+	</personnel>
+
+    <personnel>
+    <role>Metadata author</role>
+    <name>Frode Dinessen</name>
+    <email>istjenesten@met.no</email>
+    <phone>77621300</phone>
+    <organisation>Norwegian Meteorological Institute</organisation>
+    <contact_address>
+      <country>Norway</country>
+    </contact_address>
+  </personnel>
 
 	<!-- ulike måter å hente dataene på. WMS, http etc. -->
 	<data_access>
@@ -154,7 +165,7 @@
 	<access_constraint>Free for all</access_constraint>
 	<use_constraint>CC-BY</use_constraint>
 
-    <dataset_production_status>unknown</dataset_production_status>
+    <dataset_production_status>In Work</dataset_production_status>
     <dataset_language>en</dataset_language>
 
 	<metadata_version>1</metadata_version>

@@ -5,7 +5,7 @@
     
     <xs:element name="mmd" type="mmd:mmd_type"></xs:element>
         
-    <xs:complexType name="personell_type">
+    <xs:complexType name="personnel_type">
     	<xs:choice maxOccurs="5">
     		<xs:element name="role" type="mmd:role_type"></xs:element>
     		<xs:element name="name" type="xs:string"></xs:element>
@@ -47,7 +47,7 @@
     	    <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="keywords" type="mmd:keywords_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-    	    <xs:element name="personell" type="mmd:personell_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+    	    <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0">
     	    </xs:element>
     	    <xs:element name="data_access" type="mmd:data_access_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
