@@ -7,24 +7,25 @@
     <xs:element name="mmd" type="mmd:mmd_type"></xs:element>
         
     <xs:complexType name="personnel_type">
-    	<xs:choice maxOccurs="5">
-    		<xs:element name="role" type="mmd:role_type"></xs:element>
-    		<xs:element name="name" type="xs:string"></xs:element>
-    		<xs:element name="email" type="xs:string"></xs:element>
-    		<xs:element name="phone" type="xs:string"></xs:element>
-    		<xs:element name="fax" type="xs:string"></xs:element>
-            <xs:element name="contact_address" type="mmd:contact_address"></xs:element>
-    	</xs:choice>
+        <xs:all>
+            <xs:element name="role" type="mmd:role_type"></xs:element>
+            <xs:element name="name" type="xs:string"></xs:element>
+            <xs:element name="organisation" type="xs:string" minOccurs="0"></xs:element>
+            <xs:element name="email" type="xs:string"></xs:element>
+            <xs:element name="phone" type="xs:string"></xs:element>
+            <xs:element name="fax" type="xs:string"></xs:element>
+            <xs:element name="contact_address" type="mmd:contact_address" minOccurs="0"></xs:element>
+        </xs:all>
     </xs:complexType>
     
     <xs:complexType name="contact_address">
-        <xs:sequence>
-            <xs:element name="address" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="city" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="province_or_state" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="postal_code" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="country" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>        
-        </xs:sequence>
+        <xs:all>
+            <xs:element name="address" type="xs:string"></xs:element>
+            <xs:element name="city" type="xs:string"></xs:element>
+            <xs:element name="province_or_state" type="xs:string"></xs:element>
+            <xs:element name="postal_code" type="xs:string"></xs:element>
+            <xs:element name="country" type="xs:string"></xs:element>
+        </xs:all>
     </xs:complexType>
 
     <xs:complexType name="mmd_type">
@@ -75,18 +76,12 @@
     </xs:complexType>
 
     <xs:complexType name="geographic_rectangle_type">
-    	<xs:sequence>
-    		<xs:element name="north" type="xs:double" maxOccurs="1"
-    			minOccurs="1">
-    		</xs:element>
-    		<xs:element name="south" type="xs:double" maxOccurs="1"
-    			minOccurs="1">
-    		</xs:element>
-    		<xs:element name="east" type="xs:double" maxOccurs="1"
-    			minOccurs="1">
-    		</xs:element>
-    		<xs:element name="west" type="xs:double" maxOccurs="1" minOccurs="1"></xs:element>
-    	</xs:sequence>
+        <xs:all>
+            <xs:element name="north" type="xs:double"></xs:element>
+            <xs:element name="south" type="xs:double"></xs:element>
+            <xs:element name="east"  type="xs:double"></xs:element>
+            <xs:element name="west"  type="xs:double"></xs:element>
+        </xs:all>
     </xs:complexType>
 
     <xs:complexType name="geographic_extent_type">
@@ -185,12 +180,12 @@
     </xs:complexType>
 
     <xs:complexType name="data_access_type">
-    	<xs:choice maxOccurs="unbounded">
-    		<xs:element name="name" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-    		<xs:element name="type" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="description" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-    		<xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    	</xs:choice>
+        <xs:all>
+        <xs:element name="name" type="xs:string" minOccurs="0"></xs:element>
+        <xs:element name="type" type="xs:string"></xs:element>
+        <xs:element name="description" type="xs:string" minOccurs="0"></xs:element>
+        <xs:element name="resource" type="xs:string"></xs:element>
+        </xs:all>
     </xs:complexType>
 
     <xs:complexType name="dataset_citation_type">
