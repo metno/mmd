@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema elementFormDefault="qualified" targetNamespace="http://www.met.no/schema/mmd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:mmd="http://www.met.no/schema/mmd">
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.met.no/schema/mmd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:mmd="http://www.met.no/schema/mmd"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
     <xs:import schemaLocation="http://www.w3.org/2001/xml.xsd" namespace="http://www.w3.org/XML/1998/namespace"/>
     
@@ -53,13 +54,15 @@
     	    <xs:element name="data_access" type="mmd:data_access_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="reference" type="mmd:reference_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
+            <xsd:element name="system_specific_product_category" type="mmd:system_specific_product_category_type" maxOccurs="unbounded" />
+            <xsd:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type" maxOccurs="unbounded" />
     	</xs:choice>
     </xs:complexType>
 
     <xs:complexType name="temporal_extent_type">
     	<xs:sequence>
     		<xs:element name="start_date" type="xs:date"></xs:element>
-    		<xs:element name="end_date" type="xs:date"></xs:element>
+    		<xs:element name="end_date" type="xs:date" ></xs:element>
     	</xs:sequence>
     </xs:complexType>
 
@@ -95,7 +98,16 @@
     	</xs:sequence>
     </xs:complexType>
     
-    <xs:complexType name="geographic_polygon_type"></xs:complexType>
+    <xs:complexType name="geographic_polygon_type">
+        <xs:annotation>
+            <xs:documentation>This allows gml:polygon to be addedd</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:complexType name="project_type">
     	<xs:sequence>
@@ -124,7 +136,10 @@
 
     <xs:simpleType name="dataset_production_status_type">
     	<xs:restriction base="xs:string">
-    		<xs:enumeration value="value"></xs:enumeration>
+    		<xs:enumeration value="Planned"></xs:enumeration>
+            <xs:enumeration value="In Work"></xs:enumeration>
+            <xs:enumeration value="Complete"></xs:enumeration>
+            <xs:enumeration value="Obsolete"></xs:enumeration>
     	</xs:restriction>
     </xs:simpleType>
 
@@ -170,7 +185,7 @@
     </xs:complexType>
 
     <xs:complexType name="data_access_type">
-    	<xs:choice maxOccurs="1">
+    	<xs:choice maxOccurs="unbounded">
     		<xs:element name="name" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
     		<xs:element name="type" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
     		<xs:element name="description" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
@@ -230,4 +245,21 @@
     		<xs:element name="long_name" type="xs:string"></xs:element>
     	</xs:sequence>
     </xs:complexType>
+    
+    <xsd:complexType name="system_specific_product_relevance_type">
+    <xsd:sequence>
+      <xsd:element name="used_by" type="mmd:used_by_type" maxOccurs="unbounded" />
+      <xsd:element name="relevance" type="xsd:string" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    </xsd:complexType>
+     <xsd:complexType name="system_specific_product_category_type">
+    <xsd:sequence>
+      <xsd:element name="used_by" type="mmd:used_by_type" maxOccurs="unbounded" />
+      <xsd:element name="category" type="xsd:string" maxOccurs="unbounded" />
+    </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="used_by_type">
+      <xsd:attribute name="for" type="xsd:string" />
+    </xsd:complexType>
 </xs:schema>
+
