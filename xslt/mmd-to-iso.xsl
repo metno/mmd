@@ -339,6 +339,12 @@
                 </xsl:element>
             </xsl:element>
             
+            <xsl:element name="gmd:organisationName">
+                <xsl:element name="gco:CharacterString">
+                    <xsl:value-of select="mmd:organisation" />
+                </xsl:element>
+            </xsl:element>            
+            
             <xsl:element name="gmd:contactInfo">
                 <xsl:element name="gmd:CI_Contact">
                     <xsl:element name="gmd:phone">

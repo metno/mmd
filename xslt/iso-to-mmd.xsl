@@ -182,6 +182,10 @@
                 <xsl:value-of select="gmd:individualName/gco:CharacterString" />
             </xsl:element>
             
+            <xsl:element name="mmd:organisation">
+                <xsl:value-of select="gmd:organisationName/gco:CharacterString" />
+            </xsl:element>
+            
             <xsl:element name="mmd:email">
                 <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString" />
             </xsl:element>
