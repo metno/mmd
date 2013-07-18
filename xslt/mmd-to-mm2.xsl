@@ -70,7 +70,8 @@
 
     </xsl:template>
 
-    <xsl:template match="mmd:data_access">
+    <!-- Since METAMOD does some tranformation of the data access URLs we only consider the THREDDS url -->
+    <xsl:template match="mmd:data_access[mmd:type = 'thredds']">
         <xsl:element name="m:metadata">
             <xsl:attribute name="name">dataref</xsl:attribute>
             <xsl:value-of select="mmd:resource" />
@@ -110,17 +111,28 @@
     </xsl:template>
 
     <xsl:template match="mmd:keywords[@vocabulary='cf']">
-        <xsl:element name="m:metadata">
-            <xsl:attribute name="name">variable</xsl:attribute>
-            <xsl:value-of select="." />
-        </xsl:element>
+    
+        <xsl:for-each select="mmd:keyword">
+            <xsl:element name="m:metadata">
+                <xsl:attribute name="name">variable</xsl:attribute>
+                <xsl:value-of select="." />
+            </xsl:element>
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template match="mmd:keywords[@vocabulary='gcmd']">
-        <xsl:element name="m:metadata">
-            <xsl:attribute name="name">variable</xsl:attribute>
-            <xsl:value-of select="keyword" />
-        </xsl:element>
+    
+        <xsl:for-each select="mmd:keyword">
+            <xsl:element name="m:metadata">
+                <xsl:attribute name="name">variable</xsl:attribute>
+                
+                <!-- 
+                The appended HIDDEN text is to make the translation work in a way that is understood
+                by METAMOD indexing.                
+                 -->
+                <xsl:value-of select="concat(., ' &gt; HIDDEN')" />
+            </xsl:element>
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template match="mmd:personnel[mmd:role='Investigator']">
@@ -132,6 +144,10 @@
         <xsl:element name="m:metadata">
             <xsl:attribute name="name">contact</xsl:attribute>
             <xsl:value-of select="mmd:email" />
+        </xsl:element>
+        <xsl:element name="m:metadata">
+            <xsl:attribute name="name">institution</xsl:attribute>
+            <xsl:value-of select="mmd:organisation" />
         </xsl:element>
 
 
