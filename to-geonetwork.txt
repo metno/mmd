@@ -33,6 +33,9 @@ https://svn.met.no/metadata-data/met-master/XML/nora_hs_gt_4m.xml
 https://svn.met.no/metadata-data/met-master/XML/nora_hs_gt_5m.xml
 https://svn.met.no/metadata-data/met-master/XML/nora_hs_gt_6m.xml
 https://svn.met.no/metadata-data/met-master/XML/nora_hs_mean_month.xml
+https://svn.met.no/metadata-data/met-master/XML/nora_wind_gt_10ms.xml
+https://svn.met.no/metadata-data/met-master/XML/nora_wind_gt_15ms.xml
+https://svn.met.no/metadata-data/met-master/XML/nora_wind_gt_20ms.xml
 https://svn.met.no/metadata-data/met-master/XML/nora_wind_mean_month.xml
 https://svn.met.no/metadata-data/met-master/XML/sea_current_regional.xml
 https://svn.met.no/metadata-data/met-master/XML/sea_salinity_regional.xml
