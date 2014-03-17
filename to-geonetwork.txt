@@ -50,4 +50,3 @@ https://svn.met.no/metadata-data/met-master/XML/wms-arome.precip1h.colour.xml
 https://svn.met.no/metadata-data/met-master/XML/wms-arome.t2m.xml
 https://svn.met.no/metadata-data/met-master/XML/wms-arome.wind10m.ms_arrow.xml
 https://svn.met.no/metadata-data/met-master/XML/wms-radar_precipitation_intensity.xml
-
