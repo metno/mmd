@@ -17,6 +17,7 @@ https://svn.met.no/metadata-data/met-master/XML/arctic20_salt_sst.xml
 https://svn.met.no/metadata-data/met-master/XML/avhrr_noaa_eumetsat_arcticocean.xml
 https://svn.met.no/metadata-data/met-master/XML/avhrr_noaa_eumetsat_north_atlantic.xml
 https://svn.met.no/metadata-data/met-master/XML/avhrr_noaa_eumetsat_northern_europe.xml
+https://svn.met.no/metadata-data/met-master/XML/avhrr_noaa_eumetsat_northpole.xml
 https://svn.met.no/metadata-data/met-master/XML/ec_mslp.xml
 https://svn.met.no/metadata-data/met-master/XML/ec_precip.xml
 https://svn.met.no/metadata-data/met-master/XML/ec_t2m.xml
