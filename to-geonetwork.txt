@@ -1,4 +1,4 @@
-https://svn.met.no/metadata-data/met-master/XML/ice_analysis_sar.xml
+https://svn.met.no/metadata-data/met-master/XML/ice.ice_analysis_sar.xml
 https://svn.met.no/metadata-data/met-master/XML/polar-low-strike-probability.xml
 https://svn.met.no/metadata-data/met-master/XML/ROMS_Arctic20km.xml
 https://svn.met.no/metadata-data/met-master/XML/ROMS_Arctic20km_surface.xml
