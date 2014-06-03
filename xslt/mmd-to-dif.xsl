@@ -8,55 +8,61 @@
 
   <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
-  <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:element ref="Entry_ID" minOccurs="1" maxOccurs="1"/>
-      <xs:element ref="Entry_Title" minOccurs="1" maxOccurs="1"/>
-      <xs:element ref="Data_Set_Citation" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Personnel" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Discipline" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element ref="Parameters" minOccurs="1" maxOccurs="unbounded"/>
-      <xs:element ref="ISO_Topic_Category" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element ref="Keyword" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Sensor_Name" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Source_Name" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element ref="Temporal_Coverage" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Paleo_Temporal_Coverage" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Data_Set_Progress" minOccurs="0" maxOccurs="1"/>
-      <xs:element ref="Spatial_Coverage" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Data_Resolution" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element ref="Project" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Quality" minOccurs="0" maxOccurs="1"/>
-      <xs:element ref="Access_Constraints" minOccurs="0" maxOccurs="1"/>
-      <xs:element ref="Use_Constraints" minOccurs="0" maxOccurs="1"/>
-      <xs:element ref="Data_Set_Language" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Originating_Center" minOccurs="0" maxOccurs="1"/>
-
-      <xs:element ref="Data_Center" minOccurs="1" maxOccurs="unbounded"/>
-    <xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Multimedia_Sample" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Reference" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element ref="Summary" minOccurs="1" maxOccurs="1"/>
-      <xs:element ref="Related_URL" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Parent_DIF" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="IDN_Node" minOccurs="0" maxOccurs="unbounded"/>
-    <xs:element ref="Originating_Metadata_Node" minOccurs="0" maxOccurs="1"/>
-      <xs:element ref="Metadata_Name" minOccurs="1" maxOccurs="1"/>
-      <xs:element ref="Metadata_Version" minOccurs="1" maxOccurs="1"/>
-    <xs:element ref="DIF_Creation_Date" minOccurs="0" maxOccurs="1"/>
-    <xs:element ref="Last_DIF_Revision_Date" minOccurs="0" maxOccurs="1"/>
-    <xs:element ref="DIF_Revision_History" minOccurs="0" maxOccurs="1"/>
-    <xs:element ref="Future_DIF_Review_Date" minOccurs="0" maxOccurs="1"/>
-    <xs:element ref="Private" minOccurs="0" maxOccurs="1"/>
-    <xs:element ref="Extended_Metadata" minOccurs="0" maxOccurs="unbounded"/>
-  </xs:sequence>
+    <!--
+      Entry_ID !
+      Entry_Title !
+      Data_Set_Citation *
+      Personnel *
+      Discipline *
+      Parameters +
+      ISO_Topic_Category *
+      Keyword *
+      Sensor_Name *
+      Source_Name *
+      Temporal_Coverage *
+      Paleo_Temporal_Coverage *
+      Data_Set_Progress ?
+      Spatial_Coverage *
+      Location *
+      Data_Resolution *
+      Project *
+      Quality ?
+      Access_Constraints ?
+      Use_Constraints ?
+      Data_Set_Language *
+      Originating_Center ?
+      Data_Center +
+      Distribution *
+      Multimedia_Sample *
+      Reference *
+      Summary !
+      Related_URL *
+      Parent_DIF *
+      IDN_Node *
+      Originating_Metadata_Node ?
+      Metadata_Name !
+      Metadata_Version !
+      DIF_Creation_Date ?
+      Last_DIF_Revision_Date ?
+      DIF_Revision_History ?
+      Future_DIF_Review_Date ?
+      Private ?
+      Extended_Metadata *
+    -->
 
   <xsl:template match="/mmd:mmd">
     <xsl:element name="dif:DIF">
       <xsl:apply-templates select="mmd:metadata_identifier" /> <!--Entry_ID-->
       <xsl:apply-templates select="mmd:title[1]" /> <!--Entry_Title-->
       <xsl:apply-templates select="mmd:dataset_citation" />
-      <xsl:apply-templates select="mmd:keywords[@vocabulary='gcmd']"/>
+  <dif:Parameters>
+    <dif:Category>EARTH SCIENCE</dif:Category>
+    <dif:Topic><xsl:value-of select="'Not Available'"/></dif:Topic>
+    <dif:Term><xsl:value-of select="'Not Available'"/></dif:Term>
+    <dif:Variable_Level_1><xsl:value-of select="'Not Available'"/></dif:Variable_Level_1>
+    <dif:Detailed_Variable><xsl:value-of select="'Not Available'"/></dif:Detailed_Variable>
+  </dif:Parameters>
+      <xsl:apply-templates select="mmd:keywords[@vocabulary='gcmd']"/> <!--Parameters-->
       <xsl:apply-templates select="mmd:iso_topic_category" />
       <xsl:apply-templates select="mmd:keywords[@vocabulary='none']"/>
       <xsl:apply-templates select="mmd:temporal_extent" /> <!--Temporal_Coverage-->
@@ -67,7 +73,36 @@
       <xsl:apply-templates select="mmd:use_constraint" />
       <xsl:apply-templates select="mmd:dataset_language" />
       <xsl:apply-templates select="mmd:data_center" />
-      <xsl:apply-templates select="mmd:abstract[@xml:lang = 'en']" /> <!--Summary-->
+  <dif:Data_Center>
+    <dif:Data_Center_Name>
+      <dif:Short_Name/>
+      <dif:Long_Name/>
+    </dif:Data_Center_Name>
+    <dif:Data_Center_URL/>
+    <dif:Data_Set_ID/>
+    <dif:Personnel>
+      <dif:Role/>
+      <dif:First_Name/>
+      <dif:Middle_Name/>
+      <dif:Last_Name/>
+      <dif:Phone/>
+      <dif:Fax/>
+      <dif:Contact_Address>
+        <dif:Address/>
+        <dif:City/>
+        <dif:Province_or_State/>
+        <dif:Postal_Code/>
+        <dif:Country/>
+      </dif:Contact_Address>
+    </dif:Personnel>
+  </dif:Data_Center>
+      <xsl:apply-templates select="mmd:abstract[1]" /> <!--Summary-->
+      <xsl:if test="count(mmd:abstract) = 0">
+        <dif:Summary>
+          <dif:Abstract>Not Available</dif:Abstract>
+          <dif:Purpose/>
+        </dif:Summary>
+      </xsl:if>
       <xsl:apply-templates select="mmd:data_access" /> <!--Related_URL-->
       <dif:Metadata_Name>CEOS IDN DIF</dif:Metadata_Name>
       <dif:Metadata_Version>9.7 </dif:Metadata_Version> <!--this should rather be 9.8.2-->
