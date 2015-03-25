@@ -28,7 +28,6 @@ https://svn.met.no/metadata-data/met-master/XML/ecwam_hs.xml
 https://svn.met.no/metadata-data/met-master/XML/ecwam_swell_height.xml
 https://svn.met.no/metadata-data/met-master/XML/ice_chart_analysis_manual.xml
 https://svn.met.no/metadata-data/met-master/XML/ice_chart_analysis_manual_Skagerak.xml
-https://svn.met.no/metadata-data/met-master/XML/ice_chart_analysis_near_realtime.xml
 https://svn.met.no/metadata-data/met-master/XML/nora_hs_gt_2m.xml
 https://svn.met.no/metadata-data/met-master/XML/nora_hs_gt_3m.xml
 https://svn.met.no/metadata-data/met-master/XML/nora_hs_gt_4m.xml
