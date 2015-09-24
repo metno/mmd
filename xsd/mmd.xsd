@@ -58,6 +58,7 @@
     	    <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xsd:element name="system_specific_product_category" type="mmd:system_specific_product_category_type" maxOccurs="unbounded" />
             <xsd:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type" maxOccurs="unbounded" />
+            <xsd:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="1" />
     	</xs:choice>
     </xs:complexType>
 
@@ -257,5 +258,18 @@
     <xsd:complexType name="used_by_type">
       <xsd:attribute name="for" type="xsd:string" />
     </xsd:complexType>
+    <xs:simpleType name="related_dataset_relationship_type">
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="parent" />        
+     </xs:restriction>
+    </xs:simpleType>
+    <xs:attribute name="relation_type" type="mmd:related_dataset_relationship_type"/>
+    <xs:complexType name="related_dataset_type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="mmd:relation_type" use="required"/>        
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>	
 </xs:schema>
 
