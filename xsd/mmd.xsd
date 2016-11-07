@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema elementFormDefault="qualified" targetNamespace="http://www.met.no/schema/mmd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:mmd="http://www.met.no/schema/mmd"
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.met.no/schema/mmd" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:mmd="http://www.met.no/schema/mmd"
            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-    <xs:import schemaLocation="xml.xsd" namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xs:import schemaLocation="http://www.w3.org/2001/xml.xsd" namespace="http://www.w3.org/XML/1998/namespace"/>
     
     <xs:element name="mmd" type="mmd:mmd_type"></xs:element>
         
@@ -32,13 +33,14 @@
     	<xs:choice maxOccurs="unbounded">
     	    <xs:element name="metadata_version" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
     	    <xs:element name="metadata_identifier" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="metadata_status" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="collection" type="xs:string" maxOccurs="unbounded" minOccurs="1"></xs:element>
     	    <xs:element name="title" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
     	    <xs:element name="abstract" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
     	    <xs:element name="last_metadata_update" type="xs:dateTime" maxOccurs="1" minOccurs="1"></xs:element>
-    	    <xs:element name="dataset_production_status" type="mmd:dataset_production_status_type" maxOccurs="1"
-    	        minOccurs="1">
-    	    </xs:element>
-    	    <xs:element name="dataset_language" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    	    <xs:element name="dataset_production_status" type="mmd:dataset_production_status_type" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="operational_status" type="mmd:operational_status_type" minOccurs="0" maxOccurs="1"></xs:element>
+            <xs:element name="dataset_language" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
     	    <xs:element name="iso_topic_category" type="mmd:iso_topic_category_type" maxOccurs="unbounded" minOccurs="1">
     	    </xs:element>
     	    <xs:element name="temporal_extent" type="mmd:temporal_extent_type" maxOccurs="1" minOccurs="0"></xs:element>
@@ -49,16 +51,17 @@
 	    <xs:element name="activity_type" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-    	    <xs:element name="keywords" type="mmd:keywords_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+            <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+            <xs:element name="keywords" type="mmd:keywords_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
     	    <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0">
     	    </xs:element>
     	    <xs:element name="data_access" type="mmd:data_access_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="reference" type="mmd:reference_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	    <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
-            <xsd:element name="system_specific_product_category" type="mmd:system_specific_product_category_type" maxOccurs="unbounded" />
-            <xsd:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type" maxOccurs="unbounded" />
-            <xsd:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="1" />
+            <xs:element name="system_specific_product_category" type="mmd:system_specific_product_category_type" maxOccurs="unbounded" />
+            <xs:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type" maxOccurs="unbounded" />
+            <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded" />           
     	</xs:choice>
     </xs:complexType>
 
@@ -84,6 +87,7 @@
             <xs:element name="east"  type="xs:double"></xs:element>
             <xs:element name="west"  type="xs:double"></xs:element>
         </xs:all>
+        <xs:attribute name="srsName" type="xs:string" default="EPSG:4326"/>
     </xs:complexType>
 
     <xs:complexType name="geographic_extent_type">
@@ -133,11 +137,11 @@
 
     <xs:simpleType name="dataset_production_status_type">
     	<xs:restriction base="xs:string">
-    		<xs:enumeration value="Planned"></xs:enumeration>
+            <xs:enumeration value="Planned"></xs:enumeration>
             <xs:enumeration value="In Work"></xs:enumeration>
             <xs:enumeration value="Complete"></xs:enumeration>
             <xs:enumeration value="Obsolete"></xs:enumeration>
-    	</xs:restriction>
+        </xs:restriction>
     </xs:simpleType>
 
 
@@ -179,15 +183,34 @@
     		<xs:element name="keyword" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
     	</xs:sequence>
         <xs:attribute name="vocabulary" type="xs:string"></xs:attribute>
+        <xs:attribute name="reference" type="xs:string"></xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="data_access_type">
-        <xs:all>
+        <xs:sequence>
         <xs:element name="name" type="xs:string" minOccurs="0"></xs:element>
-        <xs:element name="type" type="xs:string"></xs:element>
+        <xs:element name="type" type="mmd:data_access_type_type" minOccurs="1" maxOccurs="1"></xs:element>
         <xs:element name="description" type="xs:string" minOccurs="0"></xs:element>
         <xs:element name="resource" type="xs:string"></xs:element>
-        </xs:all>
+        <xs:element name="wms_layers" type="mmd:wms_layers_type" minOccurs="0" maxOccurs="1"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="data_access_type_type">
+      <xs:restriction base="xs:string">
+    		<xs:enumeration value="HTTP"></xs:enumeration>
+    		<xs:enumeration value="OPeNDAP"></xs:enumeration>
+    		<xs:enumeration value="OGC WMS"></xs:enumeration>
+                <xs:enumeration value="OGC WFS"/>
+                <xs:enumeration value="OGC WCS"/>
+                <xs:enumeration value="FTP"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="wms_layers_type">
+      <xs:sequence>
+        <xs:element name="wms_layer" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="dataset_citation_type">
@@ -257,7 +280,7 @@
     </xsd:complexType>
     <xsd:complexType name="used_by_type">
       <xsd:attribute name="for" type="xsd:string" />
-    </xsd:complexType>
+    </xsd:complexType>    
     <xs:simpleType name="related_dataset_relationship_type">
       <xs:restriction base="xs:string">
         <xs:enumeration value="parent" />        
@@ -270,6 +293,20 @@
         <xs:attribute ref="mmd:relation_type" use="required"/>        
       </xs:extension>
     </xs:simpleContent>
-  </xs:complexType>	
+  </xs:complexType>
+    <xs:simpleType name="operational_status_type">
+    <xs:restriction base="xs:string">
+    		<xs:enumeration value="Operational"></xs:enumeration>
+    		<xs:enumeration value="Pre-Operational"></xs:enumeration>
+    		<xs:enumeration value="Experimental"></xs:enumeration>
+            <xs:enumeration value="Scientific"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="related_information_type">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>    
 </xs:schema>
-

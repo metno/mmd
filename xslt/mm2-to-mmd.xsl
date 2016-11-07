@@ -13,13 +13,16 @@
             <xsl:apply-templates select="*[@name='abstract']"/>
             <xsl:apply-templates select="document($xmd)/xmd:dataset/xmd:info/@status"/>
             <xsl:apply-templates select="document($xmd)/xmd:dataset/xmd:info/@datestamp"/>
-            <xsl:apply-templates select="*[@name='operational_status']"/>
+            <xsl:apply-templates select="*[@name='operational_status']"/>    
             <xsl:apply-templates select="*[@name='dataref']"/>
            <!-- <xsl:apply-templates select="*[@name='dataref_WMS']"/> -->
             <xsl:apply-templates select="*[@name='dataref_OPENDAP']"/>
             <xsl:apply-templates select="*[@name='bounding_box']"/>
             <xsl:apply-templates select="*[@name='topiccategory']"/>
 
+            <xsl:element name="collection">
+              <xsl:value-of select="document($xmd)/xmd:dataset/xmd:info/@ownertag"/>
+            </xsl:element>
             <!-- assume only single contact -->
             <xsl:element name="personnel">
                 <xsl:element name="role">Investigator</xsl:element>
@@ -46,7 +49,7 @@
                     <xsl:value-of select="substring(mm2:metadata[@name='datacollection_period_to'],1,10)"/>
                 </xsl:element>
             </xsl:element>
-
+            
             <xsl:element name="dataset_production_status">
               <xsl:choose>
                 <xsl:when test="number(substring(mm2:metadata[@name='datacollection_period_to'],1,4)) > $currentYear">
@@ -93,7 +96,7 @@
                     </xsl:element>
                 </xsl:for-each>
             </xsl:element>
-
+            
             <xsl:choose>
               <xsl:when test="mm2:metadata[@name='dataref_WMS']">
                       <xsl:apply-templates select="*[@name='dataref_WMS']"/>
@@ -102,22 +105,22 @@
                   <xsl:element name="data_access">
                   <xsl:element name="type">OGC WMS</xsl:element>
                   <xsl:element name="name"/>
+                  <xsl:element name="description"/>
                   <xsl:element name="resource">
                       <xsl:value-of select="document($xmd)/xmd:dataset/xmd:wmsInfo/w:ncWmsSetup/@aggregate_url"/>
-                  </xsl:element>
-                  <xsl:element name="description"/>
+                  </xsl:element>                  
                   <!-- include wms layers -->
                   <xsl:element name="wms_layers">
                     <xsl:for-each select="document($xmd)/xmd:dataset/xmd:wmsInfo/w:ncWmsSetup/w:layer">
-                          <xsl:element name="wms_layer">
+                          <xsl:element name="wms_layer">                        
                               <xsl:value-of select="@name"/>
                           </xsl:element>
                       </xsl:for-each>
                   </xsl:element>
-              </xsl:element>
+              </xsl:element>     
               </xsl:otherwise>
             </xsl:choose>
-
+            
 <!--
             <xsl:element name="keywords">
                 <xsl:attribute name="vocabulary">cf</xsl:attribute>
@@ -203,24 +206,24 @@
         <xsl:element name="data_access">
             <xsl:element name="type">HTTP</xsl:element>
             <xsl:element name="name"/>
+            <xsl:element name="description"/>
             <xsl:element name="resource">
                 <xsl:value-of select="."/>
-            </xsl:element>
-            <xsl:element name="description"/>
+            </xsl:element>            
         </xsl:element>
     </xsl:template>
   <xsl:template match="*[@name='dataref_WMS']">
         <xsl:element name="data_access">
             <xsl:element name="type">OGC WMS</xsl:element>
             <xsl:element name="name"/>
+            <xsl:element name="description"/>
             <xsl:element name="resource">
                 <xsl:value-of select="."/>
-            </xsl:element>
-            <xsl:element name="description"/>
+            </xsl:element>            
             <!-- include wms layers -->
             <xsl:element name="wms_layers">
               <xsl:for-each select="document($xmd)/xmd:dataset/xmd:wmsInfo/w:ncWmsSetup/w:layer">
-                    <xsl:element name="wms_layer">
+                    <xsl:element name="wms_layer">                        
                         <xsl:value-of select="@name"/>
                     </xsl:element>
                 </xsl:for-each>
@@ -231,10 +234,10 @@
         <xsl:element name="data_access">
             <xsl:element name="type">OPeNDAP</xsl:element>
             <xsl:element name="name"/>
+            <xsl:element name="description"/>
             <xsl:element name="resource">
                 <xsl:value-of select="."/>
-            </xsl:element>
-            <xsl:element name="description"/>
+            </xsl:element>            
         </xsl:element>
     </xsl:template>
   <xsl:template match="*[@name='bounding_box']">
