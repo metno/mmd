@@ -116,6 +116,7 @@
       <xs:enumeration value="Investigator"></xs:enumeration>
       <xs:enumeration value="Metadata author"></xs:enumeration>
       <xs:enumeration value="Technical contact"></xs:enumeration>
+      <xs:enumeration value="Data center contact"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataset_production_status_type">
@@ -207,6 +208,7 @@
       <xs:element name="data_center_name" type="mmd:data_center_name_type" maxOccurs="1" minOccurs="1"></xs:element>
       <xs:element name="data_center_url" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
       <xs:element name="dataset_id" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+      <xs:element name="contact" type="mmd:personnel_type"  maxOccurs="1" minOccurs="0"></xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="reference_type">
@@ -232,7 +234,7 @@
       <xs:element name="short_name" type="xs:string"></xs:element>
       <xs:element name="long_name" type="xs:string"></xs:element>
     </xs:sequence>
-  </xs:complexType>
+  </xs:complexType>  
   <xsd:complexType name="system_specific_product_relevance_type">
     <xsd:sequence>
       <xsd:element name="used_by" type="mmd:used_by_type" maxOccurs="unbounded"/>
