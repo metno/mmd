@@ -59,7 +59,7 @@
             <xs:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type"
                         maxOccurs="unbounded"/>
             <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded"/>
-            <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded"/>
+            <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="1"/>
         </xs:choice>
     </xs:complexType>
     <xs:complexType name="temporal_extent_type">
@@ -301,7 +301,7 @@
 
     <xs:complexType name="value_type">
         <xs:simpleContent>
-            <xs:extension base="xs:string">
+            <xs:extension base="xs:double">
                 <xs:attribute name="unit" type="xs:string" default="%"/>
             </xs:extension>
         </xs:simpleContent>
