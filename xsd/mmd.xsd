@@ -59,6 +59,7 @@
                   maxOccurs="unbounded"/>
       <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded"/>
       <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded"/>
+      <xs:element name="scene_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded"/>
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="temporal_extent_type">
@@ -109,9 +110,17 @@
     <xs:sequence>
       <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
       <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-      <xs:element name="mode" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+      <xs:element name="mode" type="mmd:mode_type" maxOccurs="1" minOccurs="0"></xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="mode_type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SM"></xs:enumeration>
+      <xs:enumeration value="IW"></xs:enumeration>
+      <xs:enumeration value="EW"></xs:enumeration>
+      <xs:enumeration value="VW"/>      
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="role_type">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Investigator"></xs:enumeration>
@@ -235,7 +244,7 @@
       <xs:element name="short_name" type="xs:string"></xs:element>
       <xs:element name="long_name" type="xs:string"></xs:element>
     </xs:sequence>
-  </xs:complexType>
+  </xs:complexType>  
   <xsd:complexType name="system_specific_product_relevance_type">
     <xsd:sequence>
       <xsd:element name="used_by" type="mmd:used_by_type" maxOccurs="unbounded"/>
@@ -278,7 +287,7 @@
     <xs:sequence>
       <xs:element name="type" type="mmd:related_information_types_type" maxOccurs="1" minOccurs="0"/>
       <xs:element name="description" type="xs:string"/>
-      <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="0"/>      
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="collection_type">
@@ -296,18 +305,18 @@
       <xs:enumeration value="NBS"></xs:enumeration>
       <xs:enumeration value="APPL"></xs:enumeration>
     </xs:restriction>
-  </xs:simpleType>
-
+  </xs:simpleType> 
+  
   <xs:simpleType name="related_information_types_type">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Project home page"></xs:enumeration>
       <xs:enumeration value="Users guide"></xs:enumeration>
       <xs:enumeration value="Dataset landing page"></xs:enumeration>
       <xs:enumeration value="Extended metadata"></xs:enumeration>
-
+     
     </xs:restriction>
-  </xs:simpleType>
-
+  </xs:simpleType> 
+  
   <xs:complexType name="value_type">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -315,10 +324,10 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-
+  
    <xs:complexType name="cloud_cover_type">
     <xs:sequence>
-      <xs:element name="value" type="mmd:value_type" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="value" type="mmd:value_type" maxOccurs="1" minOccurs="0"/>      
     </xs:sequence>
-  </xs:complexType>
+  </xs:complexType>  
 </xs:schema>
