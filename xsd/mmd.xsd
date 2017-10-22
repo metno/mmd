@@ -112,6 +112,7 @@
       <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
       <xs:element name="mode" type="mmd:mode_type" maxOccurs="1" minOccurs="0"></xs:element>
       <xs:element name="polarisation" type="mmd:polarisation_type" maxOccurs="1" minOccurs="0"></xs:element> 
+      <xs:element name="product_type" type="mmd:product_type_type" maxOccurs="1" minOccurs="0"></xs:element> 
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="mode_type">
@@ -122,12 +123,19 @@
       <xs:enumeration value="VW"/>      
     </xs:restriction>
   </xs:simpleType>
-   <xs:simpleType name="polarisation_type">
+  <xs:simpleType name="polarisation_type">
     <xs:restriction base="xs:string">
       <xs:enumeration value="HH"></xs:enumeration>
       <xs:enumeration value="VV"></xs:enumeration>
       <xs:enumeration value="HH+VV"></xs:enumeration>
       <xs:enumeration value="VV+HH"/>      
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="product_type_type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SLC"></xs:enumeration>
+      <xs:enumeration value="GRD"></xs:enumeration>
+      <xs:enumeration value="OCN"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="role_type">
@@ -321,8 +329,7 @@
       <xs:enumeration value="Project home page"></xs:enumeration>
       <xs:enumeration value="Users guide"></xs:enumeration>
       <xs:enumeration value="Dataset landing page"></xs:enumeration>
-      <xs:enumeration value="Extended metadata"></xs:enumeration>
-     
+      <xs:enumeration value="Extended metadata"></xs:enumeration>     
     </xs:restriction>
   </xs:simpleType> 
   
