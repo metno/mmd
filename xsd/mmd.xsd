@@ -111,6 +111,7 @@
       <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
       <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
       <xs:element name="mode" type="mmd:mode_type" maxOccurs="1" minOccurs="0"></xs:element>
+      <xs:element name="polarisation" type="mmd:polarisation_type" maxOccurs="1" minOccurs="0"></xs:element> 
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="mode_type">
@@ -119,6 +120,14 @@
       <xs:enumeration value="IW"></xs:enumeration>
       <xs:enumeration value="EW"></xs:enumeration>
       <xs:enumeration value="VW"/>      
+    </xs:restriction>
+  </xs:simpleType>
+   <xs:simpleType name="polarisation_type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HH"></xs:enumeration>
+      <xs:enumeration value="VV"></xs:enumeration>
+      <xs:enumeration value="HH+VV"></xs:enumeration>
+      <xs:enumeration value="VV+HH"/>      
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="role_type">
