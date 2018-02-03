@@ -25,42 +25,44 @@
     </xs:all>
   </xs:complexType>
   <xs:complexType name="mmd_type">
-    <xs:choice maxOccurs="unbounded">
-      <xs:element name="metadata_version" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-      <xs:element name="metadata_identifier" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-      <xs:element name="metadata_status" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-      <xs:element name="collection" type="mmd:collection_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
-      <xs:element name="title" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
-      <xs:element name="abstract" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
-      <xs:element name="last_metadata_update" type="xs:dateTime" maxOccurs="1" minOccurs="1"></xs:element>
-      <xs:element name="dataset_production_status" type="mmd:dataset_production_status_type" maxOccurs="1"
-                  minOccurs="1"></xs:element>
-      <xs:element name="operational_status" type="mmd:operational_status_type" minOccurs="0" maxOccurs="1"></xs:element>
-      <xs:element name="dataset_language" type="xs:string" maxOccurs="1" minOccurs="0" default="en"></xs:element>
-      <xs:element name="iso_topic_category" type="mmd:iso_topic_category_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
-      <xs:element name="temporal_extent" type="mmd:temporal_extent_type" maxOccurs="1" minOccurs="0"></xs:element>
-      <xs:element name="geographic_extent" type="mmd:geographic_extent_type" maxOccurs="1" minOccurs="0"></xs:element>
-      <xs:element name="access_constraint" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-      <xs:element name="use_constraint" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-      <xs:element name="project" type="mmd:project_type" maxOccurs="1" minOccurs="0"></xs:element>
-      <xs:element name="activity_type" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="keywords" type="mmd:keywords_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
-      <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="data_access" type="mmd:data_access_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="reference" type="mmd:reference_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-      <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
-      <xs:element name="system_specific_product_category" type="mmd:system_specific_product_category_type"
-                  maxOccurs="unbounded"/>
-      <xs:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type"
-                  maxOccurs="unbounded"/>
-      <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded"/>
-      <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded"/>
-      <xs:element name="scene_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded"/>
-    </xs:choice>
+    <xs:sequence>
+        <xs:element name="metadata_version" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+        <xs:element name="metadata_identifier" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+        <xs:element name="title" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
+        <xs:element name="abstract" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
+        <xs:element name="metadata_status" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+        <xs:element name="dataset_production_status" type="mmd:dataset_production_status_type" maxOccurs="1" 
+                    minOccurs="1"></xs:element>
+        <xs:element name="collection" type="mmd:collection_type" maxOccurs="unbounded" minOccurs="1"></xs:element>        
+        <xs:element name="last_metadata_update" type="xs:dateTime" maxOccurs="1" minOccurs="1"></xs:element>   
+        <xs:element name="temporal_extent" type="mmd:temporal_extent_type" maxOccurs="1" minOccurs="0"></xs:element>
+        <xs:element name="iso_topic_category" type="mmd:iso_topic_category_type" maxOccurs="unbounded" minOccurs="1"></xs:element>        
+        <xs:element name="keywords" type="mmd:keywords_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
+      <xs:choice maxOccurs="unbounded">      
+        <xs:element name="operational_status" type="mmd:operational_status_type" minOccurs="0" maxOccurs="1"></xs:element>
+        <xs:element name="dataset_language" type="xs:string" maxOccurs="1" minOccurs="0" default="en"></xs:element>
+        <xs:element name="geographic_extent" type="mmd:geographic_extent_type" maxOccurs="1" minOccurs="0"></xs:element>
+        <xs:element name="access_constraint" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+        <xs:element name="use_constraint" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+        <xs:element name="project" type="mmd:project_type" maxOccurs="1" minOccurs="0"></xs:element>
+        <xs:element name="activity_type" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="data_access" type="mmd:data_access_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="reference" type="mmd:reference_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
+        <xs:element name="system_specific_product_category" type="mmd:system_specific_product_category_type"
+                    maxOccurs="unbounded"/>
+        <xs:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type"
+                    maxOccurs="unbounded"/>
+        <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded" minOccurs="0" />
+        <xs:element name="scene_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded" minOccurs="0" />
+      </xs:choice>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="temporal_extent_type">
     <xs:sequence>
@@ -331,11 +333,11 @@
       <xs:enumeration value="Dataset landing page"></xs:enumeration>
       <xs:enumeration value="Extended metadata"></xs:enumeration>     
     </xs:restriction>
-  </xs:simpleType> 
+  </xs:simpleType>  
   
   <xs:complexType name="value_type">
     <xs:simpleContent>
-      <xs:extension base="xs:string">
+      <xs:extension base="xs:string">        
         <xs:attribute name="unit" type="xs:string" default="%"/>
       </xs:extension>
     </xs:simpleContent>
