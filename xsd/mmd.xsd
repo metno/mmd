@@ -59,15 +59,15 @@
         <xs:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type"
                     maxOccurs="unbounded"/>
         <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded" minOccurs="0"/>
-        <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded" minOccurs="0" />
-        <xs:element name="scene_cover" type="mmd:cloud_cover_type" maxOccurs="unbounded" minOccurs="0" />
+        <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="1" minOccurs="0" />
+        <xs:element name="scene_cover" type="mmd:cloud_cover_type" maxOccurs="1" minOccurs="0" />
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="temporal_extent_type">
     <xs:sequence>
       <xs:element name="start_date" type="xs:date"></xs:element>
-      <xs:element name="end_date" type="xs:date"></xs:element>
+      <xs:element name="end_date" type="xs:date" minOccurs="0" ></xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="multilang_string">
