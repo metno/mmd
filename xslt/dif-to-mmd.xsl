@@ -8,23 +8,37 @@
 
   <xsl:template match="/dif:DIF">
     <xsl:element name="mmd:mmd">
+      <xsl:apply-templates select="dif:Entry_ID" />
       <xsl:apply-templates select="dif:Entry_Title" />
+      <xsl:apply-templates select="dif:Summary" />
+      <xsl:element name="mmd:metadata_status">Active</xsl:element>
+      <xsl:apply-templates select="dif:Data_Set_Progress" />
+      <xsl:element name="mmd:collection">ADC</xsl:element>
+      <xsl:element name="mmd:collection">NSDN</xsl:element>
+      <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
+      <xsl:apply-templates select="dif:Temporal_Coverage" />
+      <xsl:apply-templates select="dif:ISO_Topic_Category" />
       <xsl:apply-templates select="dif:Parameters" />
       <xsl:apply-templates select="dif:Keyword" />
-      <xsl:apply-templates select="dif:Data_Set_Progress" />
-      <xsl:apply-templates select="dif:Summary" />
-      <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
-      <xsl:apply-templates select="dif:ISO_Topic_Category" />
       <xsl:apply-templates select="dif:Project" />
-      <xsl:apply-templates select="dif:Temporal_Coverage" />
       <xsl:apply-templates select="dif:Spatial_Coverage" />
       <xsl:apply-templates select="dif:Access_Constraints" />
       <xsl:apply-templates select="dif:Related_URL" />
       <xsl:apply-templates select="dif:Data_Set_Citation" />
       <xsl:apply-templates select="dif:Data_Center" />
+      <xsl:apply-templates select="dif:Originating_Center" />
       <!-- ... -->
     </xsl:element>
   </xsl:template>
+
+  <!--
+  <xsl:template match="dif:Data_Set_Progress">
+	<xsl:element name="mmd:dataset_production_status">
+		<xsl:value-of select="." />
+	</xsl:element>
+  </xsl:template>
+-->
+
 
   <xsl:template match="dif:Entry_ID">
 	<xsl:element name="mmd:metadata_identifier">
@@ -35,7 +49,7 @@
 
   <xsl:template match="dif:Entry_Title">
     <xsl:element name="mmd:title">
-      <xsl:attribute name="xml:lang">en_GB</xsl:attribute>
+      <xsl:attribute name="xml:lang">en</xsl:attribute>
       <xsl:value-of select="." />
     </xsl:element>
   </xsl:template>
@@ -67,20 +81,31 @@
 		<xsl:element name="mmd:version">
                 	<xsl:value-of select="dif:Version" />
             	</xsl:element>
+                <!--
 		<xsl:element name="mmd:dataset_presentation_form">
                 	<xsl:value-of select="dif:Data_Presentation_Form" />
-            	</xsl:element>
+                </xsl:element>
 		<xsl:element name="mmd:online_resource">
                 	<xsl:value-of select="dif:Online_Resource" />
             	</xsl:element>
+                -->
 	</xsl:element>
+        <xsl:element name="mmd:related_information">
+            <xsl:element name="mmd:type">Dataset landing page</xsl:element>
+            <xsl:element name="mmd:description">NA</xsl:element>
+            <xsl:element name="mmd:resource">
+                <xsl:value-of select="dif:Online_Resource"/>
+            </xsl:element>
+        </xsl:element>
   </xsl:template>
 
   <xsl:template match="dif:Parameters">
-    <xsl:element name="mmd:keyword">
-      <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
-      <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1/*"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2/*"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3/*"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
-    </xsl:element>
+      <xsl:element name="mmd:keywords">
+          <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
+          <xsl:element name="mmd:keyword">
+              <xsl:value-of select="dif:Category"/> &gt; <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1/*"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2/*"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3/*"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
+          </xsl:element>
+      </xsl:element>
   </xsl:template>
 
   <xsl:template match="dif:ISO_Topic_Category">
@@ -91,9 +116,12 @@
 
 
   <xsl:template match="dif:Keyword">
-    <xsl:element name="mmd:keyword">
-      <xsl:value-of select="." />
-    </xsl:element>
+      <xsl:element name="mmd:keywords">
+      <xsl:attribute name="vocabulary">None</xsl:attribute>
+          <xsl:element name="mmd:keyword">
+              <xsl:value-of select="." />
+          </xsl:element>
+      </xsl:element>
   </xsl:template>
 
 	<xsl:template match="dif:Data_Set_Progress">
@@ -182,31 +210,65 @@
   </xsl:template>
 
   <xsl:template match="dif:Related_URL">
-	<xsl:element name="mmd:data_access">
-		<xsl:element name="mmd:type">
-			<xsl:value-of select="dif:URL_Content_Type/dif:Type" />
-		</xsl:element>
-		<xsl:element name="mmd:resource">
-			<xsl:value-of select="dif:URL" />
-		</xsl:element>
-		<xsl:element name="mmd:description">
-			<xsl:value-of select="dif:Description" />
-		</xsl:element>
-	</xsl:element>
+      <!-- This is probably not necessary, nor consistent for providers
+           use Online_Resource in Data_Citation instead...
+      <xsl:if test="dif:Description[contains(text(),'text/html')]">
+          <xsl:element name="mmd:related_information">
+              <xsl:element name="mmd:type">Dataset landing page</xsl:element>
+              <xsl:element name="mmd:description">
+                  <xsl:value-of select="dif:Description"/>
+              </xsl:element>
+              <xsl:element name="mmd:resource">
+                  <xsl:value-of select="dif:URL"/>
+              </xsl:element>
+          </xsl:element>
+      </xsl:if>
+      -->
+      <xsl:if test="dif:URL_Content_Type/dif:Type[contains(text(),'GET DATA')]">
+          <xsl:element name="mmd:data_access">
+              <xsl:element name="mmd:type">HTTP</xsl:element>
+              <!--
+                  <xsl:value-of select="dif:URL_Content_Type/dif:Type" />
+              </xsl:element>
+              -->
+              <xsl:element name="mmd:description">
+                  <xsl:value-of select="dif:Description" />
+              </xsl:element>
+              <xsl:element name="mmd:resource">
+                  <xsl:value-of select="dif:URL" />
+              </xsl:element>
+          </xsl:element>
+      </xsl:if>
   </xsl:template>
 
 
   <xsl:template match="dif:Originating_Center">
+      <xsl:element name="mmd:personnel">
+          <xsl:element name="mmd:role">
+              <xsl:value-of select="/dif:DIF/dif:Personnel/dif:Role" />
+          </xsl:element>
+          <xsl:element name="mmd:name">
+              <xsl:value-of select="/dif:DIF/dif:Personnel/dif:First_Name"/> <xsl:value-of select="/dif:DIF/dif:Personnel/dif:Last_Name"/>
+          </xsl:element>
+          <xsl:element name="mmd:email">
+              <xsl:value-of select="/dif:DIF/dif:Personnel/dif:Email" />
+          </xsl:element>
+          <xsl:element name="mmd:phone"></xsl:element>
+          <xsl:element name="mmd:fax"></xsl:element>
+          <xsl:element name="mmd:organisation">
+              <xsl:value-of select="."/>
+          </xsl:element>
+      </xsl:element>
   </xsl:template>
 
   <xsl:template match="dif:Data_Center">
 	<xsl:element name="mmd:data_center">
 		<xsl:element name="mmd:data_center_name">
 			<xsl:element name="mmd:short_name">
-				<xsl:value-of select="dif:Data_Center_Namemmd/dif:Short_Name" />
+				<xsl:value-of select="dif:Data_Center_Name/dif:Short_Name" />
 			</xsl:element>
 			<xsl:element name="mmd:long_name">
-				<xsl:value-of select="dif:Data_Center_Namemmd/dif:Long_Name" />
+				<xsl:value-of select="dif:Data_Center_Name/dif:Long_Name" />
 			</xsl:element>
 		</xsl:element>
 		<xsl:element name="mmd:data_center_url">
