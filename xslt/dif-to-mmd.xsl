@@ -100,12 +100,14 @@
   </xsl:template>
 
   <xsl:template match="dif:Parameters">
-      <xsl:element name="mmd:keywords">
-          <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
-          <xsl:element name="mmd:keyword">
-              <xsl:value-of select="dif:Category"/> &gt; <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1/*"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2/*"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3/*"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
+      <xsl:if test="/dif:DIF[not(contains(dif:Entry_ID,'PANGAEA'))]">
+          <xsl:element name="mmd:keywords">
+              <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
+              <xsl:element name="mmd:keyword">
+                  <xsl:value-of select="dif:Category"/> &gt; <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1/*"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2/*"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3/*"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
+              </xsl:element>
           </xsl:element>
-      </xsl:element>
+      </xsl:if>
   </xsl:template>
 
   <xsl:template match="dif:ISO_Topic_Category">
@@ -303,9 +305,18 @@
   </xsl:template>
 
   <xsl:template match="dif:Summary">
-	<xsl:element name="mmd:abstract">
-		<xsl:value-of select="dif:Abstract" />
-	</xsl:element>
+      <xsl:choose>
+          <xsl:when test="dif:Abstract">
+              <xsl:element name="mmd:abstract">
+                  <xsl:value-of select="dif:Abstract" />
+              </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:element name="mmd:abstract">
+                  <xsl:value-of select="." />
+              </xsl:element>
+          </xsl:otherwise>
+      </xsl:choose>
   </xsl:template>
 
 
