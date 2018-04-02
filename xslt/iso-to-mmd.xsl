@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet version="1.0" xmlns="http://www.met.no/schema/mmd" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+<xsl:stylesheet version="1.0" xmlns="http://www.met.no/schema/mmd" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:mmd="http://www.met.no/schema/mmd"
@@ -220,14 +220,14 @@
     </xsl:template>
     
     <xsl:template match="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine">
-    
+
         <xsl:element name="mmd:data_access">
             <xsl:element name="mmd:type">
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString" />
             </xsl:element>
-            <xsl:element name="mmd:name">
+            <!--xsl:element name="mmd:name">
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gco:CharacterString" />
-            </xsl:element>
+            </xsl:element-->
             <xsl:element name="mmd:resource">
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL" />
             </xsl:element>                        
@@ -235,7 +235,6 @@
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:description/gco:CharacterString" />
             </xsl:element>                                    
         </xsl:element>
-    
     </xsl:template>
     
     <xsl:template match="gmd:descriptiveKeywords/gmd:MD_Keywords">

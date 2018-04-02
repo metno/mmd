@@ -11,20 +11,76 @@
   <xsl:output method="xml" indent="yes"/>
   <xsl:template match="/mm2:MM2">
         <xsl:element name="mmd:mmd">
+            <xsl:element name="mmd:metadata_identifier"/>
             <xsl:apply-templates select="*[@name='title']"/>
             <xsl:apply-templates select="*[@name='abstract']"/>
             <xsl:apply-templates select="document($xmd)/xmd:dataset/xmd:info/@status"/>
+            <xsl:element name="mmd:dataset_production_status">
+              <xsl:choose>
+                <xsl:when test="number(substring(mm2:metadata[@name='datacollection_period_to'],1,4)) > $currentYear">
+                  In Work
+                </xsl:when>
+                <xsl:when test="normalize-space(mm2:metadata[@name='datacollection_period_to'])=''">
+                  In Work
+                </xsl:when>
+                <xsl:otherwise>Complete</xsl:otherwise>
+              </xsl:choose>
+            </xsl:element>
+
+            <xsl:element name="mmd:collection">
+              <xsl:value-of select="document($xmd)/xmd:dataset/xmd:info/@ownertag"/>
+            </xsl:element>
+
             <xsl:apply-templates select="document($xmd)/xmd:dataset/xmd:info/@datestamp"/>
+            <xsl:element name="mmd:temporal_extent">
+                <xsl:element name="mmd:start_date">
+                    <xsl:value-of select="substring(mm2:metadata[@name='datacollection_period_from'],1,10)"/>
+                </xsl:element>
+                <xsl:element name="mmd:end_date">
+                    <xsl:value-of select="substring(mm2:metadata[@name='datacollection_period_to'],1,10)"/>
+                </xsl:element>
+            </xsl:element>
+
+            <xsl:apply-templates select="*[@name='topiccategory']"/>
+
+            <xsl:element name="mmd:keywords">
+                <xsl:attribute name="vocabulary">gcmd</xsl:attribute>
+
+                <xsl:for-each select="mm2:metadata[@name='variable' and contains(., '>')]">
+                    <xsl:variable name="value">  <!-- strip away HIDDEN suffix -->
+                        <xsl:choose>
+                            <xsl:when test="contains(., 'HIDDEN')">
+                                <xsl:value-of select="substring-before(., ' > HIDDEN')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="."/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:element name="mmd:keyword">
+                        <xsl:value-of select="$value"/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
+
+            <xsl:element name="mmd:keywords">
+                <xsl:attribute name="vocabulary">CF</xsl:attribute>
+
+                <xsl:for-each select="mm2:metadata[@name='keywords']">
+                    <xsl:element name="mmd:keyword">
+                        <!--<xsl:attribute name="vocabulary">none</xsl:attribute> -->
+                        <xsl:value-of select="."/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
+            
+            
             <xsl:apply-templates select="*[@name='operational_status']"/>    
             <xsl:apply-templates select="*[@name='dataref']"/>
            <!-- <xsl:apply-templates select="*[@name='dataref_WMS']"/> -->
             <xsl:apply-templates select="*[@name='dataref_OPENDAP']"/>
             <xsl:apply-templates select="*[@name='bounding_box']"/>
-            <xsl:apply-templates select="*[@name='topiccategory']"/>
 
-            <xsl:element name="mmd:collection">
-              <xsl:value-of select="document($xmd)/xmd:dataset/xmd:info/@ownertag"/>
-            </xsl:element>
             <!-- assume only single contact -->
             <xsl:element name="mmd:personnel">
                 <xsl:element name="mmd:role">Investigator</xsl:element>
@@ -43,62 +99,10 @@
 
             <xsl:apply-templates select="*[@name='distribution_statement']"/>
 
-            <xsl:element name="mmd:temporal_extent">
-                <xsl:element name="mmd:start_date">
-                    <xsl:value-of select="substring(mm2:metadata[@name='datacollection_period_from'],1,10)"/>
-                </xsl:element>
-                <xsl:element name="mmd:end_date">
-                    <xsl:value-of select="substring(mm2:metadata[@name='datacollection_period_to'],1,10)"/>
-                </xsl:element>
-            </xsl:element>
-            
-            <xsl:element name="mmd:dataset_production_status">
-              <xsl:choose>
-                <xsl:when test="number(substring(mm2:metadata[@name='datacollection_period_to'],1,4)) > $currentYear">
-                  In Work
-                </xsl:when>
-                <xsl:when test="normalize-space(mm2:metadata[@name='datacollection_period_to'])=''">
-                  In Work
-                </xsl:when>
-                <xsl:otherwise>Complete</xsl:otherwise>
-              </xsl:choose>
-            </xsl:element>
-
             <xsl:apply-templates select="*[@name='project_name']"/>
             <xsl:apply-templates select="*[@name='Platform_name']"/>
             <xsl:apply-templates select="*[@name='activity_type']"/>
 
-            <xsl:element name="mmd:keywords">
-                <xsl:attribute name="vocabulary">CF</xsl:attribute>
-
-                <xsl:for-each select="mm2:metadata[@name='keywords']">
-                    <xsl:element name="mmd:keyword">
-                        <!--<xsl:attribute name="vocabulary">none</xsl:attribute> -->
-                        <xsl:value-of select="."/>
-                    </xsl:element>
-                </xsl:for-each>
-            </xsl:element>
-
-            <xsl:element name="mmd:keywords">
-                <xsl:attribute name="vocabulary">gcmd</xsl:attribute>
-
-                <xsl:for-each select="mm2:metadata[@name='variable' and contains(., '>')]">
-                    <xsl:variable name="value">  <!-- strip away HIDDEN suffix -->
-                        <xsl:choose>
-              <xsl:when test="contains(., 'HIDDEN')">
-                                <xsl:value-of select="substring-before(., ' > HIDDEN')"/>
-                            </xsl:when>
-              <xsl:otherwise>
-                                <xsl:value-of select="."/>
-                            </xsl:otherwise>
-            </xsl:choose>
-                    </xsl:variable>
-                    <xsl:element name="mmd:keyword">
-                        <xsl:value-of select="$value"/>
-                    </xsl:element>
-                </xsl:for-each>
-            </xsl:element>
-            
             <xsl:choose>
               <xsl:when test="mm2:metadata[@name='dataref_WMS']">
                       <xsl:apply-templates select="*[@name='dataref_WMS']"/>
