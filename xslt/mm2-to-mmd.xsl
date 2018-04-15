@@ -6,12 +6,15 @@
         xmlns:xmd="http://www.met.no/schema/metamod/dataset" version="1.0"
         xmlns:w="http://www.met.no/schema/metamod/ncWmsSetup">
   <xsl:param name="xmd"/>
+  <xsl:param name="mmdid"/>
   <xsl:param name="parentDataset"/>
   <xsl:param name="currentYear"/>
   <xsl:output method="xml" indent="yes"/>
   <xsl:template match="/mm2:MM2">
         <xsl:element name="mmd:mmd">
-            <xsl:element name="mmd:metadata_identifier"/>
+            <xsl:element name="mmd:metadata_identifier">
+                <xsl:value-of select="$mmdid"/>
+            </xsl:element>
             <xsl:apply-templates select="*[@name='title']"/>
             <xsl:apply-templates select="*[@name='abstract']"/>
             <xsl:apply-templates select="document($xmd)/xmd:dataset/xmd:info/@status"/>
@@ -107,6 +110,7 @@
               <xsl:when test="mm2:metadata[@name='dataref_WMS']">
                       <xsl:apply-templates select="*[@name='dataref_WMS']"/>
               </xsl:when>
+              <!--
               <xsl:otherwise>
                   <xsl:element name="mmd:data_access">
                   <xsl:element name="mmd:type">OGC WMS</xsl:element>
@@ -114,7 +118,9 @@
                   <xsl:element name="mmd:resource">
                       <xsl:value-of select="document($xmd)/xmd:dataset/xmd:wmsInfo/w:ncWmsSetup/@aggregate_url"/>
                   </xsl:element>                  
+                -->
                   <!-- include wms layers -->
+              <!--
                   <xsl:element name="mmd:wms_layers">
                     <xsl:for-each select="document($xmd)/xmd:dataset/xmd:wmsInfo/w:ncWmsSetup/w:layer">
                           <xsl:element name="mmd:wms_layer">                        
@@ -123,7 +129,8 @@
                       </xsl:for-each>
                   </xsl:element>
               </xsl:element>     
-              </xsl:otherwise>
+          </xsl:otherwise>
+          -->
             </xsl:choose>
             
 <!--
