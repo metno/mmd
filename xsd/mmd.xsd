@@ -26,7 +26,9 @@
     </xs:complexType>
     <xs:complexType name="mmd_type">
         <xs:sequence>
+          <!--
             <xs:element name="metadata_version" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+          -->  
             <xs:element name="metadata_identifier" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="title" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
             <xs:element name="abstract" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
