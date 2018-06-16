@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
@@ -226,13 +226,16 @@
           </xsl:element>
       </xsl:if>
       -->
+<!-- while testing
       <xsl:if test="dif:URL_Content_Type/dif:Type[contains(text(),'GET DATA')]">
           <xsl:element name="mmd:data_access">
               <xsl:element name="mmd:type">HTTP</xsl:element>
+              -->
               <!--
                   <xsl:value-of select="dif:URL_Content_Type/dif:Type" />
               </xsl:element>
               -->
+              <!--
               <xsl:element name="mmd:description">
                   <xsl:value-of select="dif:Description" />
               </xsl:element>
@@ -241,6 +244,39 @@
               </xsl:element>
           </xsl:element>
       </xsl:if>
+      -->
+      <xsl:choose>
+          <xsl:when test="dif:URL_Content_Type/dif:Type[contains(text(),'GET DATA')]">
+              <xsl:element name="mmd:data_access">
+                  <xsl:element name="mmd:type">HTTP</xsl:element>
+                  <xsl:element name="mmd:description">
+                      <xsl:value-of select="dif:Description" />
+                  </xsl:element>
+                  <xsl:element name="mmd:resource">
+                      <xsl:value-of select="dif:URL" />
+                  </xsl:element>
+              </xsl:element>
+          </xsl:when>
+          <xsl:when test="dif:URL_Content_Type/dif:Type[contains(text(),'USE SERVICE API')]"> 
+              <!-- Need to fix this
+              <xsl:choose>
+                  <xsl:when test="dif:URL_Content_Type/dif:SubType[contains(text(),'OPENDAP DATA')]">
+-->
+                      <xsl:element name="mmd:data_access">
+                          <xsl:element name="mmd:type">OPENDAP</xsl:element>
+                          <xsl:element name="mmd:description">
+                              <xsl:value-of select="dif:Description" />
+                          </xsl:element>
+                          <xsl:element name="mmd:resource">
+                              <xsl:value-of select="dif:URL" />
+                          </xsl:element>
+                      </xsl:element>
+                      <!--
+                  </xsl:when>
+              </xsl:choose>
+-->
+          </xsl:when>
+      </xsl:choose>
   </xsl:template>
 
 
