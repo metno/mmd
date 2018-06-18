@@ -168,7 +168,7 @@
             <xs:enumeration value="economy"></xs:enumeration>
             <xs:enumeration value="elevation"></xs:enumeration>
             <xs:enumeration value="environment"></xs:enumeration>
-            <xs:enumeration value="geoscientificinformation"></xs:enumeration>
+            <xs:enumeration value="geoscientificInformation"></xs:enumeration>
             <xs:enumeration value="health"></xs:enumeration>
             <xs:enumeration value="imageryBaseMapsEarthCover"></xs:enumeration>
             <xs:enumeration value="intelligenceMilitary"></xs:enumeration>
@@ -326,6 +326,7 @@
             <xs:enumeration value="ACCESS"></xs:enumeration>
             <xs:enumeration value="NBS"></xs:enumeration>
             <xs:enumeration value="APPL"></xs:enumeration>
+            <xs:enumeration value="YOPP"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
