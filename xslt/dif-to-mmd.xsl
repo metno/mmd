@@ -27,6 +27,7 @@
       <xsl:apply-templates select="dif:Data_Set_Citation" />
       <xsl:apply-templates select="dif:Data_Center" />
       <xsl:apply-templates select="dif:Originating_Center" />
+      <xsl:apply-templates select="dif:Parent_DIF" />
       <!-- ... -->
     </xsl:element>
   </xsl:template>
@@ -367,6 +368,13 @@
 	<xsl:element name="mmd:last_metadata_update">
 		<xsl:value-of select="." />
 	</xsl:element>
+  </xsl:template>
+
+  <xsl:template match="dif:Parent_DIF">
+      <xsl:element name="mmd:related_dataset">
+          <xsl:attribute name="mmd:relation_type">parent</xsl:attribute>
+          <xsl:value-of select="." />
+      </xsl:element>
   </xsl:template>
 
 
