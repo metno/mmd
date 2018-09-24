@@ -10,16 +10,16 @@
             <xs:element name="name" type="xs:string"></xs:element>
             <xs:element name="organisation" type="xs:string" minOccurs="0"></xs:element>
             <xs:element name="email" type="xs:string"></xs:element>
-            <xs:element name="phone" type="xs:string"></xs:element>
-            <xs:element name="fax" type="xs:string"></xs:element>
+            <xs:element name="phone" type="xs:string" minOccurs="0"></xs:element>
+            <xs:element name="fax" type="xs:string" minOccurs="0"></xs:element>
             <xs:element name="contact_address" type="mmd:contact_address" minOccurs="0"></xs:element>
         </xs:all>
     </xs:complexType>
     <xs:complexType name="contact_address">
         <xs:all>
-            <xs:element name="address" type="xs:string"></xs:element>
+            <xs:element name="address" type="xs:string" minOccurs="0"></xs:element>
             <xs:element name="city" type="xs:string"></xs:element>
-            <xs:element name="province_or_state" type="xs:string"></xs:element>
+            <xs:element name="province_or_state" type="xs:string" minOccurs="0"></xs:element>
             <xs:element name="postal_code" type="xs:string"></xs:element>
             <xs:element name="country" type="xs:string"></xs:element>
         </xs:all>
