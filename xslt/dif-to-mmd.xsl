@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-        xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
-        xmlns:mmd="http://www.met.no/schema/mmd"
-        version="1.0">
+<xsl:stylesheet 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+    xmlns:mmd="http://www.met.no/schema/mmd"
+    version="1.0">
   <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
   <xsl:template match="/dif:DIF">
@@ -14,7 +15,6 @@
       <xsl:element name="mmd:metadata_status">Active</xsl:element>
       <xsl:apply-templates select="dif:Data_Set_Progress" />
       <xsl:element name="mmd:collection">ADC</xsl:element>
-      <xsl:element name="mmd:collection">NSDN</xsl:element>
       <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
       <xsl:apply-templates select="dif:Temporal_Coverage" />
       <xsl:apply-templates select="dif:ISO_Topic_Category" />

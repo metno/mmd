@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet version="1.0" xmlns="http://www.met.no/schema/mmd" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+<xsl:stylesheet version="1.0" 
+    xmlns="http://www.met.no/schema/mmd" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:gco="http://www.isotc211.org/2005/gco" 
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:mmd="http://www.met.no/schema/mmd"
-    xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"
-    >
+    xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd">
 
-    <xsl:output method="xml" indent="yes" />
+    <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/gmd:MD_Metadata">
         <xsl:element name="mmd:mmd">
-        
-            <mmd:metadata_version>1</mmd:metadata_version>
-        
+            <xsl:apply-templates select="gmd:fileIdentifier/gco:CharacterString" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" />
-            <xsl:apply-templates select="gmd:fileIdentifier/gco:CharacterString" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language" />
+            <xsl:element name="mmd:metadata_status">Active</xsl:element>
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status"/>
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
+            <!-- If /gmd:MD_Metadata/gmd:status is not available, check
+                 further and add default -->
+            <mmd:dataset_production_status>In Work</mmd:dataset_production_status>
+            <xsl:element name="mmd:collection">ADC</xsl:element>
+            <xsl:apply-templates select="gmd:dateStamp" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent" />
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords" />
+            <!--
+            <mmd:metadata_version>1</mmd:metadata_version>
+            -->
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language" />
             
             <xsl:apply-templates select="gmd:contact/gmd:CI_ResponsibleParty" />
             
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords" />
             
             <xsl:element name="mmd:geographic_extent">
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox" />
@@ -32,6 +40,8 @@
             </xsl:element>
             
             <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine" />
+
+            <xsl:apply-templates select="gmd:dataSetURI/gco:CharacterString" />
             
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints" />
@@ -57,6 +67,12 @@
         <xsl:element name="mmd:abstract">
             <xsl:attribute name="xml:lang">en</xsl:attribute>
             <xsl:value-of select="gco:CharacterString" />
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="gmd:dateStamp">
+        <xsl:element name="mmd:last_metadata_update">
+            <xsl:value-of select="." /> 
         </xsl:element>
     </xsl:template>
 
@@ -234,6 +250,16 @@
             <xsl:element name="mmd:description">
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:description/gco:CharacterString" />
             </xsl:element>                                    
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="gmd:dataSetURI/gco:CharacterString">
+        <xsl:element name="mmd:related_information">
+            <xsl:element name="mmd:type">Dataset landing page</xsl:element>
+            <xsl:element name="mmd:description">NA</xsl:element>
+            <xsl:element name="mmd:resource">
+                <xsl:value-of select="."/>
+            </xsl:element>
         </xsl:element>
     </xsl:template>
     
