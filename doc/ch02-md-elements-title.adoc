@@ -5,7 +5,9 @@
 |=======================================================================
 |Element |/mmd/title
 
-|Attributes |
+|Attributes | 
+
+* xml:lang ISO language code for the language that the title is in
 
 |Required |Yes
 

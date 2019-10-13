@@ -14,6 +14,10 @@
 |Description a|
 The platform used to collect the data. The element is described using
 two child elements:
+    • short_name is the abbreviated name of the platform used to acquire the data. 
+    • long_name is the full name of the platform used to acquire the data.
+    • This element is used to store information for NBS products (Sentinel
+platforms). 
 
 See <<Platform>> for list.
 

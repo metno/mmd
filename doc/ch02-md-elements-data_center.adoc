@@ -14,6 +14,9 @@
 |Description a|
 Description about the datacenter responsible for the distribution of the
 dataset. The element has the following child elements:
+    • data_center_name: The name of the data center split into two child elements; short_name and long_name.
+    • data_center_url: URL to the data center's main website.
+    • dataset_id: The id assigned to the dataset by the data center. This may be different from metadata_identifier.
 
 Information on the data centre contact person for a data centre is
 conveyed through the element link:#anchor-44[personnel]. See

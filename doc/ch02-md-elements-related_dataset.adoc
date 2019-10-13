@@ -6,7 +6,8 @@
 |Element |/mmd/related_dataset
 
 |Attributes|relation_type. Only "parent" is valid currently.
-
+        ◦ “parent” - This dataset is a child dataset of the referenced dataset. i.e. the other dataset is its parent.
+        ◦ “auxiliary” - This dataset is auxiliary data for the referenced dataset.
 |Required |No
 
 |Repetition allowed |Yes.

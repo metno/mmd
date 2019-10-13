@@ -16,13 +16,18 @@ This identifier is used to identify a dataset across different systems.
 The MMD format does not make hard requirements on the format of the ids,
 but to be compatible with DIF the following characters are not allowed:
 
+* Backward Slash '\' 
+* Forward Slash '/'
+* Colon ':'
+* Whitespaces ' '
+
 The identifier used currently is UUID.
 
 
 |Example XML a|
 ----
 <metadata_identifier>
-9663fc67-5687-4bf2-a274-f3826e41fdc8
+    9663fc67-5687-4bf2-a274-f3826e41fdc8
 </metadata_identifier>
 ----
 |DIF equivalent |/DIF/Entry_ID

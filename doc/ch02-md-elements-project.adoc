@@ -14,6 +14,8 @@
 |Description a|
 Project where the dataset was generated or collected. The element is
 described using two child element:
+    • short_name: is the abbreviated name of the project from which the data were collected. 
+    • long_name: is the full name of the project from which the data were collected.
 
 These names must be maintained in a controlled vocabulary.
 

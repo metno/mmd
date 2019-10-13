@@ -14,6 +14,10 @@
 |Description |The geographic extend of the datasets defined a rectangle
 in lat/lon projection. The extent is defined using the following child
 elements:
+    * north: The northernmost point covered by the dataset.
+    * south: The southernmost point covered by the dataset.
+    * west: The westernmost point covered by the dataset.
+    * east: The easternmost point covered by the dataset.
 
 |Example XML: a|
 ----

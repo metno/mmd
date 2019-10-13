@@ -14,6 +14,9 @@
 |Description a|
 Description of how to access the data in the dataset. This element has
 the following child elements:
+    • ype: Description of the type of information. A controlled vocabulary is required. See Related Information types.
+    • resource: The URL used. 
+    • description: Textual description on the resource.:
 
 This element should be used for THREDDS landing pages. i.e. that is the
 pages providing the overview of services (HTTP, OPeNDAP, WMS, ...) for a
