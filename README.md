@@ -11,3 +11,11 @@ Documentation was originally provided in OpenDocumentFormat. This became
 to difficult to maintain in a collaborative environment and it is now
 moved to ASCIIDOC following the example outlined by the Climate and
 Forecast convention community.
+
+In order to build the documentation use the following command
+
+HTML:
+    asciidoctor -n mmd_specification.adoc
+
+PDF:
+    asciidoctor-pdf -n mmd_specification.adoc
