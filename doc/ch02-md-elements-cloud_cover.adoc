@@ -1,0 +1,40 @@
+[[cloud_cover]]
+=== cloud_cover
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/cloud_cover
+
+|Attributes |
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description a|
+This is an element specifically made for the NBS project and initially
+in support for handling Sentinel-2 data. It is however also relevant for
+other optical satellite imagery whether AVHRR (NPOES, EPS), VIIRS (NPP),
+MERIS (ENVISAT) or MODIS (EOS).
+
+It describes the overall cloud cover in the scene and it only relates to
+the number of valid pixels in the scene (excluding missing values for
+map projected scenes).
+
+The element has one sub element:
+value: The actual cloud cover in percentage of the valid pixels. This is indicated with one attribute.
+
+|Example XML a|
+----
+<cloud_cover>
+    <value unit=”%”>45</value>
+</cloud_cover>
+----
+
+|DIF equivalent |NA
+
+|ISO equivalent |NA
+
+|MM2 equivalent |NA
+
+|=======================================================================

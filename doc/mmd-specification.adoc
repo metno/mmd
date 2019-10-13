@@ -1,0 +1,113 @@
+= MET Norway Metadata Format Specification
+Øystein{nbsp}Godøy, Trygve{nbsp}Halsne, Øystein{nbsp}Torget, Bard{nbsp}Saadatnejad, Egil{nbsp}Støren, Sarfraz{nbsp}Alam
+Version 2.2 (draft)
+:doctype: book
+:pdf-folio-placement: physical
+:sectanchors:
+:toc:
+:toclevels: 4
+
+:numbered!:
+== Abstract
+
+:numbered!:
+== Revision history
+
+[cols=",,,",]
+|=======================================================================
+|Version |Date |Comment |Responsible
+
+|2.2 |2019-10-?? |Several minor modifications has not been document.
+Collecting these and preparing for transition into ASCIDOC like
+CF-conventions. |Øystein Godøy
+
+|2.1 |2018-12-13 |Modifications of controlled vocabularies related to
+satellite data and data collections, minor edit on related_dataset,
+major edit on reference. |Øystein Godøy
+
+|2.0 |2017-10-17 |Added controlled vocabularies and elements for
+instrument children like mode, polarisation and product_type. a|
+Trygve Halsne
+
+Øystein Godøy
+
+|1.9 |2017-05-29 |Added ODATA to data_access to support NBS. a|
+Øystein Godøy
+
+Egil Støren
+
+Bard Saadatnejad
+
+Trygve Halsne
+
+|1.8 |2017-03-13 |Adaptations to support NBS (in particular Sentinel-2).
+Depreciation of system_specific elements used for Halo and BarentsWatch
+(covered by other elements). a|
+Øystein Godøy
+
+Sarfraz Alam
+
+Trygve Halsne
+
+Bard Saadatnejad
+
+|1.7 |2016-11-04 |Consolidation of document, addition of collection
+keyword and preparation for NBS usage. a|
+Øystein Godøy
+
+Sarfraz Alam
+
+|1.6 |2016-05-10 a|
+Minor formatting changes.
+
+Addition of configuration metadata elements (from XMD and others).
+
+Addition of vocabulary suggestions.
+
+ a|
+Øystein Godøy
+
+Bard Saadatnejad
+
+Sarfraz Alam
+
+|1.5 |2013-07-15 | |Øystein Torget
+
+|1.4 |2013-06-20 | |Øystein Torget
+
+|1.3 |2013-03-13 | |Øystein Torget
+
+|1.2 |2013-03-06 a|
+Added Obsolete as a dataset status.
+
+Re-formatted document and added some more formalism to the intro
+sections.
+
+ a|
+Øystein Godøy,
+
+Øystein Torget
+
+|1.1 |2013-02-12 a|
+Added mapping between MMD and ISO dataset status codes.
+
+Move vocabulary from sub element of keywords to attribute.
+
+ |Øystein Torget
+
+|1.0 |2013-01-18 |First version. |Øystein Torget
+|=======================================================================
+
+toc::[]
+
+:numbered:
+include::ch01-introduction.adoc[]
+
+:numbered:
+include::ch02-md-elements.adoc[]
+
+:numbered:
+include::ch03-md-explanations.adoc[]
+
+:numbered:
+include::ch04-md-contrvocabs.adoc[]

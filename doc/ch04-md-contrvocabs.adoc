@@ -1,0 +1,523 @@
+[[controlled-vocabularies]]
+== Controlled vocabularies
+
+[[collection-keywords]]
+=== Collection keywords
+
+[cols=",",]
+|=======================================================================
+|CC |Datasets related to the Cryosphere in the context of the CryoClim
+project.
+
+|NMAP |Remote sensing datasets or higher order products based on remote
+sensing datasets generated in the context of the Norwegian Satellite
+Earth Observation Database for Marine and Polar Research (NORMAP).
+
+|ADC |Datasets related to the Arctic Data Centre. This is the fall back
+collection, but it might be that some datasets are not officially part
+of the ADC collection and thus should only be searchable, but not
+exported using OAI-PMH.
+
+|GCW |Datasets related to the WMO Global Cryosphere Watch.
+
+|NMDC |Datasets relevant for the Norwegian Marine Data Centre. This is
+basically datasets of a marine origin, regardless of whether they are of
+operational or scientific origin.
+
+|SIOS |Datasets related to the Svalbard Integrated Arctic Earth
+Observing System.
+
+|NSDN |Datasets related to the Norwegian Scientific Data Network
+(NorDataNet).
+
+|DOKI |Datasets related to the national contribution to the
+International Polar Year.
+
+|DAM |Datasets in the context of EU FP6 project DAMOCLES:
+
+|ACCESS |Datasets in the context of EU FP7 project ACCESS.
+
+|NBS |Datasets in the context of National Ground Segment for satellite
+data. This is primarily Sentinel datasets.
+
+|APPL |Datasets in the context of EU H2020 project APPLICATE.
+
+|YOPP |Datasets in the context of YOPP.
+|=======================================================================
+
+<<collection>>
+
+[[dataset-production-status]]
+=== Dataset production status
+
+[cols=",",]
+|=======================================================================
+|Code |Description
+
+|Planned |Refers to data sets to be collected in the future and are thus
+unavailable at the present time. For Example: The Hydro spacecraft has
+not been launched, but information on planned data sets may be
+available.
+
+|In Work |Refers to data sets currently undergoing production or data
+that is continuously being collected or updated. For Example: data from
+the AIRS instrument on Aqua is being collected continuously.
+
+|Complete |Refers to data sets in which no updates or further data
+collection will be made. For Example: Nimbus-7 SMMR data collection has
+been completed.
+
+|Obsolete |A new version of the dataset has been generated. The new
+version should be used, this is kept for back tracing.
+|=======================================================================
+
+link:#anchor-10[dataset_production_status]
+
+[[iso-to-mmd-mapping]]
+=== ISO to MMD mapping
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[cols=",",]
+|===========================
+|ISO Code |MMD code
+|completed |Complete
+|historicalArchive |Complete
+|obsolete |Obsolete
+|onGoing |In Work
+|planned |Planned
+|required |Planned
+|underDevelopment |Planned
+|===========================
+
+[[mmd-to-iso-mapping]]
+[[anchor-54]]MMD to ISO mapping
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[cols=",",]
+|==================
+|MMD Code |ISO code
+|Planned |Planned
+|In Work |onGoing
+|Complete |Complete
+|Obsolete |obsolete
+|==================
+
+[[operational-status]]
+=== Operational status
+
+[cols=",",]
+|=======================================================================
+|Code |Description
+
+|Operational |This is used to tag datasets that are continously being
+evaluated and validated. The production of the data is under the
+responsibility of an authority and follows a review and documentation
+process. Operational data are generated on a continuous basis with a
+temporal perspective.
+
+|Pre-Operational |This is used to describe data that are under review
+for becoming the next operational delivery. It is usually produced
+continuously, but not necessarily distributed to users not specifically.
+It covers the intermediate step between Experimental and Operational.
+
+|Experimental |This is used to describe data that belongs to a
+development and production chain that provides operational data. It is
+the first step in the process of becoming operational.
+
+|Scientific |This is used to describe purely scientific products. That
+is products generated through scientific projects and usually with a
+limited temporal perspective.
+|=======================================================================
+
+link:#anchor-20[operational_status]
+
+[[access-constraints]]
+=== Access constraints
+
+[cols=",",]
+|=======================================================================
+|Code |Description
+
+|Open |These data are freely available to everyone and can be made
+available without any restrictions.
+
+|Registered users only (automated approval) |These data are available
+for users as long as they register with name, affiliation, and a valid
+email address. The verification process can be automated.
+
+|Registered users only (manual approval required) |These data are
+available for users as long as they register with name, affiliation, and
+a valid email address. The verification process must be manual.
+
+|Restricted to a community |These data are available for users within a
+restricted community. This community determines the authorization
+mechansim to utilise whether this being IP-address, community specific
+users names or other.
+
+|Restricted access to metadata |Information on these data MUST NOT be
+exposed externally. This implies that neither metadata can be exposed
+externally.
+|=======================================================================
+
+link:#anchor-27[access_constraint]
+
+[[use-constraints]]
+=== Use constraints
+
+[cols=",",]
+|=======================================================================
+|Code |Description
+
+|Public domain |All rights for these data are waived. This should be
+relevant when data are released using CC0, Open Data Commons PDDL or
+similar.
+
+|Attribution |These data may be freely copied, shared, used, modified
+and transformed as long as you attribute the owner/creator of the
+original dataset. This is used for Creative Commons Attribution.
+
+|Share-alike |This is a bit stronger than attribution as it requires any
+work based upon these data to be shared using the same conditions as the
+original data. It implies attribution and limits the freedom for new
+data generated.
+
+|Noncommercial |Data may be used for noncommercial purposes only. This
+implies share-alike (and attribution).
+
+|No derivative |FIXME
+|=======================================================================
+
+link:#anchor-29[use_constraint]
+
+[[activity-type]]
+=== Activity type
+
+Controlled vocabulary used to describe activity types. Rather than using
+the term observation type or platform which possibly could describe the
+nature of observed datasets, activity type is used to filter between
+both observations and simulations that possibly are describing the same
+phenomena. Activity types are used to identify the origin of the dataset
+documented within METAMOD. This is not an identification of the
+observation platform (e.g. specific vessel, SYNOP station or satellite),
+but more the nature of the generation process (e.g. simulation, in situ
+observation, remote sensing etc). It is useful in the context of
+filtering data when searching for relevant datasets.
+
+[cols=",",]
+|=======================================================================
+|Code |Description
+
+|Aircraft |Observations made during a flight trajectory. The
+observations caninclude remote sensing instruments, dropsondes or in
+situ measurements.Both manned and unmanned vehicles are covered by this
+term. The outputis typically a trajectory, but could also be profiles or
+points.
+
+|Space Borne Instrument |Observations or analysed products based upon
+data from a space borneinstrument (typically onboard a satellite). The
+nature of the output is typically gridded of type imagery or profiles.
+
+|Numerical Simulation |Data are generated by the use of a numerical
+simulation of theatmosphere, the ocean, the climate or similar.
+Statistical analysis is not covered by this.
+
+|Climate Indicator |This indicates a dataset that has been generated by
+analysis of somedata with the emphasis on being representative in a
+climate context (e.g. consistent in time). Furthermore, a climate
+indicator is a "compact" representation of the feature studied (e.g. the
+temporal evolution of area covered by sea ice in the Arctic). Climate
+Indicatorsare frequently linked to GCOS requirements.
+
+|In Situ Land-based station(Land station) (Field Experiment) |This is
+used to tag datasets generated from a site located on land. Thiscan be a
+permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a
+field experiment).
+
+|In Situ Ship-based station(Cruise) |This is used to identify datasets
+generated during cruises. Typically it describes a full dataset
+generated in a context, possibly describing both ocean and atmospheric
+conditions.
+
+|In Situ Ocean fixed station(Moored instrument) |This is used to
+describe ocean stations that are fixed in space.Typically this is
+moorings, anchored buoys, oil rigs etc.
+
+|In Situ Ocean moving station(Float) |This is used to describe ocean
+stations that are moving around.Typically this is gliders and drifting
+buoys.
+
+|In Situ Ice-based station(Ice station) (Field Experiment) |This is used
+to tag datasets generated from a site located on driftingsea ice or some
+other ice sheet (possibly on land but moving). It typically describes a
+temporary site (e.g. a field experiment). It would also be used to
+describe ships frozen in ice and drifting e.g. across the Arctic as well
+as Ice Thethered Platforms (ITP) and Ice Mass BalanceBuoys (IMBB).
+
+|Interview/Questionnaire(Interview) (Questionnaire) |This is not much
+used within environmental science, but comes in usefulsometimes. It is
+used to cover the results of interviews and questionnaires especially in
+interdisciplinary science.
+
+|Maps/Charts/Photographs(Maps) (Charts)(Photographs) |This is used to
+tag datasets containing imagery or PDF documents. Thiscould e.g. be a
+time lapse photographic session of a specific site illustrating e.g.
+snow cover or cloud cover. It can also be used to tagdocuments or maps
+describing the nature of a field station. It would then require datasets
+to be linked (which currently is not supported).
+|=======================================================================
+
+link:#anchor-32[activity_type]
+
+[[variableparameter-descriptions]]
+=== Variable/parameter descriptions
+
+FIXME
+
+[[platform-1]]
+=== Platform
+
+[cols=",,",]
+|==================
+|S1A |Sentinel-1A |
+|S1B |Sentinel-1B |
+|S2A |SENTINEL-2A |
+|S2B |SENTINEL-2B |
+|S3A |SENTINEL-3A |
+|S3B |SENTINEL-3 |
+|==================
+
+link:#anchor-56[Error: Reference source not found]
+
+[[instruments]]
+=== Instruments
+
+[cols=",,",]
+|=======================================================================
+|CSAR |Synthetic Aperature Radar C-band |Relates to Sentinel-1.
+
+|MSI |Multi-Spectral Instrument |Relates to Sentinel-2. A push-broom
+optical sensor.
+
+|OLCI
+|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/olci[Ocean
+and Land Colour Instrument] |Relates to Sentinel-3. A push-broom imaging
+spectrometer instrument.
+
+|SLSTR
+|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/slstr[Sea
+and Land Surface Temperature Radiometer] |Relates to Sentinel-3. A dual
+view (near-nadir and backward views) conical imaging radiometer.
+
+|MWR |Microwave Radiometer |Relates to Sentinel-3.
+|=======================================================================
+
+link:#anchor-35[instrument]
+
+[[instrument-modes]]
+=== Instrument modes
+
+[cols=",,",]
+|=====================================================
+|SM |StripMap |Relates to Sentinel-1
+|IW |Interferometric Wide Swath |Relates to Sentinel-1
+|EW |Extra-Wide Swath |Relates to Sentinel-1
+|WV |Wave Mode |Relates to Sentinel-1
+|=====================================================
+
+link:#anchor-35[instrument]
+
+[[polarisation-modes]]
+=== Polarisation modes
+
+[cols=",",]
+|=======
+|HH |
+|VV |
+|HH+HV |
+|VV+VH |
+|HV+HH |
+|VH+VV |
+|=======
+
+link:#anchor-35[instrument]
+
+[[product-type]]
+=== Product type
+
+[cols=",,",]
+|=======================================================================
+|SLC |Single Look Complex |Single Look Complex (SLC) products consist of
+focused SAR data, geo-referenced using orbit and attitude data from the
+satellite, and provided in slant-range geometry.
+
+|GRD |Ground Range Detected |Ground Range Detected (GRD) products
+consist of focused SAR data that has been detected, multi-looked and
+projected to ground range using an Earth ellipsoid model such as WGS84.
+
+|OCN |Ocean |Ocean (OCN) products for wind, wave and currents
+applications derived from the SAR data.
+
+| | |
+|=======================================================================
+
+link:#anchor-35[instrument]
+
+[[contact-roles]]
+=== Contact roles
+
+[cols=",",]
+|=======================================================================
+|Investigator |The person who headed the investigation or experiment
+that resulted in the acquisition of the data described (i.e., Principal
+Investigator, Experiment Team Leader) and knows the details on data
+collection and processing.
+
+|Technical contact |The person who is knowledgeable about the technical
+content of the data (quality, processing methods, units, available
+software for further processing)
+
+|Metadata author |The main responsible person for the generation of the
+metadata for this dataset. Other people could have been involved, but
+this is the main contact with regard to the metadata.
+|=======================================================================
+
+[[mmd-to-iso-mapping-1]]
+=== MMD to ISO mapping
+
+[cols=",",]
+|===================================
+|MMD Code |ISO code
+|Investigator |principalInvestigator
+|Technical contact |pointOfContact
+|Metadata author |author
+|===================================
+
+[[iso-topic-categories]]
+=== ISO Topic categories
+
+[cols=",",]
+|=======================================================================
+|farming |earing of animals or cultivation of plants. For example,
+resources describing irrigation, aquaculture, herding, and pests and
+diseases affecting crops and livestock.
+
+|biota |naturally occurring flora and fauna. For example, resources
+describing wildlife, biological sciences, ecology, wilderness, sea life,
+wetlands, and habitats.
+
+|boundaries |legal land descriptions.
+
+|climatologyMeteorologyAtmosphere |atmospheric processes and phenomena.
+For example, resources describing cloud cover, weather, atmospheric
+conditions, climate change, and precipitation.
+
+|economy |economic activities or employment. For example, resources
+describing labor, revenue, commerce, industry, tourism and ecotourism,
+forestry, fisheries, commercial or subsistence hunting, and exploration
+and exploitation of resources such as minerals, oil, and gas.
+
+|elevation |height above or below sea level. For example, resources
+describing altitude, bathymetry, digital elevation models, slope, and
+products derived from this information.
+
+|environment |environmental resources, protection, and conservation. For
+example, resources describing pollution, waste storage and treatment,
+environmental impact assessment, environmental risk, and nature
+reserves.
+
+|geoscientificinformation |earth sciences. For example, resources
+describing geophysical features and processes, minerals, the
+composition, structure and origin of the earth’s rocks, earthquakes,
+volcanic activity, landslides, gravity information, soils, permafrost,
+hydrogeology, and erosion.
+
+|health |health services, human ecology, and safety. For example,
+resources describing human disease and illness, factors affecting
+health, hygiene, mental and physical health, substance abuse, and health
+services.
+
+|imageryBaseMapsEarthCover |base maps. For example, resources describing
+land cover, topographic maps, and classified and unclassified images.
+
+|intelligenceMilitary |military bases, structures, and activities. For
+example, resources describing barracks, training grounds, military
+transportation, and information collection.
+
+|inlandWaters |inland water features, drainage systems, and their
+characteristics. For example, resources describing rivers and glaciers,
+salt lakes, water use plans, dams, currents, floods, water quality, and
+hydrographic charts.
+
+|location |positional information and services. For example, resources
+describing addresses, geodetic networks, postal zones and services,
+control points, and place names.
+
+|oceans |features and characteristics of salt water bodies excluding
+inland waters. For example, resources describing tides, tidal waves,
+coastal information, and reefs.
+
+|planningCadastre |land use. For example, resources describing zoning
+maps, cadastral surveys, and land ownership.
+
+|society |characteristics of societies and cultures. For example,
+resources describing natural settlements, anthropology, archaeology,
+education, traditional beliefs, manners and customs, demographic data,
+crime and justice, recreational areas and activities, social impact
+assessments, and census information.
+
+|structure |man-made construction. For example, resources describing
+buildings, museums, churches, factories, housing, monuments, and towers.
+
+|transportation |means and aids for conveying people and goods. For
+example, resources describing roads, airports and airstrips, shipping
+routes, tunnels, nautical charts, vehicle or vessel location,
+aeronautical charts, and railways.
+
+|utilitiesCommunications |energy, water and waste systems, and
+communications infrastructure and services. For example, resources
+describing hydroelectricity, geothermal, solar, and nuclear sources of
+energy, water purification and distribution, sewage collection and
+disposal, electricity and gas distribution, data communication,
+telecommunication, radio, and communication networks.
+|=======================================================================
+
+link:#anchor-22[iso_topic_category]
+
+[[related-information-types]]
+=== Related Information types
+
+[cols=",",]
+|====================================================================
+|Project home page |URI to the project home page generating the data.
+|Users guide |URI to a users guide or product manual for the dataset.
+|Dataset landing page |A dataset landing page.
+|Extended metadata |
+| |
+| |
+|====================================================================
+
+link:#anchor-41[related_information]
+
+[[data-access-types]]
+=== Data Access Types
+
+[cols=",",]
+|=======================================================================
+|HTTP |Direct access to the full data file. May require authentication,
+but should point directly to the data file or a catalogue containing the
+data.
+
+|OPeNDAP |Open-source Project for a Network Data Access Protocol
+
+|OGC WMS |OGC Web Mapping Service, URI to GetCapabilities Document.
+
+|OGC WFS |OGC Web Feature Service, URI to GetCapabilities Document.
+
+|OGC WCS |OGC Web Coverage Service, URI to GetCapabilities Document.
+
+|FTP |File Transfer Protocol.
+
+|ODATA |Open Data Protocol.
+|=======================================================================
+
+link:#anchor-43[data_access]

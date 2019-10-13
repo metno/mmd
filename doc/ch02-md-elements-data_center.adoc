@@ -1,0 +1,51 @@
+[[data_center]]
+=== data_center
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/data_center
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |Yes
+
+|Description a|
+Description about the datacenter responsible for the distribution of the
+dataset. The element has the following child elements:
+
+Information on the data centre contact person for a data centre is
+conveyed through the element link:#anchor-44[personnel]. See
+link:#anchor-44[personnel] for more information. The role of a data
+center contact must be “Data center contact”.
+
+|Example XML a|
+----
+<data_center>
+     <data_center_name>
+         <short_name>METNO</short_name>
+         <long_name>
+         Norwegian Meteorological Institute
+         </long_name>
+     </data_center_name>
+     <data_center_url>http://met.no</data_center_url>
+     <dataset_id>45dlkf-234-df</dataset_id>
+     <contact>
+         <role>Data center contact</role>
+         <name>Ole Dole</name>
+         <email>ole.dole@example.com</email>
+         <phone>004711111111</phone>
+         <fax/>
+     <contact>
+</data_center>
+----
+
+|DIF equivalent |/DIF/Data_Center
+
+|ISO equivalent |/gmd:MD_Metadata
+/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty
+
+|MM2 equivalent |NA
+
+|=======================================================================

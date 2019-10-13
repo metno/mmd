@@ -1,0 +1,32 @@
+[[metadata_status]]
+=== metadata_status
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/metadata_status
+
+|Attributes |None
+
+|Required |Yes
+
+|Repetition allowed |No
+
+|Description |Status for the metadata record. This is configuration
+metadata and should not be misinterpreted as
+<<dataset_production_status>>. The only purpose of this tag
+is to determine whether the dataset should be indexed or not.
+
+|Example XML a|
+----
+<metadata_status>
+Active
+</metadata_status>
+----
+
+|DIF equivalent |NA
+
+|ISO equivalent |NA
+
+|MM2 equivalent |This was not in MM2, but in the XMD-files.
+
+|=======================================================================

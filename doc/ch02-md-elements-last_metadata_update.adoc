@@ -1,0 +1,36 @@
+[[last_metadata_update]]
+=== last_metadata_update
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/last_metadata_update
+
+|Attributes |None
+
+|Required |Yes
+
+|Repetition Allowed |No
+
+|Description |The last update of the metadata record.
+
+|Example XML: a|
+----
+<last_metadata_update>
+2012-10-31
+</last_metadata_update>
+----
+
+|DIF equivalent |/DIF/Last_DIF_Revision_Date
+
+|ISO equivalent a|
+/gmd:MD_Metadata/gmd:dateStamp
+
+This mapping is somewhat uncertain since the element is described as:
+“date that metadata was created.” But GeoNetwork automatically updates
+on Save, so we take this to mean that it is last updated time for the
+metadata.
+
+|MM2 equivalent |Fetched from the associated .xmd file:
+/dataset@datestamp
+
+|=======================================================================

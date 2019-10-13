@@ -1,0 +1,36 @@
+[[title]]
+=== title
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/title
+
+|Attributes |
+
+|Required |Yes
+
+|Repetition allowed |Yes, but each repetition should have a different
+language.
+
+|Description a|
+The title of the dataset. The language in the title is specificed in the
+xml:lang attribute.
+
+To be compatible with DIF the title cannot be longer than 220
+characters.
+
+|Example XML a|
+----
+<title xml:lang=”en”>
+OSISAF Northern Hemisphere Ice edge
+</title>
+----
+
+|DIF equivalent |/Entry_Title
+
+|ISO equivalent |/gmd:MD_Metadata/
+gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString
+
+|MM2 equivalent |/metadata@name='title'
+
+|=======================================================================

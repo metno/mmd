@@ -1,0 +1,33 @@
+[[use_constraint]]
+=== use_constraint
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/use_constraint
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description a|
+Restrictions on the use of the dataset.
+
+See link:#anchor-30[Use constraints]for a list of valid values.
+
+|Example XML: |
+----
+<use_constraint>
+    CC-BY
+</use_constraint>
+----
+
+|DIF equivalent |/DIF/Use_Constraint
+
+|ISO equivalent |/gmd:MD_Metadata
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString
+
+|MM2 equivalent |NA
+
+|=======================================================================

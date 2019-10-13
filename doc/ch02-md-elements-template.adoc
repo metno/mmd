@@ -1,0 +1,25 @@
+[[???]]
+=== ???
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/???
+
+|Attributes |
+
+|Required |Yes\|No
+
+|Repetition allowed |Yes \| No
+
+|Description a|
+
+|Example XML: a|
+----
+----
+
+|DIF equivalent |
+
+|ISO equivalent |
+
+|MM2 equivalent |/metadata@name='???'
+|=======================================================================

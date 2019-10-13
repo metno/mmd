@@ -1,0 +1,36 @@
+[[dataset_production_status]]
+=== dataset_production_status
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/dataset_production_status
+
+|Attributes |None
+
+|Required |Yes
+
+|Repetition allowed |No
+
+|Description |Production status for the dataset using a controlled
+vocabulary. The valid keywords are listed in link:#anchor-18[Dataset
+production status]. If set as “In Work”, remember that end_date in
+link:#anchor-19[temporal_extent] can (should) be empty.
+
+|Example XML a|
+----
+<dataset_production_status>
+    In Work
+</dataset_production_status>
+----
+
+|DIF equivalent a|
+/DIF/Data_Set_Progress
+
+The defined statuses are the same as in DIF so no mapping is required.
+
+|ISO equivalent |/gmd:MD_Metadata/gmd:status
+
+|MM2 equivalent |NA
+
+
+|=======================================================================

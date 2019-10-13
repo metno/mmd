@@ -1,0 +1,47 @@
+[[scene_cover]]
+=== scene_cover
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/scene_cover
+
+|Attributes |
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description a|
+This is an element specifically made for the NBS project, but based on
+previous experience with AVHRRm and initially in support for handling
+Sentinel-2 data. It is however also relevant for other optical satellite
+imagery whether AVHRR (NPOES, EPS), VIIRS (NPP), MERIS (ENVISAT) or
+MODIS (EOS).
+
+It describes the overall coverage of valid data within a scene. This is
+to let the user know whether there is only a very limited number of
+valid data points in a scene. The reason for this is the map projected
+scenes where you may only have a small fraction of the predefined tile
+covered by the satellite. It relates to the total number of pixels in
+the scene.
+
+The element has one sub element:
+
+* value: The actual cloud cover in percentage of the valid pixels. This is indicated with one attribute.
+
+|Example XML a|
+----
+<scene_cover>
+    <value unit=”%”>45</value>
+</scene_cover>
+----
+
+|DIF equivalent |NA
+
+|ISO equivalent |NA
+
+|MM2 equivalent |NA
+
+
+|=======================================================================
+

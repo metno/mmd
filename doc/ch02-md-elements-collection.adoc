@@ -1,0 +1,37 @@
+[[collection]]
+=== collection
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/collection
+
+|Attributes |None
+
+|Required |Yes
+
+|Repetition allowed |Yes
+
+|Description a|
+The purpose of this tag is the same as for the ownertag in XMD files. It
+is used to identify which collection a dataset belong to. This is used
+to identify sets when serving metadata through e.g. OAI-PMH or to
+identify which data to present in e.g. a project specific portal when
+all metadata records are in the same repository.
+
+The keyword used to identify the collection should be short (e.g. NMDC,
+NMAP, SIOS, ...). See <<collection-keywords>> for details.
+
+|Example XML a|
+----
+<collection>
+NMDC
+</collection>
+----
+
+|DIF equivalent |NA
+
+|ISO equivalent |NA
+
+|MM2 equivalent |ownertag (XMD)
+
+|=======================================================================

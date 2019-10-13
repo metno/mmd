@@ -1,0 +1,40 @@
+[[access_constraint]]
+=== access_constraint
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/access_constraint
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description a|
+Limitations on the access to the dataset.
+
+See link:#anchor-28[5.4] for a list of valid values.
+
+|Example XML: |
+----
+<access_constraint>
+    Open for all
+</access_constraint>
+----
+
+|DIF equivalent |/DIF/Access_Constraints
+
+|ISO equivalent a|
+/gmd:MD_Metadata
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode
+= 'otherConstraints'
+
+and
+
+/gmd:MD_Metadata
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString
+
+|MM2 equivalent |/metadata@name='distribution_statement'
+
+|=======================================================================

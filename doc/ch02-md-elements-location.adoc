@@ -1,0 +1,53 @@
+[[location]]
+=== location
+
+[cols=",",]
+|=======================================================================
+|Element |/mmd/location
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description a|
+A textual identification of the area covered by the dataset.
+
+Describes the name of a place on Earth, a location within the Earth, a
+vertical location, or a location outside of Earth. The <location>***
+***keywords are a 5-level hierarchy of controlled keywords. This element
+follows the same format as DIF, but also allows other vocabularies as
+long as they have the same format the DIF vocabulary.
+
+location_vocabulary: The name of the vocabulary that is used for
+locations. This element exists to allow different vocabularies to be
+used if the vocabulary provided by GCMD is not sufficient
+
+location_reference: URL to the authoritative source, preferably in
+SKOS/RDF.
+
+Vocabularies used should have a well defined description of the area
+names, including geographical boundaries (e.g. like SeaDataNet and ICES
+have).
+
+|Example XML: a|
+----
+<location>
+ <location_vocabulary>gcmd</location_vocabulary>
+ <location_category>CONTINENT</location_category>
+ <location_type>NORTH AMERICA</location_type>
+<location_subregion1>UNITED STATES OF AMERICA</location_subregion1>
+ <location_subregion2>MARYLAND</location_subregion2>
+ <location_subregion3>BALTIMORE</location_subregion3>
+ <detailed_location>Middle River</detailed_location>
+</location>
+----
+
+|DIF equivalent |/Location
+
+|ISO equivalent |NA
+
+|MM2 equivalent |There is no good mapping to MM2 even though the element
+/metadata@name='area' is somewhat similar.
+|=======================================================================

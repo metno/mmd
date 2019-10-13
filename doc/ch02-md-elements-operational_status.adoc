@@ -1,0 +1,30 @@
+[[operational_status]]
+=== operational_status
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/operational_status
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description |The current operational status of the product. Valid
+keywords are listed in <<Operational-status>>.
+
+|Example XML: a|
+----
+<operational_status>
+    pre-operational
+</operational_status>
+----
+
+|DIF equivalent |NA
+
+|ISO equivalent |NA
+
+|MM2 equivalent |operational_status
+
+|=======================================================================

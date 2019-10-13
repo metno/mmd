@@ -1,0 +1,43 @@
+[[data_access]]
+=== data_access
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/data_access
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |Yes
+
+|Description |Description of how to access the data in the dataset. This
+element has the following child elements:
+
+|Example XML: a|
+----
+<data_access>
+     <type>OGC WMS</type>
+     <resource>http://...</resource>
+     <description>...</description>
+     <wms_layers>
+     <wms_layer>sea_ice_concentration</layer>
+     </wms_layers>
+</data_access>
+----
+
+|DIF equivalent |/Related_UrlRL
+
+|ISO equivalent |/gmd:MD_Metadata/
+gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource
+
+|MM2 equivalent a|
+link:../../../../metadata@name[/metadata@name]='dataref'
+
+link:../../../../metadata@name[/]link:../../../../metadata@name[metadata@name]='dataref_OPENDAP'
+
+link:../../../../metadata@name[/]link:../../../../metadata@name[metadata@name]='dataref_WMS'
+
+WMS layer information is currently available only through XMD documents.
+
+|=======================================================================

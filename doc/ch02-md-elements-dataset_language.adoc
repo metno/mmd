@@ -1,0 +1,31 @@
+[[dataset_language]]
+=== dataset_language
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/dataset_language
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description |The language used in production, storage etc. of the
+dataset. The default for all datasets is English.
+
+|Example XML: |
+----
+<dataset_language>
+    en
+</dataset_language>
+----
+
+|DIF equivalent |/DIF/Data_Set_Language
+
+|ISO equivalent |/gmd:MD_Metadata
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language/gmd:LanguageCode
+
+|MM2 equivalent |NA
+
+|=======================================================================

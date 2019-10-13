@@ -1,0 +1,15 @@
+[[explanations]]
+== Explanations
+
+[[interpretation-of-child-and-parent-relationship]]
+=== Interpretation of child and parent relationship
+
+If a dataset has a <related_dataset relation_type=”parent”> element it
+means that the referred dataset is this datasets parent. This
+relationship does not impose any specific characteristics on either the
+parent or the child dataset. For instance it is not required that the
+parents dataset is a dataset series and that the child dataset is a
+dataset within the series. The relationship only causes the child
+dataset to inherit elements from the parent dataset. Exact semantics for
+inheritance is to be decided.
+

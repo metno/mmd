@@ -1,0 +1,69 @@
+[[dataset_citation]]
+=== dataset_citation
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/dataset_citation
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |Yes
+
+|Description a|
+A description of how the dataset should be properly cited. The element
+has the following child elements:
+    • dataset_creator: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development.
+    • dataset_editor: Dataset Editor is the individual(s) responsible for the processing or re-processing of a particular dataset.
+    • dataset_title: The title of the data set; this may be the same as Entry Title.
+    • dataset_series_name: The name of the dataset series, or aggregate dataset of which the dataset is a part.
+    • dataset_release_date: The date when the data set was made available for release.
+    • dataset_release_place: The name of the city (and state or province and country if needed) where the data set was made available for release.
+    • dataset_publisher The name of the individual or organization that made the data set available for release.
+    • Version: The version of the data set.
+    • issue_identification: The volume or issue number of the publication (if applicable).
+    • data_presentation_form: The mode in which the data are represented, e.g. atlas, image, profile, text, etc.
+    • other_citation_details: Additional free-text citation information. For example, <other_citation_details>NOAA/NCDC Paleoclimatology Program</other_citation_details>
+    • dataset_doi: The Digital Object Identifier (DOI) of a data set.
+
+|Example XML: a|
+----
+<dataset_citation>
+    <dataset_creator>OMI SIPS</dataset_creator>
+    <dataset_editor>J. Smith, D. Johnson, M. Davis</dataset_editor>
+    <dataset_title>OMI/Aura Level 1B VIS Global Geolocated Earth Shine Radiances 1-orbit L2 Swath 13x24 km</dataset_title>
+    <dataset_series_name>OML1BRVG</dataset_series_name>
+    <dataset_release_date>2009</dataset_release_date>
+    <dataset_release_place>NASA Goddard Space Flight Center</dataset_release_place>
+    <dataset_publisher>U.S. Geological Survey</dataset_publisher>
+    <version>004</version>
+    <data_presentation_form>Digital Science Data</data_presentation_form>
+    <online_resource>http://disc.gsfc.nasa.gov/Aura/OMI/oml1brvg_v004.shtml</online_resource>
+</dataset_citation>
+----
+
+|DIF equivalent |/DIF/Data_Set_Citation
+
+|ISO equivalent a|
+There are no direct equivalent in ISO for this element as a whole, but
+parts can be put into citation information.
+
+*dataset_release_date* can be translated to
+
+/gmd:MD_Metadata
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime
+
+where gmd:CI_DateTypeCode has attribute codeListValue="publication"
+
+*version* can be translated to
+
+gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:edition
+
+*other_citation_details* can be translated to
+
+gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:otherCitationDetails
+
+|MM2 equivalent |NA
+
+|=======================================================================

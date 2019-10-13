@@ -1,0 +1,23 @@
+[[activity_type]]
+=== activity_type
+
+[cols=">20%,80%",]
+|===================================================================
+|Element |/mmd/activity_type
+|Attributes |None
+|Required |No
+|Repetition allowed |Yes.
+|Description a|
+The activity used to collect the data.
+
+Valid keywords are listed in <<Activity-type>>.
+
+|Example XML: |
+----
+<activity_type>Space Borne Instrument
+</activity_type>
+----
+|DIF equivalent |NA
+|ISO equivalent |NA
+|MM2 equivalent |/metadata@name='activity_type'
+|===================================================================

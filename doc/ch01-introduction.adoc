@@ -1,0 +1,64 @@
+[[introduction]]
+== Introduction
+
+Metno Metadata Format (MMD) is an XML metadata format for storing
+information about scientific datasets. It is meant for consumption by
+internal systems and to be a corner stone in our data management policy.
+
+[[applicable-documents]]
+=== Applicable documents
+
+1.  https://geo-ide.noaa.gov/wiki/index.php?title=Category:ISO_19115[ISO19115]…
+2.  http://www.fgdc.gov/standards/projects/incits-l1-standards-projects/NAP-Metadata[ISO19115
+North American Profile]
+3.  https://ecds.se/pages/profile[Environmental Climate Data Sweden
+ISO19115 Profile]
+4.  http://inspire.ec.europa.eu/index.cfm/pageid/101[INSPIRE Metadata ]
+5.  http://www.wmo.int/pages/prog/www/WIS/metadata_en.html[WMO Core
+Profile (ISO19115)]
+6.  http://gcmd.gsfc.nasa.gov/add/difguide/index.html[G]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[lobal
+]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[C]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[hange
+]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[M]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[aster
+]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[D]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[irectory]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[
+D]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[irectory
+]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[I]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[nterchange
+]http://gcmd.gsfc.nasa.gov/add/difguide/index.html[F]ormat
+7.  http://cfconventions.org/[Climate and Forecast Convention]…
+8.  http://wiki.esipfed.org/index.php?title=Category:Attribute_Conventions_Dataset_Discovery[Attribute
+Convention for Dataset Discovery]
+9.  ISO8601…
+10. [[anchor-2]]http://gcmdservices.gsfc.nasa.gov/static/kms/sciencekeywords/sciencekeywords.csv[GCMD
+Science Keywords]
+11. [[anchor-3]]http://cfconventions.org/standard-names.html[Climate and
+Forecast Standard Names]
+12. [[anchor-4]]SeaDataNet
+13. http://docs.opendap.org/index.php/Documentation[OPeNDAP]
+
+[[scope]]
+=== Scope
+
+The intended audience of this document is technical staff at METNO
+responsible for implementing and maintaining software for metadata
+management in support of internal and external services including, but
+not restricted to:
+
+* BarentsWatch
+* Halo
+* METSIS
+** Arctic Data Centre
+** WMO Global Cryosphere Watch
+** …
+
+The purpose is to document datasets, not web services. Web services are
+provided through the data_access element.
+
+[[objectives]]
+=== Objectives
+
+1.  To facilitate documentation of data and products managed by METNO.
+2.  To facilitate metadata re-use between different projects and
+services at METNO.
+3.  To be compatible with the GCMD DIF and ISO19115/ISO19139 metadata
+standards as imposed by WMO and Norge Digitalt/INSPIRE.
+4.  To provide as lossless conversion between the different formats as
+possible.

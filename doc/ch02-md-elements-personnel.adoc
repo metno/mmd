@@ -1,0 +1,63 @@
+[[personnel]]
+=== personnel
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/personnel
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |Yes, but we only recommend having a single contact
+per role.
+
+|Description a|
+Relevant contact person for the dataset. The contact has the following
+sub elements
+
+Only role, name and email are mandatory.
+
+|Example XML: a|
+----
+<personnel>
+     <role>Technical contact</role>
+     <name>Ole Dole</name>
+     <email>ole.dole@example.com</email>
+     <phone>004711111111</phone>
+     <fax/>
+     <contact_address>
+     <address>Meteorologisk institutt, Henrik Mohnsplass 1</address>
+     <city>Oslo</city>
+     <province_or_state>Oslo</province_or_state>
+     <postal_code>0000</postal_code>
+     <country>Norway</country>
+     </contact_address>
+<personnel>
+----
+
+|DIF equivalent a|
+/Personnel
+
+There is a slight mismatch with DIF since DIF has first name, middle
+name and last name as separate elements. In export to DIF the name
+element is exported to <Last_Name> since this element is required.
+
+|ISO equivalent a|
+For the personell with the role “Metadata author” we place it in
+
+/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty
+
+since the ISO standard states that the this element should be “party
+responsible for the metadata information”
+
+For the other contacts we place them in
+
+/gmd:MD_Metadata
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact
+
+|MM2 equivalent
+|link:../../../../metadata@name[/]link:../../../../metadata@name[metadata@name]='PI_name',
+only partly mapped.
+
+|=======================================================================

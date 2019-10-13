@@ -1,0 +1,48 @@
+[[reference]]
+=== reference
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/reference
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |Yes
+
+|Description a|
+The reference element describes key bibliographic citations pertaining
+to the data set.
+
+Bibliographic citations may be populated as a block of text in the
+free-text field or as text in subfields (see below). Citations in the
+free-text field may be provided in styles used by professional
+scientific journals such as the American Geophysical Union (AGU),
+American Psychological Association (APA), or Modern Language Association
+(MLA).
+
+|Example XML a|
+----
+<reference type=”fields”> +
+<Author>Tillis, G. M.</Author> +
+<Publication_Date>2001</Publication_Date> +
+<Title>Measuring Taylor Slough boundary and internal flows, +
+Everglades National Park, Florida</Title> +
+<Series>USGS Open-File Report</Series> +
+<Report_Number>01-225</Report_Number> +
+<Publication_Place>Tallahassee, FL</Publication_Place> +
+<Publisher>U.S. Geological Survey</Publisher> +
+
+<online_resource>http://fl.water.usgs.gov/Abstracts/ofr01_225_tillis.html +
+</Online_Resource> +
+</reference>
+----
+|DIF equivalent |/Reference
+
+|ISO equivalent |Not known if this maps to any element in ISO.
+
+|MM2 equivalent |NA
+
+
+|=======================================================================

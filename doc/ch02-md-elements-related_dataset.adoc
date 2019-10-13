@@ -1,0 +1,36 @@
+[[related_dataset]]
+=== related_dataset
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/related_dataset
+
+|Attributes|relation_type. Only "parent" is valid currently.
+
+|Required |No
+
+|Repetition allowed |Yes.
+
+|Description |Specifies the relation between this dataset and another
+dataset. The type of relationship is determined by the relation_type
+attribute. The content of the element is a valid identifier as
+identified in the <<metadata_identifier>> element.
+
+|Example XML a|
+----
+<related_dataset relation_type=”parent”>
+    9663fc67-5687-4bf2-a274-f3826e41fdc8
+</related_dataset>
+----
+
+|DIF equivalent |NA
+
+|ISO equivalent a|
+If the relation_type = “parent”. In other cases there are is no mapping.
+
+/gmd:MD_Metadata/gmd:parentIdentifier
+
+|MM2 equivalent |Within MM2 this was determined by a directory structure
+and not the content of the metadata files.NA
+
+|=======================================================================

@@ -1,0 +1,38 @@
+[[temporal_extent]]
+=== temporal_extent
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/temporal_extent
+
+|Attributes |None
+
+|Required |Yes
+
+|Repetition allowed |Yes. Repetition is used when there are gaps in the
+dataset.
+
+|Description |Defines the temporal extent or coverage of the dataset.
+The extent is defined used two sub elements:
+
+|Example XML: a|
+----
+<temporal_extent>
+ <start_date>2012-01-01<start_date>
+ <end_date>2012-02-01</end_date>
+</temporal_extent>
+----
+
+|DIF equivalent |/DIF/Temporal_Coverage
+
+|ISO equivalent |/gmd:MD_Metadata/
+gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent
+
+|MM2 equivalent a|
+/metadata@name='datacollection_period_from'
+
+and
+
+/metadata@name='datacollection_period_to
+
+|=======================================================================

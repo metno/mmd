@@ -1,0 +1,96 @@
+[[geographic_extentrectangle]]
+=== geographic_extent/rectangle
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/geographic_extent/rectangle
+
+|Attributes |srsName
+
+|Required |Yes
+
+|Repetition allowed |No
+
+|Description |The geographic extend of the datasets defined a rectangle
+in lat/lon projection. The extent is defined using the following child
+elements:
+
+|Example XML: a|
+----
+<rectangle srsName="EPSG:4326">
+ <north>90</north>
+ <south>-90</south>
+ <east>180</east>
+ <west>-180</west>
+</rectangle>
+----
+|DIF equivalent |/DIF/Spatial_Coverage
+
+|ISO equivalent
+|/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox
+
+|MM2 equivalent a|
+/metadata@name='bounding_box'
+
+For MM2 this is comma separated list so it needs to be split during
+conversion.
+
+|=======================================================================
+
+[[geographic_extentpolygon]]
+=== geographic_extent/polygon
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/geographic_extent/polygon
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description a|
+Geographic extent of the dataset described as a GML polygon.
+
+The projection of the coordinates can be specified in compliance with
+GML, but for maximum compatibility with internal systems all coordinates
+should be given in EPSG:4326.
+
+|Example XML: a|
+----
+<polygon>
+ <gml:Polygon id="polygon" srsName="EPSG:4326">
+ <gml:exterior>
+ <gml:LinearRing>
+ <gml:pos>
+ -180 -90
+ </gml:pos>
+ <gml:pos>
+ 180 -90
+ </gml:pos>
+ <gml:pos>
+ 180 90
+ </gml:pos>
+ <gml:pos>
+ -180 90
+ </gml:pos>
+ <gml:pos>
+ -180 -90
+ </gml:pos>
+ </gml:LinearRing>
+ </gml:exterior>
+ </gml:Polygon>
+ </polygon>
+----
+
+|DIF equivalent |NA
+
+|ISO equivalent |/gmd:MD_Metadata/
+gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon/
+
+|MM2 equivalent |A similar field is found in the associated .xmd file
+under datasetRegion/lonLatPoints but these points are too many for
+efficient metadata handling and cannot be used directly.
+
+|=======================================================================

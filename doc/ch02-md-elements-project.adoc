@@ -1,0 +1,37 @@
+[[project]]
+=== project
+
+[cols=">20%,80%",]
+|=======================================================================
+|Element |/mmd/project
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |Yes
+
+|Description a|
+Project where the dataset was generated or collected. The element is
+described using two child element:
+
+These names must be maintained in a controlled vocabulary.
+
+|Example XML: a|
+----
+<project>
+    <short_name>ICE</short_name>
+    <long_name>Ice Coverage Everywhere</long_name>
+</project>
+----
+
+|DIF equivalent |/DIF/Project
+
+|ISO equivalent |NA
+
+|MM2 equivalent
+|link:../../../../metadata@name[/metadata@name]='project_name' (usually
+mapped to /project/long_name)
+
+
+|=======================================================================
