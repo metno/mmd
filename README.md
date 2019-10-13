@@ -1,3 +1,13 @@
 # mmd
-Preliminary testing of using GIT to manage OpenDocumentFormat.
-See https://web.archive.org/web/20171125141525/https://git.wiki.kernel.org/index.php/GitTips#How_to_use_git_to_track_OpenDocument_.28OpenOffice.2C_Koffice.29_files.3F
+
+## Background
+Specification of the MET Norway discovery and configuration metadata
+standard. This is compatible with ISO19115 (various profiles), DataCite
+and GCMD DIF. The repository contains the specification (in doc), the
+schema (in xsd) and stylesheets for transformations (in xslt).
+
+## How to build documentation
+Documentation was originally provided in OpenDocumentFormat. This became
+to difficult to maintain in a collaborative environment and it is now
+moved to ASCIIDOC following the example outlined by the Climate and
+Forecast convention community.
