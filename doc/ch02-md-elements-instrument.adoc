@@ -1,7 +1,7 @@
 [[instrument]]
 === instrument
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/instrument
 
@@ -14,14 +14,15 @@
 |Description a|
 Instrument used to collect the data. The element is described using two
 child elements:
-    • short_name: is the abbreviated name of the instrument used to acquire the data. 
-    • long_name: is the full name of the instrument used to acquire the data.
-    • mode: is the operating mode of the instrument (if applicable).
-        ◦ polarisation: polarisation mode when applicable.
-    • product_type: is the type of product generated (if applicable)
 
-See <<Instruments>>, <<Instrument-modes>> and
-<<Polarisation-modes>> for list.
+* short_name: is the abbreviated name of the instrument used to acquire the data. 
+* long_name: is the full name of the instrument used to acquire the data.
+* mode: is the operating mode of the instrument (if applicable).
+    * polarisation: polarisation mode when applicable.
+* product_type: is the type of product generated (if applicable)
+
+See <<instruments>>, <<instrument-modes>> and
+<<polarisation-modes>> for list.
 
 |Example XML: a|
 ----

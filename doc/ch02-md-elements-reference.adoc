@@ -1,7 +1,7 @@
 [[reference]]
 === reference
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/reference
 
@@ -23,21 +23,22 @@ American Psychological Association (APA), or Modern Language Association
 (MLA).
 
 The field can contain the following sub elements:
-    • author: The name of the individual(s) or organization(s) with primary intellectual responsibility for the cited resource's development. This is required if this form is used.
-    • publication_date: The publication/reference date for the cited resource.  If the Publication Date is not known, please use "Unknown".  This is required if this form is used.
-    • title: The title (name) of the cited resource.  This is required if this form is used.
-    • Series: The name of a resource series, or aggregate (collection) resource of which the cited resource is a part.
-    • edition:  The version of a cited resource.
-    • volume: The order or sequence of a resource in a series or set.
-    • issue: The issue number of a resource (usually within a volume).
-    • report_number: The unique number or code assigned to a resource by the issuing organization(s).
-    • publication_place: The name of the city (and state or province and country if needed) where the resource was made available.  This is required if this form is used.
-    • publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used.
-    • pages: The range of pages or total number of pages of a cited resource.
-    • isbn: International Standard Book Number.
-    • doi: Digital Object Identifier.
-    • online_resource: The URL of the online resource containing the cited resource.
-    • other_reference_details: Additional free-text reference information.
+
+* author: The name of the individual(s) or organization(s) with primary intellectual responsibility for the cited resource's development. This is required if this form is used.
+* publication_date: The publication/reference date for the cited resource.  If the Publication Date is not known, please use "Unknown".  This is required if this form is used.
+* title: The title (name) of the cited resource.  This is required if this form is used.
+* Series: The name of a resource series, or aggregate (collection) resource of which the cited resource is a part.
+* edition:  The version of a cited resource.
+* volume: The order or sequence of a resource in a series or set.
+* issue: The issue number of a resource (usually within a volume).
+* report_number: The unique number or code assigned to a resource by the issuing organization(s).
+* publication_place: The name of the city (and state or province and country if needed) where the resource was made available.  This is required if this form is used.
+* publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used.
+* pages: The range of pages or total number of pages of a cited resource.
+* isbn: International Standard Book Number.
+* doi: Digital Object Identifier.
+* online_resource: The URL of the online resource containing the cited resource.
+* other_reference_details: Additional free-text reference information.
 
 |Example XML a|
 ----

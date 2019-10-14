@@ -1,7 +1,7 @@
 [[activity_type]]
 === activity_type
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |===================================================================
 |Element |/mmd/activity_type
 |Attributes |None
@@ -10,13 +10,14 @@
 |Description a|
 The activity used to collect the data.
 
-Valid keywords are listed in <<Activity-type>>.
+Valid keywords are listed in <<activity-type>>.
 
 |Example XML: |
+
 ----
-<activity_type>Space Borne Instrument
-</activity_type>
+<activity_type>Space Borne Instrument</activity_type>
 ----
+
 |DIF equivalent |NA
 |ISO equivalent |NA
 |MM2 equivalent |/metadata@name='activity_type'

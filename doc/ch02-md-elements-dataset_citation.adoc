@@ -1,7 +1,7 @@
 [[dataset_citation]]
 === dataset_citation
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/dataset_citation
 
@@ -14,18 +14,19 @@
 |Description a|
 A description of how the dataset should be properly cited. The element
 has the following child elements:
-    • dataset_creator: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development.
-    • dataset_editor: Dataset Editor is the individual(s) responsible for the processing or re-processing of a particular dataset.
-    • dataset_title: The title of the data set; this may be the same as Entry Title.
-    • dataset_series_name: The name of the dataset series, or aggregate dataset of which the dataset is a part.
-    • dataset_release_date: The date when the data set was made available for release.
-    • dataset_release_place: The name of the city (and state or province and country if needed) where the data set was made available for release.
-    • dataset_publisher The name of the individual or organization that made the data set available for release.
-    • Version: The version of the data set.
-    • issue_identification: The volume or issue number of the publication (if applicable).
-    • data_presentation_form: The mode in which the data are represented, e.g. atlas, image, profile, text, etc.
-    • other_citation_details: Additional free-text citation information. For example, <other_citation_details>NOAA/NCDC Paleoclimatology Program</other_citation_details>
-    • dataset_doi: The Digital Object Identifier (DOI) of a data set.
+
+* dataset_creator: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development.
+* dataset_editor: Dataset Editor is the individual(s) responsible for the processing or re-processing of a particular dataset.
+* dataset_title: The title of the data set; this may be the same as Entry Title.
+* dataset_series_name: The name of the dataset series, or aggregate dataset of which the dataset is a part.
+* dataset_release_date: The date when the data set was made available for release.
+* dataset_release_place: The name of the city (and state or province and country if needed) where the data set was made available for release.
+* dataset_publisher The name of the individual or organization that made the data set available for release.
+* Version: The version of the data set.
+* issue_identification: The volume or issue number of the publication (if applicable).
+* data_presentation_form: The mode in which the data are represented, e.g. atlas, image, profile, text, etc.
+* other_citation_details: Additional free-text citation information. For example, <other_citation_details>NOAA/NCDC Paleoclimatology Program</other_citation_details>
+* dataset_doi: The Digital Object Identifier (DOI) of a data set.
 
 |Example XML: a|
 ----

@@ -1,7 +1,7 @@
 [[operational_status]]
 === operational_status
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/operational_status
 
@@ -12,7 +12,7 @@
 |Repetition allowed |No
 
 |Description |The current operational status of the product. Valid
-keywords are listed in <<Operational-status>>.
+keywords are listed in <<operational-status>>.
 
 |Example XML: a|
 ----

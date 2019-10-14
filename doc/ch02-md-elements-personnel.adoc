@@ -1,7 +1,7 @@
 [[personnel]]
 === personnel
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/personnel
 
@@ -15,18 +15,19 @@ per role.
 |Description a|
 Relevant contact person for the dataset. The contact has the following
 sub elements
-    • role: The role the person has related to this dataset. The value should come from Contact roles.
-    • name: The full name of the contact.
-    • email: The email address to the contact.
-    • phone: The phone number to the contact. The number should include land codes.
-    • fax: The fax number where the contact can receive faxes.
-    • organisation: The name of the organisation where the person is employed.
-    • contact_address contain the address information of the person. It consists of: 
-        ◦ address is the organization name, department, mail stop, street address, etc. of the person.
-        ◦ city: is the city or town of the person.
-        ◦ province_or_state: is the province, region or state.
-        ◦ postal_code: is the postal code of the person.
-        ◦ country: is the country of the person.
+
+* role: The role the person has related to this dataset. The value should come from Contact roles.
+* name: The full name of the contact.
+* email: The email address to the contact.
+* phone: The phone number to the contact. The number should include land codes.
+* fax: The fax number where the contact can receive faxes.
+* organisation: The name of the organisation where the person is employed.
+* contact_address contain the address information of the person. It consists of: 
+    * address is the organization name, department, mail stop, street address, etc. of the person.
+    * city: is the city or town of the person.
+    * province_or_state: is the province, region or state.
+    * postal_code: is the postal code of the person.
+    * country: is the country of the person.
 
 Only role, name and email are mandatory.
 

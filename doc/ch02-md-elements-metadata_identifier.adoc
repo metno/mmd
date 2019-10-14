@@ -1,7 +1,7 @@
 [[metadata_identifier]]
 === metadata_identifier
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/metadata_identifier
 

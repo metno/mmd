@@ -1,7 +1,7 @@
 [[location]]
 === location
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/location
 
@@ -27,12 +27,12 @@ used if the vocabulary provided by GCMD is not sufficient
 location_reference: URL to the authoritative source, preferably in
 SKOS/RDF.
 
-    * ocation_category: The main category of the location name.
-    * location_type: The main type within a specific location category
-    * location_subregion1: Subregion1 keyword
-    * location_subregion2: Subregion2 keyword
-    * location_subregion3: Subregion3 keyword
-    * detailed_location: Free text describing the location further
+* location_category: The main category of the location name.
+* location_type: The main type within a specific location category
+* location_subregion1: Subregion1 keyword
+* location_subregion2: Subregion2 keyword
+* location_subregion3: Subregion3 keyword
+* detailed_location: Free text describing the location further
 
 Vocabularies used should have a well defined description of the area
 names, including geographical boundaries (e.g. like SeaDataNet and ICES

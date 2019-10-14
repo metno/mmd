@@ -1,7 +1,7 @@
 [[iso_topic_category]]
 === iso_topic_category
 
-[cols=">20%,80%",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Element |/mmd/iso_topic_category
 
@@ -13,7 +13,7 @@
 
 |Description a|
 ISO topic category fetched from a controlled vocabulary. Valid keywords
-are listed in <<ISO-Topic-categories>>.
+are listed in <<iso-topic-categories>>.
 
 This field is required for compatibility with DIF and ISO
 

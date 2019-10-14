@@ -4,7 +4,7 @@
 [[collection-keywords]]
 === Collection keywords
 
-[cols=",",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |CC |Datasets related to the Cryosphere in the context of the CryoClim
 project.
@@ -50,7 +50,7 @@ data. This is primarily Sentinel datasets.
 [[dataset-production-status]]
 === Dataset production status
 
-[cols=",",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Code |Description
 
@@ -75,9 +75,8 @@ link:#anchor-10[dataset_production_status]
 
 [[iso-to-mmd-mapping]]
 === ISO to MMD mapping
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[cols=",",]
+[cols=">30%,70%",adoc]
 |===========================
 |ISO Code |MMD code
 |completed |Complete
@@ -90,8 +89,7 @@ link:#anchor-10[dataset_production_status]
 |===========================
 
 [[mmd-to-iso-mapping]]
-[[anchor-54]]MMD to ISO mapping
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== MMD to ISO mapping
 
 [cols=",",]
 |==================
@@ -105,7 +103,7 @@ link:#anchor-10[dataset_production_status]
 [[operational-status]]
 === Operational status
 
-[cols=",",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Code |Description
 
@@ -129,12 +127,12 @@ is products generated through scientific projects and usually with a
 limited temporal perspective.
 |=======================================================================
 
-link:#anchor-20[operational_status]
+<<operational_status>>
 
 [[access-constraints]]
 === Access constraints
 
-[cols=",",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Code |Description
 
@@ -159,12 +157,12 @@ exposed externally. This implies that neither metadata can be exposed
 externally.
 |=======================================================================
 
-link:#anchor-27[access_constraint]
+<<access_constraint>>
 
 [[use-constraints]]
 === Use constraints
 
-[cols=",",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Code |Description
 
@@ -187,7 +185,7 @@ implies share-alike (and attribution).
 |No derivative |FIXME
 |=======================================================================
 
-link:#anchor-29[use_constraint]
+<<use_constraint>>
 
 [[activity-type]]
 === Activity type
@@ -203,7 +201,7 @@ but more the nature of the generation process (e.g. simulation, in situ
 observation, remote sensing etc). It is useful in the context of
 filtering data when searching for relevant datasets.
 
-[cols=",",]
+[cols=">30%,70%",adoc]
 |=======================================================================
 |Code |Description
 
@@ -266,7 +264,7 @@ describing the nature of a field station. It would then require datasets
 to be linked (which currently is not supported).
 |=======================================================================
 
-link:#anchor-32[activity_type]
+<<activity_type>>
 
 [[variableparameter-descriptions]]
 === Variable/parameter descriptions
@@ -276,7 +274,7 @@ FIXME
 [[platform-1]]
 === Platform
 
-[cols=",,",]
+[cols=">20%,80%",adoc]
 |==================
 |S1A |Sentinel-1A |
 |S1B |Sentinel-1B |
@@ -286,12 +284,12 @@ FIXME
 |S3B |SENTINEL-3 |
 |==================
 
-link:#anchor-56[Error: Reference source not found]
+<<platform>>
 
 [[instruments]]
 === Instruments
 
-[cols=",,",]
+[cols=">10%,45%,45%",adoc]
 |=======================================================================
 |CSAR |Synthetic Aperature Radar C-band |Relates to Sentinel-1.
 
