@@ -71,7 +71,7 @@ been completed.
 version should be used, this is kept for back tracing.
 |=======================================================================
 
-link:#anchor-10[dataset_production_status]
+<<dataset_production_status>>
 
 [[iso-to-mmd-mapping]]
 === ISO to MMD mapping
@@ -297,24 +297,20 @@ FIXME
 optical sensor.
 
 |OLCI
-|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/olci[Ocean
-and Land Colour Instrument] |Relates to Sentinel-3. A push-broom imaging
-spectrometer instrument.
+|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/olci[Ocean and Land Colour Instrument] |Relates to Sentinel-3. A push-broom imaging spectrometer instrument.
 
 |SLSTR
-|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/slstr[Sea
-and Land Surface Temperature Radiometer] |Relates to Sentinel-3. A dual
-view (near-nadir and backward views) conical imaging radiometer.
+|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/slstr[Sea and Land Surface Temperature Radiometer] |Relates to Sentinel-3. A dual view (near-nadir and backward views) conical imaging radiometer.
 
 |MWR |Microwave Radiometer |Relates to Sentinel-3.
 |=======================================================================
 
-link:#anchor-35[instrument]
+<<instrument>>
 
 [[instrument-modes]]
 === Instrument modes
 
-[cols=",,",]
+[cols=">10%,20%,70%",adoc]
 |=====================================================
 |SM |StripMap |Relates to Sentinel-1
 |IW |Interferometric Wide Swath |Relates to Sentinel-1
@@ -322,12 +318,12 @@ link:#anchor-35[instrument]
 |WV |Wave Mode |Relates to Sentinel-1
 |=====================================================
 
-link:#anchor-35[instrument]
+<<instrument>>
 
 [[polarisation-modes]]
 === Polarisation modes
 
-[cols=",",]
+[cols=">10%,90%",adoc]
 |=======
 |HH |
 |VV |
@@ -337,12 +333,12 @@ link:#anchor-35[instrument]
 |VH+VV |
 |=======
 
-link:#anchor-35[instrument]
+<<instrument>>
 
 [[product-type]]
 === Product type
 
-[cols=",,",]
+[cols=">10%,20%,70%",adoc]
 |=======================================================================
 |SLC |Single Look Complex |Single Look Complex (SLC) products consist of
 focused SAR data, geo-referenced using orbit and attitude data from the
@@ -355,15 +351,14 @@ projected to ground range using an Earth ellipsoid model such as WGS84.
 |OCN |Ocean |Ocean (OCN) products for wind, wave and currents
 applications derived from the SAR data.
 
-| | |
 |=======================================================================
 
-link:#anchor-35[instrument]
+<<instrument>>
 
 [[contact-roles]]
 === Contact roles
 
-[cols=",",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |Investigator |The person who headed the investigation or experiment
 that resulted in the acquisition of the data described (i.e., Principal
@@ -379,6 +374,8 @@ metadata for this dataset. Other people could have been involved, but
 this is the main contact with regard to the metadata.
 |=======================================================================
 
+<<personnel>>
+
 [[mmd-to-iso-mapping-1]]
 === MMD to ISO mapping
 
@@ -393,7 +390,7 @@ this is the main contact with regard to the metadata.
 [[iso-topic-categories]]
 === ISO Topic categories
 
-[cols=",",]
+[cols=">30%,70%",adoc]
 |=======================================================================
 |farming |earing of animals or cultivation of plants. For example,
 resources describing irrigation, aquaculture, herding, and pests and
@@ -479,27 +476,25 @@ disposal, electricity and gas distribution, data communication,
 telecommunication, radio, and communication networks.
 |=======================================================================
 
-link:#anchor-22[iso_topic_category]
+<<iso_topic_category>>
 
 [[related-information-types]]
 === Related Information types
 
-[cols=",",]
+[cols=">30%,70%",adoc]
 |====================================================================
 |Project home page |URI to the project home page generating the data.
 |Users guide |URI to a users guide or product manual for the dataset.
 |Dataset landing page |A dataset landing page.
 |Extended metadata |
-| |
-| |
 |====================================================================
 
-link:#anchor-41[related_information]
+<<related_information>>
 
 [[data-access-types]]
 === Data Access Types
 
-[cols=",",]
+[cols=">20%,80%",adoc]
 |=======================================================================
 |HTTP |Direct access to the full data file. May require authentication,
 but should point directly to the data file or a catalogue containing the
@@ -518,4 +513,4 @@ data.
 |ODATA |Open Data Protocol.
 |=======================================================================
 
-link:#anchor-43[data_access]
+<<data_access>>
