@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- Lookup table for science keywords -->
+<data_access_kewords xmlns:lookup="http://adc.met.no/schema/da/lookup">
+  <!-- Snow related keywords -->
+  <lookup_element>
+    <gcmd>GET SERVICE</gcmd>
+    <mmd></mmd>
+  </lookup_element>
+  <lookup_element>
+    <gcmd>GET DATA</gcmd>
+    <mmd></mmd>
+  </lookup_element>
+</science_keywords>

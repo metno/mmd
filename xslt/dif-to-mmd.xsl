@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+Not fully adapted for DIF 10, some elements are supported though.
+-->
+
 <xsl:stylesheet 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
@@ -365,9 +369,18 @@
   </xsl:template>
 
   <xsl:template match="dif:Last_DIF_Revision_Date">
-	<xsl:element name="mmd:last_metadata_update">
-		<xsl:value-of select="." />
-	</xsl:element>
+      <xsl:choose>
+          <xsl:when test="current()=''">
+              <xsl:element name="mmd:last_metadata_update">
+                  <xsl:value-of select="../dif:DIF_Creation_Date" />
+              </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:element name="mmd:last_metadata_update">
+                  <xsl:value-of select="." />
+              </xsl:element>
+          </xsl:otherwise>
+      </xsl:choose>
   </xsl:template>
 
   <xsl:template match="dif:Parent_DIF">

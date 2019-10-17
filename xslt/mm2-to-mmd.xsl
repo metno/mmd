@@ -81,6 +81,9 @@
             <xsl:apply-templates select="*[@name='operational_status']"/>    
             <xsl:apply-templates select="*[@name='dataref']"/>
            <!-- <xsl:apply-templates select="*[@name='dataref_WMS']"/> -->
+           <!-- while testing
+            -->
+            <xsl:apply-templates select="document($xmd)/xmd:dataset/xmd:wmsInfo/w:ncWmsSetup"/>
             <xsl:apply-templates select="*[@name='dataref_OPENDAP']"/>
             <xsl:apply-templates select="*[@name='bounding_box']"/>
 
@@ -164,6 +167,25 @@
   <xsl:template match="xmd:dataset/xmd:info/@datestamp">
         <xsl:element name="mmd:last_metadata_update">
             <xsl:value-of select="."/>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="xmd:dataset/xmd:wmsInfo/w:ncWmsSetup">
+        <xsl:element name="mmd:data_access">
+            <xsl:element name="mmd:type">OGC WMS</xsl:element>
+            <xsl:element name="mmd:description"/>
+            <xsl:element name="mmd:resource">
+                <xsl:value-of select="@aggregate_url"/>
+            </xsl:element>            
+            <!-- include wms layers -->
+            <!-- while testing
+            <xsl:element name="mmd:wms_layers">
+              <xsl:for-each select="document($xmd)/xmd:dataset/xmd:wmsInfo/w:ncWmsSetup/w:layer">
+                    <xsl:element name="mmd:wms_layer">                        
+                        <xsl:value-of select="@name"/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
+            -->
         </xsl:element>
     </xsl:template>
   <xsl:template match="*[@name='operational_status']">

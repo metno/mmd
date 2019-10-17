@@ -1,60 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+    xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+-->
 <xsl:stylesheet version="1.0" 
     xmlns="http://www.met.no/schema/mmd" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
-    xmlns:gmi="http://www.isotc211.org/2005/gmi"
     xmlns:gml="http://www.opengis.net/gml/3.2"
-    xmlns:srv="http://www.isotc211.org/2005/srv"
     xmlns:mmd="http://www.met.no/schema/mmd"
-    xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd">
+    xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"
+    >
 
-    <xsl:output method="xml" encoding="UTF-8" indent="yes" />
+    <xsl:output method="xml" indent="yes" />
 
-    <!--
-    <xsl:template match="/[name() = 'gmd:MD_Metadata' or name() = 'gmi:MI_Metadata']">
-    -->
-    <xsl:template match="gmd:MD_Metadata | gmi:MI_Metadata">
+    <xsl:template match="/gmd:MD_Metadata">
         <xsl:element name="mmd:mmd">
-            <xsl:apply-templates select="gmd:fileIdentifier/gco:CharacterString" />
+        
+            <mmd:metadata_version>1</mmd:metadata_version>
+        
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" />
-            <xsl:element name="mmd:metadata_status">Active</xsl:element>
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status"/>
-            <!-- If /gmd:MD_Metadata/gmd:status is not available, check
-                 further and add default -->
-<!-- for test purposes...
-            <mmd:dataset_production_status>In Work</mmd:dataset_production_status>
--->
-            <xsl:element name="mmd:collection">ADC</xsl:element>
-            <xsl:apply-templates select="gmd:dateStamp" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:keyword/gmd:type/gmd:MD_KeywordTypeCode = 'project']" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords" />
-            <!--
-            <mmd:metadata_version>1</mmd:metadata_version>
-            -->
+            <xsl:apply-templates select="gmd:fileIdentifier/gco:CharacterString" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language" />
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status"/>
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent" />
             
             <xsl:apply-templates select="gmd:contact/gmd:CI_ResponsibleParty" />
             
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords" />
             
             <xsl:element name="mmd:geographic_extent">
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox" />
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon" />
             </xsl:element>
             
-            <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor" />
             <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine" />
-            <xsl:apply-templates select="gmd:identificationInfo/srv:SV_ServiceIdentification/srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint" />
-
-            <xsl:apply-templates select="gmd:dataSetURI/gco:CharacterString" />
             
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation" />
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints" />
                         
             
         </xsl:element>
@@ -80,23 +66,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="gmd:dateStamp">
-        <xsl:element name="mmd:last_metadata_update">
-        <xsl:choose>
-            <xsl:when test="gco:DateTime">
-                <xsl:value-of select="gco:DateTime" />
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="gco:Date" />
-            </xsl:otherwise>
-        </xsl:choose>
-        </xsl:element>
-
-        <!--
-        <xsl:element name="mmd:last_metadata_update"><xsl:value-of select="gco:Date" /> </xsl:element>
-    -->
-    </xsl:template>
-
     <xsl:template match="gmd:language">
         <xsl:element name="mmd:dataset_language">
             <xsl:choose>
@@ -112,13 +81,14 @@
     </xsl:template>
 
     <xsl:template match="gmd:status">        
-        <xsl:variable name="iso_status" select="normalize-space(gmd:MD_ProgressCode)" />
+        <xsl:variable name="iso_status" select="normalize-space(gmd:MD_ProgressCode/@codeListValue)" />
         <xsl:variable name="iso_status_mapping" select="document('')/*/mapping:dataset_status[@iso=$iso_status]" />
         <xsl:value-of select="$iso_status_mapping" />
         <xsl:element name="mmd:dataset_production_status">
             <xsl:value-of select="$iso_status_mapping/@mmd"></xsl:value-of>                    
         </xsl:element>    
     </xsl:template>
+
 
     <!-- mapping between iso and mmd dataset statuses -->
     <mapping:dataset_status iso="completed" mmd="Complete" />
@@ -182,14 +152,14 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation">
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints">
         <xsl:element name="mmd:use_constraint">
             <xsl:choose>
                 <xsl:when test="gmd:MD_RestrictionCode[@codeListValue='otherConstraints']">
                     <xsl:value-of select="../gmd:otherConstraints/gco:CharacterString" />
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="gco:CharacterString" />
+                    <xsl:value-of select="gmd:MD_RestrictionCode/@codeListValue" />
                 </xsl:otherwise>
             </xsl:choose>        
         </xsl:element>
@@ -255,49 +225,15 @@
         </xsl:element>
     </xsl:template>
     
-    <!-- get data access from NILU -->
-    <xsl:template match="gmd:identificationInfo/srv:SV_ServiceIdentification/srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint">
-        <xsl:element name="mmd:data_access">
-            <xsl:element name="mmd:type">
-                <xsl:variable name="external_name" select="normalize-space(gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString)" />
-                <xsl:variable name="protocol_mapping" select="document('')/*/mapping:protocol_names[@external=$external_name]" />
-                <xsl:value-of select="$protocol_mapping" />
-                <xsl:value-of select="$protocol_mapping/@mmd"></xsl:value-of> 
-            </xsl:element>
-            <xsl:element name="mmd:resource">
-                <xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL" />
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
-
-    
-    <!-- Extract information on host data center -->
-    <xsl:template match="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor">
-        <xsl:element name="mmd:data_center">
-            <xsl:element name="mmd:data_center_name">
-                <xsl:element name="mmd:short_name">
-                    <!--xsl:value-of select=""/-->
-                </xsl:element>
-                <xsl:element name="mmd:long_name">
-                    <xsl:value-of select="gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
-                </xsl:element>
-            </xsl:element>
-            <xsl:element name="mmd:data_center_url">
-                <xsl:value-of select="gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
-
-    <!-- Extract information on online resources -->
-    <!-- mapping between protocol names -->
-    <mapping:protocol_names external="OPeNDAP:OPeNDAP" mmd="OPeNDAP" />
-    <mapping:protocol_names external="file" mmd="HTTP" />
-
     <xsl:template match="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine">
-
+    
+        <xsl:variable name="url_type" select="normalize-space(gmd:CI_OnlineResource/gmd:name/gco:CharacterString)" />
+        <xsl:variable name="url_type_mapping" select="document('')/*/mapping:resource_type[@ecmwf=$url_type]" />
+        <xsl:value-of select="$url_type_mapping" />
         <xsl:element name="mmd:data_access">
             <xsl:element name="mmd:type">
-                <xsl:value-of select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString" />
+                <xsl:value-of select="$url_type_mapping/@mmd"></xsl:value-of>                    
+                <!--xsl:value-of select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString" /-->
             </xsl:element>
             <!--xsl:element name="mmd:name">
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gco:CharacterString" />
@@ -310,16 +246,9 @@
             </xsl:element>                                    
         </xsl:element>
     </xsl:template>
-
-    <xsl:template match="gmd:dataSetURI/gco:CharacterString">
-        <xsl:element name="mmd:related_information">
-            <xsl:element name="mmd:type">Dataset landing page</xsl:element>
-            <xsl:element name="mmd:description">NA</xsl:element>
-            <xsl:element name="mmd:resource">
-                <xsl:value-of select="."/>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
+    <!-- mapping between ECMWF resource types and mmd -->
+    <mapping:resource_type ecmwf="Data accesses" mmd="HTTP" />
+    
     
     <xsl:template match="gmd:descriptiveKeywords/gmd:MD_Keywords">
     
@@ -333,17 +262,6 @@
     <xsl:template match="gmd:keyword">
         <xsl:element name="mmd:keyword">
             <xsl:value-of select="gco:CharacterString" />
-        </xsl:element>
-    </xsl:template>
-
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode = 'project']">
-        <xsl:element name="mmd:project">
-            <xsl:element name="mmd:short_name">
-                <xsl:value-of select="gmd:keyword/gco:CharacterString" />
-            </xsl:element>
-            <xsl:element name="mmd:long_name">
-                <xsl:value-of select="gmd:keyword/gco:CharacterString" />
-            </xsl:element>
         </xsl:element>
     </xsl:template>
     

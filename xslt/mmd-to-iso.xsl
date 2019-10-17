@@ -8,8 +8,7 @@
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
-    version="1.0"
-    >
+    version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/mmd:mmd">
