@@ -9,11 +9,12 @@
     "*[not(@*|*|comment()|processing-instruction()) 
      and normalize-space()=''
       ]"/>
-    <xsl:template match="webform_submission">
+    <xsl:template match="submitted_metadata">
         <xsl:element name="mmd:mmd">
             <!-- Missing metadata_identifier -->
             <xsl:apply-templates select="Modified"/>
             <xsl:element name="mmd:metadata_status">Active</xsl:element>
+            <xsl:apply-templates select="Collection"/>
             <xsl:apply-templates select="Title"/>
             <xsl:apply-templates select="Abstract"/>
             <xsl:apply-templates select="ISO-Topic-category"/>
@@ -102,6 +103,20 @@
         <xsl:element name="mmd:last_metadata_update">
             <xsl:value-of select="concat($yyyy1,'-',$mm1,'-',$dd1,'T',$HH1,':00Z')"/>
         </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="Collection">
+        <xsl:param name="mycoll" select="."/>
+        <xsl:element name="mmd:collection"><xsl:value-of select="."/></xsl:element>
+        <xsl:choose>
+            <xsl:when test="contains($mycoll, 'SESS')">
+                <xsl:element name="mmd:collection">SIOS</xsl:element>
+            </xsl:when>
+            <xsl:when test="contains($mycoll, 'SIOS')">
+                <xsl:element name="mmd:collection">SIOS</xsl:element>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:element name="mmd:collection">ADC</xsl:element>
     </xsl:template>
 
     <xsl:template match="Title">
