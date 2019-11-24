@@ -296,9 +296,10 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="HTTP"></xs:enumeration>
             <xs:enumeration value="OPeNDAP"></xs:enumeration>
-            <xs:enumeration value="OGC WMS"></xs:enumeration>
-            <xs:enumeration value="OGC WFS"/>
-            <xs:enumeration value="OGC WCS"/>
+            <xs:enumeration value="OGC:WMS"></xs:enumeration>
+            <xs:enumeration value="OGC:WFS"/>
+            <xs:enumeration value="OGC:WCS"/>
+            <xs:enumeration value="FILE:GEO"/>
             <xs:enumeration value="FTP"/>
 	    <xs:enumeration value="ODATA"/>
         </xs:restriction>
