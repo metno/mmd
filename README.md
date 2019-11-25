@@ -19,3 +19,6 @@ HTML:
 
 PDF:
     asciidoctor-pdf -n mmd_specification.adoc
+    
+## Licenses
+GPL 3 or higher for software, Creative Commons BY for documents.
