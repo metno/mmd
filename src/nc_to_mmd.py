@@ -144,6 +144,7 @@ class Nc_to_mmd(object):
                             'dataset_production_status': None,
                             'operational_status': None,
                             'iso_topic_category': None,
+                            'keywords': '\n\t\t<mmd:keyword></mmd:keyword>\n\t',
                             'temporal_extent': '\n\t\t<mmd:start_date></mmd:start_date>\n\t',
                             'geographic_extent': str('\n\t\t<mmd:rectangle srsName=""> \n\t\t\t<mmd:north></mmd:north> \n\t\t\t<mmd:south></mmd:south> \n\t\t\t<mmd:east></mmd:east> \n\t\t\t<mmd:west></mmd:west> \n\t\t</mmd:rectangle>\n\t')
                             }
@@ -219,8 +220,9 @@ class Nc_to_mmd(object):
 
 def main():
     op = ''
-    on = 'test.xml'
+    on = 'multisensor_sic.xml'
     nc = "http://thredds.met.no/thredds/dodsC/data/fou-kl/radioctivity/confidence/Input/meps_full_2_5km_20170316T06Z.nc"
+    nc = "http://thredds.met.no/thredds/dodsC/sea_ice/SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated"
     md = Nc_to_mmd(op,on,nc)
     md.to_mmd()
 
