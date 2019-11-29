@@ -118,6 +118,19 @@ class Nc_to_mmd(object):
                 else:
                     root.append(ET.Comment('<mmd:{}>{}</mmd:{}>'.format(k,v,k)))
 
+        # Add OPeNDAP data_access if "netcdf_product" is OPeNDAP url
+        if 'dodsC' in self.netcdf_product:
+            da_element = ET.SubElement(root,ET.QName(ns_map['mmd'],'data_access'))
+            type_sub_element = ET.SubElement(da_element,ET.QName(ns_map['mmd'],'type'))
+            description_sub_element = ET.SubElement(da_element,ET.QName(ns_map['mmd'],'description'))
+            resource_sub_element = ET.SubElement(da_element,ET.QName(ns_map['mmd'],'resource'))
+            type_sub_element.text = "OPeNDAP"
+            description_sub_element.text = "Open-source Project for a Network Data Access Protocol"
+            resource_sub_element.text = self.netcdf_product
+
+        # Add OGC WMS data_access as comment
+        root.append(ET.Comment(str('<mmd:data_access>\n\t<mmd:type>OGC WMS</mmd:type>\n\t<mmd:description>OGC Web Mapping Service, URI to GetCapabilities Document.</mmd:description>\n\t<mmd:resource></mmd:resource>\n\t<mmd:wms_layers>\n\t\t<mmd:wms_layer></mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
+
 
         #print(ET.tostring(root,pretty_print=True).decode("utf-8"))
 
@@ -221,7 +234,6 @@ class Nc_to_mmd(object):
 def main():
     op = ''
     on = 'multisensor_sic.xml'
-    nc = "http://thredds.met.no/thredds/dodsC/data/fou-kl/radioctivity/confidence/Input/meps_full_2_5km_20170316T06Z.nc"
     nc = "http://thredds.met.no/thredds/dodsC/sea_ice/SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated"
     md = Nc_to_mmd(op,on,nc)
     md.to_mmd()
