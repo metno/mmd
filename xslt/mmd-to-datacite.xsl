@@ -38,6 +38,13 @@ First attempt for MMD to DataCite conversion...
                         <xsl:apply-templates select="mmd:use_constraint" />
                         <!--xsl:apply-templates select="mmd:dataset_production_status" /-->
                         <xsl:apply-templates select="mmd:dataset_language" />
+
+		<!--ResourceType does not exist in mmd. Attribute is a Controlled Vocabulary. Only Dataset applies-->
+		<xsl:element name="ResourceType">
+		    <xsl:attribute name="resourceTypeGeneral">Dataset</xsl:attribute>
+		    <xsl:text>Dataset</xsl:text>
+		</xsl:element>
+
                     </xsl:element>
                 </xsl:template>
 
