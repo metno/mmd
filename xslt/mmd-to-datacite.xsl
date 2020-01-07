@@ -14,6 +14,13 @@ First attempt for MMD to DataCite conversion...
 
         <xsl:template match="/mmd:mmd">
             <xsl:element name="resource">
+		<!--unique string that identifies a resource-->
+		<xsl:element name="Identifier">
+		    <!--A controlled list value: DOI-->
+		    <xsl:attribute name="identifierType">DOI</xsl:attribute>
+		    <xsl:value-of select="substring-before(' ',' ')"/>
+		</xsl:element>
+
                 <xsl:apply-templates select="mmd:metadata_identifier" />
                 <!-- not implemented yet
                         <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
