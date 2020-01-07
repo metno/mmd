@@ -42,11 +42,13 @@ First attempt for MMD to DataCite conversion...
                 </xsl:template>
 
         <!-- Need to define identifier type... -->
-	<xsl:template match="mmd:metadata_identifier">
-		<xsl:element name="identifier">
-			<xsl:value-of select="." />
-		</xsl:element>
-	</xsl:template>
+        <xsl:template match="mmd:metadata_identifier">
+                <xsl:element name="alternateIdentifier">
+                    <!--this is free text. METNO UUID is just a suggestion-->
+                    <xsl:attribute name="alternateIdentifierType">METNO UUID</xsl:attribute>
+                        <xsl:value-of select="." />
+                </xsl:element>
+        </xsl:template>
 
 	<xsl:template match="mmd:title">
 		<xsl:element name="titles">
