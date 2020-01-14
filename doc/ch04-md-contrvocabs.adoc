@@ -276,12 +276,12 @@ FIXME
 
 [cols=">20%,80%",adoc]
 |==================
-|S1A |Sentinel-1A |
-|S1B |Sentinel-1B |
-|S2A |SENTINEL-2A |
-|S2B |SENTINEL-2B |
-|S3A |SENTINEL-3A |
-|S3B |SENTINEL-3 |
+|S1A |Sentinel-1A 
+|S1B |Sentinel-1B 
+|S2A |SENTINEL-2A 
+|S2B |SENTINEL-2B 
+|S3A |SENTINEL-3A 
+|S3B |SENTINEL-3 
 |==================
 
 <<platform>>
