@@ -39,9 +39,9 @@ First attempt for MMD to DataCite conversion...
                         <!--xsl:apply-templates select="mmd:project" />
                         <xsl:apply-templates select="mmd:temporal_extent" /-->
                         <xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
-                        <!--xsl:apply-templates select="mmd:data_access" />
+                        <!--xsl:apply-templates select="mmd:data_access" /-->
                         <xsl:apply-templates select="mmd:dataset_citation" />
-                        <xsl:apply-templates select="mmd:access_constraint" /-->
+                        <!--xsl:apply-templates select="mmd:access_constraint" /-->
                         <xsl:apply-templates select="mmd:use_constraint" />
                         <!--xsl:apply-templates select="mmd:dataset_production_status" /-->
                         <xsl:apply-templates select="mmd:dataset_language" />
@@ -179,9 +179,20 @@ First attempt for MMD to DataCite conversion...
 	</xsl:template-->
 
 
-    <!--xsl:template match="mmd:dataset_citation">
+    <xsl:template match="mmd:dataset_citation">
 
-        <xsl:element name="dif:Data_Set_Citation">
+        <!--The year when the data was or will be made publicly available.-->
+        <xsl:element name="PublicationYear">
+            <!--extract YYYY from format YYYY-MM-DDTHH:MM:SSZ-->
+            <xsl:value-of select = "substring-before(mmd:dataset_release_date, '-')" />
+        </xsl:element>
+        <!--The name of the entitythat holds, archives, publishes prints, distributes,
+	     releases, issues, or produces the resource.-->
+        <xsl:element name="Publisher">
+            <xsl:value-of select="mmd:dataset_publisher" />
+        </xsl:element>
+
+        <!--xsl:element name="dif:Data_Set_Citation">
             <xsl:element name="dif:Dataset_Creator">
                 <xsl:value-of select="mmd:dataset_creator" />
             </xsl:element>
@@ -194,14 +205,8 @@ First attempt for MMD to DataCite conversion...
             <xsl:element name="dif:Dataset_Series_Name">
                 <xsl:value-of select="mmd:dataset_series_name" />
             </xsl:element>
-            <xsl:element name="dif:Dataset_Release_Date">
-                <xsl:value-of select="mmd:dataset_release_date" />
-            </xsl:element>
             <xsl:element name="dif:Dataset_Release_Place">
                 <xsl:value-of select="mmd:dataset_release_place" />
-            </xsl:element>
-            <xsl:element name="dif:Dataset_Publisher">
-                <xsl:value-of select="mmd:dataset_publisher" />
             </xsl:element>
             <xsl:element name="dif:Version">
                 <xsl:value-of select="mmd:version" />
@@ -213,8 +218,8 @@ First attempt for MMD to DataCite conversion...
                 <xsl:value-of select="mmd:online_resource" />
             </xsl:element>
 
-        </xsl:element>
+        </xsl:element-->
 
-    </xsl:template-->
+    </xsl:template>
 
 </xsl:stylesheet>
