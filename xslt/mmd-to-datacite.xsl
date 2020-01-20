@@ -29,8 +29,8 @@ First attempt for MMD to DataCite conversion...
                              descriptionType=Abstract
                         -->
                         <xsl:apply-templates select="mmd:abstract" />
-                        <!--xsl:apply-templates select="mmd:project" />
-                        <xsl:apply-templates select="mmd:temporal_extent" /-->
+                        <!--xsl:apply-templates select="mmd:project" /-->
+                        <xsl:apply-templates select="mmd:temporal_extent" />
                         <xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
                         <!--xsl:apply-templates select="mmd:data_access" />
                         <xsl:apply-templates select="mmd:dataset_citation" />
@@ -39,11 +39,6 @@ First attempt for MMD to DataCite conversion...
                         <!--xsl:apply-templates select="mmd:dataset_production_status" /-->
                         <xsl:apply-templates select="mmd:dataset_language" />
 
-		<!--ResourceType does not exist in mmd. Attribute is a Controlled Vocabulary. Only Dataset applies-->
-		<xsl:element name="ResourceType">
-		    <xsl:attribute name="resourceTypeGeneral">Dataset</xsl:attribute>
-		    <xsl:text>Dataset</xsl:text>
-		</xsl:element>
 
                     </xsl:element>
                 </xsl:template>
@@ -84,18 +79,22 @@ First attempt for MMD to DataCite conversion...
 				<xsl:value-of select="." />
 			</xsl:element>
 		</xsl:for-each>
-	</xsl:template>
+	</xsl:template-->
 
 	<xsl:template match="mmd:temporal_extent">
-		<xsl:element name="dif:Temporal_Coverage">
-			<xsl:element name="dif:Start_Date">
-				<xsl:value-of select="mmd:start_date" />
-			</xsl:element>
-			<xsl:element name="dif:_Date">
-				<xsl:value-of select="mmd:end_date" />
-			</xsl:element>
-		</xsl:element>
-        </xsl:template-->
+            <!--If temporal_extent: end_date does not exist, define Collection otherwise Dataset for resourceTypeGeneral attribute-->
+            <xsl:element name="ResourceType">
+                <xsl:choose>
+                    <xsl:when test="mmd:end_date = ''">
+                        <xsl:attribute name="resourceTypeGeneral"><xsl:text>Collection</xsl:text></xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="resourceTypeGeneral"><xsl:text>Dataset</xsl:text></xsl:attribute>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:text>Dataset</xsl:text>
+	    </xsl:element>
+        </xsl:template>
 
         <xsl:template match="mmd:geographic_extent/mmd:rectangle">
             <xsl:element name="geoLocations">
