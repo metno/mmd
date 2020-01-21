@@ -83,7 +83,7 @@ First attempt for MMD to DataCite conversion...
 
 	<xsl:template match="mmd:temporal_extent">
             <!--If temporal_extent: end_date does not exist, define Collection otherwise Dataset for resourceTypeGeneral attribute-->
-            <xsl:element name="ResourceType">
+            <xsl:element name="resourceType">
                 <xsl:choose>
                     <xsl:when test="mmd:end_date = ''">
                         <xsl:attribute name="resourceTypeGeneral"><xsl:text>Collection</xsl:text></xsl:attribute>
