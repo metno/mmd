@@ -22,8 +22,8 @@ First attempt for MMD to DataCite conversion...
 		</xsl:element>
 
                 <xsl:apply-templates select="mmd:metadata_identifier" />
+                <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
                 <!-- not implemented yet
-                        <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
 -->
                         <xsl:apply-templates select="mmd:title" />
                         <!--xsl:apply-templates select="mmd:data_center" /-->
@@ -80,6 +80,20 @@ First attempt for MMD to DataCite conversion...
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>
+
+        <!--The main researchers involved in producing the data-->
+        <xsl:template match="mmd:personnel[mmd:role='Investigator']">
+                <xsl:element name="creators">
+                        <xsl:element name="creator">
+                        <xsl:element name="creatorName">
+                        <!--how to discriminate between personal/organizational-->
+                         <xsl:attribute name="nameType">Personal</xsl:attribute>
+                        <xsl:value-of select="mmd:name" />
+                        </xsl:element>
+                     </xsl:element>
+                </xsl:element>
+        </xsl:template>
+
 
 	<!--xsl:template match="mmd:last_metadata_update">
 		<xsl:element name="dif:Last_DIF_Revision_Date">
