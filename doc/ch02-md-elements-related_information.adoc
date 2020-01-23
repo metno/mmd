@@ -15,13 +15,13 @@
 Description of how to access the data in the dataset. This element has
 the following child elements:
 
-* type: Description of the type of information. A controlled vocabulary is required. See Related Information types.
+* type: Description of the type of information. A controlled vocabulary is required. See <<related-information-types>>.
 * resource: The URL used. 
-* description: Textual description on the resource.:
+* description: Textual description on the resource.
 
-This element should be used for THREDDS landing pages. i.e. that is the
+This element should be used for e.g. THREDDS landing pages. i.e. that is the
 pages providing the overview of services (HTTP, OPeNDAP, WMS, ...) for a
-dataset. The specific services is to be added using <<data_access>>.
+dataset. The specific web services for data access are to be added using <<data_access>>.
 
 |Example XML: a|
 ----
