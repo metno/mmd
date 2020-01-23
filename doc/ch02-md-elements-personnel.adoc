@@ -7,16 +7,17 @@
 
 |Attributes |None
 
-|Required |No
+|Required |Yes (see details on roles below)
 
-|Repetition allowed |Yes, but we only recommend having a single contact
-per role.
+|Repetition allowed |Yes
 
 |Description a|
-Relevant contact person for the dataset. The contact has the following
+Relevant contact persons for the dataset. All datasets must have at least
+one entry of personnel specifying the Principal Investigator (role
+Investigator). The contact has the following
 sub elements
 
-* role: The role the person has related to this dataset. The value should come from Contact roles.
+* role: The role the person has related to this dataset. The value must * come from <<contact-roles,Contact roles>>.
 * name: The full name of the contact.
 * email: The email address to the contact.
 * phone: The phone number to the contact. The number should include land codes.
