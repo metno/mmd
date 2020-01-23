@@ -7,19 +7,19 @@
 
 |Attributes | 
 
-* vocabulary: The vocabulary where the keyword is fetched from. The vocabulary “none” is used if the keyword is not from a vocabulary.
+* vocabulary: The vocabulary where the keyword is fetched from. The
+* vocabulary “none” is used if the keyword is not from a vocabulary. The recommended vocabulary to use is "GCMD", see <<variable-parameter-descriptions>> for further details. Other valid vocabularies are e.g. "WIGOS". Search services are currently based on GCMD Science keywords.
 
 |Required |Yes
 
-|Repetition allowed a|
-Yes.
+|Repetition allowed a| Yes.
 
 It is expected that different keyword elements have different vocabulary
 child elements.
 
 |Description a|
-A set of keywords describing the dataset. The keywords can be fetched
-from a per-defined vocabulary, but this is not a requirement. This
+A set of keywords describing the dataset. The keywords should be fetched
+from a pre-defined vocabulary, but this is not a requirement. This
 element has two child elements:
 
 * reference: URI to machine readable form of the vocabulary used.

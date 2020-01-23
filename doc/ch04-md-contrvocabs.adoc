@@ -79,6 +79,7 @@ version should be used, this is kept for back tracing.
 [cols=">30%,70%",adoc]
 |===========================
 |ISO Code |MMD code
+
 |completed |Complete
 |historicalArchive |Complete
 |obsolete |Obsolete
@@ -94,6 +95,7 @@ version should be used, this is kept for back tracing.
 [cols=",",]
 |==================
 |MMD Code |ISO code
+
 |Planned |Planned
 |In Work |onGoing
 |Complete |Complete
@@ -266,16 +268,40 @@ to be linked (which currently is not supported).
 
 <<activity_type>>
 
-[[variableparameter-descriptions]]
+[[variable-parameter-descriptions]]
 === Variable/parameter descriptions
 
-FIXME
+For description of parameters MMD is currently relying on GCMD Science
+Keywords. The GCMD Science Keywords are available in multiple forms.
+
+GCMD Science Keywords
+
+ . https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=csv comma separated file
+ . https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=json JSON
+ . https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=rdf RDF
+ . https://gcmdservices.gsfc.nasa.gov/kms/capabilities?format=html API
+
+However many datasets are encoded using the
+http://cfconventions.org[Climate and Forecast convention]. In this CF
+Standard Names are used. These are available through
+http://cfconventions.org/Data/cf-standard-names/70/build/cf-standard-name-table.html and can be converted to GCMD Science Keywords using
+http://dap.onc.uvic.ca/erddap/convert/keywords.html (further information
+to be provided).
+
+For observational data WMO Integrated Global Observing System (WIGOS)
+observed parameter descriptions can be used. These are available at
+https://codes.wmo.int/wmdr/. Use information from the sections on observed
+variable.
+
+<<keywords>>
 
 [[platform-1]]
 === Platform
 
 [cols=">20%,80%",adoc]
 |==================
+|Code |Description
+
 |S1A |Sentinel-1A 
 |S1B |Sentinel-1B 
 |S2A |SENTINEL-2A 
@@ -312,6 +338,8 @@ optical sensor.
 
 [cols=">10%,20%,70%",adoc]
 |=====================================================
+|Code |Description
+
 |SM |StripMap |Relates to Sentinel-1
 |IW |Interferometric Wide Swath |Relates to Sentinel-1
 |EW |Extra-Wide Swath |Relates to Sentinel-1
@@ -325,8 +353,10 @@ optical sensor.
 
 [cols=">10%,90%",adoc]
 |=======
-|HH |
-|VV |
+|Code |Description
+
+|HH |Horisontally transmitted and Horisontally received
+|VV |Vertically transmitted and Horisontally received
 |HH+HV |
 |VV+VH |
 |HV+HH |
@@ -340,6 +370,8 @@ optical sensor.
 
 [cols=">10%,20%,70%",adoc]
 |=======================================================================
+|Code |Content |Description
+
 |SLC |Single Look Complex |Single Look Complex (SLC) products consist of
 focused SAR data, geo-referenced using orbit and attitude data from the
 satellite, and provided in slant-range geometry.
@@ -360,6 +392,8 @@ applications derived from the SAR data.
 
 [cols=">20%,80%",adoc]
 |=======================================================================
+|Code |Description
+
 |Investigator |The person who headed the investigation or experiment
 that resulted in the acquisition of the data described (i.e., Principal
 Investigator, Experiment Team Leader) and knows the details on data
@@ -382,6 +416,7 @@ this is the main contact with regard to the metadata.
 [cols=",",]
 |===================================
 |MMD Code |ISO code
+
 |Investigator |principalInvestigator
 |Technical contact |pointOfContact
 |Metadata author |author
@@ -392,6 +427,8 @@ this is the main contact with regard to the metadata.
 
 [cols=">30%,70%",adoc]
 |=======================================================================
+|Code |Description
+
 |farming |earing of animals or cultivation of plants. For example,
 resources describing irrigation, aquaculture, herding, and pests and
 diseases affecting crops and livestock.
@@ -483,10 +520,16 @@ telecommunication, radio, and communication networks.
 
 [cols=">30%,70%",adoc]
 |====================================================================
+|Code |Description
+
 |Project home page |URI to the project home page generating the data.
 |Users guide |URI to a users guide or product manual for the dataset.
 |Dataset landing page |A dataset landing page.
-|Extended metadata |
+|Observation facility |For observational data (in situ or remote) an
+information page containing more detailed information on the observation
+facility following OGC Observations and Measurements or WMO Integrated
+Global Observing System approach.
+|Extended metadata |Additional unspecified metadata on the data. 
 |====================================================================
 
 <<related_information>>
@@ -496,6 +539,8 @@ telecommunication, radio, and communication networks.
 
 [cols=">20%,80%",adoc]
 |=======================================================================
+|Code |Description
+
 |HTTP |Direct access to the full data file. May require authentication,
 but should point directly to the data file or a catalogue containing the
 data.
