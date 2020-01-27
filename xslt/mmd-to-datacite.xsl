@@ -197,12 +197,12 @@ First attempt for MMD to DataCite conversion...
         <!--The year when the data was or will be made publicly available.-->
         <xsl:element name="publicationYear">
             <!--extract YYYY from format YYYY-MM-DDTHH:MM:SSZ-->
-            <xsl:value-of select = "substring-before(mmd:dataset_release_date, '-')" />
+            <xsl:value-of select = "substring-before(mmd:publication_date, '-')" />
         </xsl:element>
         <!--The name of the entitythat holds, archives, publishes prints, distributes,
 	     releases, issues, or produces the resource.-->
         <xsl:element name="publisher">
-            <xsl:value-of select="mmd:dataset_publisher" />
+            <xsl:value-of select="mmd:publisher" />
         </xsl:element>
 
         <!--xsl:element name="dif:Data_Set_Citation">
