@@ -16,7 +16,7 @@ Restrictions on the use of the dataset.
 
 See link:#anchor-30[Use constraints]for a list of valid values.
 
-|Example XML: |
+|Example XML: a|
 ----
 <use_constraint>
     CC-BY

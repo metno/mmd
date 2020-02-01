@@ -5,10 +5,9 @@
 |=======================================================================
 |Element |/mmd/keywords
 
-|Attributes | 
+|Attributes a| 
 
-* vocabulary: The vocabulary where the keyword is fetched from. The
-* vocabulary “none” is used if the keyword is not from a vocabulary. The recommended vocabulary to use is "GCMD", see <<variable-parameter-descriptions>> for further details. Other valid vocabularies are e.g. "WIGOS". Search services are currently based on GCMD Science keywords.
+* vocabulary: The vocabulary where the keyword is fetched from. The vocabulary “none” is used if the keyword is not from a vocabulary. The recommended vocabulary to use is "GCMD", see <<variable-parameter-descriptions>> for further details. Other valid vocabularies are e.g. "WIGOS". Search services are currently based on GCMD Science keywords.
 
 |Required |Yes
 

@@ -16,7 +16,7 @@ Limitations on the access to the dataset.
 
 See <<access-constraints>> for a list of valid values.
 
-|Example XML: |
+|Example XML: a|
 
 ----
 <access_constraint>Open for all</access_constraint>

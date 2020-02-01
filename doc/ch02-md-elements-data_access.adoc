@@ -11,7 +11,7 @@
 
 |Repetition allowed |Yes
 
-|Description |Description of how to access the data in the dataset. This
+|Description a|Description of how to access the data in the dataset. This
 element has the following child elements:
 
 * type: Description of the type of data access. Data Access Types
