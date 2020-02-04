@@ -12,7 +12,7 @@
 |Repetition allowed |Yes. Repetition is used when there are gaps in the
 dataset.
 
-|Description |Defines the temporal extent or coverage of the dataset.
+|Description a|Defines the temporal extent or coverage of the dataset.
 The extent is defined used two sub elements:
 
 * start_date: The start date for data collection or model coverage.

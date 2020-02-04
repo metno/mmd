@@ -11,7 +11,7 @@
 
 |Repetition allowed |No
 
-|Description |The geographic extend of the datasets defined a rectangle
+|Description a|The geographic extend of the datasets defined a rectangle
 in lat/lon projection. The extent is defined using the following child
 elements:
 

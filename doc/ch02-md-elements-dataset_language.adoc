@@ -14,7 +14,7 @@
 |Description |The language used in production, storage etc. of the
 dataset. The default for all datasets is English.
 
-|Example XML: |
+|Example XML: a|
 ----
 <dataset_language>
     en

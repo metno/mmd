@@ -12,35 +12,41 @@
 |Repetition allowed |Yes
 
 |Description a|
-A description of how the dataset should be properly cited. The element
-has the following child elements:
+A description of how the dataset should be properly cited. If this
+information is not available, a citation string will be generated from the
+metadata available. This element has the following child elements:
 
-* dataset_creator: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development.
-* dataset_editor: Dataset Editor is the individual(s) responsible for the processing or re-processing of a particular dataset.
-* dataset_title: The title of the data set; this may be the same as Entry Title.
-* dataset_series_name: The name of the dataset series, or aggregate dataset of which the dataset is a part.
-* dataset_release_date: The date when the data set was made available for release.
-* dataset_release_place: The name of the city (and state or province and country if needed) where the data set was made available for release.
-* dataset_publisher The name of the individual or organization that made the data set available for release.
-* Version: The version of the data set.
-* issue_identification: The volume or issue number of the publication (if applicable).
-* data_presentation_form: The mode in which the data are represented, e.g. atlas, image, profile, text, etc.
-* other_citation_details: Additional free-text citation information. For example, <other_citation_details>NOAA/NCDC Paleoclimatology Program</other_citation_details>
-* dataset_doi: The Digital Object Identifier (DOI) of a data set.
+* author: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development. This is a mandatory element and is a comma separated list.
+* publication_date: The publication/reference date for the (cited) resource. 
+* title: The title of the data set, this may be the same as Entry Title or the title of a report or paper.
+* series: journal, report series or similar for documents.
+* edition:  The version of a cited resource.
+* volume: The order or sequence of a resource in a series or set.
+* issue: The issue number of a resource (usually within a volume).
+* publication_place: The name of the city (and state or province and country if needed) where the resource was made available.  This is required if this form is used.
+* publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used.
+* pages: The range of pages or total number of pages of a cited resource.
+* isbn: International Standard Book Number (if available).
+* doi: Digital Object Identifier (if available).
+* url: The URL of the online resource containing the cited resource (not necessary if DOI is provided).
+* other: Additional free-text reference information.
 
 |Example XML: a|
 ----
 <dataset_citation>
-    <dataset_creator>OMI SIPS</dataset_creator>
-    <dataset_editor>J. Smith, D. Johnson, M. Davis</dataset_editor>
-    <dataset_title>OMI/Aura Level 1B VIS Global Geolocated Earth Shine Radiances 1-orbit L2 Swath 13x24 km</dataset_title>
-    <dataset_series_name>OML1BRVG</dataset_series_name>
-    <dataset_release_date>2009</dataset_release_date>
-    <dataset_release_place>NASA Goddard Space Flight Center</dataset_release_place>
-    <dataset_publisher>U.S. Geological Survey</dataset_publisher>
-    <version>004</version>
-    <data_presentation_form>Digital Science Data</data_presentation_form>
-    <online_resource>http://disc.gsfc.nasa.gov/Aura/OMI/oml1brvg_v004.shtml</online_resource>
+    <author>Cristian Lussana, Ole Einar Tveito, Andreas Dobler, and Ketil Tunheim</author>
+    <title>seNorge_2018, daily precipitation, and temperature datasets over Norway</title>
+    <series>Earth System Science Data</series>
+    <volume>11</volume>
+    <issue>4</issue>
+    <edition></edition>
+    <publication_date>2019-10-01</publication_date>
+    <publisher>Copernicus Publications</publisher>
+    <pages></pages>
+    <isbn></isbn>
+    <doi>https://doi.org/10.5194/essd-11-1531-2019</doi>
+    <url></url>
+    <other></other>
 </dataset_citation>
 ----
 
@@ -56,10 +62,6 @@ parts can be put into citation information.
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime
 
 where gmd:CI_DateTypeCode has attribute codeListValue="publication"
-
-*version* can be translated to
-
-gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:edition
 
 *other_citation_details* can be translated to
 
