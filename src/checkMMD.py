@@ -170,7 +170,7 @@ class CheckMMD:
         """
         valid_formats = ["%Y-%m-%d","%Y-%m-%dT%H","%Y-%m-%dT%H:%M",
                         "%Y-%m-%dT%H:%M:%S","%Y-%m-%dT%H:%M:%S.%fZ",
-                        "%Y-%m-%dT%H:%M:%S%fZ", "%Y-%m-%dT%H:%M:%S.%f"]
+                         "%Y-%m-%dT%H:%M:%S%fZ", "%Y-%m-%dT%H:%M:%S.%f"]
         for f in valid_formats:
             try:
                 if datetime.datetime.strptime(date,f):
@@ -186,7 +186,7 @@ class CheckMMD:
     def checkURL(self, url):
         response = False
         try:
-            r = requests.get(url, timeout=20)
+            r = requests.get(url, timeout=30)
                     
             if(r.status_code == requests.codes.ok):
                 response = True
@@ -336,18 +336,20 @@ class CheckMMD:
 def main():
 
     #Test data
-    mmd_file = '/home/magnarem/svn4adc/adc/XML/metno-sstana05-V2/metno-sstana05-V2_20120713.xml'
-    xsd = '/home/magnarem/git/mmd/xsd/mmd.xsd' # The XSD is located in the "xsd" directory in this repo
-    xslt ='/home/magnarem/git/mmd/xslt/sort_mmd_according_to_xsd.xsl'# The XSLT is located in the "xslt" directory in this repo
+    mmd_file = ''
+    xsd = '../xsd/mmd.xsd' # The XSD is located in the "xsd" directory in this repo
+    xslt ='../xslt/sort_mmd_according_to_xsd.xsl'# The XSLT is located in the "xslt" directory in this repo
     #check_file = CheckMMD(mmd_file, xsd)
     #status = check_file.check_mmd()
     #print("Status is: " + str(status))
 
     print("traverse files")
     #Traverse all xml files in current dir
-    filelist = glob.glob('*.xml')
+    #filelist = glob.glob('*.xml')
     #Traverse all xml files in current dir AND sub-dirs
-    #filelist = glob.glob('**/*.xml')
+    #Change ** with full path to xml-files to be processed.
+    filelist = glob.glob('**/*.xml')
+    
     for file in filelist:
         check_file = CheckMMD(file, xsd, xslt)
         status = check_file.check_mmd()
