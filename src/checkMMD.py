@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 """ Script for checking if XML file satisfy MMD requirements by
     means of the MMD XSD.
 
@@ -7,12 +9,22 @@ Copyright: (c) Norwegian Meteorological Institute
 
 Usage: See main method at the bottom of the script
 
+UPDATED 29.01.2020 (dd.mm.YYYY):
+Author: Magnar Martinsen
+
+- Added urltest
+- Added extra test to check if urls pointing to thredds has https protocol in url
+
 """
 import lxml.etree as ET
 import operator
 import datetime
+import requests
+from urlparse import urlparse
+import glob
+import logging
 
-class CheckMMD():
+class CheckMMD:
     """ Class to verify if MMD file is in compliance with the requirements
 
         Args:
@@ -27,6 +39,16 @@ class CheckMMD():
         self.xsd = xsd
         self.xslt = xslt
 
+        #Initialize logger
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.WARNING)
+
+        logger_handler = logging.FileHandler('checkMMD_warnings.log')
+        logger_handler.setLevel(logging.WARNING)
+        logger_formatter = logging.Formatter('%(levelname)s - %(message)s')
+        logger_handler.setFormatter(logger_formatter)
+        self.logger.addHandler(logger_handler)
+        
     def check_abstract(self, abstract):
         """ Check if abstract is valid """
         languages = []
@@ -148,7 +170,7 @@ class CheckMMD():
         """
         valid_formats = ["%Y-%m-%d","%Y-%m-%dT%H","%Y-%m-%dT%H:%M",
                         "%Y-%m-%dT%H:%M:%S","%Y-%m-%dT%H:%M:%S.%fZ",
-                        "%Y-%m-%dT%H:%M:%S%fZ", "%Y-%m-%dT%H:%M:%S.%f"]
+                         "%Y-%m-%dT%H:%M:%S%fZ", "%Y-%m-%dT%H:%M:%S.%f"]
         for f in valid_formats:
             try:
                 if datetime.datetime.strptime(date,f):
@@ -160,6 +182,38 @@ class CheckMMD():
                   "\nIf YES, please edit the valid_dates in the validDateFormat function."))
         return False
 
+    "Check mmd:resource url for response OK"
+    def checkURL(self, url):
+        response = False
+        try:
+            r = requests.get(url, timeout=30)
+                    
+            if(r.status_code == requests.codes.ok):
+                response = True
+            else:
+                print("Error: " + r.raise_for_status())
+                self.logger.warning("File: " + self.mmd_file)
+                self.logger.warning("Invalid URL: " + url)
+            r.close()
+        except Exception as e:
+            print(e)
+            
+        return response
+
+    #Use urlparse to check url protocol and server address.
+    #Print warning if url points to thredds.met.no and protocol is http
+    def check_thredds_http(self,url):
+        try:
+            urlinfo = urlparse(url)
+            if(urlinfo.netloc == 'thredds.met.no'):
+                #print("url points to met thredds server")
+                if(urlinfo.scheme != 'https'):
+                    print(('\x1b[0;36;41m %s \x1b[0m : %-12s'
+                       %('Warning!! ', 'resource points to unsecure thredds.met.no (http)')))
+        except:
+            print("Error parsing url: " + url) 
+         
+        
     def check_mmd(self):
         """ Method for initiating the verification process
         """
@@ -187,6 +241,67 @@ class CheckMMD():
         xmlschema_doc = ET.parse(xsd)
         xmlschema = ET.XMLSchema(xmlschema_doc)
 
+        
+        ##################################################################################
+        # Get elements with url and check for OK response
+        #
+        # If URL points to thredds.met.no, check if protocol is https
+        #
+        ##################################################################################
+        print("Checking for valid urls in document")
+
+        #Check data_center_url
+        elementR = doc.findall('./mmd:data_center/mmd:data_center_url',
+                               namespaces=root.nsmap)
+        for resource in elementR:
+            self.check_thredds_http(resource.text)
+            status = self.checkURL(resource.text)
+            if(status):
+                print(('\x1b[0;30;42m %s \x1b[0m : %-12s' %('Data Center URL OK',
+                                                            resource.text)))
+            else:
+                print(('\x1b[0;36;41m %s \x1b[0m : %-12s' %('Data Center Invalid URL',
+                                                            resource.text)))
+
+        #Checking related information urls
+        elementR = doc.findall('./mmd:related_information/mmd:resource',
+                               namespaces=root.nsmap)
+        for resource in elementR:
+            self.check_thredds_http(resource.text)
+            status = self.checkURL(resource.text)
+            if(status):
+                print(('\x1b[0;30;42m %s \x1b[0m : %-12s' %('Related Info URL OK',
+                                                            resource.text)))
+            else:
+                print(('\x1b[0;36;41m %s \x1b[0m : %-12s' %('Related Info Invalid URL',
+                                                            resource.text)))
+
+        #Checking data access resource urls
+        elementR = doc.findall('./mmd:data_access', namespaces=root.nsmap)
+        for resource in elementR:
+            #print 'Type: ', resource.find('{http://www.met.no/schema/mmd}type').text
+            #print 'Resource: ', resource.find('{http://www.met.no/schema/mmd}resource').text
+            try:
+                rtype =  resource.find('{http://www.met.no/schema/mmd}type').text
+                rurl = resource.find('{http://www.met.no/schema/mmd}resource').text
+                self.check_thredds_http(rurl)
+                if(rtype == "HTTP"):
+                    status = self.checkURL(str(rurl))
+                if(rtype == "OPeNDAP"):
+                    status = self.checkURL(str(rurl) + '.html')
+                if(rtype == "OGC WMS"):
+                    status = self.checkURL(str(rurl) + '?SERVICE=WMS&REQUEST=GetCapabilities')
+                if(status):
+                    print(('\x1b[0;30;42m %s %s %s \x1b[0m: %-12s' %('Data Access', rtype,
+                                                                  'URL OK', rurl)))
+                else:
+                    print(('\x1b[0;36;41m %s %s %s\x1b[0m: %-12s' %('Data Access', rtype,
+                                                                 'URL Invalid',rurl)))
+            except:
+                print("Document have no element mmd:data_access")
+        ###################################################################################        
+
+                
         print("Comments: \n")
         for test in list(logical_tests.keys()):
             element = doc.findall('.//mmd:' + test, namespaces=root.nsmap)
@@ -203,24 +318,42 @@ class CheckMMD():
                 print(('\t  \x1b[0;30;42m %s \x1b[0m : %-12s' %('OK', element[0])))
             else:
                 print(('\t  \x1b[0;36;41m %s \x1b[0m : %-12s' %('Invalid', element[0])))
+                #self.logger.warning("File: " + mmd_file + " fails test: " + element[0])
 
         if not all(logical_tests.values()):
             print(('\n' + mmd_file + " - does not satisfy MMD requirements. Please edit your file according to the comments."))
+            #self.logger.warning("File: " + mmd_file + " failed logical tests")
             return False
 
         if not xmlschema.validate(doc):
             print(("\nInvalid mmd file. See log \n:{}".format(xmlschema.error_log)))
+            self.logger.warning("Invalid mmd file: " + mmd_file + "\n:{}\n\n".format(xmlschema.error_log))
             return False
         else:
             print(('\n' + mmd_file + " - satisfy MMD requirements."))
             return True
 
 def main():
-    mmd_file = '/path/to/my/XML/myfile.xml'
+
+    #Test data
+    mmd_file = ''
     xsd = '../xsd/mmd.xsd' # The XSD is located in the "xsd" directory in this repo
     xslt ='../xslt/sort_mmd_according_to_xsd.xsl'# The XSLT is located in the "xslt" directory in this repo
-    check_file = CheckMMD(mmd_file, xsd, xslt)
-    print(check_file.check_mmd())
+    #check_file = CheckMMD(mmd_file, xsd)
+    #status = check_file.check_mmd()
+    #print("Status is: " + str(status))
+
+    print("traverse files")
+    #Traverse all xml files in current dir
+    #filelist = glob.glob('*.xml')
+    #Traverse all xml files in current dir AND sub-dirs
+    #Change ** with full path to xml-files to be processed.
+    filelist = glob.glob('**/*.xml')
+    
+    for file in filelist:
+        check_file = CheckMMD(file, xsd, xslt)
+        status = check_file.check_mmd()
+        
 
 if __name__ == '__main__':
     main()
