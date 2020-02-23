@@ -4,7 +4,6 @@
 = MET Norway Metadata Format Specification
 Øystein{nbsp}Godøy, Lara{nbsp}Ferrighi, Trygve{nbsp}Halsne, Øystein{nbsp}Torget, Bard{nbsp}Saadatnejad, Egil{nbsp}Støren, Sarfraz{nbsp}Alam
 Version 2.2 (draft)
-
 :sectanchors:
 :toc:
 :toclevels: 4
