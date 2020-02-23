@@ -39,7 +39,7 @@
                         <xsl:with-param name="mydate">
                             <xsl:choose>
                                 <xsl:when test="Time-End = ''">
-                                    <xsl:value-of select="concat(Date-End, ' - ', Time-Start)" />
+                                    <xsl:value-of select="concat(Date-End, ' - ', Time-End)" />
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="concat(Date-End, ' - 12:00')" />
