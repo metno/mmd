@@ -1,5 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: UTF-8 -*-
+
 """ Script for checking if XML file satisfy MMD requirements by
     means of the MMD XSD.
 
@@ -14,8 +15,9 @@ Author: Magnar Martinsen
 
 - Added urltest
 - Added extra test to check if urls pointing to thredds has https protocol in url
-
 """
+import sys
+import getopt
 import lxml.etree as ET
 import operator
 import datetime
@@ -24,7 +26,14 @@ from urlparse import urlparse
 import glob
 import logging
 
-class CheckMMD:
+def usage():
+    print('')
+    print('Usage: ' + sys.argv[0] + ' -i <dataset_name> [-h]')
+    print('\t-h: dump this text')
+    print('\t-i: check one metadata file')
+    sys.exit(2)
+
+class CheckMMD():
     """ Class to verify if MMD file is in compliance with the requirements
 
         Args:
@@ -48,7 +57,7 @@ class CheckMMD:
         logger_formatter = logging.Formatter('%(levelname)s - %(message)s')
         logger_handler.setFormatter(logger_formatter)
         self.logger.addHandler(logger_handler)
-        
+
     def check_abstract(self, abstract):
         """ Check if abstract is valid """
         languages = []
@@ -170,7 +179,7 @@ class CheckMMD:
         """
         valid_formats = ["%Y-%m-%d","%Y-%m-%dT%H","%Y-%m-%dT%H:%M",
                         "%Y-%m-%dT%H:%M:%S","%Y-%m-%dT%H:%M:%S.%fZ",
-                         "%Y-%m-%dT%H:%M:%S%fZ", "%Y-%m-%dT%H:%M:%S.%f"]
+                        "%Y-%m-%dT%H:%M:%S%fZ", "%Y-%m-%dT%H:%M:%S.%f"]
         for f in valid_formats:
             try:
                 if datetime.datetime.strptime(date,f):
@@ -212,8 +221,7 @@ class CheckMMD:
                        %('Warning!! ', 'resource points to unsecure thredds.met.no (http)')))
         except:
             print("Error parsing url: " + url) 
-         
-        
+
     def check_mmd(self):
         """ Method for initiating the verification process
         """
@@ -301,7 +309,6 @@ class CheckMMD:
                 print("Document have no element mmd:data_access")
         ###################################################################################        
 
-                
         print("Comments: \n")
         for test in list(logical_tests.keys()):
             element = doc.findall('.//mmd:' + test, namespaces=root.nsmap)
@@ -333,27 +340,31 @@ class CheckMMD:
             print(('\n' + mmd_file + " - satisfy MMD requirements."))
             return True
 
-def main():
-
-    #Test data
-    mmd_file = ''
+def main(argv):
+    mmd_file = '/path/to/my/XML/myfile.xml'
+    mmd_file = '/home/steingod/Downloads/daily-avhrr-sce-nhl.xml'
     xsd = '../xsd/mmd.xsd' # The XSD is located in the "xsd" directory in this repo
     xslt ='../xslt/sort_mmd_according_to_xsd.xsl'# The XSLT is located in the "xslt" directory in this repo
-    #check_file = CheckMMD(mmd_file, xsd)
-    #status = check_file.check_mmd()
-    #print("Status is: " + str(status))
 
-    print("traverse files")
-    #Traverse all xml files in current dir
-    #filelist = glob.glob('*.xml')
-    #Traverse all xml files in current dir AND sub-dirs
-    #Change ** with full path to xml-files to be processed.
-    filelist = glob.glob('**/*.xml')
-    
-    for file in filelist:
-        check_file = CheckMMD(file, xsd, xslt)
-        status = check_file.check_mmd()
-        
+    iflg = False
+    try:
+        opts, args = getopt.getopt(argv, "hi:", ["ifile="])
+    except getopt.GetoptError:
+        print(sys.argv[0] + ' -i <inputfile>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            usage()
+            sys.exit()
+        elif opt in ("-i", "--ifile"):
+            infile = arg
+            iflg = True
+    if not iflg:
+        usage()
+
+    #check_file = CheckMMD(mmd_file, xsd, xslt)
+    check_file = CheckMMD(infile, xsd, xslt)
+    print(check_file.check_mmd())
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])
