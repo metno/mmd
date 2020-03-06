@@ -22,8 +22,14 @@ Not fully adapted for DIF 10, some elements are supported though.
       <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
       <xsl:apply-templates select="dif:Temporal_Coverage" />
       <xsl:apply-templates select="dif:ISO_Topic_Category" />
-      <xsl:apply-templates select="dif:Parameters" />
-      <xsl:apply-templates select="dif:Keyword" />
+      <xsl:element name="mmd:keywords">
+          <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
+          <xsl:apply-templates select="dif:Parameters" />
+      </xsl:element>
+      <xsl:element name="mmd:keywords">
+          <xsl:attribute name="vocabulary">None</xsl:attribute>
+          <xsl:apply-templates select="dif:Keyword" />
+      </xsl:element>
       <xsl:apply-templates select="dif:Project" />
       <xsl:apply-templates select="dif:Spatial_Coverage" />
       <xsl:apply-templates select="dif:Access_Constraints" />
@@ -106,12 +112,16 @@ Not fully adapted for DIF 10, some elements are supported though.
 
   <xsl:template match="dif:Parameters">
       <xsl:if test="/dif:DIF[not(contains(dif:Entry_ID,'PANGAEA'))]">
+          <!--
           <xsl:element name="mmd:keywords">
               <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
+          -->
               <xsl:element name="mmd:keyword">
                   <xsl:value-of select="dif:Category"/> &gt; <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1/*"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2/*"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3/*"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
               </xsl:element>
+          <!--
           </xsl:element>
+          -->
       </xsl:if>
   </xsl:template>
 
@@ -123,12 +133,16 @@ Not fully adapted for DIF 10, some elements are supported though.
 
 
   <xsl:template match="dif:Keyword">
+      <!--
       <xsl:element name="mmd:keywords">
       <xsl:attribute name="vocabulary">None</xsl:attribute>
+      -->
           <xsl:element name="mmd:keyword">
               <xsl:value-of select="." />
           </xsl:element>
+      <!--
       </xsl:element>
+      -->
   </xsl:template>
 
 	<xsl:template match="dif:Data_Set_Progress">
@@ -252,21 +266,8 @@ Not fully adapted for DIF 10, some elements are supported though.
       -->
       <xsl:choose>
           <xsl:when test="dif:URL_Content_Type/dif:Type[contains(text(),'GET DATA')]">
-              <xsl:element name="mmd:data_access">
-                  <xsl:element name="mmd:type">HTTP</xsl:element>
-                  <xsl:element name="mmd:description">
-                      <xsl:value-of select="dif:Description" />
-                  </xsl:element>
-                  <xsl:element name="mmd:resource">
-                      <xsl:value-of select="dif:URL" />
-                  </xsl:element>
-              </xsl:element>
-          </xsl:when>
-          <xsl:when test="dif:URL_Content_Type/dif:Type[contains(text(),'USE SERVICE API')]"> 
-              <!-- Need to fix this
               <xsl:choose>
-                  <xsl:when test="dif:URL_Content_Type/dif:SubType[contains(text(),'OPENDAP DATA')]">
--->
+                  <xsl:when test="dif:URL_Content_Type/dif:Subtype[contains(text(),'OPENDAP')]">
                       <xsl:element name="mmd:data_access">
                           <xsl:element name="mmd:type">OPENDAP</xsl:element>
                           <xsl:element name="mmd:description">
@@ -276,10 +277,45 @@ Not fully adapted for DIF 10, some elements are supported though.
                               <xsl:value-of select="dif:URL" />
                           </xsl:element>
                       </xsl:element>
-                      <!--
+                  </xsl:when>
+                  <xsl:when test="dif:URL_Content_Type/dif:SubType[contains(not(string(.)))]">
+                      <xsl:element name="mmd:data_access">
+                          <xsl:element name="mmd:type">HTTP</xsl:element>
+                          <xsl:element name="mmd:description">
+                              <xsl:value-of select="dif:Description" />
+                          </xsl:element>
+                          <xsl:element name="mmd:resource">
+                              <xsl:value-of select="dif:URL" />
+                          </xsl:element>
+                      </xsl:element>
                   </xsl:when>
               </xsl:choose>
--->
+          </xsl:when>
+          <xsl:when test="dif:URL_Content_Type/dif:Type[contains(text(),'USE SERVICE API')] or dif:URL_Content_Type/dif:Type[contains(text(),'GET SERVICE')]"> 
+              <xsl:choose>
+                  <xsl:when test="dif:URL_Content_Type/dif:Subtype[contains(text(),'OPENDAP DATA')]">
+                      <xsl:element name="mmd:data_access">
+                          <xsl:element name="mmd:type">OPENDAP</xsl:element>
+                          <xsl:element name="mmd:description">
+                              <xsl:value-of select="dif:Description" />
+                          </xsl:element>
+                          <xsl:element name="mmd:resource">
+                              <xsl:value-of select="dif:URL" />
+                          </xsl:element>
+                      </xsl:element>
+                  </xsl:when>
+                  <xsl:when test="dif:URL_Content_Type/dif:Subtype[contains(text(),'GET WEB MAP SERVICE')]">
+                      <xsl:element name="mmd:data_access">
+                          <xsl:element name="mmd:type">OGC WMS</xsl:element>
+                          <xsl:element name="mmd:description">
+                              <xsl:value-of select="dif:Description" />
+                          </xsl:element>
+                          <xsl:element name="mmd:resource">
+                              <xsl:value-of select="dif:URL" />
+                          </xsl:element>
+                      </xsl:element>
+                  </xsl:when>
+              </xsl:choose>
           </xsl:when>
       </xsl:choose>
   </xsl:template>
