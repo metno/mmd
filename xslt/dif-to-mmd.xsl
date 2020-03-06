@@ -198,14 +198,6 @@ Not fully adapted for DIF 10, some elements are supported though.
     		</xsl:element>
 	</xsl:template>
 
-<!--
-	<xsl:template match="dif:Spatial_Coverage">
-		<xsl:element name="mmd:bounding_box">
-      <xsl:value-of select="dif:Easternmost_Longitude" />,<xsl:value-of select="dif:Southernmost_Latitude" />,<xsl:value-of select="dif:Westernmost_Longitude" />,<xsl:value-of select="dif:Northernmost_Latitude" />
-    </xsl:element>
-	</xsl:template>
--->
-
   <xsl:template match="dif:Location">
   </xsl:template>
 
@@ -226,10 +218,6 @@ Not fully adapted for DIF 10, some elements are supported though.
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>
-<!--
-	<xsl:template match="dif:Project/dif:Long_Name">
-	</xsl:template>
--->
   <xsl:template match="dif:Access_Constraints">
 	<xsl:element name="mmd:access_constraint">
 		<xsl:value-of select="." />
@@ -237,39 +225,6 @@ Not fully adapted for DIF 10, some elements are supported though.
   </xsl:template>
 
   <xsl:template match="dif:Related_URL">
-      <!-- This is probably not necessary, nor consistent for providers
-           use Online_Resource in Data_Citation instead...
-      <xsl:if test="dif:Description[contains(text(),'text/html')]">
-          <xsl:element name="mmd:related_information">
-              <xsl:element name="mmd:type">Dataset landing page</xsl:element>
-              <xsl:element name="mmd:description">
-                  <xsl:value-of select="dif:Description"/>
-              </xsl:element>
-              <xsl:element name="mmd:resource">
-                  <xsl:value-of select="dif:URL"/>
-              </xsl:element>
-          </xsl:element>
-      </xsl:if>
-      -->
-<!-- while testing
-      <xsl:if test="dif:URL_Content_Type/dif:Type[contains(text(),'GET DATA')]">
-          <xsl:element name="mmd:data_access">
-              <xsl:element name="mmd:type">HTTP</xsl:element>
-              -->
-              <!--
-                  <xsl:value-of select="dif:URL_Content_Type/dif:Type" />
-              </xsl:element>
-              -->
-              <!--
-              <xsl:element name="mmd:description">
-                  <xsl:value-of select="dif:Description" />
-              </xsl:element>
-              <xsl:element name="mmd:resource">
-                  <xsl:value-of select="dif:URL" />
-              </xsl:element>
-          </xsl:element>
-      </xsl:if>
-      -->
       <xsl:choose>
           <xsl:when test="dif:URL_Content_Type/dif:Type[contains(text(),'GET DATA')]">
               <xsl:choose>
@@ -441,18 +396,54 @@ Not fully adapted for DIF 10, some elements are supported though.
       <!-- input format YYYY-MM-DD -->
       <!-- output format YYYY-MM-DD -->
 
-      <xsl:variable name="mm">
-          <xsl:value-of select="substring($datestr,6,2)" />
-      </xsl:variable>
-
-      <xsl:variable name="dd">
-          <xsl:value-of select="substring($datestr,9,2)" />
-      </xsl:variable>
-
       <xsl:variable name="yyyy">
           <xsl:value-of select="substring($datestr,1,4)" />
       </xsl:variable>
+      <xsl:variable name="mm">
+          <xsl:value-of select="substring($datestr,6,2)" />
+      </xsl:variable>
+      <xsl:variable name="dd">
+          <xsl:value-of select="substring($datestr,9,2)" />
+      </xsl:variable>
+      <xsl:choose>
+          <xsl:when test="translate($datestr,'123456789','000000000') = '0000-00-00T00:00:00'">
+              <xsl:variable name="HH">
+                  <xsl:value-of select="substring($datestr,12,2)" />
+              </xsl:variable>
+              <xsl:variable name="MM">
+                  <xsl:value-of select="substring($datestr,15,2)" />
+              </xsl:variable>
+              <xsl:variable name="SS">
+                  <xsl:value-of select="substring($datestr,18,2)" />
+              </xsl:variable>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:variable name="HH">
+                  <xsl:value-of select="12" />
+              </xsl:variable>
+              <xsl:variable name="MM">
+                  <xsl:value-of select="00" />
+              </xsl:variable>
+              <xsl:variable name="SS">
+                  <xsl:value-of select="00" />
+              </xsl:variable>
+          </xsl:otherwise>
 
+          <xsl:value-of select="$yyyy" />
+          <xsl:value-of select="'-'" />
+          <xsl:value-of select="$mm" />
+          <xsl:value-of select="'-'" />
+          <xsl:value-of select="$dd" />
+          <!--
+          <xsl:value-of select="'T'" />
+          <xsl:value-of select="$HH" />
+          <xsl:value-of select="':'" />
+          <xsl:value-of select="$MM" />
+          <xsl:value-of select="':'" />
+          <xsl:value-of select="$SS" />
+          <xsl:value-of select="'Z'" />
+          -->
+      </xsl:choose>
       <xsl:value-of select="$yyyy" />
       <xsl:value-of select="'-'" />
       <xsl:value-of select="$mm" />
