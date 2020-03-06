@@ -154,10 +154,16 @@ Not fully adapted for DIF 10, some elements are supported though.
   <xsl:template match="dif:Temporal_Coverage">
   	<xsl:element name="mmd:temporal_extent">
       		<xsl:element name="mmd:start_date">
-			<xsl:value-of select="dif:Start_Date" />
+                    <xsl:call-template name="formatdate">
+			<!--xsl:value-of select="dif:Start_Date" /-->
+			<xsl:with-param name="datestr" select="dif:Start_Date" />
+                    </xsl:call-template>
 		</xsl:element>
 		<xsl:element name="mmd:end_date">
-			<xsl:value-of select="dif:Stop_Date" />
+                    <xsl:call-template name="formatdate">
+			<xsl:with-param name="datestr" select="dif:Stop_Date" />
+                    </xsl:call-template>
+			<!--xsl:value-of select="dif:Stop_Date" /-->
 		</xsl:element>
     	</xsl:element>
   </xsl:template>
@@ -428,6 +434,30 @@ Not fully adapted for DIF 10, some elements are supported though.
 
 
   <xsl:template match="dif:Private">
+  </xsl:template>
+
+  <xsl:template name="formatdate">
+      <xsl:param name="datestr" />
+      <!-- input format YYYY-MM-DD -->
+      <!-- output format YYYY-MM-DD -->
+
+      <xsl:variable name="mm">
+          <xsl:value-of select="substring($datestr,6,2)" />
+      </xsl:variable>
+
+      <xsl:variable name="dd">
+          <xsl:value-of select="substring($datestr,9,2)" />
+      </xsl:variable>
+
+      <xsl:variable name="yyyy">
+          <xsl:value-of select="substring($datestr,1,4)" />
+      </xsl:variable>
+
+      <xsl:value-of select="$yyyy" />
+      <xsl:value-of select="'-'" />
+      <xsl:value-of select="$mm" />
+      <xsl:value-of select="'-'" />
+      <xsl:value-of select="$dd" />
   </xsl:template>
 
 </xsl:stylesheet>
