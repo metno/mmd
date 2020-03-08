@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 XSLT to update old MMD records to the new sequence based structure imposed
-by XSD.
-
-Øystein Godøy, METNO/FOU, 2018-03-04 
+by XSD. Use this also as basis for adding additional collection keywords
+if necessary.
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
