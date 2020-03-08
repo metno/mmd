@@ -231,7 +231,7 @@ Not fully adapted for DIF 10, some elements are supported though.
                     <xsl:choose>
                         <xsl:when test="dif:URL_Content_Type/dif:Subtype[contains(text(),'OPENDAP')]">
                             <xsl:element name="mmd:data_access">
-                                <xsl:element name="mmd:type">OPENDAP</xsl:element>
+                                <xsl:element name="mmd:type">OPeNDAP</xsl:element>
                                 <xsl:element name="mmd:description">
                                     <xsl:value-of select="dif:Description" />
                                 </xsl:element>
@@ -257,7 +257,7 @@ Not fully adapted for DIF 10, some elements are supported though.
                     <xsl:choose>
                         <xsl:when test="dif:URL_Content_Type/dif:Subtype[contains(text(),'OPENDAP DATA')]">
                             <xsl:element name="mmd:data_access">
-                                <xsl:element name="mmd:type">OPENDAP</xsl:element>
+                                <xsl:element name="mmd:type">OPeNDAP</xsl:element>
                                 <xsl:element name="mmd:description">
                                     <xsl:value-of select="dif:Description" />
                                 </xsl:element>
