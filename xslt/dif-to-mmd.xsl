@@ -16,6 +16,7 @@ Not fully adapted for DIF 10, some elements are supported though.
             <xsl:apply-templates select="dif:Entry_ID" />
             <xsl:apply-templates select="dif:Entry_Title" />
             <xsl:apply-templates select="dif:Summary" />
+            <xsl:apply-templates select="dif:Personnel" />
             <xsl:element name="mmd:metadata_status">Active</xsl:element>
             <xsl:apply-templates select="dif:Data_Set_Progress" />
             <xsl:element name="mmd:collection">ADC</xsl:element>
@@ -324,6 +325,8 @@ Not fully adapted for DIF 10, some elements are supported though.
                     </xsl:element>
                     <xsl:element name="mmd:name">
                         <!-- Since last name is required it used in translation -->
+                        <xsl:value-of select="dif:Personnel/dif:First_Name" />
+                        <xsl:text> </xsl:text>
                         <xsl:value-of select="dif:Personnel/dif:Last_Name" />
                     </xsl:element>
                     <xsl:element name="mmd:email">
@@ -356,6 +359,22 @@ Not fully adapted for DIF 10, some elements are supported though.
                     </xsl:element>
                 </xsl:otherwise>
             </xsl:choose>
+        </xsl:template>
+
+        <xsl:template match="dif:Personnel">
+            <xsl:element name="mmd:personnel">
+                <xsl:element name="name">
+                    <xsl:value-of select="dif:First_Name"/>
+                    <xsl:text> </xsl:text>
+                    <xsl:value-of select="dif:Last_Name"/>
+                </xsl:element>
+                <xsl:element name="role">
+                    <xsl:value-of select="dif:Role"/>
+                </xsl:element>
+                <xsl:element name="email">
+                    <xsl:value-of select="dif:Email"/>
+                </xsl:element>
+            </xsl:element>
         </xsl:template>
 
 
