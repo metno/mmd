@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+  <!-- 
+Prepared by Øystein Godøy, METNO/FOU, 2012-10-23 
+First very simple description...
+Use hidden to identify common mis spellings...
+Check what is available through GCMD and ICES, potentially also INSPIRE.
+Ideally a geoJSON identification of a polygon providing boundaries should be
+added in the future.
+Should these keywords indicate hierarchy? The Barents Sea is part of the
+Arctic etc...
+-->
+  <skos:Collection rdf:about="https://wiki.met.no/metamod/vocabularies/Areas">
+    <skos:prefLabel xml:lang="en">Geographical areas</skos:prefLabel>
+    <skos:definition xml:lang="en">
+    Controlled vocabulary to be used in METAMOD context to describe
+    geographical areas. This should be related to GCMD science keywords
+    through altLabel. The definition should contain a unique specification
+    of the area. Historically, METAMOD started out with ocean areas only.
+    Open issues remain on how to best classify land regions.
+    </skos:definition>
+    
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Arctic
+        </skos:prefLabel>
+        <skos:altLabel xml:lang="en">
+        Central Arctic
+        </skos:altLabel>
+        <skos:altLabel xml:lang="en">
+        Central Arctic
+        </skos:altLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate that data are located in the Arctic. The
+        definition of the Arctic may however differ as no unique
+        definition exists. In MetaMod context this should refer to data
+        located nortwards of the Arctic Circle, i.e. 65 degrees North.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Barents Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data located in the Barents Sea. The
+        definition of this ocean area may differ as no unique definition
+        exists. In MetaMod context this is usually used to refer to
+        observations within or above the sea. It can also be used to
+        identify observations at islands, but such would preferably be
+        indicated with Svalbard if belonging to these islands.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Beaufort Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data are located in the Beaufort Sea. The
+        definition of this ocean area may differ as no unique definition
+        exists. In MetaMod context this is usually used to refer to
+        observations within or above the sea. 
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Chukchi Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data located in the Chukchi Sea. The
+        definition of this ocean area may differ as no unique definition
+        exists. In MetaMod context this is usually used to refer to
+        observations in the ocean, but can also be used for observations
+        on islands in the area. 
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Denmark Strait
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data located in the Denmark Strait. That
+        is the strait between Iceland and Greenland, effectively
+        separating the Greenland and Iceland Seas. It is used to identify
+        oceanic observations.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        East Siberian Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Fram Strait
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data located in the Fram Strait. That is
+        the strait between Svalbard and Greenland, separating the Arctic
+        Ocean from the Greenland Sea. It is primarily used to identify
+        oceanic observations.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Greenland Sea
+        </skos:prefLabel>
+        This is used to identify data from the area between the Fram
+        Strait and the Denmark Strait, between Greenland and the
+        Mohn-Sverdrup ridge or the Norwegian Sea. It is primarily used for
+        oceanic observations but may also include observations at Jan
+        Mayen.
+        <skos:definition xml:lang="en">
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Iceland Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to identify data from the area west and south of the
+        Denmark Strait. It is also used to identify observations from
+        Iceland unless marked as Arctic.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Kara Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data from ocean, atmosphere and islands
+        in the Kara Sea.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Laptev Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data from ocean, atmosphere and islands
+        in the Laptev Sea.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Nordic Seas
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to identify the combined area of the Norwegian and
+        the North Seas. It is mainly used to identify oceanic data.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Northern Hemisphere
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is a general classification to be used when the more specific
+        definitions are not suitable.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        North Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to identify data from the North Sea. Primarily it is
+        used for oceanic observations as well as observations from
+        platforms. The North Sea is located south of the Norwegian Sea,
+        bordered by the Faroe-Shetland area and the Norwegian coast, all
+        the way down to the continent.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        Norwegian Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to identify data from the North Sea. Primarily it is
+        used for oceanic observations as well as observations from
+        platforms. It is bordered by the Greenland Sea, the Barents Sea,
+        the North Sea and the Faroe-Iceland ridge.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <!-- This class could potentially be removed and replaced by the
+    Arcic or similar. -->
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">
+        White Sea
+        </skos:prefLabel>
+        <skos:definition xml:lang="en">
+        This is used to indicate data from ocean, atmosphere and islands
+        in the White Sea. 
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
+</rdf:RDF>

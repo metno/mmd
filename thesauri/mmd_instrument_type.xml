@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+  <!-- 
+Prepared by Øystein Godøy, METNO/FOU, 2012-10-23 
+First very simple description...
+Use hidden to identify common mis spellings...
+
+Should be linked to GCMD Platforms
+-->
+  <skos:Collection rdf:about="https://wiki.met.no/metamod/vocabularies/Activity_Type">
+    <skos:prefLabel xml:lang="en">TBD</skos:prefLabel>
+    <skos:definition xml:lang="en">
+TBW
+</skos:definition>
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">TBD</skos:prefLabel>
+        <skos:definition xml:lang="en">
+        TBW
+</skos:definition>
+      </skos:Concept>
+    </skos:member>
+  </skos:Collection>
+</rdf:RDF>
