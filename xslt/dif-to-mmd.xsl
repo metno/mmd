@@ -2,14 +2,21 @@
 
 <!--
 Not fully adapted for DIF 10, some elements are supported though.
+Meaning this should consume both DIF 8, 9 and 10.
 -->
 
 <xsl:stylesheet 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
     xmlns:mmd="http://www.met.no/schema/mmd"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+    <xsl:key name="isoc" match="skos:Concept" use="skos:altLabel"/>
+    <xsl:variable name="isoLUD" select="document('mmd_isotopiccategory.xml')"/>
+    <!--
+    <xsl:key name="isoc" match="Concept" use="altLabel"/>
+-->
 
     <xsl:template match="/dif:DIF">
         <xsl:element name="mmd:mmd">
@@ -128,7 +135,12 @@ Not fully adapted for DIF 10, some elements are supported though.
 
   <xsl:template match="dif:ISO_Topic_Category">
       <xsl:element name="mmd:iso_topic_category">
-          <xsl:value-of select="." />
+          <xsl:variable name="isov" select="." />
+          <xsl:for-each select="$isoLUD">
+              <xsl:value-of select ="name()" />
+              <xsl:variable name="isoe" select="key('isoc',$isov)/skos:prefLabel"/>
+              <xsl:value-of select="$isoe"/>
+          </xsl:for-each>
       </xsl:element>
   </xsl:template>
 
@@ -325,8 +337,6 @@ Not fully adapted for DIF 10, some elements are supported though.
                     </xsl:element>
                     <xsl:element name="mmd:name">
                         <!-- Since last name is required it used in translation -->
-                        <xsl:value-of select="dif:Personnel/dif:First_Name" />
-                        <xsl:text> </xsl:text>
                         <xsl:value-of select="dif:Personnel/dif:Last_Name" />
                     </xsl:element>
                     <xsl:element name="mmd:email">
