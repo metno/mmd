@@ -69,8 +69,8 @@
     </xs:complexType>
     <xs:complexType name="temporal_extent_type">
         <xs:sequence>
-            <xs:element name="start_date" type="xs:date"></xs:element>
-            <xs:element name="end_date" type="xs:date" minOccurs="0" ></xs:element>
+            <xs:element name="start_date" type="xs:dateTime"></xs:element>
+            <xs:element name="end_date" type="xs:dateTime" minOccurs="0" ></xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="multilang_string">
