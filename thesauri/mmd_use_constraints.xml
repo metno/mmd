@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+<!-- 
+Prepared by Øystein Godøy, METNO/FOU, 2013-02-15 
+
+Do we need to link this to e.g. CC, ODC, NLOD?
+-->
+  <skos:Collection rdf:about="https://wiki.met.no/metamod/vocabularies/Operational_Status">
+    <skos:prefLabel xml:lang="en">Use constraints</skos:prefLabel>
+    <skos:definition xml:lang="en">
+    A controlled vocabulary to be used to describe constraints on the
+    usage of metadata and/or data. Ideally as little constraints as
+    possible is defined. The definitions below relate to Creative Commons,
+    Open Data Commons and NLOD (Norway).
+    </skos:definition>
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">Public domain</skos:prefLabel>
+        <skos:altLabel xml:lang="en">No constraints</skos:altLabel>
+        <skos:definition xml:lang="en">
+        All rights for these data are waived. This should be relevant when
+        data are released using CC0, Open Data Commons PDDL or similar.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">Attribution</skos:prefLabel>
+        <skos:altLabel xml:lang="en"></skos:altLabel>
+        <skos:definition xml:lang="en">
+        These data may be freely copied, shared, used, modified and
+        transformed as long as you attribute the owner/creator of the
+        original dataset.
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">Share-alike</skos:prefLabel>
+        <skos:altLabel xml:lang="en"></skos:altLabel>
+        This is a bit stronger than attribution as it requires any work
+        based upon these data to be shared using the same conditions as
+        the original data. It implies attribution and limits the freedom
+        for new data generated.
+        <skos:definition xml:lang="en">
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">Noncommercial</skos:prefLabel>
+        <skos:altLabel xml:lang="en"></skos:altLabel>
+        <skos:definition xml:lang="en">
+        Data may be used for noncommercial purposes only. This implies
+        share-alike (and attribution).
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+    <!-- Do we need something like this?? -->
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en">No derivative</skos:prefLabel>
+        <skos:altLabel xml:lang="en"></skos:altLabel>
+        <skos:definition xml:lang="en">au
+        TBD
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+  </skos:Collection>
+</rdf:RDF>
+<!--
+    <skos:member>
+      <skos:Concept>
+        <skos:prefLabel xml:lang="en"></skos:prefLabel>
+        <skos:altLabel xml:lang="en"></skos:altLabel>
+        <skos:definition xml:lang="en">
+        </skos:definition>
+      </skos:Concept>
+    </skos:member>
+    -->

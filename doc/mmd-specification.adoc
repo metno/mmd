@@ -1,11 +1,13 @@
-= MET Norway Metadata Format Specification
-Øystein{nbsp}Godøy, Trygve{nbsp}Halsne, Øystein{nbsp}Torget, Bard{nbsp}Saadatnejad, Egil{nbsp}Støren, Sarfraz{nbsp}Alam
-Version 2.2 (draft)
 :doctype: book
 :pdf-folio-placement: physical
+:title-logo-image: image::images/Met_RGB_Horisontal_Engelsk.png[pdfwidth=10cm,align=right]
+= MET Norway Metadata Format Specification
+Øystein{nbsp}Godøy, Lara{nbsp}Ferrighi, Trygve{nbsp}Halsne, Øystein{nbsp}Torget, Bard{nbsp}Saadatnejad, Egil{nbsp}Støren, Sarfraz{nbsp}Alam
+Version 2.2 (draft)
 :sectanchors:
 :toc:
 :toclevels: 4
+
 
 :numbered!:
 == Abstract
@@ -17,9 +19,9 @@ Version 2.2 (draft)
 |=======================================================================
 |Version |Date |Comment |Responsible
 
-|2.2 |2019-10-?? |Several minor modifications has not been document.
+|2.2 |2020-??-?? |Several minor modifications has not been document.
 Collecting these and preparing for transition into ASCIDOC like
-CF-conventions. |Øystein Godøy
+CF-conventions. |Øystein Godøy, Lara Ferrighi
 
 |2.1 |2018-12-13 |Modifications of controlled vocabularies related to
 satellite data and data collections, minor edit on related_dataset,

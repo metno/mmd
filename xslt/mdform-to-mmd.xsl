@@ -39,7 +39,7 @@
                         <xsl:with-param name="mydate">
                             <xsl:choose>
                                 <xsl:when test="Time-End = ''">
-                                    <xsl:value-of select="concat(Date-End, ' - ', Time-Start)" />
+                                    <xsl:value-of select="concat(Date-End, ' - ', Time-End)" />
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="concat(Date-End, ' - 12:00')" />
@@ -86,11 +86,23 @@
                     <xsl:element name="mmd:postal_code"><xsl:value-of select="Postal-code"/></xsl:element>
                     <xsl:element name="mmd:country"><xsl:value-of select="Country"/></xsl:element>
                 </xsl:element>
+                <xsl:element name="mmd:role">Technical contact</xsl:element>
+                <xsl:element name="mmd:name"><xsl:value-of select="Technical-contact-name"/></xsl:element>
+                <xsl:element name="mmd:email"><xsl:value-of select="Technical-contact-email"/></xsl:element>
+                <xsl:element name="mmd:role">Metadata author</xsl:element>
+                <xsl:element name="mmd:name"><xsl:value-of select="Metadata-author-name"/></xsl:element>
+                <xsl:element name="mmd:email"><xsl:value-of select="Metadata-author-email"/></xsl:element>
             </xsl:element>
             <!-- Mapping of quality is missing -->
             <!-- Mapping of Dataset-citation is missing -->
             <!-- Mapping of platform is missing -->
             <xsl:apply-templates select="Activity-type" />
+	    <xsl:element name="mmd:dataset_citation">
+                <xsl:element name="mmd:author"><xsl:value-of select="Author"/></xsl:element>
+                <xsl:element name="mmd:title"><xsl:value-of select="Citation-Title"/></xsl:element>
+                <xsl:element name="mmd:publication_date"><xsl:value-of select="Publication-Date"/></xsl:element>
+                <xsl:element name="mmd:publisher"><xsl:value-of select="Publisher"/></xsl:element>
+            </xsl:element>
         </xsl:element>
     </xsl:template>
 
