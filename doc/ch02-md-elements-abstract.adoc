@@ -1,7 +1,7 @@
 [[abstract]]
-=== abstract
+== abstract
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/abstract
 

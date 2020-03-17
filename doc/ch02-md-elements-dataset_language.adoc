@@ -1,7 +1,7 @@
 [[dataset_language]]
-=== dataset_language
+== dataset_language
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/dataset_language
 

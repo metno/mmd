@@ -1,7 +1,7 @@
 [[temporal_extent]]
-=== temporal_extent
+== temporal_extent
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/temporal_extent
 

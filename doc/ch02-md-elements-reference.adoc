@@ -1,7 +1,7 @@
 [[reference]]
-=== reference (NOT USED)
+== reference (NOT USED)
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/reference
 

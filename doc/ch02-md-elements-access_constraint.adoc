@@ -1,7 +1,7 @@
 [[access_constraint]]
-=== access_constraint
+== access_constraint
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/access_constraint
 

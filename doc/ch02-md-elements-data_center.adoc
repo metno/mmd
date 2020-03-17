@@ -1,7 +1,7 @@
 [[data_center]]
-=== data_center
+== data_center
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/data_center
 

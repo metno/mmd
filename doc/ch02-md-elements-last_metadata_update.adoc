@@ -1,7 +1,7 @@
 [[last_metadata_update]]
-=== last_metadata_update
+== last_metadata_update
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/last_metadata_update
 

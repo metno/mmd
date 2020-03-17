@@ -1,7 +1,7 @@
 [[platform]]
-=== platform
+== platform
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/platform
 
@@ -44,5 +44,5 @@ For ISO we translate platforms to keywords from a specific vocabulary.
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString
 
 |MM2 equivalent |
-
+NA
 |=======================================================================

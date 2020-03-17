@@ -4,7 +4,7 @@
 [[collection-keywords]]
 === Collection keywords
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |CC |Datasets related to the Cryosphere in the context of the CryoClim
 project.
@@ -50,7 +50,7 @@ data. This is primarily Sentinel datasets.
 [[dataset-production-status]]
 === Dataset production status
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -76,7 +76,7 @@ version should be used, this is kept for back tracing.
 [[iso-to-mmd-mapping]]
 === ISO to MMD mapping
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |===========================
 |ISO Code |MMD code
 
@@ -105,7 +105,7 @@ version should be used, this is kept for back tracing.
 [[operational-status]]
 === Operational status
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -134,7 +134,7 @@ limited temporal perspective.
 [[access-constraints]]
 === Access constraints
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -164,7 +164,7 @@ externally.
 [[use-constraints]]
 === Use constraints
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -203,7 +203,7 @@ but more the nature of the generation process (e.g. simulation, in situ
 observation, remote sensing etc). It is useful in the context of
 filtering data when searching for relevant datasets.
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |=======================================================================
 |Code |Description
 
@@ -298,7 +298,7 @@ variable.
 [[platform-1]]
 === Platform
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |==================
 |Code |Description
 
@@ -315,7 +315,7 @@ variable.
 [[instruments]]
 === Instruments
 
-[cols=">10%,45%,45%",adoc]
+[cols="1,5,5"]
 |=======================================================================
 |CSAR |Synthetic Aperature Radar C-band |Relates to Sentinel-1.
 
@@ -336,7 +336,7 @@ optical sensor.
 [[instrument-modes]]
 === Instrument modes
 
-[cols=">10%,20%,70%",adoc]
+[cols="1,2,7"]
 |=====================================================
 |Code |Description
 
@@ -351,7 +351,7 @@ optical sensor.
 [[polarisation-modes]]
 === Polarisation modes
 
-[cols=">10%,90%",adoc]
+[cols="1,9"]
 |=======
 |Code |Description
 
@@ -368,7 +368,7 @@ optical sensor.
 [[product-type]]
 === Product type
 
-[cols=">10%,20%,70%",adoc]
+[cols="1,2,7"]
 |=======================================================================
 |Code |Content |Description
 
@@ -390,7 +390,7 @@ applications derived from the SAR data.
 [[contact-roles]]
 === Contact roles
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -425,7 +425,7 @@ this is the main contact with regard to the metadata.
 [[iso-topic-categories]]
 === ISO Topic categories
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |=======================================================================
 |Code |Description
 
@@ -518,7 +518,7 @@ telecommunication, radio, and communication networks.
 [[related-information-types]]
 === Related Information types
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |====================================================================
 |Code |Description
 
@@ -537,7 +537,7 @@ Global Observing System approach.
 [[data-access-types]]
 === Data Access Types
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 

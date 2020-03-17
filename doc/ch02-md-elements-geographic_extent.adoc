@@ -1,7 +1,7 @@
 [[geographic_extentrectangle]]
-=== geographic_extent/rectangle
+== geographic_extent/rectangle
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/geographic_extent/rectangle
 
@@ -43,9 +43,9 @@ conversion.
 |=======================================================================
 
 [[geographic_extentpolygon]]
-=== geographic_extent/polygon
+== geographic_extent/polygon
 
-[cols=">20%,80%",]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/geographic_extent/polygon
 

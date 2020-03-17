@@ -1,7 +1,7 @@
 [[collection]]
-=== collection
+== collection
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/collection
 
