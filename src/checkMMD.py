@@ -23,6 +23,7 @@ import requests
 from urlparse import urlparse
 import glob
 import logging
+import os
 
 class CheckMMD:
     """ Class to verify if MMD file is in compliance with the requirements
@@ -334,26 +335,55 @@ class CheckMMD:
             return True
 
 def main():
-
-    #Test data
-    mmd_file = ''
+    #Test Data
+    mmd_file = '/path/to/my/XML/myfile.xml'
+    mmd_file = '/home/steingod/Downloads/daily-avhrr-sce-nhl.xml'
     xsd = '../xsd/mmd.xsd' # The XSD is located in the "xsd" directory in this repo
     xslt ='../xslt/sort_mmd_according_to_xsd.xsl'# The XSLT is located in the "xslt" directory in this repo
-    #check_file = CheckMMD(mmd_file, xsd)
-    #status = check_file.check_mmd()
-    #print("Status is: " + str(status))
 
-    print("traverse files")
+    iflg = False
+    try:
+        opts, args = getopt.getopt(argv, "hi:", ["ifile="])
+    except getopt.GetoptError:
+        print(sys.argv[0] + ' -i <inputfile>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            usage()
+            sys.exit()
+        elif opt in ("-i", "--ifile"):
+            infile = arg
+            iflg = True
+    if not iflg:
+        usage()
+
+    #check_file = CheckMMD(mmd_file, xsd, xslt)
+    check_file = CheckMMD(infile, xsd, xslt)
+    print(check_file.check_mmd())
+
+    
     #Traverse all xml files in current dir
+    #Commented out for now
+    #print("traverse files")
     #filelist = glob.glob('*.xml')
     #Traverse all xml files in current dir AND sub-dirs
     #Change ** with full path to xml-files to be processed.
-    filelist = glob.glob('**/*.xml')
-    
-    for file in filelist:
+    #filelist = glob.glob('*.xml', recursive=TRUE)
+
+
+    #Simple
+    #for file in filelist:
+    #    check_file = CheckMMD(file, xsd, xslt)
+    #    status = check_file.check_mmd()
+
+    #Advanced
+    files = []
+    for root, dirnames, filenames in os.walk('./'):
+        files.extend(glob.glob(root + "/*.xml"))  
+
+    for file in files:
         check_file = CheckMMD(file, xsd, xslt)
         status = check_file.check_mmd()
         
-
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:]))
