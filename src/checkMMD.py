@@ -384,14 +384,14 @@ def main():
     #    status = check_file.check_mmd()
 
     #Advanced
-    files = []
-    for root, dirnames, filenames in os.walk('./'):
-        files.extend(glob.glob(root + "/*.xml"))  
+    #files = []
+    #for root, dirnames, filenames in os.walk('./'):
+    #    files.extend(glob.glob(root + "/*.xml"))  
 
-    for file in files:
-        check_file = CheckMMD(file, xsd, xslt)
-        status = check_file.check_mmd()
+    #for file in files:
+    #    check_file = CheckMMD(file, xsd, xslt)
+    #    status = check_file.check_mmd()
         
 if __name__ == '__main__':
     main(sys.argv[1:]))
-
+    
