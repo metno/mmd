@@ -1,5 +1,5 @@
 [[temporal_extent]]
-== temporal_extent
+=== temporal_extent
 
 [cols="2,8"]
 |=======================================================================
@@ -37,6 +37,6 @@ gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:te
 
 and
 
-/metadata@name='datacollection_period_to
+/metadata@name='datacollection_period_to'
 
 |=======================================================================

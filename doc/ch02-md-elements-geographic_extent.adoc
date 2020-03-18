@@ -1,5 +1,5 @@
 [[geographic_extentrectangle]]
-== geographic_extent/rectangle
+=== geographic_extent/rectangle
 
 [cols="2,8"]
 |=======================================================================
@@ -43,7 +43,7 @@ conversion.
 |=======================================================================
 
 [[geographic_extentpolygon]]
-== geographic_extent/polygon
+=== geographic_extent/polygon
 
 [cols="2,8"]
 |=======================================================================

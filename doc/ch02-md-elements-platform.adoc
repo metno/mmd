@@ -1,5 +1,5 @@
 [[platform]]
-== platform
+=== platform
 
 [cols="2,8"]
 |=======================================================================
@@ -20,7 +20,7 @@ two child elements:
 * This element is used to store information for NBS products (Sentinel
 platforms). 
 
-See <<platform>> for list.
+See <<platform-1,platform>> for list.
 
 |Example XML: a|
 ----

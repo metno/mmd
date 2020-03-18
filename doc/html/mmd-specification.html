@@ -735,7 +735,7 @@ asciidoc.install(4);
 <body class="book">
 <div id="header">
 <h1>MET Norway Metadata Format Specification</h1>
-<span id="author">Øystein&#160;Godøy, Trygve&#160;Halsne, Øystein&#160;Torget, Bard&#160;Saadatnejad, Egil&#160;Støren, Sarfraz&#160;Alam</span><br />
+<span id="author">Øystein&#160;Godøy, Lara&#160;Ferrighi, Trygve&#160;Halsne, Øystein&#160;Torget, Bard&#160;Saadatnejad, Egil&#160;Støren, Sarfraz&#160;Alam</span><br />
 <span id="revdate">Version 2.2 (draft)</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
@@ -769,11 +769,11 @@ cellspacing="0" cellpadding="4">
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">2.2</p></td>
-<td align="left" valign="top"><p class="table">2019-10-??</p></td>
+<td align="left" valign="top"><p class="table">2020-??-??</p></td>
 <td align="left" valign="top"><p class="table">Several minor modifications has not been document.
 Collecting these and preparing for transition into ASCIDOC like
 CF-conventions.</p></td>
-<td align="left" valign="top"><p class="table">Øystein Godøy</p></td>
+<td align="left" valign="top"><p class="table">Øystein Godøy, Lara Ferrighi</p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">2.1</p></td>
@@ -1032,11 +1032,8 @@ possible.
 <div class="sect1">
 <h2 id="metadata-elements">2. Metadata elements</h2>
 <div class="sectionbody">
-</div>
-</div>
-<div class="sect1">
-<h2 id="metadata_identifier">3. metadata_identifier</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="metadata_identifier">2.1. metadata_identifier</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1112,10 +1109,8 @@ Whitespaces ' '
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="last_metadata_update">4. last_metadata_update</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="last_metadata_update">2.2. last_metadata_update</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1174,10 +1169,8 @@ metadata.</p></div></div></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="metadata_status">5. metadata_status</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="metadata_status">2.3. metadata_status</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1234,10 +1227,8 @@ Active
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="collection">6. collection</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="collection">2.4. collection</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1297,10 +1288,8 @@ NMDC
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="title">7. title</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="title">2.5. title</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1365,10 +1354,8 @@ gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gm
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="abstract">8. abstract</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="abstract">2.6. abstract</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1543,10 +1530,8 @@ gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract/gco:CharacterStrin
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="temporal_extent">9. temporal_extent</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="temporal_extent">2.7. temporal_extent</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1623,10 +1608,8 @@ gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:te
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="geographic_extentrectangle">10. geographic_extent/rectangle</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="geographic_extentrectangle">2.8. geographic_extent/rectangle</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1709,10 +1692,8 @@ conversion.</p></div></div></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="geographic_extentpolygon">11. geographic_extent/polygon</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="geographic_extentpolygon">2.9. geographic_extent/polygon</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1792,10 +1773,8 @@ efficient metadata handling and cannot be used directly.</p></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="location">12. location</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="location">2.10. location</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1901,10 +1880,8 @@ have).</p></div></div></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="dataset_production_status">13. dataset_production_status</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="dataset_production_status">2.11. dataset_production_status</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -1962,10 +1939,8 @@ in <a href="#temporal_extent">[temporal_extent]</a> can (should) be empty.</p></
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="dataset_language">14. dataset_language</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="dataset_language">2.12. dataset_language</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2021,10 +1996,8 @@ dataset. The default for all datasets is English.</p></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="operational_status">15. operational_status</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="operational_status">2.13. operational_status</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2079,10 +2052,8 @@ keywords are listed in <a href="#operational-status">[operational-status]</a>.</
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="access_constraint">16. access_constraint</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="access_constraint">2.14. access_constraint</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2140,10 +2111,8 @@ cellspacing="0" cellpadding="4">
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="use_constraint">17. use_constraint</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="use_constraint">2.15. use_constraint</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2199,10 +2168,8 @@ cellspacing="0" cellpadding="4">
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="personnel">18. personnel</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="personnel">2.16. personnel</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2343,10 +2310,8 @@ only partly mapped.</p></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="data_center">19. data_center</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="data_center">2.17. data_center</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2434,10 +2399,8 @@ dataset_id: The id assigned to the dataset by the data center. This may be diffe
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="data_access">20. data_access</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="data_access">2.18. data_access</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2524,10 +2487,8 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="related_dataset">21. related_dataset</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="related_dataset">2.19. related_dataset</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2598,10 +2559,8 @@ and not the content of the metadata files.NA</p></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="related_information">22. related_information</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="related_information">2.20. related_information</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2684,10 +2643,8 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="iso_topic_category">23. iso_topic_category</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="iso_topic_category">2.21. iso_topic_category</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2742,10 +2699,8 @@ gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode</p></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="keywords">24. keywords</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="keywords">2.22. keywords</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2799,12 +2754,7 @@ keyword: A single keyword describing the dataset. This can be hierarchically lik
 </li>
 <li>
 <p>
-separator: the character used as separator. This could be e.g. the GCMD
-</p>
-</li>
-<li>
-<p>
-‘&gt;’, but in XML this is encoded as ‘&gt;’. Other valid separators are: | / -.
+separator: the character used as separator. This could be e.g. the GCMD ‘&gt;’, but in XML this is encoded as ‘&gt;’. Other valid separators are: | / -.
 Valid controlled vocabularies are GCMD Science Keywords
 <a href="#anchor-2">[10</a>], Climate and Forecast Standard Names
 <a href="#anchor-3">[11</a>], SeaDataNet <a href="#anchor-4">[12</a>] etc. The primary
@@ -2847,10 +2797,8 @@ could also be used to describe other features.
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="project">25. project</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="project">2.23. project</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2920,10 +2868,8 @@ mapped to /project/long_name)</p></td>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="platform">26. platform</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="platform">2.24. platform</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2970,7 +2916,7 @@ platforms).
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>See <a href="#platform">[platform]</a> for list.</p></div></div></td>
+<div class="paragraph"><p>See <a href="#platform-1">platform</a> for list.</p></div></div></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">Example XML:</p></td>
@@ -3005,10 +2951,8 @@ platforms).
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="instrument">27. instrument</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="instrument">2.25. instrument</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3106,10 +3050,8 @@ specific vocabulary.</p></div>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="activity_type">28. activity_type</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="activity_type">2.26. activity_type</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3162,10 +3104,8 @@ cellspacing="0" cellpadding="4">
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="dataset_citation">29. dataset_citation</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="dataset_citation">2.27. dataset_citation</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3312,10 +3252,8 @@ parts can be put into citation information.</p></div>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="cloud_cover">30. cloud_cover</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="cloud_cover">2.28. cloud_cover</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3377,10 +3315,8 @@ value: The actual cloud cover in percentage of the valid pixels. This is indicat
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="scene_cover">31. scene_cover</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="scene_cover">2.29. scene_cover</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3453,11 +3389,12 @@ value: The actual cloud cover in percentage of the valid pixels. This is indicat
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="explanations">32. Explanations</h2>
+<h2 id="explanations">3. Explanations</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="interpretation-of-child-and-parent-relationship">32.1. Interpretation of child and parent relationship</h3>
+<h3 id="interpretation-of-child-and-parent-relationship">3.1. Interpretation of child and parent relationship</h3>
 <div class="paragraph"><p>If a dataset has a &lt;related_dataset relation_type=”parent”&gt; element it
 means that the referred dataset is this datasets parent. This
 relationship does not impose any specific characteristics on either the
@@ -3470,10 +3407,10 @@ inheritance is to be decided.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="controlled-vocabularies">33. Controlled vocabularies</h2>
+<h2 id="controlled-vocabularies">4. Controlled vocabularies</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="collection-keywords">33.1. Collection keywords</h3>
+<h3 id="collection-keywords">4.1. Collection keywords</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3552,7 +3489,7 @@ data. This is primarily Sentinel datasets.</p></td>
 <div class="paragraph"><p><a href="#collection">[collection]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="dataset-production-status">33.2. Dataset production status</h3>
+<h3 id="dataset-production-status">4.2. Dataset production status</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3595,7 +3532,7 @@ version should be used, this is kept for back tracing.</p></td>
 <div class="paragraph"><p><a href="#dataset_production_status">[dataset_production_status]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="iso-to-mmd-mapping">33.3. ISO to MMD mapping</h3>
+<h3 id="iso-to-mmd-mapping">4.3. ISO to MMD mapping</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3641,7 +3578,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="mmd-to-iso-mapping">33.4. MMD to ISO mapping</h3>
+<h3 id="mmd-to-iso-mapping">4.4. MMD to ISO mapping</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3675,7 +3612,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="operational-status">33.5. Operational status</h3>
+<h3 id="operational-status">4.5. Operational status</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3721,7 +3658,7 @@ limited temporal perspective.</p></td>
 <div class="paragraph"><p><a href="#operational_status">[operational_status]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="access-constraints">33.6. Access constraints</h3>
+<h3 id="access-constraints">4.6. Access constraints</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3770,7 +3707,7 @@ externally.</p></td>
 <div class="paragraph"><p><a href="#access_constraint">[access_constraint]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="use-constraints">33.7. Use constraints</h3>
+<h3 id="use-constraints">4.7. Use constraints</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -3817,7 +3754,7 @@ implies share-alike (and attribution).</p></td>
 <div class="paragraph"><p><a href="#use_constraint">[use_constraint]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="activity-type">33.8. Activity type</h3>
+<h3 id="activity-type">4.8. Activity type</h3>
 <div class="paragraph"><p>Controlled vocabulary used to describe activity types. Rather than using
 the term observation type or platform which possibly could describe the
 nature of observed datasets, activity type is used to filter between
@@ -3926,7 +3863,7 @@ to be linked (which currently is not supported).</p></td>
 <div class="paragraph"><p><a href="#activity_type">[activity_type]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="variable-parameter-descriptions">33.9. Variable/parameter descriptions</h3>
+<h3 id="variable-parameter-descriptions">4.9. Variable/parameter descriptions</h3>
 <div class="paragraph"><p>For description of parameters MMD is currently relying on GCMD Science
 Keywords. The GCMD Science Keywords are available in multiple forms.</p></div>
 <div class="paragraph"><p>GCMD Science Keywords</p></div>
@@ -3965,7 +3902,7 @@ variable.</p></div>
 <div class="paragraph"><p><a href="#keywords">[keywords]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="platform-1">33.10. Platform</h3>
+<h3 id="platform-1">4.10. Platform</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4008,7 +3945,7 @@ cellspacing="0" cellpadding="4">
 <div class="paragraph"><p><a href="#platform">[platform]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="instruments">33.11. Instruments</h3>
+<h3 id="instruments">4.11. Instruments</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4050,7 +3987,7 @@ optical sensor.</p></td>
 <div class="paragraph"><p><a href="#instrument">[instrument]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="instrument-modes">33.12. Instrument modes</h3>
+<h3 id="instrument-modes">4.12. Instrument modes</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4086,7 +4023,7 @@ cellspacing="0" cellpadding="4">
 <div class="paragraph"><p><a href="#instrument">[instrument]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="polarisation-modes">33.13. Polarisation modes</h3>
+<h3 id="polarisation-modes">4.13. Polarisation modes</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4129,7 +4066,7 @@ cellspacing="0" cellpadding="4">
 <div class="paragraph"><p><a href="#instrument">[instrument]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="product-type">33.14. Product type</h3>
+<h3 id="product-type">4.14. Product type</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4170,7 +4107,7 @@ applications derived from the SAR data.</p></td>
 <div class="paragraph"><p><a href="#instrument">[instrument]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="contact-roles">33.15. Contact roles</h3>
+<h3 id="contact-roles">4.15. Contact roles</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4208,7 +4145,7 @@ this is the main contact with regard to the metadata.</p></td>
 <div class="paragraph"><p><a href="#personnel">[personnel]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="mmd-to-iso-mapping-1">33.16. MMD to ISO mapping</h3>
+<h3 id="mmd-to-iso-mapping-1">4.16. MMD to ISO mapping</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4238,7 +4175,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="iso-topic-categories">33.17. ISO Topic categories</h3>
+<h3 id="iso-topic-categories">4.17. ISO Topic categories</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4378,7 +4315,7 @@ telecommunication, radio, and communication networks.</p></td>
 <div class="paragraph"><p><a href="#iso_topic_category">[iso_topic_category]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="related-information-types">33.18. Related Information types</h3>
+<h3 id="related-information-types">4.18. Related Information types</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4420,7 +4357,7 @@ Global Observing System approach.</p></td>
 <div class="paragraph"><p><a href="#related_information">[related_information]</a></p></div>
 </div>
 <div class="sect2">
-<h3 id="data-access-types">33.19. Data Access Types</h3>
+<h3 id="data-access-types">4.19. Data Access Types</h3>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -4475,7 +4412,7 @@ data.</p></td>
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2019-12-04 14:04:09 CET
+ 2020-03-17 18:55:03 CET
 </div>
 </div>
 </body>

@@ -1,5 +1,5 @@
 [[related_information]]
-== related_information
+=== related_information
 
 [cols="2,8"]
 |=======================================================================

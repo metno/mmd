@@ -1,5 +1,5 @@
 [[use_constraint]]
-== use_constraint
+=== use_constraint
 
 [cols="2,8"]
 |=======================================================================
@@ -14,7 +14,7 @@
 |Description a|
 Restrictions on the use of the dataset.
 
-See link:#anchor-30[Use constraints]for a list of valid values.
+See <<use-constraints>> for a list of valid values.
 
 |Example XML: a|
 ----

@@ -1,5 +1,5 @@
 [[operational_status]]
-== operational_status
+=== operational_status
 
 [cols="2,8"]
 |=======================================================================
