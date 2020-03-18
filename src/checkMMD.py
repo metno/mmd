@@ -393,5 +393,5 @@ def main():
     #    status = check_file.check_mmd()
         
 if __name__ == '__main__':
-    main(sys.argv[1:]))
+    main(sys.argv[1:])
     
