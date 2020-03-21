@@ -5,8 +5,7 @@
 
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
-    <xsl:template match=
-    "*[not(@*|*|comment()|processing-instruction()) 
+    <xsl:template match= "*[not(@*|*|comment()|processing-instruction()) 
      and normalize-space()=''
       ]"/>
     <xsl:template match="submitted_metadata">
@@ -163,7 +162,7 @@
 
     <xsl:template match="Dataset-Production-status">
         <xsl:element name="mmd:dataset_production_status">
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space()"/>
         </xsl:element>
     </xsl:template>
 
@@ -192,9 +191,13 @@
     </xsl:template>
 
     <xsl:template match="GCMD-Science-Keywords">
-        <xsl:element name="mmd:keyword">
-            <xsl:value-of select="."/>
-        </xsl:element>
+        <xsl:choose>
+            <xsl:when test="not(contains(.,'[]'))">
+                <xsl:element name="mmd:keyword">
+                    <xsl:value-of select="."/>
+                </xsl:element>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="Data-Access-HTTP">
@@ -276,7 +279,7 @@
 
     <xsl:template match="Access-Constraint">
         <xsl:element name="mmd:access_constraint">
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space()"/>
         </xsl:element>
     </xsl:template>
 
@@ -294,7 +297,7 @@
 
     <xsl:template match="Activity-type">
         <xsl:element name="mmd:activity_type">
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space()"/>
         </xsl:element>
     </xsl:template>
 
