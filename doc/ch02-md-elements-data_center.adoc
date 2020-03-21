@@ -32,13 +32,6 @@ Information on the data centre contact person for a data centre is conveyed thro
      </data_center_name>
      <data_center_url>http://met.no</data_center_url>
      <dataset_id>45dlkf-234-df</dataset_id>
-     <contact>
-         <role>Data center contact</role>
-         <name>Ole Dole</name>
-         <email>ole.dole@example.com</email>
-         <phone>004711111111</phone>
-         <fax/>
-     <contact>
 </data_center>
 ----
 
