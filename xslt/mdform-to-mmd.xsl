@@ -96,9 +96,13 @@
                     <xsl:element name="mmd:postal_code"><xsl:value-of select="Postal-code"/></xsl:element>
                     <xsl:element name="mmd:country"><xsl:value-of select="Country"/></xsl:element>
                 </xsl:element>
+            </xsl:element>
+            <xsl:element name="mmd:personnel">
                 <xsl:element name="mmd:role">Technical contact</xsl:element>
                 <xsl:element name="mmd:name"><xsl:value-of select="Technical-contact-name"/></xsl:element>
                 <xsl:element name="mmd:email"><xsl:value-of select="Technical-contact-email"/></xsl:element>
+            </xsl:element>
+            <xsl:element name="mmd:personnel">
                 <xsl:element name="mmd:role">Metadata author</xsl:element>
                 <xsl:element name="mmd:name"><xsl:value-of select="Metadata-author-name"/></xsl:element>
                 <xsl:element name="mmd:email"><xsl:value-of select="Metadata-author-email"/></xsl:element>
