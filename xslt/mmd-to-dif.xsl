@@ -139,7 +139,14 @@
                                 <xsl:text>GET DATA</xsl:text>
                             </xsl:element>
 				<xsl:element name="dif:Subtype">
-					<xsl:value-of select="mmd:type" />
+                                    <xsl:choose>
+                                        <xsl:when test="mmd:type = 'OPeNDAP'">
+                                            <xsl:text>OPENDAP DATA (DODS)</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="mmd:type = 'OGC WMS'">
+                                            <xsl:text>WEB MAP SERVICE (WMS)</xsl:text>
+                                        </xsl:when>
+                                    </xsl:choose>
 				</xsl:element>
 			</xsl:element>
 			<xsl:element name="dif:URL">
