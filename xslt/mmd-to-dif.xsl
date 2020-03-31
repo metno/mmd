@@ -13,7 +13,7 @@
 			<xsl:apply-templates select="mmd:abstract" />
 			<xsl:apply-templates select="mmd:last_metadata_update" />
 			<xsl:apply-templates select="mmd:iso_topic_category" />
-			<xsl:apply-templates select="mmd:keywords" />
+			<xsl:apply-templates select="mmd:keywords[@vocabulary='gcmd']" />
 			<xsl:apply-templates select="mmd:project" />
 			<xsl:apply-templates select="mmd:instrument" />
 			<xsl:apply-templates select="mmd:platform" />
@@ -29,7 +29,7 @@
                         <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
 
 			<xsl:element name="dif:Metadata_Name">CEOS IDN DIF</xsl:element>
-			<xsl:element name="dif:Metadata_Version">9.7</xsl:element>
+			<xsl:element name="dif:Metadata_Version">9.8.4</xsl:element>
 		</xsl:element>
 	</xsl:template>
 
@@ -63,14 +63,14 @@
         <xsl:template match="mmd:keywords[@vocabulary='gcmd']">
             <xsl:for-each select="mmd:keyword">
                 <xsl:element name="dif:Parameters">
-                    <xsl:element name="Category">EARTH SCIENCE</xsl:element>
+                    <xsl:element name="dif:Category">EARTH SCIENCE</xsl:element>
                     <xsl:for-each select="tokenize(.,'&gt;')">
                         <!--xsl:sequence select="."/-->
                         <!--xsl:if test="not(position() eq last())"><br /></xsl:if-->
-                    <xsl:if test="position() eq 1"><xsl:element name="Topic"><xsl:sequence select="."/></xsl:element></xsl:if>
-                    <xsl:if test="position() eq 2"><xsl:element name="Term"><xsl:sequence select="."/></xsl:element></xsl:if>
-                    <xsl:if test="position() eq 3"><xsl:element name="Variable_Level_1"><xsl:sequence select="."/></xsl:element></xsl:if>
-                    <xsl:if test="position() eq 4"><xsl:element name="Detailed_Variable"><xsl:sequence select="."/></xsl:element></xsl:if>
+                        <xsl:if test="position() = 1"><xsl:element name="dif:Topic"><xsl:sequence select="."/></xsl:element></xsl:if>
+                        <xsl:if test="position() = 2"><xsl:element name="dif:Term"><xsl:sequence select="."/></xsl:element></xsl:if>
+                        <xsl:if test="position() = 3"><xsl:element name="dif:Variable_Level_1"><xsl:sequence select="."/></xsl:element></xsl:if>
+                        <xsl:if test="position() = 4"><xsl:element name="dif:Detailed_Variable"><xsl:sequence select="."/></xsl:element></xsl:if>
                     </xsl:for-each>
                     <!--xsl:value-of select="." /-->
                 </xsl:element>
@@ -108,7 +108,10 @@
 	<xsl:template match="mmd:data_access">
 		<xsl:element name="dif:Related_URL">
 			<xsl:element name="dif:URL_Content_Type">
-				<xsl:element name="dif:Type">
+                            <xsl:element name="dif:Type">
+                                <xsl:text>GET DATA</xsl:text>
+                            </xsl:element>
+				<xsl:element name="dif:Subtype">
 					<xsl:value-of select="mmd:type" />
 				</xsl:element>
 			</xsl:element>
@@ -259,6 +262,22 @@
         </xsl:template>
 
         <xsl:template match="mmd:personnel[mmd:role='Investigator']">
+            <xsl:element name="dif:Personnel">
+                <xsl:element name="dif:Role">
+                    <xsl:value-of select="mmd:role" />
+                </xsl:element>
+                <!--
+                <xsl:element name="dif:First_Name">
+                    <xsl:value-of select="mmd:name" />
+                </xsl:element>
+                -->
+                <xsl:element name="dif:Last_Name">
+                    <xsl:value-of select="mmd:name" />
+                </xsl:element>
+                <xsl:element name="dif:Email">
+                    <xsl:value-of select="mmd:email" />
+                </xsl:element>
+            </xsl:element>
             <xsl:element name="dif:Originating_Center">
                 <xsl:value-of select="mmd:organisation" />
             </xsl:element>
