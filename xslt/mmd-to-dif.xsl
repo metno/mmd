@@ -10,26 +10,53 @@
 		<xsl:element name="dif:DIF">
 			<xsl:apply-templates select="mmd:metadata_identifier" />
 			<xsl:apply-templates select="mmd:title" />
-			<xsl:apply-templates select="mmd:abstract" />
-			<xsl:apply-templates select="mmd:last_metadata_update" />
-			<xsl:apply-templates select="mmd:iso_topic_category" />
+			<xsl:apply-templates select="mmd:dataset_citation" />
+                        <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
 			<xsl:apply-templates select="mmd:keywords[@vocabulary='gcmd']" />
-			<xsl:apply-templates select="mmd:project" />
+			<xsl:apply-templates select="mmd:iso_topic_category" />
 			<xsl:apply-templates select="mmd:instrument" />
 			<xsl:apply-templates select="mmd:platform" />
 			<xsl:apply-templates select="mmd:temporal_extent" />
+			<xsl:apply-templates select="mmd:dataset_production_status" />
 			<xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
-			<xsl:apply-templates select="mmd:data_access" />
-			<xsl:apply-templates select="mmd:data_center" />
-			<xsl:apply-templates select="mmd:dataset_citation" />
+			<xsl:apply-templates select="mmd:project" />
 			<xsl:apply-templates select="mmd:access_constraint" />
 			<xsl:apply-templates select="mmd:use_constraint" />
-			<xsl:apply-templates select="mmd:dataset_production_status" />
 			<xsl:apply-templates select="mmd:dataset_language" />
-                        <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
+                        <xsl:element name="dif:Originating_Center">
+                            <xsl:value-of select="mmd:organisation" />
+                        </xsl:element>
+                        <xsl:choose>
+                            <xsl:when test="not(mmd:data_center)">
+                                <xsl:element name="dif:Data_Center">
+                                    <xsl:element name="dif:Data_Center_Name">
+                                        <xsl:element name="dif:Short_Name">
+                                            <xsl:text>MET</xsl:text>
+                                        </xsl:element>
+                                        <xsl:element name="dif:Long_Name">
+                                            <xsl:text>Norwegian Meteorological Institute</xsl:text>
+                                        </xsl:element>
+                                    </xsl:element>
+                                    <xsl:element name="dif:Data_Center_URL">
+                                        <xsl:text>https://adc.met.no/</xsl:text>
+                                    </xsl:element>
+                                    <xsl:element name="dif:Personnel">
+                                        <xsl:element name="dif:Role">Technical Contact</xsl:element>
+                                        <xsl:element name="dif:Last_Name">ADC Support</xsl:element>
+                                        <xsl:element name="dif:Email">adc-support@met.no</xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="mmd:data_center" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+			<xsl:apply-templates select="mmd:abstract" />
+			<xsl:apply-templates select="mmd:data_access" />
 
 			<xsl:element name="dif:Metadata_Name">CEOS IDN DIF</xsl:element>
 			<xsl:element name="dif:Metadata_Version">9.8.4</xsl:element>
+			<xsl:apply-templates select="mmd:last_metadata_update" />
 		</xsl:element>
 	</xsl:template>
 
@@ -82,7 +109,7 @@
 			<xsl:element name="dif:Start_Date">
 				<xsl:value-of select="mmd:start_date" />
 			</xsl:element>
-			<xsl:element name="dif:_Date">
+			<xsl:element name="dif:Stop_Date">
 				<xsl:value-of select="mmd:end_date" />
 			</xsl:element>
 		</xsl:element>
@@ -277,9 +304,6 @@
                 <xsl:element name="dif:Email">
                     <xsl:value-of select="mmd:email" />
                 </xsl:element>
-            </xsl:element>
-            <xsl:element name="dif:Originating_Center">
-                <xsl:value-of select="mmd:organisation" />
             </xsl:element>
         </xsl:template>
 
