@@ -135,7 +135,7 @@
                     <xsl:element name="dif:Term">
                         <xsl:choose>
                             <xsl:when test="contains($tmpstr1,$separator)">
-                                <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
+                                <xsl:value-of select="substring-before($tmpstr1,$separator)"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="$tmpstr1"/>
@@ -148,7 +148,7 @@
                     <xsl:element name="dif:Variable_Level_1">
                         <xsl:choose>
                             <xsl:when test="contains($tmpstr2,$separator)">
-                                <xsl:value-of select="substring-after($tmpstr2,$separator)"/>
+                                <xsl:value-of select="substring-before($tmpstr2,$separator)"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="$tmpstr2"/>
@@ -156,12 +156,12 @@
                         </xsl:choose>
                     </xsl:element>
                     <xsl:variable name="tmpstr3">
-                        <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
+                        <xsl:value-of select="substring-after($tmpstr2,$separator)"/>
                     </xsl:variable>
                     <xsl:element name="dif:Variable_Level_2">
                         <xsl:choose>
                             <xsl:when test="contains($tmpstr3,$separator)">
-                                <xsl:value-of select="substring-after($tmpstr3,$separator)"/>
+                                <xsl:value-of select="substring-before($tmpstr3,$separator)"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="$tmpstr3"/>
