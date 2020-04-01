@@ -12,7 +12,7 @@
 			<xsl:apply-templates select="mmd:title" />
 			<xsl:apply-templates select="mmd:dataset_citation" />
                         <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
-			<xsl:apply-templates select="mmd:keywords[@vocabulary='GCMD']" />
+			<xsl:apply-templates select="mmd:keywords[@vocabulary='gcmd']" />
 			<xsl:apply-templates select="mmd:iso_topic_category" />
 			<xsl:apply-templates select="mmd:instrument" />
 			<xsl:apply-templates select="mmd:platform" />
@@ -87,13 +87,22 @@
 		</xsl:element>
 	</xsl:template>
 
-        <xsl:template match="mmd:keywords[@vocabulary='GCMD']">
+        <xsl:template match="mmd:keywords[@vocabulary='gcmd']">
             <xsl:for-each select="mmd:keyword">
                 <xsl:element name="dif:Parameters">
-                    <xsl:element name="dif:Category">EARTH SCIENCE</xsl:element>
                     <xsl:variable name="mykeywordstring">
-                        <xsl:value-of select="."/>
+                        <xsl:choose>
+                            <xsl:when test="not(contains(.,'EARTH SCIENCE'))">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="substring-after(.,'EARTH SCIENCE &gt; ')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:variable>
+                    <xsl:element name="dif:Category">
+                        <xsl:text>EARTH SCIENCE</xsl:text>
+                    </xsl:element>
                     <xsl:call-template name="keywordseparation">
                         <xsl:with-param name="keywordstring" select="$mykeywordstring" />
                     </xsl:call-template>
@@ -124,19 +133,40 @@
                         <xsl:value-of select="substring-after($keywordstring,$separator)"/>
                     </xsl:variable>
                     <xsl:element name="dif:Term">
-                        <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
+                        <xsl:choose>
+                            <xsl:when test="contains($tmpstr1,$separator)">
+                                <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$tmpstr1"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:element>
                     <xsl:variable name="tmpstr2">
                         <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
                     </xsl:variable>
                     <xsl:element name="dif:Variable_Level_1">
-                        <xsl:value-of select="substring-after($tmpstr2,$separator)"/>
+                        <xsl:choose>
+                            <xsl:when test="contains($tmpstr2,$separator)">
+                                <xsl:value-of select="substring-after($tmpstr2,$separator)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$tmpstr2"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:element>
                     <xsl:variable name="tmpstr3">
                         <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
                     </xsl:variable>
                     <xsl:element name="dif:Variable_Level_2">
-                        <xsl:value-of select="substring-after($tmpstr3,$separator)"/>
+                        <xsl:choose>
+                            <xsl:when test="contains($tmpstr3,$separator)">
+                                <xsl:value-of select="substring-after($tmpstr3,$separator)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$tmpstr3"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:element>
                 </xsl:when>
             </xsl:choose>    
