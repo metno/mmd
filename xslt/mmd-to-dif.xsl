@@ -10,7 +10,14 @@
 		<xsl:element name="dif:DIF">
 			<xsl:apply-templates select="mmd:metadata_identifier" />
 			<xsl:apply-templates select="mmd:title" />
-			<xsl:apply-templates select="mmd:dataset_citation" />
+                        <xsl:choose>
+                            <xsl:when test="mmd:dataset_citation">
+                                <xsl:apply-templates select="mmd:dataset_citation" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="mmd:related_information"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                         <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
 			<xsl:apply-templates select="mmd:keywords[@vocabulary='gcmd']" />
 			<xsl:apply-templates select="mmd:iso_topic_category" />
@@ -383,7 +390,6 @@
         </xsl:template>
 
         <xsl:template match="mmd:dataset_citation">
-
             <xsl:element name="dif:Data_Set_Citation">
                 <xsl:element name="dif:Dataset_Creator">
                     <xsl:value-of select="mmd:dataset_creator" />
@@ -415,9 +421,17 @@
                 <xsl:element name="dif:Online_Resource">
                     <xsl:value-of select="mmd:online_resource" />
                 </xsl:element>
-
             </xsl:element>
+        </xsl:template>
 
+        <xsl:template match="mmd:related_information">
+            <xsl:if test="mmd:type = 'Dataset landing page'">
+                <xsl:element name="dif:Data_Set_Citation">
+                    <xsl:element name="dif:Online_Resource">
+                        <xsl:value-of select="mmd:resource"/>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:if>
         </xsl:template>
 
 </xsl:stylesheet>
