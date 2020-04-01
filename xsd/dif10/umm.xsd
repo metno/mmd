@@ -1,0 +1,3010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <!--targetNamespace="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"-->
+            <!--xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/">-->
+    
+    <!-- *********************************************************** -->
+    <!-- #mark UMM -->
+        
+    <xs:element name="UMM">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="EntryID" type="EntryID" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The unique document identifier of the metadata record.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="EntryTitle" type="EntryTitle" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The title of the data set described by the metadata.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="Summary" type="Summary" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field provides a brief description of the data set along with the purpose of the data. This allows potential users to determine if the data set is useful for their needs.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="CollectionCitation" type="CollectionCitation" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The CollectionCitation field allows the author to properly cite the data set producer.
+                            This field has 2 functions:
+
+                            1. To indicate how this data set should be cited in professional scientific literature, and
+                            2. If this data set is a compilation of other data sets, to document and credit the data sets that were used in producing this compilation.
+
+                            This field is not to be used to list bibliographic references of scientific research articles arising from the data set. This field provides a citation for the data set itself, not articles related to the research results. To list references related to the research results, use the Reference field.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="Personnel" type="Personnel" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            defines the point of contact for more information about the data set or the metadata.
+                            The contact personnel are defined by the Role, which include:
+                            Investigator: The person who headed the investigation or experiment that resulted in the acquisition of the data described (i.e., Principal Investigator, Experiment Team Leader)
+                            Technical Contact: The person who is knowledgeable about the technical content of the data (quality, processing methods, units, available software for further processing)
+                            Metadata Author: The person who is responsible for the content of the Metadata. If the responsibility shifts from the original author to another person, the Metadata Author field should be updated to the new responsible person.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="ScienceKeywords" type="ScienceKeywords" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field allows for the specification of Earth science keywords that are representative of the data set being described.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="ISOTopicCategory" type="ISOTopicCategory" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field is used to identify the keywords in the ISO 19115 - Geographic Information Metadata (http://www.isotc211.org/) Topic Category Code List. It is a high-level geographic data thematic classification to assist in the grouping and search of available geographic data sets.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="AncillaryKeyword" type="AncillaryKeyword" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field allows authors to provide any words or phrases needed to further describe the data set.  Authors can specify a URI using the resource attribute to reference an external vocabulary system’s keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Platform" type="Platform" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity describes the relevant platforms associated with the acquisition of the collection or granule. For example, Platforms may include (but are not limited to): ADEOS-II, AEM-2, AM-1, Aqua, Aura, BALLOONS, BUOYS, C-130, DEM, DMSP-F1, ERS-1, GOES-10, LANDSAT-1, METEOSAT-2, NIMBUS-2, NOAA-6, TERRA, TRMM, etc.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="TemporalCoverage" type="TemporalCoverage" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity contains records, which describe the basis of the time system used for a specific collection.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="CollectionProgress" type="CollectionProgress" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Describes the production status of the data set regarding its completeness.
+                            There are three choices:
+
+                            Planned refers to data sets to be collected in the future and are thus unavailable at the present time.  For Example: The Hydro spacecraft has not been launched, but information on planned data sets may be available.
+                            In Work refers to data sets currently undergoing production or data that is continuously being collected or updated.  For Example: data from the AIRS instrument on Aqua is being collected continuously.
+                            Complete refers to data sets in which no updates or further data collection will be made.  For Example: Nimbus-7 SMMR data collection has been completed.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="SpatialCoverage" type="SpatialCoverage" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity contains collection's spatial coverage information.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="Project" type="Project" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The name of the scientific program, field campaign, or project from which the data were collected.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="Quality" type="Quality" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field allows the author to provide information about the quality of the data or any quality assurance procedures followed in producing the data described in the metadata. Suggestions for information to include in the Quality field
+                            Description should be succinct.
+                            Include indicators of data quality or quality flags.
+                            Include recognized or potential problems with quality.
+                            Established quality control mechanisms should be included.
+                            Established quantitative quality measurements should be included.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="AccessConstraints" type="AccessConstraints" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field allows the author to provide information about any constraints for accessing the data set.  This includes any special restrictions, legal prerequisites, limitations and/or warnings on obtaining the data set.  Some words that may be used in this field include: Public, In-house, Limited, Additional detailed instructions on how to access the data can be entered in this field.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="UseConstraints" type="UseConstraints" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The UseConstraints field allows the author to describe how the data may or may not be used after access is granted to assure the protection of privacy or intellectual property.  This includes any special restrictions, legal prerequisites, terms and conditions, and/or limitations on using the data set.  Data providers may request acknowledgement of the data from users and claim no responsibility for quality and completeness of data.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="DataSetLanguage" type="DataSetLanguage" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Describes the language used in the preparation, storage, and description of the data.   It is the language of the information object, not the language used to describe or interact with the metadata record.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="Organization"  type="Organization" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The data center, organization, or institution responsible for distributing, archiving, or processing the data.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="Distribution" type="Distribution" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field describes media options, size, data format, and fees involved in distributing the data set.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="PublicationReference" type="PublicationReference" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field describes key bibliographic citations pertaining to the data set.
+
+                            Bibliographic citations may be populated as a block of text in the free-text field or as text in subfields (see below). Citations in the free-text field may be provided in styles used by professional scientific journals such as the American Geophysical Union (AGU), American Psychological Association (APA), or Modern Language Association (MLA).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="RelatedURL" type="RelatedURL" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field specifies links to Internet sites that contain information related to the data, as well as related Internet sites such as project home pages, related data archives/servers, metadata extensions, online software packages, web mapping services, and calibration/validation data.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="ParentAssociation" type="ParentAssociation" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field allows the capability to relate generalized aggregated metadata records (parents) to metadata records with highly specific information (children). Population of the ParentAssociation field should be reserved for instances where many metadata records are basically subsets that can be better represented by one parent metadata record, which describes the entire collection. Typically, the parent metadata record will have many children metadata records, which refer to the parent through the ParentAssociation field. In some instances, a child may point to more than one parent. The ParentAssociation is populated with an EntryID.
+
+                            The ParentAssociation is only populated if there are children metadata records that reference a parent metadata record.  Upon display of results, both parent and children metadata are available with explicit linkages between parent and child records through the ParentAssociation field.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="MetadataAssociation" type="MetadataAssociation" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity is used to describe associated metadata.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="MetadataStandardName" type="MetadataStandardName" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field is used to identify the name of the metadata standard used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MetadataStandardVersion" type="MetadataStandardVersion" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Field is used to identify the name of the metadata standard version used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MetadataCreationDate" type="MetadataCreationDate" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            specifies the date the metadata record was created.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MetadataRevisionHistory" type="MetadataRevisionHistory" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            allows the author to provide a list of changes made to the metadata record over time. This provides a mechanism for tracking revisions to metadata content.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MetadataRevisionDate" type="MetadataRevisionDate" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            specifies the date the metadata record was revised.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MetadataReviewDate" type="MetadataReviewDate" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            allows for the specification of a future date at which the metadata should be reviewed for accuracy of scientific or technical content
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="ExtendedMetadata" type="ExtendedMetadata" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            allow organizations to store user defined values within the metadata record not available in the existing UMM.                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="Product" type="Product" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Allows organizations to store product specific information, such as dataset name, version, processing level, etc.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="ProductSpecificAttribute" minOccurs="0" maxOccurs="unbounded" type="ProductSpecificAttribute">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity stores the product specific attributes (i.e. attributes used to describe the unique characteristics of the collection which extend beyond those defined in this model).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="DataProviderTimestamps" minOccurs="0" maxOccurs="1" type="DataProviderTimestamps">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Provided by the data provider for when the collection was inserted, updated, or is or is planned to be deleted from the data provider’s system.            </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="AccessValue" minOccurs="0" maxOccurs="1" type="AccessValue">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Providers use this field to specify various restriction levels with ACLs. For example: LARC_ASDC might specify a Collection Level ACL that hides all collections that have AccessValue set to '15.0'. There is no controlled mapping for what the values represent, but there are many ACLs built in CMR off these types of rules.
+                            The use of this field in the ACL can be used to do more than just hide data from guest users, it may also be used to permit access only to certain groups of users (these groups can be created and managed within ECHO's PUMP tool).
+                            For example, there may be a group of people with approval for viewing metadata that a NASA DAAC hasn't fully released to the public. This group of people can by identified by their URS account name and granted access using the AccessValue value. The AccessValue is used at both the collection and the granule level.            </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- *********************************************************** -->
+    <!-- #mark EntryID -->
+        
+    <xs:simpleType name="EntryID">
+        <xs:annotation>
+            <xs:documentation>
+                The unique document identifier of the metadata record.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="80"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- *********************************************************** -->
+    <!-- #mark EntryTitle -->
+        
+    <xs:simpleType name="EntryTitle">
+        <xs:annotation>
+            <xs:documentation>
+                The title of the data set described by the metadata.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1024"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Quality">
+        <xs:annotation>
+            <xs:documentation>
+                <xs:annotation>
+                    <xs:documentation>
+                        Field allows the author to provide information about the quality of the data or any quality assurance procedures followed in producing the data described in the metadata. Suggestions for information to include in the Quality field
+                        Description should be succinct.
+                        Include indicators of data quality or quality flags.
+                        Include recognized or potential problems with quality.
+                        Established quality control mechanisms should be included.
+                        Established quantitative quality measurements should be included.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12000"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AccessConstraints">
+        <xs:annotation>
+            <xs:documentation>
+                <xs:annotation>
+                    <xs:documentation>
+                        Field allows the author to provide information about any constraints for accessing the data set.  This includes any special restrictions, legal prerequisites, limitations and/or warnings on obtaining the data set.  Some words that may be used in this field include: Public, In-house, Limited, Additional detailed instructions on how to access the data can be entered in this field.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12000"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="UseConstraints">
+        <xs:annotation>
+            <xs:documentation>
+                <xs:annotation>
+                    <xs:documentation>
+                        Field allows the author to describe how the data may or may not be used after access is granted to assure the protection of privacy or intellectual property.  This includes any special restrictions, legal prerequisites, terms and conditions, and/or limitations on using the data set.  Data providers may request acknowledgement of the data from users and claim no responsibility for quality and completeness of data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12000"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MetadataStandardName">
+        <xs:annotation>
+            <xs:documentation>
+                Field is used to identify the name of the metadata standard used.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="80"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MetadataStandardVersion">
+        <xs:annotation>
+            <xs:documentation>
+                Field is used to identify the name of the metadata standard version used.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="80"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MetadataCreationDate">
+        <xs:annotation>
+            <xs:documentation>
+                specifies the date the metadata record was created.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="MetadataRevisionHistory">
+        <xs:annotation>
+            <xs:documentation>
+                allows the author to provide a list of changes made to the metadata record over time. This provides a mechanism for tracking revisions to metadata content.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="600"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MetadataRevisionDate">
+        <xs:annotation>
+            <xs:documentation>
+                specifies the date the metadata record was revised.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="MetadataReviewDate">
+        <xs:annotation>
+            <xs:documentation>
+                allows for the specification of a future date at which the metadata should be reviewed for accuracy of scientific or technical content
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+
+    <xs:complexType name="ScienceKeywords">
+
+        <xs:annotation>
+            <xs:documentation>
+                Field allows for the specification of Earth science keywords that are representative of the data set being described.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Category" minOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Keyword used to describe the general category of the collection. A collection can conceivably cover several categories.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Topic" minOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Keyword used to describe the general topic area of the collection. A collection can conceivably cover several topics.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Term" minOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Keyword used to describe the science parameter area of the collection. A collection can conceivably cover many such parameters.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="VariableLevel1" type="VariableLevel1Keyword"/>
+            <xs:element minOccurs="0" name="DetailedVariable" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Field allows for the specification of Earth science keywords that are representative of the data set being described.
+                    </xs:documentation>
+                </xs:annotation>
+
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
+    <xs:complexType name="VariableLevel1Keyword" >
+        <xs:sequence>
+            <xs:element name="Value" type="xs:string"/>
+            <xs:element name="VariableLevel2" type="VariableLevel2Keyword" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VariableLevel2Keyword">
+        <xs:sequence>
+            <xs:element name="Value" type="xs:string"/>
+            <xs:element name="VariableLevel3Keyword" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ISOTopicCategory">
+        <xs:annotation>
+            <xs:documentation>
+                Field is used to identify the keywords in the ISO 19115 - Geographic Information Metadata (http://www.isotc211.org/) Topic Category Code List. It is a high-level geographic data thematic classification to assist in the grouping and search of available geographic data sets.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="uuid" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The universally unique identifier to the keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="OrganizationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DISTRIBUTOR">
+                <xs:annotation>
+                    <xs:documentation>
+                        Distributor: where the data is distributed.
+                    </xs:documentation>
+                </xs:annotation>
+             </xs:enumeration>
+            <xs:enumeration value="ARCHIVER">
+                <xs:annotation>
+                    <xs:documentation>
+                        Archiver: Center where collection is archived.
+                    </xs:documentation>
+                </xs:annotation>
+             </xs:enumeration>
+            <xs:enumeration value="ORIGINATOR">
+                <xs:annotation>
+                    <xs:documentation>
+                        Originator: is the data center or data producer who originally generated or gathered the dataset.
+                    </xs:documentation>
+                </xs:annotation>
+             </xs:enumeration>
+            <xs:enumeration value="PROCESSOR">
+                <xs:annotation>
+                    <xs:documentation>
+                        Processor: Center where collection was or is being processed.
+                    </xs:documentation>
+                </xs:annotation>
+             </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Organization">
+        <xs:annotation>
+            <xs:documentation>
+                The data center, organization, or institution responsible for distributing, archiving, or processing the data.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Type" minOccurs="1" maxOccurs="unbounded" type="OrganizationType"/>
+            <xs:element name="OrganizationName" type="OrganizationName" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        consists of the data center ShortName and LongName, which is the name of the organization that distributes, archives, or processes the data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OrganizationURL" type="RelatedURL" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Is the URL of the organization.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="HoursOfService" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time period when individuals can speak to the organization.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ContactInstructions" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Supplemental instructions on how or when to contact the organization.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Personnel" type="Personnel" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contact information for the data including name, email, phone, FAX, and address information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OrganizationName">
+        <xs:annotation>
+            <xs:documentation>
+                consists of the organization ShortName and LongName, which is the name of the organization that distributes, archives, or processes the data.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="ShortName" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="LongName" minOccurs="0" maxOccurs="1" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    
+    <xs:complexType name="Personnel">
+        <xs:annotation>
+            <xs:documentation>
+                defines the point of contact for more information about the data set or the metadata.
+                The contact personnel are defined by the Role, which include:
+                Investigator: The person who headed the investigation or experiment that resulted in the acquisition of the data described (i.e., Principal Investigator, Experiment Team Leader)
+                Technical Contact: The person who is knowledgeable about the technical content of the data (quality, processing methods, units, available software for further processing)
+                Metadata Author: The person who is responsible for the content of the Metadata. If the responsibility shifts from the original author to another person, the Metadata Author field should be updated to the new responsible person.            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Role" type="Role" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element minOccurs="1" name="ContactPerson" type="ContactPerson" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity contains the contact person's name and address details. In some instances, Contact Person is the primary point of contact.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Role">
+        <xs:annotation>
+            <xs:documentation>
+                The role of the contact (investigator, technical contact, metadata author)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DATA CENTER CONTACT"/>
+            <xs:enumeration value="METADATA AUTHOR"/>
+            <xs:enumeration value="TECHNICAL CONTACT"/>
+            <xs:enumeration value="INVESTIGATOR"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <xs:simpleType name="Email">
+        <xs:annotation>
+            <xs:documentation>
+                The address of the electronic mailbox of the organization or individual.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1024"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Address">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains the address details for each contact.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="StreetAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        An address line for the address, used for mailing or physical addresses of organizations or individuals who serve as points of contact.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="City" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The city of the person or organization.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="StateProvince" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The state or province of the address.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PostalCode" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The zip or other postal code of the address.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Country" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The country of the address.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Phone">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains the telephone details associated with the contact.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Number" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Number of the organization or individual who is point of contact. The general format of the number includes country, area, and STD codes, as required for the full telephone number. Multi-extensions should be single entries rather than part of a single entry text.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The type of telephone number being provided in this instance of the phone number, in order to reach the organization or individual who serves as a point of contact.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContactPerson">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains the contact person's name and position. In some instances, Contact Person is the primary point of contact.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="FirstName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        First name of the individual which the contact applies. People are points of contact, rather than organizations, in cases where the association of the person to the data set is more significant than the association of the organization to the data set. They may also be included if both a single person and organization are provided as points of contact.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="MiddleName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Middle name of the individual which the contact applies.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="LastName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Last name of the individual which the contact applies.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Address" type="Address">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity contains the address details for each contact.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Phone" type="Phone" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity contains the telephone details associated with the contact.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element minOccurs="0" name="Email" type="Email" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The address of the electronic mailbox of the organization or individual.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the personnel record.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
+
+    <xs:complexType name="Summary" mixed="true">
+        <xs:annotation>
+            <xs:documentation>
+                Field provides a brief description of the data set along with the purpose of the data. This allows potential users to determine if the data set is useful for their needs.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Abstract" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        A brief description of the data set.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Purpose" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Describe the purpose and/or intended use of data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CollectionCitation">
+        <xs:annotation>
+            <xs:documentation>
+                The CollectionCitation field allows the author to properly cite the data set producer.
+                This field has 2 functions:
+
+                1. To indicate how this data set should be cited in professional scientific literature, and
+                2. If this data set is a compilation of other data sets, to document and credit the data sets that were used in producing this compilation.
+
+                This field is not to be used to list bibliographic references of scientific research articles arising from the data set. This field provides a citation for the data set itself, not articles related to the research results. To list references related to the research results, use the Reference field.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Type" minOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The type of citation (literature citation, data citations, etc.)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Creator" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Editor" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The individual(s) responsible for the processing or re-processing of a particular dataset.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Title" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The title of the data set; this may be the same as Entry Title.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SeriesName" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the dataset series, or aggregate dataset of which the dataset is a part.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ReleaseDate" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date when the data set was made available for release.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ReleasePlace" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the city (and state or province and country if needed) where the data set was made available for release.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Publisher" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the individual or organization that made the data set available for release.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IssueIdentification" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The volume or issue number of the publication (if applicable).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DataPresentationForm" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The mode in which the data are represented, e.g. atlas, image, profile, text, etc.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OtherCitationDetails" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Additional free-text citation information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DOI" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The Digital Object Identifier (DOI) of a data set.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OnlineResource" type="RelatedURL" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The URL of the online resource containing the data set.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Project">
+
+        <xs:annotation>
+            <xs:documentation>
+                The name of the scientific program, field campaign, or project from which the data were collected.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="ShortName" minOccurs="1" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>is the abbreviated name of the project from which the data were collected. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Campaign" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>is the abbreviated name of the campaign from which the data were collected. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LongName" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>is the full name of the project or campaign from which the data were collected.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Platform">
+        <xs:annotation>
+            <xs:documentation>
+                This entity describes the relevant platforms associated with the acquisition of the collection or granule. For example, Platforms may include (but are not limited to): ADEOS-II, AEM-2, AM-1, Aqua, Aura, BALLOONS, BUOYS, C-130, DEM, DMSP-F1, ERS-1, GOES-10, LANDSAT-1, METEOSAT-2, NIMBUS-2, NOAA-6, TERRA, TRMM, etc.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="ShortName" minOccurs="0" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The unique platform name. (e.g. GOES-8).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LongName" minOccurs="0" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The expanded or long name of the platform associated with an instrument.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The most relevant platform type.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Characteristic" type="Characteristic" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The characteristics of platform specific attributes. The characteristic names must be unique on this platform; however the names do not have to be unique across platforms.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Instrument" type="Instrument" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>The Instrument is the name of the instrument used to acquire the data.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
+    <xs:complexType name="Instrument">
+        <xs:annotation>
+            <xs:documentation>
+                This entity registers the device used to measure or record data, including direct human observation. In cases where instruments have a single sensor or the instrument and sensor are used synonymously (e.g. AVHRR) the both Instrument and Sensor should be recorded. The Sensor information is represented by some other entities.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="ShortName" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The unique identifier of an instrument.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="LongName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The expanded name of the primary sensory instrument. (e.g. Advanced Spaceborne Thermal Emission and Reflective Radiometer, Clouds and the Earth's Radiant Energy System, Human Observation).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Technique" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The expanded name of the primary sensory instrument. (e.g. Advanced Spaceborne Thermal Emission and Reflective Radiometer, Clouds and the Earth's Radiant Energy System, Human Observation).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="NumberOfSensors" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>
+                        Number of sensors used on the instrument when acquire the granule data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Characteristic" type="Characteristic" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        The characteristics of this instrument expressed as custom attributes. The characteristic names must be unique on this instrument; however the names do not have to be unique across instruments.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Sensor" type="Sensor" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity holds the referential information for collection source/sensor configuration including sensor parameters setting such as technique etc.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OperationMode" minOccurs="0" maxOccurs="unbounded" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The operation mode applied on the instrument when acquire the granule data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
+    <xs:complexType name="Sensor">
+        <xs:annotation>
+            <xs:documentation>
+                This entity holds the referential information for collection source/sensor configuration including sensor parameters setting such as technique etc.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ShortName" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Short name of the sensor.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="LongName" type="xs:string">
+            </xs:element>
+            <xs:element minOccurs="0" name="Technique" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Technique applied for this sensor in the configuration.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Characteristic" type="Characteristic" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The characteristics of this sensor expressed as custom attributes. The characteristic names must be unique on this sensor; however the names do not have to be unique across sensors.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
+
+    <xs:complexType name="Characteristic">
+        <xs:annotation>
+            <xs:documentation>This entity is used to define characteristics.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The name of the characteristic attribute.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Description of the Characteristic attribute.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DataType" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The datatype of the Characteristic/attribute.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Unit" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Units associated with the Characteristic attribute value.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Value" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The value of the Characteristic attribute.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TemporalCoverage">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains records, which describe the basis of the time system used for a specific collection.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="TimeType" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute provides the time system which the values found in temporal subclasses represent.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="DateType" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute specifies the type of date represented by the value in the date attributes of the temporal subclasses.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="TemporalRangeType" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute tells the system and ultimately the end user how temporal coverage is specified for the collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="PrecisionOfSeconds" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>
+                        The precision (position in number of places to right of decimal point) of seconds used in measurement.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="EndsAtPresentFlag" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute will denote that a data collection which covers, temporally, a discontinuous range, currently ends at the present date. This way, the granules, which comprise the data collection, that are continuously being added to inventory need not update the data collection metadata for each one.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice>
+                <xs:element maxOccurs="unbounded" name="RangeDateTime" type="RangeDateTime">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity stores the start and end date/time of a collection.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" name="SingleDateTime" type="xs:dateTime"/>
+                <xs:element maxOccurs="unbounded" name="PeriodicDateTime" type="PeriodicDateTime">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity contains the name of the temporal period in addition to the date, time, duration unit, and value, and cycle duration unit and value. Used at the collection level to describe a collection having granules, which cover a regularly occurring period.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="PaleoTemporal" type="PaleoTemporalCoverage" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            For paleoclimate or geologic data, PaleoTemporalCoverage is the length of time represented by the data collected. PaleoTemporalCoverage should be used when the data spans time frames earlier than yyyy-mm-dd = 0001-01-01.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="TemporalInfo" type="TemporalInfo" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This is a container element used to hold ancillary temporal keywords and/or specific temporal resolutions.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+            </xs:choice>
+
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TemporalInfo">
+        <xs:annotation>
+            <xs:documentation>
+                This attribute specifies a word or phrase which serves to summarize the temporal characteristics referenced in the collection.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+
+            <xs:element name="AncillaryTemporalKeyword" type="AncillaryTemporalKeyword" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute specifies a word or phrase which serves to summarize the temporal characteristics referenced in the collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="TemporalResolution" type="TemporalResolution" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        This element specifies the frequency of data sampled.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TemporalResolution">
+        <xs:annotation>
+            <xs:documentation>
+                This element specifies the frequency of data sampled.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Duration" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Unit" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TemporalResolutionRange" type="TemporalResolutionRange" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        is a controlled list of temporal resolution ranges
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="HorizontalResolutionRange">
+        <xs:annotation>
+            <xs:documentation>
+                is a controlled list of horizontal resolution ranges
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="uuid" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The universally unique identifier to the keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="VerticalResolutionRange">
+        <xs:annotation>
+            <xs:documentation>
+                is a controlled list of vertical resolution ranges
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="uuid" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The universally unique identifier to the keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+
+
+    <xs:complexType name="TemporalResolutionRange">
+        <xs:annotation>
+            <xs:documentation>
+                is a controlled list of temporal resolution ranges
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="uuid" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The universally unique identifier to the keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="PeriodicDateTime">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains the name of the temporal period in addition to the date, time, duration unit, and value, and cycle duration unit and value. Used at the collection level to describe a collection having granules, which cover a regularly occurring period.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name given to the recurring time period. e.g. 'spring - north hemi.'
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="StartDate" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute provides the date (day and time) of the first occurrence of this regularly occurring period which is relevant to the collection, granule, or event coverage.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EndDate" type="xs:dateTime"/>
+            <xs:element name="DurationUnit" type="DurationUnit">
+                <xs:annotation>
+                    <xs:documentation>The unit specification for the period duration.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DurationValue" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>
+                        The number of PeriodDurationUnits in the RegularPeriodic period. e.g. the RegularPeriodic event 'Spring-North Hemi' might have a PeriodDurationUnit='MONTH' PeriodDurationValue='3' PeriodCycleDurationUnit='YEAR' PeriodCycleDurationValue='1' indicating that Spring-North Hemi lasts for 3 months and has a cycle duration of 1 year. The unit for the attribute is the value of the attribute PeriodDurationValue.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PeriodCycleDurationUnit" type="DurationUnit">
+                <xs:annotation>
+                    <xs:documentation>
+                        The unit specification of the period cycle duration.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PeriodCycleDurationValue" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TwoDCoordinateSystem">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a named two dimensional coordinate system for the collection.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="TwoDCoordinateSystemName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines the name of the Two Dimensional coordinate System. Must be unique within a collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Coordinate1" type="TwoDCoordinate">
+                <xs:annotation>
+                    <xs:documentation>Defines the horizontal coordinate.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Coordinate2" type="TwoDCoordinate">
+                <xs:annotation>
+                    <xs:documentation>Defines the vertical coordinate.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TwoDCoordinate">
+        <xs:annotation>
+            <xs:documentation>
+                Defines the minimum and maximum value for one dimension of a two dimensional coordinate.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="MinimumValue" minOccurs="0" type="xs:decimal"/>
+            <xs:element name="MaximumValue" minOccurs="0" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:simpleType name="DurationUnit">
+        <xs:annotation>
+            <xs:documentation>This entity indicates the periodic duration units.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DAY"/>
+            <xs:enumeration value="MONTH"/>
+            <xs:enumeration value="YEAR"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="RangeDateTime">
+        <xs:annotation>
+            <xs:documentation>
+                This entity stores the start and end date/time of a collection.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="BeginningDateTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        The time when the temporal coverage period being described began.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="EndingDateTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        The time of the temporal coverage period being described ended
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="AncillaryTemporalKeyword">
+        <xs:annotation>
+            <xs:documentation>
+                This attribute specifies a word or phrase which serves to summarize the temporal characteristics referenced in the collection.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:complexType name="PaleoTemporalCoverage">
+        <xs:annotation>
+            <xs:documentation>
+                For paleoclimate or geologic data, PaleoTemporalCoverage is the length of time represented by the data collected. PaleoTemporalCoverage should be used when the data spans time frames earlier than yyyy-mm-dd = 0001-01-01.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="PaleoStartDate" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is the number of years furthest back in time including units Ga, Ma, ka or ybp.
+
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PaleoStopDate" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is the number of years furthest back in time including units Ga, Ma, ka or ybp.
+
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ChronostratigraphicUnit" type="ChronostratigraphicUnit" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ChronostratigraphicUnit">
+        <xs:annotation>
+            <xs:documentation>
+                Is a controlled keyword describing Geologic Time.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Eon" minOccurs="1" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is the primary and largest division of geologic time.  Limits correspond with major, global crustal events, changes in sea level and/or climate, or biotic changes.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Era" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is a major division of geological time, tens or hundreds of millions of years long, usually distinguished by significant changes in the plant and animal kingdoms; also used to denote later archaeological periods, such as the prehistoric era. Five geologic eras have been established: Archeozoic [before 2500 million years ago (Ma)], Proterozoic (2500 to 570 Ma), Paleozoic (570 Ma to ca. 250 Ma), Mesozoic (ca. 250 to ca. 70 Ma), and Cenozoic (since ca. 70 Ma). All eras are divided into at least two geologic periods.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Period" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is the secondary division of geologic time, delimited by moderate but usually global crustal events, changes in sea level and/or climate, or biotic changes, sometimes in a relatively localized area. Two or more periods are required to make up a geologic era, and each period comprises two or more geologic epochs.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Epoch" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is the third-order division of geologic time, delimited by partial withdrawal of the sea from land masses and by gentle crustal disturbances in localized areas.  Two or more epochs are required to make up a geologic period, and, in turn, two or more periods are needed to constitute a geologic era.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Stage" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is a smaller unit of time. An Epoch usually has 1 or more Stages.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DetailedClassification" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="SpatialCoverage">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains collection's spatial coverage information.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="SpatialCoverageType" minOccurs="0" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute denotes whether the collection's spatial coverage requires horizontal, vertical, or both in the spatial domain and coordinate system definitions.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="HorizontalSpatialDomain" type="HorizontalSpatialDomain">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity holds collection horizontal spatial coverage data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="VerticalSpatialDomain" type="VerticalSpatialDomain">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity contains the domain value and type for the granule's vertical spatial domain. The reference frame or system from which altitude or depths are measured. The term 'altitude' is used instead of the common term 'elevation' to conform to the terminology in Federal Information Processing Standards 70-1 and 173. The information contains the datum name, distance units and encoding method, which provide the definition for the system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element minOccurs="0" name="OrbitParameters" type="OrbitParameters">
+                <xs:annotation>
+                    <xs:documentation>
+                        Orbit parameters for the collection used by the Orbital Backtrack Algorithm.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="GranuleSpatialRepresentation" type="GranuleSpatialRepresentation">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity contains the indication of spatial coordinate system for all the granules in the collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SpatialInfo" type="SpatialInfo" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        This entity stores the reference frame or system from which altitudes (elevations) are measured. The information contains the datum name, distance units and encoding method, which provide the definition for the system. This table also stores the characteristics of the reference frame or system from which depths are measured. The additional information in the table are geometry reference data etc.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SpatialKeyword" type="SpatialKeyword" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Field specifies the name of a place on Earth, a location within the Earth, a vertical location, or a location outside of Earth.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="HorizontalSpatialDomain">
+        <xs:annotation>
+            <xs:documentation>
+                This entity holds collection horizontal spatial coverage data.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ZoneIdentifier" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The appropriate numeric or alpha code used to identify the various zones in this grid coordinate system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Geometry" type="Geometry"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Geometry">
+        <xs:sequence>
+            <xs:element name="CoordinateSystem" type="CoordinateSystem"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="Point" type="Point"/>
+                <xs:element name="BoundingRectangle" type="BoundingRectangle"/>
+                <xs:element name="GPolygon" type="GPolygon"/>
+                <xs:element name="Line" type="Line"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OrbitParameters">
+        <xs:annotation>
+            <xs:documentation>
+                Orbit parameters for the collection used by the Orbital Backtrack Algorithm.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="SwathWidth" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        Width of the swath at the equator in Kilometers.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Period" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>Orbital period in decimal minutes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="InclinationAngle" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        Inclination of the orbit. This is the same as (180-declination) and also the same as the highest latitude achieved by the satellite. Data Unit: Degree.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NumberOfOrbits" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>Indicates the number of orbits.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="StartCircularLatitude" type="xs:decimal" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The latitude start of the orbit relative to the equator. This is used by the backtrack search algorithm to treat the orbit as if it starts from the specified latitude. This is optional and will default to 0 if not specified.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VerticalSpatialDomain">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains the domain value and type for the granule's vertical spatial domain. The reference frame or system from which altitude or depths are measured. The term 'altitude' is used instead of the common term 'elevation' to conform to the terminology in Federal Information Processing Standards 70-1 and 173. The information contains the datum name, distance units and encoding method, which provide the definition for the system.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute describes the type of the area of vertical space covered by the locality.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Value" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute describes the extent of the area of vertical space covered by the granule. Must be accompanied by an Altitude Encoding Method description. The datatype for this attribute is the value of the attribute VerticalSpatialDomainType. The unit for this attribute is the value of either DepthDistanceUnits or AltitudeDistanceUnits.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="GranuleSpatialRepresentation">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains the indication of spatial coordinate system for all the granules in the collection.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CARTESIAN"/>
+            <xs:enumeration value="GEODETIC"/>
+            <xs:enumeration value="ORBIT"/>
+            <xs:enumeration value="NO_SPATIAL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CoordinateSystem">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CARTESIAN">
+                <xs:annotation>
+                    <xs:documentation>Indicates a cartesian coordinate system.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="GEODETIC">
+                <xs:annotation>
+                    <xs:documentation>Indicates a geodetic coordinate system.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Line">
+        <xs:annotation>
+            <xs:documentation>
+                This entity holds the horizontal spatial coverage of a line. A line area contains at lease two points expressed with (PointLongitude, PointLatitude). A Line entity forms with at least two Point entity. CMR stores horizontal spatial coverage Line type information using oracle spatial type expression.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="2" maxOccurs="unbounded" name="Point" type="Point"/>
+            <xs:element minOccurs="0" name="CenterPoint" type="Point"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Point">
+        <xs:annotation>
+            <xs:documentation>
+                This entity holds the horizontal spatial coverage of a point.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="PointLongitude" type="Longitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        The longitude value of a spatially referenced pointer in degree.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PointLatitude" type="Latitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        The latitude value of a spatially referenced pointer in degree.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BoundingRectangle">
+        <xs:annotation>
+            <xs:documentation>
+                This entity holds the horizontal spatial coverage of a line. CMR stores horizontal spatial coverage bounding rectangle type information using oracle spatial type expression as a four points polygon. TODO possible merge with collection but collection does not have CenterPoint
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="WestBoundingCoordinate" type="Longitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        Western-most coordinate of the limit of coverage expressed in longitude (degree).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NorthBoundingCoordinate" type="Latitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        Northern-most coordinate of the limit of coverage expressed in latitude (degree).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EastBoundingCoordinate" type="Longitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        Eastern-most coordinate of the limit of coverage expressed in longitude (degree).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SouthBoundingCoordinate" type="Latitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        Southern-most coordinate of the limit of coverage expressed in latitude (degree).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="CenterPoint" type="Point">
+                <xs:annotation>
+                    <xs:documentation>
+                        The center point of the bounding rectangle. This value is ignored for collections.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Latitude">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-90.0"/>
+            <xs:maxInclusive value="90.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Longitude">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-180.0"/>
+            <xs:maxInclusive value="180.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="GPolygon">
+        <xs:annotation>
+            <xs:documentation>
+                A GPolygon represents an area on the earth represented by a main boundary with optional boundaries excluded regions from the main boundary.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Boundary" type="Boundary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The boundary representing the outer ring of the GPolygon.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ExclusiveZone" type="ExclusiveZone">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the excluded boundaries from the GPolygon.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="CenterPoint" type="Point">
+                <xs:annotation>
+                    <xs:documentation>
+                        The center point of the polygon. This value is ignored for collections.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Boundary">
+        <xs:annotation>
+            <xs:documentation>
+                A boundary is set of points connected by straight lines representing a polygon on the earth. It takes a minimum of three points to make a boundary. Points must be specified in clockwise order.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="3" maxOccurs="unbounded" name="Point" type="Point"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ExclusiveZone">
+        <xs:annotation>
+            <xs:documentation>
+                Contains a list of boundaries to exclude from some area.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="Boundary" type="Boundary">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SpatialKeyword">
+        <xs:annotation>
+            <xs:documentation>
+                Field specifies the name of a place on Earth, a location within the Earth, a vertical location, or a location outside of Earth.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="LocationCategory" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The first level of the location hierarchy.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="LocationType" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The second level of the location hierarchy.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+
+            <xs:element name="LocationSubregion1" type="LocationSubregion1" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The third level of the location hierarchy.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="DetailedLocation" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The uncontrolled location keyword which allows authors to include any location keywords
+                        that are not available in the controlled keyword list.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="LocationSubregion1">
+        <xs:sequence>
+            <xs:element name="Value" type="xs:string"/>
+            <xs:element name="LocationSubregion2" type="LocationSubregion2" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LocationSubregion2">
+        <xs:sequence>
+            <xs:element name="Value" type="xs:string"/>
+            <xs:element name="LocationSubregion3" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Distribution">
+        <xs:annotation>
+            <xs:documentation>
+                Field describes media options, size, data format, and fees involved in distributing the data set.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="DistributionMedia" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The media options for the user receiving the data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DistributionSize" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        An approximate size (in KB, MB or GB) for the entire data set. Specify if data are compressed and the method of compression.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DistributionFormat" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data format used to distribute the data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fees" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cost of DistributionMedia or distribution costs if any. Specify if there are no costs.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DataSetLanguage">
+        <xs:annotation>
+            <xs:documentation>
+                Describes the language used in the preparation, storage, and description of the data.   It is the language of the information object, not the language used to describe or interact with the metadata record.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="uuid" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The universally unique identifier to the keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="CollectionProgress">
+        <xs:annotation>
+            <xs:documentation>
+                Describes the production status of the data set regarding its completeness.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PLANNED">
+                <xs:annotation>
+                    <xs:documentation>
+                        Planned refers to data sets to be collected in the future and are thus unavailable at the present time.  For Example: The Hydro spacecraft has not been launched, but information on planned data sets may be available.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="IN WORK">
+                <xs:annotation>
+                    <xs:documentation>
+                        In Work refers to data sets currently undergoing production or data that is continuously being collected or updated.  For Example: data from the AIRS instrument on Aqua is being collected continuously.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="COMPLETE">
+                <xs:annotation>
+                    <xs:documentation>
+                        Complete refers to data sets in which no updates or further data collection will be made.  For Example: Nimbus-7 SMMR data collection has been completed.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="RelatedURL">
+        <xs:annotation>
+            <xs:documentation>
+                Field specifies links to Internet sites that contain information related to the data, as well as related Internet sites such as project home pages, related data archives/servers, metadata extensions, online software packages, web mapping services, and calibration/validation data.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="URLContentType" type="URLContentType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Protocol" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is the protocol to the resource associated with the URL.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="URL" minOccurs="1" maxOccurs="unbounded" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is the URL to the resource associated with the data set.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Title" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        is a one-line description of the resource, could be used a caption when a browse image is displayed. The title is especially useful for images such as graphs and photos.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        provides information about the resource defined by the URL
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="MimeType" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The mime type of the online resource.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="URLContentType">
+        <xs:annotation>
+            <xs:documentation>
+                Describes the type of URL being referenced.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Subtype" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The universally unique identifier to the keyword.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="AncillaryKeyword">
+        <xs:annotation>
+            <xs:documentation>
+                Field allows authors to provide any words or phrases needed to further describe the data set.  Authors can specify a URI using the resource attribute to reference an external vocabulary system’s keyword.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="resource" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Specifies a URI to reference an external vocabulary system’s keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+
+
+    </xs:complexType>
+
+    <xs:complexType name="PublicationReference" mixed="true">
+        <xs:annotation>
+            <xs:documentation>
+                Field describes key bibliographic citations pertaining to the data set.
+
+                Bibliographic citations may be populated as a block of text in the free-text field or as text in subfields (see below). Citations in the free-text field may be provided in styles used by professional scientific journals such as the American Geophysical Union (AGU), American Psychological Association (APA), or Modern Language Association (MLA).
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Author" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the individual(s) or organization(s) with primary intellectual responsibility for the cited resource's development.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PublicationDate" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The publication/reference date for the cited resource.  If the Publication Date is not known, please use "Unknown".                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Title" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The title (name) of the cited resource.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Series" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of a resource series, or aggregate (collection) resource of which the cited resource is a part.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Edition" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The version of a cited resource.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Volume" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The order or sequence of a resource in a series or set.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Issue" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The issue number of a resource (usually within a volume).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ReportNumber" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The issue number of a resource (usually within a volume).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PublicationPlace" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the city (and state or province and country if needed) where the resource was made available.
+                        ]                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Publisher" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the individual(s) or organization(s) that made the resource available.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Pages" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the individual(s) or organization(s) that made the resource available.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ISBN" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        International Standard Book Number.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DOI" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Digital Object Identifier.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OnlineResource" type="RelatedURL" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The URL of the online resource containing the cited resource.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OtherReferenceDetails" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Additional free-text reference information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MetadataAssociation">
+        <xs:annotation>
+            <xs:documentation>
+                This entity is used to describe associated metadata.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="EntryId" type="xs:string"/>
+            <xs:element name="Type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The type of the association
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Explanation of how the associated metadata is used.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ParentAssociation">
+        <xs:annotation>
+            <xs:documentation>
+                Field allows the capability to relate generalized aggregated metadata records (parents) to metadata records with highly specific information (children). Population of the ParentAssociation field should be reserved for instances where many metadata records are basically subsets that can be better represented by one parent metadata record, which describes the entire collection. Typically, the parent metadata record will have many children metadata records, which refer to the parent through the ParentAssociation field. In some instances, a child may point to more than one parent. The ParentAssociation is populated with an EntryID.
+
+                The ParentAssociation is only populated if there are children metadata records that reference a parent metadata record.  Upon display of results, both parent and children metadata are available with explicit linkages between parent and child records through the ParentAssociation field.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="MetadataVersion">
+        <xs:annotation>
+            <xs:documentation>
+                Field is used to identify the current Metadata version.
+            </xs:documentation>
+
+        </xs:annotation>
+
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:complexType name="ExtendedMetadata">
+        <xs:annotation>
+            <xs:documentation>
+                allow organizations to store user defined values within the metadata record not available in the existing UMM.            </xs:documentation>
+
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Group" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        field can use a unique name for an organization and a reverse URL scheme is recommended. May contain up to 1024 characters.                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" minOccurs="1" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Field must be unique in the global group. If two organizations use the same Name field for different usages, one must define their property within the Group field.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Value" type="MetadataValue" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        field and Group field are highly recommended and may contain binary data within a CDATA tag.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MetadataValue">
+        <xs:annotation>
+            <xs:documentation>
+                field and Group field are highly recommended and may contain binary data within a CDATA tag.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The universally unique identifier to the keyword.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- *********************************************************** -->
+    <!-- #mark Product -->
+        
+    <xs:complexType name="Product">
+        <xs:annotation>
+            <xs:documentation>
+                Allows organizations to store product specific information, such as dataset name, version, processing level, etc.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="ShortName" minOccurs="1" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This name will identify the short name associated with the collection. This is the official reference name used in identifying the contents of the data collection. All characters must be in upper case. The short name and version id combination must be unique for a provider.
+                    </xs:documentation>
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="LongName" minOccurs="1" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute will identify the long name associated with the collection. This is the reference name used in describing the scientific contents of the data collection. The long name and version id must be unique for a provider.
+                    </xs:documentation>
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="VersionId" type="VersionId" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Version identifier of the data collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="ProductLevelId" type="ProductLevelId" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the processing level identifier of the collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="CollectionDataType" type="CollectionDataType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation> An element to identify
+                        non-science-quality products such as NRT data. If a
+                        collection does not contain this field, it will be
+                        assumed to be of science-quality.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="ProductFlag" type="ProductFlag" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Flag to indicate the type of product.  This is required by EMS to classify data.   The purpose of the ProductFlag is to identify the primary responsibility of data providers for the data products archive/generation and distribution, meaning which products they produce/distribute and which products they receive from other data providers required as inputs for the data processing. For example, when GMAO products are produced and distributed by GMAO then all the products are considered to be primary standard products. If GMAO sends one of the GMAO products to LaRC as input data for processing of a CERES product then the GMAO product at LaRC will be considered as External Ancillary data product. Therefore the External Ancillary is the data that is external to the data provider and is required for the processing of the data products.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="CollectionDataType">
+        <xs:annotation>
+            <xs:documentation> An element to identify
+                non-science-quality products such as NRT data. If a
+                collection does not contain this field, it will be
+                assumed to be of science-quality.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="SCIENCE_QUALITY">
+                    <xs:annotation>
+                        <xs:documentation>All EOS and non-EOS data and
+                            data products that are archived
+                            by EOSDIS.</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="NEAR_REAL_TIME">
+                    <xs:annotation>
+                        <xs:documentation> Data from the source that are
+                            available for use within a time that is short in
+                            comparison to important time scales in the phenomena
+                            being studied. This data is not science quality and
+                            is not retained by EOSDIS once the SCIENCE_QUALITY
+                            product is archived </xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="OTHER">
+                    <xs:annotation>
+                        <xs:documentation> Any EOS and non-EOS data and data
+                            products, that are not SCIENCE_QUALITY and do not
+                            fall under NEAR_REAL_TIME holdings.</xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+
+    <xs:simpleType name="ProductLevelId">
+        <xs:annotation>
+            <xs:documentation>
+                Designates the product level values (i.e., 0, 1, 1A, 1B, 2, 3, 4).
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="VersionId">
+        <xs:annotation>
+            <xs:documentation>
+                Version identifier of the data collection.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="ProductFlag">
+        <xs:annotation>
+            <xs:documentation>
+                Flag to indicate the type of product.  Values will be keywords: DATA_PRODUCT_FILE, INSTRUMENT_ANCILLARY_FILE, SYSTEM/SPACECRAFT_FILE, EXTERNAL_DATA.  This is required by EMS to classify data.   The purpose of the ProductFlag is to identify the primary responsibility of data providers for the data products archive/generation and distribution, meaning which products they produce/distribute and which products they receive from other data providers required as inputs for the data processing. For example, when GMAO products are produced and distributed by GMAO then all the products are considered to be primary standard products. If GMAO sends one of the GMAO products to LaRC as input data for processing of a CERES product then the GMAO product at LaRC will be considered as External Ancillary data product. Therefore the External Ancillary is the data that is external to the data provider and is required for the processing of the data products.             </xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DATA_PRODUCT_FILE"/>
+            <xs:enumeration value="INSTRUMENT_ANCILLARY_FILE"/>
+            <xs:enumeration value="SYSTEM/SPACECRAFT_FILE"/>
+            <xs:enumeration value="EXTERNAL_DATA"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ProductSpecificAttribute">
+
+        <xs:annotation>
+            <xs:documentation>
+                This entity stores the product specific attributes (i.e. attributes used to describe the unique characteristics of the collection which extend beyond those defined in this model).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The attribute's name</xs:documentation>
+                </xs:annotation>
+
+            </xs:element>
+            <xs:element name="DataType" type="DataType">
+                <xs:annotation>
+                    <xs:documentation>Data type of parameter value</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute provides a description for the additional_attribute_name.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="MeasurementResolution" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute will be used to identify the smallest unit increment to which the parameter value is measured.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ParameterRangeBegin" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute provides the minimum value of parameter over whole collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ParameterRangeEnd" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute provides the maximum value of parameter over whole collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ParameterUnitsOfMeasure" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The standard unit of measurement for a not-core attribute. AVHRR: unit of geophysical parameter-units of geophysical parameter.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ParameterValueAccuracy" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        An estimate of the accuracy of the assignment of attribute value. AVHRR: Measurement error or precision-measurement error or precision of a data product parameter. This can be specified in percent or the unit with which the parameter is measured.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ValueAccuracyExplanation" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This defines the method used for determining the parameter value accuracy that is given for this non core attribute.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Value" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute contains the value of the product specific attribute (additional attribute) for all granules across a given collection
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="DataType">
+        <xs:annotation>
+            <xs:documentation>
+                This entity contains the additional attribute data types.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="STRING">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is XML primitive string type. See
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">the XML Schema specification</a>
+                        for more information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLOAT">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is XML primitive float type, without support for positive or negative infinity, or not-a-number. See
+                        <a href="http://www.w3.org/TR/xmlschema-2/#float">the XML Schema specification</a>
+                        for more information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="INT">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is XML derived int type. See
+                        <a href="http://www.w3.org/TR/xmlschema-2/#int">the XML Schema specification</a>
+                        for more information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BOOLEAN">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is XML primitive boolean type. See
+                        <a href="http://www.w3.org/TR/xmlschema-2/#boolean">the XML Schema specification</a>
+                        for more information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATE">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is XML primitive date type but with GMT timezone, meaning any timezoned or non-timezoned value will be treated as having GMT timezone. See
+                        <a href="http://www.w3.org/TR/xmlschema-2/#date">the XML Schema specification</a>
+                        for more information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TIME">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is XML primitive time type but with GMT timezone, meaning any timezoned or non-timezoned value will be treated as having GMT timezone. See
+                        <a href="http://www.w3.org/TR/xmlschema-2/#time">the XML Schema specification</a>
+                        for more information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATETIME">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is XML primitive dateTime type. See
+                        <a href="http://www.w3.org/TR/xmlschema-2/#dateTime">the XML Schema specification</a>
+                        for more information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATE_STRING">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is a string that follows a provider-defined date format.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TIME_STRING">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is a string that follows a provider-defined time format.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATETIME_STRING">
+                <xs:annotation>
+                    <xs:documentation>
+                        The parameter value type is a string that follows a provider-defined dateTime format.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="DataProviderTimestamps">
+        <xs:annotation>
+            <xs:documentation>
+                Provided by the data provider for when the collection was inserted, updated, or is or is planned to be deleted from the data provider’s database.            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="insertTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        specifies the insert date/time the collection entered the data provider's database.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+
+            <xs:element name="updateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        specifies the most recent date/time an update occurred in the data provider's database.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+
+            <xs:element name="deleteTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date the collection is or is planned to be deleted from the data provider's database. This date is provided by the data provider. If this date is in the past, the collection will be deleted during the next automated cleanup.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SpatialInfo">
+        <xs:annotation>
+            <xs:documentation>
+                This entity stores the reference frame or system from which altitudes (elevations) are measured. The information contains the datum name, distance units and encoding method, which provide the definition for the system. This table also stores the characteristics of the reference frame or system from which depths are measured. The additional information in the table are geometry reference data etc.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="SpatialCoverageType" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute denotes whether the locality/coverage requires horizontal, vertical, or both in the spatial domain and coordinate system definitions.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VerticalCoordinateSystem" type="VerticalCoordinateSystem" minOccurs="0"/>
+            <xs:element name="HorizontalCoordinateSystem" type="HorizontalCoordinateSystem" minOccurs="0"/>
+            <xs:element name="TwoDCoordinateSystem" type="TwoDCoordinateSystem" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Defines a named two dimensional coordinate system for the collection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PlanarCoordinateInformation">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="DistanceUnits" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Units of measure used for planar coordinate description distances.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="EncodingMethod" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The means used to represent horizontal positions in the planar coordinate system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0">
+                <xs:element name="DistanceAndBearingRepresentation" type="DistanceAndBearingRepresentation"/>
+                <xs:element name="CoordinateRepresentation" type="CoordinateRepresentation"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DistanceAndBearingRepresentation">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="DistanceResolution" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        The minimum distance measurable between two points, expressed in Planar Distance Units of measure.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="BearingResolution" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        The minimum angle measurable between two points, expressed in Bearing Units of measure.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="BearingUnits" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Units of measure used for angles.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="BearingReferenceDirection" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Direction from which the bearing is measured clockwise.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="BearingReferenceMeridian" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Axis from which the bearing is measured.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CoordinateRepresentation">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="AbscissaResolution" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        The (nominal) minimum distance between the 'x' or column values of two adjacent points, expressed in Planar Distance Units of measure. Planar Distance Units of measure are units used for distances whose domain values are meters, international feet, and survey feet.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="OrdinateResolution" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        The (nominal) minimum distance between the 'y' or row values of two adjacent points, expressed in Planar Distance Units of measure. Planar Distance Units of measure are units for distances whose domain values are meters, international feet, and survey feet.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MapProjection">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="MapProjectionName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the systematic representation of all or part of the surface of the Earth on a plane or developable surface.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="MapProjectionPointer" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This is a data modeling logical reference to a map projection.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PlanarCoordinateSystem">
+        <xs:annotation>
+            <xs:documentation>
+                This entity stores collections' coordinate system reference information include description of the system and geo-reference information, the name of the map projection [the systematic representation of all or part of the surface of the Earth on a plane or developable surface], a logical pointer to the map projection details, the description of the coordinate system and geo-reference information, and the resolutions units, direction, and meridian for the planar coordinate system etc.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="PlanarCoordinateSystemId" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The reference ID of the planar coordinate system. This ID is unique per data provider.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PlanarCoordinateInformation" type="PlanarCoordinateInformation" minOccurs="0"/>
+            <xs:choice minOccurs="0">
+                <xs:element name="MapProjection" type="MapProjection"/>
+                <xs:element name="LocalPlanarCoordinateSystem" type="LocalCoordinateSystem"/>
+                <xs:element minOccurs="0" name="GridCoordinateSystemName" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This attribute contains the name of the grid coordinate system.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VerticalCoordinateSystem">
+        <xs:sequence>
+            <xs:element name="AltitudeSystemDefinition" type="VerticalSystemDefinition" minOccurs="0"/>
+            <xs:element name="DepthSystemDefinition" type="VerticalSystemDefinition" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VerticalSystemDefinition">
+        <xs:annotation>
+            <xs:documentation>
+                The reference frame or system from which altitude or depths are measured. The term 'altitude' is used instead of the common term 'elevation' to conform to the terminology in Federal Information Processing Standards 70-1 and 173. The information contains the datum name, distance units and encoding method, which provide the definition for the system.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="DatumName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The identification given to the level surface taken as the surface of reference from which measurements are compared.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="DistanceUnits" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The recorded units</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="EncodingMethod" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The means used to encode measurements.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Resolution" type="Resolution" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>This entity stores a list of resolutions.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VerticalResolutionRange" type="VerticalResolutionRange" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        is a controlled list of vertical resolution ranges
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Resolution">
+        <xs:annotation>
+            <xs:documentation>
+                This entity stores the minimum distance possible between two adjacent values, expressed in distance
+                units of measure for collection.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:decimal"/>
+    </xs:simpleType>
+
+    <xs:complexType name="HorizontalCoordinateSystem">
+        <xs:sequence>
+            <xs:element name="GeodeticModel" type="GeodeticModel" minOccurs="0"/>
+            <xs:choice minOccurs="0">
+                <xs:element name="GeographicCoordinateSystem" type="GeographicCoordinateSystem"/>
+                <xs:element name="PlanarCoordinateSystems" type="PlanarCoordinateSystem" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="LocalCoordinateSystem" type="LocalCoordinateSystem"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GeodeticModel">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="HorizontalDatumName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The identification given to the reference system used for defining the coordinates of points.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="EllipsoidName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identification given to established representation of the Earth's shape.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="SemiMajorAxis" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>Radius of the equatorial axis of the ellipsoid.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="DenominatorOfFlatteningRatio" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        The ratios of the Earth's major axis to the difference between the major and the minor.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GeographicCoordinateSystem">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="GeographicCoordinateUnits" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Units of measure used for the geodetic latitude and longitude resolution values. For lat, a 2 digit decimal number from 0-90; for lon, a 3 digit decimal number from 0-180. + or absence of - for values north of equator or values west of prime meridian; - for all others.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="LatitudeResolution" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        The minimum difference between two adjacent latitude values expressed in Geographic Coordinate Units of measure.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="LongitudeResolution" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        The minimum difference between two adjacent longitude values expressed in Geographic Coordinate Units of measure.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="HorizontalResolutionRange" type="HorizontalResolutionRange" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        is a controlled list of horizontal resolution ranges
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LocalCoordinateSystem">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This class contains a description of the coordinate system and geo-reference information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="GeoReferenceInformation" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        A description of the information provided to register the local system to the Earth (e.g. control points, satellite ephemeral data, and inertial navigation data).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="AccessValue">
+        <xs:annotation>
+            <xs:documentation>
+                Providers use this field to specify various restriction levels with ACLs. For example: LARC_ASDC might specify a Collection Level ACL that hides all collections that have AccessValue set to '15.0'. There is no controlled mapping for what the values represent, but there are many ACLs built in CMR off these types of rules.
+                The use of this field in the ACL can be used to do more than just hide data from guest users, it may also be used to permit access only to certain groups of users (these groups can be created and managed within ECHO's PUMP tool).
+                For example, there may be a group of people with approval for viewing metadata that a NASA DAAC hasn't fully released to the public. This group of people can by identified by their URS account name and granted access using the AccessValue value. The AccessValue is used at both the collection and the granule level.            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal"/>
+    </xs:simpleType>
+
+
+</xs:schema>
+
