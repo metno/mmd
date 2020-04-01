@@ -12,7 +12,7 @@
 			<xsl:apply-templates select="mmd:title" />
 			<xsl:apply-templates select="mmd:dataset_citation" />
                         <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
-			<xsl:apply-templates select="mmd:keywords[@vocabulary='gcmd']" />
+			<xsl:apply-templates select="mmd:keywords[@vocabulary='GCMD']" />
 			<xsl:apply-templates select="mmd:iso_topic_category" />
 			<xsl:apply-templates select="mmd:instrument" />
 			<xsl:apply-templates select="mmd:platform" />
@@ -87,21 +87,59 @@
 		</xsl:element>
 	</xsl:template>
 
-        <xsl:template match="mmd:keywords[@vocabulary='gcmd']">
+        <xsl:template match="mmd:keywords[@vocabulary='GCMD']">
             <xsl:for-each select="mmd:keyword">
                 <xsl:element name="dif:Parameters">
                     <xsl:element name="dif:Category">EARTH SCIENCE</xsl:element>
+                    <xsl:variable name="mykeywordstring">
+                        <xsl:value-of select="."/>
+                    </xsl:variable>
+                    <xsl:call-template name="keywordseparation">
+                        <xsl:with-param name="keywordstring" select="$mykeywordstring" />
+                    </xsl:call-template>
+                    <!-- Removed as the current OAI-PMH provider cannot
+                         use XSLT2. Øystein Godøy, METNO/FOU, 2020-04-01 
                     <xsl:for-each select="tokenize(.,'&gt;')">
-                        <!--xsl:sequence select="."/-->
-                        <!--xsl:if test="not(position() eq last())"><br /></xsl:if-->
                         <xsl:if test="position() = 1"><xsl:element name="dif:Topic"><xsl:sequence select="."/></xsl:element></xsl:if>
                         <xsl:if test="position() = 2"><xsl:element name="dif:Term"><xsl:sequence select="."/></xsl:element></xsl:if>
                         <xsl:if test="position() = 3"><xsl:element name="dif:Variable_Level_1"><xsl:sequence select="."/></xsl:element></xsl:if>
                         <xsl:if test="position() = 4"><xsl:element name="dif:Detailed_Variable"><xsl:sequence select="."/></xsl:element></xsl:if>
                     </xsl:for-each>
-                    <!--xsl:value-of select="." /-->
+                    -->
                 </xsl:element>
             </xsl:for-each>
+        </xsl:template>
+        <!-- Template to split keywords into the sub elements DIF require -->
+        <xsl:variable name="separator">
+            <xsl:text> &gt; </xsl:text>
+        </xsl:variable>
+        <xsl:template name="keywordseparation">
+            <xsl:param name="keywordstring"/>
+            <xsl:choose>
+                <xsl:when test="contains($keywordstring,$separator)  ">
+                    <xsl:element name="dif:Topic">
+                        <xsl:value-of select="substring-before($keywordstring,$separator)"/>
+                    </xsl:element>
+                    <xsl:variable name="tmpstr1">
+                        <xsl:value-of select="substring-after($keywordstring,$separator)"/>
+                    </xsl:variable>
+                    <xsl:element name="dif:Term">
+                        <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
+                    </xsl:element>
+                    <xsl:variable name="tmpstr2">
+                        <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
+                    </xsl:variable>
+                    <xsl:element name="dif:Variable_Level_1">
+                        <xsl:value-of select="substring-after($tmpstr2,$separator)"/>
+                    </xsl:element>
+                    <xsl:variable name="tmpstr3">
+                        <xsl:value-of select="substring-after($tmpstr1,$separator)"/>
+                    </xsl:variable>
+                    <xsl:element name="dif:Variable_Level_2">
+                        <xsl:value-of select="substring-after($tmpstr3,$separator)"/>
+                    </xsl:element>
+                </xsl:when>
+            </xsl:choose>    
         </xsl:template>
 
 	<xsl:template match="mmd:temporal_extent">
