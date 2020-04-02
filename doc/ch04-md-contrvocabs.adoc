@@ -47,8 +47,8 @@ data. This is primarily Sentinel datasets.
 
 <<collection>>
 
-[[dataset-production-status]]
-=== Dataset production status
+[[dataset-production-status-types]]
+=== Dataset production status types
 
 [cols="2,8"]
 |=======================================================================
