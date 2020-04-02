@@ -22,10 +22,10 @@ Forecast convention community.
 In order to build the documentation use the following command
 
 HTML:
-    asciidoctor -n mmd-specification.adoc
+    asciidoctor -n mmd_specification.adoc
 
 PDF:
-    asciidoctor-pdf -n mmd-specification.adoc
+    asciidoctor-pdf -n mmd_specification.adoc
     
 ## Licenses
 GPL 3 or higher for software, Creative Commons BY for documents.
