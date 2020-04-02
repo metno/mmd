@@ -25,8 +25,12 @@ import datetime
 import logging
 import os
 import os.path
+import io
 
 def usage():
+    """
+    Print the usage of this sctript
+    """
     print('')
     print('Usage: ' + sys.argv[0] +
           ' -i <input file> -f <format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
@@ -34,7 +38,7 @@ def usage():
     print('\t-f: format of inputfile [dif,mm2,iso]')
     print('\t-o: outputfile')
     print('\t-xslt: path to xslt transformations. default xslt')
-    print('\t-loglevel: loglevel. Default: INFO')
+    print('\t-log_level: loglevel. Default: INFO')
     print('\t-h: show this help text')
     print('')
     print("If input file and output file are paths, then process all files\n" + 
@@ -50,8 +54,8 @@ class ConvertToMMD():
       inputfile:    path to input file for converting
       input_format: the metadata format of the inputfile
       outputfile:   path to output file for writing
-      xslt:         path containg xslt transformations
-      log_level:    ovveride default loglevel
+      xslt:         path containg xslt transformations. DEFAULT: xslt
+      log_level:    ovveride default loglevel. [DEBUG,WARN,INFO]
     """
 
     #TODO: Change log_level back to INFO when script is working as supposed to
@@ -66,6 +70,8 @@ class ConvertToMMD():
         self.log_level = log_level
         logging.basicConfig(level=self.log_level)
         self.logger = logging.getLogger(__name__)
+
+
         
     def convert(self):
         """
@@ -76,7 +82,7 @@ class ConvertToMMD():
         self.logger.info("Input file is: " + self.inputfile)
         self.logger.info("Format is : " + self.input_format)
         
-        #TODO: Use file-extension of inputfile to determine input_format instead of cmd arg
+        #TODO: Use file-extension of inputfile to determine input_format instead of cmd arg?
         if self.input_format == 'mm2':
             self.convert_from_mm2()
         elif self.input_format == 'dif':
@@ -97,50 +103,54 @@ class ConvertToMMD():
 
         #Check that input file exsists and process file
         if os.path.isfile(self.inputfile):
-            mm2_doc = ET.ElementTree(file=self.inputfile).getRoot()
 
             #Get the xmd file with same filename as mm2 file
             base_filename = os.path.splitext(self.inputfile)[0]
-            self.logger.debug("Base filename is: " + base_filename)
             base_filename = base_filename + '.xmd'
             self.logger.debug("xmd filename is: " + base_filename)      
 
-            #Read the xmd-file
-            xmd_doc = ET.ElementTree(file=base_filename).getRoot()
+            #This is needed for right uri resolving
+            base_filename = '../' + base_filename
+            #Escape the filename inside string quotes
+            my_xmd_file_str = "'%s'" % base_filename
 
-            #Merge the files
-            mm2_doc.append(xmd_doc)
+            #Create parser and add URI resolver
+            parser = ET.XMLParser()
+            parser.resolvers.add(FileResolver())
+
+            #Parse the inputfile
+            xml_input = ET.parse(open(self.inputfile, 'r'), parser)
+            
             
             #TODO: Implement MM2 Schema validation if we have usable mm2.xsd
             #Check inputfile against MM2 schema
             #xmlschema_mm2 = ET.XMLSchema(ET.parse('xsd/mm2.xsd'))
-            #if not xmlschema_mm2.validate(doc):
+            #if not xml_input.validate(doc):
             #    self.logger.warn("Inputfile: " + self.inputfile +
             #                     " does not validate against MM2 schema")
-
             
             
-                
+                        
+            
+            #Parse the xsl doc and transform with parameter
+            xslt_root = ET.parse(open('xslt/mm2-to-mmd.xsl', 'r'), parser)
+            transform = ET.XSLT(xslt_root)
+            mmd_doc = transform(xml_input, xmd=my_xmd_file_str)
 
-
-            #If input document validate against dif schema, transform to mmd
-            #if xmlschema_mm2.validate(doc):    
-            #Transform DIF to MMD.
-            transform_to_mmd = ET.XSLT(ET.parse('xslt/mm2-to-mmd.xsl'))
-            mm2_doc = ET.parse(self.inputfile)
-            mmd_doc = transform_to_mmd(mm2_doc)
-                    
+                                            
             #Order elemets to comply with mmd.xsd
             ordered_mmd = self.correct_element_order(mmd_doc)
                     
             #Validate the translated doc to mmd-schema
             xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
-            xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True, encoding=mmd_doc.docinfo.encoding)
+            xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True,
+                                        encoding=mmd_doc.docinfo.encoding)
 
-            #TODO: Only warning and debug is logged to console if document do not validate.
-            #      Should stop or continue writing to file
+            #Validate and print warning if document is not validated.
+            #If logger is in debug-mode,
+            #the reason for the error will be logged to stdout
             if not xmlschema_mmd.validate(ET.fromstring(xml_as_string)):
-                self.logger.warn("Document not validated")
+                self.logger.warn("MMD document not validated")
                 self.logger.debug(xmlschema_mmd.error_log)
 
             #Write xmlfile
@@ -161,34 +171,38 @@ class ConvertToMMD():
 
         #Check that input file exsists and process file
         if os.path.isfile(self.inputfile):
-            iso_doc = ET.ElementTree(file=self.inputfile)
-          
+            
+            #Create parser
+            parser = ET.XMLParser()
+            
+            #Parse the inputfile
+            xml_input = ET.parse(open(self.inputfile, 'r'), parser)
+
             #TODO: Implement schema validation for iso-xml files
             #xmlschema_iso = ET.XMLSchema(ET.parse('xsd/iso.xsd'))
-            #if not xmlschema_iso.validate(doc):
+            #if not xmlschema_iso.validate(xml_input):
             #    self.logger.warn("Inputfile: " + self.inputfile +
-            #                     " does not validate against dif9 schema")
+            #                     " does not validate against ISO schema")
 
             
-            
-            #If input document validate against iso schema, transform to mmd
-            #if xmlschema_iso.validate(doc):    
-            #Transform DIF to MMD.
-            transform_to_mmd = ET.XSLT(ET.parse('xslt/iso-to-mmd.xsl'))
-            
-            mmd_doc = transform_to_mmd(iso_doc)
-                    
+            #Parse the xsl doc and transform with parameter
+            xslt_root = ET.parse(open('xslt/iso-to-mmd.xsl', 'r'), parser)
+            transform = ET.XSLT(xslt_root)
+            mmd_doc = transform(xml_input)
+                                            
             #Order elemets to comply with mmd.xsd
             ordered_mmd = self.correct_element_order(mmd_doc)
                     
             #Validate the translated doc to mmd-schema
             xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
-            xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True, encoding=mmd_doc.docinfo.encoding)
+            xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True,
+                                        encoding=mmd_doc.docinfo.encoding)
 
-            #TODO: Only warning and debug is logged to console if document do not validate.
-            #      Should stop or continue writing to file
+            #Validate and print warning if document is not validated.
+            #If logger is in debug-mode,
+            #the reason for the error will be logged to stdout
             if not xmlschema_mmd.validate(ET.fromstring(xml_as_string)):
-                self.logger.warn("Document not validated")
+                self.logger.warn("MMD document not validated")
                 self.logger.debug(xmlschema_mmd.error_log)
 
             #Write xmlfile
@@ -198,8 +212,6 @@ class ConvertToMMD():
             self.logger.info("MMD file written to: " + self.outputfile)
 
             
-
-
 
             
     def convert_from_dif(self):
@@ -233,8 +245,8 @@ class ConvertToMMD():
                 if not xmlschema_dif.validate(dif_doc):
                     isValidated = False
                     self.logger.warn("Inputfile: " + self.inputfile +
-                                     " does not validate against dif9 schema")
-
+                                     " does not validate against DIF-9 schema")
+                    self.logger.debug(xmlschema_dif.error_log)
             
             #Check inputfile against DIF Version 10 schema
             if(schema_major_version == '10'):
@@ -242,10 +254,14 @@ class ConvertToMMD():
                 if not xmlschema_dif.validate(dif_doc):
                     isValidated = False
                     self.logger.warn("Inputfile: " + self.inputfile +
-                                     " does not validate against dif10 schema")
+                                     " does not validate against DIF-10 schema")
+                    self.logger.debug(xmlschema_dif.error_log)
 
 
             #If input document validate against dif schema, transform to mmd
+            #Transform anyway.
+            #FIXME: Remove next line if we want to be more strict
+            isValidated = True
             if isValidated:    
                 #Transform DIF to MMD.
                 transform_to_mmd = ET.XSLT(ET.parse('xslt/dif-to-mmd.xsl'))
@@ -257,12 +273,14 @@ class ConvertToMMD():
                     
                 #Validate the translated doc to mmd-schema
                 xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
-                xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True, encoding=mmd_doc.docinfo.encoding)
+                xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True,
+                                            encoding=mmd_doc.docinfo.encoding)
 
-                #TODO: Only warning and debug is logged to console if document do not validate.
-                #      Should stop or continue writing to file
+                #Validate and print warning if document is not validated.
+                #If logger is in debug-mode,
+                #the reason for the error will be logged to stdout
                 if not xmlschema_mmd.validate(ET.fromstring(xml_as_string)):
-                    self.logger.warn("Document not validated")
+                    self.logger.warn("MMD document not validated")
                     self.logger.debug(xmlschema_mmd.error_log)
 
                 #Write xmlfile
@@ -273,27 +291,36 @@ class ConvertToMMD():
              
                     
                
-                
-
-
-    #Correct element order to validate against schema
+      
     def correct_element_order(self,doc):
-            et_xslt = ET.parse('xslt/sort_mmd_according_to_xsd.xsl')
-            transform = ET.XSLT(et_xslt)
-            result = transform(doc)
-            doc = result.getroot()
-            return doc
-        
+        """
+        Correct the element order of the mmd file for validation
+        """
+        et_xslt = ET.parse('xslt/sort_mmd_according_to_xsd.xsl')
+        transform = ET.XSLT(et_xslt)
+        result = transform(doc)
+        doc = result.getroot()
+        return doc
+
+
+class FileResolver(ET.Resolver):
+    """
+    Helper class for URI resolving for mm2 to mmd conversion
+    """
+    def resolve(self, url, pubid, context):
+        return self.resolve_filename(url, context)
+
 def main(argv):
 
     # Parse command line arguments
     # print('Usage: ' + sys.argv[0] +
     #      ' -i <input file> -f <input_format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
     try:
-        opts, args = getopt.getopt(argv,"hi:f:o:xslt:loglevel:")
+        opts, args = getopt.getopt(argv,"hi:f:o:xslt:loglevel")
     except getopt.GetoptError:
         usage()
 
+    #FIXME: Loglevel does not pass right
     iflg = oflg = fflg = False
     for opt, arg in opts:
         if opt == ("-h"):

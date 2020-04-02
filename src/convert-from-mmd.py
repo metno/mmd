@@ -81,7 +81,7 @@ class ConvertFromMMD():
             self.convert_to_mm2()
         elif self.output_format == 'dif':
             self.convert_to_dif()
-        elif self.outut_format == 'iso':
+        elif self.output_format == 'iso':
             self.convert_to_iso()
         else:
             log.info('Unknown output_format. Please choose on of [mm2,dif,iso]')
@@ -91,91 +91,82 @@ class ConvertFromMMD():
 
         """
         Convert from MMD to ISO
-        """
-
-        #TODO: Should we be strict on validating input document against input schema?
-        
-        #Variable to keep track if document is validated or not
-        isValidated = True
-        
+        """                
         #TODO: Implement batchprocessing if input/output are paths not files
 
         #Check that input file exsists and process file
         if os.path.isfile(self.inputfile):
             mmd_doc = ET.ElementTree(file=self.inputfile)
 
-        #Validate the MMD input document
-        xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
+            #Validate the MMD input document
+            xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
 
-        if not xmlschema_mmd.validate(mmd_doc):
-            self.logger.warn("Input document not validated against MMD schema")
-            self.logger.debug(xmlschema_dif.error_log)
+            if not xmlschema_mmd.validate(mmd_doc):
+                self.logger.warn("Input document not validated against MMD schema")
+                self.logger.debug(xmlschema_dif.error_log)
 
-        #TODO: Evaluete right schema for transformation
-        transform_to_iso = ET.XSLT(ET.parse('xslt/mmd-to-iso.xsl'))
-        iso_doc = transform_to_iso(mmd_doc)
+            #TODO: Evaluete right schema for transformation
+            transform_to_iso = ET.XSLT(ET.parse('xslt/mmd-to-iso.xsl'))
+            iso_doc = transform_to_iso(mmd_doc)
                     
                                                      
-        #Validate the translated doc to mmd-schema
-        #xmlschema_iso = ET.XMLSchema(ET.parse('xsd/iso.xsd'))
-        xml_as_string = ET.tostring(iso_doc, xml_declaration=True, pretty_print=True, encoding=mmd_doc.docinfo.encoding)
+            xml_as_string = ET.tostring(iso_doc, xml_declaration=True, pretty_print=True,
+                                        encoding=iso_doc.docinfo.encoding)
 
-        #TODO: Only warning and debug is logged to console if document do not validate.
-        #      Should stop or continue writing to file
-        #if not xmlschema_iso.validate(ET.fromstring(xml_as_string)):
-        #    self.logger.warn("Output document not validated")
-        #    self.logger.debug(xmlschema_dif.error_log)
+            #TODO: Validate transformed document against schema
+            #xmlschema_iso = ET.XMLSchema(ET.pardse('xsd/iso.xsd'))
+            #if not xmlschema_iso.validate(ET.fromstring(xml_as_string)):
+            #    self.logger.warn("Output document not validated")
+            #    self.logger.debug(xmlschema_dif.error_log)
 
-        #Write xmlfile
-        outputfile = open(self.outputfile, 'w')
-        outputfile.write(xml_as_string)
-        outputfile.close()
-        self.logger.info("DIF file written to: " + self.outputfile)
+            #Write xmlfile
+            outputfile = open(self.outputfile, 'w')
+            outputfile.write(xml_as_string)
+            outputfile.close()
+            self.logger.info("DIF file written to: " + self.outputfile)
              
     def convert_to_dif(self):
 
         """
         Convert from MMD to DIF
         """
-
-        #TODO: Should we be strict on validating input document against input schema?
-        
-        #Variable to keep track if document is validated or not
-        isValidated = True
-        
+        #FIXME: Some withcharacters not stripped. Bug in xslt?
+              
         #TODO: Implement batchprocessing if input/output are paths not files
 
         #Check that input file exsists and process file
         if os.path.isfile(self.inputfile):
             mmd_doc = ET.ElementTree(file=self.inputfile)
 
-        #Validate the MMD input document
-        xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
+            #Validate the MMD input document
+            xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
 
-        if not xmlschema_mmd.validate(mmd_doc):
-            self.logger.warn("Input document not validated against MMD schema")
-            self.logger.debug(xmlschema_dif.error_log)
+            if not xmlschema_mmd.validate(mmd_doc):
+                self.logger.warn("Input document not validated against MMD schema")
+                self.logger.debug(xmlschema_dif.error_log)
 
-        #TODO: Evaluete right schema for transformation
-        transform_to_dif = ET.XSLT(ET.parse('xslt/mmd-to-dif10.xsl'))
-        dif_doc = transform_to_dif(mmd_doc)
+            #TODO: Evaluete right schema for transformation
+            transform_to_dif = ET.XSLT(ET.parse('xslt/mmd-to-dif10.xsl'))
+            dif_doc = transform_to_dif(mmd_doc)
                     
                                                      
-        #Validate the translated doc to mmd-schema
-        xmlschema_dif = ET.XMLSchema(ET.parse('xsd/dif10/dif_v10.3.xsd'))
-        xml_as_string = ET.tostring(dif_doc, xml_declaration=True, pretty_print=True, encoding=mmd_doc.docinfo.encoding)
+            #Validate the translated doc to dif-schema
+            #TODO: Evaluate right schema for validation
+            xmlschema_dif = ET.XMLSchema(ET.parse('xsd/dif10/dif_v10.3.xsd'))
+            xml_as_string = ET.tostring(dif_doc, xml_declaration=True, pretty_print=True,
+                                        encoding=dif_doc.docinfo.encoding)
 
-        #TODO: Only warning and debug is logged to console if document do not validate.
-        #      Should stop or continue writing to file
-        if not xmlschema_dif.validate(ET.fromstring(xml_as_string)):
-            self.logger.warn("Output document not validated")
-            self.logger.debug(xmlschema_dif.error_log)
+        
+         
+            if not xmlschema_dif.validate(ET.fromstring(xml_as_string)):
+                self.logger.warn("Output document not validated")
+                self.logger.debug(xmlschema_dif.error_log)
 
-        #Write xmlfile
-        outputfile = open(self.outputfile, 'w')
-        outputfile.write(xml_as_string)
-        outputfile.close()
-        self.logger.info("DIF file written to: " + self.outputfile)
+            #Write xmlfile
+            outputfile = open(self.outputfile, 'w')
+            outputfile.write(xml_as_string)
+            outputfile.close()
+            self.logger.info("DIF file written to: " + self.outputfile)
 
         
     def convert_to_mm2(self):
@@ -184,44 +175,40 @@ class ConvertFromMMD():
         Convert from MMD to MM2
         """
 
-        #TODO: Should we be strict on validating input document against input schema?
-        
-        #Variable to keep track if document is validated or not
-        isValidated = True
-        
+        #FIXME: Output file not pretty-printed. Error in xslt?
         #TODO: Implement batchprocessing if input/output are paths not files
 
         #Check that input file exsists and process file
         if os.path.isfile(self.inputfile):
             mmd_doc = ET.ElementTree(file=self.inputfile)
 
-        #Validate the MMD input document
-        xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
+            #Validate the MMD input document
+            xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
 
-        if not xmlschema_mmd.validate(mmd_doc):
-            self.logger.warn("Input document not validated against MMD schema")
-            self.logger.debug(xmlschema_dif.error_log)
+            if not xmlschema_mmd.validate(mmd_doc):
+                self.logger.warn("Input document not validated against MMD schema")
+                self.logger.debug(xmlschema_dif.error_log)
 
-        #TODO: Evaluete right schema for transformation
-        transform_to_mm2 = ET.XSLT(ET.parse('xslt/mmd-to-mm2.xsl'))
-        mm2_doc = transform_to_mm2(mmd_doc)
+            #TODO: Evaluete right schema for transformation
+            transform_to_mm2 = ET.XSLT(ET.parse('xslt/mmd-to-mm2.xsl'))
+            mm2_doc = transform_to_mm2(mmd_doc)
                     
                                                      
-        #Validate the translated doc to mmd-schema
-        #xmlschema_dif = ET.XMLSchema(ET.parse('xsd/dif10/dif_v10.3.xsd'))
-        xml_as_string = ET.tostring(mm2_doc, xml_declaration=True, pretty_print=True, encoding=mmd_doc.docinfo.encoding)
+            #Validate the translated doc to mmd-schema
+            #xmlschema_mm2 = ET.XMLSchema(ET.parse('xsd/mm2.xsd'))
+            xml_as_string = ET.tostring(mm2_doc, xml_declaration=True, pretty_print=True,
+                                        encoding=mm2_doc.docinfo.encoding)
 
-        #TODO: Only warning and debug is logged to console if document do not validate.
-        #      Should stop or continue writing to file
-        #if not xmlschema_dif.validate(ET.fromstring(xml_as_string)):
-        #    self.logger.warn("Output document not validated")
-        #    self.logger.debug(xmlschema_dif.error_log)
+            #Validate against schema
+            #if not xmlschema_mm2.validate(ET.fromstring(xml_as_string)):
+            #    self.logger.warn("Output document not validated")
+            #    self.logger.debug(xmlschema_dif.error_log)
 
-        #Write xmlfile
-        outputfile = open(self.outputfile, 'w')
-        outputfile.write(xml_as_string)
-        outputfile.close()
-        self.logger.info("DIF file written to: " + self.outputfile)
+            #Write xmlfile
+            outputfile = open(self.outputfile, 'w')
+            outputfile.write(xml_as_string)
+            outputfile.close()
+            self.logger.info("DIF file written to: " + self.outputfile)
           
                 
 
