@@ -67,7 +67,7 @@ Read a file with a liost of URLs to MMD metadata files. For each file, convert
 the file to ISO19139 and then send it to the GeoNetwork instance.
 
 ```
-send-to-geonetwork.pl <file with metadata file urls> <tmp directory>
+./send-to-geonetwork.pl <file with metadata file urls> <tmp directory>
 ```
 
 ## How to build documentation
@@ -78,11 +78,13 @@ Forecast convention community.
 
 In order to build the documentation use the following command
 
-HTML:
-    asciidoctor -n mmd_specification.adoc
-
-PDF:
-    asciidoctor-pdf -n mmd_specification.adoc
-    
+### HTML:
+```
+asciidoctor -n mmd_specification.adoc
+```
+### PDF:
+```
+asciidoctor-pdf -n mmd_specification.adoc
+```    
 ## Licenses
 GPL 3 or higher for software, Creative Commons BY for documents.
