@@ -12,18 +12,22 @@
 |Repetition allowed |No
 
 |Description a|
-Restrictions on the use of the dataset.
+Restrictions on the use of the dataset. The use_constraint has the following sub elements: 
+
+* identifier: referring to the spdx licenseId.
+* resource: the url to the referred license. 
 
 See <<use-constraints>> for a list of valid values.
 
 |Example XML: a|
 ----
 <use_constraint>
-    CC-BY
+   <identifier>CC-BY-4.0</identifier>
+   <resource>http://spdx.org/licenses/CC-BY-4.0</resource>
 </use_constraint>
 ----
 
-|DIF equivalent |/DIF/Use_Constraint
+|DIF equivalent |/DIF/Use_Constraints
 
 |ISO equivalent |/gmd:MD_Metadata
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString
