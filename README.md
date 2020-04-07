@@ -16,7 +16,7 @@ metadata for example datasets (in the `input-examples` folder).
 ## Scripts (src-folder)
 
 ### convert-to-mmd.py
-This sctript convert metadata files from either dif,iso or mm2 to mmd format.
+This script convert metadata files from either dif,iso or mm2 to mmd format.
 Schema validation is done on input and output documents. Failed validation will
 be logged as warnings to stdout.
 
@@ -25,7 +25,7 @@ be logged as warnings to stdout.
 ```
 
 ### convert-from-mmd.py
-This sctript convert metadata files from mmd format to one of [dif,iso,mm2] format.
+This script convert metadata files from mmd format to one of [dif,iso,mm2] format.
 Schema validation is done on input and output documents. Failed validation
 will be logged as warings to stdout.
 
