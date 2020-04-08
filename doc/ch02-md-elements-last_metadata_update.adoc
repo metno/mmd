@@ -14,7 +14,7 @@
 |Description |The last update of the metadata record including the
 creation of the metadata record. This is not intended as full provenance
 records, but and indication of what has happened to the information. Each
-update require sub elements datetime and type, note is optional. Type is
+update require sub elements datetime, in iso8601 format, and type, note is optional. Type is
 regulated by the following keywords: Created, Minor modification, Major
 modification.
 
