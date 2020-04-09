@@ -152,7 +152,7 @@
                     </xsl:element>
                     <xsl:element name="gmd:otherConstraints">
                         <xsl:element name="gco:CharacterString">
-                            <xsl:value-of select="mmd:use_constraint" />
+		            <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
                         </xsl:element>
                     </xsl:element>
                 </xsl:element>

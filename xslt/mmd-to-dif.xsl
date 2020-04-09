@@ -274,7 +274,7 @@
 
 	<xsl:template match="mmd:use_constraint">
 		<xsl:element name="dif:Use_Constraints">
-			<xsl:value-of select="." />
+			<xsl:value-of select="mmd:identifier" />
 		</xsl:element>
 	</xsl:template>
 
