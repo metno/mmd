@@ -1,7 +1,7 @@
 [[iso_topic_category]]
 === iso_topic_category
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/iso_topic_category
 
@@ -17,7 +17,7 @@ are listed in <<iso-topic-categories>>.
 
 This field is required for compatibility with DIF and ISO
 
-|Example XML |
+|Example XML: a|
 ----
 <iso_topic_category>ocean</iso_topic_category>
 ----

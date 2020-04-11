@@ -1,7 +1,7 @@
 [[related_information]]
 === related_information
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/related_information
 
@@ -12,7 +12,7 @@
 |Repetition allowed |Yes
 
 |Description a|
-Description of how to access the data in the dataset. This element has
+Description of related information and how to access it. This element has
 the following child elements:
 
 * type: Description of the type of information. A controlled vocabulary is required. See <<related-information-types>>.

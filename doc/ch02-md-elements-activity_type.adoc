@@ -1,7 +1,7 @@
 [[activity_type]]
 === activity_type
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |===================================================================
 |Element |/mmd/activity_type
 |Attributes |None

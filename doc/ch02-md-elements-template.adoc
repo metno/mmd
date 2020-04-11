@@ -1,7 +1,7 @@
 [[???]]
 === ???
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/???
 
@@ -17,9 +17,9 @@
 ----
 ----
 
-|DIF equivalent |
+|DIF equivalent a|
 
-|ISO equivalent |
+|ISO equivalent a|
 
-|MM2 equivalent |/metadata@name='???'
+|MM2 equivalent a|/metadata@name='???'
 |=======================================================================

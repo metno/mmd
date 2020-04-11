@@ -1,7 +1,7 @@
 [[dataset_production_status]]
 === dataset_production_status
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/dataset_production_status
 
@@ -13,7 +13,7 @@
 
 |Description |Production status for the dataset using a controlled
 vocabulary. The valid keywords are listed in
-<<dataset-production-status>>. If set as “In Work”, remember that end_date
+<<dataset-production-status-types>>. If set as “In Work”, remember that end_date
 in <<temporal_extent>> can (should) be empty.
 
 |Example XML a|

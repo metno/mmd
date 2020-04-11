@@ -1,7 +1,7 @@
 [[metadata_status]]
 === metadata_status
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Element |/mmd/metadata_status
 

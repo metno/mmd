@@ -33,7 +33,14 @@
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:keyword/gmd:type/gmd:MD_KeywordTypeCode = 'project']" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords" />
+            <xsl:element name="mmd:keywords">
+                <xsl:attribute name="vocabulary">gcmd</xsl:attribute>
+                <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]" />
+            </xsl:element>
+            <xsl:element name="mmd:keywords">
+                <xsl:attribute name="vocabulary">none</xsl:attribute>
+                <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]" />
+            </xsl:element>
             <!--
             <mmd:metadata_version>1</mmd:metadata_version>
             -->
@@ -292,12 +299,23 @@
     <!-- mapping between protocol names -->
     <mapping:protocol_names external="OPeNDAP:OPeNDAP" mmd="OPeNDAP" />
     <mapping:protocol_names external="file" mmd="HTTP" />
+    <mapping:protocol_names external="OGC:WFS" mmd="OGC WFS" />
+    <mapping:protocol_names external="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
+    <mapping:protocol_names external="csv" mmd="HTTP" />
 
     <xsl:template match="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine">
+        <!-- need some hacks here to handle WGMS data, will also need to
+             translate protocol identifications -->
 
         <xsl:element name="mmd:data_access">
             <xsl:element name="mmd:type">
+                <xsl:variable name="external_name" select="normalize-space(gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString)" />
+                <xsl:variable name="protocol_mapping" select="document('')/*/mapping:protocol_names[@external=$external_name]" />
+                <xsl:value-of select="$protocol_mapping" />
+                <xsl:value-of select="$protocol_mapping/@mmd"></xsl:value-of> 
+                <!--
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString" />
+                -->
             </xsl:element>
             <!--xsl:element name="mmd:name">
                 <xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gco:CharacterString" />
@@ -321,20 +339,24 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="gmd:descriptiveKeywords/gmd:MD_Keywords">
-    
-        <xsl:element name="mmd:keywords">
-            <xsl:attribute name="vocabulary">none</xsl:attribute>
-            <xsl:apply-templates select="gmd:keyword" />
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]">
+        <xsl:element name="mmd:keyword">
+            <xsl:value-of select="."/>
         </xsl:element>
-    
+    </xsl:template>
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]">
+        <xsl:element name="mmd:keyword">
+            <xsl:value-of select="."/>
+        </xsl:element>
     </xsl:template>
     
+    <!--
     <xsl:template match="gmd:keyword">
         <xsl:element name="mmd:keyword">
             <xsl:value-of select="gco:CharacterString" />
         </xsl:element>
     </xsl:template>
+    -->
 
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode = 'project']">
         <xsl:element name="mmd:project">

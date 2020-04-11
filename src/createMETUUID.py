@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 """
 PURPOSE:
@@ -27,9 +27,9 @@ import datetime
 import xml.etree.ElementTree as ET
 
 def usage():
-  print 'Usage: '+sys.argv[0]+' -i <mdfile> [-w]'  
-  print '   -i: input file'
-  print '   -w: overwrite input file'
+  print ('Usage: '+sys.argv[0]+' -i <mdfile> [-w]')  
+  print ('   -i: input file')
+  print ('   -w: overwrite input file')
   sys.exit(2)
 
 
@@ -39,11 +39,11 @@ def main(argv):
    try:
        opts, args = getopt.getopt(argv,"hi:w",["ifile="])
    except getopt.GetoptError:
-      print str(err) 
+      print (str(err))
       usage()
    for opt, arg in opts:
       if opt == '-h':
-         print sys.argv[0]+' -n <dataset_name>'
+         print (sys.argv[0]+' -n <dataset_name>')
          sys.exit()
       elif opt in ("-i", "--ifile"):
          infile = arg
@@ -64,12 +64,12 @@ def main(argv):
    try:
        mytitle = tree.find('{http://www.met.no/schema/mmd}title').text
    except:
-       print "title is missing from metadata file"
+       print ("title is missing from metadata file")
        sys.exit(2)
    try:
        mylastupdate = tree.find('{http://www.met.no/schema/mmd}last_metadata_update').text
    except:
-       print "last_metadata_update is missing from metadata file"
+       print ("last_metadata_update is missing from metadata file")
        sys.exit(2)
 
    # Get the time of creation for the metadatafile
@@ -83,7 +83,7 @@ def main(argv):
    # Create UUID
    myidentifier = uuid.uuid5(uuid.NAMESPACE_URL,filename)
    if overwrite == False:
-       print myidentifier
+       print (myidentifier)
        sys.exit(0)
 
    # Overwrite metadata_identifier in input file
@@ -91,7 +91,7 @@ def main(argv):
        myexistingid = root.find('{http://www.met.no/schema/mmd}metadata_identifier')
        myexistingid.text = str(myidentifier)
    except:
-       print "No metadata identifier was found in this file, creating this..."
+       print ("No metadata identifier was found in this file, creating this...")
        myid = ET.Element('mmd:metadata_identifier')
        myid.text = str(myidentifier)
        root.insert(0, myid)

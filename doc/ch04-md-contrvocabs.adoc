@@ -4,7 +4,7 @@
 [[collection-keywords]]
 === Collection keywords
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |CC |Datasets related to the Cryosphere in the context of the CryoClim
 project.
@@ -47,10 +47,10 @@ data. This is primarily Sentinel datasets.
 
 <<collection>>
 
-[[dataset-production-status]]
-=== Dataset production status
+[[dataset-production-status-types]]
+=== Dataset production status types
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -76,7 +76,7 @@ version should be used, this is kept for back tracing.
 [[iso-to-mmd-mapping]]
 === ISO to MMD mapping
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |===========================
 |ISO Code |MMD code
 
@@ -105,7 +105,7 @@ version should be used, this is kept for back tracing.
 [[operational-status]]
 === Operational status
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -134,7 +134,7 @@ limited temporal perspective.
 [[access-constraints]]
 === Access constraints
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -164,27 +164,23 @@ externally.
 [[use-constraints]]
 === Use constraints
 
-[cols=">20%,80%",adoc]
+[cols=",,"]
 |=======================================================================
-|Code |Description
+|Identifier | Resource | Description
 
-|Public domain |All rights for these data are waived. This should be
-relevant when data are released using CC0, Open Data Commons PDDL or
-similar.
+| CC0-1.0   | http://spdx.org/licenses/CC0-1.0 | Public domain. All rights for these data are waived. The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. This is relevant to release datasets into the public domain.
 
-|Attribution |These data may be freely copied, shared, used, modified
-and transformed as long as you attribute the owner/creator of the
-original dataset. This is used for Creative Commons Attribution.
+| CC-BY-4.0 | http://spdx.org/licenses/CC-BY-4.0| Attribution alone. This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials. 
 
-|Share-alike |This is a bit stronger than attribution as it requires any
-work based upon these data to be shared using the same conditions as the
-original data. It implies attribution and limits the freedom for new
-data generated.
+| CC-BY-SA-4.0 | http://spdx.org/licenses/CC-BY-SA-4.0 | Attribution + ShareAlike. This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects. 
 
-|Noncommercial |Data may be used for noncommercial purposes only. This
-implies share-alike (and attribution).
+| CC-BY-NC-4.0 | http://spdx.org/licenses/CC-BY-NC-4.0 | Attribution + Noncommercial. This license lets others remix, adapt, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don’t have to license their derivative works on the same terms. 
 
-|No derivative |FIXME
+| CC-BY-NC-SA-4.0 | http://spdx.org/licenses/CC-BY-NC-SA-4.0 | Attribution + Noncommercial + ShareAlike. This license lets others remix, adapt, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.
+
+| CC-BY-ND-4.0 | http://spdx.org/licenses/CC-BY-ND-4.0 | Attribution + NoDerivatives. This license lets others reuse the work for any purpose, including commercially; however, it cannot be shared with others in adapted form, and credit must be provided to you. 
+
+| CC-BY-NC-ND-4.0 | http://spdx.org/licenses/CC-BY-NC-ND-4.0 | Attribution + Noncommercial + NoDerivatives. This license is the most restrictive of our six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can’t change them in any way or use them commercially. 
 |=======================================================================
 
 <<use_constraint>>
@@ -203,7 +199,7 @@ but more the nature of the generation process (e.g. simulation, in situ
 observation, remote sensing etc). It is useful in the context of
 filtering data when searching for relevant datasets.
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |=======================================================================
 |Code |Description
 
@@ -298,7 +294,7 @@ variable.
 [[platform-1]]
 === Platform
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |==================
 |Code |Description
 
@@ -315,7 +311,7 @@ variable.
 [[instruments]]
 === Instruments
 
-[cols=">10%,45%,45%",adoc]
+[cols="1,5,5"]
 |=======================================================================
 |CSAR |Synthetic Aperature Radar C-band |Relates to Sentinel-1.
 
@@ -336,7 +332,7 @@ optical sensor.
 [[instrument-modes]]
 === Instrument modes
 
-[cols=">10%,20%,70%",adoc]
+[cols="1,2,7"]
 |=====================================================
 |Code |Description
 
@@ -351,7 +347,7 @@ optical sensor.
 [[polarisation-modes]]
 === Polarisation modes
 
-[cols=">10%,90%",adoc]
+[cols="1,9"]
 |=======
 |Code |Description
 
@@ -368,7 +364,7 @@ optical sensor.
 [[product-type]]
 === Product type
 
-[cols=">10%,20%,70%",adoc]
+[cols="1,2,7"]
 |=======================================================================
 |Code |Content |Description
 
@@ -390,7 +386,7 @@ applications derived from the SAR data.
 [[contact-roles]]
 === Contact roles
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
@@ -425,7 +421,7 @@ this is the main contact with regard to the metadata.
 [[iso-topic-categories]]
 === ISO Topic categories
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |=======================================================================
 |Code |Description
 
@@ -518,7 +514,7 @@ telecommunication, radio, and communication networks.
 [[related-information-types]]
 === Related Information types
 
-[cols=">30%,70%",adoc]
+[cols="3,7"]
 |====================================================================
 |Code |Description
 
@@ -537,7 +533,7 @@ Global Observing System approach.
 [[data-access-types]]
 === Data Access Types
 
-[cols=">20%,80%",adoc]
+[cols="2,8"]
 |=======================================================================
 |Code |Description
 
