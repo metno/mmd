@@ -64,6 +64,7 @@
                 <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded" minOccurs="0"/>
                 <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="1" minOccurs="0" />
                 <xs:element name="scene_cover" type="mmd:cloud_cover_type" maxOccurs="1" minOccurs="0" />
+                <xs:element name="storage_information" type="mmd:storage_information_type" maxOccurs="1" minOccurs="0" />
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -352,4 +353,36 @@
             <xs:element name="value" type="mmd:value_type" maxOccurs="1" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:complexType name="storage_information_type">
+        <xs:sequence>
+            <xs:element name="file_name" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="file_location" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+            <!--xs:element name="file_format" type="mmd:value_format" maxOccurs="1" minOccurs="0"></xs:element-->
+            <xs:element name="file_size" type="mmd:value_size"  maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="checksum" type="mmd:value_checksum"  maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="value_size">
+        <xs:simpleContent>
+            <xs:extension base="xs:decimal">
+                <xs:attribute name="unit" type="xs:string" default="GB"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="value_checksum">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type" type="mmd:checksum_type"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="checksum_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="md5sum"></xs:enumeration>
+            <xs:enumeration value="sha256sum"></xs:enumeration>
+            <xs:enumeration value="sha384sum"></xs:enumeration>
+            <xs:enumeration value="sha512sum"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
