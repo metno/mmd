@@ -117,7 +117,7 @@
             <xs:element name="resource" type="mmd:use_constraint_resource_type" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="use_constraint_indentifier_type">
+    <xs:simpleType name="use_constraint_identifier_type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="CC0-1.0"></xs:enumeration>
             <xs:enumeration value="CC-BY-4.0"></xs:enumeration>
