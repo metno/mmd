@@ -30,7 +30,7 @@
                     <gmd:characterEncoding>
                         <gmd:MD_CharacterSetCode
                             codeList="resources/Codelist/gmxcodelists.xml#MD_CharacterSetCode"
-                            codeListValue="utf8">UTF 8</gmd:MD_CharacterSetCode>
+                            codeListValue="utf8"/>
                     </gmd:characterEncoding>
                 </gmd:PT_Locale>
             </gmd:locale>            
@@ -152,7 +152,7 @@
                     </xsl:element>
                     <xsl:element name="gmd:otherConstraints">
                         <xsl:element name="gco:CharacterString">
-		            <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                            <xsl:value-of select="mmd:use_constraint" />
                         </xsl:element>
                     </xsl:element>
                 </xsl:element>
