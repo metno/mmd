@@ -11,16 +11,30 @@
 
 |Repetition Allowed |No
 
-|Description |The last update of the metadata record.
+|Description |The last update of the metadata record including the
+creation of the metadata record. This is not intended as full provenance
+records, but and indication of what has happened to the information. Each
+update require sub elements datetime, in iso8601 format, and type, note is optional. Type is
+regulated by the following keywords: Created, Minor modification, Major
+modification.
 
 |Example XML: a|
 ----
 <last_metadata_update>
-2012-10-31
+  <update>
+    <datetime>2012-10-31T12:00:00Z</datetime>
+    <type>Created</type>
+    <note></note>
+  </update>
+  <update>
+    <datetime>2020-03-31T10:23:00Z</datetime>
+    <type>Major modification</type>
+    <note>Changed structure of the metadata element.</note>
+  </update>
 </last_metadata_update>
 ----
 
-|DIF equivalent |/DIF/Last_DIF_Revision_Date
+|DIF equivalent a|/DIF/Last_DIF_Revision_Date
 
 |ISO equivalent a|
 /gmd:MD_Metadata/gmd:dateStamp
