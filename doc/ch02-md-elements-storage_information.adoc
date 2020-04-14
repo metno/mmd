@@ -13,7 +13,8 @@
 
 |Description a|Information about the underlying data storage when this is
 available. File format specifications must follow a controlled vocabulary,
-as must checksums. Checksums can be md5sum, shasum (sha256sum, sha384sum,
+as must checksums. Allowed file formats are available in https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/GranuleDataFormat/?format=rdf[skos].
+Checksums can be md5sum, shasum (sha256sum, sha384sum,
 sha512sum) and other higher order approaches. Sub elements include:
 
 * file_name: File name for the file in question.
@@ -33,7 +34,7 @@ harvested data usually only file format is available, if any.
 <storage_information>
   <file_name>osisaf_radiative_flux_24h_hl_polstere-050_multi_202003051200.nc</file_name>
   <file_location>/home/steingod/Desktop</file_location>
-  <file_format>NetCDF/CF</file_format>
+  <file_format>NetCDF-CF</file_format>
   <file_size unit="GB">0.12</file_size>
   <checksum type="sha512sum">ad33563f9ab3a6f2ba74ebd72cb1f45fda00d55121a29a29230147e3472ef267c50882b0e0b21ef9ee5ed5cc25e454167cd19a1818f1e13bc044b6fc3ef8f285</checksum>
 </storage_information>
