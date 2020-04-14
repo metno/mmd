@@ -358,7 +358,7 @@
         <xs:sequence>
             <xs:element name="file_name" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="file_location" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <!--xs:element name="file_format" type="mmd:value_format" maxOccurs="1" minOccurs="0"></xs:element-->
+            <xs:element name="file_format" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="file_size" type="mmd:value_size"  maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="checksum" type="mmd:value_checksum"  maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
