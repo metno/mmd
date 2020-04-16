@@ -21,7 +21,7 @@ A set of keywords describing the dataset. The keywords should be fetched
 from a pre-defined vocabulary, but this is not a requirement. This
 element has two child elements:
 
-* reference: URI to machine readable form of the vocabulary used.
+* resource: URI to machine readable form of the vocabulary used.
 * keyword: A single keyword describing the dataset. This can be hierarchically like GCMD using a separator.
 * separator: the character used as separator. This could be e.g. the GCMD ‘>’, but in XML this is encoded as ‘&gt;’. Other valid separators are: \| / -. 
 Valid controlled vocabularies are GCMD Science Keywords
@@ -32,14 +32,14 @@ could also be used to describe other features.
 
 |Example XML: a|
 ----
-<keywords vocabulary=”MyOwnVocab”>
+<keywords vocabulary="MyOwnVocab">
      <keyword>ice_edge</keyword>
      <keyword>Manual Generated Ice Edge</keyword>
 </keywords>
 
-<keywords vocabulary=”GCMD”>
+<keywords vocabulary="GCMD">
     <separator>-</separator>
-    <reference>https://wiki.earthdata.nasa.gov/display/CMR/GCMD+Keyword+Access</reference>
+    <resource>https://gcmdservices.gsfc.nasa.gov/static/kms/</resource>
     <keyword>Earth Science - Climate Indicators - Teleconnections - North Atlantic Oscillation</keyword>
 </keywords>
 ----

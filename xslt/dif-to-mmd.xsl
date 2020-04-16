@@ -31,7 +31,7 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:apply-templates select="dif:Temporal_Coverage" />
             <xsl:apply-templates select="dif:ISO_Topic_Category" />
             <xsl:element name="mmd:keywords">
-                <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
+                <xsl:attribute name="vocabulary">gcmd</xsl:attribute>
                 <xsl:apply-templates select="dif:Parameters" />
             </xsl:element>
             <xsl:element name="mmd:keywords">
@@ -125,7 +125,7 @@ Meaning this should consume both DIF 8, 9 and 10.
               <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
           -->
               <xsl:element name="mmd:keyword">
-                  <xsl:value-of select="dif:Category"/> &gt; <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1/*"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2/*"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3/*"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
+                  <xsl:value-of select="dif:Category"/> &gt; <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
               </xsl:element>
               <!--
           </xsl:element>
@@ -341,6 +341,7 @@ Meaning this should consume both DIF 8, 9 and 10.
                 <xsl:element name="mmd:dataset_id">
                     <xsl:value-of select="dif:Data_Set_ID" />
                 </xsl:element>
+                <!-- removed 2020-03-25
                 <xsl:element name="mmd:contact">
                   <xsl:element name="mmd:role">
 		    <xsl:variable name="string-mod">
@@ -357,7 +358,6 @@ Meaning this should consume both DIF 8, 9 and 10.
                        <!-- <xsl:value-of select="dif:Personnel/dif:Role" /> -->
                     </xsl:element>
                     <xsl:element name="mmd:name">
-                        <!-- Since last name is required it used in translation -->
                         <xsl:value-of select="dif:Personnel/dif:Last_Name" />
                     </xsl:element>
                     <xsl:element name="mmd:email">
@@ -370,6 +370,7 @@ Meaning this should consume both DIF 8, 9 and 10.
                         <xsl:value-of select="dif:Personnel/dif:Fax" />
                     </xsl:element>
                 </xsl:element>
+                -->
             </xsl:element>
         </xsl:template>
 
@@ -461,20 +462,11 @@ Meaning this should consume both DIF 8, 9 and 10.
 
         <xsl:template name="formatdate">
             <xsl:param name="datestr" />
-            <!-- input format YYYY-MM-DD -->
-            <!-- output format YYYY-MM-DD -->
+            <!-- input format YYYY-MM-DD or YYYY-MM-DDTHH:MM:SSZ -->
+            <!-- output format YYYY-MM-DDTHH:MM:SSZ -->
 
-            <xsl:variable name="yyyy">
-                <xsl:value-of select="substring($datestr,1,4)" />
-            </xsl:variable>
-            <xsl:variable name="mm">
-                <xsl:value-of select="substring($datestr,6,2)" />
-            </xsl:variable>
-            <xsl:variable name="dd">
-                <xsl:value-of select="substring($datestr,9,2)" />
-            </xsl:variable>
             <xsl:choose>
-                <xsl:when test="translate($datestr,'123456789','000000000') = '0000-00-00T00:00:00'">
+                <xsl:when test="translate($datestr,'123456789','000000000') = '0000-00-00T00:00:00Z'">
                     <xsl:variable name="HH">
                         <xsl:value-of select="substring($datestr,12,2)" />
                     </xsl:variable>
@@ -484,35 +476,75 @@ Meaning this should consume both DIF 8, 9 and 10.
                     <xsl:variable name="SS">
                         <xsl:value-of select="substring($datestr,18,2)" />
                     </xsl:variable>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:variable name="HH">
-                        <xsl:value-of select="12" />
-                    </xsl:variable>
-                    <xsl:variable name="MM">
-                        <xsl:value-of select="00" />
-                    </xsl:variable>
-                    <xsl:variable name="SS">
-                        <xsl:value-of select="00" />
-                    </xsl:variable>
-                </xsl:otherwise>
-
+                <xsl:variable name="yyyy">
+                    <xsl:value-of select="substring($datestr,1,4)" />
+                </xsl:variable>
+                <xsl:variable name="mm">
+                    <xsl:value-of select="substring($datestr,6,2)" />
+                </xsl:variable>
+                <xsl:variable name="dd">
+                    <xsl:value-of select="substring($datestr,9,2)" />
+                </xsl:variable>
                 <xsl:value-of select="$yyyy" />
                 <xsl:value-of select="'-'" />
                 <xsl:value-of select="$mm" />
                 <xsl:value-of select="'-'" />
                 <xsl:value-of select="$dd" />
-                <!--
+                <xsl:value-of select="'T'" />
+                <xsl:value-of select="$HH" />
+                <xsl:value-of select="':'" />
+                <xsl:value-of select="$MM" />
+                <xsl:value-of select="':'" />
+                <xsl:value-of select="$SS" />
+                <xsl:value-of select="'Z'" />
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:variable name="yyyy">
+                        <xsl:value-of select="substring($datestr,1,4)" />
+                    </xsl:variable>
+                    <xsl:variable name="mm">
+                        <xsl:value-of select="substring($datestr,6,2)" />
+                    </xsl:variable>
+                    <xsl:variable name="dd">
+                        <xsl:value-of select="substring($datestr,9,2)" />
+                    </xsl:variable>
+                    <xsl:variable name="HH">
+                        <xsl:value-of select="12" />
+                    </xsl:variable>
+                    <xsl:variable name="MM">
+                        <xsl:value-of select="'00'" />
+                    </xsl:variable>
+                    <xsl:variable name="SS">
+                        <xsl:value-of select="'00'" />
+                    </xsl:variable>
+                <xsl:value-of select="$yyyy" />
+                <xsl:value-of select="'-'" />
+                <xsl:value-of select="$mm" />
+                <xsl:value-of select="'-'" />
+                <xsl:value-of select="$dd" />
+                <xsl:value-of select="'T'" />
+                <xsl:value-of select="$HH" />
+                <xsl:value-of select="':'" />
+                <xsl:value-of select="$MM" />
+                <xsl:value-of select="':'" />
+                <xsl:value-of select="$SS" />
+                <xsl:value-of select="'Z'" />
+                </xsl:otherwise>
+
+                <!--xsl:value-of select="$yyyy" />
+                <xsl:value-of select="'-'" />
+                <xsl:value-of select="$mm" />
+                <xsl:value-of select="'-'" />
+                <xsl:value-of select="$dd" />
           <xsl:value-of select="'T'" />
           <xsl:value-of select="$HH" />
           <xsl:value-of select="':'" />
           <xsl:value-of select="$MM" />
           <xsl:value-of select="':'" />
           <xsl:value-of select="$SS" />
-          <xsl:value-of select="'Z'" />
-          -->
+          <xsl:value-of select="'Z'" /-->
       </xsl:choose>
-      <xsl:value-of select="$yyyy" />
+      <!--xsl:value-of select="$yyyy" />
       <xsl:value-of select="'-'" />
       <xsl:value-of select="$mm" />
       <xsl:value-of select="'-'" />

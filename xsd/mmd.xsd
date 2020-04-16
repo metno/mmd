@@ -46,7 +46,7 @@
                 <xs:element name="dataset_language" type="xs:string" maxOccurs="1" minOccurs="0" default="en"></xs:element>
                 <xs:element name="geographic_extent" type="mmd:geographic_extent_type" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="access_constraint" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-                <xs:element name="use_constraint" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+                <xs:element name="use_constraint" type="mmd:use_constraint_type" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="project" type="mmd:project_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="activity_type" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
@@ -69,8 +69,8 @@
     </xs:complexType>
     <xs:complexType name="temporal_extent_type">
         <xs:sequence>
-            <xs:element name="start_date" type="xs:date"></xs:element>
-            <xs:element name="end_date" type="xs:date" minOccurs="0" ></xs:element>
+            <xs:element name="start_date" type="xs:dateTime"></xs:element>
+            <xs:element name="end_date" type="xs:dateTime" minOccurs="0" ></xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="multilang_string">
@@ -111,6 +111,34 @@
             <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="use_constraint_type">
+        <xs:sequence>
+            <xs:element name="identifier" type="mmd:use_constraint_identifier_type" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="resource" type="mmd:use_constraint_resource_type" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="use_constraint_identifier_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CC0-1.0"></xs:enumeration>
+            <xs:enumeration value="CC-BY-4.0"></xs:enumeration>
+            <xs:enumeration value="CC-BY-SA-4.0"></xs:enumeration>
+            <xs:enumeration value="CC-BY-NC-4.0"></xs:enumeration>
+            <xs:enumeration value="CC-BY-NC-SA-4.0"></xs:enumeration>
+            <xs:enumeration value="CC-BY-ND-4.0"></xs:enumeration>
+            <xs:enumeration value="CC-BY-NC-ND-4.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="use_constraint_resource_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="http://spdx.org/licenses/CC0-1.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-4.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-SA-4.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-4.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-SA-4.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-ND-4.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-ND-4.0"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="instrument_type">
         <xs:sequence>
             <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
