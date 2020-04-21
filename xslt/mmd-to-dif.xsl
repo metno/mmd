@@ -310,9 +310,10 @@
                 <xsl:element name="dif:Data_Center_URL">
                     <xsl:value-of select="mmd:data_center_url" />
                 </xsl:element>
+		<!-- TODO: Fix when alternate_identifier has been defined
                 <xsl:element name="dif:Data_Set_ID">
                     <xsl:value-of select="mmd:dataset_id" />
-                </xsl:element>
+                </xsl:element-->
                 <xsl:choose>
                     <xsl:when test="mmd:personnel[mmd:role='Data center contact']">
                         <xsl:element name="dif:Personnel">

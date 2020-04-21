@@ -873,8 +873,6 @@
 
   <field name="mmd_data_center_data_center_url" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
 
-  <field name="mmd_data_center_dataset_id" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
-
   <field name="mmd_data_center_contact_role" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
 
   <field name="mmd_data_center_contact_name" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>

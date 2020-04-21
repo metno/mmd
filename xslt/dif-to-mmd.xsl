@@ -338,9 +338,10 @@ Meaning this should consume both DIF 8, 9 and 10.
                 <xsl:element name="mmd:data_center_url">
                     <xsl:value-of select="dif:Data_Center_URL" />
                 </xsl:element>
+		<!--TODO: Fix when alternate_identifier has been defined
                 <xsl:element name="mmd:dataset_id">
                     <xsl:value-of select="dif:Data_Set_ID" />
-                </xsl:element>
+                </xsl:element-->
                 <!-- removed 2020-03-25
                 <xsl:element name="mmd:contact">
                   <xsl:element name="mmd:role">
