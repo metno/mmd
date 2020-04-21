@@ -192,9 +192,10 @@
 			<xsl:element name="dif:Data_Center_URL">
 				<xsl:value-of select="mmd:data_center_url" />
 			</xsl:element>
+			<!--TODO: Fix when alternate_identifier has been defined
 			<xsl:element name="dif:Data_Set_ID">
 				<xsl:value-of select="mmd:dataset_id" />
-			</xsl:element>
+			</xsl:element-->
 			<xsl:element name="dif:Personel">
 				<xsl:element name="dif:Role">
 					<xsl:value-of select="mmd:personnel/mmd:role"></xsl:value-of>

@@ -17,9 +17,10 @@ dataset. The element has the following child elements:
 
 * data_center_name: The name of the data center split into two child elements; short_name and long_name.
 * data_center_url: URL to the data center's main website.
-* dataset_id: The id assigned to the dataset by the data center. This may be different from metadata_identifier.
 
 Information on the data centre contact person for a data centre is conveyed through the element <<personnel>>. See <<personnel>> for more information. The role of a data center contact must be “Data center contact”.
+
+If an id is assigned to the dataset by the data center, it can be included as <<alternate_identifier>>.
 
 |Example XML a|
 ----
@@ -31,7 +32,6 @@ Information on the data centre contact person for a data centre is conveyed thro
          </long_name>
      </data_center_name>
      <data_center_url>http://met.no</data_center_url>
-     <dataset_id>45dlkf-234-df</dataset_id>
 </data_center>
 ----
 
