@@ -37,10 +37,10 @@
             <xsl:apply-templates select="document($xmd)/xmd:dataset/xmd:info/@datestamp"/>
             <xsl:element name="mmd:temporal_extent">
                 <xsl:element name="mmd:start_date">
-                    <xsl:value-of select="substring(mm2:metadata[@name='datacollection_period_from'],1,10)"/>
+		    <xsl:value-of select="concat(substring(mm2:metadata[@name='datacollection_period_from'],1,10),'T12:00:00Z')"/>
                 </xsl:element>
                 <xsl:element name="mmd:end_date">
-                    <xsl:value-of select="substring(mm2:metadata[@name='datacollection_period_to'],1,10)"/>
+                    <xsl:value-of select="concat(substring(mm2:metadata[@name='datacollection_period_to'],1,10),'T12:00:00Z')"/>
                 </xsl:element>
             </xsl:element>
 

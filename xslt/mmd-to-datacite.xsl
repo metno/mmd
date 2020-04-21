@@ -171,8 +171,11 @@ First attempt for MMD to DataCite conversion...
 	<xsl:template match="mmd:use_constraint">
 		<xsl:element name="rightsList">
                     <xsl:element name="rights">
-                        <xsl:attribute name="rightsURI"><xsl:value-of select="." /></xsl:attribute>
-			<xsl:value-of select="." />
+                        <xsl:attribute name="rightsURI"><xsl:value-of select="mmd:resource" /></xsl:attribute>
+                        <xsl:attribute name="rightsIdentifier"><xsl:value-of select="mmd:identifier" /></xsl:attribute>
+                        <xsl:attribute name="schemeURI">https://spdx.org/licenses/</xsl:attribute>
+                        <xsl:attribute name="rightsIdentifierScheme">SPDX</xsl:attribute>
+			<xsl:value-of select="mmd:identifier" />
                     </xsl:element>
 		</xsl:element>
 	</xsl:template>

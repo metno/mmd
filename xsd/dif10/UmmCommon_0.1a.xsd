@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" 
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+    >
+<!--xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"-->
+
+    <xs:simpleType name="GranuleSpatialRepresentationEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CARTESIAN"/>
+            <xs:enumeration value="GEODETIC"/>
+            <xs:enumeration value="ORBIT"/>
+            <xs:enumeration value="NO_SPATIAL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CoordinateSystemEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CARTESIAN"/>
+            <xs:enumeration value="GEODETIC"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="OrganizationPersonnelRoleEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DATA CENTER CONTACT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+<!--
+"Archive",
+"archiving data center",
+"internal data center",
+
+"User Services",
+"GHRC USER SERVICES",
+"Producer",
+"Data Manager",
+"Data Originator",
+"Archiver",
+"compiler",
+"Distributor",
+-->
+
+    <xs:simpleType name="Personnel_Role_Enum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="INVESTIGATOR"/>
+            <xs:enumeration value="INVESTIGATOR, TECHNICAL CONTACT"/>
+            <xs:enumeration value="METADATA AUTHOR"/>
+            <xs:enumeration value="METADATA AUTHOR, TECHNICAL CONTACT"/>
+            <xs:enumeration value="TECHNICAL CONTACT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CollectionDataTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SCIENCE_QUALITY"/>
+            <xs:enumeration value="NEAR_REAL_TIME"/>
+            <xs:enumeration value="OTHER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ProductFlagEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DATA_PRODUCT_FILE"/>
+            <xs:enumeration value="INSTRUMENT_ANCILLARY_FILE"/>
+            <xs:enumeration value="SYSTEM/SPACECRAFT_FILE"/>
+            <xs:enumeration value="EXTERNAL_DATA"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DurationUnitEnum">
+        <xs:annotation>
+            <xs:documentation>This entity indicates the periodic duration units.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DAY"/>
+            <xs:enumeration value="MONTH"/>
+            <xs:enumeration value="YEAR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="SpatialCoverageTypeEnum">
+        <xs:annotation>
+            <xs:documentation>metadata may be in upper case for horizontals and camel case for the others, use an adapter to normalize these.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Horizontal"/>
+            <xs:enumeration value="HorizontalVertical"/>
+            <xs:enumeration value="Orbit"/>
+            <xs:enumeration value="Vertical"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="PhoneTypeEnum">
+        <xs:annotation>
+            <xs:documentation>Phone types for people</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Direct Line"/>
+            <xs:enumeration value="Primary"/>
+            <xs:enumeration value="Telephone"/>
+            <xs:enumeration value="Fax"/>
+            <xs:enumeration value="Mobile"/>
+            <xs:enumeration value="Modem"/>
+            <xs:enumeration value="TDD/TTY Phone"/>
+            <xs:enumeration value="U.S. toll free"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="PrivateEnum">
+        <xs:annotation>
+            <xs:documentation>True:=Private, False:=Public</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="True"/>
+            <xs:enumeration value="False"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="MetadataVersionEnum">
+        <xs:annotation>
+            <xs:documentation>
+                The version of the metadata format
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <!--xs:enumeration value="9.0"/-->
+            <!--xs:enumeration value="9.7"/-->
+            <!--xs:enumeration value="9.8.4"/-->
+            <!--xs:enumeration value="VERSION 9.0"/-->
+            <!--xs:enumeration value="VERSION 9.7"/-->
+            <!--xs:enumeration value="VERSION 9.7.1"/-->
+            <xs:enumeration value="VERSION 9.8.1"/>
+            <xs:enumeration value="VERSION 9.8.2"/>
+            <xs:enumeration value="VERSION 9.8.2.2"/>
+            <xs:enumeration value="VERSION 9.8.3"/>
+            <xs:enumeration value="VERSION 9.8.4"/>
+            <xs:enumeration value="VERSION 9.8.4"/>
+            <xs:enumeration value="VERSION 9.9.3"/>
+            <xs:enumeration value="VERSION 10.0a"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>

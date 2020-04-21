@@ -30,7 +30,7 @@
                     <gmd:characterEncoding>
                         <gmd:MD_CharacterSetCode
                             codeList="resources/Codelist/gmxcodelists.xml#MD_CharacterSetCode"
-                            codeListValue="utf8">UTF 8</gmd:MD_CharacterSetCode>
+                            codeListValue="utf8"/>
                     </gmd:characterEncoding>
                 </gmd:PT_Locale>
             </gmd:locale>            

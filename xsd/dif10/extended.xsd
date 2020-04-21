@@ -1,0 +1,133 @@
+    <!-- *************************************************************** -->
+    <!-- #mark VerticalCoordinateSystem block -->
+    \
+    <xs:complexType name="VerticalCoordinateSystem">
+        <xs:annotation>
+            <xs:appinfo><details></details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
+
+            <xs:documentation>
+            
+                | ECHO 10                  | DIF 10                     |
+                | ------------------------ | -------------------------- |
+                | AltitudeSystemDefinition | Altitude_System_Definition |
+                | DepthSystemDefinition    | Depth_System_Definition    |
+                
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="Altitude_System_Definition"   type="VerticalSystemDefinition" minOccurs="0"/>
+            <xs:element name="Depth_System_Definition"      type="VerticalSystemDefinition" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VerticalSystemDefinition">
+        <xs:annotation>
+            <xs:appinfo><details></details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
+
+            <xs:documentation>
+                The reference frame or system from which altitude or depths are
+                measured. The term 'altitude' is used instead of the common term
+                'elevation' to conform to the terminology in Federal Information
+                Processing Standards 70-1 and 173. The information contains the
+                datum name, distance units and encoding method, which provide the definition for the
+                system.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Datum_Name" minOccurs="0"         type="xs:string"/>
+            <xs:element name="Distance_Units" minOccurs="0"     type="xs:string"/>
+            <xs:element name="Encoding_Method" minOccurs="0"    type="xs:string"/>
+            <xs:element name="Resolution"                       type="xs:decimal" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- *************************************************************** -->
+    <!-- #mark Planar block -->
+    
+    <xs:complexType name="PlanarCoordinateSystem">
+        <xs:annotation>
+            <xs:appinfo><details></details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
+
+            <xs:documentation>Nothing uses nodes below this point.</xs:documentation>
+        </xs:annotation>
+        
+        <xs:sequence>
+            <xs:element name="Planar_Coordinate_SystemId"       type="xs:string"/>
+            <xs:element name="Planar_Coordinate_Information"    type="PlanarCoordinateInformation" minOccurs="0"/>
+            <xs:choice minOccurs="0">
+                <xs:element name="Map_Projection"                   type="MapProjection"/>
+                <xs:element name="Local_Planar_CoordinateSystem"    type="LocalCoordinateSystem"/>
+                <xs:element name="Grid_Coordinate_System_Name"      type="xs:string"                minOccurs="0"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType-->
+
+    <xs:complexType name="PlanarCoordinateInformation">
+        <xs:annotation>
+            <xs:appinfo><details></details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
+
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+        
+        <xs:sequence>
+            <xs:element name="Distance_Units"   type="xs:string" minOccurs="0"/>
+            <xs:element name="Encoding_Method"  type="xs:string" minOccurs="0"/>
+            <xs:choice minOccurs="0">
+                <xs:element name="Distance_And_Bearing_Representation"  type="DistanceAndBearingRepresentation"/>
+                <xs:element name="Coordinate_Representation"            type="CoordinateRepresentation"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DistanceAndBearingRepresentation">
+        <xs:annotation>
+            <xs:appinfo><details></details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
+
+            <xs:documentation/>
+        </xs:annotation>
+        
+        <xs:sequence>
+            <xs:element name="Distance_Resolution"          type="xs:decimal"   minOccurs="0"/>
+            <xs:element name="Bearing_Resolution"           type="xs:decimal"   minOccurs="0"/>
+            <xs:element name="Bearing_Units"                type="xs:string"    minOccurs="0"/>
+            <xs:element name="Bearing_Reference_Direction"  type="xs:string"    minOccurs="0"/>
+            <xs:element name="Bearing_Reference_Meridian"   type="xs:string"    minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CoordinateRepresentation">
+        <xs:annotation>
+            <xs:appinfo><details></details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
+
+            <xs:documentation>
+            </xs:documentation>
+        </xs:annotation>
+        
+        <xs:sequence>
+            <xs:element name="Abscissa_Resolution" type="xs:decimal" minOccurs="0"/>
+            <xs:element name="Ordinate_Resolution" type="xs:decimal" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MapProjection">
+        <xs:annotation>
+            <xs:appinfo><details></details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
+
+            <xs:documentation>
+            </xs:documentation>
+        </xs:annotation>
+        
+        <xs:sequence>
+            <xs:element name="Map_Projection_Name"      type="xs:string" minOccurs="0"/>
+            <xs:element name="Map_Projection_Pointer"   type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+

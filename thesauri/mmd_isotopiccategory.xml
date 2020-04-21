@@ -24,6 +24,10 @@
     <skos:prefLabel>imageryBaseMapsEarthCover</skos:prefLabel>
     <skos:altLabel>IMAGERY/BASE MAPS/EARTH COVER</skos:altLabel>
   </skos:Concept>
+   <skos:Concept>
+    <skos:prefLabel>imageryBaseMapsEarthCover</skos:prefLabel>
+    <skos:altLabel>IMAGERYBASEMAPSEARTHCOVER</skos:altLabel>
+  </skos:Concept>
   <skos:Concept>
     <skos:prefLabel>structure</skos:prefLabel>
     <skos:altLabel>STRUCTURE</skos:altLabel>
