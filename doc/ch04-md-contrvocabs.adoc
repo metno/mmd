@@ -327,7 +327,7 @@ optical sensor.
 |MWR |Microwave Radiometer |Relates to Sentinel-3.
 |=======================================================================
 
-<<instrument>>
+<<platform>>
 
 [[instrument-modes]]
 === Instrument modes
@@ -342,7 +342,7 @@ optical sensor.
 |WV |Wave Mode |Relates to Sentinel-1
 |=====================================================
 
-<<instrument>>
+<<platform>>
 
 [[polarisation-modes]]
 === Polarisation modes
@@ -359,7 +359,7 @@ optical sensor.
 |VH+VV |
 |=======
 
-<<instrument>>
+<<platform>>
 
 [[product-type]]
 === Product type
@@ -381,7 +381,7 @@ applications derived from the SAR data.
 
 |=======================================================================
 
-<<instrument>>
+<<platform>>
 
 [[contact-roles]]
 === Contact roles

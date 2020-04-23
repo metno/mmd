@@ -49,7 +49,9 @@
                 <xs:element name="use_constraint" type="mmd:use_constraint_type" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="project" type="mmd:project_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="activity_type" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
+                <!--
                 <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+                -->
                 <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
@@ -144,6 +146,7 @@
         <xs:sequence>
             <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="mode" type="mmd:mode_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="polarisation" type="mmd:polarisation_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="product_type" type="mmd:product_type_type" maxOccurs="1" minOccurs="0"></xs:element>
@@ -215,6 +218,20 @@
         <xs:sequence>
             <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="resource" type="xs:string" maxOccurs="0" minOccurs="1"></xs:element>
+            <xs:element name="orbit_relative" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="orbit_absolute" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
+            <!-- Must add validation of content -->
+            <xs:element name="orbit_direction" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="ancillary" type="mmd:ancillary_platform_type" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ancillary_platform_type">
+        <xs:sequence>
+            <xs:element name="cloud_coverage" type="xs:decimal" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="scene_coverage" type="xs:decimal" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="timeliness" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="keywords_type">
