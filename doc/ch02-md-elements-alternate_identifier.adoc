@@ -1,0 +1,34 @@
+[[alternate_identifier]]
+=== alternate_identifier
+
+[cols="2,8"]
+|=======================================================================
+|Element |/mmd/alternate_identifier
+|Attributes a|
+type:: identification of the type of identifier used. Currently no
+controlled vocabulary is defined, this should be added once better
+knowledge of domains are known. Initially at least WMO Information
+System (WIS) type identifiers should be supported. This field should *not*
+be used for DOIs. these should go into <<dataset_citation>>.
+|Required |No
+
+|Repetition allowed |Yes
+
+|Description a|
+Alternative identifier for the dataset described by the metadata document.
+This identifier is when datasets may have multiple identifiers, i.e.
+identifiers depending on the framework data are shared through. 
+
+|Example XML a|
+----
+<alternate_identifier type="WIS">
+    urn:x-wmo:md:int.wmo.wis::ca.gc.ec.msc-1.1.9.3
+</alternate_identifier>
+----
+|DIF equivalent |NA
+
+|ISO equivalent |NA
+
+|MM2 equivalent |NA
+
+|=======================================================================
