@@ -222,18 +222,30 @@
             <xs:element name="orbit_relative" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="orbit_absolute" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <!-- Must add validation of content -->
-            <xs:element name="orbit_direction" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="orbit_direction" type="mmd:orbit_direction_type" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="ancillary" type="mmd:ancillary_platform_type" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="mmd:orbit_direction_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ascending"></xs:enumeration>
+            <xs:enumeration value="descending"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="ancillary_platform_type">
         <xs:sequence>
             <xs:element name="cloud_coverage" type="xs:decimal" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="scene_coverage" type="xs:decimal" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="timeliness" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="timeliness" type="mmd:timeliness_type" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="mmd:timeliness_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NRT"></xs:enumeration>
+            <xs:enumeration value="NTC"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="keywords_type">
         <xs:sequence>
             <xs:element name="keyword" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>

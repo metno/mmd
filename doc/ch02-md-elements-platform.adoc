@@ -16,14 +16,14 @@ The platform used to collect the data. The element is described using
 the following child elements:
 
 short_name:: 
-is the abbreviated name of the platform (see <<platform-l>>) used to
+is the abbreviated name of the platform (see <<platform-1>>) used to
 acquire the data 
 long_name:: 
-is the full name of the platform (see <<platform-l>>) used
+is the full name of the platform (see <<platform-1>>) used
 to acquire the data.
 resource::
 is a link to further information about the satellite. For this purpose
-descriptions from https://www.wmo-sat.info/oscar/satellites are used.
+descriptions from https://www.wmo-sat.info/oscar/satellites are used (see <<platform-1>>)
 orbit_relative::
 is the relative orbit number for a polar orbiting satellite.
 orbit_absolute::
@@ -42,12 +42,16 @@ platforms), but covers a need for a wider range of use cases, including
 internal MET use cases that has been long needed. 
 * short_name is an acronym for the sensor, see <<instruments>>
 * long_name is the full name, see <<instruments>>
-* resource is a link to further information in WIGOS space
+* resource is a link to further information in WIGOS space, see <<instruments>>
 * mode is specific for SAR (can be for other instruments in the future), +
 see <<instrument-modes>>.
 * polarisation is also for SAR, see <<polarisation-modes>>
 * product_type is for the Sentinel satellites, see <<product-type>> for +
 more information.
+|=======================================================================
+[cols="2,8"]
+|=======================================================================
+| a|
 ancillary::
 is used for information that does not fit in any of the other elements. It
 includes:

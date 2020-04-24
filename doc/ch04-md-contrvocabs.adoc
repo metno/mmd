@@ -294,52 +294,47 @@ variable.
 [[platform-1]]
 === Platform
 
-[cols="2,8"]
-|==================
-|Code |Description
+[cols="1,2,4"]
+|============================================================================
+|Short name |Long name   | Resource
 
-|S1A |Sentinel-1A 
-|S1B |Sentinel-1B 
-|S2A |SENTINEL-2A 
-|S2B |SENTINEL-2B 
-|S3A |SENTINEL-3A 
-|S3B |SENTINEL-3 
-|==================
+|S1A        |Sentinel-1A | https://www.wmo-sat.info/oscar/satellites/view/396
+|S1B        |Sentinel-1B | https://www.wmo-sat.info/oscar/satellites/view/397
+|S2A        |Sentinel-2A | https://www.wmo-sat.info/oscar/satellites/view/398
+|S2B        |Sentinel-2B | https://www.wmo-sat.info/oscar/satellites/view/399
+|S3A        |Sentinel-3A | https://www.wmo-sat.info/oscar/satellites/view/400
+|S3B        |Sentinel-3B | https://www.wmo-sat.info/oscar/satellites/view/802
+|============================================================================
 
 <<platform>>
 
 [[instruments]]
 === Instruments
 
-[cols="1,5,5"]
-|=======================================================================
-|CSAR |Synthetic Aperature Radar C-band |Relates to Sentinel-1.
+[cols="1,3,6"]
+|=============================================================================================================
+|Short name |Long name                                   | Resource
 
-|MSI |Multi-Spectral Instrument |Relates to Sentinel-2. A push-broom
-optical sensor.
-
-|OLCI
-|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/olci[Ocean and Land Colour Instrument] |Relates to Sentinel-3. A push-broom imaging spectrometer instrument.
-
-|SLSTR
-|https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/slstr[Sea and Land Surface Temperature Radiometer] |Relates to Sentinel-3. A dual view (near-nadir and backward views) conical imaging radiometer.
-
-|MWR |Microwave Radiometer |Relates to Sentinel-3.
-|=======================================================================
+|CSAR       |Synthetic Aperture Radar C-band             | https://www.wmo-sat.info/oscar/instruments/view/450
+|MSI        |Multi-Spectral Imager                       | https://www.wmo-sat.info/oscar/instruments/view/312
+|OLCI       |Ocean and Land Colour Imager                | https://www.wmo-sat.info/oscar/instruments/view/374
+|SLSTR      |Sea and Land Surface Temperature Radiometer | https://www.wmo-sat.info/oscar/instruments/view/518
+|MWR        |Micro-Wave Radiometer                       | https://www.wmo-sat.info/oscar/instruments/view/348
+|=============================================================================================================
 
 <<platform>>
 
 [[instrument-modes]]
 === Instrument modes
 
-[cols="1,2,7"]
+[cols="1,7"]
 |=====================================================
 |Code |Description
 
-|SM |StripMap |Relates to Sentinel-1
-|IW |Interferometric Wide Swath |Relates to Sentinel-1
-|EW |Extra-Wide Swath |Relates to Sentinel-1
-|WV |Wave Mode |Relates to Sentinel-1
+|SM   |StripMap. Relates to Sentinel-1
+|IW   |ScanSAR - Interferometric Wide Swath. Relates to Sentinel-1
+|EW   |ScanSAR - Extra-Wide Swath. Relates to Sentinel-1
+|WV   |Wave Mode. Relates to Sentinel-1
 |=====================================================
 
 <<platform>>
@@ -352,7 +347,7 @@ optical sensor.
 |Code |Description
 
 |HH |Horisontally transmitted and Horisontally received
-|VV |Vertically transmitted and Horisontally received
+|VV |Vertically transmitted and Vertically received
 |HH+HV |
 |VV+VH |
 |HV+HH |
