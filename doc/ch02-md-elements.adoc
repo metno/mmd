@@ -2,6 +2,7 @@
 == Metadata elements
 
 include::ch02-md-elements-metadata_identifier.adoc[]
+include::ch02-md-elements-alternate_identifier.adoc[]
 include::ch02-md-elements-last_metadata_update.adoc[]
 include::ch02-md-elements-metadata_status.adoc[]
 include::ch02-md-elements-collection.adoc[]
