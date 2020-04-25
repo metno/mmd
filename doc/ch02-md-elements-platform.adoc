@@ -13,26 +13,88 @@
 
 |Description a|
 The platform used to collect the data. The element is described using
-two child elements:
+the following child elements:
 
-* short_name is the abbreviated name of the platform used to acquire the data. 
-* long_name is the full name of the platform used to acquire the data.
-* This element is used to store information for NBS products (Sentinel
-platforms). 
+short_name:: 
+is the abbreviated name of the platform (see <<platform-1>>) used to
+acquire the data 
+long_name:: 
+is the full name of the platform (see <<platform-1>>) used
+to acquire the data.
+resource::
+is a link to further information about the satellite. For this purpose
+descriptions from https://www.wmo-sat.info/oscar/satellites are used (see <<platform-1>>)
+orbit_relative::
+is the relative orbit number for a polar orbiting satellite.
+orbit_absolute::
+is the absolute orbit number for a polar orbiting satellite.
+orbit_direction::
+is either "ascending" or "descending" and defines the orbit direction of
+polar orbiting satellites.
+instrument::
+is a specification of the instrument. This used to be a separate element,
+but has been incorporated in the platform element to have a more compact
+information model. This element has several children. Similar to for
+platform, one of the child elements are *resource* and for this purpose
+also the WIGOS list https://www.wmo-sat.info/oscar/instruments is used.
+This element was originally used to store information for NBS products (Sentinel
+platforms), but covers a need for a wider range of use cases, including
+internal MET use cases that has been long needed. 
+* short_name is an acronym for the sensor, see <<instruments>>
+* long_name is the full name, see <<instruments>>
+* resource is a link to further information in WIGOS space, see <<instruments>>
+* mode is specific for SAR (can be for other instruments in the future), +
+see <<instrument-modes>>.
+* polarisation is also for SAR, see <<polarisation-modes>>
+* product_type is for the Sentinel satellites, see <<product-type>> for +
+more information.
+|=======================================================================
+[cols="2,8"]
+|=======================================================================
+| a|
+ancillary::
+is used for information that does not fit in any of the other elements. It
+includes:
+* cloud_coverage in percentage which indicates how much of the available +
+data that are covered by clouds. This is used for optical satellite data.
+* scene_coverage in percentage which indicates how much of map projected +
+satellite product that actually is covered by the satellite. This is
+useful for e.g. Sentinel-2 data and old AVHRR data at MET.
+* timeliness indicates whether the data are delayed or Near Real Time +
+(NRT) data.
 
-See <<platform-1,platform>> for list.
+See <<platform-1,platform>> for list of satellite names. The intention is
+to move towards WIGOS space vocabularies once these become available in
+machine readable form through SKOS files or https://codes.wmo.int/wmdr. 
 
 |Example XML: a|
 ----
-<platform>
-    <short_name>AQUA</short_name>
-    <long_name>Earth Observing System, AQUA<long_name>
-</platform>
-
-<platform>
-    <short_name>S1A</short_name>
-    <long_name>Sentinel-1A</long_name>
-</platform>
+<mmd:platform>
+    <mmd:short_name>S1A</mmd:short_name>
+    <mmd:long_name>Sentinel-1A</mmd:long_name>
+    <mmd:resource>
+      https://www.wmo-sat.info/oscar/satellites/view/396
+    </mmd:resource>
+    <mmd:orbit_relative>121</mmd:orbit_relative>
+    <mmd:orbit_absolute>62391</mmd:orbit_absolute>
+    <mmd:orbit_direction>ascending</mmd:orbit_direction>
+    <mmd:instrument>
+         <mmd:short_name>SAR-C SAR</mmd:short_name>
+         <mmd:long_name>
+           Synthetic Aperture Radar (C-band)
+         </mmd:long_name>
+         <mmd:resource>
+           https://www.wmo-sat.info/oscar/instruments/view/450
+         </mmd:resource>
+         <mmd:mode>IW</mmd:mode>
+         <mmd:polarisation>VV VH</mmd:polarisation>
+    </mmd:instrument>
+    <mmd:ancillary>
+         <mmd:cloud_coverage>23.4</mmd:cloud_coverage>
+         <mmd:scene_coverage>77</mmd:scene_coverage>
+         <mmd:timeliness>NRT</mmd:timeliness>
+    </mmd:ancillary>
+</mmd:platform>
 ----
 
 |DIF equivalent |/DIF/Platform
