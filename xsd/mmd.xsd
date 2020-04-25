@@ -30,7 +30,7 @@
             <xs:element name="metadata_version" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
           -->  
             <xs:element name="metadata_identifier" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-            <xs:element name="alternate_identifier" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
+            <xs:element name="alternate_identifier" type="mmd:alternate_identifier_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
             <xs:element name="title" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
             <xs:element name="abstract" type="mmd:multilang_string" maxOccurs="unbounded" minOccurs="1"></xs:element>
             <xs:element name="metadata_status" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
@@ -79,6 +79,13 @@
         <xs:simpleContent>
             <xs:extension base="xs:string">
                 <xs:attribute ref='xml:lang'/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="alternate_identifier_type">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type" type="xs:string"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
