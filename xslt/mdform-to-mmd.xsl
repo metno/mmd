@@ -158,10 +158,24 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="ISO-Topic-category">
-        <xsl:element name="mmd:iso_topic_category">
-            <xsl:value-of select="."/>
-        </xsl:element>
+    <xsl:template match="ISO-Topic-category" name="tokenize">
+        <xsl:param name="listofiso" select="."/>
+	<xsl:param name="separator" select="'&lt;br /&gt;&#10;'"/>
+        <xsl:choose>
+            <xsl:when test="contains($listofiso, $separator)">
+                <xsl:element name="mmd:iso_topic_category">
+                    <xsl:value-of select="normalize-space(substring-before($listofiso, $separator))"/>
+                </xsl:element>
+                <xsl:call-template name="tokenize">
+                    <xsl:with-param name="listofiso" select="substring-after($listofiso, $separator)"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$listofiso != ''">
+                <xsl:element name="mmd:iso_topic_category">
+                    <xsl:value-of select="normalize-space($listofiso)"/>
+                </xsl:element>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="Dataset-Production-status">
