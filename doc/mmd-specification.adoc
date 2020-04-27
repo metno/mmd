@@ -16,6 +16,19 @@ Version 2.2 (draft)
 [discrete]
 == Abstract
 
+MET Norway Metadata Format (MMD) is an XML metadata format for storing
+information about scientific datasets. MMD is made to document datasets in
+order to make them findable. In this it supports information elements of
+Findable, Accessible, and Reusable from the FAIR guiding principles.
+Through the web services identified in MMD and the encoding of datasets
+according to the preferred format NetCDF-CF, it also supports the
+Interoperable aspect.
+
+The specification is strongly linked to discovery metadata standards like
+ISO19115 and GCMD DIF, but it also extends these as it contains
+configuration metadata specific for the handling of the datasets at the
+host data centre.
+
 <<<
 
 [discrete]
