@@ -311,16 +311,16 @@ variable.
 [[instruments]]
 === Instruments
 
-[cols="1,3,6"]
-|=============================================================================================================
-|Short name |Long name                                   | Resource
+[cols="1,2,5"]
+|===============================================================================================================
+|Short name  |Long name                                   | Resource
 
-|CSAR       |Synthetic Aperture Radar C-band             | https://www.wmo-sat.info/oscar/instruments/view/450
-|MSI        |Multi-Spectral Imager                       | https://www.wmo-sat.info/oscar/instruments/view/312
-|OLCI       |Ocean and Land Colour Imager                | https://www.wmo-sat.info/oscar/instruments/view/374
-|SLSTR      |Sea and Land Surface Temperature Radiometer | https://www.wmo-sat.info/oscar/instruments/view/518
-|MWR        |Micro-Wave Radiometer                       | https://www.wmo-sat.info/oscar/instruments/view/348
-|=============================================================================================================
+|SAR-C       |Synthetic Aperture Radar (C-band)           | https://www.wmo-sat.info/oscar/instruments/view/450
+|MSI         |Multi-Spectral Imager for Sentinel-2        | https://www.wmo-sat.info/oscar/instruments/view/312
+|OLCI        |Ocean and Land Colour Imager                | https://www.wmo-sat.info/oscar/instruments/view/374
+|SLSTR       |Sea and Land Surface Temperature Radiometer | https://www.wmo-sat.info/oscar/instruments/view/518
+|MWR         |Micro-Wave Radiometer                       | https://www.wmo-sat.info/oscar/instruments/view/348
+|===============================================================================================================
 
 <<platform>>
 

@@ -226,7 +226,7 @@
         <xs:sequence>
             <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-            <xs:element name="resource" type="xs:string" maxOccurs="0" minOccurs="1"></xs:element>
+            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="orbit_relative" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="orbit_absolute" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <!-- Must add validation of content -->
@@ -235,7 +235,7 @@
             <xs:element name="ancillary" type="mmd:ancillary_platform_type" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="mmd:orbit_direction_type">
+    <xs:simpleType name="orbit_direction_type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="ascending"></xs:enumeration>
             <xs:enumeration value="descending"></xs:enumeration>
@@ -248,7 +248,7 @@
             <xs:element name="timeliness" type="mmd:timeliness_type" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="mmd:timeliness_type">
+    <xs:simpleType name="timeliness_type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="NRT"></xs:enumeration>
             <xs:enumeration value="NTC"></xs:enumeration>

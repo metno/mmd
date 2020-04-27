@@ -69,32 +69,32 @@ machine readable form through SKOS files or https://codes.wmo.int/wmdr.
 
 |Example XML: a|
 ----
-<mmd:platform>
-    <mmd:short_name>S1A</mmd:short_name>
-    <mmd:long_name>Sentinel-1A</mmd:long_name>
-    <mmd:resource>
+<platform>
+    <short_name>S1A</short_name>
+    <long_name>Sentinel-1A</long_name>
+    <resource>
       https://www.wmo-sat.info/oscar/satellites/view/396
-    </mmd:resource>
-    <mmd:orbit_relative>121</mmd:orbit_relative>
-    <mmd:orbit_absolute>62391</mmd:orbit_absolute>
-    <mmd:orbit_direction>ascending</mmd:orbit_direction>
-    <mmd:instrument>
-         <mmd:short_name>SAR-C SAR</mmd:short_name>
-         <mmd:long_name>
+    </resource>
+    <orbit_relative>121</orbit_relative>
+    <orbit_absolute>62391</orbit_absolute>
+    <orbit_direction>ascending</orbit_direction>
+    <instrument>
+         <short_name>SAR-C</short_name>
+         <long_name>
            Synthetic Aperture Radar (C-band)
-         </mmd:long_name>
-         <mmd:resource>
+         </long_name>
+         <resource>
            https://www.wmo-sat.info/oscar/instruments/view/450
-         </mmd:resource>
-         <mmd:mode>IW</mmd:mode>
-         <mmd:polarisation>VV VH</mmd:polarisation>
-    </mmd:instrument>
-    <mmd:ancillary>
-         <mmd:cloud_coverage>23.4</mmd:cloud_coverage>
-         <mmd:scene_coverage>77</mmd:scene_coverage>
-         <mmd:timeliness>NRT</mmd:timeliness>
-    </mmd:ancillary>
-</mmd:platform>
+         </resource>
+         <mode>IW</mode>
+         <polarisation>VV+VH</polarisation>
+    </instrument>
+    <ancillary>
+         <cloud_coverage>23.4</cloud_coverage>
+         <scene_coverage>77</scene_coverage>
+         <timeliness>NRT</timeliness>
+    </ancillary>
+</platform>
 ----
 
 |DIF equivalent |/DIF/Platform
