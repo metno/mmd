@@ -1,18 +1,24 @@
 :doctype: book
 :pdf-folio-placement: physical
+:media: prepress
 :title-logo-image: image::images/Met_RGB_Horisontal_Engelsk.png[pdfwidth=10cm,align=right]
 = MET Norway Metadata Format Specification
 Øystein{nbsp}Godøy, Lara{nbsp}Ferrighi, Trygve{nbsp}Halsne, Øystein{nbsp}Torget, Bard{nbsp}Saadatnejad, Egil{nbsp}Støren, Sarfraz{nbsp}Alam
 Version 2.2 (draft)
+:sectnums:
+:sectnumlevels: 6
 :sectanchors:
-:toc:
-:toclevels: 4
+:toc: macro
+:chapter-label:
+:xrefstyle: short
+:toclevels: 6
 
-
-:numbered!:
+[discrete]
 == Abstract
 
-:numbered!:
+<<<
+
+[discrete]
 == Revision history
 
 [cols=",,,",]
