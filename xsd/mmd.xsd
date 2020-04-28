@@ -226,7 +226,7 @@
         <xs:sequence>
             <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="orbit_relative" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="orbit_absolute" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <!-- Must add validation of content -->
