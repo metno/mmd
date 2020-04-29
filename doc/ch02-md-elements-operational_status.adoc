@@ -17,7 +17,7 @@ keywords are listed in <<operational-status>>.
 |Example XML: a|
 ----
 <operational_status>
-    pre-operational
+    Pre-Operational
 </operational_status>
 ----
 

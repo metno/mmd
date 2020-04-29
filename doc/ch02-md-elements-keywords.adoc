@@ -38,9 +38,9 @@ could also be used to describe other features.
 </keywords>
 
 <keywords vocabulary="GCMD">
-    <separator>-</separator>
-    <resource>https://gcmdservices.gsfc.nasa.gov/static/kms/</resource>
     <keyword>Earth Science - Climate Indicators - Teleconnections - North Atlantic Oscillation</keyword>
+    <resource>https://gcmdservices.gsfc.nasa.gov/static/kms/</resource>
+    <separator>-</separator>
 </keywords>
 ----
 

@@ -19,7 +19,7 @@ See <<access-constraints>> for a list of valid values.
 |Example XML: a|
 
 ----
-<access_constraint>Open for all</access_constraint>
+<access_constraint>Open</access_constraint>
 ----
 
 |DIF equivalent |/DIF/Access_Constraints
