@@ -27,7 +27,7 @@ element has the following child elements:
      <resource>http://...</resource>
      <description>...</description>
      <wms_layers>
-     <wms_layer>sea_ice_concentration</layer>
+     <wms_layer>sea_ice_concentration</wms_layer>
      </wms_layers>
 </data_access>
 ----

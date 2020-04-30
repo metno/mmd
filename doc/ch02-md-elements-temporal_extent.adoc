@@ -22,7 +22,7 @@ The extent is defined used two sub elements:
 |Example XML: a|
 ----
 <temporal_extent>
- <start_date>2012-01-01T12:00:00Z<start_date>
+ <start_date>2012-01-01T12:00:00Z</start_date>
  <end_date>2012-02-01T13:00:00Z</end_date>
 </temporal_extent>
 ----
