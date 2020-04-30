@@ -4,7 +4,7 @@
 :title-logo-image: image::images/Met_RGB_Horisontal_Engelsk.png[pdfwidth=10cm,align=right]
 = MET Norway Metadata Format Specification
 Øystein{nbsp}Godøy, Lara{nbsp}Ferrighi, Trygve{nbsp}Halsne, Øystein{nbsp}Torget, Bard{nbsp}Saadatnejad, Egil{nbsp}Støren, Sarfraz{nbsp}Alam
-Version 2.2
+Version 3.0
 :sectnums:
 :sectnumlevels: 6
 :sectanchors:
@@ -36,7 +36,7 @@ datasets at the host data centre.
 |=======================================================================
 |Version |Date |Comment |Responsible
 
-|2.2 |2020-04-30 |General cleaning of document related to converting it to
+|3.0 |2020-04-30 |General cleaning of document related to converting it to
 ASCIIDOC, a number of typos and inconsistencies have been fixed,
 controlled vocabularies updated, alternate_identifier added and major
 rewrite of platform and instrument, data_citation and reference and

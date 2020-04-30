@@ -44,8 +44,12 @@ The following guidelines for a good abstract follows (from DIF):
 
 |Example XML: a|
 ----
-<abstract xml:lang='en'>
-The daily analysis of sea ice concentration are obtained from operation satellite images of the polar regions. It is based on atmospherically corretected signal and an optimal sea ice concentration algorithm. This product is available for free from the EUMETSAT Ocean and Sea Ice Satellite Application Facility (OSI SAF).  
+<abstract xml:lang="en">
+The daily analysis of sea ice concentration are obtained from operation
+satellite images of the polar regions. It is based on atmospherically
+corrected signal and an optimal sea ice concentration algorithm. This
+product is available for free from the EUMETSAT Ocean and Sea Ice
+Satellite Application Facility (OSI SAF).  
 </abstract>
 ----
 

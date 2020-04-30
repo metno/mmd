@@ -21,7 +21,7 @@ identified in the <<metadata_identifier>> element.
 
 |Example XML a|
 ----
-<related_dataset relation_type=”parent”>
+<related_dataset relation_type="parent">
     9663fc67-5687-4bf2-a274-f3826e41fdc8
 </related_dataset>
 ----
