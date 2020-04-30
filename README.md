@@ -82,9 +82,10 @@ In order to build the documentation use the following command
 ```
 asciidoctor -n mmd_specification.adoc
 ```
+
 ### PDF:
 ```
-asciidoctor-pdf -n mmd_specification.adoc
+asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n mmd_specification.adoc
 ```    
 
 ## Licenses

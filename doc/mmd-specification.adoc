@@ -4,7 +4,7 @@
 :title-logo-image: image::images/Met_RGB_Horisontal_Engelsk.png[pdfwidth=10cm,align=right]
 = MET Norway Metadata Format Specification
 Øystein{nbsp}Godøy, Lara{nbsp}Ferrighi, Trygve{nbsp}Halsne, Øystein{nbsp}Torget, Bard{nbsp}Saadatnejad, Egil{nbsp}Støren, Sarfraz{nbsp}Alam
-Version 2.2 (draft)
+Version 2.2
 :sectnums:
 :sectnumlevels: 6
 :sectanchors:
@@ -22,12 +22,10 @@ order to make them findable. In this it supports information elements of
 Findable, Accessible, and Reusable from the FAIR guiding principles.
 Through the web services identified in MMD and the encoding of datasets
 according to the preferred format NetCDF-CF, it also supports the
-Interoperable aspect.
-
-The specification is strongly linked to discovery metadata standards like
-ISO19115 and GCMD DIF, but it also extends these as it contains
-configuration metadata specific for the handling of the datasets at the
-host data centre.
+Interoperable aspect.  The specification is strongly linked to discovery
+metadata standards like ISO19115 and GCMD DIF, but it also extends these
+as it contains configuration metadata specific for the handling of the
+datasets at the host data centre.
 
 <<<
 
@@ -38,9 +36,12 @@ host data centre.
 |=======================================================================
 |Version |Date |Comment |Responsible
 
-|2.2 |2020-??-?? |Several minor modifications has not been document.
-Collecting these and preparing for transition into ASCIDOC like
-CF-conventions. |Øystein Godøy, Lara Ferrighi
+|2.2 |2020-04-30 |General cleaning of document related to converting it to
+ASCIIDOC, a number of typos and inconsistencies have been fixed,
+controlled vocabularies updated, alternate_identifier added and major
+rewrite of platform and instrument, data_citation and reference and
+use_constraints elements.
+|Øystein Godøy, Lara Ferrighi, Trygve Halsne
 
 |2.1 |2018-12-13 |Modifications of controlled vocabularies related to
 satellite data and data collections, minor edit on related_dataset,
@@ -48,49 +49,26 @@ major edit on reference. |Øystein Godøy
 
 |2.0 |2017-10-17 |Added controlled vocabularies and elements for
 instrument children like mode, polarisation and product_type. a|
-Trygve Halsne
-
-Øystein Godøy
+Trygve Halsne, Øystein Godøy
 
 |1.9 |2017-05-29 |Added ODATA to data_access to support NBS. a|
-Øystein Godøy
-
-Egil Støren
-
-Bard Saadatnejad
-
-Trygve Halsne
+Øystein Godøy, Egil Støren, Bard Saadatnejad, Trygve Halsne
 
 |1.8 |2017-03-13 |Adaptations to support NBS (in particular Sentinel-2).
 Depreciation of system_specific elements used for Halo and BarentsWatch
 (covered by other elements). a|
-Øystein Godøy
-
-Sarfraz Alam
-
-Trygve Halsne
-
-Bard Saadatnejad
+Øystein Godøy, Sarfraz Alam, Trygve Halsne, Bard Saadatnejad
 
 |1.7 |2016-11-04 |Consolidation of document, addition of collection
 keyword and preparation for NBS usage. a|
-Øystein Godøy
-
-Sarfraz Alam
+Øystein Godøy, Sarfraz Alam
 
 |1.6 |2016-05-10 a|
 Minor formatting changes.
 
 Addition of configuration metadata elements (from XMD and others).
-
-Addition of vocabulary suggestions.
-
- a|
-Øystein Godøy
-
-Bard Saadatnejad
-
-Sarfraz Alam
+Addition of vocabulary suggestions. a|
+Øystein Godøy, Bard Saadatnejad, Sarfraz Alam
 
 |1.5 |2013-07-15 | |Øystein Torget
 
@@ -103,7 +81,6 @@ Added Obsolete as a dataset status.
 
 Re-formatted document and added some more formalism to the intro
 sections.
-
  a|
 Øystein Godøy,
 
@@ -113,7 +90,6 @@ sections.
 Added mapping between MMD and ISO dataset status codes.
 
 Move vocabulary from sub element of keywords to attribute.
-
  |Øystein Torget
 
 |1.0 |2013-01-18 |First version. |Øystein Torget

@@ -34,8 +34,12 @@ metadata available. This element has the following child elements:
 |Example XML: a|
 ----
 <dataset_citation>
-    <author>Cristian Lussana, Ole Einar Tveito, Andreas Dobler, and Ketil Tunheim</author>
-    <title>seNorge_2018, daily precipitation, and temperature datasets over Norway</title>
+    <author>
+Cristian Lussana, Ole Einar Tveito, Andreas Dobler, and Ketil Tunheim
+    </author>
+    <title>
+seNorge_2018, daily precipitation, and temperature datasets over Norway
+    </title>
     <series>Earth System Science Data</series>
     <volume>11</volume>
     <issue>4</issue>
