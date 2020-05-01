@@ -17,6 +17,8 @@ script:
     - asciidoctor-pdf -n doc/mmd-specification.adoc -D doc
 
 after_success:
+    # Travis must be given execute permissions to the shell script:
+    #   git update-index --add --chmod=+x .travis/push.sh
     - .travis/push.sh
 
 env:
