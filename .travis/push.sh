@@ -16,3 +16,7 @@ commit_files() {
 upload_files(){
     git push https://${GH_TOKEN}@github.com/mortenwh/mmd.git > /dev/null 2>&1
 }
+
+setup_git
+commit_files
+upload_files
