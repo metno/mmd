@@ -8,4 +8,28 @@ install:
     - gem install --pre asciidoctor-pdf
     - asciidoctor-pdf --version
 
+before_script:
+    - git config --global user.email $GIT_EMAIL
+    - git config --global user.name $GIT_NAME
+
+script:
+    - mkdir build
+    # Build MMD specification
+    - asciidoctor doc/mmd-specification.adoc -D build
+    - asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n mmd-specification.adoc -D build
+
+after_success:
+    # we work directly on master. Unless otherwise specified, mmd-specification builds go to the doc-folder.
+    - if [[ $TRAVIS_TAG ]]; then
+        TARGET_DIR=$TRAVIS_TAG;
+      else
+        TARGET_DIR='doc';
+      fi
+    - mkdir -p $TARGET_DIR
+    - cp build/mmd-specification.html $TARGET_DIR/
+    - cp build/mmd-specification.pdf $TARGET_DIR/
+    - git add $TARGET_DIR/mmd-specification.html
+    - git add $TARGET_DIR/mmd-specification.pdf
+    - git commit -m "Auto-generated from ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}"
+    - git push https://${GHT_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git >/dev/null 2>&1
 
