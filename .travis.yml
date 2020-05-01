@@ -14,7 +14,7 @@ install:
 script:
     # Build MMD specification
     - asciidoctor doc/mmd-specification.adoc -D doc
-    - asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n doc/mmd-specification.adoc -D doc
+    - asciidoctor-pdf -n doc/mmd-specification.adoc -D doc
 
 after_success:
     - .travis/push.sh
