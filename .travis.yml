@@ -1,4 +1,4 @@
-# When merging into steingod/mmd, the secure code most likely needs to be recreated following this tutorial: https://gist.github.com/willprice/e07efd73fb7f13f917ea
+# When merging into steingod/mmd (or another repos), the secure code most likely needs to be recreated following this tutorial: https://gist.github.com/willprice/e07efd73fb7f13f917ea
 # This method of compiling the docs seems hacky to me. It would be better to keep all binaries outside version control, and take care of building with other tools, e.g., readthedocs.
 # Travis CI is mainly for unit testing, and should be used for that only..
 language: ruby
@@ -11,32 +11,13 @@ install:
     - gem install --pre asciidoctor-pdf
     - asciidoctor-pdf --version
 
-before_script:
-    - git config --global user.email $GIT_EMAIL
-    - git config --global user.name $GIT_NAME
-
 script:
-    - mkdir build
     # Build MMD specification
-    - asciidoctor doc/mmd-specification.adoc -D build
-    - asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n doc/mmd-specification.adoc -D build
+    - asciidoctor doc/mmd-specification.adoc -D doc
+    - asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n doc/mmd-specification.adoc -D doc
 
 after_success:
-    # we work directly on master. Unless otherwise specified, mmd-specification builds go to the doc-folder.
-    - if [[ $TRAVIS_TAG ]]; then
-        TARGET_DIR=$TRAVIS_TAG;
-      else
-        TARGET_DIR='doc';
-      fi
-    - mkdir -p $TARGET_DIR
-    - cp build/mmd-specification.html $TARGET_DIR/
-    - cp build/mmd-specification.pdf $TARGET_DIR/
-    - git add $TARGET_DIR/mmd-specification.html
-    - git add $TARGET_DIR/mmd-specification.pdf
-      #- git commit -m "Auto-generated from ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}"
-    - git commit -m "Travis build: $TRAVIS_BUILD_NUMBER"
-      #- echo ${TRAVIS_REPO_SLUG}
-    - git push https://${GH_TOKEN}@github.com/mortenwh/mmd.git >/dev/null 2>&1
+    - .travis/push.sh
 
 env:
     global:
