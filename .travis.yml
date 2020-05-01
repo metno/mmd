@@ -31,7 +31,8 @@ after_success:
     - git add $TARGET_DIR/mmd-specification.html
     - git add $TARGET_DIR/mmd-specification.pdf
     - git commit -m "Auto-generated from ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}"
-    - echo ${GHT_TOKEN}
-    - echo ${TRAVIS_REPO_SLUG}
-    - git push https://${GHT_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git >/dev/null 2>&1
+      #- echo ${GHT_TOKEN}
+      #- echo ${TRAVIS_REPO_SLUG}
+      #- git push https://${GHT_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git >/dev/null 2>&1
+    - git push
 
