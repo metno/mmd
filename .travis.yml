@@ -1,3 +1,6 @@
+# When merging into steingod/mmd, the secure code most likely needs to be recreated following this tutorial: https://gist.github.com/willprice/e07efd73fb7f13f917ea
+# This method of compiling the docs seems hacky to me. It would be better to keep all binaries outside version control, and take care of building with other tools, e.g., readthedocs.
+# Travis CI is mainly for unit testing, and should be used for that only..
 language: ruby
 rvm:
     - 2.6
@@ -30,9 +33,17 @@ after_success:
     - cp build/mmd-specification.pdf $TARGET_DIR/
     - git add $TARGET_DIR/mmd-specification.html
     - git add $TARGET_DIR/mmd-specification.pdf
-    - git commit -m "Auto-generated from ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}"
-      #- echo ${GHT_TOKEN}
+      #- git commit -m "Auto-generated from ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}"
+    - git commit -m "Travis build: $TRAVIS_BUILD_NUMBER"
       #- echo ${TRAVIS_REPO_SLUG}
-      #- git push https://${GHT_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git >/dev/null 2>&1
-    - git push
+    - git push https://${GH_TOKEN}@github.com/mortenwh/mmd.git >/dev/null 2>&1
+
+env:
+    global:
+        # GH_TOKEN
+        - secure: MEjCsnFlnWei7ED8rYIqzJH+saUtkscIvD3UjnRqUidJ35HIDbeAMAwXM6OaUIIlIdqpcxA4OvBCT/kXClzyMmmKeRuL5zQYiqHAvxq/Bna0IDYXnfk+JeWk4EcxEm/44sdA0zLVYyiMsqG3ng/1u4v09nTTwnky22r86lmA9nm4Q4O5iRP1sSbPrcvYh2t16N/DkDVC5e7loNMgGfvj+8pUs9iMWUWlWyS3MQxcWIlCEtcIQsAPUJQDIHGLySeYld0c0+9AxMu7lsaIhRSRJwhQ6UG04c8bdSrlqwHkYokDBUVNeL+N/87LqJfln8cQXQvQlQbgYnTnRLd7BGq4536ZRwRdT3e3s+Sdb4S4KrEbtnmZCSZ2CZN5ebKRom88mzmvuYM1AvHxg40VEujm/wtKr6a+4RvucxVRgSkLNnLAIrrof4qSJ/mfAkshKrjk6kDoAfwIUdBgad6txWy8Q3DVnUhvhA5kGtS63ZqhWZlUIoM/nqR5DrNETao16jk/5Q9yvqDVESX2u8Yj0KSnAGxML1zesmSDMqfefNp3o1xPAFYXWu6/aa18BLrCL/SGOs75HdYrkmDEWmJ9i+g5jmQczIqF9I23X6Jl1ARe3EBFPb/SWwxjaLsytFln1UbIFrQ9jVixq8/xBwc1+Jz8ltkrraYGhdqc3lQMt+s+0bA=
+        # GIT_EMAIL
+        - secure: Jp3qK/KxBuBT5Sc3mi6DX7EgEEDxW1XhGbiEplGL1vU/vQCM0hLmfUiGqguOJ6Fz7wvzBRulO4z6l3ezee38kwdny8iQNxon5l6BnKTwTHChGL6texgKGopNN7HjkTz3+O+HC9kHlOA1SABhMUfXi+qSDXkmeYDCpIBCyRNOPyiiEn8Wanux1ERybserR4dVdRKcPUNo/i9gP4xQYafSOPVMQh/6YZaAw8cnWN5MrbyzqRh2Li6qMsPM9mPnANHbOTNpNozghDl9TSkI+AEKl0kdaqch2pFfSJ6fwP/O08mKn+x1q2U2+PAABB6xeSY6PMbDJ63dbX2dgE2Sj5yn9jy03RVn9rSCIh5d89sZ+Z3HBb4VPR84gxiEa+5GyIsrQ58fyN65NKO0hTVOYth+OSDfbEE/XP9ufb4ysTALWFR0LpEpjKuUhCeuhW9GGsPK9YOlT60a9rhEAcYFD5GYiPtDf+S+OZKboFA1WDDCVMHHR8E52U6xg0utOB+U9jYl4tz3yq7zbXmtcLKy+5yjkJto5kjnIrYg6HgYcV/rPk+mFqham++wyIM/yDSJcFHNZ8JsRWSv9CIy4QNTU29vR2bDmRSWdI4moq5QtTZ4WR0Lvrhahd+7Jtym2H0Kf5tNQesZ03bqDsgA8sqVlsNytn1wg17lXp+gTiCgawagRmI=
+        # GIT_NAME
+        - secure: Z1yrJG3J1guqCzoorNIS5SuKCaukcfR6GWcp3uVdvyHhuMocwwL8fezH9OmB6M68YSpKIhyW385DEWDZodqmrRW679fwd2/PH+8cnbcu61VwXSUWKFsOnjVjqQaDLP3kKp25ghg5ekxMcd57B110/8ZYZCXitFssmjE63JA1btAjNm/eWE79PXyWprAv39tbCGQSIiB+7Mzd7lH2u2nJ0I6gWLqdKthZak0XkPJFiaqibYXSwAjQeNmd5NFEeDETOgmzS15jxCUVU9ptyyfjxaubjrzQD/iIzGZdcVXnRVkdM/cK3NKQEl8ZHpdOywKQVdengLukoCE3covQn8StHi3+X9BNup7myHNtzENd5ouPWAlobbFAMf8wNZ5UOSVtkYNuZY63MWd297TXi3SmbXLYtpf6nUxrHXoowHAwV8gmGjLC7j0XhwwdA1qRG8vYuoYxcWjv12EWBNq/1/liJpUMyANfVDA+mIAhVBVMplp6kWUtXp+uKeJ5QVc3TPB6ageRK0LnXZdhwDwCwtd0l0gbp5RCGuMrjsr8R/E5d2ZNNAnro+1TCcQCrMJJ17BT/dYZiqr939jE3Gzn2eRAZD2MuDKmBbuhuQKidmgXdBTXYoeUXXYxPyLpUrY+4UmQ5ZgmjWCdut8r0GEO7NqSq6uWCmGNnC6qCYUqpqXxv7U=
 
