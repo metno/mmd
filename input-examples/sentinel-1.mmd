@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mmd xmlns="http://www.met.no/schema/mmd" xmlns:gml="http://www.opengis.net/gml"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<metadata_identifier>S1A_EW_GRDM_1SDH_20200420T023244_20200420T023348_032205_03B97F_72EB</metadata_identifier>
+<title xml:lang="en">
+Date: 2020-04-20T02:32:44.006Z, Instrument: SAR-C SAR, Mode: HH HV, Satellite: Sentinel-1, Size: 434.58 MB
+</title>
+<abstract xml:lang="en">
+The SENTINEL-1 mission comprises a constellation of two polar-orbiting satellites, operating day and night performing C-band synthetic aperture radar imaging, enabling them to acquire imagery regardless of the weather.
+</abstract>
+<metadata_status>Active</metadata_status>
+<dataset_production_status>In Work</dataset_production_status>
+<collection>NBS</collection>
+<last_metadata_update>
+	<update>
+		<datetime>2020-04-20T05:42:18.746Z</datetime>
+		<type>Created</type>
+	</update>
+</last_metadata_update>
+<temporal_extent>
+	<start_date>2020-04-20T02:32:44.006Z</start_date>
+	<end_date>2020-04-20T02:33:48.294Z</end_date>
+</temporal_extent>
+<iso_topic_category>climatologyMeteorologyAtmosphere</iso_topic_category>
+<iso_topic_category>oceans</iso_topic_category>
+<iso_topic_category>imageryBaseMapsEarthCover</iso_topic_category>
+<keywords vocabulary="GCMD">
+<keyword>
+Earth Science > Spectral/Engineering > RADAR > RADAR backscatter
+</keyword>
+<keyword>
+Earth Science > Spectral/Engineering > RADAR > RADAR imagery
+</keyword>
+<keyword>
+Earth Science > Spectral/Engineering > Microwave > Microwave imagery
+</keyword>
+</keywords>
+<dataset_language>en</dataset_language>
+<operational_status>Operational</operational_status>
+<geographic_extent>
+	<rectangle srsName="EPSG:4326">
+		<north>82.044609</north>
+		<south>76.955391</south>
+		<west>63.098541</west>
+		<east>90.652794</east>
+	</rectangle>
+</geographic_extent>
+
+<platform>
+        <short_name>S1A</short_name>
+        <long_name>Sentinel-1A</long_name>
+        <resource>https://www.wmo-sat.info/oscar/satellites/view/396</resource>
+        <orbit_relative>73</orbit_relative>
+        <orbit_absolute>32205</orbit_absolute>
+        <orbit_direction>descending</orbit_direction>
+        <instrument>
+                <short_name>SAR-C</short_name>
+                <long_name>Synthetic Aperture Radar (C-band)</long_name>
+                <resource>https://www.wmo-sat.info/oscar/instruments/view/450</resource>
+                <mode>EW</mode>
+                <polarisation>HH+HV</polarisation>
+                <product_type>GRD</product_type>
+        </instrument>
+</platform>
+
+<related_information>
+	<type>Users guide</type>
+	<description>URI to a users guide or product manual for the dataset.</description>
+	<resource>https://sentinel.esa.int/web/sentinel/missions/sentinel-1</resource>
+</related_information>
+
+<project>
+	<short_name>NBS</short_name>
+	<long_name>Nasjonalt BakkeSegment</long_name>
+</project>
+
+<activity_type>Space Borne Instrument</activity_type>
+<data_center>
+	<data_center_name>
+		<short_name>METNO</short_name>
+		<long_name>Norwegian Meteorological Institute</long_name>
+	</data_center_name>
+	<data_center_url>https://met.no</data_center_url>
+</data_center>
+
+<personnel>
+	<role>Data center contact</role>
+	<name>NBS Helpdesk</name>
+	<email>nbs-helpdesk@met.no</email>
+	<phone/>
+	<fax/>
+</personnel>
+
+<data_access>
+	<type>OPeNDAP</type>
+	<description>Open-source Project for a Network Data Access Protocol.</description>
+	<resource>http://nbstds.met.no/thredds/dodsC/NBS/S1A/2020/04/20/EW/S1A_EW_GRDM_1SDH_20200420T023244_20200420T023348_032205_03B97F_72EB.nc</resource>
+</data_access>
+<data_access>
+	<type>OGC WMS</type>
+	<description>OGC Web Mapping Service, URI to GetCapabilities Document.</description>
+	<resource>http://nbswms.met.no/thredds/wms_ql/NBS/S1A/2020/04/20/EW/S1A_EW_GRDM_1SDH_20200420T023244_20200420T023348_032205_03B97F_72EB.nc</resource>
+	<wms_layers>
+		<wms_layer>Amplitude HH polarisation</wms_layer>
+		<wms_layer>Amplitude HV polarisation</wms_layer>
+	</wms_layers>
+</data_access>
+<data_access>
+	<type>HTTP</type>
+	<description>Direct access to the full data file. May require authentication, but should point directly to the data file or a catalogue containing the data.</description>
+	<resource>http://nbstds.met.no/thredds/fileServer/NBS/S1A/2020/04/20/EW/S1A_EW_GRDM_1SDH_20200420T023244_20200420T023348_032205_03B97F_72EB.nc</resource>
+</data_access>
+<data_access>
+	<type>ODATA</type>
+	<description>Open Data Protocol.</description>
+	<resource>https://colhub.met.no/odata/v1/Products('c393826f-465d-4437-983f-fa2e003214a5')/$value</resource>
+</data_access>
+
+<related_information>
+	<type>Dataset landing page</type>
+	<description>A dataset landing page.</description>
+	<resource>http://nbstds.met.no/thredds/catalog/NBS/S1A/2020/04/20/EW/catalog.html?dataset=nbs/S1A/2020/04/20/EW/S1A_EW_GRDM_1SDH_20200420T023244_20200420T023348_032205_03B97F_72EB.nc</resource>
+</related_information>
+
+</mmd>
