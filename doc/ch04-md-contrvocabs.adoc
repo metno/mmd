@@ -294,7 +294,7 @@ variable.
 [[platform-1]]
 === Platform
 
-[cols="1,2,4"]
+[cols="1,4,5"]
 |============================================================================
 |Short name |Long name   | Resource
 
@@ -304,6 +304,17 @@ variable.
 |S2B        |Sentinel-2B | https://www.wmo-sat.info/oscar/satellites/view/399
 |S3A        |Sentinel-3A | https://www.wmo-sat.info/oscar/satellites/view/400
 |S3B        |Sentinel-3B | https://www.wmo-sat.info/oscar/satellites/view/802
+|Metop-A    |Meteorological operational satellite - A | http://www.wmo-sat.info/oscar/satellites/view/306
+|Metop-B    |Meteorological operational satellite - B | http://www.wmo-sat.info/oscar/satellites/view/307
+|Metop-C    |Meteorological operational satellite - C | http://www.wmo-sat.info/oscar/satellites/view/308
+|NOAA-18    |National Oceanic and Atmospheric Administration - 18 | http://www.wmo-sat.info/oscar/satellites/view/340
+|NOAA-19    |National Oceanic and Atmospheric Administration - 19 | http://www.wmo-sat.info/oscar/satellites/view/341
+|NOAA-20    |National Oceanic and Atmospheric Administration - 20 | http://www.wmo-sat.info/oscar/satellites/view/208
+|SNPP       |Suomi National Polar-orbiting Partnership | http://www.wmo-sat.info/oscar/satellites/view/342
+|Aqua       |Earth Observation System - Aqua | http://www.wmo-sat.info/oscar/satellites/view/79
+|Terra      |Earth Observation System - Terra | http://www.wmo-sat.info/oscar/satellites/view/81
+|FY-3D      |Feng-Yun 3D | https://www.wmo-sat.info/oscar/satellites/view/116
+|FY-3E      |Feng-Yun 3E | https://www.wmo-sat.info/oscar/satellites/view/117
 |============================================================================
 
 <<platform>>
@@ -311,7 +322,7 @@ variable.
 [[instruments]]
 === Instruments
 
-[cols="1,2,5"]
+[cols="1,4,6"]
 |===============================================================================================================
 |Short name  |Long name                                   | Resource
 
@@ -320,6 +331,12 @@ variable.
 |OLCI        |Ocean and Land Colour Imager                | https://www.wmo-sat.info/oscar/instruments/view/374
 |SLSTR       |Sea and Land Surface Temperature Radiometer | https://www.wmo-sat.info/oscar/instruments/view/518
 |MWR         |Micro-Wave Radiometer                       | https://www.wmo-sat.info/oscar/instruments/view/348
+|VIIRS       |Visible/Infrared Imager Radiometer Suite    | https://www.wmo-sat.info/oscar/instruments/view/604
+|AVHRR       |Advanced Very High Resolution Radiometer    | https://www.wmo-sat.info/oscar/instruments/view/60
+|AVHRR/2     |Advanced Very High Resolution Radiometer / 2 | https://www.wmo-sat.info/oscar/instruments/view/61
+|AVHRR/3     |Advanced Very High Resolution Radiometer / 3 | https://www.wmo-sat.info/oscar/instruments/view/62
+|MERSI-2     |Medium Resolution Spectral Imager -2        | https://www.wmo-sat.info/oscar/instruments/view/279
+|MODIS       |Moderate-resolution Imaging Spectro-radiometer | https://www.wmo-sat.info/oscar/instruments/view/296
 |===============================================================================================================
 
 <<platform>>
