@@ -18,14 +18,14 @@ jobs:
 
     - name: create html and pdf
       run: |
-        asciidoctor -n mmd_specification.adoc
-        asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n mmd_specification.adoc
+        docker-compose up
 
     - name: commit changed files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add .
+        git add doc/mmd-specification.html
+        git add doc/mmd-specification.pdf
         git commit -m "Add GitHub Action changes"
 
     - name: push code to master
