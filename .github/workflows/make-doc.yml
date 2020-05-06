@@ -19,11 +19,11 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -f doc/mmd-specification.html
-        git add -f doc/mmd-specification.pdf
-        git commit -m "GitHub Action changes"
+        git add doc/mmd-specification.html
+        git add doc/mmd-specification.pdf
+        git commit -m "Automatic updated by GitHub Action"
 
-    - name: push code to master
+    - name: push code to ${{ github.ref }}
       run: |
         remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
         git push "${remote_repo}" HEAD:${{ github.ref }} --follow-tags
