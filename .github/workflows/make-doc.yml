@@ -21,7 +21,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add doc/mmd-specification.html
         git add doc/mmd-specification.pdf
-        git commit -m "Add GitHub Action changes"
+        git commit -m "GitHub Action changes"
 
     - name: push code to master
       run: |
