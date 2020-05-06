@@ -19,8 +19,8 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -f doc/mmd-specification.html
-        git add -f doc/mmd-specification.pdf
+        git add doc/mmd-specification.html
+        git add doc/mmd-specification.pdf
         git commit -m "GitHub Action changes"
 
     - name: push code to master
