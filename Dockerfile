@@ -1,5 +1,5 @@
 #
-# Docker file used in GitHub actions to build HTML and PDF
+# Docker file used in GitHub Actions to build HTML and PDF
 # versions of mmd-specification.
 #
 
