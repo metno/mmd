@@ -231,12 +231,12 @@ class Nc_to_mmd(object):
                             'cdm_data_type':None}
         return cf_acdd_mmd_lut
 
-def main():
-    op = ''
-    on = 'multisensor_sic.xml'
-    nc = "http://thredds.met.no/thredds/dodsC/sea_ice/SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated"
-    md = Nc_to_mmd(op,on,nc)
-    md.to_mmd()
-
-if __name__=='__main__':
-    main()
+#def main():
+#    op = ''
+#    on = 'multisensor_sic.xml'
+#    nc = "http://thredds.met.no/thredds/dodsC/sea_ice/SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated"
+#    md = Nc_to_mmd(op,on,nc)
+#    md.to_mmd()
+#
+#if __name__=='__main__':
+#    main()
