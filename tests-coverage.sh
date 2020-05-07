@@ -1,6 +1,6 @@
 #!/bin/bash
 
-coverage run --omit=tests --source mmd_utils mmd_utils/nc_to_mmd.py
+coverage run --omit=tests/* --source mmd_utils mmd_utils/nc_to_mmd.py
 coverage report
 
 echo
