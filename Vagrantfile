@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+#
 # Use this environment for building HTML and PDF versionis of mmd-specification.
 #
 # Install the requirements:
@@ -15,6 +16,7 @@
 # Remove the build environment:
 #
 #   vagrant destroy -f
+#
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
