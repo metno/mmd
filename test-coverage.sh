@@ -1,14 +1,19 @@
 #!/bin/bash
 
-coverage run --omit=tests --source utils utils/nc_to_mmd.py
+coverage run --omit=tests --source mmd_utils mmd_utils/nc_to_mmd.py
 coverage report
 
-if [[ -n "$COVERALLS_REPO_TOKEN" ]]; tnen
+echo
+
+if [[ -n "$COVERALLS_REPO_TOKEN" ]]
+then
   coveralls
 else
-  echo **
-  echo ** If you want code coverage generted on https://coveralls.io with GitHub Actions.
-  echo ** 1. Add repository to coveralls.io.
-  echo ** 2. Add token from coveralls.io as a secret named COVERALLS_REPO_TOKEN.
-  echo **
+  echo %%
+  echo %% Do you want code coverage generated on https://coveralls.io with GitHub Actions.
+  echo %%
+  echo "%%   1. Add repository to coveralls.io."
+  echo "%%   2. Add a repository secret in [ Setting \> Secrets ]."
+  echo "%%      Name it COVERALLS_REPO_TOKEN, and use the token from coveralls.io as value."
+  echo %%
 fi

@@ -3,6 +3,7 @@ version: '3.4'
 services:
   html:
     build:
+      context: .
       dockerfile: Dockerfile.asciidoctor
     volumes:
       - ./doc:/workdir
@@ -10,6 +11,7 @@ services:
 
   pdf:
     build:
+      context: .
       dockerfile: Dockerfile.asciidoctor
     volumes:
       - ./doc:/workdir
