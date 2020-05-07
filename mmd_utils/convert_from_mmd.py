@@ -14,7 +14,6 @@ TODO: Change references to xslt and xsd folders if script is supposed to run fro
 EXAMPLE: ./src/convert-from-mmd.py 
 
 """
-import sys
 import re
 import lxml.etree as ET
 import datetime
@@ -89,8 +88,10 @@ class ConvertFromMMD():
             iso_doc = transform_to_iso(mmd_doc)
                     
                                                      
-            xml_as_string = ET.tostring(iso_doc, xml_declaration=True, pretty_print=True,
-                                        encoding=iso_doc.docinfo.encoding)
+            #xml_as_string = ET.tostring(iso_doc, xml_declaration=True, pretty_print=True,
+            #                            encoding=iso_doc.docinfo.encoding)
+            xml_as_string = ET.tostring(iso_doc, pretty_print=True,
+                                        encoding='unicode')
 
             #TODO: Validate transformed document against schema
             #xmlschema_iso = ET.XMLSchema(ET.pardse('xsd/iso.xsd'))
@@ -100,7 +101,7 @@ class ConvertFromMMD():
 
             #Write xmlfile
             outputfile = open(self.outputfile, 'w')
-            outputfile.write(str(xml_as_string))
+            outputfile.write(xml_as_string)
             outputfile.close()
             self.logger.info("DIF file written to: " + self.outputfile)
              
@@ -132,16 +133,15 @@ class ConvertFromMMD():
                                                      
         #Validate the translated doc to dif-schema
         #TODO: Evaluate right schema for validation
-        xml_as_string = ET.tostring(dif_doc, xml_declaration=True, pretty_print=True,
-                                    encoding=dif_doc.docinfo.encoding)
+        #xml_as_string = ET.tostring(dif_doc, xml_declaration=True, pretty_print=True,
+        #                            encoding=dif_doc.docinfo.encoding)
+        xml_as_string = ET.tostring(dif_doc, pretty_print=True,
+                                    encoding='unicode')
 
         xmlschema_dif = ET.XMLSchema(ET.parse('xsd/dif10/dif_v10.3.xsd'))
         if not xmlschema_dif.validate(ET.fromstring(xml_as_string)):
             self.logger.warn("Output document not validated")
             self.logger.debug(xmlschema_dif.error_log)
-
-        #TODO: ET.tostring does not seem to return a proper string...
-        xml_as_string = str(xml_as_string)
 
         #Write xmlfile
         outputfile = open(self.outputfile, 'w')
@@ -174,8 +174,10 @@ class ConvertFromMMD():
             mm2_doc = transform_to_mm2(mmd_doc)
 
             #Validate the translated doc to mmd-schema
-            xml_as_string = ET.tostring(mm2_doc, xml_declaration=True, pretty_print=True,
-                                        encoding=mm2_doc.docinfo.encoding)
+            #xml_as_string = ET.tostring(mm2_doc, xml_declaration=True, pretty_print=True,
+            #                            encoding=mm2_doc.docinfo.encoding)
+            xml_as_string = ET.tostring(mm2_doc, pretty_print=True,
+                                        encoding='unicode')
 
             #Validate against schema
             #if not xmlschema_mm2.validate(ET.fromstring(xml_as_string)):
