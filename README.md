@@ -1,3 +1,5 @@
+![html/pdf](https://github.com/aheimsbakk/mmd/workflows/html/pdf/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/aheimsbakk/mmd/badge.svg?branch=HEAD)](https://coveralls.io/github/aheimsbakk/mmd?branch=HEAD)
+
 # mmd
 
 ## Background
