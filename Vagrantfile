@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", "run": "always", inline: <<-SHELL
     cd /vagrant
-    docker-compose up
+    docker-compose -f docker-compose.asciidoctor.yml up
+    docker-compose -f docker-compose.coverate.yml up
   SHELL
 end
