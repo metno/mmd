@@ -1,3 +1,5 @@
 .vagrant
 *.swp
 *.log
+utils/__pycache__
+tests/__pycache__
