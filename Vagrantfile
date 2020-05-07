@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+#
 # Use this environment for building HTML and PDF versionis of mmd-specification.
 #
 # Install the requirements:
@@ -15,6 +16,7 @@
 # Remove the build environment:
 #
 #   vagrant destroy -f
+#
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
@@ -25,6 +27,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", "run": "always", inline: <<-SHELL
     cd /vagrant
-    docker-compose up
+    docker-compose -f docker-compose.asciidoctor.yml up --build
+    docker-compose -f docker-compose.coverage.yml up --build
   SHELL
 end
