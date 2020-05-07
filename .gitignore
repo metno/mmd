@@ -4,3 +4,4 @@
 __pycache__/
 doc/mmd-specification.html
 doc/mmd-specification.pdf
+.coverage
