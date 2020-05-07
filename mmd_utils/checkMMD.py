@@ -1,14 +1,9 @@
-#!/usr/bin/python3
-# -*- coding: UTF-8 -*-
-
-""" Script for checking if XML file satisfy MMD requirements by
+""" Tool for checking if XML file satisfy MMD requirements by
     means of the MMD XSD.
 
 Author:    Trygve Halsne,
 Created:   20.11.2019 (dd.mm.YYYY)
 Copyright: (c) Norwegian Meteorological Institute
-
-Usage: See main method at the bottom of the script
 
 UPDATED 29.01.2020 (dd.mm.YYYY):
 Author: Magnar Martinsen
