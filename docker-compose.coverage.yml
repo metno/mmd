@@ -9,5 +9,5 @@ services:
       COVERALLS_REPO_TOKEN: "${COVERALLS_REPO_TOKEN}"
     volumes:
       - .:/src
-    command: ./test-coverage.sh
+    command: ./tests-coverage.sh
 
