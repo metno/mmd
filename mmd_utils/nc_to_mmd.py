@@ -37,10 +37,14 @@ class Nc_to_mmd(object):
         metadata to MMD, and writes MMD to disk."""
 
         cf_mmd_lut = self.generate_cf_acdd_mmd_lut()
+        # Some mandatory MMD does not have equivalent in ACDD
+        # Make one to one mapping
+        cf_mmd_lut.update(self.generate_cf_mmd_lut_missing_acdd())
         mmd_required_elements = self.required_mmd_elements()
         ncin = Dataset(self.netcdf_product)
 
         global_attributes = ncin.ncattrs()
+        all_netcdf_variables = [var for var in ncin.variables]
 
         # Create XML file with namespaces
         ns_map = {'mmd': "http://www.met.no/schema/mmd",
@@ -65,8 +69,13 @@ class Nc_to_mmd(object):
 
                         # Check if we have iterated to the end of the children
                         elif i == len_elements-1:
-                            current_element = ET.SubElement(parent_element,ET.QName(ns_map['mmd'],e))
-                            current_element.text = str(ncin.getncattr(ga))
+                            value_list = [ncin.getncattr(ga)]
+                            # Split some elements by comma into list
+                            if ga in 'iso_topic_category':
+                                value_list = ncin.getncattr(ga).split(',')
+                            for value in value_list:
+                                current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                current_element.text = str(value)
 
                         # Checks to avoid duplication
                         else:
@@ -106,6 +115,16 @@ class Nc_to_mmd(object):
                                 attrib = e.split('_')[-1]
                                 for keywords_element in root.findall(ET.QName(ns_map['mmd'],'rectangle')):
                                     keywords_element.attrib[attrib] = ncin.getncattr(ga)
+                            elif ga == 'title_lang':
+                                attrib = e.split('_')[-1]
+                                for title_element in root.findall(ET.QName(ns_map['mmd'], 'title')):
+                                    title_element.attrib['{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
+                            elif ga == 'summary_lang':
+                                attrib = e.split('_')[-1]
+                                for element in root.findall(ET.QName(ns_map['mmd'], 'abstract')):
+                                    element.attrib['{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
+                            else:
+                                print("Warning: don't know how to handle attrib: ", e)
 
         # Add empty/commented required  MMD elements that are not found in NetCDF file
         for k,v in mmd_required_elements.items():
@@ -127,6 +146,43 @@ class Nc_to_mmd(object):
             type_sub_element.text = "OPeNDAP"
             description_sub_element.text = "Open-source Project for a Network Data Access Protocol"
             resource_sub_element.text = self.netcdf_product
+
+            _desc = ['Open-source Project for a Network Data Access Protocol.',
+                     'OGC Web Mapping Service, URI to GetCapabilities Document.']
+            _res = [self.netcdf_product.replace('dodsC', 'fileServer'),
+                    self.netcdf_product.replace('dodsC', 'wms')]
+            access_list = []
+            _desc = []
+            _res = []
+            add_wms_data_access = True
+            if add_wms_data_access:
+                access_list.append('OGC WMS')
+                _desc.append('OGC Web Mapping Service, URI to GetCapabilities Document.')
+                _res.append(self.netcdf_product.replace('dodsC', 'wms'))
+            add_http_data_access = True
+            if add_http_data_access:
+                access_list.append('HTTP')
+                _desc.append('Open-source Project for a Network Data Access Protocol.')
+                _res.append(self.netcdf_product.replace('dodsC', 'fileServer'))
+            for prot_type, desc, res in zip(access_list, _desc, _res):
+                dacc = ET.SubElement(root, ET.QName(ns_map['mmd'], 'data_access'))
+                dacc_type = ET.SubElement(dacc, ET.QName(ns_map['mmd'], 'type'))
+                dacc_type.text = prot_type
+                dacc_desc = ET.SubElement(dacc, ET.QName(ns_map['mmd'], 'description'))
+                dacc_desc.text = str(desc)
+                dacc_res = ET.SubElement(dacc, ET.QName(ns_map['mmd'], 'resource'))
+                if 'OGC WMS' in prot_type:
+                    wms_layers = ET.SubElement(dacc, ET.QName(ns_map['mmd'], 'wms_layers'))
+                    # Don't add variables containing these names to the wms layers
+                    skip_layers = ['latitude', 'longitude', 'angle']
+                    for w_layer in all_netcdf_variables:
+                        if any(skip_layer in w_layer for skip_layer in skip_layers):
+                            continue
+                        wms_layer = ET.SubElement(wms_layers, ET.QName(ns_map['mmd'], 'wms_layer'))
+                        wms_layer.text = w_layer
+                    # Need to add get capabilities to the wms resource
+                    res += '?service=WMS&version=1.3.0&request=GetCapabilities'
+                dacc_res.text = res
 
         # Add OGC WMS data_access as comment
         root.append(ET.Comment(str('<mmd:data_access>\n\t<mmd:type>OGC WMS</mmd:type>\n\t<mmd:description>OGC Web Mapping Service, URI to GetCapabilities Document.</mmd:description>\n\t<mmd:resource></mmd:resource>\n\t<mmd:wms_layers>\n\t\t<mmd:wms_layer></mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
@@ -163,7 +219,32 @@ class Nc_to_mmd(object):
                             }
         return mmd_required_elements
 
+    def generate_cf_mmd_lut_missing_acdd(self):
+        """Create lookup table for mandatory MMD elements missing in the ACDD
+        but that still is present as global attributes in the netCDF file"""
 
+        cf_mmd = {'metadata_status': 'metadata_status',
+                  'collection': 'collection',
+                  'dataset_production_status': 'dataset_production_status',
+                  'iso_topic_category': 'iso_topic_category',
+                  'platform': 'platform,short_name',
+                  'platform_long_name': 'platform,long_name',
+                  'platform_resource': 'platform,resource',
+                  'instrument': 'platform,instrument,short_name',
+                  'instrument_long_name': 'platform,instrument,long_name',
+                  'instrument_resource': 'platform,instrument,resource',
+                  'ancillary_timeliness': 'platform,ancillary,timeliness',
+                  'title_lang': 'attrib_lang',
+                  'summary_lang': 'attrib_lang',
+                  'license': 'use_constraint,identifier',
+                  'license_resource': 'use_constraint,resource',
+                  'publisher_country': 'personnel,country',
+                  'creator_role': 'personnel,role',
+                  'date_metadata_modified': 'last_metadata_update,update,datetime',
+                  'date_metadata_modified_type': 'last_metadata_update,update,type',
+                  'date_metadata_modified_note': 'last_metadata_update,update,note'}
+
+        return cf_mmd
 
     def generate_cf_acdd_mmd_lut(self):
         """ Create the Look Up Table for CF/ACDD and MMD on the form:
@@ -171,7 +252,7 @@ class Nc_to_mmd(object):
 
         cf_acdd_mmd_lut = { 'title':'title',
                             'summary':'abstract',
-                            'keywords':'keywords',
+                            'keywords':'keywords,keyword',
                             'keywords_vocabulary':'attrib_vocabulary',
                             'Conventions':None,
                             'id':'metadata_identifier',
@@ -230,6 +311,43 @@ class Nc_to_mmd(object):
                             'instrument_vocabulary':None,
                             'cdm_data_type':None}
         return cf_acdd_mmd_lut
+
+
+def main(input_file=None, output_path=None):
+    """Run the the mdd creation from netcdf"""
+    from pathlib import Path
+
+    if not output_path:
+        output_path = '/home/trygveas/senda/mmd/src/test/'
+    if input_file:
+        # This will extract the stem of the netcdf product filename
+        output_name = '{}'.format(Path(input_file).stem)
+    else:
+        output_path = ''
+        output_name = 'multisensor_sic.xml'
+        input_file = ('http://thredds.met.no/thredds/dodsC/sea_ice/'
+                      'SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated')
+    md = Nc_to_mmd(output_path, output_name, input_file)
+    md.to_mmd()
+
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-i', '--input-file',
+                        type=str,
+                        dest='input_file',
+                        default=None,
+                        help="Input file.")
+    parser.add_argument('-d', '--output-path',
+                        type=str,
+                        dest='output_path',
+                        default=None,
+                        help="Output path.")
+    args = parser.parse_args()
+
+    main(input_file=args.input_file, output_path=args.output_path)
 
 #def main():
 #    op = ''
