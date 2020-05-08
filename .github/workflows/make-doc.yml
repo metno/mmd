@@ -1,7 +1,10 @@
 
 name: 'html/pdf'
 
-on: ["push", "pull_request"]
+on:
+  push:
+    paths:
+      - 'doc/**'
 
 jobs:
   build:
