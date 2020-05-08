@@ -11,7 +11,6 @@ services:
       GITHUB_REF: "${GITHUB_REF}"
       GITHUB_SHA: "${GITHUB_SHA}"
       GITHUB_ACTIONS: "${GITHUB_ACTIONS}"
-      GITHUB_TOKEN: "${GITHUB_TOKEN}"
     volumes:
       - .:/src
     command: ./tests-coverage.sh
