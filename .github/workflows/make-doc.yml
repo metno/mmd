@@ -3,6 +3,12 @@ name: 'html/pdf'
 
 on:
   push:
+    paths:
+      - 'doc/**'
+    paths-ignore:
+      - 'doc/**pdf'
+      - 'doc/**html'
+
 
 jobs:
   build:
