@@ -1,6 +1,5 @@
 #
-# Docker file used in GitHub Actions to build HTML and PDF
-# versions of mmd-specification.
+# Docker file used in GitHub Actions run coverage tests.
 #
 
 FROM python:3.8-slim
