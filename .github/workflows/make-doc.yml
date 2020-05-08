@@ -1,7 +1,8 @@
 
 name: 'html/pdf'
 
-on: ["push"]
+on:
+  push:
 
 jobs:
   build:

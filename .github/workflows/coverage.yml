@@ -1,7 +1,11 @@
 
 name: coverage
 
-on: ["push", "pull_request"]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 env:
   COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
