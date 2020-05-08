@@ -251,7 +251,7 @@
             <xs:element name="orbit_relative" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="orbit_absolute" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <!-- Must add validation of content -->
-            <xs:element name="orbit_direction" type="mmd:orbit_direction_type" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="orbit_direction" type="mmd:orbit_direction_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="ancillary" type="mmd:ancillary_platform_type" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
