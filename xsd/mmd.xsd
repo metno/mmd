@@ -65,8 +65,6 @@
                 <xs:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type"
                             maxOccurs="unbounded"/>
                 <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded" minOccurs="0"/>
-                <xs:element name="cloud_cover" type="mmd:cloud_cover_type" maxOccurs="1" minOccurs="0" />
-                <xs:element name="scene_cover" type="mmd:cloud_cover_type" maxOccurs="1" minOccurs="0" />
                 <xs:element name="storage_information" type="mmd:storage_information_type" maxOccurs="1" minOccurs="0" />
             </xs:choice>
         </xs:sequence>
@@ -328,7 +326,6 @@
         <xs:sequence>
             <xs:element name="data_center_name" type="mmd:data_center_name_type" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="data_center_url" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="contact" type="mmd:personnel_type"  maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="reference_type">
@@ -426,20 +423,6 @@
             <xs:enumeration value="Extended metadata"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
-
-    <xs:complexType name="value_type">
-        <xs:simpleContent>
-            <xs:extension base="xs:decimal">
-                <xs:attribute name="unit" type="xs:string" default="%"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <xs:complexType name="cloud_cover_type">
-        <xs:sequence>
-            <xs:element name="value" type="mmd:value_type" maxOccurs="1" minOccurs="0"/>
-        </xs:sequence>
-    </xs:complexType>
 
     <xs:complexType name="storage_information_type">
         <xs:sequence>
