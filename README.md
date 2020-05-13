@@ -1,5 +1,6 @@
 ![html/pdf](https://github.com/mortenwh/mmd/workflows/html/pdf/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/mortenwh/mmd/badge.svg)](https://coveralls.io/github/mortenwh/mmd)
+![tests](https://github.com/mortenwh/mmd/workflows/tests/badge.svg)
 
 # mmd
 
