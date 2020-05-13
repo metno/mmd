@@ -10,7 +10,8 @@ RUN apt-get update && \
     apt-get clean && \
     pip install "netCDF4>=1.5,<=1.6" \
                 "nose" \
-                "mock"
+                "mock" \
+                "lxml"
 
 VOLUME /src
 WORKDIR /src
