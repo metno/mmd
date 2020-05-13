@@ -1,11 +1,11 @@
 from mock import patch, Mock, DEFAULT
 import unittest
 
-from utils.nc_to_mmd import Nc_to_mmd
+from mmd_utils.nc_to_mmd import Nc_to_mmd
 
 class TestNC2MMD(unittest.TestCase):
 
-    @patch('utils.nc_to_mmd.Nc_to_mmd.__init__')
+    @patch('mmd_utils.nc_to_mmd.Nc_to_mmd.__init__')
     def test_required_mmd_elements(self, mock_init):
         mock_init.return_value = None
         nc2mmd = Nc_to_mmd()
