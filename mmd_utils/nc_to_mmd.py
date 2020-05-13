@@ -312,49 +312,16 @@ class Nc_to_mmd(object):
                             'cdm_data_type':None}
         return cf_acdd_mmd_lut
 
-
-def main(input_file=None, output_path=None):
+def main(input_file=None, output_path='./'):
     """Run the the mdd creation from netcdf"""
-    from pathlib import Path
 
-    if not output_path:
-        output_path = '/home/trygveas/senda/mmd/src/test/'
     if input_file:
         # This will extract the stem of the netcdf product filename
         output_name = '{}'.format(Path(input_file).stem)
     else:
-        output_path = ''
         output_name = 'multisensor_sic.xml'
-        input_file = ('http://thredds.met.no/thredds/dodsC/sea_ice/'
+        input_file = ('https://thredds.met.no/thredds/dodsC/sea_ice/'
                       'SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated')
     md = Nc_to_mmd(output_path, output_name, input_file)
     md.to_mmd()
 
-
-if __name__ == '__main__':
-    import argparse
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-i', '--input-file',
-                        type=str,
-                        dest='input_file',
-                        default=None,
-                        help="Input file.")
-    parser.add_argument('-d', '--output-path',
-                        type=str,
-                        dest='output_path',
-                        default=None,
-                        help="Output path.")
-    args = parser.parse_args()
-
-    main(input_file=args.input_file, output_path=args.output_path)
-
-#def main():
-#    op = ''
-#    on = 'multisensor_sic.xml'
-#    nc = "http://thredds.met.no/thredds/dodsC/sea_ice/SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated"
-#    md = Nc_to_mmd(op,on,nc)
-#    md.to_mmd()
-#
-#if __name__=='__main__':
-#    main()

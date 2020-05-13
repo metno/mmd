@@ -2,8 +2,17 @@ from mock import patch, Mock, DEFAULT
 import unittest
 
 from mmd_utils.nc_to_mmd import Nc_to_mmd
+from mmd_utils.nc_to_mmd import main as main_nc_to_mmd
 
 class TestNC2MMD(unittest.TestCase):
+
+    @patch('mmd_utils.nc_to_mmd.Nc_to_mmd.__init__')
+    @patch('mmd_utils.nc_to_mmd.Nc_to_mmd.to_mmd')
+    def test__main_with_defaults(self, mock_to_mmd, mock_init):
+        mock_init.return_value = None
+        main_nc_to_mmd()
+        self.assertTrue(mock_init.called)
+        self.assertTrue(mock_to_mmd.called)
 
     @patch('mmd_utils.nc_to_mmd.Nc_to_mmd.__init__')
     def test_required_mmd_elements(self, mock_init):
