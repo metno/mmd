@@ -24,7 +24,7 @@ class TestNC2MMD(unittest.TestCase):
                             }
         self.assertEqual(nc2mmd.required_mmd_elements(), mmd_required_elements)
 
-    @patch('utils.nc_to_mmd.Nc_to_mmd.__init__')
+    @patch('mmd_utils.nc_to_mmd.Nc_to_mmd.__init__')
     def test_generate_cf_mmd_lut_missing_acdd(self, mock_init):
         mock_init.return_value = None
         nc2mmd = Nc_to_mmd()
@@ -51,7 +51,7 @@ class TestNC2MMD(unittest.TestCase):
 
         self.assertEqual(nc2mmd.generate_cf_mmd_lut_missing_acdd(), cf_mmd_expected_elements)
 
-    @patch('utils.nc_to_mmd.Nc_to_mmd.__init__')
+    @patch('mmd_utils.nc_to_mmd.Nc_to_mmd.__init__')
     def test_generate_cf_acdd_mmd_lut(self, mock_init):
         mock_init.return_value = None
         nc2mmd = Nc_to_mmd()
