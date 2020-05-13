@@ -80,7 +80,7 @@
         <xs:sequence>
             <xs:element name="datetime" type="xs:dateTime"></xs:element>
             <xs:element name="type" type="mmd:type_update"></xs:element>
-            <xs:element name="note" type="xs:string"></xs:element>
+            <xs:element name="note" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="type_update">
@@ -251,7 +251,7 @@
             <xs:element name="orbit_relative" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="orbit_absolute" type="xs:integer" maxOccurs="1" minOccurs="0"></xs:element>
             <!-- Must add validation of content -->
-            <xs:element name="orbit_direction" type="mmd:orbit_direction_type" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="orbit_direction" type="mmd:orbit_direction_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="ancillary" type="mmd:ancillary_platform_type" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
@@ -300,6 +300,7 @@
             <xs:enumeration value="OGC WFS"/>
             <xs:enumeration value="OGC WCS"/>
             <xs:enumeration value="FTP"/>
+	    <xs:enumeration value="ODATA"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="wms_layers_type">
