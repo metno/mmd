@@ -9,7 +9,8 @@ RUN apt-get update && \
     apt-get install -y git && \
     apt-get clean && \
     pip install "netCDF4>=1.5,<=1.6" \
-                "nose"
+                "nose" \
+                "mock"
 
 VOLUME /src
 WORKDIR /src
