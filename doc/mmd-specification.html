@@ -641,8 +641,6 @@ sections.</p>
 <li><a href="#platform">2.26. platform</a></li>
 <li><a href="#activity_type">2.27. activity_type</a></li>
 <li><a href="#dataset_citation">2.28. dataset_citation</a></li>
-<li><a href="#cloud_cover">2.29. cloud_cover</a></li>
-<li><a href="#scene_cover">2.30. scene_cover</a></li>
 </ul>
 </li>
 <li><a href="#explanations">3. Explanations</a>
@@ -3306,154 +3304,6 @@ parts can be put into citation information.</p>
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="cloud_cover"><a class="anchor" href="#cloud_cover"></a>2.29. cloud_cover</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Element</th>
-<th class="tableblock halign-left valign-top">/mmd/cloud_cover</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attributes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Repetition allowed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>This is an element specifically made for the NBS project and initially
-in support for handling Sentinel-2 data. It is however also relevant for
-other optical satellite imagery whether AVHRR (NPOES, EPS), VIIRS (NPP),
-MERIS (ENVISAT) or MODIS (EOS).</p>
-</div>
-<div class="paragraph">
-<p>It describes the overall cloud cover in the scene and it only relates to
-the number of valid pixels in the scene (excluding missing values for
-map projected scenes).</p>
-</div>
-<div class="paragraph">
-<p>The element has one sub element:
-value: The actual cloud cover in percentage of the valid pixels. This is indicated with one attribute.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Example XML</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre>&lt;cloud_cover&gt;
-    &lt;value unit=”%”&gt;45&lt;/value&gt;
-&lt;/cloud_cover&gt;</pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DIF equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISO equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MM2 equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="scene_cover"><a class="anchor" href="#scene_cover"></a>2.30. scene_cover</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Element</th>
-<th class="tableblock halign-left valign-top">/mmd/scene_cover</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attributes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Repetition allowed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>This is an element specifically made for the NBS project, but based on
-previous experience with AVHRRm and initially in support for handling
-Sentinel-2 data. It is however also relevant for other optical satellite
-imagery whether AVHRR (NPOES, EPS), VIIRS (NPP), MERIS (ENVISAT) or
-MODIS (EOS).</p>
-</div>
-<div class="paragraph">
-<p>It describes the overall coverage of valid data within a scene. This is
-to let the user know whether there is only a very limited number of
-valid data points in a scene. The reason for this is the map projected
-scenes where you may only have a small fraction of the predefined tile
-covered by the satellite. It relates to the total number of pixels in
-the scene.</p>
-</div>
-<div class="paragraph">
-<p>The element has one sub element:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>value: The actual cloud cover in percentage of the valid pixels. This is indicated with one attribute.</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Example XML</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre>&lt;scene_cover&gt;
-    &lt;value unit=”%”&gt;45&lt;/value&gt;
-&lt;/scene_cover&gt;</pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DIF equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISO equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MM2 equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -4325,6 +4175,12 @@ software for further processing)</p></td>
 metadata for this dataset. Other people could have been involved, but
 this is the main contact with regard to the metadata.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data center contact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An individual affiliated with a data center. This
+should be the same data center listed in the required 'Data center'
+element.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -4356,6 +4212,10 @@ this is the main contact with regard to the metadata.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Metadata author</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">author</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data center contact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pointOfContact</p></td>
 </tr>
 </tbody>
 </table>
@@ -4599,7 +4459,7 @@ data.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-08 06:35:42 UTC
+Last updated 2020-05-13 11:18:57 UTC
 </div>
 </div>
 </body>
