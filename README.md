@@ -84,12 +84,12 @@ In order to build the documentation use the following command
 
 ### HTML:
 ```
-asciidoctor -n mmd_specification.adoc
+asciidoctor -n mmd-specification.adoc
 ```
 
 ### PDF:
 ```
-asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n mmd_specification.adoc
+asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n mmd-specification.adoc
 ```    
 
 ## Note on testing

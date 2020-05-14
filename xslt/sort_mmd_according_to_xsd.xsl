@@ -17,6 +17,7 @@
         <xsl:element name="mmd:mmd">
             <!-- 3.1 - metadata_identifier-->
             <xsl:apply-templates select="mmd:metadata_identifier"/>
+            <xsl:apply-templates select="mmd:alternate_identifier"/>
             <xsl:apply-templates select="mmd:title"/>
             <xsl:apply-templates select="mmd:abstract"/>
             <xsl:apply-templates select="mmd:metadata_status"/>
@@ -33,18 +34,17 @@
             <xsl:apply-templates select="mmd:use_constraint"/>
             <xsl:apply-templates select="mmd:project"/>
             <xsl:apply-templates select="mmd:activity_type"/>
-            <xsl:apply-templates select="mmd:instrument"/>
             <xsl:apply-templates select="mmd:platform"/>
             <xsl:apply-templates select="mmd:related_information"/>
             <xsl:apply-templates select="mmd:personnel"/>
             <xsl:apply-templates select="mmd:dataset_citation"/>
             <xsl:apply-templates select="mmd:data_access"/>
             <xsl:apply-templates select="mmd:reference"/>
+            <xsl:apply-templates select="mmd:data_center"/>
             <xsl:apply-templates select="mmd:system_specific_product_category"/>
             <xsl:apply-templates select="mmd:system_specific_product_relevance"/>
             <xsl:apply-templates select="mmd:related_dataset"/>
-            <xsl:apply-templates select="mmd:cloud_cover"/>
-            <xsl:apply-templates select="mmd:scene_cover"/>
+            <xsl:apply-templates select="mmd:storage_information"/>
 
         </xsl:element>
     </xsl:template>
