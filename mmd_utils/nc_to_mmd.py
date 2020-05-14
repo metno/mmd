@@ -10,21 +10,22 @@ Copyright:     (c) Norwegian Meteorological Institute, 2019
 Usage:         See main() method at the bottom of the script
 
 """
-
+from pathlib import Path
 from netCDF4 import Dataset
 import lxml.etree as ET
 
+
 class Nc_to_mmd(object):
-    """ Class for creating MMD based on the discovery metadata inherent in a
-    NetCDF file compliant with the CF convention and ACDD."""
 
     def __init__(self, output_path, output_name, netcdf_product):
-        """ Initializer
+        """
+        Class for creating an MMD XML file based on the discovery metadata provided in the global attributes of NetCDF
+        files that are compliant with the CF-conventions and ACDD.
 
-            Args:
-                output_path (str): Output path for mmd.
-                output_name (str): Output name for mmd.
-                netcdf_product (str: nc file or OPeNDAP url): input NetCDF file.
+        Args:
+            output_path (str): Output path for mmd.
+            output_name (str): Output name for mmd.
+            netcdf_product (str: nc file or OPeNDAP url): input NetCDF file.
 
         """
         super(Nc_to_mmd, self).__init__()
@@ -33,14 +34,18 @@ class Nc_to_mmd(object):
         self.netcdf_product = netcdf_product
 
     def to_mmd(self):
-        """ Method for parsing content of NetCDF file, mapping discovery
-        metadata to MMD, and writes MMD to disk."""
+        """
+        Method for parsing content of NetCDF file, mapping discovery
+        metadata to MMD, and writes MMD to disk.
+        """
 
+        # Why
         cf_mmd_lut = self.generate_cf_acdd_mmd_lut()
         # Some mandatory MMD does not have equivalent in ACDD
         # Make one to one mapping
         cf_mmd_lut.update(self.generate_cf_mmd_lut_missing_acdd())
         mmd_required_elements = self.required_mmd_elements()
+
         ncin = Dataset(self.netcdf_product)
 
         global_attributes = ncin.ncattrs()
@@ -49,7 +54,7 @@ class Nc_to_mmd(object):
         # Create XML file with namespaces
         ns_map = {'mmd': "http://www.met.no/schema/mmd",
                   'gml': "http://www.opengis.net/gml"}
-        root = ET.Element(ET.QName(ns_map['mmd'],'mmd'),nsmap=ns_map)
+        root = ET.Element(ET.QName(ns_map['mmd'], 'mmd'), nsmap=ns_map)
 
         # Write MMD elements from global attributes in NetCDF
         for ga in global_attributes:
@@ -87,12 +92,12 @@ class Nc_to_mmd(object):
                             # Check if current_element already exist to avoid duplication
                             current_element = None
                             for c in parent_element.getchildren():
-                                if c.tag==ET.QName(ns_map['mmd'],e):
+                                if c.tag == ET.QName(ns_map['mmd'], e):
                                     current_element = c
                                     continue
 
                             if current_element is None:
-                                current_element = ET.SubElement(parent_element,ET.QName(ns_map['mmd'],e))
+                                current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
 
                             parent_element = current_element
 
@@ -109,40 +114,42 @@ class Nc_to_mmd(object):
                         if e.startswith('attrib_'):
                             if ga == 'keywords_vocabulary':
                                 attrib = e.split('_')[-1]
-                                for keywords_element in root.findall(ET.QName(ns_map['mmd'],'keywords')):
+                                for keywords_element in root.findall(ET.QName(ns_map['mmd'], 'keywords')):
                                     keywords_element.attrib[attrib] = ncin.getncattr(ga)
                             elif ga == 'geospatial_bounds_crs':
                                 attrib = e.split('_')[-1]
-                                for keywords_element in root.findall(ET.QName(ns_map['mmd'],'rectangle')):
+                                for keywords_element in root.findall(ET.QName(ns_map['mmd'], 'rectangle')):
                                     keywords_element.attrib[attrib] = ncin.getncattr(ga)
                             elif ga == 'title_lang':
                                 attrib = e.split('_')[-1]
                                 for title_element in root.findall(ET.QName(ns_map['mmd'], 'title')):
-                                    title_element.attrib['{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
+                                    title_element.attrib[
+                                            '{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
                             elif ga == 'summary_lang':
                                 attrib = e.split('_')[-1]
                                 for element in root.findall(ET.QName(ns_map['mmd'], 'abstract')):
-                                    element.attrib['{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
+                                    element.attrib[
+                                            '{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
                             else:
                                 print("Warning: don't know how to handle attrib: ", e)
 
         # Add empty/commented required  MMD elements that are not found in NetCDF file
-        for k,v in mmd_required_elements.items():
+        for k, v in mmd_required_elements.items():
 
             # check if required element is part of output MMD (ie. of NetCDF file)
-            if not len(root.findall(ET.QName(ns_map['mmd'],k)))>0:
+            if not len(root.findall(ET.QName(ns_map['mmd'], k))) > 0:
                 print('Did not find required element: {}.'.format(k))
                 if not v:
-                    root.append(ET.Comment('<mmd:{}></mmd:{}>'.format(k,k)))
+                    root.append(ET.Comment('<mmd:{}></mmd:{}>'.format(k, k)))
                 else:
-                    root.append(ET.Comment('<mmd:{}>{}</mmd:{}>'.format(k,v,k)))
+                    root.append(ET.Comment('<mmd:{}>{}</mmd:{}>'.format(k, v, k)))
 
         # Add OPeNDAP data_access if "netcdf_product" is OPeNDAP url
         if 'dodsC' in self.netcdf_product:
-            da_element = ET.SubElement(root,ET.QName(ns_map['mmd'],'data_access'))
-            type_sub_element = ET.SubElement(da_element,ET.QName(ns_map['mmd'],'type'))
-            description_sub_element = ET.SubElement(da_element,ET.QName(ns_map['mmd'],'description'))
-            resource_sub_element = ET.SubElement(da_element,ET.QName(ns_map['mmd'],'resource'))
+            da_element = ET.SubElement(root, ET.QName(ns_map['mmd'], 'data_access'))
+            type_sub_element = ET.SubElement(da_element, ET.QName(ns_map['mmd'], 'type'))
+            description_sub_element = ET.SubElement(da_element, ET.QName(ns_map['mmd'], 'description'))
+            resource_sub_element = ET.SubElement(da_element, ET.QName(ns_map['mmd'], 'resource'))
             type_sub_element.text = "OPeNDAP"
             description_sub_element.text = "Open-source Project for a Network Data Access Protocol"
             resource_sub_element.text = self.netcdf_product
@@ -185,10 +192,12 @@ class Nc_to_mmd(object):
                 dacc_res.text = res
 
         # Add OGC WMS data_access as comment
-        root.append(ET.Comment(str('<mmd:data_access>\n\t<mmd:type>OGC WMS</mmd:type>\n\t<mmd:description>OGC Web Mapping Service, URI to GetCapabilities Document.</mmd:description>\n\t<mmd:resource></mmd:resource>\n\t<mmd:wms_layers>\n\t\t<mmd:wms_layer></mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
+        root.append(ET.Comment(str('<mmd:data_access>\n\t<mmd:type>OGC WMS</mmd:type>\n\t<mmd:description>OGC Web '
+                                   'Mapping Service, URI to GetCapabilities Document.</mmd:description>\n\t'
+                                   '<mmd:resource></mmd:resource>\n\t<mmd:wms_layers>\n\t\t<mmd:wms_layer>'
+                                   '</mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
 
-
-        #print(ET.tostring(root,pretty_print=True).decode("utf-8"))
+        # print(ET.tostring(root,pretty_print=True).decode("utf-8"))
 
         if not self.output_name.endswith('.xml'):
             output_file = str(self.output_path + self.output_name) + '.xml'
@@ -196,31 +205,34 @@ class Nc_to_mmd(object):
             output_file = str(self.output_path + self.output_name)
 
         et = ET.ElementTree(root)
-        et = ET.ElementTree(ET.fromstring(ET.tostring(root,pretty_print=True).decode("utf-8")))
-        et.write(output_file,pretty_print=True)
-
-
+        et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
+        et.write(output_file, pretty_print=True)
 
     def required_mmd_elements(self):
         """ Create dict with required MMD elements"""
 
-        mmd_required_elements = {'metadata_identifier':None,
-                           'metadata_status':None,
-                            'collection':None,
-                            'title': None,
-                            'abstract': None,
-                            'last_metadata_update': None,
-                            'dataset_production_status': None,
-                            'operational_status': None,
-                            'iso_topic_category': None,
-                            'keywords': '\n\t\t<mmd:keyword></mmd:keyword>\n\t',
-                            'temporal_extent': '\n\t\t<mmd:start_date></mmd:start_date>\n\t',
-                            'geographic_extent': str('\n\t\t<mmd:rectangle srsName=""> \n\t\t\t<mmd:north></mmd:north> \n\t\t\t<mmd:south></mmd:south> \n\t\t\t<mmd:east></mmd:east> \n\t\t\t<mmd:west></mmd:west> \n\t\t</mmd:rectangle>\n\t')
-                            }
+        mmd_required_elements = {
+                'metadata_identifier': None,
+                'metadata_status': None,
+                'collection': None,
+                'title': None,
+                'abstract': None,
+                'last_metadata_update': None,
+                'dataset_production_status': None,
+                'operational_status': None,
+                'iso_topic_category': None,
+                'keywords': '\n\t\t<mmd:keyword></mmd:keyword>\n\t',
+                'temporal_extent': '\n\t\t<mmd:start_date></mmd:start_date>\n\t',
+                'geographic_extent': str('\n\t\t<mmd:rectangle srsName=""> \n\t\t\t<mmd:north></mmd:north> \n\t\t\t'
+                                         '<mmd:south></mmd:south> \n\t\t\t<mmd:east></mmd:east> \n\t\t\t<mmd:west>'
+                                         '</mmd:west> \n\t\t</mmd:rectangle>\n\t')
+            }
         return mmd_required_elements
 
     def generate_cf_mmd_lut_missing_acdd(self):
-        """Create lookup table for mandatory MMD elements missing in the ACDD
+        """ Translation dict between ACDD and MMD (dict={ACDD: MDD})
+
+        Create lookup table for mandatory MMD elements missing in the ACDD
         but that still is present as global attributes in the netCDF file"""
 
         cf_mmd = {'metadata_status': 'metadata_status',
@@ -250,67 +262,69 @@ class Nc_to_mmd(object):
         """ Create the Look Up Table for CF/ACDD and MMD on the form:
         {CF/ACDD-element: MMD-element} """
 
-        cf_acdd_mmd_lut = { 'title':'title',
-                            'summary':'abstract',
-                            'keywords':'keywords,keyword',
-                            'keywords_vocabulary':'attrib_vocabulary',
-                            'Conventions':None,
-                            'id':'metadata_identifier',
-                            'naming_authority':'reference',
-                            'history':None,
-                            'source':'activity_type',
-                            'processing_level':'operational_status',
-                            'comment':None,
-                            'acknowledgement':'reference',
-                            'license':'use_constraint',
-                            'standard_name_vocabulary':None,
-                            'date_created':None,
-                            'creator_name':'personnel,name',
-                            'creator_email':'personnel,email',
-                            'creator_url':None,
-                            'project':'project,long_name',
-                            'publisher_name':'personnel,name',
-                            'publisher_email':'personnel,email',
-                            'publisher_url':None,
-                            'geospatial_bounds':None,
-                            'geospatial_bounds_crs':'attrib_srsName',
-                            'geospatial_bounds_vertical_crs': None,
-                            'geospatial_lat_min':'geographic_extent,rectangle,south',
-                            'geospatial_lat_max':'geographic_extent,rectangle,north',
-                            'geospatial_lon_min':'geographic_extent,rectangle,west',
-                            'geospatial_lon_max':'geographic_extent,rectangle,east',
-                            'geospatial_vertical_min':None,
-                            'geospatial_vertical_max':None,
-                            'geospatial_vertical_positive':None,
-                            'time_coverage_start':'temporal_extent,start_date',
-                            'time_coverage_end':'temporal_extent,end_date',
-                            'time_coverage_duration':None,
-                            'time_coverage_resolution':None,
-                            'creator_type':None,
-                            'publisher_type':None,
-                            'publisher_institution':'personnel,organisation',
-                            'contributor_name':'data_center,contact,name',
-                            'contributor_role':'data_center,contact,role',
-                            'institution':'data_center,data_center_name,long_name',
-                            'creator_institution':'dataset_citation,dataset_publisher',
-                            'metadata_link':'dataset_citation,online_resource',
-                            'references':'dataset_citation,other_citation_details',
-                            'product_version':'dataset_citation,version',
-                            'geospatial_lat_units':None,
-                            'geospatial_lat_resolution':None,
-                            'geospatial_lon_units':None,
-                            'geospatial_lon_resolution':None,
-                            'geospatial_vertical_units':None,
-                            'geospatial_vertical_resolution':None,
-                            'date_modified':None,
-                            'date_issued':None,
-                            'date_metadata_modified':'last_metadata_update',
-                            'platform':None,
-                            'platform_vocabulary':None,
-                            'instrument':'instrument,long_name',
-                            'instrument_vocabulary':None,
-                            'cdm_data_type':None}
+        cf_acdd_mmd_lut = {
+                'title': 'title',
+                'summary': 'abstract',
+                'keywords': 'keywords,keyword',
+                'keywords_vocabulary': 'attrib_vocabulary',
+                'Conventions': None,
+                'id': 'metadata_identifier',
+                'naming_authority': 'reference',
+                'history': None,
+                'source': 'activity_type',
+                'processing_level': 'operational_status',
+                'comment': None,
+                'acknowledgement': 'reference',
+                'license': 'use_constraint',
+                'standard_name_vocabulary': None,
+                'date_created': None,
+                'creator_name': 'personnel,name',
+                'creator_email': 'personnel,email',
+                'creator_url': None,
+                'project': 'project,long_name',
+                'publisher_name': 'personnel,name',
+                'publisher_email': 'personnel,email',
+                'publisher_url': None,
+                'geospatial_bounds': None,
+                'geospatial_bounds_crs': 'attrib_srsName',
+                'geospatial_bounds_vertical_crs': None,
+                'geospatial_lat_min': 'geographic_extent,rectangle,south',
+                'geospatial_lat_max': 'geographic_extent,rectangle,north',
+                'geospatial_lon_min': 'geographic_extent,rectangle,west',
+                'geospatial_lon_max': 'geographic_extent,rectangle,east',
+                'geospatial_vertical_min': None,
+                'geospatial_vertical_max': None,
+                'geospatial_vertical_positive': None,
+                'time_coverage_start': 'temporal_extent,start_date',
+                'time_coverage_end': 'temporal_extent,end_date',
+                'time_coverage_duration': None,
+                'time_coverage_resolution': None,
+                'creator_type': None,
+                'publisher_type': None,
+                'publisher_institution': 'personnel,organisation',
+                'contributor_name': 'data_center,contact,name',
+                'contributor_role': 'data_center,contact,role',
+                'institution': 'data_center,data_center_name,long_name',
+                'creator_institution': 'dataset_citation,dataset_publisher',
+                'metadata_link': 'dataset_citation,online_resource',
+                'references': 'dataset_citation,other_citation_details',
+                'product_version': 'dataset_citation,version',
+                'geospatial_lat_units': None,
+                'geospatial_lat_resolution': None,
+                'geospatial_lon_units': None,
+                'geospatial_lon_resolution': None,
+                'geospatial_vertical_units': None,
+                'geospatial_vertical_resolution': None,
+                'date_modified': None,
+                'date_issued': None,
+                'date_metadata_modified': 'last_metadata_update',
+                'platform': None,
+                'platform_vocabulary': None,
+                'instrument': 'instrument,long_name',
+                'instrument_vocabulary': None,
+                'cdm_data_type': None}
         return cf_acdd_mmd_lut
+
 
 def main(input_file=None, output_path='./'):
     """Run the the mdd creation from netcdf"""
@@ -324,4 +338,3 @@ def main(input_file=None, output_path='./'):
                       'SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated')
     md = Nc_to_mmd(output_path, output_name, input_file)
     md.to_mmd()
-
