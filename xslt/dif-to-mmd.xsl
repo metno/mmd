@@ -341,7 +341,8 @@ Meaning this should consume both DIF 8, 9 and 10.
 		<!--TODO: Fix when alternate_identifier has been defined
                 <xsl:element name="mmd:dataset_id">
                     <xsl:value-of select="dif:Data_Set_ID" />
-                </xsl:element-->
+                </xsl:element>
+                -->
                 <!-- removed 2020-03-25
                 <xsl:element name="mmd:contact">
                   <xsl:element name="mmd:role">
@@ -352,11 +353,15 @@ Meaning this should consume both DIF 8, 9 and 10.
 			<xsl:with-param name="with" select="'contact'" />
 		      </xsl:call-template>
 		    </xsl:variable>
+                    -->
 
-		    <!-- Output -->
-		    <xsl:value-of select="$string-mod" />
+                    <!-- Output -->
+                    <!--
+                    <xsl:value-of select="$string-mod" />
+                    -->
 
                        <!-- <xsl:value-of select="dif:Personnel/dif:Role" /> -->
+                    <!--
                     </xsl:element>
                     <xsl:element name="mmd:name">
                         <xsl:value-of select="dif:Personnel/dif:Last_Name" />
@@ -371,7 +376,7 @@ Meaning this should consume both DIF 8, 9 and 10.
                         <xsl:value-of select="dif:Personnel/dif:Fax" />
                     </xsl:element>
                 </xsl:element>
-                -->
+                    -->
             </xsl:element>
         </xsl:template>
 
@@ -544,15 +549,17 @@ Meaning this should consume both DIF 8, 9 and 10.
           <xsl:value-of select="':'" />
           <xsl:value-of select="$SS" />
           <xsl:value-of select="'Z'" /-->
-      </xsl:choose>
-      <!--xsl:value-of select="$yyyy" />
+            </xsl:choose>
+      <!--
+      <xsl:value-of select="$yyyy" />
       <xsl:value-of select="'-'" />
       <xsl:value-of select="$mm" />
       <xsl:value-of select="'-'" />
       <xsl:value-of select="$dd" />
-	</xsl:template>
+      -->
+        </xsl:template>
 
-	<!--
+<!--
     ALTERNATIVE SEARCH & REPLACE
     string:     The text to be evaluated
     replace:    The character or string to look for in the above string
