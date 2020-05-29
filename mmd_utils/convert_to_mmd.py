@@ -17,8 +17,6 @@ TODO: Change references to xslt and xsd folders if script is supposed to run fro
 EXAMPLE: ./src/convert-to-mmd.py 
 
 """
-import sys
-import getopt
 import re
 import lxml.etree as ET
 import datetime
@@ -26,24 +24,6 @@ import logging
 import os
 import os.path
 import io
-
-def usage():
-    """
-    Print the usage of this sctript
-    """
-    print('')
-    print('Usage: ' + sys.argv[0] +
-          ' -i <input file> -f <format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
-    print('\t-i: inputfile to convert')
-    print('\t-f: format of inputfile [dif,mm2,iso]')
-    print('\t-o: outputfile')
-    print('\t-xslt: path to xslt transformations. default xslt')
-    print('\t-log_level: loglevel. Default: INFO')
-    print('\t-h: show this help text')
-    print('')
-    print("If input file and output file are paths, then process all files\n" + 
-          "in input path and write to output path, output filename will be the metada_indentifier")
-    sys.exit(2)
 
 
 class ConvertToMMD():
@@ -310,44 +290,3 @@ class FileResolver(ET.Resolver):
     def resolve(self, url, pubid, context):
         return self.resolve_filename(url, context)
 
-def main(argv):
-
-    # Parse command line arguments
-    # print('Usage: ' + sys.argv[0] +
-    #      ' -i <input file> -f <input_format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
-    try:
-        opts, args = getopt.getopt(argv,"hi:f:o:xslt:loglevel")
-    except getopt.GetoptError:
-        usage()
-
-    #FIXME: Loglevel does not pass right
-    iflg = oflg = fflg = False
-    for opt, arg in opts:
-        if opt == ("-h"):
-            usage()
-        elif opt in ("-i"):
-            input_file = arg
-            iflg =True
-        elif opt in ("-o"):
-            output_file = arg
-            oflg =True
-        elif opt in ("-f"):
-            input_format = arg
-            fflg =True
-      
-    if not iflg:
-        usage()
-    elif not oflg:
-        usage()
-    elif not fflg:
-        usage()
-
-
-
-    #Create class and do conversion
-    my_converter = ConvertToMMD(input_file,input_format,output_file)
-    my_converter.convert()
-        
-if __name__ == '__main__':
-    main(sys.argv[1:])
-    
