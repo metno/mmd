@@ -1,14 +1,9 @@
-#!/usr/bin/python3
-# -*- coding: UTF-8 -*-
-
-""" Script for checking if XML file satisfy MMD requirements by
+""" Tool for checking if XML file satisfy MMD requirements by
     means of the MMD XSD.
 
 Author:    Trygve Halsne,
 Created:   20.11.2019 (dd.mm.YYYY)
 Copyright: (c) Norwegian Meteorological Institute
-
-Usage: See main method at the bottom of the script
 
 UPDATED 29.01.2020 (dd.mm.YYYY):
 Author: Magnar Martinsen
@@ -17,22 +12,14 @@ Author: Magnar Martinsen
 - Added extra test to check if urls pointing to thredds has https protocol in url
 """
 import sys
-import getopt
 import lxml.etree as ET
 import operator
 import datetime
 import requests
-from urlparse import urlparse
+from urllib.parse import urlparse
 import glob
 import logging
 import os
-
-def usage():
-    print('')
-    print('Usage: ' + sys.argv[0] + ' -i <dataset_name> [-h]')
-    print('\t-h: dump this text')
-    print('\t-i: check one metadata file')
-    sys.exit(2)
 
 class CheckMMD():
     """ Class to verify if MMD file is in compliance with the requirements
@@ -342,56 +329,3 @@ class CheckMMD():
             return True
 
 
-def main():
-    #Test Data
-    mmd_file = '/path/to/my/XML/myfile.xml'
-    xsd = '../xsd/mmd.xsd' # The XSD is located in the "xsd" directory in this repo
-    xslt ='../xslt/sort_mmd_according_to_xsd.xsl'# The XSLT is located in the "xslt" directory in this repo
-
-    iflg = False
-    try:
-        opts, args = getopt.getopt(argv, "hi:", ["ifile="])
-    except getopt.GetoptError:
-        print(sys.argv[0] + ' -i <inputfile>')
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == '-h':
-            usage()
-            sys.exit()
-        elif opt in ("-i", "--ifile"):
-            infile = arg
-            iflg = True
-    if not iflg:
-        usage()
-
-    #check_file = CheckMMD(mmd_file, xsd, xslt)
-    check_file = CheckMMD(infile, xsd, xslt)
-    print(check_file.check_mmd())
-
-    
-    #Traverse all xml files in current dir
-    #Commented out for now
-    #print("traverse files")
-    #filelist = glob.glob('*.xml')
-    #Traverse all xml files in current dir AND sub-dirs
-    #Change ** with full path to xml-files to be processed.
-    #filelist = glob.glob('*.xml', recursive=TRUE)
-
-
-    #Simple
-    #for file in filelist:
-    #    check_file = CheckMMD(file, xsd, xslt)
-    #    status = check_file.check_mmd()
-
-    #Advanced
-    #files = []
-    #for root, dirnames, filenames in os.walk('./'):
-    #    files.extend(glob.glob(root + "/*.xml"))  
-
-    #for file in files:
-    #    check_file = CheckMMD(file, xsd, xslt)
-    #    status = check_file.check_mmd()
-        
-if __name__ == '__main__':
-    main(sys.argv[1:])
-    

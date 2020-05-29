@@ -1,3 +1,7 @@
+![html/pdf](https://github.com/mortenwh/mmd/workflows/html/pdf/badge.svg)
+![tests](https://github.com/mortenwh/mmd/workflows/tests/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/mortenwh/mmd/badge.svg)](https://coveralls.io/github/mortenwh/mmd)
+
 # mmd
 
 ## Background
@@ -87,6 +91,17 @@ asciidoctor -n mmd-specification.adoc
 ```
 asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n mmd-specification.adoc
 ```    
+
+## Note on testing
+
+All code should be tested (100% test coverage), i.e.,
+
+- New functionality must be accompanied with a test suite
+- Tests should be both positive (testing that the function work as intended with valid data) and negative (testing that the function behaves as expected with invalid data, e.g., that correct exceptions are thrown)
+- If a function has optional arguments, separate tests for all options should be created
+- Examples should be supported by doctests
+
+Badges at the top of this README indicate if tests are passing, and the actual test coverage.
 
 ## Licenses
 GPL 3 or higher for software, Creative Commons BY for documents.

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
 """
 PURPOSE:
     Reading title and the time of the last metadata update of the metadata
@@ -14,48 +12,17 @@ UPDATED:
         create if missing, change if present
     Øystein Godøy, METNO/FOU, 2018-04-14
         Moved from solrindexing to mdharvest.
+    Mortenwh
+        Refactored to have a method and an executable
 
-NOTES:
-    - Rewrite to make this useful as a function.
 """
-
 import sys
 import os
-import getopt
 import uuid
 import datetime
 import xml.etree.ElementTree as ET
 
-def usage():
-  print ('Usage: '+sys.argv[0]+' -i <mdfile> [-w]')  
-  print ('   -i: input file')
-  print ('   -w: overwrite input file')
-  sys.exit(2)
-
-
-def main(argv):
-   infile = None
-   overwrite = False
-   try:
-       opts, args = getopt.getopt(argv,"hi:w",["ifile="])
-   except getopt.GetoptError:
-      print (str(err))
-      usage()
-   for opt, arg in opts:
-      if opt == '-h':
-         print (sys.argv[0]+' -n <dataset_name>')
-         sys.exit()
-      elif opt in ("-i", "--ifile"):
-         infile = arg
-      elif opt in ("-w"):
-         overwrite = True
-      else:
-          assert False, 'Unhandled option'
-
-   if infile is None: 
-       usage()
-
-
+def create_MET_uuid(infile, overwrite=False):
    # Parse the XML file
    tree = ET.parse(infile)
    ET.register_namespace('mmd','http://www.met.no/schema/mmd')
@@ -99,6 +66,3 @@ def main(argv):
    tree.write(infile,
            xml_declaration=True,encoding='UTF-8',
            method="xml")
-
-if __name__ == "__main__":
-   main(sys.argv[1:])

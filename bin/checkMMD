@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+import sys
+import getopt
+
+from mmd_utils.checkMMD import CheckMMD
+
+def usage():
+    print('Usage: ' + sys.argv[0] + ' -i <dataset_name> [-h]')
+    print('\t-h: dump this text')
+    print('\t-i: check one metadata file')
+    sys.exit(2)
+
+def main(*args):
+    #Test Data
+    #mmd_file = '/path/to/my/XML/myfile.xml'
+    xsd = '../xsd/mmd.xsd' # The XSD is located in the "xsd" directory in this repo
+    xslt ='../xslt/sort_mmd_according_to_xsd.xsl'# The XSLT is located in the "xslt" directory in this repo
+
+    iflg = False
+    try:
+        opts, args = getopt.getopt(args[0], 'hi:') #, ["ifile="])
+    except getopt.GetoptError:
+        print(sys.argv[0] + ' -i <inputfile>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            usage()
+            sys.exit()
+        elif opt in ("-i", "--ifile"):
+            infile = arg
+            iflg = True
+    if not iflg:
+        usage()
+
+    #check_file = CheckMMD(mmd_file, xsd, xslt)
+    check_file = CheckMMD(infile, xsd, xslt)
+    print(check_file.check_mmd())
+
+    
+    #Traverse all xml files in current dir
+    #Commented out for now
+    #print("traverse files")
+    #filelist = glob.glob('*.xml')
+    #Traverse all xml files in current dir AND sub-dirs
+    #Change ** with full path to xml-files to be processed.
+    #filelist = glob.glob('*.xml', recursive=TRUE)
+
+
+    #Simple
+    #for file in filelist:
+    #    check_file = CheckMMD(file, xsd, xslt)
+    #    status = check_file.check_mmd()
+
+    #Advanced
+    #files = []
+    #for root, dirnames, filenames in os.walk('./'):
+    #    files.extend(glob.glob(root + "/*.xml"))  
+
+    #for file in files:
+    #    check_file = CheckMMD(file, xsd, xslt)
+    #    status = check_file.check_mmd()
+        
+if __name__ == '__main__':
+    main(sys.argv[1:])
