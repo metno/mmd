@@ -25,7 +25,6 @@ import os
 import os.path
 import io
 
-
 class ConvertToMMD():
     """
     Class for converting other metadata formats to MMD
@@ -50,8 +49,6 @@ class ConvertToMMD():
         self.log_level = log_level
         logging.basicConfig(level=self.log_level)
         self.logger = logging.getLogger(__name__)
-
-
         
     def convert(self):
         """
@@ -87,12 +84,17 @@ class ConvertToMMD():
             #Get the xmd file with same filename as mm2 file
             base_filename = os.path.splitext(self.inputfile)[0]
             base_filename = base_filename + '.xmd'
-            self.logger.debug("xmd filename is: " + base_filename)      
+
+            basepath = os.path.commonprefix(self.inputfile)
+            self.logger.debug("xmd path is: " + basepath)      
 
             #This is needed for right uri resolving
-            base_filename = '../' + base_filename
+            ##base_filename = '../' + base_filename
             #Escape the filename inside string quotes
-            my_xmd_file_str = "'%s'" % base_filename
+            ##my_xmd_file_str = "'%s'" % base_filename
+            my_xmd_file_str = basepath + base_filename
+            self.logger.debug("xmd filename is: " + my_xmd_file_str)      
+            self.logger.debug("xsltdir is: " + self.xslt)      
 
             #Create parser and add URI resolver
             parser = ET.XMLParser()
@@ -109,11 +111,8 @@ class ConvertToMMD():
             #    self.logger.warn("Inputfile: " + self.inputfile +
             #                     " does not validate against MM2 schema")
             
-            
-                        
-            
             #Parse the xsl doc and transform with parameter
-            xslt_root = ET.parse(open('xslt/mm2-to-mmd.xsl', 'r'), parser)
+            xslt_root = ET.parse(open(self.xslt+'/mm2-to-mmd.xsl', 'r'), parser)
             transform = ET.XSLT(xslt_root)
             mmd_doc = transform(xml_input, xmd=my_xmd_file_str)
 
@@ -122,7 +121,7 @@ class ConvertToMMD():
             ordered_mmd = self.correct_element_order(mmd_doc)
                     
             #Validate the translated doc to mmd-schema
-            xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
+            xmlschema_mmd = ET.XMLSchema(ET.parse(self.xslt+'../xsd/mmd.xsd'))
             xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True,
                                         encoding=mmd_doc.docinfo.encoding)
 
@@ -276,7 +275,7 @@ class ConvertToMMD():
         """
         Correct the element order of the mmd file for validation
         """
-        et_xslt = ET.parse('xslt/sort_mmd_according_to_xsd.xsl')
+        et_xslt = ET.parse(self.xslt+'/sort_mmd_according_to_xsd.xsl')
         transform = ET.XSLT(et_xslt)
         result = transform(doc)
         doc = result.getroot()

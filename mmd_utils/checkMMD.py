@@ -279,14 +279,18 @@ class CheckMMD():
             #print 'Resource: ', resource.find('{http://www.met.no/schema/mmd}resource').text
             try:
                 rtype =  resource.find('{http://www.met.no/schema/mmd}type').text
-                rurl = resource.find('{http://www.met.no/schema/mmd}resource').text
+                rurl = (resource.find('{http://www.met.no/schema/mmd}resource').text).strip()
+
                 self.check_thredds_http(rurl)
                 if(rtype == "HTTP"):
                     status = self.checkURL(str(rurl))
                 if(rtype == "OPeNDAP"):
                     status = self.checkURL(str(rurl) + '.html')
                 if(rtype == "OGC WMS"):
-                    status = self.checkURL(str(rurl) + '?SERVICE=WMS&REQUEST=GetCapabilities')
+                    if ("SERVICE=WMS" in str(rurl)) and ("REQUEST=GetCapabilities" in str(rurl)):
+                        status = self.checkURL(str(rurl))
+                    else:
+                        status = self.checkURL(str(rurl) + '?SERVICE=WMS&REQUEST=GetCapabilities')
                 if(status):
                     print(('\x1b[0;30;42m %s %s %s \x1b[0m: %-12s' %('Data Access', rtype,
                                                                   'URL OK', rurl)))
