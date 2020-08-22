@@ -414,6 +414,10 @@ software for further processing)
 |Metadata author |The main responsible person for the generation of the
 metadata for this dataset. Other people could have been involved, but
 this is the main contact with regard to the metadata.
+
+|Data center contact | An individual affiliated with a data center. This 
+should be the same data center listed in the required 'Data center' 
+element.    
 |=======================================================================
 
 <<personnel>>
@@ -428,6 +432,7 @@ this is the main contact with regard to the metadata.
 |Investigator |principalInvestigator
 |Technical contact |pointOfContact
 |Metadata author |author
+|Data center contact |pointOfContact
 |===================================
 
 [[iso-topic-categories]]

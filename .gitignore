@@ -1,3 +1,7 @@
 .vagrant
 *.swp
 *.log
+__pycache__/
+doc/mmd-specification.html
+doc/mmd-specification.pdf
+.coverage

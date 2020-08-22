@@ -1,8 +1,5 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
-
 """
-Script for converting metadata from MMD format to MM2,DIF,ISO format.
+Tool for converting metadata from MMD format to MM2,DIF,ISO format.
 
 Author:    Magnar Martinsen,
 Created:   23.03.2020 (dd.mm.YYYY)
@@ -17,30 +14,12 @@ TODO: Change references to xslt and xsd folders if script is supposed to run fro
 EXAMPLE: ./src/convert-from-mmd.py 
 
 """
-import sys
-import getopt
 import re
 import lxml.etree as ET
 import datetime
 import logging
 import os
 import os.path
-
-def usage():
-    print('')
-    print('Usage: ' + sys.argv[0] +
-          ' -i <input file> -f <format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
-    print('\t-i: inputfile to convert')
-    print('\t-f: format of outputfile [dif,mm2,iso]')
-    print('\t-o: outputfile')
-    print('\t-xslt: path to xslt transformations. default xslt')
-    print('\t-loglevel: loglevel. Default: INFO')
-    print('\t-h: show this help text')
-    print('')
-    print("If input file and output file are paths, then process all files\n" + 
-          "in input path and write to output path, output filename will be the metada_indentifier")
-    sys.exit(2)
-
 
 class ConvertFromMMD():
     """
@@ -100,18 +79,19 @@ class ConvertFromMMD():
 
             #Validate the MMD input document
             xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
-
             if not xmlschema_mmd.validate(mmd_doc):
                 self.logger.warn("Input document not validated against MMD schema")
-                self.logger.debug(xmlschema_dif.error_log)
+                self.logger.debug(xmlschema_mmd.error_log)
 
             #TODO: Evaluete right schema for transformation
             transform_to_iso = ET.XSLT(ET.parse('xslt/mmd-to-iso.xsl'))
             iso_doc = transform_to_iso(mmd_doc)
                     
                                                      
-            xml_as_string = ET.tostring(iso_doc, xml_declaration=True, pretty_print=True,
-                                        encoding=iso_doc.docinfo.encoding)
+            #xml_as_string = ET.tostring(iso_doc, xml_declaration=True, pretty_print=True,
+            #                            encoding=iso_doc.docinfo.encoding)
+            xml_as_string = ET.tostring(iso_doc, pretty_print=True,
+                                        encoding='unicode')
 
             #TODO: Validate transformed document against schema
             #xmlschema_iso = ET.XMLSchema(ET.pardse('xsd/iso.xsd'))
@@ -135,38 +115,39 @@ class ConvertFromMMD():
         #TODO: Implement batchprocessing if input/output are paths not files
 
         #Check that input file exsists and process file
-        if os.path.isfile(self.inputfile):
-            mmd_doc = ET.ElementTree(file=self.inputfile)
+        if not os.path.isfile(self.inputfile):
+            raise FileNotFoundError(self.inputfile)
 
-            #Validate the MMD input document
-            xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
+        mmd_doc = ET.ElementTree(file=self.inputfile)
 
-            if not xmlschema_mmd.validate(mmd_doc):
-                self.logger.warn("Input document not validated against MMD schema")
-                self.logger.debug(xmlschema_dif.error_log)
+        #Validate the MMD input document
+        xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
+        if not xmlschema_mmd.validate(mmd_doc):
+            self.logger.warn("Input document not validated against MMD schema")
+            self.logger.debug(xmlschema_mmd.error_log)
 
-            #TODO: Evaluete right schema for transformation
-            transform_to_dif = ET.XSLT(ET.parse('xslt/mmd-to-dif10.xsl'))
-            dif_doc = transform_to_dif(mmd_doc)
+        #TODO: Evaluete right schema for transformation
+        transform_to_dif = ET.XSLT(ET.parse('xslt/mmd-to-dif10.xsl'))
+        dif_doc = transform_to_dif(mmd_doc)
                     
                                                      
-            #Validate the translated doc to dif-schema
-            #TODO: Evaluate right schema for validation
-            xmlschema_dif = ET.XMLSchema(ET.parse('xsd/dif10/dif_v10.3.xsd'))
-            xml_as_string = ET.tostring(dif_doc, xml_declaration=True, pretty_print=True,
-                                        encoding=dif_doc.docinfo.encoding)
+        #Validate the translated doc to dif-schema
+        #TODO: Evaluate right schema for validation
+        #xml_as_string = ET.tostring(dif_doc, xml_declaration=True, pretty_print=True,
+        #                            encoding=dif_doc.docinfo.encoding)
+        xml_as_string = ET.tostring(dif_doc, pretty_print=True,
+                                    encoding='unicode')
 
-        
-         
-            if not xmlschema_dif.validate(ET.fromstring(xml_as_string)):
-                self.logger.warn("Output document not validated")
-                self.logger.debug(xmlschema_dif.error_log)
+        xmlschema_dif = ET.XMLSchema(ET.parse('xsd/dif10/dif_v10.3.xsd'))
+        if not xmlschema_dif.validate(ET.fromstring(xml_as_string)):
+            self.logger.warn("Output document not validated")
+            self.logger.debug(xmlschema_dif.error_log)
 
-            #Write xmlfile
-            outputfile = open(self.outputfile, 'w')
-            outputfile.write(xml_as_string)
-            outputfile.close()
-            self.logger.info("DIF file written to: " + self.outputfile)
+        #Write xmlfile
+        outputfile = open(self.outputfile, 'w')
+        outputfile.write(xml_as_string)
+        outputfile.close()
+        self.logger.info("DIF file written to: " + self.outputfile)
 
         
     def convert_to_mm2(self):
@@ -184,20 +165,19 @@ class ConvertFromMMD():
 
             #Validate the MMD input document
             xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
-
             if not xmlschema_mmd.validate(mmd_doc):
                 self.logger.warn("Input document not validated against MMD schema")
-                self.logger.debug(xmlschema_dif.error_log)
+                self.logger.debug(xmlschema_mmd.error_log)
 
             #TODO: Evaluete right schema for transformation
             transform_to_mm2 = ET.XSLT(ET.parse('xslt/mmd-to-mm2.xsl'))
             mm2_doc = transform_to_mm2(mmd_doc)
-                    
-                                                     
+
             #Validate the translated doc to mmd-schema
-            #xmlschema_mm2 = ET.XMLSchema(ET.parse('xsd/mm2.xsd'))
-            xml_as_string = ET.tostring(mm2_doc, xml_declaration=True, pretty_print=True,
-                                        encoding=mm2_doc.docinfo.encoding)
+            #xml_as_string = ET.tostring(mm2_doc, xml_declaration=True, pretty_print=True,
+            #                            encoding=mm2_doc.docinfo.encoding)
+            xml_as_string = ET.tostring(mm2_doc, pretty_print=True,
+                                        encoding='unicode')
 
             #Validate against schema
             #if not xmlschema_mm2.validate(ET.fromstring(xml_as_string)):
@@ -206,50 +186,6 @@ class ConvertFromMMD():
 
             #Write xmlfile
             outputfile = open(self.outputfile, 'w')
-            outputfile.write(xml_as_string)
+            outputfile.write(str(xml_as_string))
             outputfile.close()
             self.logger.info("DIF file written to: " + self.outputfile)
-          
-                
-
-        
-def main(argv):
-
-    # Parse command line arguments
-    # print('Usage: ' + sys.argv[0] +
-    #      ' -i <input file> -f <output_format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
-    try:
-        opts, args = getopt.getopt(argv,"hi:f:o:xslt:loglevel:")
-    except getopt.GetoptError:
-        usage()
-
-    iflg = oflg = fflg = False
-    for opt, arg in opts:
-        if opt == ("-h"):
-            usage()
-        elif opt in ("-i"):
-            input_file = arg
-            iflg =True
-        elif opt in ("-o"):
-            output_file = arg
-            oflg =True
-        elif opt in ("-f"):
-            output_format = arg
-            fflg =True
-      
-    if not iflg:
-        usage()
-    elif not oflg:
-        usage()
-    elif not fflg:
-        usage()
-
-
-
-    #Create class and do conversion
-    my_converter = ConvertFromMMD(input_file,output_format,output_file)
-    my_converter.convert()
-        
-if __name__ == '__main__':
-    main(sys.argv[1:])
-    

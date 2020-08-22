@@ -17,8 +17,6 @@ TODO: Change references to xslt and xsd folders if script is supposed to run fro
 EXAMPLE: ./src/convert-to-mmd.py 
 
 """
-import sys
-import getopt
 import re
 import lxml.etree as ET
 import datetime
@@ -26,25 +24,6 @@ import logging
 import os
 import os.path
 import io
-
-def usage():
-    """
-    Print the usage of this sctript
-    """
-    print('')
-    print('Usage: ' + sys.argv[0] +
-          ' -i <input file> -f <format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
-    print('\t-i: inputfile to convert')
-    print('\t-f: format of inputfile [dif,mm2,iso]')
-    print('\t-o: outputfile')
-    print('\t-xslt: path to xslt transformations. default xslt')
-    print('\t-log_level: loglevel. Default: INFO')
-    print('\t-h: show this help text')
-    print('')
-    print("If input file and output file are paths, then process all files\n" + 
-          "in input path and write to output path, output filename will be the metada_indentifier")
-    sys.exit(2)
-
 
 class ConvertToMMD():
     """
@@ -70,8 +49,6 @@ class ConvertToMMD():
         self.log_level = log_level
         logging.basicConfig(level=self.log_level)
         self.logger = logging.getLogger(__name__)
-
-
         
     def convert(self):
         """
@@ -107,12 +84,17 @@ class ConvertToMMD():
             #Get the xmd file with same filename as mm2 file
             base_filename = os.path.splitext(self.inputfile)[0]
             base_filename = base_filename + '.xmd'
-            self.logger.debug("xmd filename is: " + base_filename)      
+
+            basepath = os.path.commonprefix(self.inputfile)
+            self.logger.debug("xmd path is: " + basepath)      
 
             #This is needed for right uri resolving
-            base_filename = '../' + base_filename
+            ##base_filename = '../' + base_filename
             #Escape the filename inside string quotes
-            my_xmd_file_str = "'%s'" % base_filename
+            ##my_xmd_file_str = "'%s'" % base_filename
+            my_xmd_file_str = basepath + base_filename
+            self.logger.debug("xmd filename is: " + my_xmd_file_str)      
+            self.logger.debug("xsltdir is: " + self.xslt)      
 
             #Create parser and add URI resolver
             parser = ET.XMLParser()
@@ -129,11 +111,8 @@ class ConvertToMMD():
             #    self.logger.warn("Inputfile: " + self.inputfile +
             #                     " does not validate against MM2 schema")
             
-            
-                        
-            
             #Parse the xsl doc and transform with parameter
-            xslt_root = ET.parse(open('xslt/mm2-to-mmd.xsl', 'r'), parser)
+            xslt_root = ET.parse(open(self.xslt+'/mm2-to-mmd.xsl', 'r'), parser)
             transform = ET.XSLT(xslt_root)
             mmd_doc = transform(xml_input, xmd=my_xmd_file_str)
 
@@ -142,7 +121,7 @@ class ConvertToMMD():
             ordered_mmd = self.correct_element_order(mmd_doc)
                     
             #Validate the translated doc to mmd-schema
-            xmlschema_mmd = ET.XMLSchema(ET.parse('xsd/mmd.xsd'))
+            xmlschema_mmd = ET.XMLSchema(ET.parse(self.xslt+'../xsd/mmd.xsd'))
             xml_as_string = ET.tostring(ordered_mmd, xml_declaration=True, pretty_print=True,
                                         encoding=mmd_doc.docinfo.encoding)
 
@@ -296,7 +275,7 @@ class ConvertToMMD():
         """
         Correct the element order of the mmd file for validation
         """
-        et_xslt = ET.parse('xslt/sort_mmd_according_to_xsd.xsl')
+        et_xslt = ET.parse(self.xslt+'/sort_mmd_according_to_xsd.xsl')
         transform = ET.XSLT(et_xslt)
         result = transform(doc)
         doc = result.getroot()
@@ -310,44 +289,3 @@ class FileResolver(ET.Resolver):
     def resolve(self, url, pubid, context):
         return self.resolve_filename(url, context)
 
-def main(argv):
-
-    # Parse command line arguments
-    # print('Usage: ' + sys.argv[0] +
-    #      ' -i <input file> -f <input_format> -o <output file> [-xslt <path to xslt>] [-loglevel] [-h]')
-    try:
-        opts, args = getopt.getopt(argv,"hi:f:o:xslt:loglevel")
-    except getopt.GetoptError:
-        usage()
-
-    #FIXME: Loglevel does not pass right
-    iflg = oflg = fflg = False
-    for opt, arg in opts:
-        if opt == ("-h"):
-            usage()
-        elif opt in ("-i"):
-            input_file = arg
-            iflg =True
-        elif opt in ("-o"):
-            output_file = arg
-            oflg =True
-        elif opt in ("-f"):
-            input_format = arg
-            fflg =True
-      
-    if not iflg:
-        usage()
-    elif not oflg:
-        usage()
-    elif not fflg:
-        usage()
-
-
-
-    #Create class and do conversion
-    my_converter = ConvertToMMD(input_file,input_format,output_file)
-    my_converter.convert()
-        
-if __name__ == '__main__':
-    main(sys.argv[1:])
-    
