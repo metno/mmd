@@ -58,7 +58,6 @@
                 <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="data_access" type="mmd:data_access_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-                <!--xs:element name="reference" type="mmd:reference_type" maxOccurs="unbounded" minOccurs="0"></xs:element-->
                 <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="system_specific_product_category" type="mmd:system_specific_product_category_type"
                             maxOccurs="unbounded"/>
@@ -330,23 +329,6 @@
             <xs:element name="data_center_url" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
-    <!--xs:complexType name="reference_type">
-        <xs:choice maxOccurs="unbounded">
-            <xs:element name="title" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-            <xs:element name="publication_date" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="series" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="edition" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="volume" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="issue" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="report_number" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="publication_place" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="pages" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="isbn" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="doi" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="online_resource" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="other_reference_details" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-        </xs:choice>
-    </xs:complexType-->
     <xs:complexType name="data_center_name_type">
         <xs:sequence>
             <xs:element name="short_name" type="xs:string"></xs:element>
