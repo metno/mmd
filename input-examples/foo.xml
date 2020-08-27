@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mmd:mmd xmlns:mmd="http://www.met.no/schema/mmd" xmlns:gml="http://www.opengis.net/gml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+	<mmd:metadata_identifier>foo-bar-baz-1234</mmd:metadata_identifier>
+	<mmd:alternate_identifier type="WIS">here-the-alternate-id</mmd:alternate_identifier>
+	<mmd:title xml:lang="en">Foo Ice Charts for Sognsvann</mmd:title>
+        <mmd:title xml:lang="no">Foo Is kart for Sognsvann</mmd:title>
+	<mmd:abstract xml:lang="en">Foo is high resolution for...</mmd:abstract>
+	<mmd:metadata_status>Active</mmd:metadata_status>
+        <mmd:dataset_production_status>In Work</mmd:dataset_production_status>
+	<mmd:collection>NMDC</mmd:collection>
+	<mmd:last_metadata_update>
+		<mmd:update>
+			<mmd:datetime>2012-10-31T12:00:00Z</mmd:datetime>
+			<mmd:type>Created</mmd:type>
+			<mmd:note></mmd:note>
+		</mmd:update>
+		<mmd:update>
+			<mmd:datetime>2020-03-31T10:23:00Z</mmd:datetime>
+			<mmd:type>Major modification</mmd:type>
+			<mmd:note>Changed structure of the metadata element.</mmd:note>
+		</mmd:update>
+	</mmd:last_metadata_update>
+	<mmd:temporal_extent>
+		<mmd:start_date>2012-01-01T12:00:00Z</mmd:start_date>
+		<mmd:end_date>2012-02-01T13:00:00Z</mmd:end_date>
+	</mmd:temporal_extent>
+	<mmd:iso_topic_category>climatologyMeteorologyAtmosphere</mmd:iso_topic_category>
+	<mmd:keywords vocabulary="MyOwnVocab">
+		<mmd:keyword>ice_edge</mmd:keyword>
+		<mmd:keyword>Manual Generated Ice Edge</mmd:keyword>
+	</mmd:keywords>
+	<mmd:keywords vocabulary="GCMD">
+		<mmd:keyword>Earth Science - Climate Indicators - Teleconnections -North Atlantic Oscillation</mmd:keyword>
+		<mmd:resource>https://gcmdservices.gsfc.nasa.gov/static/kms/</mmd:resource>
+		<mmd:separator>-</mmd:separator>
+	</mmd:keywords>
+
+
+       <mmd:dataset_language>en</mmd:dataset_language>
+       <mmd:operational_status>Pre-Operational</mmd:operational_status>
+       <mmd:access_constraint>Open</mmd:access_constraint>
+       <mmd:use_constraint>
+	       <mmd:identifier>CC-BY-4.0</mmd:identifier>
+	       <mmd:resource>http://spdx.org/licenses/CC-BY-4.0</mmd:resource>
+       </mmd:use_constraint>
+
+	<!-- several contacts -->
+	<mmd:personnel>
+		<mmd:role>Technical contact</mmd:role>
+		<mmd:name>Ole Dole</mmd:name>
+		<mmd:email>...</mmd:email>
+		<mmd:phone>...</mmd:phone>
+		<mmd:fax></mmd:fax>
+		<mmd:organisation></mmd:organisation>
+	</mmd:personnel>
+	<mmd:personnel>
+		<mmd:role>Metadata author</mmd:role>
+		<mmd:name>Frode Dinessen</mmd:name>
+		<mmd:email>istjenesten@met.no</mmd:email>
+		<mmd:phone>77621300</mmd:phone>
+		<mmd:organisation>Norwegian Meteorological Institute</mmd:organisation>
+		<mmd:contact_address>
+			<mmd:address>the address</mmd:address>
+			<mmd:city>Oslo</mmd:city>
+			<mmd:postal_code>0653</mmd:postal_code>
+			<mmd:country>Norway</mmd:country>
+		</mmd:contact_address>
+	</mmd:personnel>
+
+
+	<mmd:data_center>
+		<mmd:data_center_name>
+			<mmd:short_name>METNO</mmd:short_name>
+			<mmd:long_name>Norwegian Meteorological Institute
+			</mmd:long_name>
+		</mmd:data_center_name>
+		<mmd:data_center_url>http://met.no</mmd:data_center_url>
+	</mmd:data_center>
+
+	<!-- different access to data -->
+	<mmd:data_access>
+		<mmd:name>OGC WMS access to data</mmd:name>
+		<mmd:type>OGC WMS</mmd:type>
+	        <mmd:resource>http://nbswms.met.no/thredds/wms_ql/NBS/S1A/2020/04/20/EW/S1A_EW_GRDM_1SDH_20200420T023244_20200420T023348_032205_03B97F_72EB.nc</mmd:resource>
+		<mmd:wms_layers>
+			<mmd:wms_layer>sea_ice_concentration</mmd:wms_layer>
+		</mmd:wms_layers>
+	</mmd:data_access>
+	<mmd:related_information>
+		<mmd:type>Project home page</mmd:type>
+		<mmd:description>The home page of the project</mmd:description>
+		<mmd:resource>https://met.no</mmd:resource>
+	</mmd:related_information>
+	<mmd:related_information>
+		<mmd:type>Dataset landing page</mmd:type>
+		<mmd:description>Landing page of the dataset containing additional information</mmd:description>
+		<mmd:resource>https://met.no</mmd:resource>
+	</mmd:related_information>
+	<mmd:project>
+		<mmd:short_name>ICE</mmd:short_name>
+		<mmd:long_name>Ice Coverage Everywhere</mmd:long_name>
+	</mmd:project>
+
+	<mmd:platform>
+		<mmd:short_name>S1A</mmd:short_name>
+		<mmd:long_name>Sentinel-1A</mmd:long_name>
+		<mmd:resource>https://www.wmo-sat.info/oscar/satellites/view/396</mmd:resource>
+		<mmd:orbit_relative>121</mmd:orbit_relative>
+		<mmd:orbit_absolute>62391</mmd:orbit_absolute>
+		<mmd:orbit_direction>ascending</mmd:orbit_direction>
+		<mmd:instrument>
+			<mmd:short_name>SAR-C</mmd:short_name>
+			<mmd:long_name>Synthetic Aperture Radar (C-band)</mmd:long_name>
+			<mmd:resource>https://www.wmo-sat.info/oscar/instruments/view/450</mmd:resource>
+			<mmd:mode>IW</mmd:mode>
+			<mmd:polarisation>VV+VH</mmd:polarisation>
+		</mmd:instrument>
+		<mmd:ancillary>
+			<mmd:cloud_coverage>23.4</mmd:cloud_coverage>
+			<mmd:scene_coverage>77</mmd:scene_coverage>
+			<mmd:timeliness>NRT</mmd:timeliness>
+		</mmd:ancillary>
+	</mmd:platform>
+
+	<mmd:activity_type>Space Borne Instrument</mmd:activity_type>
+
+
+	<mmd:dataset_citation>
+		<mmd:author>Cristian Lussana, Ole Einar Tveito, Andreas Dobler, Ketil Tunheim</mmd:author>
+		<mmd:title>seNorge_2018, daily precipitation, and temperature datasets over Norway</mmd:title>
+		<mmd:series>Earth System Science Data</mmd:series>
+		<mmd:volume>11</mmd:volume>
+		<mmd:issue>4</mmd:issue>
+		<mmd:edition></mmd:edition>
+		<mmd:publication_date>2019-10-01</mmd:publication_date>
+		<mmd:publisher>Copernicus Publications</mmd:publisher>
+		<mmd:pages></mmd:pages>
+		<mmd:isbn></mmd:isbn>
+		<mmd:doi>https://doi.org/10.5194/essd-11-1531-2019</mmd:doi>
+		<mmd:url></mmd:url>
+		<mmd:other></mmd:other>
+	</mmd:dataset_citation>
+
+	<mmd:geographic_extent>
+		<mmd:rectangle srsName="EPSG:4326">
+			<mmd:north>90</mmd:north>
+			<mmd:south>-90</mmd:south>
+			<mmd:east>180</mmd:east>
+			<mmd:west>-180</mmd:west>
+		</mmd:rectangle>
+		<mmd:polygon>
+			<gml:Polygon id="polygon" srsName="EPSG:4326">
+				<gml:exterior>
+					<gml:LinearRing>
+						<gml:pos>
+							-180 -90
+						</gml:pos>
+						<gml:pos>
+							180 -90
+						</gml:pos>
+						<gml:pos>
+							180 90
+						</gml:pos>
+						<gml:pos>
+							-180 90
+						</gml:pos>
+						<gml:pos>
+							-180 -90
+						</gml:pos>
+					</gml:LinearRing>
+				</gml:exterior>
+			</gml:Polygon>
+		</mmd:polygon>
+	</mmd:geographic_extent>
+</mmd:mmd>
