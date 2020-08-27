@@ -213,7 +213,7 @@
     <xs:simpleType name="dataset_production_status_type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Planned"></xs:enumeration>
-            <xs:enumeration value="In Work"></xs:enumeration>
+            <xs:enumeration value="Ongoing"></xs:enumeration>
             <xs:enumeration value="Complete"></xs:enumeration>
             <xs:enumeration value="Obsolete"></xs:enumeration>
         </xs:restriction>
