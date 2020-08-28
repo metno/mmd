@@ -305,7 +305,23 @@
             <xsl:element name="gmd:CI_OnlineResource">
                 <xsl:element name="gmd:linkage">
                     <xsl:element name="gmd:URL">
-                        <xsl:value-of select="mmd:resource" />
+                        <xsl:variable name="myprot" select="normalize-space(./mmd:type)" />
+                        <xsl:choose>
+                            <xsl:when test="contains($myprot,'OGC WMS')">
+                                <xsl:variable name="myurl" select="normalize-space(./mmd:resource)" />
+                                <xsl:choose>
+                                    <xsl:when test="contains($myurl,'?SERVICE=WMS&amp;REQUEST=GetCapabilities')">
+                                        <xsl:value-of select="mmd:resource" />
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat($myurl,'?SERVICE=WMS&amp;REQUEST=GetCapabilities')" />
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="mmd:resource" />
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:element>
                 </xsl:element>
                 <xsl:element name="gmd:protocol">
