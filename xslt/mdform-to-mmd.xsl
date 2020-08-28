@@ -68,6 +68,9 @@
             <xsl:apply-templates select="Data-Access-FTP"/>
             <xsl:apply-templates select="Data-Access-ODATA"/>
             <xsl:apply-templates select="Related-information-Dataset-Landing-Page"/>
+            <xsl:apply-templates select="Related-information-Project-Home-Page"/>
+            <xsl:apply-templates select="Related-information-Users-guide"/>
+            <xsl:apply-templates select="Related-information-Extended-metadata"/>
             <xsl:element name="mmd:data_center">
                 <xsl:element name="mmd:name">
                     <xsl:value-of select="Datacenter-name"/>
@@ -291,6 +294,39 @@
             </xsl:element>
             <xsl:element name="mmd:type">
                 <xsl:text>Dataset landing page</xsl:text>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="Related-information-Project-Home-Page">
+        <xsl:element name="mmd:related_information">
+            <xsl:element name="mmd:resource">
+                <xsl:value-of select="."/>
+            </xsl:element>
+            <xsl:element name="mmd:type">
+                <xsl:text>Project home page</xsl:text>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="Related-information-Users-guide">
+        <xsl:element name="mmd:related_information">
+            <xsl:element name="mmd:resource">
+                <xsl:value-of select="."/>
+            </xsl:element>
+            <xsl:element name="mmd:type">
+                <xsl:text>Users guide</xsl:text>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="Related-information-Extended-metadata">
+        <xsl:element name="mmd:related_information">
+            <xsl:element name="mmd:resource">
+                <xsl:value-of select="."/>
+            </xsl:element>
+            <xsl:element name="mmd:type">
+                <xsl:text>Extended metadata</xsl:text>
             </xsl:element>
         </xsl:element>
     </xsl:template>
