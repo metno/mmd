@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import lxml.etree as ET
 import xmltodict
@@ -44,7 +44,8 @@ def mmd2iso(mmd_file, xslt):
     xslt = ET.parse(xslt)
     transform = ET.XSLT(xslt)
     iso = transform(mmd)
-    return xmltodict.parse(iso)
+    #return xmltodict.parse(iso)
+    return iso
 
 
 def fixrecord(doc, pretty=False):
@@ -129,13 +130,18 @@ def writerecord(inputfile, xsl='../xslt/mmd-to-iso.xsl', outdir='/tmp'):
     pathlib.Path(outdir).mkdir(parents=True, exist_ok=True)
     iso_xml = mmd2iso(inputfile, xsl)
     outputfile = pathlib.PurePosixPath(outdir).joinpath(pathlib.PurePosixPath(inputfile).name)
-    with open(outputfile, 'w') as isofix:
-        isofix.write(fixrecord(iso_xml, pretty=True))
+    iso_xml.write_output(str(outputfile))
+    #with open(outputfile, 'w') as isofix:
+        #isofix.write(fixrecord(iso_xml, pretty=True))
+        #isofix.write(xmltodict.unparse(iso_xml, pretty=True))
+        #isofix.write(iso_xml)
 
 
 def main(metadata, outdir):
     xmlfiles = filelist(metadata)
-    y = parmap.map(writerecord, xmlfiles, outdir=outdir, pm_pbar=False)
+    #y = parmap.map(writerecord, xmlfiles, outdir=outdir, pm_pbar=False)
+    for e in xmlfiles:
+        writerecord(e, outdir=outdir)
 
 
 
