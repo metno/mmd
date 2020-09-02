@@ -305,12 +305,31 @@
             <xsl:element name="gmd:CI_OnlineResource">
                 <xsl:element name="gmd:linkage">
                     <xsl:element name="gmd:URL">
-                        <xsl:value-of select="mmd:resource" />
+                        <xsl:variable name="myprot" select="normalize-space(./mmd:type)" />
+                        <xsl:choose>
+                            <xsl:when test="contains($myprot,'OGC WMS')">
+                                <xsl:variable name="myurl" select="normalize-space(./mmd:resource)" />
+                                <xsl:choose>
+                                    <xsl:when test="contains($myurl,'?SERVICE=WMS&amp;REQUEST=GetCapabilities')">
+                                        <xsl:value-of select="mmd:resource" />
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat($myurl,'?SERVICE=WMS&amp;REQUEST=GetCapabilities')" />
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="mmd:resource" />
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:element>
                 </xsl:element>
                 <xsl:element name="gmd:protocol">
                     <xsl:element name="gco:CharacterString">
-                        <xsl:value-of select="mmd:type" />
+                        <!--xsl:value-of select="mmd:type" / -->
+                        <xsl:variable name="mmd_da_type" select="normalize-space(./mmd:type)" />
+                        <xsl:variable name="mmd_da_mapping" select="document('')/*/mapping:data_access_type[@mmd=$mmd_da_type]/@iso" />
+                        <xsl:value-of select="$mmd_da_mapping" />
                     </xsl:element>
                 </xsl:element>            
                 <xsl:element name="gmd:name">
@@ -429,9 +448,8 @@
 
         <xsl:element name="gmd:status">
             <xsl:variable name="mmd_status" select="normalize-space(.)" />
-            <xsl:variable name="mmd_status_mapping" select="document('')/*/mapping:dataset_status[@mmd=$mmd_status]" />
+            <xsl:variable name="mmd_status_mapping" select="document('')/*/mapping:dataset_status[@mmd=$mmd_status]/@iso" />
             <xsl:value-of select="$mmd_status_mapping" />
-            <xsl:value-of select="$mmd_status_mapping/@iso" />                                
         </xsl:element>
 
     </xsl:template>
@@ -444,10 +462,18 @@
         </xsl:element>
     </xsl:template>
 
-   
+    <!-- Mappings for dataset_production_status -->
     <mapping:dataset_status iso="completed" mmd="Complete" />
     <mapping:dataset_status iso="obsolete" mmd="Obsolete" />
     <mapping:dataset_status iso="onGoing" mmd="In Work" />
     <mapping:dataset_status iso="planned" mmd="Planned" />    
+
+    <!-- Mappings for data_access type specification -->
+    <mapping:data_access_type iso="OGC:WMS" mmd="OGC WMS" />    
+    <mapping:data_access_type iso="OGC:WCS" mmd="OGC WCS" />    
+    <mapping:data_access_type iso="OGC:WFS" mmd="OGC WFS" />    
+    <mapping:data_access_type iso="WWW:DOWNLOAD-1.0-ftp–download" mmd="FTP" />  
+    <mapping:data_access_type iso="WWW:DOWNLOAD-1.0-http–download" mmd="HTTP" />
+    <mapping:data_access_type iso="WWW:LINK-1.0-http–opendap" mmd="OPeNDAP" />  
 
 </xsl:stylesheet>
