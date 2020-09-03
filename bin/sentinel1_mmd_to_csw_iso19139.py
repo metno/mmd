@@ -132,7 +132,7 @@ def writerecord(inputfile, outdir='/tmp'):
     if not os.path.isfile(xslt_file):
         raise Error('XSLT file is missing')
     else:
-        print('xslt file exists')
+        raise Error('xslt file exists')
     iso_xml = mmd2iso(inputfile, xslt_file)
     outputfile = pathlib.PurePosixPath(outdir).joinpath(pathlib.PurePosixPath(inputfile).name)
     iso_xml.write_output(str(outputfile))
