@@ -126,9 +126,9 @@ def fixrecord(doc, pretty=False):
     return xmltodict.unparse(doc, pretty=pretty)
 
 
-def writerecord(inputfile, xsl='../xslt/mmd-to-iso.xsl', outdir='/tmp'):
+def writerecord(inputfile, outdir='/tmp'):
     pathlib.Path(outdir).mkdir(parents=True, exist_ok=True)
-    iso_xml = mmd2iso(inputfile, xsl)
+    iso_xml = mmd2iso(inputfile, os.getenv('XSLTPATH')
     outputfile = pathlib.PurePosixPath(outdir).joinpath(pathlib.PurePosixPath(inputfile).name)
     iso_xml.write_output(str(outputfile))
     #with open(outputfile, 'w') as isofix:
