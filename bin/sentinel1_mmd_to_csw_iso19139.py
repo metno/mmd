@@ -128,7 +128,10 @@ def fixrecord(doc, pretty=False):
 
 def writerecord(inputfile, outdir='/tmp'):
     pathlib.Path(outdir).mkdir(parents=True, exist_ok=True)
-    iso_xml = mmd2iso(inputfile, os.path.join(os.getenv('XSLTPATH'), 'mmd-to-iso.xsl'))
+    xslt_file = os.path.join(os.getenv('XSLTPATH'), 'mmd-to-iso.xsl')
+    if not os.path.isfile(xslt_file):
+        raise Error('XSLT file is missing')
+    iso_xml = mmd2iso(inputfile, xslt_file)
     outputfile = pathlib.PurePosixPath(outdir).joinpath(pathlib.PurePosixPath(inputfile).name)
     iso_xml.write_output(str(outputfile))
     #with open(outputfile, 'w') as isofix:
