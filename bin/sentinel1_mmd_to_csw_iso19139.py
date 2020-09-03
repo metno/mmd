@@ -130,7 +130,7 @@ def writerecord(inputfile, outdir='/tmp'):
     pathlib.Path(outdir).mkdir(parents=True, exist_ok=True)
     xslt_file = os.path.join(os.getenv('XSLTPATH'), 'mmd-to-iso.xsl')
     if not os.path.isfile(xslt_file):
-        raise Exception('XSLT file is missing')
+        raise Exception('XSLT file is missing: %s' xslt_file)
     iso_xml = mmd2iso(inputfile, xslt_file)
     outputfile = pathlib.PurePosixPath(outdir).joinpath(pathlib.PurePosixPath(inputfile).name)
     iso_xml.write_output(str(outputfile))
