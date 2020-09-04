@@ -37,6 +37,7 @@ def filelist(directory):
 
 
 def mmd2iso(mmd_file, xslt):
+    print('Translating file: %s' %mmd_file)
     try:
         mmd = ET.parse(mmd_file)
     except OSError as e:
