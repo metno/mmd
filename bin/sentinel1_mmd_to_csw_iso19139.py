@@ -27,6 +27,7 @@ def xml_check(xml_file):
 
 
 def filelist(directory):
+    print('os.walk(%s)'%directory)
     xml_files = []
     for subdir, dirs, files in os.walk(directory):
         for file in files:
