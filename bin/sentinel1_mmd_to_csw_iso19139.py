@@ -27,10 +27,11 @@ def xml_check(xml_file):
 
 
 def filelist(directory):
-    print('os.walk(%s)'%directory)
+    print('os.walk("%s")'%directory)
     xml_files = []
     for subdir, dirs, files in os.walk(directory):
         for file in files:
+            print('File: %s' %file)
             file_path = subdir + os.sep + file
             if file_path.endswith(".xml"):
                 xml_files.append(file_path)
