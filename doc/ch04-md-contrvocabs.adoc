@@ -43,6 +43,8 @@ data. This is primarily Sentinel datasets.
 |APPL |Datasets in the context of EU H2020 project APPLICATE.
 
 |YOPP |Datasets in the context of YOPP.
+
+|METNCS|Datasets related to the core services at MET Norway.
 |=======================================================================
 
 <<collection>>
