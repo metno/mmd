@@ -27,9 +27,11 @@ def xml_check(xml_file):
 
 
 def filelist(directory):
+    print('os.walk("%s")'%directory)
     xml_files = []
     for subdir, dirs, files in os.walk(directory):
         for file in files:
+            print('File: %s' %file)
             file_path = subdir + os.sep + file
             if file_path.endswith(".xml"):
                 xml_files.append(file_path)
@@ -37,6 +39,7 @@ def filelist(directory):
 
 
 def mmd2iso(mmd_file, xslt):
+    print('Translating file: %s' %mmd_file)
     try:
         mmd = ET.parse(mmd_file)
     except OSError as e:
@@ -128,7 +131,10 @@ def fixrecord(doc, pretty=False):
 
 def writerecord(inputfile, outdir='/tmp'):
     pathlib.Path(outdir).mkdir(parents=True, exist_ok=True)
-    iso_xml = mmd2iso(inputfile, os.getenv('XSLTPATH'))
+    xslt_file = os.path.join(os.getenv('XSLTPATH'), 'mmd-to-iso.xsl')
+    if not os.path.isfile(xslt_file):
+        raise Exception('XSLT file is missing: %s' %xslt_file)
+    iso_xml = mmd2iso(inputfile, xslt_file)
     outputfile = pathlib.PurePosixPath(outdir).joinpath(pathlib.PurePosixPath(inputfile).name)
     iso_xml.write_output(str(outputfile))
     #with open(outputfile, 'w') as isofix:
