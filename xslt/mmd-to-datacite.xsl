@@ -21,11 +21,16 @@ First attempt for MMD to DataCite conversion...
 		    <xsl:value-of select="substring-before(' ',' ')"/>
 		</xsl:element>
 
-                <xsl:apply-templates select="mmd:metadata_identifier" />
-                <xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" />
+                <xsl:element name="alternateIdentifiers">
+                   <xsl:apply-templates select="mmd:metadata_identifier" />
+                   <!--xsl:apply-templates select="mmd:alternate_identifier" /-->
+                </xsl:element>
+                <!--xsl:apply-templates select="mmd:personnel[mmd:role='Investigator']" /-->
                 <!-- not implemented yet
 -->
-                        <xsl:apply-templates select="mmd:title" />
+		        <xsl:element name="titles">
+		            <xsl:apply-templates select="mmd:title" />
+		        </xsl:element>
                         <!--xsl:apply-templates select="mmd:data_center" /-->
                         <!-- Should reflect PublicationYear, which is
                              missing now...
@@ -59,12 +64,22 @@ First attempt for MMD to DataCite conversion...
                 </xsl:element>
         </xsl:template>
 
+	<xsl:template match="mmd:alternate_identifier">
+                <xsl:element name="alternateIdentifier">
+                    <xsl:attribute name="alternateIdentifierType">
+			    <xsl:value-of select="@type" />
+		    </xsl:attribute>
+		    <xsl:value-of select="." />
+                </xsl:element>
+        </xsl:template>
+
 	<xsl:template match="mmd:title">
-		<xsl:element name="titles">
-                    <xsl:element name="title">
-			<xsl:value-of select="." />
-                    </xsl:element>
-		</xsl:element>
+		<xsl:element name="title">
+		    <xsl:if test="@xml:lang != 'en'">
+                        <xsl:attribute name="titleType">TranslatedTitle</xsl:attribute>
+		    </xsl:if>
+		    <xsl:value-of select="." />
+                </xsl:element>
 	</xsl:template>
 
 	<xsl:template match="mmd:abstract">
@@ -208,6 +223,12 @@ First attempt for MMD to DataCite conversion...
             <xsl:value-of select="mmd:publisher" />
         </xsl:element>
 
+        <xsl:element name="creators">
+           <xsl:call-template name="tokenize">
+              <xsl:with-param name="author" select="mmd:author"/>
+           </xsl:call-template>
+	</xsl:element>
+
         <!--xsl:element name="dif:Data_Set_Citation">
             <xsl:element name="dif:Dataset_Creator">
                 <xsl:value-of select="mmd:dataset_creator" />
@@ -233,9 +254,33 @@ First attempt for MMD to DataCite conversion...
             <xsl:element name="dif:Online_Resource">
                 <xsl:value-of select="mmd:online_resource" />
             </xsl:element>
-
         </xsl:element-->
 
     </xsl:template>
+
+    <xsl:template name="tokenize">
+    <xsl:param name="author"/>
+    <xsl:choose>
+        <xsl:when test="contains($author, ',')">
+        <xsl:element name="creator">
+        <xsl:element name="creatorName">
+        <!--xsl:attribute name="nameType">Personal</xsl:attribute-->
+            <xsl:value-of select="normalize-space(substring-before($author, ','))"/>
+        </xsl:element>
+        </xsl:element>
+        <xsl:call-template name="tokenize">
+            <xsl:with-param name="author" select="normalize-space(substring-after($author, ','))"/>
+        </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+        <xsl:element name="creator">
+        <xsl:element name="creatorName">
+        <!--xsl:attribute name="nameType">Personal</xsl:attribute-->
+            <xsl:value-of select="normalize-space($author)"/>
+        </xsl:element>
+        </xsl:element>
+        </xsl:otherwise>
+    </xsl:choose>
+ </xsl:template>
 
 </xsl:stylesheet>
