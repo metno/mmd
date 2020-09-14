@@ -17,6 +17,8 @@ between various metadata standards and MMD (in the `xslt` folder),
 conversion scripts and examples (in the `src` folder), and example
 metadata for example datasets (in the `input-examples` folder).
 
+The latest version of the mmd specification is available [here](https://htmlpreview.github.io/?https://github.com/metno/mmd/blob/master/doc/mmd-specification.html).
+
 ## Scripts (src-folder)
 
 ### convert-to-mmd.py
