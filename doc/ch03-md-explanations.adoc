@@ -20,7 +20,7 @@ When requesting a DOI for a dataset following the MMD specifications, the
 required metadata elements (see https://schema.datacite.org/meta/kernel-4.3/doc/DataCite-MetadataKernel_v4.3.pdf[Datacite schema 4.3]) to be sent to Datacite will be extracted from the MMD records. 
 The following mapping is in place:
 
-[cols="3,1,3"]
+[cols="2,1,6"]
 |=======================================================================
 |Datacite            | Obl. | MMD
                      
