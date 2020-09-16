@@ -395,6 +395,7 @@
             <xs:enumeration value="NBS"></xs:enumeration>
             <xs:enumeration value="APPL"></xs:enumeration>
             <xs:enumeration value="YOPP"></xs:enumeration>
+            <xs:enumeration value="METNCS"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
