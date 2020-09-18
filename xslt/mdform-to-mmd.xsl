@@ -72,10 +72,12 @@
             <xsl:apply-templates select="Related-information-Users-guide"/>
             <xsl:apply-templates select="Related-information-Extended-metadata"/>
             <xsl:element name="mmd:data_center">
-                <xsl:element name="mmd:name">
-                    <xsl:value-of select="Datacenter-name"/>
+                <xsl:element name="mmd:data_center_name">
+                    <xsl:element name="mmd:long_name">
+                        <xsl:value-of select="Datacenter-name"/>
+                    </xsl:element>
                 </xsl:element>
-                <xsl:element name="mmd:url">
+                <xsl:element name="mmd:data_center_url">
                     <xsl:value-of select="Datacenter-URL"/>
                 </xsl:element>
             </xsl:element>
