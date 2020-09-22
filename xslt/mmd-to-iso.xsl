@@ -2,6 +2,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:str="http://exslt.org/strings"
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gml="http://www.opengis.net/gml"
@@ -339,7 +340,14 @@
                 </xsl:element>
                 <xsl:element name="gmd:description">
                     <xsl:element name="gco:CharacterString">
-                        <xsl:value-of select="mmd:description" />
+                        <xsl:choose>
+                           <xsl:when test="mmd:type = 'OGC WMS'">
+                              <xsl:value-of select="str:replace(mmd:description, ',', ':')" />
+                           </xsl:when>
+                           <xsl:otherwise>
+                              <xsl:value-of select="mmd:description" />
+                           </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:element>
                 </xsl:element>                
             </xsl:element>
