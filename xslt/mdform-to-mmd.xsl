@@ -95,7 +95,7 @@
                 <xsl:element name="mmd:name"><xsl:value-of select="Principal-investigator--PI-"/></xsl:element>
                 <xsl:element name="mmd:organisation"><xsl:value-of select="PI-institution"/></xsl:element>
                 <xsl:element name="mmd:email"><xsl:value-of select="PI-email"/></xsl:element>
-                <xsl:element name="contact_address">
+                <xsl:element name="mmd:contact_address">
                     <xsl:element name="mmd:address"><xsl:value-of select="Address"/></xsl:element>
                     <xsl:element name="mmd:city"><xsl:value-of select="City"/></xsl:element>
                     <xsl:element name="mmd:postal_code"><xsl:value-of select="Postal-code"/></xsl:element>
