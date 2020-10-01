@@ -1,8 +1,6 @@
 [[introduction]]
 == Introduction
 
-THIS IS SOME TMP TEXT THAT WILL BE REMOVED WHEN WE HAVE TESTED CREATING THE PR
-
 MET Norway Metadata Format (MMD) is an XML metadata format for storing
 information about scientific datasets. It is meant for consumption by
 internal systems and to be a corner stone in our data management. The main
