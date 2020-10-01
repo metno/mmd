@@ -3,6 +3,8 @@ name: 'html/pdf'
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'doc/**'
 
