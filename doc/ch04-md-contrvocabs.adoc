@@ -540,6 +540,13 @@ telecommunication, radio, and communication networks.
 |Project home page |URI to the project home page generating the data.
 |Users guide |URI to a users guide or product manual for the dataset.
 |Dataset landing page |A dataset landing page.
+|Publication | A scientific publication. 
+|Data paper | A factual and objective publication with a focused intent 
+to identify and describe specific data, sets of data, or data collections 
+to facilitate discoverability.  
+|Text | A resource consisting primarily of words for reading, e.g. grey 
+literature, lab notes, accompanying materials, data management plan, conference poster.
+|Software | A computer program in source code (text) or compiled form.
 |Observation facility |For observational data (in situ or remote) an
 information page containing more detailed information on the observation
 facility following OGC Observations and Measurements or WMO Integrated

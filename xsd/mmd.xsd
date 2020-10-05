@@ -404,6 +404,10 @@
             <xs:enumeration value="Project home page"></xs:enumeration>
             <xs:enumeration value="Users guide"></xs:enumeration>
             <xs:enumeration value="Dataset landing page"></xs:enumeration>
+            <xs:enumeration value="Publication"></xs:enumeration>
+            <xs:enumeration value="Data paper"></xs:enumeration>
+            <xs:enumeration value="Text"></xs:enumeration>
+            <xs:enumeration value="Software"></xs:enumeration>
             <xs:enumeration value="Extended metadata"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
