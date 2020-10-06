@@ -538,7 +538,48 @@
           <xsl:element name="mmd:data_center_url">
              <xsl:value-of select="mmd:data_center_url"/>
           </xsl:element>
-       </xsl:element>
+        </xsl:element>
+	<xsl:if test="mmd:contact !=''">
+            <xsl:element name="mmd:personnel">
+	       <xsl:element name="mmd:role">
+                   <xsl:value-of select="mmd:contact/mmd:role"/>
+               </xsl:element>
+               <xsl:element name="mmd:name">
+                   <xsl:value-of select="mmd:contact/mmd:name"/>
+               </xsl:element>
+               <xsl:element name="mmd:email">
+                   <xsl:value-of select="mmd:contact/mmd:email"/>
+               </xsl:element>
+               <xsl:element name="mmd:phone">
+                   <xsl:value-of select="mmd:contact/mmd:phone"/>
+               </xsl:element>
+               <xsl:element name="mmd:fax">
+                   <xsl:value-of select="mmd:contact/mmd:fax"/>
+               </xsl:element>
+               <xsl:element name="mmd:organisation">
+                   <xsl:value-of select="mmd:contact/mmd:organisation"/>
+               </xsl:element>
+         	   <xsl:if test="mmd:contact/mmd:contact_address !=''">
+                       <xsl:element name="mmd:contact_address">
+	                   <xsl:element name="mmd:address">
+	                       <xsl:value-of select="mmd:contact/mmd:contact_address/mmd:address"/>
+                           </xsl:element>
+                           <xsl:element name="mmd:city">
+                               <xsl:value-of select="mmd:contact/mmd:contact_address/mmd:city"/>
+                           </xsl:element>
+                           <xsl:element name="mmd:province_or_state">
+                               <xsl:value-of select="mmd:contact/mmd:contact_address/mmd:province_or_state"/>
+                           </xsl:element>
+                           <xsl:element name="mmd:postal_code">
+                               <xsl:value-of select="mmd:contact/mmd:contact_address/mmd:postal_code"/>
+                           </xsl:element>
+                           <xsl:element name="mmd:country">
+                               <xsl:value-of select="mmd:contact/mmd:contact_address/mmd:country"/>
+                           </xsl:element>
+                       </xsl:element>
+                   </xsl:if>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="mmd:related_dataset">
