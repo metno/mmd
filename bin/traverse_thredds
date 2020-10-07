@@ -1,0 +1,153 @@
+#!/usr/bin/python3
+#
+# Name:
+# traverse_thredds
+#
+# Purpose:
+# Traverse THREDDS catalogs and extract discovery metadata into MMD files
+# for datasets having ACDD elements.
+# 
+# Author:
+# Øystein Godøy, METNO/FOU, 2020-10-06, original version
+#
+import sys
+import os
+import argparse
+import threddsclient
+from mmd_utils.nc_to_mmd import Nc_to_mmd
+import lxml.etree as ET
+from datetime import datetime
+import pytz
+import uuid
+
+def traverse_thredds(mystart, dstdir, mydepth):
+    print('Traversing:', mystart)
+    #mystart = 'https://thredds.met.no/thredds/arcticdata/arcticdata.xml'
+    #print(mystart)
+    ns_map = {'mmd': "http://www.met.no/schema/mmd",
+                  'gml': "http://www.opengis.net/gml"}
+    for ds in threddsclient.crawl(mystart, depth=mydepth):
+        print('Processing:', ds.name)
+        print('\tLanding page:',ds.url,sep='\n\t\t')
+        print('\tDownload URL:', ds.download_url(),sep='\n\t\t')
+        print('\tOPeNDAP URL:', ds.opendap_url(),sep='\n\t\t')
+        print('\tOGC WMS URL:', ds.wms_url(),sep='\n\t\t')
+        infile = ds.opendap_url()
+        outfile = os.path.splitext(ds.name)[0]+'.xml'
+        try:
+            md = Nc_to_mmd(dstdir, outfile, infile)
+        except:
+            print('Something setting up ACDD extraction', sys.exc_info()[0])
+            continue
+        try:
+            md.to_mmd()
+        except:
+            print('Something failed when dumping data to MMD',
+                    sys.exc_info()[0])
+            continue
+        # Modify the XML generated with information from THREDDS
+        print('Parsing XML')
+        myxml = ET.parse(os.path.join(dstdir,outfile))
+        myroot = myxml.getroot()
+        # Check and potentially modify identifier
+        mynode = myxml.find("./mmd:metadata_identifier", myroot.nsmap)
+        print(mynode.text, ds.url.replace('catalog.xml?dataset=',''))
+        try:
+            uuidver = uuid.UUID(mynode.text).version
+        except ValueError:
+            print("Not an UUID, replacing identifier")
+            try:
+                mynode.text = str(uuid.uuid5(uuid.NAMESPACE_URL,
+                    ds.url.replace('catalog.xml?dataset=','')))
+            except TypeError as e:
+                print(e)
+            print("so far so good")
+
+        # Add metadata_status
+        mynode = ET.Element("{http://www.met.no/schema/mmd}metadata_status")
+        mynode.text = 'Active'
+        myroot.insert(4, mynode)
+
+        # Add and update last_metdata_update
+        mynode = ET.Element("{http://www.met.no/schema/mmd}last_metadata_update")
+        mychild = ET.SubElement(mynode,"{http://www.met.no/schema/mmd}update")
+        mygchild1 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}datetime")
+        mygchild1.text = datetime.now(tz=pytz.UTC).strftime('%Y-%m-%dT%H:%M:%S%Z')
+        mygchild2 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}type")
+        mygchild2.text = 'Created'
+        mygchild3 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}note")
+        mygchild3.text = 'Created automatically from traversing THREDDS server'
+        myroot.insert(5,mynode)
+
+        # Add collection
+        mynode = ET.Element("{http://www.met.no/schema/mmd}Collection")
+        mynode.text = 'ADC'
+        myroot.insert(6,mynode)
+        mynode = ET.Element("{http://www.met.no/schema/mmd}Collection")
+        mynode.text = 'NSDN'
+        myroot.insert(7,mynode)
+
+        # Add iso_topic_category
+        # Most datasets belong to this, quick hack for now
+        mynode = ET.Element("{http://www.met.no/schema/mmd}iso_topic_category")
+        mynode.text = 'Not available'
+        myroot.insert(8, mynode)
+
+        # Check and potentially modify activity_type
+        mynode = myxml.find("./mmd:activity_type",namespaces=myroot.nsmap)
+        mynode.text = 'Not available'
+        myroot.insert(9, mynode)
+
+        # Check and potentially modify operational_status
+        mynode = myxml.find("./mmd:operational_status",namespaces=myroot.nsmap)
+        mynode.text = 'Not available'
+        myroot.insert(9, mynode)
+
+        # Add related_information
+        related_information = ET.Element(
+                "{http://www.met.no/schema/mmd}related_information")
+        related_information_resource = ET.SubElement(related_information,
+                '{http://www.met.no/schema/mmd}resource')
+        related_information_resource.text = ds.url.replace('xml','html')
+        related_information_type = ET.SubElement(related_information,
+                '{http://www.met.no/schema/mmd}type')
+        related_information_type.text = 'Dataset landing page'
+        related_information_description = ET.SubElement(related_information,
+                '{http://www.met.no/schema/mmd}description')
+        related_information_description.text = 'Dataset landing page'
+        myroot.insert(-1,related_information)
+        # Check and modify data_access
+        mynode = myxml.find("./mmd:data_access[mmd:type='HTTP']/mmd:resource",namespaces=myroot.nsmap)
+        mynode = ds.download_url()
+        mynode = myxml.find("./mmd:data_access[mmd:type='OPeNDAP']/mmd:resource",namespaces=myroot.nsmap)
+        mynode = ds.opendap_url()
+        mynode = myxml.find("./mmd:data_access[mmd:type='OGC WMS']/mmd:resource",namespaces=myroot.nsmap)
+        mynode = ds.wms_url()
+
+        # Create new file
+        myxml.write(os.path.join(dstdir,outfile), pretty_print=True)
+
+if __name__ == '__main__':
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+            description='Traverse THREDDS catalogues and extract '+
+            'discovery metadata to MMD where ACDD elements are present')
+    parser.add_argument('starturl', type=str, 
+            help='URL to start traverse')
+    parser.add_argument('dstdir', type=str, 
+            help='Directory where to put MMD files')
+    parser.add_argument('-d', '--depth', type=int, default=3, 
+            help='Directory where to put MMD files')
+    try:
+        args = parser.parse_args()
+    except:
+        parser.print_help()
+        sys.exit()
+    
+    try:
+        traverse_thredds(args.starturl, args.dstdir, args.depth)
+    except:
+        print('Something went wrong', sys.exc_info()[0])
+        sys.exit()
+    sys.exit()
+
