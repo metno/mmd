@@ -375,9 +375,9 @@
     </xs:simpleType>
     <xs:complexType name="related_information_type">
         <xs:sequence>
-            <xs:element name="type" type="mmd:related_information_types_type" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="type" type="mmd:related_information_types_type" maxOccurs="1" minOccurs="1"/>
             <xs:element name="description" type="xs:string"/>
-            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="collection_type">
@@ -404,6 +404,12 @@
             <xs:enumeration value="Project home page"></xs:enumeration>
             <xs:enumeration value="Users guide"></xs:enumeration>
             <xs:enumeration value="Dataset landing page"></xs:enumeration>
+            <xs:enumeration value="Scientific publication"></xs:enumeration>
+            <xs:enumeration value="Data paper"></xs:enumeration>
+            <xs:enumeration value="Data management plan"></xs:enumeration>
+            <xs:enumeration value="Software"></xs:enumeration>
+            <xs:enumeration value="Other documentation"></xs:enumeration>
+            <xs:enumeration value="Observation facility"></xs:enumeration>
             <xs:enumeration value="Extended metadata"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
