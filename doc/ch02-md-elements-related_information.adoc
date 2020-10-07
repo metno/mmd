@@ -22,6 +22,8 @@ the following child elements:
 This element should be used for e.g. THREDDS landing pages. i.e. that is the
 pages providing the overview of services (HTTP, OPeNDAP, WMS, ...) for a
 dataset. The specific web services for data access are to be added using <<data_access>>.
+This element should also be used to provide links to related publications, e.g. data papers, scientific publications 
+or relevant documentations. The resource should point to the landing page of the publications. 
 
 |Example XML: a|
 ----
@@ -34,6 +36,19 @@ dataset. The specific web services for data access are to be added using <<data_
     <type>Dataset landing page</type>
     <resource>URI</resource>
 </related_information>
+
+<related_information>
+    <type>Scientific publication</type>
+    <resource>URI</resource>
+    <description>Author, Title (YYYY), Publisher, doi</description>
+</related_information>
+
+<related_information>
+    <type>Other documentation</type>
+    <resource>URI</resource>
+    <description>Conference poster</description>
+</related_information>
+
 ----
 
 |DIF equivalent a|

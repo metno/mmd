@@ -13,3 +13,27 @@ dataset within the series. The relationship only causes the child
 dataset to inherit elements from the parent dataset. Exact semantics for
 inheritance is to be decided.
 
+[[DOI-minting]]
+=== DOI minting request
+
+When requesting a DOI for a dataset following the MMD specifications, the 
+required metadata elements (see https://schema.datacite.org/meta/kernel-4.3/doc/DataCite-MetadataKernel_v4.3.pdf[Datacite schema 4.3]) to be sent to Datacite will be extracted from the MMD records. 
+The following mapping is in place:
+
+[cols="2,1,6"]
+|=======================================================================
+|Datacite            | Obl. | MMD
+                     
+|Creator             | M    | /mmd/dataset_citation/author
+|Title               | M    | /mmd/title
+|Publisher           | M    | /mmd/dataset_citation/publisher
+|Publication Year    | M    | /mmd/dataset_citation/publication_date 
+|Resource Type       | M    | Dataset or Collection depending on the presence of /mmd/temporal_extent/end_date
+|Language            | O    | /mmd/dataset_language
+|AlternateIdentifier | O    | /mmd/metadata_identifier (with attribute "METNO UUID")
+|Rights              | O    | /mmd/use_constraint/identifier (with attribute rightsURI (resource), rightsIdentifier (identifier), schemeURI (https://spdx.org/licenses/), rightsIdentifierScheme (SPDX))
+|Description         | R    | /mmd/abstract (with attribute descriptionType "Abstract")
+|GeoLocation         | R    | /mmd/geographic_extent/rectangle
+
+|=======================================================================
+

@@ -492,9 +492,6 @@
            <xsl:element name="mmd:doi">
 	      <xsl:value-of select="mmd:dataset_doi"/>
            </xsl:element>
-           <xsl:element name="mmd:doi">
-	      <xsl:value-of select="mmd:dataset_doi"/>
-           </xsl:element>
            <xsl:element name="mmd:url">
 	      <xsl:value-of select="mmd:online_resource"/>
            </xsl:element>
