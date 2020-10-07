@@ -51,7 +51,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         myroot = myxml.getroot()
         # Check and potentially modify identifier
         mynode = myxml.find("./mmd:metadata_identifier", myroot.nsmap)
-        print(mynode.text, ds.url.replace('catalog.xml?dataset=',''))
+        #print(mynode.text, ds.url.replace('catalog.xml?dataset=',''))
         try:
             uuidver = uuid.UUID(mynode.text).version
         except ValueError:
@@ -123,6 +123,9 @@ def traverse_thredds(mystart, dstdir, mydepth):
         mynode = ds.opendap_url()
         mynode = myxml.find("./mmd:data_access[mmd:type='OGC WMS']/mmd:resource",namespaces=myroot.nsmap)
         mynode = ds.wms_url()
+
+        # Reference should be removed
+        # dataset citation has to be further improved...
 
         # Create new file
         myxml.write(os.path.join(dstdir,outfile), pretty_print=True)
