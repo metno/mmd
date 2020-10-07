@@ -38,8 +38,15 @@ or relevant documentations. The resource should point to the landing page of the
 </related_information>
 
 <related_information>
-    <type>Publication</type>
+    <type>Scientific publication</type>
     <resource>URI</resource>
+    <description>Author, Title (YYYY), Publisher, doi</description>
+</related_information>
+
+<related_information>
+    <type>Other documentation</type>
+    <resource>URI</resource>
+    <description>Conference poster</description>
 </related_information>
 
 ----
