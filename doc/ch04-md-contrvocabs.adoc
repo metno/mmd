@@ -45,6 +45,19 @@ data. This is primarily Sentinel datasets.
 |YOPP |Datasets in the context of YOPP.
 
 |METNCS|Datasets related to the core services at MET Norway.
+
+|SESS2018 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018.
+
+|SESS2019 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019.
+
+|SESS2020 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020.
+
+|SIOSCD |Datasets that are SIOS Core Data.
+
+|SIOSAP |Datasets from the SIOS Access Programme. 
+
+|CVL |Datasets from the ESA Cryosphere Virtual Lab.
+
 |=======================================================================
 
 <<collection>>

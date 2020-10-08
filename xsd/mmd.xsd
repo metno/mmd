@@ -396,6 +396,12 @@
             <xs:enumeration value="APPL"></xs:enumeration>
             <xs:enumeration value="YOPP"></xs:enumeration>
             <xs:enumeration value="METNCS"></xs:enumeration>
+            <xs:enumeration value="SESS2018"></xs:enumeration>
+            <xs:enumeration value="SESS2019"></xs:enumeration>
+            <xs:enumeration value="SESS2020"></xs:enumeration>
+            <xs:enumeration value="SIOSCD"></xs:enumeration>
+            <xs:enumeration value="SIOSAP"></xs:enumeration>
+            <xs:enumeration value="CVL"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
