@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 #
 # Name:
-# traverse_thredds
+# add_parent
 #
 # Purpose:
-# Traverse THREDDS catalogs and extract discovery metadata into MMD files
-# for datasets having ACDD elements.
+# Add a parent identifier to a child dataset. 
 # 
 # Author:
 # Øystein Godøy, METNO/FOU, 2020-10-06, original version
