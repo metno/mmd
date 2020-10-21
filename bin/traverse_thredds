@@ -35,19 +35,19 @@ def traverse_thredds(mystart, dstdir, mydepth):
         infile = ds.opendap_url()
         outfile = os.path.splitext(ds.name)[0]+'.xml'
         try:
-            md = Nc_to_mmd(dstdir, outfile, infile, False)
+            md = Nc_to_mmd(dstdir, outfile, infile, False, False)
         except:
             print('Something setting up ACDD extraction', sys.exc_info()[0])
             continue
         try:
-            md.to_mmd()
+            myxml = md.to_mmd()
         except:
             print('Something failed when dumping data to MMD',
                     sys.exc_info()[0])
             continue
         # Modify the XML generated with information from THREDDS
-        print('Parsing XML')
-        myxml = ET.parse(os.path.join(dstdir,outfile))
+        #print('Parsing XML')
+        #myxml = ET.parse(os.path.join(dstdir,outfile))
         myroot = myxml.getroot()
         # Check and potentially modify identifier
         mynode = myxml.find("./mmd:metadata_identifier", myroot.nsmap)
@@ -61,7 +61,6 @@ def traverse_thredds(mystart, dstdir, mydepth):
                     ds.url.replace('catalog.xml?dataset=','')))
             except TypeError as e:
                 print(e)
-            print("so far so good")
 
         # Add metadata_status
         mynode = ET.Element("{http://www.met.no/schema/mmd}metadata_status")

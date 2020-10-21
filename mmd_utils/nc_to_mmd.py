@@ -18,7 +18,7 @@ import lxml.etree as ET
 class Nc_to_mmd(object):
 
     def __init__(self, output_path, output_name, netcdf_product,
-            parse_services=False):
+            parse_services=False, print_file=False):
         """
         Class for creating an MMD XML file based on the discovery metadata provided in the global attributes of NetCDF
         files that are compliant with the CF-conventions and ACDD.
@@ -34,6 +34,7 @@ class Nc_to_mmd(object):
         self.output_name = output_name
         self.netcdf_product = netcdf_product
         self.parse_services = parse_services
+        self.print_file = print_file
 
     def to_mmd(self):
         """
@@ -71,6 +72,7 @@ class Nc_to_mmd(object):
                     for i, e in enumerate(all_elements):
 
                         # Check if the element is an attribute to an element
+                        # Postpone handling to next loop
                         if e.startswith('attrib_'):
                             continue
 
@@ -80,9 +82,11 @@ class Nc_to_mmd(object):
                             # Split some elements by comma into list
                             if ga in 'iso_topic_category':
                                 value_list = ncin.getncattr(ga).split(',')
+                            elif ga in 'keywords' and ',' in ncin.getncattr(ga):
+                                value_list = ncin.getncattr(ga).split(',')
                             for value in value_list:
                                 current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
-                                current_element.text = str(value)
+                                current_element.text = str(value).lstrip()
 
                         # Checks to avoid duplication
                         else:
@@ -100,6 +104,10 @@ class Nc_to_mmd(object):
 
                             if current_element is None:
                                 current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                # Set this to None by default and change
+                                # if specified in next loop
+                                if e == 'keywords':
+                                    current_element.set('vocabulary','None')
 
                             parent_element = current_element
 
@@ -120,8 +128,8 @@ class Nc_to_mmd(object):
                                     keywords_element.attrib[attrib] = ncin.getncattr(ga)
                             elif ga == 'geospatial_bounds_crs':
                                 attrib = e.split('_')[-1]
-                                for keywords_element in root.findall(ET.QName(ns_map['mmd'], 'rectangle')):
-                                    keywords_element.attrib[attrib] = ncin.getncattr(ga)
+                                for geospatial_element in root.findall(ET.QName(ns_map['mmd'], 'rectangle')):
+                                    geospatial_element.attrib[attrib] = ncin.getncattr(ga)
                             elif ga == 'title_lang':
                                 attrib = e.split('_')[-1]
                                 for title_element in root.findall(ET.QName(ns_map['mmd'], 'title')):
@@ -136,6 +144,7 @@ class Nc_to_mmd(object):
                                 print("Warning: don't know how to handle attrib: ", e)
 
         # Add empty/commented required  MMD elements that are not found in NetCDF file
+        """ Removed by Øystein Godøy, METNO/FOU, 2020-10-21 
         for k, v in mmd_required_elements.items():
 
             # check if required element is part of output MMD (ie. of NetCDF file)
@@ -145,6 +154,7 @@ class Nc_to_mmd(object):
                     root.append(ET.Comment('<mmd:{}></mmd:{}>'.format(k, k)))
                 else:
                     root.append(ET.Comment('<mmd:{}>{}</mmd:{}>'.format(k, v, k)))
+        """
 
         # Add OPeNDAP data_access if "netcdf_product" is OPeNDAP url
         if 'dodsC' in self.netcdf_product and self.parse_services == True:
@@ -210,9 +220,13 @@ class Nc_to_mmd(object):
             output_file = str(self.output_path + self.output_name)
 
         et = ET.ElementTree(root)
-        et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
-        # Make optional
-        et.write(output_file, pretty_print=True)
+        #et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
+
+        # Printing to file is optional
+        if self.print_file:
+            et.write(output_file, pretty_print=True)
+        else:
+            return(et)
 
     def required_mmd_elements(self):
         """ Create dict with required MMD elements"""
@@ -332,7 +346,7 @@ class Nc_to_mmd(object):
         return cf_acdd_mmd_lut
 
 
-def main(input_file=None, output_path='./'):
+def main(input_file=None, output_path='./',parse_services=False):
     """Run the the mdd creation from netcdf"""
 
     if input_file:
@@ -342,5 +356,5 @@ def main(input_file=None, output_path='./'):
         output_name = 'multisensor_sic.xml'
         input_file = ('https://thredds.met.no/thredds/dodsC/sea_ice/'
                       'SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated')
-    md = Nc_to_mmd(output_path, output_name, input_file)
+    md = Nc_to_mmd(output_path, output_name, input_file, parse_services, True)
     md.to_mmd()
