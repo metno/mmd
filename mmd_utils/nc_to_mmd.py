@@ -17,7 +17,8 @@ import lxml.etree as ET
 
 class Nc_to_mmd(object):
 
-    def __init__(self, output_path, output_name, netcdf_product):
+    def __init__(self, output_path, output_name, netcdf_product,
+            parse_services=False):
         """
         Class for creating an MMD XML file based on the discovery metadata provided in the global attributes of NetCDF
         files that are compliant with the CF-conventions and ACDD.
@@ -32,6 +33,7 @@ class Nc_to_mmd(object):
         self.output_path = output_path
         self.output_name = output_name
         self.netcdf_product = netcdf_product
+        self.parse_services = parse_services
 
     def to_mmd(self):
         """
@@ -145,7 +147,7 @@ class Nc_to_mmd(object):
                     root.append(ET.Comment('<mmd:{}>{}</mmd:{}>'.format(k, v, k)))
 
         # Add OPeNDAP data_access if "netcdf_product" is OPeNDAP url
-        if 'dodsC' in self.netcdf_product:
+        if 'dodsC' in self.netcdf_product and self.parse_services == True:
             da_element = ET.SubElement(root, ET.QName(ns_map['mmd'], 'data_access'))
             type_sub_element = ET.SubElement(da_element, ET.QName(ns_map['mmd'], 'type'))
             description_sub_element = ET.SubElement(da_element, ET.QName(ns_map['mmd'], 'description'))
@@ -169,7 +171,7 @@ class Nc_to_mmd(object):
             add_http_data_access = True
             if add_http_data_access:
                 access_list.append('HTTP')
-                _desc.append('Open-source Project for a Network Data Access Protocol.')
+                _desc.append('Direct download of file')
                 _res.append(self.netcdf_product.replace('dodsC', 'fileServer'))
             for prot_type, desc, res in zip(access_list, _desc, _res):
                 dacc = ET.SubElement(root, ET.QName(ns_map['mmd'], 'data_access'))
@@ -192,10 +194,13 @@ class Nc_to_mmd(object):
                 dacc_res.text = res
 
         # Add OGC WMS data_access as comment
+        """ removed by Øystein Godøy, METNO/FOU, 2020-10-06 taken from
+        THREDDS directly
         root.append(ET.Comment(str('<mmd:data_access>\n\t<mmd:type>OGC WMS</mmd:type>\n\t<mmd:description>OGC Web '
                                    'Mapping Service, URI to GetCapabilities Document.</mmd:description>\n\t'
                                    '<mmd:resource></mmd:resource>\n\t<mmd:wms_layers>\n\t\t<mmd:wms_layer>'
                                    '</mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
+        """
 
         # print(ET.tostring(root,pretty_print=True).decode("utf-8"))
 
@@ -206,6 +211,7 @@ class Nc_to_mmd(object):
 
         et = ET.ElementTree(root)
         et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
+        # Make optional
         et.write(output_file, pretty_print=True)
 
     def required_mmd_elements(self):
