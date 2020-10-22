@@ -70,6 +70,11 @@ class Nc_to_mmd(object):
                     len_elements = len(all_elements)
                     parent_element = root
                     for i, e in enumerate(all_elements):
+                        if ga in [
+                            'creator_email','creator_url',
+                            'publisher_email','publisher_url'
+                            'institution']:
+                            continue
 
                         # Check if the element is an attribute to an element
                         # Postpone handling to next loop
@@ -77,6 +82,8 @@ class Nc_to_mmd(object):
                             continue
 
                         # Check if we have iterated to the end of the children
+                        # Not good since we duplicate code, check this
+                        # later
                         elif i == len_elements-1:
                             value_list = [ncin.getncattr(ga)]
                             # Split some elements by comma into list
@@ -84,8 +91,71 @@ class Nc_to_mmd(object):
                                 value_list = ncin.getncattr(ga).split(',')
                             elif ga in 'keywords' and ',' in ncin.getncattr(ga):
                                 value_list = ncin.getncattr(ga).split(',')
-                            for value in value_list:
-                                current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                            # Need to create a new personnel tag for each
+                            # and add role as well... i.e. nesting
+                            # elements
+                            elif ga in 'creator_name' and ',' in ncin.getncattr(ga):
+                                value_list = ncin.getncattr(ga).split(',')
+                                org_list = ncin.getncattr('institution').split(',')
+                                email_list = ncin.getncattr('creator_email').split(',')
+
+                            for k,value in enumerate(value_list):
+                                if ga in 'creator_name':
+                                    parent_element = ET.SubElement(root,
+                                            ET.QName(ns_map['mmd'],
+                                                'personnel'))
+                                    current_element = ET.SubElement(
+                                            parent_element, 
+                                            ET.QName(ns_map['mmd'], e))
+                                    ET.SubElement(parent_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'role')).text = 'Investigator'
+                                    if k < len(org_list) and org_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = org_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = 'Not available' 
+                                    if k < len(email_list) and email_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = email_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = 'Not available' 
+                                elif ga in 'publisher_name':
+                                    org_list = ncin.getncattr('institution').split(',')
+                                    email_list = ncin.getncattr('publisher_email').split(',')
+                                    parent_element = ET.SubElement(root,
+                                            ET.QName(ns_map['mmd'],
+                                                'personnel'))
+                                    current_element = ET.SubElement(
+                                            parent_element, 
+                                            ET.QName(ns_map['mmd'], e))
+                                    ET.SubElement(parent_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'role')).text = 'Technical contact'
+                                    if k < len(org_list) and org_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = org_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = 'Not available' 
+                                    if k < len(org_list) and email_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = email_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = 'Not available' 
+                                else:
+                                    current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
                                 current_element.text = str(value).lstrip()
 
                         # Checks to avoid duplication
@@ -95,13 +165,16 @@ class Nc_to_mmd(object):
                             if root.findall(parent_element.tag):
                                 parent_element = root.findall(parent_element.tag)[0]
 
-                            # Check if current_element already exist to avoid duplication
+                            # Check if current_element already exist to
+                            # avoid duplication
                             current_element = None
                             for c in parent_element.getchildren():
                                 if c.tag == ET.QName(ns_map['mmd'], e):
                                     current_element = c
                                     continue
 
+                            # If element doesn't exist, add it (some
+                            # constraints)
                             if current_element is None:
                                 current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
                                 # Set this to None by default and change
