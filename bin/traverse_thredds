@@ -27,11 +27,16 @@ def traverse_thredds(mystart, dstdir, mydepth):
     ns_map = {'mmd': "http://www.met.no/schema/mmd",
                   'gml': "http://www.opengis.net/gml"}
     for ds in threddsclient.crawl(mystart, depth=mydepth):
-        print('Processing:', ds.name)
-        print('\tLanding page:',ds.url,sep='\n\t\t')
-        print('\tDownload URL:', ds.download_url(),sep='\n\t\t')
-        print('\tOPeNDAP URL:', ds.opendap_url(),sep='\n\t\t')
-        print('\tOGC WMS URL:', ds.wms_url(),sep='\n\t\t')
+        print('Processing:\n\t', ds.name,sep='')
+        #print('\tLanding page:',ds.url,sep='\n\t\t')
+        #print('\tDownload URL:', ds.download_url(),sep='\n\t\t')
+        #print('\tOPeNDAP URL:', ds.opendap_url(),sep='\n\t\t')
+        #print('\tOGC WMS URL:', ds.wms_url(),sep='\n\t\t')
+        #mypath = ds.url.replace(mystart.replace('catalog.html',''),'').split('?')[0]
+        mypath = (ds.url.split('?')[0].replace('catalog.xml','')).replace(mystart.replace('catalog.html',''),'')
+        newdstdir = os.path.join(dstdir,mypath)
+        if not os.path.exists(newdstdir):
+            os.makedirs(newdstdir)
         infile = ds.opendap_url()
         outfile = os.path.splitext(ds.name)[0]+'.xml'
         try:
@@ -55,7 +60,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         try:
             uuidver = uuid.UUID(mynode.text).version
         except ValueError:
-            print("Not an UUID, replacing identifier")
+            print("\tNot containing an UUID, replacing identifier.")
             try:
                 mynode.text = str(uuid.uuid5(uuid.NAMESPACE_URL,
                     ds.url.replace('catalog.xml?dataset=','')))
@@ -160,7 +165,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         # dataset citation has to be further improved...
 
         # Create new file
-        myxml.write(os.path.join(dstdir,outfile), pretty_print=True)
+        myxml.write(os.path.join(newdstdir,outfile), pretty_print=True)
 
 if __name__ == '__main__':
     # Parse command line arguments
