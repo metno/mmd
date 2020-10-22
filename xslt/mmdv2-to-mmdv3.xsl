@@ -107,7 +107,7 @@
             <xsl:text>Minor modification</xsl:text>
          </xsl:element>
          <xsl:element name="mmd:note">
-            <xsl:text>Change version of metadata standard to MMD v3</xsl:text>
+            <xsl:text>Changed version of metadata standard to MMD v3</xsl:text>
          </xsl:element>
       </xsl:element>
       </xsl:element>
