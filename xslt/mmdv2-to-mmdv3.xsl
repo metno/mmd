@@ -505,6 +505,7 @@
     </xsl:template>
 
     <xsl:template match="mmd:data_access">
+	<xsl:if test=". !=''">
         <xsl:element name="mmd:data_access">
            <xsl:element name="mmd:name">
                <xsl:value-of select="mmd:name"/>
@@ -528,6 +529,7 @@
                </xsl:element>
            </xsl:if>
         </xsl:element>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="mmd:data_center">
