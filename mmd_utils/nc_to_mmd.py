@@ -72,7 +72,7 @@ class Nc_to_mmd(object):
                     for i, e in enumerate(all_elements):
                         if ga in [
                             'creator_email','creator_url',
-                            'publisher_email','publisher_url'
+                            'publisher_email',
                             'institution']:
                             continue
 
@@ -154,9 +154,67 @@ class Nc_to_mmd(object):
                                         ET.SubElement(parent_element,
                                             ET.QName(ns_map['mmd'],
                                                 'email')).text = 'Not available' 
+                                elif ga in 'publisher_url':
+                                    #current_element = ET.SubElement(parent_element,
+                                    #        ET.QName(ns_map['mmd'],
+                                    #            'data_center'))
+                                    sub_element = ET.SubElement(current_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'data_center_name'))
+                                    if ncin.getncattr('publisher_name'):
+                                        # Split string, assuming long and
+                                        # short names are divided by
+                                        # paranetheses (short within
+                                        # parantheses)
+                                        mystring = ncin.getncattr('publisher_name')
+                                        if '(' in mystring:
+                                            mylongname = mystring.split('(')[0].rstrip()
+                                            myshortname = mystring.split('(')[1].rstrip(')') 
+                                        else:
+                                            mylongname = mystring
+                                            myshortname = 'Not available'
+                                    elif ncin.getncattr('institution'):
+                                        mystring = ncin.getncattr('institution')
+                                        if '(' in mystring:
+                                            mylongname = mystring.split('(')[0].rstrip()
+                                            myshortname = mystring.split('(')[1].rstrip(')') 
+                                        else:
+                                            mylongname = mystring
+                                            myshortname = 'Not available'
+                                    else:
+                                        mylongname = 'Not available'
+                                        myshortname = 'Not available'
+                                    ET.SubElement(sub_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'long_name')).text = mylongname
+                                    ET.SubElement(sub_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'short_name')).text = myshortname
+                                    if  ncin.getncattr('publisher_url'):
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],
+                                                    'data_centre_url')).text = ncin.getncattr('publisher_url')
+                                    else:
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],
+                                                    'data_centre_url')).text = 'Not available' 
                                 else:
                                     current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
-                                current_element.text = str(value).lstrip()
+                                if ga == 'project':
+                                    # Check if project anem contains ()
+                                    # and split in long and short name if
+                                    # so
+                                    if '(' in value:
+                                        mylongname = value.split('(')[0].rstrip()
+                                        myshortname = value.split('(')[1].rstrip(')')
+                                    else:
+                                        mylongname = value
+                                        myshortname = 'Not available'
+                                    current_element.text = mylongname
+                                    ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],'short_name')).text = myshortname
+                                elif ga != 'publisher_url':
+                                    current_element.text = str(value).lstrip()
 
                         # Checks to avoid duplication
                         else:
@@ -355,6 +413,11 @@ class Nc_to_mmd(object):
         """ Create the Look Up Table for CF/ACDD and MMD on the form:
         {CF/ACDD-element: MMD-element} """
 
+        # This is not used everywhere as some of the elements are nested
+        # and cannot be represented by a structure like this. Should make
+        # this a list of lists.
+        # Øystein Godøy, METNO/FOU, 2020-10-22 
+
         cf_acdd_mmd_lut = {
                 'title': 'title',
                 'summary': 'abstract',
@@ -377,7 +440,7 @@ class Nc_to_mmd(object):
                 'project': 'project,long_name',
                 'publisher_name': 'personnel,name',
                 'publisher_email': 'personnel,email',
-                'publisher_url': None,
+                'publisher_url': 'data_center,data_center_url',
                 'geospatial_bounds': None,
                 'geospatial_bounds_crs': 'attrib_srsName',
                 'geospatial_bounds_vertical_crs': None,
