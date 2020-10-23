@@ -55,8 +55,8 @@ class Nc_to_mmd(object):
         all_netcdf_variables = [var for var in ncin.variables]
 
         # Create XML file with namespaces
-        ns_map = {'mmd': "http://www.met.no/schema/mmd",
-                  'gml': "http://www.opengis.net/gml"}
+        ns_map = {'mmd': "http://www.met.no/schema/mmd"}
+                 # 'gml': "http://www.opengis.net/gml"}
         root = ET.Element(ET.QName(ns_map['mmd'], 'mmd'), nsmap=ns_map)
 
         # Write MMD elements from global attributes in NetCDF
