@@ -5,6 +5,7 @@
 #
 # Purpose:
 # Run selected XSLT on record. Supports both XSLT 1 and 2.
+# Allows overwriting records without creating copies.
 # 
 # Author:
 # Øystein Godøy, METNO/FOU, 2020-10-06, original version
