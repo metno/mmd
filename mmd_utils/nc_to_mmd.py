@@ -234,7 +234,10 @@ class Nc_to_mmd(object):
                             # If element doesn't exist, add it (some
                             # constraints)
                             if current_element is None:
-                                current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                if e not in ['personnel']:
+                                    current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                else:
+                                    continue
                                 # Set this to None by default and change
                                 # if specified in next loop
                                 if e == 'keywords':
