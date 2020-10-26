@@ -50,6 +50,8 @@ def traverse_thredds(mystart, dstdir, mydepth):
             print('Something failed when dumping data to MMD',
                     sys.exc_info()[0])
             continue
+        # Need to add option to not overwrite the ID.
+
         # Modify the XML generated with information from THREDDS
         #print('Parsing XML')
         #myxml = ET.parse(os.path.join(dstdir,outfile))
@@ -57,14 +59,27 @@ def traverse_thredds(mystart, dstdir, mydepth):
         # Check and potentially modify identifier
         mynode = myxml.find("./mmd:metadata_identifier", myroot.nsmap)
         #print(mynode.text, ds.url.replace('catalog.xml?dataset=',''))
-        try:
-            uuidver = uuid.UUID(mynode.text).version
-        except ValueError:
-            print("\tNot containing an UUID, replacing identifier.")
+        # If ID is not a UUID, replace with a newly generated UUID
+        if mynode:
             try:
+                uuidver = uuid.UUID(mynode.text).version
+            except ValueError:
+                print("\tNot containing an UUID, replacing identifier.")
+                try:
+                    mynode.text = str(uuid.uuid5(uuid.NAMESPACE_URL,
+                        ds.url.replace('catalog.xml?dataset=','')))
+                except TypeError as e:
+                    print(e)
+        else:
+            try:
+                mynode = ET.Element("{http://www.met.no/schema/mmd}metadata_identifier")
                 mynode.text = str(uuid.uuid5(uuid.NAMESPACE_URL,
                     ds.url.replace('catalog.xml?dataset=','')))
             except TypeError as e:
+                print(e)
+            try:
+                myroot.insert(0, mynode)
+            except Exception as e:
                 print(e)
 
         # Add metadata_status
@@ -99,12 +114,20 @@ def traverse_thredds(mystart, dstdir, mydepth):
 
         # Check and potentially modify activity_type
         mynode = myxml.find("./mmd:activity_type",namespaces=myroot.nsmap)
-        mynode.text = 'Not available'
+        if mynode:
+            mynode.text = 'Not available'
+        else:
+            mynode = ET.Element("{http://www.met.no/schema/mmd}activity_type")
+            mynode.text = 'Not available'
         myroot.insert(9, mynode)
 
         # Check and potentially modify operational_status
         mynode = myxml.find("./mmd:operational_status",namespaces=myroot.nsmap)
-        mynode.text = 'Not available'
+        if mynode:
+            mynode.text = 'Not available'
+        else:
+            mynode = ET.Element("{http://www.met.no/schema/mmd}operational_status")
+            mynode.text = 'Not available'
         myroot.insert(9, mynode)
 
         # Add related_information
