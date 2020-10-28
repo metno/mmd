@@ -110,7 +110,7 @@ class Nc_to_mmd(object):
                                     ET.SubElement(parent_element,
                                         ET.QName(ns_map['mmd'],
                                             'role')).text = 'Investigator'
-                                    if k < len(org_list) and org_list[k]:
+                                    if 'org_list' in locals() and k < len(org_list) and org_list[k]:
                                         ET.SubElement(parent_element,
                                             ET.QName(ns_map['mmd'],
                                                 'organisation')).text = org_list[k]
@@ -118,7 +118,7 @@ class Nc_to_mmd(object):
                                         ET.SubElement(parent_element,
                                             ET.QName(ns_map['mmd'],
                                                 'organisation')).text = 'Not available' 
-                                    if k < len(email_list) and email_list[k]:
+                                    if 'email_list' in locals() and k < len(email_list) and email_list[k]:
                                         ET.SubElement(parent_element,
                                             ET.QName(ns_map['mmd'],
                                                 'email')).text = email_list[k]
@@ -245,6 +245,9 @@ class Nc_to_mmd(object):
 
                             parent_element = current_element
 
+                        #print('>>>>\n',ga)
+                        #print('\n',ET.tostring(current_element))
+
         # add MMD attribute values from CF and ACDD
         for ga in global_attributes:
 
@@ -346,7 +349,8 @@ class Nc_to_mmd(object):
                                    '</mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
         """
 
-        # print(ET.tostring(root,pretty_print=True).decode("utf-8"))
+        #print(ET.tostring(root,pretty_print=True).decode("utf-8"))
+        #sys.exit()
 
         if not self.output_name.endswith('.xml'):
             output_file = str(self.output_path + self.output_name) + '.xml'

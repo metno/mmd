@@ -47,8 +47,9 @@ def traverse_thredds(mystart, dstdir, mydepth):
         try:
             myxml = md.to_mmd()
         except:
-            print('Something failed when dumping data to MMD',
+            print('Something failed when extracting MMD elements',
                     sys.exc_info()[0])
+            sys.exit()
             continue
         # Need to add option to not overwrite the ID.
 
@@ -187,6 +188,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         # Reference should be removed
         # dataset citation has to be further improved...
 
+        sys.exit()
         # Create new file
         myxml.write(os.path.join(newdstdir,outfile), pretty_print=True)
 

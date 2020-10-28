@@ -8,11 +8,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Extract ACDD elements and create MMD record')
 
-    parser.add_argument('input-file',
+    parser.add_argument('input_file',
                         type=str,
                         default=None,
                         help="Input file or OpeNDAP URL")
-    parser.add_argument('output-path',
+    parser.add_argument('output_path',
                         type=str,
                         default=None,
                         help="Output path for MMD files")
