@@ -7,7 +7,7 @@ Use hidden to identify common mis spellings...
 -->
   <skos:Collection rdf:about="https://htmlpreview.github.io/?https://github.com/metno/mmd/blob/master/doc/mmd-specification.html#access_constraint">
     <skos:prefLabel xml:lang="en">Access constraints</skos:prefLabel>
-    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
+    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
     <skos:member>
       <skos:Concept>
         <skos:prefLabel xml:lang="en">Open</skos:prefLabel>
@@ -32,13 +32,13 @@ Use hidden to identify common mis spellings...
       <skos:Concept>
         <!-- This one is required, but vaguely defined... -->
         <skos:prefLabel xml:lang="en">Restricted to a community</skos:prefLabel>
-        <skos:definition xml:lang="en">These data are available for users within a restricted community. This community determines the authorization mechansim to utilise whether this being IP-address, community specific users names or other.</skos:definition>
+        <skos:definition xml:lang="en">These data are available for users within a restricted community. This community determines the authorization mechanism to utilise whether this being IP-address, community specific user names or other.</skos:definition>
       </skos:Concept>
     </skos:member>
     <skos:member>
       <skos:Concept>
         <skos:prefLabel xml:lang="en">Restricted access to metadata</skos:prefLabel>
-        <skos:definition xml:lang="en">Information on these data MUST NOT be exposed externally. This implies that neither metadata can be exposed externally.</skos:definition>
+        <skos:definition xml:lang="en">Information on these data MUST NOT be exposed externally. This implies that neither metadata nor data can be exposed externally.</skos:definition>
       </skos:Concept>
     </skos:member>
   </skos:Collection>
