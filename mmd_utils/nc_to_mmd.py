@@ -94,9 +94,9 @@ class Nc_to_mmd(object):
                             # Need to create a new personnel tag for each
                             # and add role as well... i.e. nesting
                             # elements
-                            elif ga in 'creator_name' and ',' in ncin.getncattr(ga):
+                            elif ga in 'creator_name':
                                 value_list = ncin.getncattr(ga).split(',')
-                                org_list = ncin.getncattr('institution').split(',')
+                                org_list = ncin.getncattr('creator_institution').split(',')
                                 email_list = ncin.getncattr('creator_email').split(',')
 
                             for k,value in enumerate(value_list):
@@ -434,7 +434,8 @@ class Nc_to_mmd(object):
                 'id': 'metadata_identifier',
                 'naming_authority': 'reference',
                 'history': None,
-                'source': 'activity_type',
+                'source': None,
+                'activity_type': 'activity_type',
                 'processing_level': 'operational_status',
                 'comment': None,
                 'acknowledgement': 'reference',
