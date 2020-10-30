@@ -13,6 +13,7 @@ Usage:         See main() method at the bottom of the script
 from pathlib import Path
 from netCDF4 import Dataset
 import lxml.etree as ET
+import datetime as dt
 
 
 class Nc_to_mmd(object):
@@ -58,6 +59,16 @@ class Nc_to_mmd(object):
         ns_map = {'mmd': "http://www.met.no/schema/mmd"}
                  # 'gml': "http://www.opengis.net/gml"}
         root = ET.Element(ET.QName(ns_map['mmd'], 'mmd'), nsmap=ns_map)
+
+        # Add mandatory elements if not done
+        if 'date_metadata_modified' not in global_attributes:
+            # Add last_metadata_update
+            myel = ET.SubElement(root,ET.QName(ns_map['mmd'],'last_metadata_update'))
+            myel2 = ET.SubElement(myel,ET.QName(ns_map['mmd'],'update'))
+            ET.SubElement(myel2,
+                    ET.QName(ns_map['mmd'],'datetime')).text = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+            ET.SubElement(myel2,ET.QName(ns_map['mmd'],'type')).text = 'Created'
+            ET.SubElement(myel2,ET.QName(ns_map['mmd'],'note')).text = 'Automatically generated from ACDD elements'
 
         # Write MMD elements from global attributes in NetCDF
         for ga in global_attributes:
@@ -199,20 +210,27 @@ class Nc_to_mmd(object):
                                                 ET.QName(ns_map['mmd'],
                                                     'data_centre_url')).text = 'Not available' 
                                 else:
-                                    current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                    if ga != 'project':
+                                        current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
                                 if ga == 'project':
+                                    project_list = value.split(',')
                                     # Check if project anem contains ()
                                     # and split in long and short name if
                                     # so
-                                    if '(' in value:
-                                        mylongname = value.split('(')[0].rstrip()
-                                        myshortname = value.split('(')[1].rstrip(')')
-                                    else:
-                                        mylongname = value
-                                        myshortname = 'Not available'
-                                    current_element.text = mylongname
-                                    ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],'short_name')).text = myshortname
+                                    for el in project_list:
+                                        if '(' in value:
+                                            mylongname = el.split('(')[0].rstrip()
+                                            myshortname = el.split('(')[1].rstrip(')')
+                                        else:
+                                            mylongname = el
+                                            myshortname = 'Not available'
+                                            
+                                        #current_element.text = mylongname
+                                        current_element =ET.SubElement(parent_element,ET.QName(ns_map['mmd'],'project'))
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],'long_name')).text = mylongname
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],'short_name')).text = myshortname
                                 elif ga != 'publisher_url':
                                     current_element.text = str(value).lstrip()
 
@@ -234,7 +252,7 @@ class Nc_to_mmd(object):
                             # If element doesn't exist, add it (some
                             # constraints)
                             if current_element is None:
-                                if e not in ['personnel']:
+                                if e not in ['personnel','project']:
                                     current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
                                 else:
                                     continue
@@ -247,6 +265,7 @@ class Nc_to_mmd(object):
 
                         #print('>>>>\n',ga)
                         #print('\n',ET.tostring(current_element))
+
 
         # add MMD attribute values from CF and ACDD
         for ga in global_attributes:
@@ -445,7 +464,7 @@ class Nc_to_mmd(object):
                 'creator_name': 'personnel,name',
                 'creator_email': 'personnel,email',
                 'creator_url': None,
-                'project': 'project,long_name',
+                'project': 'project',
                 'publisher_name': 'personnel,name',
                 'publisher_email': 'personnel,email',
                 'publisher_url': 'data_center,data_center_url',
