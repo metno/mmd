@@ -45,7 +45,7 @@
             <xs:choice maxOccurs="unbounded">
                 <xs:element name="operational_status" type="mmd:operational_status_type" minOccurs="0" maxOccurs="1"></xs:element>
                 <xs:element name="dataset_language" type="xs:string" maxOccurs="1" minOccurs="0" default="en"></xs:element>
-                <xs:element name="geographic_extent" type="mmd:geographic_extent_type" maxOccurs="1" minOccurs="0"></xs:element>
+                <xs:element name="geographic_extent" type="mmd:geographic_extent_type" maxOccurs="1" minOccurs="1"></xs:element>
                 <xs:element name="access_constraint" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="use_constraint" type="mmd:use_constraint_type" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="project" type="mmd:project_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
@@ -55,14 +55,10 @@
                 -->
                 <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-                <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+                <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
                 <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="data_access" type="mmd:data_access_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-                <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
-                <xs:element name="system_specific_product_category" type="mmd:system_specific_product_category_type"
-                            maxOccurs="unbounded"/>
-                <xs:element name="system_specific_product_relevance" type="mmd:system_specific_product_relevance_type"
-                            maxOccurs="unbounded"/>
+                <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded" minOccurs="0"/>
                 <xs:element name="storage_information" type="mmd:storage_information_type" maxOccurs="1" minOccurs="0" />
             </xs:choice>
@@ -335,18 +331,6 @@
             <xs:element name="long_name" type="xs:string"></xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xsd:complexType name="system_specific_product_relevance_type">
-        <xsd:sequence>
-            <xsd:element name="used_by" type="mmd:used_by_type" maxOccurs="unbounded"/>
-            <xsd:element name="relevance" type="xsd:string" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="system_specific_product_category_type">
-        <xsd:sequence>
-            <xsd:element name="used_by" type="mmd:used_by_type" maxOccurs="unbounded"/>
-            <xsd:element name="category" type="xsd:string" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
     <xsd:complexType name="used_by_type">
         <xsd:attribute name="for" type="xsd:string"/>
     </xsd:complexType>
