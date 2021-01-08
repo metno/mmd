@@ -7,24 +7,24 @@
 
 |Attributes |None
 
-|Required |No
+|Required |No (see below for details)
 
 |Repetition allowed |Yes
 
 |Description a|
 A description of how the dataset should be properly cited. If this
 information is not available, a citation string will be generated from the
-metadata available. This element has the following child elements:
+metadata available. MMD elements will be translated to Datacite metadata standard when DOI minting is required. This element has the following child elements:
 
-* author: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development. This is a mandatory element and is a comma separated list.
-* publication_date: The publication/reference date for the (cited) resource. 
+* author: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set's development. This is a mandatory element and is a comma separated list. This field is required for DOI minting for the dataset.
+* publication_date: The publication/reference date for the (cited) resource. This field is required for DOI minting for the dataset, in the form YYYY-MM-DD
 * title: The title of the data set, this may be the same as Entry Title or the title of a report or paper.
 * series: journal, report series or similar for documents.
 * edition:  The version of a cited resource.
 * volume: The order or sequence of a resource in a series or set.
 * issue: The issue number of a resource (usually within a volume).
 * publication_place: The name of the city (and state or province and country if needed) where the resource was made available.  This is required if this form is used.
-* publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used.
+* publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used. This field is required for DOI minting for the dataset.
 * pages: The range of pages or total number of pages of a cited resource.
 * isbn: International Standard Book Number (if available).
 * doi: Digital Object Identifier (if available).

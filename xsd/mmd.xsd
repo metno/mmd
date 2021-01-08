@@ -314,8 +314,8 @@
             <xs:element name="edition" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="volume" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="issue" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="publication_place" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="publisher" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="publication_place" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="publisher" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="pages" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="isbn" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="doi" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
@@ -375,9 +375,9 @@
     </xs:simpleType>
     <xs:complexType name="related_information_type">
         <xs:sequence>
-            <xs:element name="type" type="mmd:related_information_types_type" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="type" type="mmd:related_information_types_type" maxOccurs="1" minOccurs="1"/>
             <xs:element name="description" type="xs:string"/>
-            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="resource" type="xs:string" maxOccurs="1" minOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="collection_type">
@@ -396,6 +396,12 @@
             <xs:enumeration value="APPL"></xs:enumeration>
             <xs:enumeration value="YOPP"></xs:enumeration>
             <xs:enumeration value="METNCS"></xs:enumeration>
+            <xs:enumeration value="SESS2018"></xs:enumeration>
+            <xs:enumeration value="SESS2019"></xs:enumeration>
+            <xs:enumeration value="SESS2020"></xs:enumeration>
+            <xs:enumeration value="SIOSCD"></xs:enumeration>
+            <xs:enumeration value="SIOSAP"></xs:enumeration>
+            <xs:enumeration value="CVL"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
@@ -404,6 +410,12 @@
             <xs:enumeration value="Project home page"></xs:enumeration>
             <xs:enumeration value="Users guide"></xs:enumeration>
             <xs:enumeration value="Dataset landing page"></xs:enumeration>
+            <xs:enumeration value="Scientific publication"></xs:enumeration>
+            <xs:enumeration value="Data paper"></xs:enumeration>
+            <xs:enumeration value="Data management plan"></xs:enumeration>
+            <xs:enumeration value="Software"></xs:enumeration>
+            <xs:enumeration value="Other documentation"></xs:enumeration>
+            <xs:enumeration value="Observation facility"></xs:enumeration>
             <xs:enumeration value="Extended metadata"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>

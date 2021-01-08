@@ -45,6 +45,19 @@ data. This is primarily Sentinel datasets.
 |YOPP |Datasets in the context of YOPP.
 
 |METNCS|Datasets related to the core services at MET Norway.
+
+|SESS2018 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018.
+
+|SESS2019 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019.
+
+|SESS2020 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020.
+
+|SIOSCD |Datasets that are SIOS Core Data.
+
+|SIOSAP |Datasets from the SIOS Access Programme. 
+
+|CVL |Datasets from the ESA Cryosphere Virtual Lab.
+
 |=======================================================================
 
 <<collection>>
@@ -540,6 +553,14 @@ telecommunication, radio, and communication networks.
 |Project home page |URI to the project home page generating the data.
 |Users guide |URI to a users guide or product manual for the dataset.
 |Dataset landing page |A dataset landing page.
+|Scientific publication | A scientific publication. 
+|Data paper | A factual and objective publication with a focused intent 
+to identify and describe specific data, sets of data, or data collections 
+to facilitate discoverability.  
+|Data management plan | The data management plan (DMP) associaed to the data.
+|Software | A computer program in source code (text) or compiled form.
+|Other documentation | A resource consisting primarily of words for reading, e.g. grey 
+literature, lab notes, accompanying materials, conference poster.
 |Observation facility |For observational data (in situ or remote) an
 information page containing more detailed information on the observation
 facility following OGC Observations and Measurements or WMO Integrated

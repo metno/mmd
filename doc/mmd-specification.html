@@ -653,6 +653,7 @@ sections.</p>
 <li><a href="#explanations">3. Explanations</a>
 <ul class="sectlevel2">
 <li><a href="#interpretation-of-child-and-parent-relationship">3.1. Interpretation of child and parent relationship</a></li>
+<li><a href="#DOI-minting">3.2. DOI minting request</a></li>
 </ul>
 </li>
 <li><a href="#controlled-vocabularies">4. Controlled vocabularies</a>
@@ -2649,7 +2650,9 @@ the following child elements:</p>
 <div class="paragraph">
 <p>This element should be used for e.g. THREDDS landing pages. i.e. that is the
 pages providing the overview of services (HTTP, OPeNDAP, WMS, &#8230;&#8203;) for a
-dataset. The specific web services for data access are to be added using <a href="#data_access">Section 2.19</a>.</p>
+dataset. The specific web services for data access are to be added using <a href="#data_access">Section 2.19</a>.
+This element should also be used to provide links to related publications, e.g. data papers, scientific publications
+or relevant documentations. The resource should point to the landing page of the publications.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2664,6 +2667,18 @@ dataset. The specific web services for data access are to be added using <a href
 &lt;related_information&gt;
     &lt;type&gt;Dataset landing page&lt;/type&gt;
     &lt;resource&gt;URI&lt;/resource&gt;
+&lt;/related_information&gt;
+
+&lt;related_information&gt;
+    &lt;type&gt;Scientific publication&lt;/type&gt;
+    &lt;resource&gt;URI&lt;/resource&gt;
+    &lt;description&gt;Author, Title (YYYY), Publisher, doi&lt;/description&gt;
+&lt;/related_information&gt;
+
+&lt;related_information&gt;
+    &lt;type&gt;Other documentation&lt;/type&gt;
+    &lt;resource&gt;URI&lt;/resource&gt;
+    &lt;description&gt;Conference poster&lt;/description&gt;
 &lt;/related_information&gt;</pre>
 </div>
 </div></div></td>
@@ -3191,7 +3206,7 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Required</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No (see below for details)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Repetition allowed</p></td>
@@ -3202,15 +3217,15 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A description of how the dataset should be properly cited. If this
 information is not available, a citation string will be generated from the
-metadata available. This element has the following child elements:</p>
+metadata available. MMD elements will be translated to Datacite metadata standard when DOI minting is required. This element has the following child elements:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>author: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set&#8217;s development. This is a mandatory element and is a comma separated list.</p>
+<p>author: The name of the organization(s) or individual(s) with primary intellectual responsibility for the data set&#8217;s development. This is a mandatory element and is a comma separated list. This field is required for DOI minting for the dataset.</p>
 </li>
 <li>
-<p>publication_date: The publication/reference date for the (cited) resource.</p>
+<p>publication_date: The publication/reference date for the (cited) resource. This field is required for DOI minting for the dataset, in the form YYYY-MM-DD</p>
 </li>
 <li>
 <p>title: The title of the data set, this may be the same as Entry Title or the title of a report or paper.</p>
@@ -3231,7 +3246,7 @@ metadata available. This element has the following child elements:</p>
 <p>publication_place: The name of the city (and state or province and country if needed) where the resource was made available.  This is required if this form is used.</p>
 </li>
 <li>
-<p>publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used.</p>
+<p>publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used. This field is required for DOI minting for the dataset.</p>
 </li>
 <li>
 <p>pages: The range of pages or total number of pages of a cited resource.</p>
@@ -3329,6 +3344,80 @@ dataset to inherit elements from the parent dataset. Exact semantics for
 inheritance is to be decided.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="DOI-minting"><a class="anchor" href="#DOI-minting"></a>3.2. DOI minting request</h3>
+<div class="paragraph">
+<p>When requesting a DOI for a dataset following the MMD specifications, the
+required metadata elements (see <a href="https://schema.datacite.org/meta/kernel-4.3/doc/DataCite-MetadataKernel_v4.3.pdf">Datacite schema 4.3</a>) to be sent to Datacite will be extracted from the MMD records.
+The following mapping is in place:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Datacite</th>
+<th class="tableblock halign-left valign-top">Obl.</th>
+<th class="tableblock halign-left valign-top">MMD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/dataset_citation/author</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/title</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publisher</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/dataset_citation/publisher</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publication Year</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/dataset_citation/publication_date</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dataset or Collection depending on the presence of /mmd/temporal_extent/end_date</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/dataset_language</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AlternateIdentifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/metadata_identifier (with attribute "METNO UUID")</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rights</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/use_constraint/identifier (with attribute rightsURI (resource), rightsIdentifier (identifier), schemeURI (<a href="https://spdx.org/licenses/" class="bare">https://spdx.org/licenses/</a>), rightsIdentifierScheme (SPDX))</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/abstract (with attribute descriptionType "Abstract")</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GeoLocation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/geographic_extent/rectangle</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3409,6 +3498,30 @@ data. This is primarily Sentinel datasets.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">METNCS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the core services at MET Norway.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SESS2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SESS2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SESS2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SIOSCD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets that are SIOS Core Data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SIOSAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the SIOS Access Programme.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the ESA Cryosphere Virtual Lab.</p></td>
 </tr>
 </tbody>
 </table>
@@ -4399,6 +4512,29 @@ telecommunication, radio, and communication networks.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A dataset landing page.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scientific publication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A scientific publication.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data paper</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A factual and objective publication with a focused intent
+to identify and describe specific data, sets of data, or data collections
+to facilitate discoverability.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data management plan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The data management plan (DMP) associaed to the data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A computer program in source code (text) or compiled form.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Other documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A resource consisting primarily of words for reading, e.g. grey
+literature, lab notes, accompanying materials, conference poster.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Observation facility</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">For observational data (in situ or remote) an
 information page containing more detailed information on the observation
@@ -4470,7 +4606,7 @@ data.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-16 12:16:05 UTC
+Last updated 2020-10-08 10:37:54 UTC
 </div>
 </div>
 </body>

@@ -13,11 +13,13 @@ Usage:         See main() method at the bottom of the script
 from pathlib import Path
 from netCDF4 import Dataset
 import lxml.etree as ET
+import datetime as dt
 
 
 class Nc_to_mmd(object):
 
-    def __init__(self, output_path, output_name, netcdf_product):
+    def __init__(self, output_path, output_name, netcdf_product,
+            parse_services=False, print_file=False):
         """
         Class for creating an MMD XML file based on the discovery metadata provided in the global attributes of NetCDF
         files that are compliant with the CF-conventions and ACDD.
@@ -32,6 +34,8 @@ class Nc_to_mmd(object):
         self.output_path = output_path
         self.output_name = output_name
         self.netcdf_product = netcdf_product
+        self.parse_services = parse_services
+        self.print_file = print_file
 
     def to_mmd(self):
         """
@@ -52,9 +56,19 @@ class Nc_to_mmd(object):
         all_netcdf_variables = [var for var in ncin.variables]
 
         # Create XML file with namespaces
-        ns_map = {'mmd': "http://www.met.no/schema/mmd",
-                  'gml': "http://www.opengis.net/gml"}
+        ns_map = {'mmd': "http://www.met.no/schema/mmd"}
+                 # 'gml': "http://www.opengis.net/gml"}
         root = ET.Element(ET.QName(ns_map['mmd'], 'mmd'), nsmap=ns_map)
+
+        # Add mandatory elements if not done
+        if 'date_metadata_modified' not in global_attributes:
+            # Add last_metadata_update
+            myel = ET.SubElement(root,ET.QName(ns_map['mmd'],'last_metadata_update'))
+            myel2 = ET.SubElement(myel,ET.QName(ns_map['mmd'],'update'))
+            ET.SubElement(myel2,
+                    ET.QName(ns_map['mmd'],'datetime')).text = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+            ET.SubElement(myel2,ET.QName(ns_map['mmd'],'type')).text = 'Created'
+            ET.SubElement(myel2,ET.QName(ns_map['mmd'],'note')).text = 'Automatically generated from ACDD elements'
 
         # Write MMD elements from global attributes in NetCDF
         for ga in global_attributes:
@@ -67,20 +81,158 @@ class Nc_to_mmd(object):
                     len_elements = len(all_elements)
                     parent_element = root
                     for i, e in enumerate(all_elements):
+                        if ga in [
+                            'creator_email','creator_url',
+                            'publisher_email',
+                            'institution']:
+                            continue
 
                         # Check if the element is an attribute to an element
+                        # Postpone handling to next loop
                         if e.startswith('attrib_'):
                             continue
 
                         # Check if we have iterated to the end of the children
+                        # Not good since we duplicate code, check this
+                        # later
                         elif i == len_elements-1:
                             value_list = [ncin.getncattr(ga)]
                             # Split some elements by comma into list
                             if ga in 'iso_topic_category':
                                 value_list = ncin.getncattr(ga).split(',')
-                            for value in value_list:
-                                current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
-                                current_element.text = str(value)
+                            elif ga in 'keywords' and ',' in ncin.getncattr(ga):
+                                value_list = ncin.getncattr(ga).split(',')
+                            # Need to create a new personnel tag for each
+                            # and add role as well... i.e. nesting
+                            # elements
+                            elif ga in 'creator_name':
+                                value_list = ncin.getncattr(ga).split(',')
+                                org_list = ncin.getncattr('creator_institution').split(',')
+                                email_list = ncin.getncattr('creator_email').split(',')
+
+                            for k,value in enumerate(value_list):
+                                if ga in 'creator_name':
+                                    parent_element = ET.SubElement(root,
+                                            ET.QName(ns_map['mmd'],
+                                                'personnel'))
+                                    current_element = ET.SubElement(
+                                            parent_element, 
+                                            ET.QName(ns_map['mmd'], e))
+                                    ET.SubElement(parent_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'role')).text = 'Investigator'
+                                    if 'org_list' in locals() and k < len(org_list) and org_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = org_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = 'Not available' 
+                                    if 'email_list' in locals() and k < len(email_list) and email_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = email_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = 'Not available' 
+                                elif ga in 'publisher_name':
+                                    org_list = ncin.getncattr('institution').split(',')
+                                    email_list = ncin.getncattr('publisher_email').split(',')
+                                    parent_element = ET.SubElement(root,
+                                            ET.QName(ns_map['mmd'],
+                                                'personnel'))
+                                    current_element = ET.SubElement(
+                                            parent_element, 
+                                            ET.QName(ns_map['mmd'], e))
+                                    ET.SubElement(parent_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'role')).text = 'Technical contact'
+                                    if k < len(org_list) and org_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = org_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'organisation')).text = 'Not available' 
+                                    if k < len(org_list) and email_list[k]:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = email_list[k]
+                                    else:
+                                        ET.SubElement(parent_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'email')).text = 'Not available' 
+                                elif ga in 'publisher_url':
+                                    #current_element = ET.SubElement(parent_element,
+                                    #        ET.QName(ns_map['mmd'],
+                                    #            'data_center'))
+                                    sub_element = ET.SubElement(current_element,
+                                            ET.QName(ns_map['mmd'],
+                                                'data_center_name'))
+                                    if ncin.getncattr('publisher_name'):
+                                        # Split string, assuming long and
+                                        # short names are divided by
+                                        # paranetheses (short within
+                                        # parantheses)
+                                        mystring = ncin.getncattr('publisher_name')
+                                        if '(' in mystring:
+                                            mylongname = mystring.split('(')[0].rstrip()
+                                            myshortname = mystring.split('(')[1].rstrip(')') 
+                                        else:
+                                            mylongname = mystring
+                                            myshortname = 'Not available'
+                                    elif ncin.getncattr('institution'):
+                                        mystring = ncin.getncattr('institution')
+                                        if '(' in mystring:
+                                            mylongname = mystring.split('(')[0].rstrip()
+                                            myshortname = mystring.split('(')[1].rstrip(')') 
+                                        else:
+                                            mylongname = mystring
+                                            myshortname = 'Not available'
+                                    else:
+                                        mylongname = 'Not available'
+                                        myshortname = 'Not available'
+                                    ET.SubElement(sub_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'long_name')).text = mylongname
+                                    ET.SubElement(sub_element,
+                                        ET.QName(ns_map['mmd'],
+                                            'short_name')).text = myshortname
+                                    if  ncin.getncattr('publisher_url'):
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],
+                                                    'data_centre_url')).text = ncin.getncattr('publisher_url')
+                                    else:
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],
+                                                    'data_centre_url')).text = 'Not available' 
+                                else:
+                                    if ga != 'project':
+                                        current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                if ga == 'project':
+                                    project_list = value.split(',')
+                                    # Check if project anem contains ()
+                                    # and split in long and short name if
+                                    # so
+                                    for el in project_list:
+                                        if '(' in value:
+                                            mylongname = el.split('(')[0].rstrip()
+                                            myshortname = el.split('(')[1].rstrip(')')
+                                        else:
+                                            mylongname = el
+                                            myshortname = 'Not available'
+                                            
+                                        #current_element.text = mylongname
+                                        current_element =ET.SubElement(parent_element,ET.QName(ns_map['mmd'],'project'))
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],'long_name')).text = mylongname
+                                        ET.SubElement(current_element,
+                                                ET.QName(ns_map['mmd'],'short_name')).text = myshortname
+                                elif ga != 'publisher_url':
+                                    current_element.text = str(value).lstrip()
 
                         # Checks to avoid duplication
                         else:
@@ -89,17 +241,31 @@ class Nc_to_mmd(object):
                             if root.findall(parent_element.tag):
                                 parent_element = root.findall(parent_element.tag)[0]
 
-                            # Check if current_element already exist to avoid duplication
+                            # Check if current_element already exist to
+                            # avoid duplication
                             current_element = None
                             for c in parent_element.getchildren():
                                 if c.tag == ET.QName(ns_map['mmd'], e):
                                     current_element = c
                                     continue
 
+                            # If element doesn't exist, add it (some
+                            # constraints)
                             if current_element is None:
-                                current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                if e not in ['personnel','project']:
+                                    current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
+                                else:
+                                    continue
+                                # Set this to None by default and change
+                                # if specified in next loop
+                                if e == 'keywords':
+                                    current_element.set('vocabulary','None')
 
                             parent_element = current_element
+
+                        #print('>>>>\n',ga)
+                        #print('\n',ET.tostring(current_element))
+
 
         # add MMD attribute values from CF and ACDD
         for ga in global_attributes:
@@ -118,8 +284,8 @@ class Nc_to_mmd(object):
                                     keywords_element.attrib[attrib] = ncin.getncattr(ga)
                             elif ga == 'geospatial_bounds_crs':
                                 attrib = e.split('_')[-1]
-                                for keywords_element in root.findall(ET.QName(ns_map['mmd'], 'rectangle')):
-                                    keywords_element.attrib[attrib] = ncin.getncattr(ga)
+                                for geospatial_element in root.findall(ET.QName(ns_map['mmd'], 'rectangle')):
+                                    geospatial_element.attrib[attrib] = ncin.getncattr(ga)
                             elif ga == 'title_lang':
                                 attrib = e.split('_')[-1]
                                 for title_element in root.findall(ET.QName(ns_map['mmd'], 'title')):
@@ -134,6 +300,7 @@ class Nc_to_mmd(object):
                                 print("Warning: don't know how to handle attrib: ", e)
 
         # Add empty/commented required  MMD elements that are not found in NetCDF file
+        """ Removed by Øystein Godøy, METNO/FOU, 2020-10-21 
         for k, v in mmd_required_elements.items():
 
             # check if required element is part of output MMD (ie. of NetCDF file)
@@ -143,9 +310,10 @@ class Nc_to_mmd(object):
                     root.append(ET.Comment('<mmd:{}></mmd:{}>'.format(k, k)))
                 else:
                     root.append(ET.Comment('<mmd:{}>{}</mmd:{}>'.format(k, v, k)))
+        """
 
         # Add OPeNDAP data_access if "netcdf_product" is OPeNDAP url
-        if 'dodsC' in self.netcdf_product:
+        if 'dodsC' in self.netcdf_product and self.parse_services == True:
             da_element = ET.SubElement(root, ET.QName(ns_map['mmd'], 'data_access'))
             type_sub_element = ET.SubElement(da_element, ET.QName(ns_map['mmd'], 'type'))
             description_sub_element = ET.SubElement(da_element, ET.QName(ns_map['mmd'], 'description'))
@@ -169,7 +337,7 @@ class Nc_to_mmd(object):
             add_http_data_access = True
             if add_http_data_access:
                 access_list.append('HTTP')
-                _desc.append('Open-source Project for a Network Data Access Protocol.')
+                _desc.append('Direct download of file')
                 _res.append(self.netcdf_product.replace('dodsC', 'fileServer'))
             for prot_type, desc, res in zip(access_list, _desc, _res):
                 dacc = ET.SubElement(root, ET.QName(ns_map['mmd'], 'data_access'))
@@ -192,12 +360,16 @@ class Nc_to_mmd(object):
                 dacc_res.text = res
 
         # Add OGC WMS data_access as comment
+        """ removed by Øystein Godøy, METNO/FOU, 2020-10-06 taken from
+        THREDDS directly
         root.append(ET.Comment(str('<mmd:data_access>\n\t<mmd:type>OGC WMS</mmd:type>\n\t<mmd:description>OGC Web '
                                    'Mapping Service, URI to GetCapabilities Document.</mmd:description>\n\t'
                                    '<mmd:resource></mmd:resource>\n\t<mmd:wms_layers>\n\t\t<mmd:wms_layer>'
                                    '</mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
+        """
 
-        # print(ET.tostring(root,pretty_print=True).decode("utf-8"))
+        #print(ET.tostring(root,pretty_print=True).decode("utf-8"))
+        #sys.exit()
 
         if not self.output_name.endswith('.xml'):
             output_file = str(self.output_path + self.output_name) + '.xml'
@@ -205,8 +377,13 @@ class Nc_to_mmd(object):
             output_file = str(self.output_path + self.output_name)
 
         et = ET.ElementTree(root)
-        et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
-        et.write(output_file, pretty_print=True)
+        #et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
+
+        # Printing to file is optional
+        if self.print_file:
+            et.write(output_file, pretty_print=True)
+        else:
+            return(et)
 
     def required_mmd_elements(self):
         """ Create dict with required MMD elements"""
@@ -262,6 +439,11 @@ class Nc_to_mmd(object):
         """ Create the Look Up Table for CF/ACDD and MMD on the form:
         {CF/ACDD-element: MMD-element} """
 
+        # This is not used everywhere as some of the elements are nested
+        # and cannot be represented by a structure like this. Should make
+        # this a list of lists.
+        # Øystein Godøy, METNO/FOU, 2020-10-22 
+
         cf_acdd_mmd_lut = {
                 'title': 'title',
                 'summary': 'abstract',
@@ -271,7 +453,8 @@ class Nc_to_mmd(object):
                 'id': 'metadata_identifier',
                 'naming_authority': 'reference',
                 'history': None,
-                'source': 'activity_type',
+                'source': None,
+                'activity_type': 'activity_type',
                 'processing_level': 'operational_status',
                 'comment': None,
                 'acknowledgement': 'reference',
@@ -281,10 +464,10 @@ class Nc_to_mmd(object):
                 'creator_name': 'personnel,name',
                 'creator_email': 'personnel,email',
                 'creator_url': None,
-                'project': 'project,long_name',
+                'project': 'project',
                 'publisher_name': 'personnel,name',
                 'publisher_email': 'personnel,email',
-                'publisher_url': None,
+                'publisher_url': 'data_center,data_center_url',
                 'geospatial_bounds': None,
                 'geospatial_bounds_crs': 'attrib_srsName',
                 'geospatial_bounds_vertical_crs': None,
@@ -326,7 +509,7 @@ class Nc_to_mmd(object):
         return cf_acdd_mmd_lut
 
 
-def main(input_file=None, output_path='./'):
+def main(input_file=None, output_path='./',parse_services=False):
     """Run the the mdd creation from netcdf"""
 
     if input_file:
@@ -336,5 +519,5 @@ def main(input_file=None, output_path='./'):
         output_name = 'multisensor_sic.xml'
         input_file = ('https://thredds.met.no/thredds/dodsC/sea_ice/'
                       'SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated')
-    md = Nc_to_mmd(output_path, output_name, input_file)
+    md = Nc_to_mmd(output_path, output_name, input_file, parse_services, True)
     md.to_mmd()
