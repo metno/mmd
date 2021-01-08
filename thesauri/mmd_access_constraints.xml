@@ -5,7 +5,7 @@ Prepared by Øystein Godøy, METNO/FOU, 2013-02-15
 First very simple description...
 Use hidden to identify common mis spellings...
 -->
-  <skos:Collection rdf:about="https://htmlpreview.github.io/?https://github.com/metno/mmd/blob/master/doc/mmd-specification.html#access_constraint">
+  <skos:Collection rdf:about="https://wiki.met.no/metamod/vocabularies/Operational_Status">
     <skos:prefLabel xml:lang="en">Access constraints</skos:prefLabel>
     <skos:definition xml:lang="en">A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
     <skos:member>
