@@ -19,7 +19,7 @@ import datetime as dt
 class Nc_to_mmd(object):
 
     def __init__(self, output_path, output_name, netcdf_product,
-            parse_services=False, print_file=False):
+            parse_services=False, parse_wmslayers=False, print_file=False):
         """
         Class for creating an MMD XML file based on the discovery metadata provided in the global attributes of NetCDF
         files that are compliant with the CF-conventions and ACDD.
@@ -35,6 +35,7 @@ class Nc_to_mmd(object):
         self.output_name = output_name
         self.netcdf_product = netcdf_product
         self.parse_services = parse_services
+        self.parse_wmslayers = parse_wmslayers
         self.print_file = print_file
 
     def to_mmd(self):
@@ -347,14 +348,15 @@ class Nc_to_mmd(object):
                 dacc_desc.text = str(desc)
                 dacc_res = ET.SubElement(dacc, ET.QName(ns_map['mmd'], 'resource'))
                 if 'OGC WMS' in prot_type:
-                    wms_layers = ET.SubElement(dacc, ET.QName(ns_map['mmd'], 'wms_layers'))
-                    # Don't add variables containing these names to the wms layers
-                    skip_layers = ['latitude', 'longitude', 'angle']
-                    for w_layer in all_netcdf_variables:
-                        if any(skip_layer in w_layer for skip_layer in skip_layers):
-                            continue
-                        wms_layer = ET.SubElement(wms_layers, ET.QName(ns_map['mmd'], 'wms_layer'))
-                        wms_layer.text = w_layer
+                    if self.parse_wmslayers:
+                        wms_layers = ET.SubElement(dacc, ET.QName(ns_map['mmd'], 'wms_layers'))
+                        # Don't add variables containing these names to the wms layers
+                        skip_layers = ['latitude', 'longitude', 'angle']
+                        for w_layer in all_netcdf_variables:
+                            if any(skip_layer in w_layer for skip_layer in skip_layers):
+                                continue
+                            wms_layer = ET.SubElement(wms_layers, ET.QName(ns_map['mmd'], 'wms_layer'))
+                            wms_layer.text = w_layer
                     # Need to add get capabilities to the wms resource
                     res += '?service=WMS&version=1.3.0&request=GetCapabilities'
                 dacc_res.text = res
@@ -509,7 +511,7 @@ class Nc_to_mmd(object):
         return cf_acdd_mmd_lut
 
 
-def main(input_file=None, output_path='./',parse_services=False):
+def main(input_file=None, output_path='./',parse_services=False,parse_wmslayers=False, print_file=False):
     """Run the the mdd creation from netcdf"""
 
     if input_file:
@@ -519,5 +521,5 @@ def main(input_file=None, output_path='./',parse_services=False):
         output_name = 'multisensor_sic.xml'
         input_file = ('https://thredds.met.no/thredds/dodsC/sea_ice/'
                       'SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated')
-    md = Nc_to_mmd(output_path, output_name, input_file, parse_services, True)
+    md = Nc_to_mmd(output_path, output_name, input_file, parse_services, parse_wmslayers, True)
     md.to_mmd()
