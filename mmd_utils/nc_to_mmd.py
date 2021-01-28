@@ -521,5 +521,5 @@ def main(input_file=None, output_path='./',parse_services=False,parse_wmslayers=
         output_name = 'multisensor_sic.xml'
         input_file = ('https://thredds.met.no/thredds/dodsC/sea_ice/'
                       'SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated')
-    md = Nc_to_mmd(output_path, output_name, input_file, parse_services, parse_wmslayers, True)
+    md = Nc_to_mmd(output_path, output_name, input_file, parse_services, parse_wmslayers, print_file)
     md.to_mmd()
