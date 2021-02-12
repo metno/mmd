@@ -364,10 +364,15 @@
                     <xsl:element name="gco:CharacterString">
                         <!--xsl:value-of select="mmd:type" / -->
                         <xsl:variable name="mmd_da_type" select="normalize-space(./mmd:type)" />
-                        <xsl:variable name="mmd_da_mapping" select="document('')/*/mapping:data_access_type[@mmd=$mmd_da_type]/@iso" />
+                        <xsl:variable name="mmd_da_mapping" select="document('')/*/mapping:data_access_type_osgeo[@mmd=$mmd_da_type]/@iso" />
                         <xsl:value-of select="$mmd_da_mapping" />
                     </xsl:element>
                 </xsl:element>            
+                <!--xsl:element name="gmd:applicationProfile">
+                    <xsl:element name="gco:CharacterString">
+			<xsl:text>OSGEO</xsl:text>
+                    </xsl:element>
+                </xsl:element-->                
                 <xsl:element name="gmd:name">
                     <xsl:element name="gco:CharacterString">
                         <xsl:value-of select="mmd:name" />
@@ -504,12 +509,19 @@
     <mapping:dataset_status iso="onGoing" mmd="In Work" />
     <mapping:dataset_status iso="planned" mmd="Planned" />    
 
-    <!-- Mappings for data_access type specification -->
-    <mapping:data_access_type iso="OGC:WMS" mmd="OGC WMS" />    
-    <mapping:data_access_type iso="OGC:WCS" mmd="OGC WCS" />    
-    <mapping:data_access_type iso="OGC:WFS" mmd="OGC WFS" />    
-    <mapping:data_access_type iso="WWW:DOWNLOAD-1.0-ftp–download" mmd="FTP" />  
-    <mapping:data_access_type iso="WWW:DOWNLOAD-1.0-http–download" mmd="HTTP" />
-    <mapping:data_access_type iso="WWW:LINK-1.0-http–opendap" mmd="OPeNDAP" />  
+    <!-- Mappings for data_access type specification to OSGEO  -->
+    <mapping:data_access_type_osgeo iso="OGC:WMS" mmd="OGC WMS" />    
+    <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS" />    
+    <mapping:data_access_type_osgeo iso="OGC:WFS" mmd="OGC WFS" />    
+    <mapping:data_access_type_osgeo iso="ftp" mmd="FTP" />
+    <mapping:data_access_type_osgeo iso="download" mmd="HTTP" />
+    <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
 
+    <!-- Mappings for data_access type specification to geonetwork  -->
+    <mapping:data_access_type_geonetwork iso="OGC:WMS" mmd="OGC WMS" />    
+    <mapping:data_access_type_geonetwork iso="OGC:WCS" mmd="OGC WCS" />    
+    <mapping:data_access_type_geonetwork iso="OGC:WFS" mmd="OGC WFS" />    
+    <mapping:data_access_type_geonetwork iso="WWW:DOWNLOAD-1.0-ftp--download" mmd="FTP" />
+    <mapping:data_access_type_geonetwork iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
+    <mapping:data_access_type_geonetwork iso="WWW:LINK-1.0-http--opendap" mmd="OPeNDAP" />
 </xsl:stylesheet>
