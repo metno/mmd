@@ -378,22 +378,22 @@
                         <xsl:element name="gmd:CI_Address">
                             <xsl:element name="gmd:deliveryPoint">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/address" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:address" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:city">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/city" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:city" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:postalCode">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/postal_code" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:postal_code" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:country">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/country" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:country" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:electronicMailAddress">
