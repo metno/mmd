@@ -107,6 +107,8 @@
                             <xsl:apply-templates select="mmd:temporal_extent" />
                         </xsl:element>                    
                     </xsl:element>
+
+                    <xsl:apply-templates select="mmd:keywords" />
                     
                     <xsl:element name="gmd:language">
                         <xsl:element name="gmd:LanguageCode">
@@ -232,9 +234,34 @@
     </xsl:template>
 
     <xsl:template match="mmd:keywords">
+       <xsl:element name="gmd:descriptiveKeywords">
+        <xsl:element name="gmd:MD_Keywords">
         <xsl:for-each select="mmd:keyword">
-
+           <xsl:element name="gmd:keyword">
+              <xsl:element name="gco:CharacterString">
+                 <xsl:value-of select="." />
+	      </xsl:element>
+	   </xsl:element>
         </xsl:for-each>
+	<xsl:element name="gmd:thesaurusName">
+	   <xsl:element name="gmd:CI_Citation">
+	   <xsl:element name="gmd:title">
+              <xsl:element name="gco:CharacterString">
+                 <xsl:value-of select="@vocabulary" />
+	      </xsl:element>
+	   </xsl:element>	
+	   </xsl:element>	
+	</xsl:element>	
+        </xsl:element>                    
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="mmd:related_information">
+       <xsl:element name="gmd:dataSetURI">
+           <xsl:element name="gco:CharacterString">
+              <xsl:value-of select="mmd:resource" />
+	   </xsl:element>
+       </xsl:element>
     </xsl:template>
 
     <xsl:template match="mmd:temporal_extent">
