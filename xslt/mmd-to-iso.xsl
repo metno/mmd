@@ -229,9 +229,17 @@
     <xsl:template match="mmd:last_metadata_update">
         <xsl:element name="gmd:dateStamp">
             <xsl:element name="gco:DateTime">
-                <xsl:value-of select="." />
-            </xsl:element>
-        </xsl:element>
+	        <xsl:variable name="latest">
+                    <xsl:for-each select="mmd:update/mmd:datetime">
+                        <xsl:sort select="." order="descending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="."/>
+                        </xsl:if>
+                    </xsl:for-each>
+               </xsl:variable>
+               <xsl:value-of select="$latest"/>
+               </xsl:element>
+         </xsl:element>
     </xsl:template>
 
     <xsl:template match="mmd:keywords">
