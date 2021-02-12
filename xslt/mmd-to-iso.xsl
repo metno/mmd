@@ -109,6 +109,7 @@
                     </xsl:element>
 
                     <xsl:apply-templates select="mmd:keywords" />
+                    <xsl:apply-templates select="mmd:related_information[mmd:type = 'Dataset landing page']" />
                     
                     <xsl:element name="gmd:language">
                         <xsl:element name="gmd:LanguageCode">
