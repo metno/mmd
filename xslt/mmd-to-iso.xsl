@@ -123,6 +123,9 @@
             
             <xsl:element name="gmd:distributionInfo">
                 <xsl:element name="gmd:MD_Distribution">
+                        <xsl:element name="gmd:distributor">
+                            <xsl:apply-templates select="mmd:data_center" />
+                        </xsl:element>
                     <xsl:element name="gmd:transferOptions">
                         <xsl:element name="gmd:MD_DigitalTransferOptions">
                             <xsl:apply-templates select="mmd:data_access" />
@@ -335,6 +338,33 @@
 
     </xsl:template>    
 
+    <xsl:template match="mmd:data_center">
+	<xsl:element name="gmd:MD_Distributor">
+	   <xsl:element name="gmd:distributorContact">
+	      <xsl:element name="gmd:CI_ResponsibleParty">
+	         <xsl:element name="gmd:organisationName">
+	            <xsl:element name="gco:CharacterString">
+	               <xsl:value-of select="mmd:data_center_name/mmd:long_name" />
+                    </xsl:element>
+                 </xsl:element>
+	         <xsl:element name="gmd:contactInfo">
+	            <xsl:element name="gmd:CI_Contact">
+	               <xsl:element name="gmd:onlineResource">
+	                  <xsl:element name="gmd:CI_OnlineResource">
+	                     <xsl:element name="gmd:linkage">
+	                        <xsl:element name="gmd:URL">
+	                           <xsl:value-of select="mmd:data_center_url" />
+                                </xsl:element>
+                             </xsl:element>
+                          </xsl:element>
+                       </xsl:element>
+                    </xsl:element>
+                 </xsl:element>
+              </xsl:element>
+           </xsl:element>
+        </xsl:element>
+    </xsl:template>
+	    
     <xsl:template match="mmd:data_access">
     
         <xsl:element name="gmd:onLine">
