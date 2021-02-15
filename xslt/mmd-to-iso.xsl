@@ -110,6 +110,46 @@
 
                     <xsl:apply-templates select="mmd:keywords" />
                     <xsl:apply-templates select="mmd:related_information[mmd:type = 'Dataset landing page']" />
+
+                    <xsl:element name="gmd:resourceConstraints">
+                        <xsl:element name="gmd:MD_LegalConstraints">
+        
+                            <xsl:element name="gmd:accessConstraints">
+                                <xsl:element name="gmd:MD_RestrictionCode">
+                                    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
+                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                    <xsl:text>otherRestrictions</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+        
+                            <xsl:element name="gmd:otherConstraints">
+                                <xsl:element name="gco:CharacterString">
+                                    <xsl:value-of select="mmd:access_constraint" />
+                                </xsl:element>
+                            </xsl:element>
+        
+                        </xsl:element>
+                    </xsl:element>
+         
+                    <xsl:element name="gmd:resourceConstraints">
+                        <xsl:element name="gmd:MD_LegalConstraints">
+        
+                            <xsl:element name="gmd:useConstraints">
+                                <xsl:element name="gmd:MD_RestrictionCode">
+                                    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
+                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                    <xsl:text>otherRestrictions</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+        
+                            <xsl:element name="gmd:otherConstraints">
+                                    <xsl:element name="gco:CharacterString">
+                			    <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                                    </xsl:element>
+                            </xsl:element>
+                            
+                        </xsl:element>
+                    </xsl:element>
                     
                     <xsl:element name="gmd:language">
                         <xsl:element name="gmd:LanguageCode">
@@ -134,35 +174,6 @@
                 </xsl:element>
             </xsl:element>
                 
- 
-            <xsl:element name="gmd:metadataConstraints">
-                <xsl:element name="gmd:MD_LegalConstraints">
-                    <xsl:element name="gmd:accessConstraints">
-                        <xsl:element name="gmd:MD_RestrictionCode">
-                            <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
-                            <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                        </xsl:element>
-                    </xsl:element>
-
-                    <xsl:element name="gmd:useConstraints">
-                        <xsl:element name="gmd:MD_RestrictionCode">
-                            <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
-                            <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                        </xsl:element>
-                    </xsl:element>
-                    
-                    <xsl:element name="gmd:otherConstraints">
-                        <xsl:element name="gco:CharacterString">
-                            <xsl:value-of select="mmd:access_constraint" />
-                        </xsl:element>
-                    </xsl:element>
-                    <xsl:element name="gmd:otherConstraints">
-                        <xsl:element name="gco:CharacterString">
-                            <xsl:value-of select="mmd:use_constraint" />
-                        </xsl:element>
-                    </xsl:element>
-                </xsl:element>
-            </xsl:element>
             
             <!--            
             
