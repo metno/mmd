@@ -64,7 +64,7 @@
                                 <xsl:element name="gmd:CI_Date">
                                     <xsl:element name="gmd:date">
                                         <xsl:element name="gco:DateTime">
-                                            <xsl:value-of select="mmd:dataset_citation/mmd:dataset_release_date" />
+                                            <xsl:value-of select="mmd:dataset_citation/mmd:publication_date" />
                                         </xsl:element>
                                     </xsl:element>
                                     <xsl:element name="gmd:dateType">
@@ -78,7 +78,7 @@
                             
                             <xsl:element name="gmd:edition">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:dataset_citation/mmd:dataset_release_date" />
+                                    <xsl:value-of select="mmd:dataset_citation/mmd:edition" />
                                 </xsl:element>
                             </xsl:element>
                             
