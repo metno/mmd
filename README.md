@@ -1,6 +1,4 @@
-![html/pdf](https://github.com/steingod/mmd/workflows/html/pdf/badge.svg)
-![tests](https://github.com/steingod/mmd/workflows/tests/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/mortenwh/mmd/badge.svg)](https://coveralls.io/github/mortenwh/mmd)
+![html/pdf](https://github.com/metno/mmd/workflows/html/pdf/badge.svg)
 
 # mmd
 

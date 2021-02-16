@@ -250,7 +250,7 @@
                <xsl:text>Sentinel-1A</xsl:text>
             </xsl:element>
 	    <xsl:element name="mmd:resource">
-               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/396</xsl:text>
+               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a</xsl:text>
 	    </xsl:element>
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S1B'">
@@ -261,7 +261,7 @@
                <xsl:text>Sentinel-1B</xsl:text>
             </xsl:element>
 	    <xsl:element name="mmd:resource">
-               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/397</xsl:text>
+               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/sentinel_1b</xsl:text>
 	    </xsl:element>
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S2A'">
@@ -272,7 +272,7 @@
                <xsl:text>Sentinel-2A</xsl:text>
             </xsl:element>
 	    <xsl:element name="mmd:resource">
-               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/398</xsl:text>
+               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/sentinel_2a</xsl:text>
 	    </xsl:element>
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S2B'">
@@ -283,7 +283,7 @@
                <xsl:text>Sentinel-2B</xsl:text>
             </xsl:element>
 	    <xsl:element name="mmd:resource">
-               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/399</xsl:text>
+               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/sentinel_2b</xsl:text>
 	    </xsl:element>
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S3A'">
@@ -294,7 +294,7 @@
                <xsl:text>Sentinel-3A</xsl:text>
             </xsl:element>
 	    <xsl:element name="mmd:resource">
-               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/400</xsl:text>
+               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/sentinel_3a</xsl:text>
 	    </xsl:element>
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S3B'">
@@ -305,7 +305,7 @@
                <xsl:text>Sentinel-3B</xsl:text>
             </xsl:element>
 	    <xsl:element name="mmd:resource">
-               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/802</xsl:text>
+               <xsl:text>https://www.wmo-sat.info/oscar/satellites/view/sentinel_3b</xsl:text>
 	    </xsl:element>
          </xsl:if>
          <xsl:element name="mmd:instrument">
@@ -326,7 +326,7 @@
              <xsl:text>Synthetic Aperture Radar (C-band)</xsl:text>
           </xsl:element>
           <xsl:element name="mmd:resource">
-             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/312</xsl:text>
+             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1</xsl:text>
           </xsl:element>
        </xsl:if>
        <xsl:if test="../mmd:instrument/mmd:short_name = 'MSI'">
@@ -337,7 +337,7 @@
              <xsl:text>Multi-Spectral Imager for Sentinel-2</xsl:text>
           </xsl:element>
           <xsl:element name="mmd:resource">
-             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/312</xsl:text>
+             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/msi_sentinel_2a</xsl:text>
           </xsl:element>
        </xsl:if>
        <xsl:if test="../mmd:instrument/mmd:short_name = 'OLCI'">
@@ -348,7 +348,7 @@
              <xsl:text>Ocean and Land Colour Imager</xsl:text>
           </xsl:element>
           <xsl:element name="mmd:resource">
-             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/374</xsl:text>
+             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/olci</xsl:text>
           </xsl:element>
        </xsl:if>
        <xsl:if test="../mmd:instrument/mmd:short_name = 'SLSTR'">
@@ -359,7 +359,7 @@
              <xsl:text>Sea and Land Surface Temperature Radiometer</xsl:text>
           </xsl:element>
           <xsl:element name="mmd:resource">
-             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/518</xsl:text>
+             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/slstr</xsl:text>
           </xsl:element>
        </xsl:if>
        <xsl:if test="../mmd:instrument/mmd:short_name = 'MWR'">
@@ -370,7 +370,7 @@
              <xsl:text>Micro-Wave Radiometer</xsl:text>
           </xsl:element>
           <xsl:element name="mmd:resource">
-             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/348</xsl:text>
+             <xsl:text>https://www.wmo-sat.info/oscar/instruments/view/mwr_sentinel_3</xsl:text>
           </xsl:element>
        </xsl:if>
        <xsl:if test="../mmd:instrument/mmd:mode = 'SM' or ../mmd:instrument/mmd:mode = 'IW' or ../mmd:instrument/mmd:mode = 'EW' or ../mmd:instrument/mmd:mode = 'VW'">

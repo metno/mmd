@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:isothes="http://purl.org/iso25964/skos-thes#">
+  <!-- 
+Prepared by Øystein Godøy, METNO/FOU, 2012-10-23 
+First very simple description...
+Use hidden to identify common mis spellings...
+-->
+  <skos:Collection rdf:about="http://vocab.met.no/mmd/Collection_Keywords">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="http://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Collection Keywords</skos:prefLabel>
+    <skos:definition xml:lang="en">The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/CC">
+        <skos:prefLabel xml:lang="en">CC</skos:prefLabel>
+        <!--skos:altLabel xml:lang="en">CryoClim</skos:altLabel-->
+        <skos:definition xml:lang="en">Datasets related to the Cryosphere in the context of the CryoClim project.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/ADC">
+        <skos:prefLabel xml:lang="en">ADC</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://adc.met.no/"/>
+        <skos:definition xml:lang="en">Datasets related to the Arctic Data Centre. This is the fall back collection, but it might be that some datasets are not officially part of the ADC collection and thus should only be searchable, but not exported using OAI-PMH.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/GCW">
+        <skos:prefLabel xml:lang="en">GCW</skos:prefLabel>
+        <!--skos:altLabel xml:lang="en">Global Cryosphere Watch</skos:altLabel>
+        <skos:altLabel xml:lang="en">WMO - Global Cryosphere Watch</skos:altLabel-->
+        <skos:definition xml:lang="en">Datasets related to the WMO Global Cryosphere Watch.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/NMDC">
+        <skos:prefLabel xml:lang="en">NMDC</skos:prefLabel>
+        <!--skos:altLabel xml:lang="en">NMDC</skos:altLabel-->
+        <skos:definition xml:lang="en">Datasets relevant for the Norwegian Marine Data Centre. This is basically datasets of a marine origin, regardless of whether they are of operational or scientific origin.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/SIOS">
+        <skos:prefLabel xml:lang="en">SIOS</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://sios-svalbard.org"/>
+        <skos:definition xml:lang="en">Datasets related to the Svalbard Integrated Arctic Earth Observing System.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/NSDN">
+        <skos:prefLabel xml:lang="en">NSDN</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets related to the Norwegian Scientific Data Network (NorDataNet).</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/DOKI">
+        <skos:prefLabel xml:lang="en">DOKI</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets related to the national contribution to the International Polar Year.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/DAM">
+        <skos:prefLabel xml:lang="en">DAM</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets in the context of EU FP6 project DAMOCLES.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/ACCESS">
+        <skos:prefLabel xml:lang="en">ACCESS</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets in the context of EU FP7 project ACCESS.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/NBS">
+        <skos:prefLabel xml:lang="en">NBS</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets in the context of National Ground Segment for satellite data. This is primarily Sentinel datasets.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/APPL">
+        <skos:prefLabel xml:lang="en">APPL</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets in the context of EU H2020 project APPLICATE.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/YOPP">
+        <skos:prefLabel xml:lang="en">YOPP</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets in the context of YOPP.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/METNCS">
+        <skos:prefLabel xml:lang="en">METNCS</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets related to the core services at MET Norway.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/SESS2018">
+        <skos:prefLabel xml:lang="en">SESS2018</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://sios-svalbard.org/SESS_Issue1"/>
+        <skos:definition xml:lang="en">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/SESS2019">
+        <skos:prefLabel xml:lang="en">SESS2019</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://sios-svalbard.org/SESS_Issue2"/>
+        <skos:definition xml:lang="en">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/SESS2020">
+        <skos:prefLabel xml:lang="en">SESS2020</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://sios-svalbard.org/SESS_Issue3"/>
+        <skos:definition xml:lang="en">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/SIOSCD">
+        <skos:prefLabel xml:lang="en">SIOSCD</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets that are SIOS Core Data.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/SIOSAP">
+        <skos:prefLabel xml:lang="en">SIOSAP</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://sios-svalbard.org/RIAccess"/>
+        <skos:definition xml:lang="en">Datasets from the SIOS Access Programme.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Collection_Keywords/CVL">
+        <skos:prefLabel xml:lang="en">CVL</skos:prefLabel>
+        <skos:definition xml:lang="en">Datasets from the ESA Cryosphere Virtual Lab.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+  </skos:Collection>
+</rdf:RDF>

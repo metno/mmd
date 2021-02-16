@@ -313,23 +313,23 @@ variable.
 |============================================================================
 |Short name |Long name   | Resource
 
-|S1A        |Sentinel-1A | https://www.wmo-sat.info/oscar/satellites/view/396
-|S1B        |Sentinel-1B | https://www.wmo-sat.info/oscar/satellites/view/397
-|S2A        |Sentinel-2A | https://www.wmo-sat.info/oscar/satellites/view/398
-|S2B        |Sentinel-2B | https://www.wmo-sat.info/oscar/satellites/view/399
-|S3A        |Sentinel-3A | https://www.wmo-sat.info/oscar/satellites/view/400
-|S3B        |Sentinel-3B | https://www.wmo-sat.info/oscar/satellites/view/802
-|Metop-A    |Meteorological operational satellite - A | http://www.wmo-sat.info/oscar/satellites/view/306
-|Metop-B    |Meteorological operational satellite - B | http://www.wmo-sat.info/oscar/satellites/view/307
-|Metop-C    |Meteorological operational satellite - C | http://www.wmo-sat.info/oscar/satellites/view/308
-|NOAA-18    |National Oceanic and Atmospheric Administration - 18 | http://www.wmo-sat.info/oscar/satellites/view/340
-|NOAA-19    |National Oceanic and Atmospheric Administration - 19 | http://www.wmo-sat.info/oscar/satellites/view/341
-|NOAA-20    |National Oceanic and Atmospheric Administration - 20 | http://www.wmo-sat.info/oscar/satellites/view/208
-|SNPP       |Suomi National Polar-orbiting Partnership | http://www.wmo-sat.info/oscar/satellites/view/342
-|Aqua       |Earth Observation System - Aqua | http://www.wmo-sat.info/oscar/satellites/view/79
-|Terra      |Earth Observation System - Terra | http://www.wmo-sat.info/oscar/satellites/view/81
-|FY-3D      |Feng-Yun 3D | https://www.wmo-sat.info/oscar/satellites/view/116
-|FY-3E      |Feng-Yun 3E | https://www.wmo-sat.info/oscar/satellites/view/117
+|S1A        |Sentinel-1A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a
+|S1B        |Sentinel-1B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1b
+|S2A        |Sentinel-2A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2a
+|S2B        |Sentinel-2B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2b
+|S3A        |Sentinel-3A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3a
+|S3B        |Sentinel-3B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3b
+|Metop-A    |Meteorological operational satellite - A | http://www.wmo-sat.info/oscar/satellites/view/metop-a
+|Metop-B    |Meteorological operational satellite - B | http://www.wmo-sat.info/oscar/satellites/view/metop-b
+|Metop-C    |Meteorological operational satellite - C | http://www.wmo-sat.info/oscar/satellites/view/metop-c
+|NOAA-18    |National Oceanic and Atmospheric Administration - 18 | http://www.wmo-sat.info/oscar/satellites/view/noaa_18
+|NOAA-19    |National Oceanic and Atmospheric Administration - 19 | http://www.wmo-sat.info/oscar/satellites/view/noaa_19
+|NOAA-20    |National Oceanic and Atmospheric Administration - 20 | http://www.wmo-sat.info/oscar/satellites/view/noaa_20
+|SNPP       |Suomi National Polar-orbiting Partnership | http://www.wmo-sat.info/oscar/satellites/view/snpp
+|Aqua       |Earth Observation System - Aqua | http://www.wmo-sat.info/oscar/satellites/view/aqua
+|Terra      |Earth Observation System - Terra | http://www.wmo-sat.info/oscar/satellites/view/terra
+|FY-3D      |Feng-Yun 3D | https://www.wmo-sat.info/oscar/satellites/view/fy_3d
+|FY-3E      |Feng-Yun 3E | https://www.wmo-sat.info/oscar/satellites/view/fy_3e
 |============================================================================
 
 <<platform>>
@@ -341,17 +341,15 @@ variable.
 |===============================================================================================================
 |Short name  |Long name                                   | Resource
 
-|SAR-C       |Synthetic Aperture Radar (C-band)           | https://www.wmo-sat.info/oscar/instruments/view/450
-|MSI         |Multi-Spectral Imager for Sentinel-2        | https://www.wmo-sat.info/oscar/instruments/view/312
-|OLCI        |Ocean and Land Colour Imager                | https://www.wmo-sat.info/oscar/instruments/view/374
-|SLSTR       |Sea and Land Surface Temperature Radiometer | https://www.wmo-sat.info/oscar/instruments/view/518
-|MWR         |Micro-Wave Radiometer                       | https://www.wmo-sat.info/oscar/instruments/view/348
-|VIIRS       |Visible/Infrared Imager Radiometer Suite    | https://www.wmo-sat.info/oscar/instruments/view/604
-|AVHRR       |Advanced Very High Resolution Radiometer    | https://www.wmo-sat.info/oscar/instruments/view/60
-|AVHRR/2     |Advanced Very High Resolution Radiometer / 2 | https://www.wmo-sat.info/oscar/instruments/view/61
-|AVHRR/3     |Advanced Very High Resolution Radiometer / 3 | https://www.wmo-sat.info/oscar/instruments/view/62
-|MERSI-2     |Medium Resolution Spectral Imager -2        | https://www.wmo-sat.info/oscar/instruments/view/279
-|MODIS       |Moderate-resolution Imaging Spectro-radiometer | https://www.wmo-sat.info/oscar/instruments/view/296
+|SAR-C       |Synthetic Aperture Radar (C-band)           | https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1
+|MSI         |Multi-Spectral Imager for Sentinel-2        | https://www.wmo-sat.info/oscar/instruments/view/msi_sentinel_2a
+|OLCI        |Ocean and Land Colour Imager                | https://www.wmo-sat.info/oscar/instruments/view/olci
+|SLSTR       |Sea and Land Surface Temperature Radiometer | https://www.wmo-sat.info/oscar/instruments/view/slstr
+|MWR         |Micro-Wave Radiometer                       | https://www.wmo-sat.info/oscar/instruments/view/mwr_sentinel_3
+|VIIRS       |Visible/Infrared Imager Radiometer Suite    | https://www.wmo-sat.info/oscar/instruments/view/viirs
+|AVHRR/3     |Advanced Very High Resolution Radiometer / 3 | https://www.wmo-sat.info/oscar/instruments/view/avhrr_3
+|MERSI-2     |Medium Resolution Spectral Imager -2        | https://www.wmo-sat.info/oscar/instruments/view/mersi_2
+|MODIS       |Moderate-resolution Imaging Spectro-radiometer | https://www.wmo-sat.info/oscar/instruments/view/modis
 |===============================================================================================================
 
 <<platform>>

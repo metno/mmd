@@ -1,81 +1,52 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:isothes="http://purl.org/iso25964/skos-thes#">
   <!-- 
 Prepared by Øystein Godøy, METNO/FOU, 2013-02-15 
 First very simple description...
 Use hidden to identify common mis spellings...
 -->
-  <skos:Collection rdf:about="https://wiki.met.no/metamod/vocabularies/Operational_Status">
-    <skos:prefLabel xml:lang="en">Access constraints</skos:prefLabel>
-    <skos:definition xml:lang="en">
-    A controlled vocabulary to be used to describe the constraints on
-    accessing specific metadata and/or metadata. This is used to determine
-    the exposure of metadata and data internally and externally. Ideallly
-    all datasets (metadata and data) are freely available, but it is
-    acknowledged that some metadata and data may have restrictions that
-    limits their visibility to specific communities only.
-    </skos:definition>
+  <skos:Collection rdf:about="http://vocab.met.no/mmd/Access_Constraint">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="http://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Access Constraint</skos:prefLabel>
+    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
+
     <skos:member>
-      <skos:Concept>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Access_Constraint/Open">
         <skos:prefLabel xml:lang="en">Open</skos:prefLabel>
         <skos:altLabel xml:lang="en">Free</skos:altLabel>
         <skos:altLabel xml:lang="en">Unrestricted</skos:altLabel>
-        <skos:definition xml:lang="en">
-        These data are freely available to everyone and can be made
-        available without any restrictions.
-        </skos:definition>
+        <skos:definition xml:lang="en">These data are freely available to everyone and can be made available without any restrictions.</skos:definition>
       </skos:Concept>
     </skos:member>
+
     <skos:member>
-      <skos:Concept>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval">
         <skos:prefLabel xml:lang="en">Registered users only (automated approval)</skos:prefLabel>
-        <skos:definition xml:lang="en">
-        These data are available for users as long as they register with
-        name, affiliation, and a valid email address. The verification
-        process can be automated.
-        </skos:definition>
+        <skos:definition xml:lang="en">These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process can be automated.</skos:definition>
       </skos:Concept>
     </skos:member>
+
     <skos:member>
-      <skos:Concept>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval">
         <skos:prefLabel xml:lang="en">Registered users only (manual approval required)</skos:prefLabel>
-        <skos:definition xml:lang="en">
-        These data are available for users as long as they register with
-        name, affiliation, and a valid email address. The verification
-        process must be manual.
-        </skos:definition>
+        <skos:definition xml:lang="en">These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process must be manual.</skos:definition>
       </skos:Concept>
     </skos:member>
+
     <skos:member>
-      <skos:Concept>
-        <!-- This one is required, but vaguely defined... -->
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity">
         <skos:prefLabel xml:lang="en">Restricted to a community</skos:prefLabel>
-        <skos:definition xml:lang="en">
-        These data are available for users within a restricted community.
-        This community determines the authorization mechansim to utilise
-        whether this being IP-address, community specific users names or
-        other.
-        </skos:definition>
+        <skos:definition xml:lang="en">These data are available for users within a restricted community. This community determines the authorization mechansim to utilise whether this being IP-address, community specific users names or other.</skos:definition>
       </skos:Concept>
     </skos:member>
+
     <skos:member>
-      <skos:Concept>
+      <skos:Concept rdf:about="http://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata">
         <skos:prefLabel xml:lang="en">Restricted access to metadata</skos:prefLabel>
-        <skos:definition xml:lang="en">
-        Information on these data MUST NOT be exposed externally. This
-        implies that neither metadata can be exposed externally.
-        </skos:definition>
+        <skos:definition xml:lang="en">Information on these data MUST NOT be exposed externally. This implies that neither metadata can be exposed externally.</skos:definition>
       </skos:Concept>
     </skos:member>
+
   </skos:Collection>
 </rdf:RDF>
-<!--
-    <skos:member>
-      <skos:Concept>
-        <skos:prefLabel xml:lang="en"></skos:prefLabel>
-        <skos:altLabel xml:lang="en"></skos:altLabel>
-        <skos:definition xml:lang="en">
-        </skos:definition>
-      </skos:Concept>
-    </skos:member>
-    -->
