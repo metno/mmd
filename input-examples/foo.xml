@@ -107,14 +107,14 @@
 	<mmd:platform>
 		<mmd:short_name>S1A</mmd:short_name>
 		<mmd:long_name>Sentinel-1A</mmd:long_name>
-		<mmd:resource>https://www.wmo-sat.info/oscar/satellites/view/396</mmd:resource>
+		<mmd:resource>https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a</mmd:resource>
 		<mmd:orbit_relative>121</mmd:orbit_relative>
 		<mmd:orbit_absolute>62391</mmd:orbit_absolute>
 		<mmd:orbit_direction>ascending</mmd:orbit_direction>
 		<mmd:instrument>
 			<mmd:short_name>SAR-C</mmd:short_name>
 			<mmd:long_name>Synthetic Aperture Radar (C-band)</mmd:long_name>
-			<mmd:resource>https://www.wmo-sat.info/oscar/instruments/view/450</mmd:resource>
+			<mmd:resource>https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1</mmd:resource>
 			<mmd:mode>IW</mmd:mode>
 			<mmd:polarisation>VV+VH</mmd:polarisation>
 		</mmd:instrument>

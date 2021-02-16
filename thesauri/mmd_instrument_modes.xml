@@ -1,0 +1,65 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+         xmlns:sosa="http://www.w3.org/ns/sosa/">
+
+    <skos:Collection rdf:about="http://vocab.met.no/mmd/Instrument_Modes">
+      <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+      <skos:inScheme rdf:resource="http://vocab.met.no/mmd"/>
+      <skos:prefLabel xml:lang="en">Instrument Modes</skos:prefLabel>
+      <skos:definition xml:lang="en">Instrument Modes for Sentinel-1 (SAR-C)</skos:definition>
+      <rdfs:seeAlso rdf:resource="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes"/>
+    </skos:Collection>
+    
+  <skos:member>
+    <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument_Modes/SM">
+      <skos:prefLabel xml:lang="en">SM</skos:prefLabel>
+      <skos:broader rdf:resource="http://vocab.met.no/mmd/Instrument/SAR-C"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/HH"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/VV"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/HH+HV"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/VV+VH"/>
+      <rdfs:seeAlso rdf:resource="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/stripmap"/>
+      <skos:definition xml:lang="en">StripMap. Relates to Sentinel-1</skos:definition>
+    </skos:Concept>
+  </skos:member>
+    
+  <skos:member>
+    <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument_Modes/IW">
+      <skos:prefLabel xml:lang="en">IW</skos:prefLabel>
+      <skos:broader rdf:resource="http://vocab.met.no/mmd/Instrument/SAR-C"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/HH"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/VV"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/HH+HV"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/VV+VH"/>
+      <rdfs:seeAlso rdf:resource="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/interferometric-wide-swath"/>
+      <skos:definition xml:lang="en">ScanSAR - Interferometric Wide Swath. Relates to Sentinel-1</skos:definition>
+    </skos:Concept>
+  </skos:member>
+    
+  <skos:member>
+    <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument_Modes/EW">
+      <skos:prefLabel xml:lang="en">EW</skos:prefLabel>
+      <skos:broader rdf:resource="http://vocab.met.no/mmd/Instrument/SAR-C"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/HH"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/VV"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/HH+HV"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/VV+VH"/>
+      <rdfs:seeAlso rdf:resource="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/extra-wide-swath"/>
+      <skos:definition xml:lang="en">ScanSAR - Extra-Wide Swath. Relates to Sentinel-1</skos:definition>
+    </skos:Concept>
+  </skos:member>
+    
+  <skos:member>
+    <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument_Modes/WV">
+      <skos:prefLabel xml:lang="en">WV</skos:prefLabel>
+      <skos:broader rdf:resource="http://vocab.met.no/mmd/Instrument/SAR-C"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/HH"/>
+      <skos:narrower rdf:resource="http://vocab.met.no/mmd/Polarisation_Modes/VV"/>
+      <rdfs:seeAlso rdf:resource="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/wave"/>
+      <skos:definition xml:lang="en">Wave Mode. Relates to Sentinel-1</skos:definition>
+    </skos:Concept>
+  </skos:member>
+
+  </skos:Collection>
+</rdf:RDF>
