@@ -4,10 +4,10 @@
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
-    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/gmxhttp://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd"
+    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
@@ -19,15 +19,15 @@
 
             <!--resource type is mandatory, multiplicity [1]-->
             <gmd:hierarchyLevel>
-              <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+		    <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
             </gmd:hierarchyLevel>
             
             <!--Conditional for spatial dataset and spatial dataset series: Mandatory if the resource includes textual information. [0..*] for datasets and series-->		
             <gmd:characterSet>
-              <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode">UTF-8</gmd:MD_CharacterSetCode>
+		    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
             </gmd:characterSet>
             <gmd:language>
-              <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">English</gmd:LanguageCode>
+		    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
             </gmd:language>
             <!--gmd:locale>
                 <gmd:PT_Locale id="locale-nob">
@@ -63,6 +63,19 @@
                    <xsl:value-of select="substring-before($latest,'T')"/>
                </xsl:element>
            </xsl:element>
+	   <xsl:element name="gmd:referenceSystemInfo">
+               <xsl:element name="gmd:MD_ReferenceSystem">
+                   <xsl:element name="gmd:referenceSystemIdentifier">
+                       <xsl:element name="gmd:RS_Identifier">
+                           <xsl:element name="gmd:code">
+			       <xsl:element name="gco:CharacterString">
+			           <xsl:value-of select="mmd:geographic_extent/mmd:rectangle/@srsName"/>
+                               </xsl:element>
+		           </xsl:element>
+		       </xsl:element>
+		  </xsl:element>
+              </xsl:element>
+            </xsl:element>
 
             <xsl:element name="gmd:identificationInfo">
                 <xsl:element name="gmd:MD_DataIdentification">
@@ -73,6 +86,17 @@
                         <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
                         <xsl:apply-templates select="mmd:dataset_citation/mmd:publication_date" />
                         <xsl:apply-templates select="mmd:last_metadata_update" />
+			<!--it should be the DOI, landing page for now-->
+                        <xsl:element name="gmd:identifier">
+                            <xsl:element name="gmd:MD_Identifier">
+                                <xsl:element name="gmd:code">
+                                    <xsl:element name="gco:CharacterString">
+					    <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:resource" />
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                        
                         </xsl:element>
                     </xsl:element>        
 
@@ -84,6 +108,7 @@
                     </xsl:element>
 		    <!--iso_topic_category (M) multiplicity [1..*]-->
                     <xsl:apply-templates select="mmd:iso_topic_category" />
+
 		    <!--keywords (M) multiplicity [1..*] -->
                     <xsl:apply-templates select="mmd:keywords" />
                     <xsl:element name="gmd:extent">
@@ -102,6 +127,19 @@
 		    <!--use_constraints (M) multiplicity [1..*] -->
                     <xsl:apply-templates select="mmd:use_constraint" />
 
+		    <xsl:element name="gmd:language">
+		        <xsl:element name="gmd:LanguageCode">
+		        <xsl:attribute name="codeList">http://www.loc.gov/standards/iso639-2/</xsl:attribute> 
+			    <xsl:attribute name="codeListValue">
+
+                            <xsl:variable name="language" select="mmd:dataset_language" />
+                            <xsl:variable name="language_mapping" select="document('')/*/mapping:language_code[@mmd=$language]/@inspire" />
+                            <xsl:value-of select="$language_mapping" />
+
+			    </xsl:attribute>
+        	        </xsl:element>	
+        	    </xsl:element>	
+
                 </xsl:element>
 
             </xsl:element>        
@@ -110,9 +148,19 @@
             <xsl:element name="gmd:dataQualityInfo">        
  	        <xsl:element name="gmd:DQ_DataQuality">        
  	            <xsl:element name="gmd:lineage">        
- 	                <xsl:element name="gmd:Lineage">        
+ 	                <xsl:element name="gmd:LI_Lineage">        
  	                    <xsl:element name="gmd:statement">        
  	                        <xsl:element name="gco:CharacterString">TODO: NEED TO PICK UP SOME LINEAGE STATEMENT</xsl:element>        
+                            </xsl:element>        
+                        </xsl:element>        
+                    </xsl:element>        
+ 	            <xsl:element name="gmd:scope">        
+ 	                <xsl:element name="gmd:DQ_Scope">        
+ 	                    <xsl:element name="gmd:level">        
+				<xsl:element name="gmd:MD_ScopeCode"> 
+			            <xsl:attribute name="codeListValue">dataset</xsl:attribute>
+			            <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+                                </xsl:element>        
                             </xsl:element>        
                         </xsl:element>        
                     </xsl:element>        
@@ -385,11 +433,18 @@
                         <xsl:element name="gml:beginPosition">
                             <xsl:value-of select="mmd:start_date" />
                         </xsl:element>
-			<xsl:if test="mmd:end_date">
+			<xsl:choose>
+			<xsl:when test="string-length(mmd:end_date) > 0">
                             <xsl:element name="gml:endPosition">
                                 <xsl:value-of select="mmd:end_date" />
                             </xsl:element>
-		        </xsl:if>
+		        </xsl:when>
+			<xsl:otherwise>
+                            <xsl:element name="gml:endPosition">
+				<xsl:text>unknown</xsl:text>
+                            </xsl:element>
+		        </xsl:otherwise>
+		        </xsl:choose>
                     </xsl:element>
                 </xsl:element>
             </xsl:element>
@@ -586,4 +641,6 @@
     <mapping:data_access_type_osgeo iso="ftp" mmd="FTP" />
     <mapping:data_access_type_osgeo iso="download" mmd="HTTP" />
     <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
+
+    <mapping:language_code inspire="eng" mmd="en" />    
 </xsl:stylesheet>
