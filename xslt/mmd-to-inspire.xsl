@@ -86,12 +86,12 @@
                         <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
                         <xsl:apply-templates select="mmd:dataset_citation/mmd:publication_date" />
                         <xsl:apply-templates select="mmd:last_metadata_update" />
-			<!--it should be the DOI, landing page for now-->
+			<!--it should be the DOI, or a URL. Identifier for now-->
                         <xsl:element name="gmd:identifier">
                             <xsl:element name="gmd:MD_Identifier">
                                 <xsl:element name="gmd:code">
                                     <xsl:element name="gco:CharacterString">
-					    <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:resource" />
+					    <xsl:value-of select="mmd:metadata_identifier" />
                                     </xsl:element>
                                 </xsl:element>
                             </xsl:element>
@@ -121,9 +121,53 @@
 			    <xsl:apply-templates select="mmd:temporal_extent"/>
                         </xsl:element>                    
                     </xsl:element>
+                   
+		    <xsl:element name="gmd:spatialRepresentationType">
+		        <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
+			    <xsl:attribute name="codeList">http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
+			    <xsl:attribute name="codeListValue">
+                                <xsl:value-of select="mmd:spatial_representation" />
+			    </xsl:attribute>
+                                <xsl:value-of select="mmd:spatial_representation" />
+		        </xsl:element>
+		    </xsl:element>
 
 	     	    <!--access_constraint Conditional: referring to limitations on public access. Mandatory if accessConstraints or classification are not documented, multiplicity [0..*] for otherConstraints per instance of MD_LegalConstraints-->	
-                    <xsl:apply-templates select="mmd:access_constraint" />
+                    <xsl:element name="gmd:resourceConstraints">
+                        <xsl:element name="gmd:MD_LegalConstraints">
+                   
+                            <xsl:element name="gmd:accessConstraints">
+                                <xsl:element name="gmd:MD_RestrictionCode">
+                                    <xsl:attribute name="codeList">ttp://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
+                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                    <xsl:text>otherRestrictions</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+                   
+                            <xsl:element name="gmd:otherConstraints">
+	                        <xsl:choose>
+	                        <xsl:when test="string-length(mmd:access_constraint) > 0">		     
+	                            <!--maybe use the anchor
+                                    <xsl:element name="gmx:Anchor">
+	                                    <xsl:attribute name="xlink:href">
+	                               	     <xsl:value-of select="concat('http://vocab.met.no/mmd/Use_Conatraint/',.)" />
+	                                    </xsl:attribute>
+                                        <xsl:value-of select="." />
+                                    </xsl:element-->
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:value-of select="." />
+                                    </xsl:element>
+	                        </xsl:when>
+	                        <xsl:otherwise>
+                                    <xsl:element name="gco:CharacterString">
+	                                <xsl:text>conditionsUnknown</xsl:text>
+                                    </xsl:element>
+	                        </xsl:otherwise>
+	                        </xsl:choose>
+                            </xsl:element>
+                   
+                        </xsl:element>
+                    </xsl:element>
 		    <!--use_constraints (M) multiplicity [1..*] -->
                     <xsl:apply-templates select="mmd:use_constraint" />
 
@@ -150,7 +194,7 @@
  	            <xsl:element name="gmd:lineage">        
  	                <xsl:element name="gmd:LI_Lineage">        
  	                    <xsl:element name="gmd:statement">        
- 	                        <xsl:element name="gco:CharacterString">TODO: NEED TO PICK UP SOME LINEAGE STATEMENT</xsl:element>        
+ 	                        <xsl:element name="gco:CharacterString">No lineage statement has been provided</xsl:element>        
                             </xsl:element>        
                         </xsl:element>        
                     </xsl:element>        
@@ -211,11 +255,21 @@
                             <xsl:apply-templates select="mmd:data_access" />
                         </xsl:element>
 		    </xsl:element>
+		    <!--format-->
+                    <xsl:apply-templates select="mmd:storage_information" />
 
                 </xsl:element>
             </xsl:element>
+
+            <gmd:metadataStandardName>
+                <gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
+            </gmd:metadataStandardName>
+            <gmd:metadataStandardVersion>
+                <gco:CharacterString>1.0</gco:CharacterString>
+            </gmd:metadataStandardVersion>
             
         </xsl:element>
+            
     </xsl:template>
 
     <!--templates-->
@@ -319,6 +373,22 @@
             </xsl:element>
         </xsl:element>
         
+    </xsl:template>
+
+    <!--format -->
+    <xsl:template match="mmd:storage_information">
+        <xsl:element name="gmd:distributionFormat">
+            <xsl:element name="gmd:MD_Format">
+                <xsl:element name="gmd:name">
+                    <xsl:element name="gco:CharacterString">
+                        <xsl:value-of select="mmd:file_format" />
+                    </xsl:element>
+                </xsl:element>
+                <xsl:element name="gmd:version">
+                    <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                </xsl:element>
+            </xsl:element>
+        </xsl:element>
     </xsl:template>
 
     <!--iso topic category-->
@@ -523,32 +593,6 @@
 
 
     <xsl:template match="mmd:access_constraint">
-         <xsl:element name="gmd:resourceConstraints">
-             <xsl:element name="gmd:MD_LegalConstraints">
-        
-                 <xsl:element name="gmd:accessConstraints">
-                     <xsl:element name="gmd:MD_RestrictionCode">
-                         <xsl:attribute name="codeList">ttp://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
-                         <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                         <xsl:text>otherRestrictions</xsl:text>
-                     </xsl:element>
-                 </xsl:element>
-        
-                 <xsl:element name="gmd:otherConstraints">
-		     <!--maybe use the anchor
-                     <xsl:element name="gmx:Anchor">
-			     <xsl:attribute name="xlink:href">
-				     <xsl:value-of select="concat('http://vocab.met.no/mmd/Use_Conatraint/',.)" />
-			     </xsl:attribute>
-                         <xsl:value-of select="." />
-                     </xsl:element-->
-                     <xsl:element name="gco:CharacterString">
-                         <xsl:value-of select="." />
-                     </xsl:element>
-                 </xsl:element>
-        
-             </xsl:element>
-         </xsl:element>
     </xsl:template>
 
     <xsl:template match="mmd:use_constraint">
