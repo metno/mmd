@@ -415,6 +415,22 @@ multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness
 
 <<platform>>
 
+[[spatial-representation]]
+=== Spatial representation
+
+
+[cols="3,7"]
+|=======================================================================
+|Code |Description
+
+|vector | Vector data is used to represent geographic data
+
+|grid | Grid data is used to represent geographic data
+
+|=======================================================================
+
+<<spatial_representation>>
+
 [[contact-roles]]
 === Contact roles
 
