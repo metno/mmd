@@ -391,7 +391,7 @@
     </xsl:template>
 
     <xsl:template name="ancillary">
-       <xsl:if test="../mmd:cloud_coverage !=''">
+       <xsl:if test="../mmd:cloud_cover !=''">
           <xsl:element name="mmd:cloud_coverage">
              <xsl:value-of select="../mmd:cloud_cover/mmd:value"/>
           </xsl:element>
