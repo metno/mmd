@@ -64,7 +64,7 @@
                                 <xsl:element name="gmd:CI_Date">
                                     <xsl:element name="gmd:date">
                                         <xsl:element name="gco:DateTime">
-                                            <xsl:value-of select="mmd:dataset_citation/mmd:dataset_release_date" />
+                                            <xsl:value-of select="mmd:dataset_citation/mmd:publication_date" />
                                         </xsl:element>
                                     </xsl:element>
                                     <xsl:element name="gmd:dateType">
@@ -78,7 +78,7 @@
                             
                             <xsl:element name="gmd:edition">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:dataset_citation/mmd:dataset_release_date" />
+                                    <xsl:value-of select="mmd:dataset_citation/mmd:edition" />
                                 </xsl:element>
                             </xsl:element>
                             
@@ -107,6 +107,49 @@
                             <xsl:apply-templates select="mmd:temporal_extent" />
                         </xsl:element>                    
                     </xsl:element>
+
+                    <xsl:apply-templates select="mmd:keywords" />
+                    <xsl:apply-templates select="mmd:related_information[mmd:type = 'Dataset landing page']" />
+
+                    <xsl:element name="gmd:resourceConstraints">
+                        <xsl:element name="gmd:MD_LegalConstraints">
+        
+                            <xsl:element name="gmd:accessConstraints">
+                                <xsl:element name="gmd:MD_RestrictionCode">
+                                    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
+                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                    <xsl:text>otherRestrictions</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+        
+                            <xsl:element name="gmd:otherConstraints">
+                                <xsl:element name="gco:CharacterString">
+                                    <xsl:value-of select="mmd:access_constraint" />
+                                </xsl:element>
+                            </xsl:element>
+        
+                        </xsl:element>
+                    </xsl:element>
+         
+                    <xsl:element name="gmd:resourceConstraints">
+                        <xsl:element name="gmd:MD_LegalConstraints">
+        
+                            <xsl:element name="gmd:useConstraints">
+                                <xsl:element name="gmd:MD_RestrictionCode">
+                                    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
+                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                    <xsl:text>otherRestrictions</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+        
+                            <xsl:element name="gmd:otherConstraints">
+                                    <xsl:element name="gco:CharacterString">
+                			    <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                                    </xsl:element>
+                            </xsl:element>
+                            
+                        </xsl:element>
+                    </xsl:element>
                     
                     <xsl:element name="gmd:language">
                         <xsl:element name="gmd:LanguageCode">
@@ -120,6 +163,9 @@
             
             <xsl:element name="gmd:distributionInfo">
                 <xsl:element name="gmd:MD_Distribution">
+                        <xsl:element name="gmd:distributor">
+                            <xsl:apply-templates select="mmd:data_center" />
+                        </xsl:element>
                     <xsl:element name="gmd:transferOptions">
                         <xsl:element name="gmd:MD_DigitalTransferOptions">
                             <xsl:apply-templates select="mmd:data_access" />
@@ -128,35 +174,6 @@
                 </xsl:element>
             </xsl:element>
                 
- 
-            <xsl:element name="gmd:metadataConstraints">
-                <xsl:element name="gmd:MD_LegalConstraints">
-                    <xsl:element name="gmd:accessConstraints">
-                        <xsl:element name="gmd:MD_RestrictionCode">
-                            <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
-                            <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                        </xsl:element>
-                    </xsl:element>
-
-                    <xsl:element name="gmd:useConstraints">
-                        <xsl:element name="gmd:MD_RestrictionCode">
-                            <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
-                            <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                        </xsl:element>
-                    </xsl:element>
-                    
-                    <xsl:element name="gmd:otherConstraints">
-                        <xsl:element name="gco:CharacterString">
-                            <xsl:value-of select="mmd:access_constraint" />
-                        </xsl:element>
-                    </xsl:element>
-                    <xsl:element name="gmd:otherConstraints">
-                        <xsl:element name="gco:CharacterString">
-                            <xsl:value-of select="mmd:use_constraint" />
-                        </xsl:element>
-                    </xsl:element>
-                </xsl:element>
-            </xsl:element>
             
             <!--            
             
@@ -226,15 +243,48 @@
     <xsl:template match="mmd:last_metadata_update">
         <xsl:element name="gmd:dateStamp">
             <xsl:element name="gco:DateTime">
-                <xsl:value-of select="." />
-            </xsl:element>
-        </xsl:element>
+	        <xsl:variable name="latest">
+                    <xsl:for-each select="mmd:update/mmd:datetime">
+                        <xsl:sort select="." order="descending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="."/>
+                        </xsl:if>
+                    </xsl:for-each>
+               </xsl:variable>
+               <xsl:value-of select="$latest"/>
+               </xsl:element>
+         </xsl:element>
     </xsl:template>
 
     <xsl:template match="mmd:keywords">
+       <xsl:element name="gmd:descriptiveKeywords">
+        <xsl:element name="gmd:MD_Keywords">
         <xsl:for-each select="mmd:keyword">
-
+           <xsl:element name="gmd:keyword">
+              <xsl:element name="gco:CharacterString">
+                 <xsl:value-of select="." />
+	      </xsl:element>
+	   </xsl:element>
         </xsl:for-each>
+	<xsl:element name="gmd:thesaurusName">
+	   <xsl:element name="gmd:CI_Citation">
+	   <xsl:element name="gmd:title">
+              <xsl:element name="gco:CharacterString">
+                 <xsl:value-of select="@vocabulary" />
+	      </xsl:element>
+	   </xsl:element>	
+	   </xsl:element>	
+	</xsl:element>	
+        </xsl:element>                    
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="mmd:related_information">
+       <xsl:element name="gmd:dataSetURI">
+           <xsl:element name="gco:CharacterString">
+              <xsl:value-of select="mmd:resource" />
+	   </xsl:element>
+       </xsl:element>
     </xsl:template>
 
     <xsl:template match="mmd:temporal_extent">
@@ -299,6 +349,33 @@
 
     </xsl:template>    
 
+    <xsl:template match="mmd:data_center">
+	<xsl:element name="gmd:MD_Distributor">
+	   <xsl:element name="gmd:distributorContact">
+	      <xsl:element name="gmd:CI_ResponsibleParty">
+	         <xsl:element name="gmd:organisationName">
+	            <xsl:element name="gco:CharacterString">
+	               <xsl:value-of select="mmd:data_center_name/mmd:long_name" />
+                    </xsl:element>
+                 </xsl:element>
+	         <xsl:element name="gmd:contactInfo">
+	            <xsl:element name="gmd:CI_Contact">
+	               <xsl:element name="gmd:onlineResource">
+	                  <xsl:element name="gmd:CI_OnlineResource">
+	                     <xsl:element name="gmd:linkage">
+	                        <xsl:element name="gmd:URL">
+	                           <xsl:value-of select="mmd:data_center_url" />
+                                </xsl:element>
+                             </xsl:element>
+                          </xsl:element>
+                       </xsl:element>
+                    </xsl:element>
+                 </xsl:element>
+              </xsl:element>
+           </xsl:element>
+        </xsl:element>
+    </xsl:template>
+	    
     <xsl:template match="mmd:data_access">
     
         <xsl:element name="gmd:onLine">
@@ -328,10 +405,15 @@
                     <xsl:element name="gco:CharacterString">
                         <!--xsl:value-of select="mmd:type" / -->
                         <xsl:variable name="mmd_da_type" select="normalize-space(./mmd:type)" />
-                        <xsl:variable name="mmd_da_mapping" select="document('')/*/mapping:data_access_type[@mmd=$mmd_da_type]/@iso" />
+                        <xsl:variable name="mmd_da_mapping" select="document('')/*/mapping:data_access_type_osgeo[@mmd=$mmd_da_type]/@iso" />
                         <xsl:value-of select="$mmd_da_mapping" />
                     </xsl:element>
                 </xsl:element>            
+                <!--xsl:element name="gmd:applicationProfile">
+                    <xsl:element name="gco:CharacterString">
+			<xsl:text>OSGEO</xsl:text>
+                    </xsl:element>
+                </xsl:element-->                
                 <xsl:element name="gmd:name">
                     <xsl:element name="gco:CharacterString">
                         <xsl:value-of select="mmd:name" />
@@ -378,22 +460,22 @@
                         <xsl:element name="gmd:CI_Address">
                             <xsl:element name="gmd:deliveryPoint">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/address" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:address" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:city">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/city" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:city" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:postalCode">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/postal_code" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:postal_code" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:country">
                                 <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:contact_address/country" />
+                                    <xsl:value-of select="mmd:contact_address/mmd:country" />
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:electronicMailAddress">
@@ -468,12 +550,19 @@
     <mapping:dataset_status iso="onGoing" mmd="In Work" />
     <mapping:dataset_status iso="planned" mmd="Planned" />    
 
-    <!-- Mappings for data_access type specification -->
-    <mapping:data_access_type iso="OGC:WMS" mmd="OGC WMS" />    
-    <mapping:data_access_type iso="OGC:WCS" mmd="OGC WCS" />    
-    <mapping:data_access_type iso="OGC:WFS" mmd="OGC WFS" />    
-    <mapping:data_access_type iso="WWW:DOWNLOAD-1.0-ftp–download" mmd="FTP" />  
-    <mapping:data_access_type iso="WWW:DOWNLOAD-1.0-http–download" mmd="HTTP" />
-    <mapping:data_access_type iso="WWW:LINK-1.0-http–opendap" mmd="OPeNDAP" />  
+    <!-- Mappings for data_access type specification to OSGEO  -->
+    <mapping:data_access_type_osgeo iso="OGC:WMS" mmd="OGC WMS" />    
+    <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS" />    
+    <mapping:data_access_type_osgeo iso="OGC:WFS" mmd="OGC WFS" />    
+    <mapping:data_access_type_osgeo iso="ftp" mmd="FTP" />
+    <mapping:data_access_type_osgeo iso="download" mmd="HTTP" />
+    <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
 
+    <!-- Mappings for data_access type specification to geonetwork  -->
+    <mapping:data_access_type_geonetwork iso="OGC:WMS" mmd="OGC WMS" />    
+    <mapping:data_access_type_geonetwork iso="OGC:WCS" mmd="OGC WCS" />    
+    <mapping:data_access_type_geonetwork iso="OGC:WFS" mmd="OGC WFS" />    
+    <mapping:data_access_type_geonetwork iso="WWW:DOWNLOAD-1.0-ftp--download" mmd="FTP" />
+    <mapping:data_access_type_geonetwork iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
+    <mapping:data_access_type_geonetwork iso="WWW:LINK-1.0-http--opendap" mmd="OPeNDAP" />
 </xsl:stylesheet>
