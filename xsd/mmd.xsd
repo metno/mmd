@@ -341,11 +341,10 @@
             <xs:enumeration value="parent"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:attribute name="relation_type" type="mmd:related_dataset_relationship_type"/>
     <xs:complexType name="related_dataset_type">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute ref="mmd:relation_type" use="required"/>
+                <xs:attribute name="relation_type" use="required" type="mmd:related_dataset_relationship_type"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
