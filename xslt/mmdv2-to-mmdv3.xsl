@@ -396,7 +396,7 @@
              <xsl:value-of select="../mmd:cloud_cover/mmd:value"/>
           </xsl:element>
        </xsl:if>
-       <xsl:if test="../mmd:scene_coverage !=''">
+       <xsl:if test="../mmd:scene_cover !=''">
           <xsl:element name="mmd:scene_coverage">
              <xsl:value-of select="../mmd:scene_cover/mmd:value"/>
           </xsl:element>
