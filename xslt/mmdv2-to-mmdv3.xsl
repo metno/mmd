@@ -595,8 +595,15 @@
 
     <xsl:template match="mmd:related_dataset">
       <xsl:element name="mmd:related_dataset">
-	      <xsl:attribute name="mmd:relation_type">
-		 <xsl:value-of select="@mmd:relation_type" />
+	      <xsl:attribute name="relation_type">
+		 <xsl:choose>
+		     <xsl:when test="@mmd:relation_type !=''">
+		         <xsl:value-of select="@mmd:relation_type" />
+	             </xsl:when>
+		     <xsl:otherwise>
+		          <xsl:value-of select="@relation_type" />
+	             </xsl:otherwise>
+	         </xsl:choose>
 	      </xsl:attribute>
           <xsl:value-of select="." />
       </xsl:element>
