@@ -457,7 +457,7 @@ Meaning this should consume both DIF 8, 9 and 10.
 
         <xsl:template match="dif:Parent_DIF">
             <xsl:element name="mmd:related_dataset">
-                <xsl:attribute name="mmd:relation_type">parent</xsl:attribute>
+                <xsl:attribute name="relation_type">parent</xsl:attribute>
                 <xsl:value-of select="." />
             </xsl:element>
         </xsl:template>
