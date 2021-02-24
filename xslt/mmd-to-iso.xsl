@@ -6,8 +6,8 @@
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gmi="http://www.isotc211.org/2005/gmi" 
     xmlns:gml="http://www.opengis.net/gml"
-    xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:mmd="http://www.met.no/schema/mmd"
     xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd http://www.isotc211.org/2005/gmi http://www.isotc211.org/2005/gmx/gmi.xsd"
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
@@ -15,7 +15,7 @@
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/mmd:mmd">
-        <xsl:element name="gmd:MI_Metadata">
+        <xsl:element name="gmi:MI_Metadata">
 
             <gmd:language>
                 <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng">English</gmd:LanguageCode>
@@ -152,6 +152,9 @@
                                         </xsl:attribute>
                 			    <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
                                     </xsl:element>
+                                <!--xsl:element name="gco:CharacterString">
+					<xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                                </xsl:element-->
                             </xsl:element>
                             
                         </xsl:element>
@@ -168,16 +171,21 @@
             </xsl:element>        
             
 	    <!--gmi acquisition info-->
-            <xsl:element name="gmi:acquisitionInfo">
+            <xsl:element name="gmi:acquisitionInformation">
                 <xsl:element name="gmi:MI_AcquisitionInformation">
                     <xsl:element name="gmi:platform">
                         <xsl:element name="gmi:MI_Platform">
                             <xsl:element name="gmi:identifier">
+                                <xsl:value-of select="mmd:platform/mmd:short_name" />
+                            </xsl:element>
+                            <xsl:element name="gmi:description">
                                 <xsl:value-of select="mmd:platform/mmd:long_name" />
                             </xsl:element>
                             <xsl:element name="gmi:instrument">
                                 <xsl:element name="gmi:MI_Instrument">
-				    <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+                                    <xsl:element name="gmi:identifier">
+				        <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+                                    </xsl:element>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
@@ -189,7 +197,9 @@
             <xsl:element name="gmd:contentInfo">
                 <xsl:element name="gmd:MD_ImageDescription">
                     <xsl:element name="gmd:cloudCoverPercentage">
+                        <xsl:element name="gco:Real">
 			    <xsl:value-of select="mmd:platform/mmd:ancillary/mmd:cloud_coverage" />
+                        </xsl:element>
                     </xsl:element>
                 </xsl:element>
             </xsl:element>
