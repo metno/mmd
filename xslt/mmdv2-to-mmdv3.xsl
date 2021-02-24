@@ -600,7 +600,7 @@
 		     <xsl:when test="@mmd:relation_type !=''">
 		         <xsl:value-of select="@mmd:relation_type" />
 	             </xsl:when>
-		     <xsl:otherwise test="relation_type !=''">
+		     <xsl:otherwise>
 		          <xsl:value-of select="@relation_type" />
 	             </xsl:otherwise>
 	         </xsl:choose>
