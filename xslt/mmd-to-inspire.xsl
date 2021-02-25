@@ -155,7 +155,7 @@
                                         <xsl:value-of select="." />
                                     </xsl:element-->
                                     <xsl:element name="gco:CharacterString">
-                                        <xsl:value-of select="." />
+                                        <xsl:value-of select="mmd:access_constraint" />
                                     </xsl:element>
 	                        </xsl:when>
 	                        <xsl:otherwise>
