@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gmi="http://www.isotc211.org/2005/gmi" 
+    xmlns:gmx="http://www.isotc211.org/2005/gmx"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:mmd="http://www.met.no/schema/mmd"
@@ -45,7 +45,19 @@
 
             <xsl:apply-templates select="mmd:metadata_identifier" />
             <xsl:apply-templates select="mmd:dataset_production_status" />
-            <xsl:apply-templates select="mmd:last_metadata_update" />
+            <xsl:element name="gmd:dateStamp">
+                <xsl:element name="gco:DateTime">
+	            <xsl:variable name="latest">
+	                <xsl:for-each select="mmd:last_metadata_update/mmd:update/mmd:datetime">
+                            <xsl:sort select="." order="descending" />
+                            <xsl:if test="position() = 1">
+                                <xsl:value-of select="."/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:value-of select="$latest"/>
+                </xsl:element>
+            </xsl:element>
         
             <xsl:element name="gmd:contact">
                 <xsl:apply-templates select="mmd:personnel[mmd:role = 'Metadata author']" />
@@ -66,7 +78,7 @@
                             <xsl:element name="gmd:date">
                                 <xsl:element name="gmd:CI_Date">
                                     <xsl:element name="gmd:date">
-                                        <xsl:element name="gco:DateTime">
+                                        <xsl:element name="gco:Date">
                                             <xsl:value-of select="mmd:dataset_citation/mmd:publication_date" />
                                         </xsl:element>
                                     </xsl:element>
@@ -74,6 +86,7 @@
                                         <xsl:element name="gmd:CI_DateTypeCode">
                                             <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode</xsl:attribute>
                                             <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                            <xsl:text>publication</xsl:text>
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
@@ -90,7 +103,21 @@
                                     <xsl:value-of select="mmd:dataset_citation/mmd:other_citation_details" />
                                 </xsl:element>                            
                             </xsl:element>
+
+                            <xsl:element name="gmd:identifier">
+                                <xsl:element name="gmd:MD_Identifier">
+                                    <xsl:element name="gmd:code">
+                                        <xsl:element name="gmx:Anchor">
+                                        <xsl:attribute name="xlink:href">
+					    <xsl:value-of select="mmd:dataset_citation/mmd:doi" />
+                                        </xsl:attribute>
+					    <xsl:value-of select="mmd:dataset_citation/mmd:doi" />
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
                             
+                            <xsl:apply-templates select="mmd:last_metadata_update" />
                         </xsl:element>
                     </xsl:element>
                     
@@ -146,7 +173,7 @@
                             </xsl:element>
         
                             <xsl:element name="gmd:otherConstraints">
-                                    <xsl:element name="gmd:Anchor">
+                                    <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
                 			    <xsl:value-of select="mmd:use_constraint/mmd:resource" />
                                         </xsl:attribute>
@@ -171,38 +198,42 @@
             </xsl:element>        
             
 	    <!--gmi acquisition info-->
-            <xsl:element name="gmi:acquisitionInformation">
-                <xsl:element name="gmi:MI_AcquisitionInformation">
-                    <xsl:element name="gmi:platform">
-                        <xsl:element name="gmi:MI_Platform">
-                            <xsl:element name="gmi:identifier">
-                                <xsl:value-of select="mmd:platform/mmd:short_name" />
-                            </xsl:element>
-                            <xsl:element name="gmi:description">
-                                <xsl:value-of select="mmd:platform/mmd:long_name" />
-                            </xsl:element>
-                            <xsl:element name="gmi:instrument">
-                                <xsl:element name="gmi:MI_Instrument">
-                                    <xsl:element name="gmi:identifier">
-				        <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+	    <xsl:if test="mmd:platform != ''">
+                <xsl:element name="gmi:acquisitionInformation">
+                    <xsl:element name="gmi:MI_AcquisitionInformation">
+                        <xsl:element name="gmi:platform">
+                            <xsl:element name="gmi:MI_Platform">
+                                <xsl:element name="gmi:identifier">
+                                    <xsl:value-of select="mmd:platform/mmd:short_name" />
+                                </xsl:element>
+                                <xsl:element name="gmi:description">
+                                    <xsl:value-of select="mmd:platform/mmd:long_name" />
+                                </xsl:element>
+                                <xsl:element name="gmi:instrument">
+                                    <xsl:element name="gmi:MI_Instrument">
+                                        <xsl:element name="gmi:identifier">
+	            		        <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+                                        </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
                 </xsl:element>
-            </xsl:element>
+            </xsl:if>
 
 	    <!--gmi content info-->
-            <xsl:element name="gmd:contentInfo">
-                <xsl:element name="gmd:MD_ImageDescription">
-                    <xsl:element name="gmd:cloudCoverPercentage">
-                        <xsl:element name="gco:Real">
-			    <xsl:value-of select="mmd:platform/mmd:ancillary/mmd:cloud_coverage" />
+	    <xsl:if test="mmd:platform/mmd:ancillary/mmd:cloud_coverage != ''">
+                <xsl:element name="gmd:contentInfo">
+                    <xsl:element name="gmd:MD_ImageDescription">
+                        <xsl:element name="gmd:cloudCoverPercentage">
+                            <xsl:element name="gco:Real">
+	            	    <xsl:value-of select="mmd:platform/mmd:ancillary/mmd:cloud_coverage" />
+                            </xsl:element>
                         </xsl:element>
                     </xsl:element>
                 </xsl:element>
-            </xsl:element>
+            </xsl:if>
             
             <xsl:element name="gmd:distributionInfo">
                 <xsl:element name="gmd:MD_Distribution">
@@ -214,6 +245,7 @@
                             <xsl:apply-templates select="mmd:data_access" />
                         </xsl:element>
                     </xsl:element>
+                    <xsl:apply-templates select="mmd:storage_information" />
                 </xsl:element>
             </xsl:element>
                 
@@ -284,19 +316,49 @@
     </xsl:template>
 
     <xsl:template match="mmd:last_metadata_update">
-        <xsl:element name="gmd:dateStamp">
-            <xsl:element name="gco:DateTime">
-	        <xsl:variable name="latest">
-                    <xsl:for-each select="mmd:update/mmd:datetime">
-                        <xsl:sort select="." order="descending" />
-                        <xsl:if test="position() = 1">
-                            <xsl:value-of select="."/>
-                        </xsl:if>
-                    </xsl:for-each>
-               </xsl:variable>
-               <xsl:value-of select="$latest"/>
-               </xsl:element>
-         </xsl:element>
+	<xsl:if test="mmd:update/mmd:type = 'Created'">    
+        <xsl:element name="gmd:date">
+            <xsl:element name="gmd:CI_Date">
+                <xsl:element name="gmd:date">
+                    <xsl:element name="gco:DateTime">
+		        <xsl:value-of select="mmd:update/mmd:datetime"/>
+                    </xsl:element>
+                </xsl:element>
+                <xsl:element name="gmd:dateType">
+                    <xsl:element name="gmd:CI_DateTypeCode">
+		    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode</xsl:attribute>
+                        <xsl:attribute name="codeListValue">creation</xsl:attribute>
+                        <xsl:text>creation</xsl:text>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:element>
+        </xsl:element>
+        </xsl:if>    
+
+        <xsl:element name="gmd:date">
+            <xsl:element name="gmd:CI_Date">
+                <xsl:element name="gmd:date">
+                    <xsl:element name="gco:DateTime">
+	                <xsl:variable name="latest">
+                        <xsl:for-each select="mmd:update/mmd:datetime">
+                            <xsl:sort select="." order="descending" />
+                            <xsl:if test="position() = 1">
+                                <xsl:value-of select="."/>
+                            </xsl:if>
+                        </xsl:for-each>
+                        </xsl:variable>
+                       <xsl:value-of select="$latest"/>
+                   </xsl:element>
+                </xsl:element>
+                <xsl:element name="gmd:dateType">
+                    <xsl:element name="gmd:CI_DateTypeCode">
+                        <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode</xsl:attribute>
+                        <xsl:attribute name="codeListValue">revision</xsl:attribute>
+                        <xsl:text>revision</xsl:text>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:element>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template match="mmd:keywords">
@@ -313,7 +375,16 @@
 	   <xsl:element name="gmd:CI_Citation">
 	   <xsl:element name="gmd:title">
               <xsl:element name="gco:CharacterString">
-                 <xsl:value-of select="@vocabulary" />
+		 <xsl:choose>
+		     <xsl:when test="@vocabulary = 'CF' or @vocabulary = 'cf' or @vocabulary='GCMD' or @vocabulary= 'gcmd'">
+                         <xsl:variable name="vocabulary" select="@vocabulary" />
+                         <xsl:variable name="mmd_voc_mapping" select="document('')/*/mapping:vocabulary[@mmd=$vocabulary]/@iso" />
+                         <xsl:value-of select="$mmd_voc_mapping" />
+	             </xsl:when>
+		     <xsl:otherwise>
+                         <xsl:value-of select="@vocabulary" />
+		    </xsl:otherwise>
+	         </xsl:choose>
 	      </xsl:element>
 	   </xsl:element>	
 	   </xsl:element>	
@@ -535,38 +606,43 @@
             <xsl:element name="gmd:role">
                 <xsl:element name="gmd:CI_RoleCode">
                     <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode</xsl:attribute>
-                    <xsl:attribute name="codeListValue">
+		        <!--mapping should be revised-->
                         <xsl:choose>
                             <xsl:when test="mmd:role = 'Principal investigator'">
+                                <xsl:attribute name="codeListValue">
+                                    <xsl:text>principalInvestigator</xsl:text>
+                                </xsl:attribute>
                                 <xsl:text>principalInvestigator</xsl:text>
                             </xsl:when>
                             <xsl:when test="mmd:role = 'Technical contact'">
+                                <xsl:attribute name="codeListValue">
+                                    <xsl:text>pointOfContact</xsl:text>
+                                </xsl:attribute>
                                 <xsl:text>pointOfContact</xsl:text>
                             </xsl:when>
                             <xsl:when test="mmd:role = 'Metadata author'">
+                                <xsl:attribute name="codeListValue">
+                                    <xsl:text>author</xsl:text>
+                                </xsl:attribute>
                                 <xsl:text>author</xsl:text>
                             </xsl:when>
+                            <xsl:when test="mmd:role = 'Data center contact'">
+                                <xsl:attribute name="codeListValue">
+                                    <xsl:text>distributor</xsl:text>
+                                </xsl:attribute>
+                                <xsl:text>distributor</xsl:text>
+                            </xsl:when>
                             <xsl:otherwise>
+                                <xsl:attribute name="codeListValue">
+                                    <xsl:text>pointOfContact</xsl:text>
+                                </xsl:attribute>
                                 <xsl:text>pointOfContact</xsl:text>
                             </xsl:otherwise>
                         </xsl:choose>
-                    </xsl:attribute>
                 </xsl:element>             
             </xsl:element>
         </xsl:element>
     
-    </xsl:template>
-
-    <xsl:template match="mmd:project">
-
-    </xsl:template>
-
-    <xsl:template match="mmd:instrument">
-
-    </xsl:template>
-
-    <xsl:template match="mmd:platform">
-
     </xsl:template>
 
     <xsl:template match="mmd:dataset_production_status">
@@ -579,6 +655,18 @@
 
     </xsl:template>
 
+    <xsl:template match="mmd:storage_information">
+        <xsl:element name="gmd:distributionFormat">
+            <xsl:element name="gmd:MD_Format">
+                <xsl:element name="gmd:name">
+                    <xsl:element name="gco:CharacterString">
+                        <xsl:value-of select="mmd:file_format" />
+                    </xsl:element>
+                </xsl:element>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
     <xsl:template match="mmd:iso_topic_category">
         <xsl:element name="gmd:topicCategory">
             <xsl:element name="gmd:MD_TopicCategoryCode">
@@ -586,6 +674,12 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
+
+    <!-- Mappings for thesaurs -->
+    <mapping:vocabulary iso="Global Change Master Directory (GCMD) Science Keywords" mmd="gcmd" />
+    <mapping:vocabulary iso="Global Change Master Directory (GCMD) Science Keywords" mmd="GCMD" />
+    <mapping:vocabulary iso="Climate and Forecast (CF) Standard Name Table" mmd="CF" />
+    <mapping:vocabulary iso="Climate and Forecast (CF) Standard Name Table" mmd="cf" />
 
     <!-- Mappings for dataset_production_status -->
     <mapping:dataset_status iso="completed" mmd="Complete" />
