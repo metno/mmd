@@ -35,6 +35,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         #mypath = ds.url.replace(mystart.replace('catalog.html',''),'').split('?')[0]
         mypath = (ds.url.split('?')[0].replace('catalog.xml','')).replace(mystart.replace('catalog.html',''),'')
         newdstdir = os.path.join(dstdir,mypath)
+        # Make more robust...
         if not os.path.exists(newdstdir):
             os.makedirs(newdstdir)
         infile = ds.opendap_url()
@@ -61,7 +62,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         mynode = myxml.find("./mmd:metadata_identifier", myroot.nsmap)
         #print(mynode.text, ds.url.replace('catalog.xml?dataset=',''))
         # If ID is not a UUID, replace with a newly generated UUID
-        if mynode:
+        if mynode is not None:
             try:
                 uuidver = uuid.UUID(mynode.text).version
             except ValueError:
@@ -89,15 +90,16 @@ def traverse_thredds(mystart, dstdir, mydepth):
         myroot.insert(4, mynode)
 
         # Add and update last_metdata_update
-        mynode = ET.Element("{http://www.met.no/schema/mmd}last_metadata_update")
-        mychild = ET.SubElement(mynode,"{http://www.met.no/schema/mmd}update")
-        mygchild1 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}datetime")
-        mygchild1.text = datetime.now(tz=pytz.UTC).strftime('%Y-%m-%dT%H:%M:%S%Z')
-        mygchild2 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}type")
-        mygchild2.text = 'Created'
-        mygchild3 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}note")
-        mygchild3.text = 'Created automatically from traversing THREDDS server'
-        myroot.insert(5,mynode)
+        # Removed for now since covered by nc_to_mmd
+##        mynode = ET.Element("{http://www.met.no/schema/mmd}last_metadata_update")
+##        mychild = ET.SubElement(mynode,"{http://www.met.no/schema/mmd}update")
+##        mygchild1 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}datetime")
+##        mygchild1.text = datetime.now(tz=pytz.UTC).strftime('%Y-%m-%dT%H:%M:%S%Z')
+##        mygchild2 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}type")
+##        mygchild2.text = 'Created'
+##        mygchild3 = ET.SubElement(mychild,"{http://www.met.no/schema/mmd}note")
+##        mygchild3.text = 'Created automatically from traversing THREDDS server'
+##        myroot.insert(5,mynode)
 
         # Add collection
         mynode = ET.Element("{http://www.met.no/schema/mmd}collection")
@@ -115,7 +117,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
 
         # Check and potentially modify activity_type
         mynode = myxml.find("./mmd:activity_type",namespaces=myroot.nsmap)
-        if mynode:
+        if mynode is not None:
             mynode.text = 'Not available'
         else:
             mynode = ET.Element("{http://www.met.no/schema/mmd}activity_type")
@@ -124,7 +126,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
 
         # Check and potentially modify operational_status
         mynode = myxml.find("./mmd:operational_status",namespaces=myroot.nsmap)
-        if mynode:
+        if mynode is not None:
             mynode.text = 'Not available'
         else:
             mynode = ET.Element("{http://www.met.no/schema/mmd}operational_status")
@@ -188,7 +190,6 @@ def traverse_thredds(mystart, dstdir, mydepth):
         # Reference should be removed
         # dataset citation has to be further improved...
 
-        sys.exit()
         # Create new file
         myxml.write(os.path.join(newdstdir,outfile), pretty_print=True)
 
