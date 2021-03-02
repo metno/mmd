@@ -178,7 +178,12 @@
                     <xsl:element name="gmd:language">
                         <xsl:element name="gmd:LanguageCode">
                             <xsl:attribute name="codeList">http://www.loc.gov/standards/iso639-2</xsl:attribute>
-                            <xsl:attribute name="codeListValue">eng</xsl:attribute>
+			        <xsl:variable name="language" select="mmd:dataset_language" />
+                                <xsl:variable name="language_mapping" select="document('')/*/mapping:language_code[@mmd=$language]/@iso" />
+                            <xsl:attribute name="codeListValue">
+                                <xsl:value-of select="$language_mapping" />
+                            </xsl:attribute>
+                            <xsl:value-of select="$language_mapping" />
                         </xsl:element>
                     </xsl:element>
 
@@ -652,4 +657,6 @@
     <mapping:data_access_type_geonetwork iso="WWW:DOWNLOAD-1.0-ftp--download" mmd="FTP" />
     <mapping:data_access_type_geonetwork iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
     <mapping:data_access_type_geonetwork iso="WWW:LINK-1.0-http--opendap" mmd="OPeNDAP" />
+
+    <mapping:language_code iso="eng" mmd="en" />
 </xsl:stylesheet>
