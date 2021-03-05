@@ -154,7 +154,7 @@
             </xsl:element>
 -->
 	   <xsl:element name="mmd:related_dataset">
-                <xsl:attribute name="mmd:relation_type">parent</xsl:attribute>
+                <xsl:attribute name="relation_type">parent</xsl:attribute>
                 <xsl:copy-of select="$parentDataset"/>
            </xsl:element>
         </xsl:element>
