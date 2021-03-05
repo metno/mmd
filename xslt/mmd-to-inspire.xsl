@@ -4,10 +4,11 @@
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
+    xmlns:gmi="http://www.isotc211.org/2005/gmi" 
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd"
+    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd http://www.isotc211.org/2005/gmi http://www.isotc211.org/2005/gmx/gmi.xsd"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
@@ -15,7 +16,7 @@
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/mmd:mmd">
-        <xsl:element name="gmd:MD_Metadata">
+        <xsl:element name="gmi:MD_Metadata">
 
 	    <!--metadata identfier. INSPIRE: Mandatory for dataset and dataset series. multiplicity [1..*]-->
             <xsl:apply-templates select="mmd:metadata_identifier" />
@@ -23,7 +24,7 @@
             <gmd:language>
 		    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
             </gmd:language>
-            <!--gmd:locale>
+            <gmd:locale>
                 <gmd:PT_Locale id="locale-nob">
                     <gmd:languageCode>
                         <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="nob">Norwegian</gmd:LanguageCode>
@@ -34,7 +35,7 @@
                             codeListValue="utf8"/>
                     </gmd:characterEncoding>
                 </gmd:PT_Locale>
-            </gmd:locale-->            
+            </gmd:locale>            
 
             <!--resource type is mandatory, multiplicity [1]-->
             <gmd:hierarchyLevel>
@@ -204,6 +205,63 @@
 
             </xsl:element>        
 
+	    <!--gmi acquisition info-->
+	    <xsl:if test="mmd:platform != ''">
+                <xsl:element name="gmi:acquisitionInformation">
+                    <xsl:element name="gmi:MI_AcquisitionInformation">
+                        <xsl:element name="gmi:platform">
+                            <xsl:element name="gmi:MI_Platform">
+                                <xsl:element name="gmi:identifier">
+                                    <xsl:element name="gmd:code">
+                                        <xsl:element name="gmx:Anchor">
+                                             <xsl:attribute name="xlink:href">
+                                                 <xsl:value-of select="mmd:platform/mmd:resource" />
+                                             </xsl:attribute>
+                                             <xsl:value-of select="mmd:platform/mmd:short_name" />
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmi:description">
+                                    <xsl:value-of select="mmd:platform/mmd:long_name" />
+                                </xsl:element>
+                                <xsl:element name="gmi:instrument">
+                                    <xsl:element name="gmi:MI_Instrument">
+                                        <xsl:element name="gmi:identifier">
+                                            <xsl:element name="gmd:code">
+                                                <xsl:element name="gmx:Anchor">
+                                                     <xsl:attribute name="xlink:href">
+                                                         <xsl:value-of select="mmd:platform/mmd:instrument/mmd:resource" />
+                                                     </xsl:attribute>
+	            		                     <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                        <xsl:element name="gmi:type">
+                                            <xsl:element name="gco:CharacterString">
+	            		                <xsl:value-of select="mmd:platform/mmd:instrument/mmd:long_name" />
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:if>
+
+	    <!--gmi content info-->
+	    <xsl:if test="mmd:platform/mmd:ancillary/mmd:cloud_coverage != ''">
+                <xsl:element name="gmd:contentInfo">
+                    <xsl:element name="gmd:MD_ImageDescription">
+                        <xsl:element name="gmd:cloudCoverPercentage">
+                            <xsl:element name="gco:Real">
+	            	    <xsl:value-of select="mmd:platform/mmd:ancillary/mmd:cloud_coverage" />
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:if>
+
             <xsl:element name="gmd:distributionInfo">
                 <xsl:element name="gmd:MD_Distribution">
 
@@ -305,8 +363,17 @@
     <xsl:template match="mmd:title">
 
         <xsl:element name="gmd:title">
+            <xsl:attribute name="xsi:type">PT_FreeText_PropertyType</xsl:attribute>
             <xsl:element name="gco:CharacterString">
                 <xsl:value-of select="." />
+            </xsl:element>
+            <xsl:element name="gmd:PT_FreeText">
+                <xsl:element name="gmd:textGroup">
+                    <xsl:element name="gmd:LocalisedCharacterString">
+                        <xsl:attribute name="locale">#locale-nob</xsl:attribute>
+                        <xsl:value-of select="../mmd:title[@xml:lang = 'no']" />
+                    </xsl:element>
+                </xsl:element>
             </xsl:element>
         </xsl:element>    
 
@@ -316,8 +383,17 @@
     <xsl:template match="mmd:abstract">
     
         <xsl:element name="gmd:abstract">
+            <xsl:attribute name="xsi:type">PT_FreeText_PropertyType</xsl:attribute>
             <xsl:element name="gco:CharacterString">
                 <xsl:value-of select="." />
+            </xsl:element>
+            <xsl:element name="gmd:PT_FreeText">
+                <xsl:element name="gmd:textGroup">
+                    <xsl:element name="gmd:LocalisedCharacterString">
+                        <xsl:attribute name="locale">#locale-nob</xsl:attribute>
+                        <xsl:value-of select="../mmd:abstract[@xml:lang = 'no']" />
+                    </xsl:element>
+                </xsl:element>
             </xsl:element>
         </xsl:element>
           
