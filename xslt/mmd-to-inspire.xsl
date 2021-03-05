@@ -124,7 +124,7 @@
                     
                             <xsl:element name="gmd:accessConstraints">
                                 <xsl:element name="gmd:MD_RestrictionCode">
-                                    <xsl:attribute name="codeList">ttp://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
+                                    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
                                     <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
                                     <xsl:text>otherRestrictions</xsl:text>
                                 </xsl:element>
