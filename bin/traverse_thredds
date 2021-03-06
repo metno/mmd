@@ -42,15 +42,13 @@ def traverse_thredds(mystart, dstdir, mydepth):
         outfile = os.path.splitext(ds.name)[0]+'.xml'
         try:
             md = Nc_to_mmd(dstdir, outfile, infile, False, False)
-        except:
-            print('Something setting up ACDD extraction', sys.exc_info()[0])
+        except Exception as e:
+            print('Something failed setting up ACDD extraction', e)
             continue
         try:
             myxml = md.to_mmd()
-        except:
-            print('Something failed when extracting MMD elements',
-                    sys.exc_info()[0])
-            sys.exit()
+        except Exception as e:
+            print('Something failed when extracting MMD elements', e)
             continue
         # Need to add option to not overwrite the ID.
 
