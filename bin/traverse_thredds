@@ -51,7 +51,8 @@ def traverse_thredds(mystart, dstdir, mydepth):
             print('Something failed when extracting MMD elements', e)
             continue
 
-        print('>>>>myxml',myxml)
+        if myxml is None:
+            continue
         # Modify the XML generated with information from THREDDS
         #print('Parsing XML')
         #myxml = ET.parse(os.path.join(dstdir,outfile))
