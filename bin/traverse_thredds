@@ -210,8 +210,7 @@ if __name__ == '__main__':
     
     try:
         traverse_thredds(args.starturl, args.dstdir, args.depth)
-    except:
-        print('Something went wrong', sys.exc_info()[0])
+    except Exception as e:
+        print('Something went wrong', e)
         sys.exit()
     sys.exit()
-
