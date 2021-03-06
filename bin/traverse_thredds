@@ -50,8 +50,8 @@ def traverse_thredds(mystart, dstdir, mydepth):
         except Exception as e:
             print('Something failed when extracting MMD elements', e)
             continue
-        # Need to add option to not overwrite the ID.
 
+        print('>>>>myxml',myxml)
         # Modify the XML generated with information from THREDDS
         #print('Parsing XML')
         #myxml = ET.parse(os.path.join(dstdir,outfile))
@@ -211,6 +211,6 @@ if __name__ == '__main__':
     try:
         traverse_thredds(args.starturl, args.dstdir, args.depth)
     except Exception as e:
-        print('Something went wrong', e)
+        print('Something went wrong:', e)
         sys.exit()
     sys.exit()
