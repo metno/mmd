@@ -210,15 +210,36 @@
                         <xsl:element name="gmi:platform">
                             <xsl:element name="gmi:MI_Platform">
                                 <xsl:element name="gmi:identifier">
-                                    <xsl:value-of select="mmd:platform/mmd:short_name" />
+                                    <xsl:element name="gmd:code">
+                                        <xsl:element name="gmx:Anchor">
+                                             <xsl:attribute name="xlink:href">
+                                                 <xsl:value-of select="mmd:platform/mmd:resource" />
+                                             </xsl:attribute>
+                                             <xsl:value-of select="mmd:platform/mmd:short_name" />
+                                        </xsl:element>
+                                    </xsl:element>
                                 </xsl:element>
                                 <xsl:element name="gmi:description">
-                                    <xsl:value-of select="mmd:platform/mmd:long_name" />
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:value-of select="mmd:platform/mmd:long_name" />
+                                    </xsl:element>
                                 </xsl:element>
                                 <xsl:element name="gmi:instrument">
                                     <xsl:element name="gmi:MI_Instrument">
                                         <xsl:element name="gmi:identifier">
-	            		        <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+                                            <xsl:element name="gmd:code">
+                                                <xsl:element name="gmx:Anchor">
+                                                     <xsl:attribute name="xlink:href">
+                                                         <xsl:value-of select="mmd:platform/mmd:instrument/mmd:resource" />
+                                                     </xsl:attribute>
+	            		                     <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                        <xsl:element name="gmi:type">
+                                            <xsl:element name="gco:CharacterString">
+	            		                <xsl:value-of select="mmd:platform/mmd:instrument/mmd:long_name" />
+                                            </xsl:element>
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
