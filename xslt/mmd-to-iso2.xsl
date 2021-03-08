@@ -107,12 +107,9 @@
                             <xsl:element name="gmd:identifier">
                                 <xsl:element name="gmd:MD_Identifier">
                                     <xsl:element name="gmd:code">
-                                        <xsl:element name="gmx:Anchor">
-                                        <xsl:attribute name="xlink:href">
-					    <xsl:value-of select="mmd:dataset_citation/mmd:doi" />
-                                        </xsl:attribute>
-					    <xsl:value-of select="mmd:dataset_citation/mmd:doi" />
-                                        </xsl:element>
+                                        <xsl:element name="gco:CharacterString">
+				    	    <xsl:value-of select="mmd:metadata_identifier" />
+                                        </xsl:element>					    
                                     </xsl:element>
                                 </xsl:element>
                             </xsl:element>
