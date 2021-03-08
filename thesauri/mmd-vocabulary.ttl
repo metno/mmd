@@ -475,9 +475,9 @@
   skos:member <http://vocab.met.no/mmd/Platform/Sentinel-1A>, <http://vocab.met.no/mmd/Platform/Sentinel-1B>, <http://vocab.met.no/mmd/Platform/Sentinel-2A>, <http://vocab.met.no/mmd/Platform/Sentinel-2B>, <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B>, <http://vocab.met.no/mmd/Platform/Metop-A>, <http://vocab.met.no/mmd/Platform/Metop-B>, <http://vocab.met.no/mmd/Platform/Metop-C>, <http://vocab.met.no/mmd/Platform/NOAA-18>, <http://vocab.met.no/mmd/Platform/NOAA-19>, <http://vocab.met.no/mmd/Platform/NOAA-20>, <http://vocab.met.no/mmd/Platform/SNPP>, <http://vocab.met.no/mmd/Platform/Aqua>, <http://vocab.met.no/mmd/Platform/Terra>, <http://vocab.met.no/mmd/Platform/FY-3D>, <http://vocab.met.no/mmd/Platform/FY-3E> .
 
 <http://vocab.met.no/mmd/Platform/Sentinel-1A>
-  a skos:Concept ;
+  a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-1A"@en ;
-  skos:altLabel "S1A"@en ;
+  skos:altLabel "Sentinel-1A"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/SAR-C> ;  
   skos:narrower <http://vocab.met.no/mmd/Instrument/SAR-C> ;
   skos:definition """Sentinel-1 is the European Radar Observatory, representing the first new space component of the GMES (Global Monitoring for Environment and Security) satellite family, designed and developed by ESA and funded by the EC (European Commission). The Copernicus missions (Sentinel-1, -2, and -3) represent the EU contribution to GEOSS (Global Earth Observation System of Systems). Sentinel-1 is composed of a constellation of two satellites, Sentinel-1A and Sentinel-1B, sharing the same orbital plane with a 180° orbital phasing difference. The mission provides an independent operational capability for continuous radar mapping of the Earth with enhanced revisit frequency, coverage, timeliness and reliability for operational services and applications requiring long time series.
@@ -486,9 +486,9 @@
   skos:exactMatch <http://gcmdservices.gsfc.nasa.gov/kms/concept/c7279e54-f7c1-4ee7-a957-719d6021a3f6> .
 
 <http://vocab.met.no/mmd/Platform/Sentinel-1B>
-  a skos:Concept ;
+  a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-1B"@en ;
-  skos:altLabel "S1B"@en ;
+  skos:altLabel "Sentinel-1B"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/SAR-C> ;  
   skos:narrower <http://vocab.met.no/mmd/Instrument/SAR-C> ;
   skos:definition """Sentinel-1 is the European Radar Observatory, representing the first new space component of the GMES (Global Monitoring for Environment and Security) satellite family, designed and developed by ESA and funded by the EC (European Commission). The Copernicus missions (Sentinel-1, -2, and -3) represent the EU contribution to GEOSS (Global Earth Observation System of Systems). Sentinel-1 is composed of a constellation of two satellites, Sentinel-1A and Sentinel-1B, sharing the same orbital plane with a 180° orbital phasing difference. The mission provides an independent operational capability for continuous radar mapping of the Earth with enhanced revisit frequency, coverage, timeliness and reliability for operational services and applications requiring long time series.
@@ -497,45 +497,45 @@
   skos:exactMatch <http://gcmdservices.gsfc.nasa.gov/kms/concept/9940dbad-1a9a-4858-a0e8-af35b21277e2> .
 
 <http://vocab.met.no/mmd/Platform/Sentinel-2A>
-  a skos:Concept ;
+  a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-2A"@en ;
-  skos:altLabel "S2A"@en ;
+  skos:altLabel "Sentinel-2A"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/MSI> ;  
   skos:definition "The Sentinel-2 mission is a land monitoring constellation of two satellites that provide high resolution optical imagery and provide continuity for the current SPOT and Landsat missions. The mission provides a global coverage of the Earth's land surface every 10 days with one satellite and 5 days with 2 satellites, making the data of great use in on-going studies. The satellites are equipped with the state-of-the-art MSI (Multispectral Imager) instrument, that offers high-resolution optical imagery."@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_2a> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/6f1c359b-b1a6-47c1-979e-0689e637fbdc> .
 
 <http://vocab.met.no/mmd/Platform/Sentinel-2B>
-  a skos:Concept ;
+  a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-2B"@en ;
-  skos:altLabel "S2B"@en ;
+  skos:altLabel "Sentinel-2B"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/MSI> ;  
   skos:definition ""@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_2b> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/f2445400-1981-4ef3-bf7c-f4aa35923ae9> .
 
 <http://vocab.met.no/mmd/Platform/Sentinel-3A>
-  a skos:Concept ;
+  a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-3A"@en ;
-  skos:altLabel "S3A"@en ;
+  skos:altLabel "Sentinel-3A"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/OLCI> , <http://vocab.met.no/mmd/Instrument/SLSTR>, <http://vocab.met.no/mmd/Instrument/MWR> ;  
   skos:definition "Mission Details Launch Date: Sentinel-3A - 16 February 2016 Sentinel-3B - 25 April 2018 Operational lifepsan: 7 years (With consumables for 12) Mission objectives: Measuring sea-surface topography, sea-surface height and significant wave height Measuring ocean and land-surface temperature Measuring ocean and land-surface colour Monitoring sea and land ice topography Sea-water quality and pollution monitoring Inland water monitoring, including rivers and lakes Aid ocean forecasts with acquired data Climate monitoring and modelling Land-use change monitoring Forest cover mapping Fire detection Weather forecasting Measuring Earth's thermal radiation for atmospheric applications Mission Orbit: Orbit Type: Sun-synchronous Orbit Height: 814 km Inclination: 98.6o Repeat Cycle: 27 days Payload: OLCI (Ocean and Land Colour Instrument) SLSTR (Sea and Land Surface Temperature Radiometer) SRAL (Synthetic Aperture Radar Altimeter) MWR (Microwave Radiometer) DORIS LRR (Laser Retroreflector) GNSS (Global Navigation Satellite System) Resolution and Swath Width: OLCI - 1270 km SLSTR - 1420 km Configuration: In addition to the observation instruments, the Sentinel-3 spacecraft will carry the GNSS (Global Navigation Satellite System) and LRR (Laser Retro Reflector) instruments. GNSS will provide precise orbit determination and can track multiple satellites simultaneously. LRR will be used to accurately locate the satellite in orbit using a laser ranging system. The dimensions of the craft are: 3.7 x 2.2 x 2.2 m with a weight (at time of launch) of 1250 kg. Launch vehicle: Rockot (Sentinel-3A and -3B) Operator: EUMETSAT Contractors: Thales Alenia Space is the prime contractor, responsible for constructing the spacecraft and the SRAL instrument, as well as contributing to the supply of the SLSTR instrument. Many European companies are involved in supplying the SLSTR instrument, including SELEX Galileo, RAL (Rutherford Appleton Laboratory), Jena-Optronik, Thales Alenia Space, ABSL and ESA-ESTEC. EADS CASA Espacio is contracted to provide the MWR instrument. CNES is contracted to provide the DORIS instrument. Eurockot and Arianespace are contracted to launch the spacecraft."@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_3a> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/5449d87b-5573-450f-8acb-2fdfeab3c8ce> .
 
 <http://vocab.met.no/mmd/Platform/Sentinel-3B>
-  a skos:Concept ;
+  a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-3B"@en ;
-  skos:altLabel "S3B"@en ;
+  skos:altLabel "Sentinel-3B"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/OLCI> , <http://vocab.met.no/mmd/Instrument/SLSTR>, <http://vocab.met.no/mmd/Instrument/MWR> ;  
   skos:definition "The Sentinel-3 (S3) mission of ESA and the EC is one of the elements of the GMES (Global Monitoring for Environment and Security) program, which responds to the requirements for operational and near-real-time monitoring of ocean, land and ice surfaces over a period of 20 years. The topography element of this mission will serve primarily the marine operational users but will also allow the monitoring of sea ice and land ice, as well as inland water surfaces, using novel observation techniques.The Sentinel-3 mission is designed as a constellation of two identical polar orbiting satellites, separated by 180º, for the provision of long-term operational marine and land monitoring services. The operational character of this mission implies a high level of availability of the data products and fast delivery time, which have been important design drivers for the mission."@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_3b> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/41163801-6aac-43e5-aed7-9f52613a6a73> .
 
 <http://vocab.met.no/mmd/Platform/Metop-A>
-  a skos:Concept ;
-  skos:prefLabel "Meteorological operational satellite - A"@en ;
-  skos:altLabel "Metop-A"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "Metop-A"@en ;
+  skos:altLabel "Meteorological operational satellite - A"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition "The MetOp-A satellite, developed by a consortium of European companies led by the main contractor EADS-Astrium, France, builds on the heritage gained from a successful series of European satellites, including the French Space Agency's (CNES) SPOT and ESA'S ERS and Envisat. The satellite consists of a Solar Array and two modules: the Payload Module (PLM) and the Service Module (SVM). The PLM accommodates the whole suite of instruments and associated support equipment. It includes advanced versions of the widely used scatterometer and ozone-monitoring instruments already flying onboard the ERS-2 satellite. The SVM, which interfaces with the launcher, provides the main satellite support functions, such as command and control, communications with the ground, power and orbit control and propulsion. MetOp-A carries a set of 'heritage' instruments, provided by the United States National Oceanic and Atmospheric Administration (NOAA) and the French Space Agency (CNES), and a new generation of European instruments offering precise sensing capabilities to both meteorologists and climatologists. http://www.esa.int/esaLP/LPmetop.html [Summary from the ESA MetOp Meteorological Missions home page] Group: Platform_Details Entry_ID: METOP-A Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: METOP Short_Name: METOP-A Long_Name: Meteorological Operational Satellite - A End_Group Group: Platform_Associated_Instruments Short_Name: SARR Short_Name: SEM-2 Short_Name: A-DCS Short_Name: AVHRR-3 Short_Name: HIRS/4 Short_Name: AMSU-B Short_Name: AMSU-A Short_Name: GOME-2 Short_Name: ASCAT Short_Name: GRAS Short_Name: MHS Short_Name: IASI End_Group Group: Orbit Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Online_Resource: http://www.esa.int/esaLP/LPmetop.html Group: Platform_Logistics Launch_Date: 2006-10-19 Launch_Site: Baikonur Cosmodrome, Tyuratam, Russia Primary_Sponsor: ESA End_Group End_Group"@en ;
@@ -543,9 +543,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/8143808e-1005-4fed-a469-c2bd5f1521bf> .
 
 <http://vocab.met.no/mmd/Platform/Metop-B>
-  a skos:Concept ;
-  skos:prefLabel "Meteorological operational satellite - B"@en ;
-  skos:altLabel "Metop-B"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "Metop-B"@en ;
+  skos:altLabel "Meteorological operational satellite - B"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition ""@en ;
@@ -553,9 +553,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/c9f84df0-e807-46e3-8fce-c33e9201fbc2> .
 
 <http://vocab.met.no/mmd/Platform/Metop-C>
-  a skos:Concept ;
-  skos:prefLabel "Meteorological operational satellite - C"@en ;
-  skos:altLabel "Metop-C"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "Metop-C"@en ;
+  skos:altLabel "Meteorological operational satellite - C"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition ""@en ;
@@ -563,9 +563,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/6120cea0-c943-4c7c-bddd-8d8648d58022> .
 
 <http://vocab.met.no/mmd/Platform/NOAA-18>
-  a skos:Concept ;
-  skos:prefLabel "National Oceanic and Atmospheric Administration - 18"@en ;
-  skos:altLabel "NOAA-18"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "NOAA-18"@en ;
+  skos:altLabel "National Oceanic and Atmospheric Administration - 18"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition ""@en ;
@@ -573,9 +573,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/37afee26-f2fd-47df-b8e0-7cccd71e6b8c> .
 
 <http://vocab.met.no/mmd/Platform/NOAA-19>
-  a skos:Concept ;
-  skos:prefLabel "National Oceanic and Atmospheric Administration - 19"@en ;
-  skos:altLabel "NOAA-19"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "NOAA-19"@en ;
+  skos:altLabel "National Oceanic and Atmospheric Administration - 19"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition "[Source: NASA Portal, http://www.nasa.gov/mission_pages/NOAA-N-Prime/main/index.html ] The Delta II carrying NOAA-N Prime lifted off Feb. 6, 2009 at 2:22 a.m. Pacific time, 5:22 a.m. Eastern time from Space Launch Complex-2 at Vandenberg Air Force Base in California. [Image and Text Source: NOAA-N Prime Spacecraft web page, http://goespoes.gsfc.nasa.gov/poes/spacecraft/noaanprime_spacecraft.html ] NOAA-N Prime will be the last in the series of TIROS ATN. NOAA-N' has a planned launch date of February 2009 from Vandenberg AFB, CA by a Delta II launch vehicle. The spacecraft will continue to provide a polar-orbiting platform to support (1) environmental monitoring instruments for imaging and measuring the Earth's atmosphere, its surface, and cloud cover, including Earth radiation, atmospheric ozone, aerosol distribution, sea surface temperature, and vertical temperature and water profiles in the troposphere and stratosphere; (2) measurement of proton and electron flux at orbit altitude; (3) data collection from remote platforms; and (4) the Search and Rescue Satellite-Aided Tracking (SARSAT) system. Additionally, NOAA-N' will be the fifth in the series of support dedicated microwave instruments for the generation of temperature, moisture, surface, and hydrological products in cloudy regions where visible and infrared (IR) instruments have decreased capability. This spacecraft will carry an Advanced - DCS instead of the previous DCS. More Information: http://goespoes.gsfc.nasa.gov/poes/spacecraft/noaanprime_spacecraft.html Group: Platform_Details Entry_ID: NOAA-19 Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: NOAA POES (Polar Orbiting Environmental Satellites) Short_Name: NOAA-19 Long_Name: National Oceanic & Atmospheric Administration-19 End_Group Group: Platform_Associated_Instruments Short_Name: SARR Short_Name: SEM-2 Short_Name: SBUV/2 Short_Name: MHS Short_Name: HIRS/4 Short_Name: AVHRR-3 Short_Name: AMSU-A End_Group Group: Orbit Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2009-01-23 Online_Resource: http://goespoes.gsfc.nasa.gov/poes/index.html Online_Resource: http://www.osd.noaa.gov/POES/noaa_n_prime.htm Online_Resource: http://goespoes.gsfc.nasa.gov/poes/Goes_N_Prime.pdf Online_Resource: http://www2.ncdc.noaa.gov/docs/klm/nnpsupp.htm Online_Resource: http://www.nasa.gov/mission_pages/NOAA-N-Prime/main/index.html Sample_Image: http://goespoes.gsfc.nasa.gov/poes/gallery/N%20Prime/unpacking/Unpacking-5_800px.jpg Group: Platform_Logistics Launch_Date: 2009-02-06 Launch_Site: Vandenberg Air Force Base, USA Primary_Sponsor: USA/NASA Primary_Sponsor: USA/NOAA End_Group End_Group"@en ;
@@ -583,9 +583,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/b7461b99-2b6f-460a-ae7f-6bb37515684d> .
 
 <http://vocab.met.no/mmd/Platform/NOAA-20>
-  a skos:Concept ;
-  skos:prefLabel "National Oceanic and Atmospheric Administration - 20"@en ;
-  skos:altLabel "NOAA-20"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "NOAA-20"@en ;
+  skos:altLabel "National Oceanic and Atmospheric Administration - 20"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
   skos:narrower <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
   skos:definition "NOAA-20, which launched into space on November 18, 2017, is the first spacecraft of NOAA's next generation of polar-orbiting satellites. Capitalizing on the success of Suomi NPP, NOAA-20 features five similar instruments: (1) VIIRS, (2) CrIS, (3) ATMS, (4) OMPS-N, and (5) CERES-FM6. NOAA-20 has a design life of seven years and it will circle the Earth in the same orbit as Suomi NPP, although the two satellites will be separated in time and space by 50 minutes. Additional information available at: https://www.jpss.noaa.gov/ Group: Platform_Details Entry_ID: JPSS-1 Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: Joint Polar Satellite System (JPSS) Short_Name: NOAA-20 Long_Name: Joint Polar Satellite System - 1 End_Group Group: Synonymous_Platform_Names Short_Name: C-1 Short_Name: Defense Weather Satellite System Short_Name: DWSS End_Group Group: Platform_Associated_Instruments Short_Name: CERES-FM5 Short_Name: A-DCS Short_Name: ATMS Short_Name: CRIMSS Short_Name: CRIS Short_Name: MIS Short_Name: OMPS Short_Name: SEM-N Short_Name: VIIRS End_Group Group: Orbit Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2007-11-09 Online_Resource: https://www.jpss.noaa.gov/ Group: Platform_Logistics Launch_Date: 2017-11-18 Primary_Sponsor: USA/NOAA Primary_Sponsor: USA/NASA End_Group End_Group"@en ;
@@ -593,9 +593,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/586db0b3-5f94-466e-b7c1-a2dbedc0c1fc> .
 
 <http://vocab.met.no/mmd/Platform/SNPP>
-  a skos:Concept ;
-  skos:prefLabel "Suomi National Polar-orbiting Partnership"@en ;
-  skos:altLabel "SNPP"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "SNPP"@en ;
+  skos:altLabel "Suomi National Polar-orbiting Partnership"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
   skos:narrower <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
   skos:definition "[Text from the NPP Launch Blog, https://www.nasa.gov/mission_pages/NPP/launch/launch_blog.html ] The NPOESS Preparatory Project (NPP) spacecraft lifted off aboard a United Launch Alliance Delta II rocket from Space Launch Complex 2 at Vandenberg Air Force Base in California on Oct. 28, 2011 at 5:48 a.m. EDT. The NPP spacecraft will build on more than four decades Earth observation to help us better understand our climate. The National Polar-Orbiting Operational Environmental Satellite System (NPOESS) Preparatory Project (NPP) is a joint mission involving the National Aeronautics and Space Administration's (NASA) and the NPOESS Integrated Program Office (IPO). The NPP mission collects and distributes remotely-sensed land, ocean, and atmospheric data to the meteorological and global climate change communities as the responsibility for these measurements transitions from existing Earth-observing missions such as Aqua, Terra and Aura, to the NPOESS. It will provide atmospheric and sea surface temperatures, humidity sounding, land and ocean biological productivity, and cloud and aerosol properties. For the IPO, NPP provides risk reduction with an opportunity to demonstrate and validate new instruments and processing algorithms, as well as to demonstrate and validate aspects of the NPOESS command, control, communications and ground processing capabilities prior to the launch of the first NPOESS spacecraft. More Information: https://www.jpss.noaa.gov Group: Platform_Details Entry_ID: SUOMI-NPP Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: Joint Polar Satellite System (JPSS) Short_Name: SUOMI-NPP Long_Name: Suomi National Polar-orbiting Partnership End_Group Group: Platform_Associated_Instruments Short_Name: CRIMSS Short_Name: ATMS Short_Name: CRIS-NPOESS Short_Name: OMPS Short_Name: VIIRS Short_Name: CERES-FM5 End_Group Group: Orbit Repeat_Cycle: 16-day Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2009-02-27 Online_Resource: https://www.jpss.noaa.gov/ Online_Resource: https://www.nasa.gov/mission_pages/NPP/main/index.html Group: Platform_Logistics Launch_Date: 2011-10-28 Launch_Site: Vandenberg Air Force Base, USA Primary_Sponsor: USA/NASA Primary_Sponsor: USA/NOAA End_Group End_Group"@en ;
@@ -603,9 +603,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/85a52725-e6a1-430a-8506-c08c59ef31c7> .
 
 <http://vocab.met.no/mmd/Platform/Aqua>
-  a skos:Concept ;
-  skos:prefLabel "Earth Observation System - Aqua"@en ;
-  skos:altLabel "Aqua"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "Aqua"@en ;
+  skos:altLabel "Earth Observation System - Aqua"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/MODIS> ;
   skos:narrower <http://vocab.met.no/mmd/Instrument/MODIS> ;
   skos:definition "Aqua is a major international Earth Science satellite mission centered at NASA. Launched on May 4, 2002, the satellite has six different Earth-observing instruments on board and is named for the large amount of information being obtained about water in the Earth system from its stream of approximately 89 Gigabytes of data a day. The water variables being measured include almost all elements of the water cycle and involve water in its liquid, solid, and vapor forms. Additional variables being measured include radiative energy fluxes, aerosols, vegetation cover on the land, phytoplankton and dissolved organic matter in the oceans, and air, land, and water temperatures. Key Aqua Facts Joint with Brazil and Japan Dimensions: 2.7 m x 2.5 m x 6.5 m stowed; 4.8 m x 16.7 m x 8.0 m deployed Mass: 2,934 kg (1,750 kg spacecraft, 1,082 kg instruments, 102 kg propellants) Power: 4,600 W silicon cell array and a NiH2 battery Average Data Rate: 89 Gbytes/day Data Storage: 136-Gbit solid state recorder (SSR) for storage of up to two orbits of data Data Relay Methods: Direct downlink from the SSR to polar ground stations; direct broadcast Data Links: X-band Telemetry: S-band Group: Platform_Details Entry_ID: AQUA Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: EOS (Earth Observing System) Short_Name: AQUA Long_Name: Earth Observing System, AQUA End_Group Group: Platform_Associated_Instruments Short_Name: CERES-FM4 Short_Name: CERES-FM3 Short_Name: AIRS Short_Name: AMSR-E Short_Name: AMSU-A Short_Name: HSB Short_Name: MODIS End_Group Group: Orbit Orbit_Altitude: 705 km Orbit_Inclination: 98.2 degrees Equator_Crossing: 1:30 p.m. (south to north) and 1:30 a.m. (north to south) Period: 98.8 minutes Repeat_Cycle: 16 days (233 revolutions) Perigee: 699 km (434 mi) Apogee: 706 km (438 mi) Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2007-04-16 Online_Resource: https://aqua.nasa.gov/ Online_Resource: https://global.jaxa.jp/projects/sat/aqua/ Online_Resource: https://www.nasa.gov/mission_pages/aqua/ Group: Platform_Logistics Launch_Date: 2002-05-04 Launch_Site: Vandenberg Air Force Base, USA Design_Life: 6 years Primary_Sponsor: USA/NASA Primary_Sponsor: BRAZIL/INPE Primary_Sponsor: JAPAN/JAXA End_Group End_Group"@en ;
@@ -613,9 +613,9 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/ea7fd15d-190d-43f3-bdd3-75f5d88dc3f8> .
 
 <http://vocab.met.no/mmd/Platform/Terra>
-  a skos:Concept ;
-  skos:prefLabel "Earth Observation System - Terra"@en ;
-  skos:altLabel "Terra"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "Terra"@en ;
+  skos:altLabel "Earth Observation System - Terra"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/MODIS> ;
   skos:narrower <http://vocab.met.no/mmd/Instrument/MODIS> ;
   skos:definition "Terra is the flagship satellite of NASA's Earth observing systems. Terra is the first EOS (Earth Observing System) platform and provides global data on the state of the atmosphere, land, and oceans, as well as their interactions with solar radiation and with one another. Since the 1950's, it has become increasingly clear that human activities are modifying the composition of the atmosphere on a global scale. As the result of industrialization, the concentration of carbon dioxide has increased by about 20% during this period. More recently, the stratospheric concentrations of chemically-active gases containing chlorine, bromine, and fluorine have dramatically increased. These trends have created issues of global interest including global warming and declining levels of ozone (both globally and in the ozone &hole& in the Antarctic). It has become increasingly clear, however, that these processes do not occur independently of one another and can only be understood in the context of a global system. Accurate and precise measurements are needed to unravel complex and interactive relationships between chemical, radiative, and dynamical processes in the atmosphere, ocean, and on land. As a result, in 1991 NASA initiated a comprehensive program to understand the Earth's atmosphere, oceans, land, and cryosphere (ice and snow) as a single, complex, interactive system. NASA's Earth Observing System (EOS) consists of a series of spaceborne instruments to monitor crucial components of the Earth system, an advanced data handling system, and teams of scientists who will evaluate on-going climate change and predict future changes. Ultimately, EOS will produce scientifically sound recommendations for environmental policy to national and international bodies to mitigate or prepare for these changes. Key Terra Facts: Joint with Japan and Canada Orbit: Type: Near-polar, sun-synchronous Equatorial Crossing: 10:30 a.m. Altitude: 705 km Inclination: 98.1 degrees Period: 98.88 minutes Repeat Cycle: 16 days Dimensions: 2.7 m x 3.3 m x 6.8 m Mass: 5,190 kg Power: 2,530 W Design Life: 6 years Terra Status: Operating instruments: ASTER, CERES, MODIS, MISR, and MOPITT are operating well. ASTER Short Wave Infrared (SWIR) data is unavailable. Current life expectancy: Terra has far exceeded its design life and has a strong chance of operating successfully into the early 2020s. [Summary provided by NASA] Group: Platform_Details Entry_ID: Terra Group: Platform_Identification Platform_Category: Earth Observation Satellites Short_Name: Terra Long_Name: Earth Observing System, Terra (AM-1) End_Group Group: Synonymous_Platform_Names Short_Name: EOS AM-1 End_Group Group: Platform_Associated_Instruments Short_Name: MOPITT Short_Name: MODIS Short_Name: MISR Short_Name: CERES-FM2 Short_Name: CERES-FM1 Short_Name: ASTER End_Group Group: Orbit Orbit_Altitude: 705 km Orbit_Inclination: 98.2 degrees Equator_Crossing: 10:30 a.m. Period: 98.88 minutes Repeat_Cycle: 16 days Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2007-02-06 Online_Resource: https://terra.nasa.gov/ Online_Resource: https://www.nasa.gov/mission_pages/terra/index.html Sample_Image: https://www.nasa.gov/mission_pages/terra/spacecraft/index.html Group: Platform_Logistics Launch_Date: 1999-12-18 Launch_Site: VANDENBERG AIR FORCE BASE, USA Design_Life: 6 years Primary_Sponsor: USA/NASA End_Group End_Group"@en ;
@@ -623,18 +623,18 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/80eca755-c564-4616-b910-a4c4387b7c54> .
 
 <http://vocab.met.no/mmd/Platform/FY-3D>
-  a skos:Concept ;
-  skos:prefLabel "Feng-Yun 3D"@en ;
-  skos:altLabel "FY-3D"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "FY-3D"@en ;
+  skos:altLabel "Feng-Yun 3D"@en ;
   sosa:hosts <http://vocab.met.no/mmd/Instrument/MERSI-2> ;
   sosa:narrower <http://vocab.met.no/mmd/Instrument/MERSI-2> ;
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/fy_3d> .
 
 <http://vocab.met.no/mmd/Platform/FY-3E>
-  a skos:Concept ;
-  skos:prefLabel "Feng-Yun 3E"@en ;
-  skos:altLabel "FY-3E"@en ;
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "FY-3E"@en ;
+  skos:altLabel "Feng-Yun 3E"@en ;
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/fy_3e> .
 
@@ -646,18 +646,18 @@
   skos:member <http://vocab.met.no/mmd/Instrument/SAR-C>, <http://vocab.met.no/mmd/Instrument/MSI>, <http://vocab.met.no/mmd/Instrument/OLCI>, <http://vocab.met.no/mmd/Instrument/SLSTR>, <http://vocab.met.no/mmd/Instrument/MWR>, <http://vocab.met.no/mmd/Instrument/VIIRS>, <http://vocab.met.no/mmd/Instrument/AVHRR_3>, <http://vocab.met.no/mmd/Instrument/MERSI-2>, <http://vocab.met.no/mmd/Instrument/MODIS> .
 
 <http://vocab.met.no/mmd/Instrument/SAR-C>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "SAR-C"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-1A>, <http://vocab.met.no/mmd/Platform/Sentinel-1B> ;
   skos:broader <http://vocab.met.no/mmd/Platform/Sentinel-1A>, <http://vocab.met.no/mmd/Platform/Sentinel-1B> ;
   skos:narrower <http://vocab.met.no/mmd/Instrument_Modes/SM>, <http://vocab.met.no/mmd/Instrument_Modes/IW>, <http://vocab.met.no/mmd/Instrument_Modes/EW>, <http://vocab.met.no/mmd/Instrument_Modes/WV> ; 
-  skos:altLabel "C-SAR"@en, "Synthetic Aperture Radar (C-band)"@en ;
+  skos:altLabel "Synthetic Aperture Radar (C-band)"@en, "C-SAR"@en ;
   skos:definition "The C-SAR instrument is an active phased array antenna providing fast scanning in elevation (to cover the large range of incidence angle and to support ScanSAR operation) and in azimuth (to allow use of TOPS technique to meet the required image performance). To meet the polarisation requirements, it has dual channel transmit and receive modules and H/V-polarised pairs of slotted waveguides. It has an internal calibration scheme, where transmit signals are routed into the receiver to allow monitoring of amplitude/phase to facilitate high radiometric stability. SENTINEL-1's metallised carbon-fibre-reinforced-plastic radiating waveguides ensure good radiometric stability even though these elements are not covered by the internal calibration scheme. The digital chirp generator and selectable receive filter bandwidths allow efficient use of on-board storage considering the ground range resolution dependence on incidence angle. Group: Instrument_Details Entry_ID: SENTINEL-1 C-SAR Group: Instrument_Identification Instrument_Category: Earth Remote Sensing Instruments Instrument_Class: Active Remote Sensing Instrument_Type: Imaging Radars Short_Name: C-SAR Long_Name: C-Band Synthetic Aperture Radar End_Group Group: Associated_Platforms Short_Name: SENTINEL-1 End_Group Online_Resource: https://sentinel.esa.int/web/sentinel/sentinel-1-sar-wiki/-/wiki/Sentinel%20One/Instrument Creation_Date: 2015-02-05 End_Group"@en ;
-  rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar>, <http://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1> ;
+  rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar>, <https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/ed400e7c-229e-48be-9a93-84f2fc864448> .
 
 <http://vocab.met.no/mmd/Instrument/MSI>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MSI"@en ;
   skos:altLabel "Multi-Spectral Imager for Sentinel-2"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-2A>, <http://vocab.met.no/mmd/Platform/Sentinel-2B> ;
@@ -666,7 +666,7 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/fc57a9a0-a287-4bcf-a517-20811b55596b> .
 
 <http://vocab.met.no/mmd/Instrument/OLCI>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "OLCI"@en ;
   skos:altLabel "Ocean and Land Colour Imager"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B> ;
@@ -675,7 +675,7 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/65ed042c-df53-4afb-8b6a-1ea16958015d> .
 
 <http://vocab.met.no/mmd/Instrument/SLSTR>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "SLSTR"@en ;
   skos:altLabel "Sea and Land Surface Temperature Radiometer"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B> ;
@@ -684,7 +684,7 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/7204c4d5-b7d0-41af-ba90-61d47c6dc610> .
 
 <http://vocab.met.no/mmd/Instrument/MWR>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MWR"@en ;
   skos:altLabel "Micro-Wave Radiometer"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B> ;
@@ -693,7 +693,7 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/d81fc4e3-c0b4-4205-82b2-ef2161c169a3> .
 
 <http://vocab.met.no/mmd/Instrument/VIIRS>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "VIIRS"@en ;
   skos:altLabel "Visible/Infrared Imager Radiometer Suite"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/SNPP>, <http://vocab.met.no/mmd/Platform/NOAA-20> ;
@@ -703,7 +703,7 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/dd7c719e-5767-4ceb-b83a-66c1401dab4a> .
 
 <http://vocab.met.no/mmd/Instrument/AVHRR_3>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "AVHRR/3"@en ;
   skos:altLabel "Advanced Very High Resolution Radiometer / 3"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Metop-A>, <http://vocab.met.no/mmd/Platform/Metop-B>, <http://vocab.met.no/mmd/Platform/Metop-C>, <http://vocab.met.no/mmd/Platform/NOAA-18>, <http://vocab.met.no/mmd/Platform/NOAA-19> ;
@@ -713,7 +713,7 @@
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/87c44e15-54c8-407d-a881-8035a2d5512b> .
 
 <http://vocab.met.no/mmd/Instrument/MERSI-2>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MERSI-2"@en ;
   skos:altLabel "Medium Resolution Spectral Imager -2"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/FY-3D> ; 
@@ -722,7 +722,7 @@
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/mersi_2> .
 
 <http://vocab.met.no/mmd/Instrument/MODIS>
-  a skos:Concept ;
+  a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MODIS"@en ;
   skos:altLabel "Moderate-resolution Imaging Spectro-radiometer"@en ;
   sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Terra> ; 

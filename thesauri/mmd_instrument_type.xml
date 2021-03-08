@@ -18,6 +18,7 @@
 
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/SAR-C">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">SAR-C</skos:prefLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Sentinel-1A"/>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Sentinel-1B"/>
@@ -38,6 +39,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/MSI">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">MSI</skos:prefLabel>
         <skos:altLabel xml:lang="en">Multi-Spectral Imager for Sentinel-2</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Sentinel-2A"/>
@@ -50,6 +52,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/OLCI">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">OLCI</skos:prefLabel>
         <skos:altLabel xml:lang="en">Ocean and Land Colour Imager</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Sentinel-3A"/>
@@ -63,6 +66,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/SLSTR">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">SLSTR</skos:prefLabel>
         <skos:altLabel xml:lang="en">Sea and Land Surface Temperature Radiometer</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Sentinel-3A"/>
@@ -76,6 +80,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/MWR">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">MWR</skos:prefLabel>
         <skos:altLabel xml:lang="en">Micro-Wave Radiometer</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Sentinel-3A"/>
@@ -89,6 +94,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/VIIRS">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">VIIRS</skos:prefLabel>
         <skos:altLabel xml:lang="en">Visible/Infrared Imager Radiometer Suite</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/SNPP"/>
@@ -103,6 +109,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/AVHRR_3">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">AVHRR/3</skos:prefLabel>
         <skos:altLabel xml:lang="en">Advanced Very High Resolution Radiometer / 3</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Metop-A"/>
@@ -123,6 +130,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/MERSI-2">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">MERSI-2</skos:prefLabel>
         <skos:altLabel xml:lang="en">Medium Resolution Spectral Imager -2</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/FY-3D"/>
@@ -134,6 +142,7 @@
   
     <skos:member>
       <skos:Concept rdf:about="http://vocab.met.no/mmd/Instrument/MODIS">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <skos:prefLabel xml:lang="en">MODIS</skos:prefLabel>
         <skos:altLabel xml:lang="en">Moderate-resolution Imaging Spectro-radiometer</skos:altLabel>
         <sosa:isHostedBy rdf:resource="http://vocab.met.no/mmd/Platform/Terra"/>

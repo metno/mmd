@@ -313,12 +313,12 @@ variable.
 |============================================================================
 |Short name |Long name   | Resource
 
-|S1A        |Sentinel-1A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a
-|S1B        |Sentinel-1B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1b
-|S2A        |Sentinel-2A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2a
-|S2B        |Sentinel-2B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2b
-|S3A        |Sentinel-3A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3a
-|S3B        |Sentinel-3B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3b
+|Sentinel-1A  |Sentinel-1A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a
+|Sentinel-1B  |Sentinel-1B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1b
+|Sentinel-2A  |Sentinel-2A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2a
+|Sentinel-2B  |Sentinel-2B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2b
+|Sentinel-3A  |Sentinel-3A | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3a
+|Sentinel-3B  |Sentinel-3B | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3b
 |Metop-A    |Meteorological operational satellite - A | http://www.wmo-sat.info/oscar/satellites/view/metop-a
 |Metop-B    |Meteorological operational satellite - B | http://www.wmo-sat.info/oscar/satellites/view/metop-b
 |Metop-C    |Meteorological operational satellite - C | http://www.wmo-sat.info/oscar/satellites/view/metop-c
