@@ -16,7 +16,7 @@
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/mmd:mmd">
-        <xsl:element name="gmi:MD_Metadata">
+        <xsl:element name="gmi:MI_Metadata">
 
 	    <!--metadata identfier. INSPIRE: Mandatory for dataset and dataset series. multiplicity [1..*]-->
             <xsl:apply-templates select="mmd:metadata_identifier" />
