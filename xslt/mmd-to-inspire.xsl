@@ -22,7 +22,7 @@
             <xsl:apply-templates select="mmd:metadata_identifier" />
 
             <gmd:language>
-		    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
+		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng">English</gmd:LanguageCode>
             </gmd:language>
             <gmd:locale>
                 <gmd:PT_Locale id="locale-nob">
@@ -222,7 +222,9 @@
                                     </xsl:element>
                                 </xsl:element>
                                 <xsl:element name="gmi:description">
-                                    <xsl:value-of select="mmd:platform/mmd:long_name" />
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:value-of select="mmd:platform/mmd:long_name" />
+                                    </xsl:element>
                                 </xsl:element>
                                 <xsl:element name="gmi:instrument">
                                     <xsl:element name="gmi:MI_Instrument">
@@ -508,7 +510,7 @@
 	        <xsl:element name="gmd:thesaurusName">
 	            <xsl:element name="gmd:CI_Citation">
                         <xsl:choose>
-                            <xsl:when test="@vocabulary = 'gcmd' or @vocabulary ='GCMD'">
+                            <xsl:when test="@vocabulary = 'GCMD'">
 	                        <xsl:element name="gmd:title">
                                     <xsl:element name="gco:CharacterString">
 		        	        <xsl:text>NASA/GCMD Earth Science Keywords</xsl:text>
@@ -756,7 +758,6 @@
                                  <xsl:variable name="license" select="mmd:identifier" />
                                  <xsl:variable name="license_mapping" select="document('')/*/mapping:use_constraint[@mmd=$license]/@geon" />
                                  <xsl:value-of select="$license_mapping" />
-                                 <xsl:value-of select="mmd:identifier" />
                          </xsl:element>
                  </xsl:element>
         
