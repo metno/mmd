@@ -177,13 +177,12 @@
 		    <xsl:element name="gmd:language">
 		        <xsl:element name="gmd:LanguageCode">
 		        <xsl:attribute name="codeList">http://www.loc.gov/standards/iso639-2/</xsl:attribute> 
-			    <xsl:attribute name="codeListValue">
-
                             <xsl:variable name="language" select="mmd:dataset_language" />
                             <xsl:variable name="language_mapping" select="document('')/*/mapping:language_code[@mmd=$language]/@inspire" />
+			        <xsl:attribute name="codeListValue">
+                                    <xsl:value-of select="$language_mapping" />
+			        </xsl:attribute>
                             <xsl:value-of select="$language_mapping" />
-
-			    </xsl:attribute>
         	        </xsl:element>	
         	    </xsl:element>	
 
