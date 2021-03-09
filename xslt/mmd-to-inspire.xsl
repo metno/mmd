@@ -512,7 +512,7 @@
                             <xsl:when test="@vocabulary = 'GCMD'">
 	                        <xsl:element name="gmd:title">
                                     <xsl:element name="gco:CharacterString">
-		        	        <xsl:text>NASA/GCMD Earth Science Keywords</xsl:text>
+				        <xsl:text>NASA/GCMD Earth Science Keywords</xsl:text>
                 	            </xsl:element>
 	                        </xsl:element>	
 			        <xsl:element name="gmd:date">
@@ -560,7 +560,7 @@
 	                                <xsl:attribute name="xlink:href">
 	    			            <xsl:text>https://register.geonorge.no/subregister/metadata-kodelister/kartverket/nasjonal-temainndeling</xsl:text>
 	                                </xsl:attribute>
-	        	                <xsl:text>Nasjonal tematisk inndeling (DOK-kategori)</xsl:text>
+	        	                <xsl:text>Norwegian thematic categories</xsl:text>
                                     </xsl:element>
 	                        </xsl:element>	
 			        <xsl:element name="gmd:date">
@@ -794,7 +794,7 @@
                     <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
 		        <!--mapping should be revised-->
                         <xsl:choose>
-                            <xsl:when test="mmd:role = 'Principal investigator'">
+                            <xsl:when test="mmd:role = 'Investigator'">
                                 <xsl:attribute name="codeListValue">
                                     <xsl:text>principalInvestigator</xsl:text>
                                 </xsl:attribute>
@@ -806,12 +806,11 @@
                                 </xsl:attribute>
                                 <xsl:text>pointOfContact</xsl:text>
                             </xsl:when>
-			    <!--The role of the responsible party serving as a metadata point of contact is  out  of  scope  of  the  INSPIRE Metadata  Regulation 1205/2008/EC, but  this  property  is  mandated  by  ISO  19115.  The  default  value  is pointOfContact. See SC15 and-->
                             <xsl:when test="mmd:role = 'Metadata author'">
                                 <xsl:attribute name="codeListValue">
-                                    <xsl:text>pointOfContact</xsl:text>
+                                    <xsl:text>owner</xsl:text>
                                 </xsl:attribute>
-                                <xsl:text>pointOfContact</xsl:text>
+                                <xsl:text>owner</xsl:text>
                             </xsl:when>
                             <xsl:when test="mmd:role = 'Data center contact'">
                                 <xsl:attribute name="codeListValue">
