@@ -51,7 +51,12 @@ class Nc_to_mmd(object):
         cf_mmd_lut.update(self.generate_cf_mmd_lut_missing_acdd())
         mmd_required_elements = self.required_mmd_elements()
 
-        ncin = Dataset(self.netcdf_product)
+        try:
+            ncin = Dataset(self.netcdf_product)
+        except Exception as e:
+            print('Couldn\'t open file:', self.netcdf_product)
+            print('Error: ',e)
+            return
 
         global_attributes = ncin.ncattrs()
         all_netcdf_variables = [var for var in ncin.variables]

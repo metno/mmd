@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import argparse
 import sys
 
@@ -28,11 +28,11 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit()
 
-    print(args.parse_services)
-    print(args.parse_wms_layers)
+    #print(args.parse_services)
+    #print(args.parse_wms_layers)
 
     main(input_file=args.input_file, output_path=args.output_path,
-            parse_services=args.parse_services, parse_wmslayers=args.parse_wms_layers)
+            parse_services=args.parse_services, parse_wmslayers=args.parse_wms_layers, print_file=True)
 
 #def main():
 #    op = ''
