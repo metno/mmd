@@ -563,7 +563,7 @@
                     <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode</xsl:attribute>
 		        <!--mapping should be revised-->
                         <xsl:choose>
-                            <xsl:when test="mmd:role = 'Principal investigator'">
+                            <xsl:when test="mmd:role = 'Investigator'">
                                 <xsl:attribute name="codeListValue">
                                     <xsl:text>principalInvestigator</xsl:text>
                                 </xsl:attribute>
