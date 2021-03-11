@@ -64,6 +64,7 @@
                 <xsl:apply-templates select="mmd:personnel[mmd:role = 'Metadata author']" />
             </xsl:element>
        
+            <xsl:apply-templates select="mmd:related_information[mmd:type = 'Dataset landing page']" />
         
             <xsl:element name="gmd:identificationInfo">
                 <xsl:element name="gmd:MD_DataIdentification">
@@ -137,7 +138,6 @@
                     </xsl:element>
 
                     <xsl:apply-templates select="mmd:keywords" />
-                    <xsl:apply-templates select="mmd:related_information[mmd:type = 'Dataset landing page']" />
 
                     <xsl:element name="gmd:resourceConstraints">
                         <xsl:element name="gmd:MD_LegalConstraints">
