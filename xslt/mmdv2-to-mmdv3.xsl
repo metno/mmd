@@ -101,7 +101,7 @@
       </xsl:element-->
       <xsl:element name="mmd:update">
         <xsl:element name="mmd:datetime">
-            <xsl:value-of select="concat(substring-before(date:date-time(), '+'),'Z')"/>
+            <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')"/>
         </xsl:element>
          <xsl:element name="mmd:type">
             <xsl:text>Minor modification</xsl:text>
@@ -244,7 +244,7 @@
       <xsl:element name="mmd:platform">
          <xsl:if test="mmd:short_name = 'S1A'">
             <xsl:element name="mmd:short_name">
-               <xsl:text>S1A</xsl:text>
+               <xsl:text>Sentinel-1A</xsl:text>
 	    </xsl:element>
             <xsl:element name="mmd:long_name">
                <xsl:text>Sentinel-1A</xsl:text>
@@ -255,7 +255,7 @@
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S1B'">
             <xsl:element name="mmd:short_name">
-               <xsl:text>S1B</xsl:text>
+               <xsl:text>Sentinel-1B</xsl:text>
 	    </xsl:element>
             <xsl:element name="mmd:long_name">
                <xsl:text>Sentinel-1B</xsl:text>
@@ -266,7 +266,7 @@
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S2A'">
             <xsl:element name="mmd:short_name">
-               <xsl:text>S2A</xsl:text>
+               <xsl:text>Sentinel-2A</xsl:text>
 	    </xsl:element>
             <xsl:element name="mmd:long_name">
                <xsl:text>Sentinel-2A</xsl:text>
@@ -277,7 +277,7 @@
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S2B'">
             <xsl:element name="mmd:short_name">
-               <xsl:text>S2B</xsl:text>
+               <xsl:text>Sentinel-2B</xsl:text>
 	    </xsl:element>
             <xsl:element name="mmd:long_name">
                <xsl:text>Sentinel-2B</xsl:text>
@@ -288,7 +288,7 @@
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S3A'">
             <xsl:element name="mmd:short_name">
-               <xsl:text>S3A</xsl:text>
+               <xsl:text>Sentinel-3A</xsl:text>
 	    </xsl:element>
             <xsl:element name="mmd:long_name">
                <xsl:text>Sentinel-3A</xsl:text>
@@ -299,7 +299,7 @@
          </xsl:if>
          <xsl:if test="mmd:short_name = 'S3B'">
             <xsl:element name="mmd:short_name">
-               <xsl:text>S3B</xsl:text>
+               <xsl:text>Sentinel-3B</xsl:text>
 	    </xsl:element>
             <xsl:element name="mmd:long_name">
                <xsl:text>Sentinel-3B</xsl:text>

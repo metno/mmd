@@ -139,51 +139,56 @@
 
                     <xsl:apply-templates select="mmd:keywords" />
 
-                    <xsl:element name="gmd:resourceConstraints">
-                        <xsl:element name="gmd:MD_LegalConstraints">
-        
-                            <xsl:element name="gmd:accessConstraints">
-                                <xsl:element name="gmd:MD_RestrictionCode">
-                                    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
-                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                                    <xsl:text>otherRestrictions</xsl:text>
-                                </xsl:element>
-                            </xsl:element>
-        
-                            <xsl:element name="gmd:otherConstraints">
-                                <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:access_constraint" />
-                                </xsl:element>
-                            </xsl:element>
-        
-                        </xsl:element>
-                    </xsl:element>
-         
-                    <xsl:element name="gmd:resourceConstraints">
-                        <xsl:element name="gmd:MD_LegalConstraints">
-        
-                            <xsl:element name="gmd:useConstraints">
-                                <xsl:element name="gmd:MD_RestrictionCode">
-                                    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
-                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                                    <xsl:text>otherRestrictions</xsl:text>
-                                </xsl:element>
-                            </xsl:element>
-        
-                            <xsl:element name="gmd:otherConstraints">
-                                    <xsl:element name="gmx:Anchor">
-                                        <xsl:attribute name="xlink:href">
-                			    <xsl:value-of select="mmd:use_constraint/mmd:resource" />
-                                        </xsl:attribute>
-                			    <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+	            <xsl:if test="mmd:access_constraint != ''">
+                        <xsl:element name="gmd:resourceConstraints">
+                            <xsl:element name="gmd:MD_LegalConstraints">
+                        
+                                <xsl:element name="gmd:accessConstraints">
+                                    <xsl:element name="gmd:MD_RestrictionCode">
+                                        <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                        <xsl:text>otherRestrictions</xsl:text>
                                     </xsl:element>
-                                <!--xsl:element name="gco:CharacterString">
-					<xsl:value-of select="mmd:use_constraint/mmd:identifier" />
-                                </xsl:element-->
+                                </xsl:element>
+                        
+                                <xsl:element name="gmd:otherConstraints">
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:value-of select="mmd:access_constraint" />
+                                    </xsl:element>
+                                </xsl:element>
+                        
                             </xsl:element>
-                            
+        
                         </xsl:element>
-                    </xsl:element>
+	            </xsl:if>
+         
+	            <xsl:if test="mmd:use_constraint != ''">
+                        <xsl:element name="gmd:resourceConstraints">
+                            <xsl:element name="gmd:MD_LegalConstraints">
+                        
+                                <xsl:element name="gmd:useConstraints">
+                                    <xsl:element name="gmd:MD_RestrictionCode">
+                                        <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                        <xsl:text>otherRestrictions</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                        
+                                <xsl:element name="gmd:otherConstraints">
+                                        <xsl:element name="gmx:Anchor">
+                                            <xsl:attribute name="xlink:href">
+                            		    <xsl:value-of select="mmd:use_constraint/mmd:resource" />
+                                            </xsl:attribute>
+                            		    <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                                        </xsl:element>
+                                    <!--xsl:element name="gco:CharacterString">
+		            		<xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                                    </xsl:element-->
+                                </xsl:element>
+                                
+                            </xsl:element>
+                        </xsl:element>
+	            </xsl:if>
                     
                     <xsl:element name="gmd:language">
                         <xsl:element name="gmd:LanguageCode">
@@ -503,6 +508,15 @@
                  </xsl:element>
 	         <xsl:element name="gmd:contactInfo">
 	            <xsl:element name="gmd:CI_Contact">
+                      <xsl:element name="gmd:address">
+                          <xsl:element name="gmd:CI_Address">
+                              <xsl:element name="gmd:electronicMailAddress">
+                                  <xsl:element name="gco:CharacterString">
+					  <xsl:value-of select="../mmd:personnel[mmd:role = 'Data center contact']/mmd:email" />
+                                  </xsl:element>
+                              </xsl:element>
+                          </xsl:element>
+                      </xsl:element>
 	               <xsl:element name="gmd:onlineResource">
 	                  <xsl:element name="gmd:CI_OnlineResource">
 	                     <xsl:element name="gmd:linkage">
@@ -513,6 +527,15 @@
                           </xsl:element>
                        </xsl:element>
                     </xsl:element>
+                 </xsl:element>
+                 <xsl:element name="gmd:role">
+                     <xsl:element name="gmd:CI_RoleCode">
+                         <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode</xsl:attribute>
+                             <xsl:attribute name="codeListValue">
+                                 <xsl:text>distributor</xsl:text>
+                             </xsl:attribute>
+                         <xsl:text>distributor</xsl:text>
+                     </xsl:element>             
                  </xsl:element>
               </xsl:element>
            </xsl:element>
@@ -637,7 +660,7 @@
                     <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode</xsl:attribute>
 		        <!--mapping should be revised-->
                         <xsl:choose>
-                            <xsl:when test="mmd:role = 'Principal investigator'">
+                            <xsl:when test="mmd:role = 'Investigator'">
                                 <xsl:attribute name="codeListValue">
                                     <xsl:text>principalInvestigator</xsl:text>
                                 </xsl:attribute>
