@@ -10,28 +10,28 @@ added in the future.
 Should these keywords indicate hierarchy? The Barents Sea is part of the
 Arctic etc...
 -->
-  <skos:Collection rdf:about="http://vocab.met.no/mmd/Areas">
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Areas">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
-    <skos:inScheme rdf:resource="http://vocab.met.no/mmd"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Geographical Areas</skos:prefLabel>
     <skos:definition xml:lang="en">Controlled vocabulary to be used in METAMOD context to describe geographical areas. This should be related to GCMD science keywords through altLabel. The definition should contain a unique specification of the area. Historically, METAMOD started out with ocean areas only. Open issues remain on how to best classify land regions.</skos:definition>
 
   <skos:member>
-     <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/Arctic">
+     <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/Arctic">
        <skos:prefLabel xml:lang="en">Arctic</skos:prefLabel>
        <skos:altLabel xml:lang="en">Central Arctic</skos:altLabel>
        <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/17/"/>
        <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C19/current/9/"/>
        <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/arctic_ocean/"/>
        <skos:narrowMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/08/"/>
-       <skos:narrower rdf:resource="http://vocab.met.no/mmd/Areas/WhiteSea"/>
-       <skos:narrower rdf:resource="http://vocab.met.no/mmd/Areas/NorwegianSea"/>
+       <skos:narrower rdf:resource="https://vocab.met.no/mmd/Areas/WhiteSea"/>
+       <skos:narrower rdf:resource="https://vocab.met.no/mmd/Areas/NorwegianSea"/>
        <skos:definition xml:lang="en">This is used to indicate that data are located in the Arctic. The definition of the Arctic may however differ as no unique definition exists. In MetaMod context this should refer to data located nortwards of the Arctic Circle, i.e. 65 degrees North.</skos:definition>
      </skos:Concept>
   </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/BarentsSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/BarentsSea">
         <skos:prefLabel xml:lang="en">Barents Sea</skos:prefLabel>
         <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/07/"/>
         <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C19/current/9_4/"/>
@@ -41,28 +41,28 @@ Arctic etc...
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/BeaufortSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/BeaufortSea">
         <skos:prefLabel xml:lang="en">Beaufort Sea</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to indicate data are located in the Beaufort Sea. The definition of this ocean area may differ as no unique definition exists. In MetaMod context this is usually used to refer to observations within or above the sea. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;65.6130664819046&quot;, &quot;Northernmost_latitude&quot;: &quot;76.348429003534&quot;, &quot;Westernmost_longitude&quot;: &quot;-156.645774838244&quot;, &quot;Easternmost_longitude&quot;: &quot;-121.763081381975&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/ChukchiSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/ChukchiSea">
         <skos:prefLabel xml:lang="en">Chukchi Sea</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to indicate data located in the Chukchi Sea. The definition of this ocean area may differ as no unique definition exists. In MetaMod context this is usually used to refer to observations in the ocean, but can also be used for observations on islands in the area. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;65.9080374652434&quot;, &quot;Northernmost_latitude&quot;: &quot;71.6078495972615&quot;, &quot;Westernmost_longitude&quot;: &quot;177.493486404419&quot;, &quot;Easternmost_longitude&quot;: &quot;-156.526019417522&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/DenmarkStrait">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/DenmarkStrait">
         <skos:prefLabel xml:lang="en">Denmark Strait</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to indicate data located in the Denmark Strait. That is the strait between Iceland and Greenland, effectively separating the Greenland and Iceland Seas. It is used to identify oceanic observations. </skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/EastSiberianSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/EastSiberianSea">
         <skos:prefLabel xml:lang="en">East Siberian Sea</skos:prefLabel>
         <skos:definition xml:lang="en">{&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;67.7983955527279&quot;, &quot;Northernmost_latitude&quot;: &quot;79.0000019038462&quot;, &quot;Westernmost_longitude&quot;: &quot;138.401622654881&quot;, &quot;Easternmost_longitude&quot;: &quot;180&quot; }}</skos:definition>
         <skos:broader rdf:resource="http://vocab.nerc.ac.uk/mmd/C19/current/9/"/>
@@ -70,56 +70,56 @@ Arctic etc...
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/FramStrait">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/FramStrait">
         <skos:prefLabel xml:lang="en">Fram Strait</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to indicate data located in the Fram Strait. That is the strait between Svalbard and Greenland, separating the Arctic Ocean from the Greenland Sea. It is primarily used to identify oceanic observations. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;76.4421290395782&quot;, &quot;Northernmost_latitude&quot;: &quot;81.4523562429474&quot;, &quot;Westernmost_longitude&quot;: &quot;-9.76400148921&quot;, &quot;Easternmost_longitude&quot;: &quot;16.6184257263662&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/GreenlandSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/GreenlandSea">
         <skos:prefLabel xml:lang="en">Greenland Sea</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to identify data from the area between the Fram Strait and the Denmark Strait, between Greenland and the Mohn-Sverdrup ridge or the Norwegian Sea. It is primarily used for oceanic observations but may also include observations at Jan Mayen. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;69.7856946623911&quot;, &quot;Northernmost_latitude&quot;: &quot;84.0988786741383&quot;, &quot;Westernmost_longitude&quot;: &quot;-36.8873951742225&quot;, &quot;Easternmost_longitude&quot;: &quot;17.535040165038&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/IcelandSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/IcelandSea">
         <skos:prefLabel xml:lang="en">Iceland Sea</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to identify data from the area west and south of the Denmark Strait. It is also used to identify observations from Iceland unless marked as Arctic.  	{&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;62.3430537642984&quot;, &quot;Northernmost_latitude&quot;: &quot;74.7432353466058&quot;, &quot;Westernmost_longitude&quot;: &quot;-33.0122766941186&quot;, &quot;Easternmost_longitude&quot;: &quot;-4.90382728856863&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/KaraSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/KaraSea">
         <skos:prefLabel xml:lang="en">Kara Sea</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to indicate data from ocean, atmosphere and islands in the Kara Sea. {Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;66.0375447387754&quot;, &quot;Northernmost_latitude&quot;: &quot;81.3699065017207&quot;, &quot;Westernmost_longitude&quot;: &quot;53.8187152298353&quot;, &quot;Easternmost_longitude&quot;: &quot;106.071492680497&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/LaptevSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/LaptevSea">
         <skos:prefLabel xml:lang="en">Laptev Sea</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to indicate data from ocean, atmosphere and islands in the Laptev Sea. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;70.162908594833&quot;, &quot;Northernmost_latitude&quot;: &quot;81.2788944213394&quot;, &quot;Westernmost_longitude&quot;: &quot;95.2333358094057&quot;, &quot;Easternmost_longitude&quot;: &quot;141.63867408902&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/NordicSeas">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/NordicSeas">
         <skos:prefLabel xml:lang="en">Nordic Seas</skos:prefLabel>
         <skos:definition xml:lang="en">This is used to identify the combined area of the Norwegian and the North Seas. It is mainly used to identify oceanic data.</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/NorthernHemisphere">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/NorthernHemisphere">
         <skos:prefLabel xml:lang="en">Northern Hemisphere</skos:prefLabel>
         <skos:definition xml:lang="en">This is a general classification to be used when the more specific definitions are not suitable.</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/NorthSea">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/NorthSea">
         <skos:prefLabel xml:lang="en">North Sea</skos:prefLabel>
         <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/04/"/>
         <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/north_sea/"/>
@@ -129,21 +129,21 @@ Arctic etc...
 
 
   <skos:member>
-     <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/NorwegianSea">
+     <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/NorwegianSea">
        <skos:prefLabel xml:lang="en">Norwegian Sea</skos:prefLabel>
        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/06/"/>
        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/norwegian_sea/"/>
        <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/91dd3935-a1ae-48ca-b263-9b10ac732372"/>
-       <skos:broader rdf:resource="http://vocab.met.no/mmd/Areas/Arctic"/>
+       <skos:broader rdf:resource="https://vocab.met.no/mmd/Areas/Arctic"/>
        <skos:definition xml:lang="en">This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. It is bordered by the Greenland Sea, the Barents Sea, the North Sea and the Faroe-Iceland ridge. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;57.9767651784406&quot;, &quot;Northernmost_latitude&quot;: &quot;78.1219500577069&quot;, &quot;Westernmost_longitude&quot;: &quot;-9.02068831025837&quot;, &quot;Easternmost_longitude&quot;: &quot;27.0790684243223&quot; }}</skos:definition>
      </skos:Concept>
   </skos:member>
 
   <skos:member>
-     <skos:Concept rdf:about="http://vocab.met.no/mmd/Areas/WhiteSea">
+     <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/WhiteSea">
        <skos:prefLabel xml:lang="en">White Sea</skos:prefLabel>
        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/08/"/>
-       <skos:broader rdf:resource="http://vocab.met.no/mmd/Areas/Arctic"/>
+       <skos:broader rdf:resource="https://vocab.met.no/mmd/Areas/Arctic"/>
        <skos:definition xml:lang="en">This is used to indicate data from ocean, atmosphere and islands in the White Sea. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;63.1090416470606&quot;, &quot;Northernmost_latitude&quot;: &quot;68.7989569132796&quot;, &quot;Westernmost_longitude&quot;: &quot;31.8685356938203&quot;, &quot;Easternmost_longitude&quot;: &quot;44.8394373774493&quot; }}</skos:definition>
      </skos:Concept>
   </skos:member>

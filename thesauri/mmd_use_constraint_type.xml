@@ -7,14 +7,14 @@ Prepared by Øystein Godøy, METNO/FOU, 2013-02-15
 
 Do we need to link this to e.g. CC, ODC, NLOD?
 -->
-  <skos:Collection rdf:about="http://vocab.met.no/mmd/Use_Constraint">
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Use_Constraint">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
-    <skos:inScheme rdf:resource="http://vocab.met.no/mmd"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Use Constraint</skos:prefLabel>
     <skos:definition xml:lang="en">A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons.</skos:definition>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Use_Constraint/CC0-1.0">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC0-1.0">
         <skos:prefLabel xml:lang="en">CC0-1.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Zero v1.0 Universal</skos:altLabel>
         <skos:altLabel xml:lang="en">CC0 – Creative Commons</skos:altLabel>
@@ -26,7 +26,7 @@ Do we need to link this to e.g. CC, ODC, NLOD?
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution 4.0 International</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution</skos:altLabel>
@@ -39,7 +39,7 @@ Do we need to link this to e.g. CC, ODC, NLOD?
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-SA-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Share Alike 4.0 International</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-ShareAlike</skos:altLabel>
@@ -52,7 +52,7 @@ Do we need to link this to e.g. CC, ODC, NLOD?
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-NC-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Non Commercial 4.0 International</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NonCommercial</skos:altLabel>
@@ -65,7 +65,7 @@ Do we need to link this to e.g. CC, ODC, NLOD?
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-NC-SA-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Non Commercial Share Alike 4.0 International</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NonCommercial-ShareAlike</skos:altLabel>
@@ -78,7 +78,7 @@ Do we need to link this to e.g. CC, ODC, NLOD?
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-ND-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution No Derivatives 4.0 International</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NoDerivs</skos:altLabel>
@@ -91,7 +91,7 @@ Do we need to link this to e.g. CC, ODC, NLOD?
     </skos:member>
 
     <skos:member>
-      <skos:Concept rdf:about="http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0">
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-NC-ND-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Non Commercial No Derivatives 4.0 International</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NonCommercial-NoDerivs</skos:altLabel>
