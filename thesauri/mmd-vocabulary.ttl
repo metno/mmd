@@ -12,7 +12,7 @@
 <http://www.w3.org/ns/sosa/isHostedBy> rdfs:label "in platform"@en .
 <http://www.w3.org/ns/sosa/hosts> rdfs:label "has instrument"@en .
 
-<http://vocab.met.no/mmd>
+<https://vocab.met.no/mmd>
  a skos:ConceptScheme ; 
  dc:title "MMD Vocabulary"@en, "MMD Vokabular"@nb ;
  dc:creator "Øystein Godøy" ;
@@ -22,7 +22,7 @@
  dc:license "https://creativecommons.org/publicdomain/zero/1.0/";
  skos:definition "SKOS concept collections of controlled vocabularies or code lists used within the MET Norway Metadata Format (https://github.com/metno/mmd)."@en, "SKOS konseptsamlinger av kontrollerte vokabularer eller kodelister som brukes i MET Norway Metadata Format (https://github.com/metno/mmd)."@nb .
 
-<http://vocab.met.no/mmd>
+<https://vocab.met.no/mmd>
   a prov:Entity ; 
   prov:wasDerivedFrom <https://github.com/metno/mmd> ;
   prov:generatedAtTime  "2021-01-20"^^xsd:date;
@@ -38,56 +38,56 @@
   a foaf:Organization, prov:Agent ; 
   foaf:name "Norwegian Meteorological Institute" . 
 
-<http://vocab.met.no/mmd/Use_Constraint>
+<https://vocab.met.no/mmd/Use_Constraint>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Use Constraint"@en ;
   skos:definition "A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons."@en ;
-  skos:member <http://vocab.met.no/mmd/Use_Constraint/CC0-1.0>, <http://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>, <http://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0>, <http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0>, <http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0>, <http://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0>, <http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0> .
+  skos:member <https://vocab.met.no/mmd/Use_Constraint/CC0-1.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0> .
 
-<http://vocab.met.no/mmd/Use_Constraint/CC0-1.0>
+<https://vocab.met.no/mmd/Use_Constraint/CC0-1.0>
   a skos:Concept ;
   skos:prefLabel "CC0-1.0"@en ;
   skos:altLabel "Creative Commons Zero v1.0 Universal"@en, "CC0 – Creative Commons"@en ;
   skos:exactMatch <https://creativecommons.org/share-your-work/public-domain/cc0/feed/rdf/>, <http://spdx.org/licenses/CC0-1.0>, <https://creativecommons.org/share-your-work/public-domain/cc0/> ;
   skos:definition "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law."@en .
 
-<http://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>
+<https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>
   a skos:Concept ;
   skos:prefLabel "CC-BY-4.0"@en ;
   skos:altLabel "Creative Commons Attribution 4.0 International"@en, "Attribution"@en, "Navngivelse"@nb ;
   skos:exactMatch <http://spdx.org/licenses/CC-BY-4.0>, <https://creativecommons.org/licenses/by/4.0/rdf>, <https://creativecommons.org/licenses/by/4.0/> ;
   skos:definition "This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."@en .
 
-<http://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0>
+<https://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0>
   a skos:Concept ;
   skos:prefLabel "CC-BY-SA-4.0"@en ;
   skos:altLabel "Creative Commons Attribution Share Alike 4.0 International"@en, "Attribution-ShareAlike"@en, "Navngivelse-DelPåSammeVilkår"@nb ;
   skos:exactMatch <http://spdx.org/licenses/CC-BY-SA-4.0>, <https://creativecommons.org/licenses/by-sa/4.0/rdf>, <https://creativecommons.org/licenses/by-sa/4.0/> ;
   skos:definition "This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects."@en .
 
-<http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0>
+<https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0>
   a skos:Concept ;
   skos:prefLabel "CC-BY-NC-4.0"@en ;
   skos:altLabel "Creative Commons Attribution Non Commercial 4.0 International"@en, "Attribution-NonCommercial"@en, "Navngivelse-IkkeKommersiell"@nb ;
   skos:exactMatch <http://spdx.org/licenses/CC-BY-NC-4.0>, <https://creativecommons.org/licenses/by-nc/4.0/rdf>, <https://creativecommons.org/licenses/by-nc/4.0/> ;
   skos:definition "This license lets others remix, adapt, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don’t have to license their derivative works on the same terms."@en .
 
-<http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0>
+<https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0>
   a skos:Concept ;
   skos:prefLabel "CC-BY-NC-SA-4.0"@en ;
   skos:altLabel "Creative Commons Attribution Non Commercial Share Alike 4.0 International"@en, "Attribution-NonCommercial-ShareAlike"@en, "Navngivelse-IkkeKommersiell-DelPåSammeVilkår"@nb ;
   skos:exactMatch <http://spdx.org/licenses/CC-BY-NC-SA-4.0>, <https://creativecommons.org/licenses/by-nc-sa/4.0/rdf>, <https://creativecommons.org/licenses/by-nc-sa/4.0/> ;
   skos:definition "This license lets others remix, adapt, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms."@en .
 
-<http://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0>
+<https://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0>
   a skos:Concept ;
   skos:prefLabel "CC-BY-ND-4.0"@en ;
   skos:altLabel "Creative Commons Attribution No Derivatives 4.0 International"@en, "Attribution-NoDerivs"@en, "Navngivelse-IngenBearbeidelse"@nb ;
   skos:exactMatch <http://spdx.org/licenses/CC-BY-ND-4.0>, <https://creativecommons.org/licenses/by-nd/4.0/rdf>, <https://creativecommons.org/licenses/by-nd/4.0/> ;
   skos:definition "This license lets others reuse the work for any purpose, including commercially; however, it cannot be shared with others in adapted form, and credit must be provided to you."@en .
 
-<http://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0>
+<https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0>
   a skos:Concept ;
   skos:prefLabel "CC-BY-NC-ND-4.0"@en ;
   skos:altLabel "Creative Commons Attribution Non Commercial No Derivatives 4.0 International"@en, "Attribution-NonCommercial-NoDerivs"@en, "Navngivelse-IkkeKommersiell-IngenBearbeidelser"@nb ;
@@ -95,874 +95,874 @@
   skos:definition "This license is the most restrictive of our six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can’t change them in any way or use them commercially."@en .
 
 
-<http://vocab.met.no/mmd/Dataset_Production_Status>
+<https://vocab.met.no/mmd/Dataset_Production_Status>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Dataset Production Status"@en ;
   skos:definition "Production status for the dataset."@en ;
-  skos:member <http://vocab.met.no/mmd/Dataset_Production_Status/Planned>, <http://vocab.met.no/mmd/Dataset_Production_Status/InWork>, <http://vocab.met.no/mmd/Dataset_Production_Status/Complete>, <http://vocab.met.no/mmd/Dataset_Production_Status/Obsolete> .
+  skos:member <https://vocab.met.no/mmd/Dataset_Production_Status/Planned>, <https://vocab.met.no/mmd/Dataset_Production_Status/InWork>, <https://vocab.met.no/mmd/Dataset_Production_Status/Complete>, <https://vocab.met.no/mmd/Dataset_Production_Status/Obsolete> .
 
-<http://vocab.met.no/mmd/Dataset_Production_Status/Planned>
+<https://vocab.met.no/mmd/Dataset_Production_Status/Planned>
   a skos:Concept ;
   skos:prefLabel "Planned"@en ;
   skos:definition "Refers to data sets to be collected in the future and are thus unavailable at the present time. For Example: The Hydro spacecraft has not been launched, but information on planned data sets may be available."@en .
 
-<http://vocab.met.no/mmd/Dataset_Production_Status/InWork>
+<https://vocab.met.no/mmd/Dataset_Production_Status/InWork>
   a skos:Concept ;
   skos:prefLabel "In Work"@en ;
   skos:definition "Refers to data sets currently undergoing production or data that is continuously being collected or updated. For Example: data from the AIRS instrument on Aqua is being collected continuously."@en .
 
-<http://vocab.met.no/mmd/Dataset_Production_Status/Complete>
+<https://vocab.met.no/mmd/Dataset_Production_Status/Complete>
   a skos:Concept ;
   skos:prefLabel "Complete"@en ;
   skos:definition "Refers to data sets in which no updates or further data collection will be made. For Example: Nimbus-7 SMMR data collection has been completed."@en .
 
-<http://vocab.met.no/mmd/Dataset_Production_Status/Obsolete>
+<https://vocab.met.no/mmd/Dataset_Production_Status/Obsolete>
   a skos:Concept ;
   skos:prefLabel "Obsolete"@en ;
   skos:definition "A new version of the dataset has been generated. The new version should be used, this is kept for back tracing."@en .
 
 
-<http://vocab.met.no/mmd/Activity_Type>
+<https://vocab.met.no/mmd/Activity_Type>
   a skos:Collection, isothes:ConceptGroup;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Activity Type"@en ;
   skos:definition "Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets."@en ;
-  skos:member <http://vocab.met.no/mmd/Activity_Type/Aircraft>, <http://vocab.met.no/mmd/Activity_Type/SpaceBorneInstrument>, <http://vocab.met.no/mmd/Activity_Type/NumericalSimulation>, <http://vocab.met.no/mmd/Activity_Type/ClimateIndicator>, <http://vocab.met.no/mmd/Activity_Type/InSituLandBasedStation>, <http://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>, <http://vocab.met.no/mmd/Activity_Type/InSituOceanFixedStation>, <http://vocab.met.no/mmd/Activity_Type/InSituOceanMovingStation>, <http://vocab.met.no/mmd/Activity_Type/InSituIceBasedStation>, <http://vocab.met.no/mmd/Activity_Type/Interview-Questionnaire>, <http://vocab.met.no/mmd/Activity_Type/Maps-Charts-Photographs> .
+  skos:member <https://vocab.met.no/mmd/Activity_Type/Aircraft>, <https://vocab.met.no/mmd/Activity_Type/SpaceBorneInstrument>, <https://vocab.met.no/mmd/Activity_Type/NumericalSimulation>, <https://vocab.met.no/mmd/Activity_Type/ClimateIndicator>, <https://vocab.met.no/mmd/Activity_Type/InSituLandBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanFixedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanMovingStation>, <https://vocab.met.no/mmd/Activity_Type/InSituIceBasedStation>, <https://vocab.met.no/mmd/Activity_Type/Interview-Questionnaire>, <https://vocab.met.no/mmd/Activity_Type/Maps-Charts-Photographs> .
 
-<http://vocab.met.no/mmd/Activity_Type/Aircraft>
+<https://vocab.met.no/mmd/Activity_Type/Aircraft>
   a skos:Concept ;
   skos:prefLabel "Aircraft"@en ;
   skos:definition "Observations made during a flight trajectory. The observations can include remote sensing instruments, dropsondes or in situ measurements. Both manned and unmanned vehicles are covered by this term. The output is typically a trajectory, but could also be profiles or points."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/SpaceBorneInstrument>
+<https://vocab.met.no/mmd/Activity_Type/SpaceBorneInstrument>
   a skos:Concept ;
   skos:prefLabel "Space Borne Instrument"@en ;
   skos:altLabel "Earth Observation Satellite"@en ;
   skos:definition "Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded of type imagery or profiles."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/NumericalSimulation>
+<https://vocab.met.no/mmd/Activity_Type/NumericalSimulation>
   a skos:Concept ;
   skos:prefLabel "Numerical Simulation"@en ;
   skos:definition "Data are generated by the use of a numerical simulation of the atmosphere, the ocean, the climate or similar. Statistical analysis is not covered by this."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/ClimateIndicator>
+<https://vocab.met.no/mmd/Activity_Type/ClimateIndicator>
   a skos:Concept ;
   skos:prefLabel "Climate Indicator"@en ;
   skos:definition "This indicates a dataset that has been generated by analysis of some data with the emphasis on being representative in a climate context (e.g. consistent in time). Furthermore, a climate indicator is \"compact\" representation of the feature studied (e.g. the temporal evolution of area covered by sea ice in the Arctic). Climate Indicators are frequently linked to GCOS requirements."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/InSituLandBasedStation>
+<https://vocab.met.no/mmd/Activity_Type/InSituLandBasedStation>
   a skos:Concept ;
   skos:prefLabel "In Situ Land-based station"@en ;
   skos:altLabel "Land station"@en ;
   skos:hiddenLabel "field_experiment"@en ;
   skos:definition "This is used to tag datasets generated from a site located on land. This can be a permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a field experiment)."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>
+<https://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>
   a skos:Concept ;
   skos:prefLabel "In Situ Ship-based station"@en ;
   skos:altLabel "Cruise"@en ;
   skos:definition "This is used to identify datasets generated during cruises. Typically it describes a full dataset generated in a context, possibly describing both ocean and atmospheric conditions."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/InSituOceanFixedStation>
+<https://vocab.met.no/mmd/Activity_Type/InSituOceanFixedStation>
   a skos:Concept ;
   skos:prefLabel "In Situ Ocean fixed station"@en ;
   skos:hiddenLabel "Moored instrument"@en ;
   skos:definition "This is used to describe ocean stations that are fixed in space. Typically this is moorings, anchored buoys, oil rigs etc."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/InSituOceanMovingStation>
+<https://vocab.met.no/mmd/Activity_Type/InSituOceanMovingStation>
   a skos:Concept ;
   skos:prefLabel "In Situ Ocean moving station"@en ;
   skos:hiddenLabel "Float"@en ;
   skos:definition "This is used to describe ocean stations that are moving around. Typically this is gliders and drifting buoys."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/InSituIceBasedStation>
+<https://vocab.met.no/mmd/Activity_Type/InSituIceBasedStation>
   a skos:Concept ;
   skos:prefLabel "In Situ Ice-based station"@en ;
   skos:altLabel "Ice station"@en ;
   skos:hiddenLabel "field_experiment"@en ;
   skos:definition "This is used to tag datasets generated from a site located on drifting sea ice or some other ice sheet (possibly on land but moving). It typically describes a temporary site (e.g. a field experiment). It would also be used to describe ships frozen in ice and drifting e.g. across the Arctic as well as Ice Thethered Platforms (ITP) and Ice Mass Balance Buoys (IMBB)."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/Interview-Questionnaire>
+<https://vocab.met.no/mmd/Activity_Type/Interview-Questionnaire>
   a skos:Concept ;
   skos:prefLabel "Interview/Questionnaire"@en ;
   skos:altLabel "Interview"@en, "Questionnaire"@en ;
   skos:definition "This is not much used within environmental science, but comes in useful sometimes. It is used to cover the results of interviews and questionnaires especially in interdisciplinary science."@en .
 
-<http://vocab.met.no/mmd/Activity_Type/Maps-Charts-Photographs>
+<https://vocab.met.no/mmd/Activity_Type/Maps-Charts-Photographs>
   a skos:Concept ;
   skos:prefLabel "Maps/Charts/Photographs"@en ;
   skos:altLabel "Maps"@en, "Charts"@en, "Photographs"@en ;
   skos:definition "This is used to tag datasets containing imagery or PDF documents. This could e.g. be a time lapse photographic session of a specific site illustrating e.g. snow cover or cloud cover. It can also be used to tag documents or maps describing the nature of a field station. It would then require datasets to be linked (which currently is not supported)."@en .
 
 
-<http://vocab.met.no/mmd/ISO_Topic_Category>
+<https://vocab.met.no/mmd/ISO_Topic_Category>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/P05/current/> ;
   skos:prefLabel "ISO Topic Category"@en ;
   skos:definition "Terms defined by ISO describing data themes."@en ;
-  skos:member <http://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>, <http://vocab.met.no/mmd/ISO_Topic_Category/intelligenceMilitary>, <http://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere>, <http://vocab.met.no/mmd/ISO_Topic_Category/utilitiesCommunications>, <http://vocab.met.no/mmd/ISO_Topic_Category/farming>, <http://vocab.met.no/mmd/ISO_Topic_Category/imageryBaseMapsEarthCover>, <http://vocab.met.no/mmd/ISO_Topic_Category/structure>, <http://vocab.met.no/mmd/ISO_Topic_Category/health>, <http://vocab.met.no/mmd/ISO_Topic_Category/elevation>, <http://vocab.met.no/mmd/ISO_Topic_Category/society>, <http://vocab.met.no/mmd/ISO_Topic_Category/environment>, <http://vocab.met.no/mmd/ISO_Topic_Category/extraTerrestrial>, <http://vocab.met.no/mmd/ISO_Topic_Category/biota>, <http://vocab.met.no/mmd/ISO_Topic_Category/disaster>, <http://vocab.met.no/mmd/ISO_Topic_Category/transportation>, <http://vocab.met.no/mmd/ISO_Topic_Category/geoscientificInformation>, <http://vocab.met.no/mmd/ISO_Topic_Category/oceans>, <http://vocab.met.no/mmd/ISO_Topic_Category/economy>, <http://vocab.met.no/mmd/ISO_Topic_Category/planningCadastre>, <http://vocab.met.no/mmd/ISO_Topic_Category/location>, <http://vocab.met.no/mmd/ISO_Topic_Category/boundaries> .
+  skos:member <https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>, <https://vocab.met.no/mmd/ISO_Topic_Category/intelligenceMilitary>, <https://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere>, <https://vocab.met.no/mmd/ISO_Topic_Category/utilitiesCommunications>, <https://vocab.met.no/mmd/ISO_Topic_Category/farming>, <https://vocab.met.no/mmd/ISO_Topic_Category/imageryBaseMapsEarthCover>, <https://vocab.met.no/mmd/ISO_Topic_Category/structure>, <https://vocab.met.no/mmd/ISO_Topic_Category/health>, <https://vocab.met.no/mmd/ISO_Topic_Category/elevation>, <https://vocab.met.no/mmd/ISO_Topic_Category/society>, <https://vocab.met.no/mmd/ISO_Topic_Category/environment>, <https://vocab.met.no/mmd/ISO_Topic_Category/extraTerrestrial>, <https://vocab.met.no/mmd/ISO_Topic_Category/biota>, <https://vocab.met.no/mmd/ISO_Topic_Category/disaster>, <https://vocab.met.no/mmd/ISO_Topic_Category/transportation>, <https://vocab.met.no/mmd/ISO_Topic_Category/geoscientificInformation>, <https://vocab.met.no/mmd/ISO_Topic_Category/oceans>, <https://vocab.met.no/mmd/ISO_Topic_Category/economy>, <https://vocab.met.no/mmd/ISO_Topic_Category/planningCadastre>, <https://vocab.met.no/mmd/ISO_Topic_Category/location>, <https://vocab.met.no/mmd/ISO_Topic_Category/boundaries> .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>
+<https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>
   a skos:Concept ;
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/P05/current/002/> ;
   skos:definition "Inland water features, drainage systems and characteristics, for example rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods and flood hazards, water quality, hydrographic charts, watersheds, wetlands, hydrography"@en ;
   skos:prefLabel "inlandWaters"@en ;
   skos:altLabel "INLAND WATERS"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/intelligenceMilitary>
+<https://vocab.met.no/mmd/ISO_Topic_Category/intelligenceMilitary>
   a skos:Concept ;
   skos:definition "Military bases, structures, activities, for example barracks, training grounds, military transportation, information collection"@en ;
   skos:prefLabel "intelligenceMilitary"@en ;
   skos:altLabel "INTELLIGENCE/MILITARY"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere>
+<https://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere>
   a skos:Concept ;
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/P05/current/004/> ;
   skos:definition "Processes and phenomena of the atmosphere, for example cloud cover, weather, climate, atmospheric conditions, climate change, precipitation"@en ;
   skos:prefLabel "climatologyMeteorologyAtmosphere"@en ;
   skos:altLabel "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/utilitiesCommunications>
+<https://vocab.met.no/mmd/ISO_Topic_Category/utilitiesCommunications>
   a skos:Concept ;
   skos:definition "Energy, water and waste systems and communications infrastructure and services, for example hydroelectricity, geothermal, solar and nuclear sources of energy, water purification and distribution, sewage collection and disposal, electricity and gas distribution, data communication, telecommunication, radio, communication networks"@en ;
   skos:prefLabel "utilitiesCommunications"@en ;
   skos:altLabel "UTILITIES/COMMUNICATIONS"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/farming>
+<https://vocab.met.no/mmd/ISO_Topic_Category/farming>
   a skos:Concept ;
   skos:definition "Rearing of animals or cultivation of plants, for example agriculture, irrigation, aquaculture, plantations, herding, pests and diseases affecting crops and livestock"@en ;
   skos:prefLabel "farming"@en ;
   skos:altLabel "FARMING"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/imageryBaseMapsEarthCover>
+<https://vocab.met.no/mmd/ISO_Topic_Category/imageryBaseMapsEarthCover>
   a skos:Concept ;
   skos:definition "Base maps, for example land/earth cover, topographic maps, imagery, unclassified images, annotations, digital ortho imagery"@en ;
   skos:prefLabel "imageryBaseMapsEarthCover"@en ;
   skos:altLabel "IMAGERY/BASE MAPS/EARTH COVER"@en, "IMAGERYBASEMAPSEARTHCOVER"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/structure>
+<https://vocab.met.no/mmd/ISO_Topic_Category/structure>
   a skos:Concept ;
   skos:definition "Man-made construction, for example buildings, museums, churches, factories, housing, monuments, shops, towers, building footprints, architectural and structural plans"@en ;
   skos:prefLabel "structure"@en ;
   skos:altLabel "STRUCTURE"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/health>
+<https://vocab.met.no/mmd/ISO_Topic_Category/health>
   a skos:Concept ;
   skos:definition "Health, health services, human ecology, and safety, for example disease and illness, factors affecting health, hygiene, substance abuse, mental and physical health, health services, health care providers, public health"@en ;
   skos:prefLabel "health"@en ;
   skos:altLabel "HEALTH"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/elevation>
+<https://vocab.met.no/mmd/ISO_Topic_Category/elevation>
   a skos:Concept ;
   skos:definition "Height above or below sea level, for example altitude, bathymetry, digital elevation models, slope, derived products, DEMs, TINs"@en ;
   skos:prefLabel "elevation"@en ;
   skos:altLabel "ELEVATION"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/society>
+<https://vocab.met.no/mmd/ISO_Topic_Category/society>
   a skos:Concept ;
   skos:definition "Characteristics of society and culture, for example settlements, housing, anthropology, archaeology, education, traditional beliefs, manners and customs, demographic data, tourism, recreational areas and activities, parks, recreational trails, historical sites, cultural resources, social impact assessments, crime and justice, law enforcement, census information, immigration, ethnicity"@en ;
   skos:prefLabel "society"@en ;
   skos:altLabel "SOCIETY"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/environment>
+<https://vocab.met.no/mmd/ISO_Topic_Category/environment>
   a skos:Concept ;
   skos:definition "Environmental resources, protection and conservation, for example environmental pollution, waste storage and treatment, environmental impact assessment, monitoring environmental risk, nature reserves, landscape, water quality, air quality, environmental modeling"@en ;
   skos:prefLabel "environment"@en ;
   skos:altLabel "ENVIRONMENT"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/extraTerrestrial>
+<https://vocab.met.no/mmd/ISO_Topic_Category/extraTerrestrial>
   a skos:Concept ;
   skos:definition ""@en ;
   skos:prefLabel "extraTerrestrial"@en ;
   skos:altLabel "EXTRA TERRESTRIAL"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/biota>
+<https://vocab.met.no/mmd/ISO_Topic_Category/biota>
   a skos:Concept ;
   skos:definition "Flora or fauna in natural environment, for example wildlife, vegetation, biological sciences, ecology, wilderness, sea life, wetlands, habitat, biological resources "@en ;
   skos:prefLabel "biota"@en ;
   skos:altLabel "BIOTA"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/disaster>
+<https://vocab.met.no/mmd/ISO_Topic_Category/disaster>
   a skos:Concept ;
   skos:definition ""@en ;
   skos:prefLabel "disaster"@en ;
   skos:altLabel "DISASTER"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/transportation>
+<https://vocab.met.no/mmd/ISO_Topic_Category/transportation>
   a skos:Concept ;
   skos:definition "Means and aids for conveying persons or goods, for example roads, airports/airstrips, shipping routes, tunnels nautical charts, vehicle or vessel location, aeronautical charts, railways"@en ;
   skos:prefLabel "transportation"@en ;
   skos:altLabel "TRANSPORTATION"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/geoscientificInformation>
+<https://vocab.met.no/mmd/ISO_Topic_Category/geoscientificInformation>
   a skos:Concept ;
   skos:definition "Information pertaining to earth sciences, for example geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth's rocks, risks of earthquakes, volcanic activity, landslides, gravity information, soils, permafrost, hydrogeology, groundwater, erosion"@en ;
   skos:prefLabel "geoscientificInformation"@en ;
   skos:altLabel "GEOSCIENTIFIC INFORMATION"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/oceans>
+<https://vocab.met.no/mmd/ISO_Topic_Category/oceans>
   a skos:Concept ;
   skos:definition "Features and characteristics of salt water bodies (excluding inland waters), for example tides, tidal waves, coastal information, reefs, maritime, outer continental shelf submerged lands, shoreline"@en ;
   skos:prefLabel "oceans"@en ;
   skos:altLabel "OCEANS"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/economy>
+<https://vocab.met.no/mmd/ISO_Topic_Category/economy>
   a skos:Concept ;
   skos:definition "Economic activities, conditions, and employment, for example production, labor, revenue, business, commerce, industry, tourism and ecotourism, forestry, fisheries, commercial or subsistence hunting, exploration and exploitation of resources such as minerals, oil and gas"@en ;
   skos:prefLabel "economy"@en ;
   skos:altLabel "ECONOMY"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/planningCadastre>
+<https://vocab.met.no/mmd/ISO_Topic_Category/planningCadastre>
   a skos:Concept ;
   skos:definition "Information used for appropriate actions for future use of the land, for example land use maps, zoning maps, cadastral surveys, land ownership, parcels, easements, tax maps, federal land ownership status, public land conveyance records"@en ;
   skos:prefLabel "planningCadastre"@en ;
   skos:altLabel "PLANNING CADASTRE"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/location>
+<https://vocab.met.no/mmd/ISO_Topic_Category/location>
   a skos:Concept ;
   skos:definition "Positional information and services, for example addresses, geodetic networks, geodetic control points, postal zones and services, place names, geographic names"@en ;
   skos:prefLabel "location"@en ;
   skos:altLabel "LOCATION"@en .
 
-<http://vocab.met.no/mmd/ISO_Topic_Category/boundaries>
+<https://vocab.met.no/mmd/ISO_Topic_Category/boundaries>
   a skos:Concept ;
   skos:definition " Legal land descriptions, for example political and administrative boundaries, governmental units, marine boundaries, voting districts, school districts, international boundaries"@en ;
   skos:prefLabel "boundaries"@en ;
   skos:altLabel "BOUNDARIES"@en .
 
 
-<http://vocab.met.no/mmd/Access_Constraint>
+<https://vocab.met.no/mmd/Access_Constraint>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Access Constraint"@en ;
   skos:definition "A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only."@en ;
-  skos:member <http://vocab.met.no/mmd/Access_Constraint/Open>, <http://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>, <http://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>, <http://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>, <http://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata> .
+  skos:member <https://vocab.met.no/mmd/Access_Constraint/Open>, <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>, <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>, <https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>, <https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata> .
 
-<http://vocab.met.no/mmd/Access_Constraint/Open>
+<https://vocab.met.no/mmd/Access_Constraint/Open>
   a skos:Concept ;
   skos:prefLabel "Open"@en ;
   skos:altLabel "Free"@en, "Unrestricted"@en ;
   skos:definition "These data are freely available to everyone and can be made available without any restrictions."@en .
 
-<http://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>
+<https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>
   a skos:Concept ;
   skos:prefLabel "Registered users only (automated approval)"@en ;
   skos:definition "These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process can be automated."@en .
 
-<http://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>
+<https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>
   a skos:Concept ;
   skos:prefLabel "Registered users only (manual approval required)"@en ;
   skos:definition "These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process must be manual."@en .
 
-<http://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>
+<https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>
   a skos:Concept ;
   skos:prefLabel "Restricted to a community"@en ;
   skos:definition "These data are available for users within a restricted community. This community determines the authorization mechansim to utilise whether this being IP-address, community specific users names or other."@en .
 
-<http://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata>
+<https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata>
   a skos:Concept ;
   skos:prefLabel "Restricted access to metadata"@en ;
   skos:definition "Information on these data MUST NOT be exposed externally. This implies that neither metadata can be exposed externally."@en .
 
 
-<http://vocab.met.no/mmd/Areas>
+<https://vocab.met.no/mmd/Areas>
   a skos:Collection , isothes:ConceptGroup;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Geographical Areas"@en ;
   skos:definition "Controlled vocabulary to be used in METAMOD context to describe geographical areas. This should be related to GCMD science keywords through altLabel. The definition should contain a unique specification of the area. Historically, METAMOD started out with ocean areas only. Open issues remain on how to best classify land regions."@en ;
-  skos:member <http://vocab.met.no/mmd/Areas/Arctic>, <http://vocab.met.no/mmd/Areas/BarentsSea>, <http://vocab.met.no/mmd/Areas/BeaufortSea>, <http://vocab.met.no/mmd/Areas/ChukchiSea>, <http://vocab.met.no/mmd/Areas/DenmarkStrait>, <http://vocab.met.no/mmd/Areas/EastSiberianSea>, <http://vocab.met.no/mmd/Areas/FramStrait>, <http://vocab.met.no/mmd/Areas/GreenlandSea>, <http://vocab.met.no/mmd/Areas/IcelandSea>, <http://vocab.met.no/mmd/Areas/KaraSea>, <http://vocab.met.no/mmd/Areas/LaptevSea>, <http://vocab.met.no/mmd/Areas/NordicSeas>, <http://vocab.met.no/mmd/Areas/NorthernHemisphere>, <http://vocab.met.no/mmd/Areas/NorthSea>, <http://vocab.met.no/mmd/Areas/NorwegianSea>, <http://vocab.met.no/mmd/Areas/WhiteSea> .
+  skos:member <https://vocab.met.no/mmd/Areas/Arctic>, <https://vocab.met.no/mmd/Areas/BarentsSea>, <https://vocab.met.no/mmd/Areas/BeaufortSea>, <https://vocab.met.no/mmd/Areas/ChukchiSea>, <https://vocab.met.no/mmd/Areas/DenmarkStrait>, <https://vocab.met.no/mmd/Areas/EastSiberianSea>, <https://vocab.met.no/mmd/Areas/FramStrait>, <https://vocab.met.no/mmd/Areas/GreenlandSea>, <https://vocab.met.no/mmd/Areas/IcelandSea>, <https://vocab.met.no/mmd/Areas/KaraSea>, <https://vocab.met.no/mmd/Areas/LaptevSea>, <https://vocab.met.no/mmd/Areas/NordicSeas>, <https://vocab.met.no/mmd/Areas/NorthernHemisphere>, <https://vocab.met.no/mmd/Areas/NorthSea>, <https://vocab.met.no/mmd/Areas/NorwegianSea>, <https://vocab.met.no/mmd/Areas/WhiteSea> .
 
-<http://vocab.met.no/mmd/Areas/Arctic>
+<https://vocab.met.no/mmd/Areas/Arctic>
   a skos:Concept ;
   skos:prefLabel "Arctic"@en ;
   skos:altLabel "Central Arctic"@en ;
   skos:closeMatch <http://vocab.nerc.ac.uk/mmd/C16/current/17/>, <http://vocab.nerc.ac.uk/mmd/C19/current/9/>, <http://vocab.nerc.ac.uk/mmd/P30/current/arctic_ocean/> ;
   skos:narrowMatch <http://vocab.nerc.ac.uk/mmd/C16/current/08/> ;
-  skos:narrower <http://vocab.met.no/mmd/Areas/WhiteSea>, <http://vocab.met.no/mmd/Areas/NorwegianSea> ;
+  skos:narrower <https://vocab.met.no/mmd/Areas/WhiteSea>, <https://vocab.met.no/mmd/Areas/NorwegianSea> ;
   skos:definition "This is used to indicate that data are located in the Arctic. The definition of the Arctic may however differ as no unique definition exists. In MetaMod context this should refer to data located nortwards of the Arctic Circle, i.e. 65 degrees North."@en .
 
-<http://vocab.met.no/mmd/Areas/BarentsSea>
+<https://vocab.met.no/mmd/Areas/BarentsSea>
   a skos:Concept ;
   skos:prefLabel "Barents Sea"@en ;
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/07/>, <http://vocab.nerc.ac.uk/mmd/C19/current/9_4/>, <http://vocab.nerc.ac.uk/mmd/P30/current/barents_sea/> ;
   skos:definition "This is used to indicate data located in the Barents Sea. The definition of this ocean area may differ as no unique definition exists. In MetaMod context this is usually used to refer to observations within or above the sea. It can also be used to identify observations at islands, but such would preferably be indicated with Svalbard if belonging to these islands. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"65.5666560048002\", \"Northernmost_latitude\": \"82.2514153220693\", \"Westernmost_longitude\": \"16.2694762982728\", \"Easternmost_longitude\": \"68.9755338269347\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/BeaufortSea>
+<https://vocab.met.no/mmd/Areas/BeaufortSea>
   a skos:Concept ;
   skos:prefLabel "Beaufort Sea"@en ;
   skos:definition "This is used to indicate data are located in the Beaufort Sea. The definition of this ocean area may differ as no unique definition exists. In MetaMod context this is usually used to refer to observations within or above the sea. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"65.6130664819046\", \"Northernmost_latitude\": \"76.348429003534\", \"Westernmost_longitude\": \"-156.645774838244\", \"Easternmost_longitude\": \"-121.763081381975\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/ChukchiSea>
+<https://vocab.met.no/mmd/Areas/ChukchiSea>
   a skos:Concept ;
   skos:prefLabel "Chukchi Sea"@en ;
   skos:definition "This is used to indicate data located in the Chukchi Sea. The definition of this ocean area may differ as no unique definition exists. In MetaMod context this is usually used to refer to observations in the ocean, but can also be used for observations on islands in the area. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"65.9080374652434\", \"Northernmost_latitude\": \"71.6078495972615\", \"Westernmost_longitude\": \"177.493486404419\", \"Easternmost_longitude\": \"-156.526019417522\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/DenmarkStrait>
+<https://vocab.met.no/mmd/Areas/DenmarkStrait>
   a skos:Concept ;
   skos:prefLabel "Denmark Strait"@en ;
   skos:definition "This is used to indicate data located in the Denmark Strait. That is the strait between Iceland and Greenland, effectively separating the Greenland and Iceland Seas. It is used to identify oceanic observations. "@en .
 
-<http://vocab.met.no/mmd/Areas/EastSiberianSea>
+<https://vocab.met.no/mmd/Areas/EastSiberianSea>
   a skos:Concept ;
   skos:prefLabel "East Siberian Sea"@en ;
   skos:definition "{\"Spatial_Coverage\": { \"Southernmost_latitude\": \"67.7983955527279\", \"Northernmost_latitude\": \"79.0000019038462\", \"Westernmost_longitude\": \"138.401622654881\", \"Easternmost_longitude\": \"180\" }}"@en ;
   skos:broader <http://vocab.nerc.ac.uk/mmd/C19/current/9/> .
 
-<http://vocab.met.no/mmd/Areas/FramStrait>
+<https://vocab.met.no/mmd/Areas/FramStrait>
   a skos:Concept ;
   skos:prefLabel "Fram Strait"@en ;
   skos:definition "This is used to indicate data located in the Fram Strait. That is the strait between Svalbard and Greenland, separating the Arctic Ocean from the Greenland Sea. It is primarily used to identify oceanic observations. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"76.4421290395782\", \"Northernmost_latitude\": \"81.4523562429474\", \"Westernmost_longitude\": \"-9.76400148921\", \"Easternmost_longitude\": \"16.6184257263662\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/GreenlandSea>
+<https://vocab.met.no/mmd/Areas/GreenlandSea>
   a skos:Concept ;
   skos:prefLabel "Greenland Sea"@en ;
   skos:definition "This is used to identify data from the area between the Fram Strait and the Denmark Strait, between Greenland and the Mohn-Sverdrup ridge or the Norwegian Sea. It is primarily used for oceanic observations but may also include observations at Jan Mayen. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"69.7856946623911\", \"Northernmost_latitude\": \"84.0988786741383\", \"Westernmost_longitude\": \"-36.8873951742225\", \"Easternmost_longitude\": \"17.535040165038\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/IcelandSea>
+<https://vocab.met.no/mmd/Areas/IcelandSea>
   a skos:Concept ;
   skos:prefLabel "Iceland Sea"@en ;
   skos:definition """This is used to identify data from the area west and south of the Denmark Strait. It is also used to identify observations from Iceland unless marked as Arctic.  	{"Spatial_Coverage": { "Southernmost_latitude": "62.3430537642984", "Northernmost_latitude": "74.7432353466058", "Westernmost_longitude": "-33.0122766941186", "Easternmost_longitude": "-4.90382728856863" }}"""@en .
 
-<http://vocab.met.no/mmd/Areas/KaraSea>
+<https://vocab.met.no/mmd/Areas/KaraSea>
   a skos:Concept ;
   skos:prefLabel "Kara Sea"@en ;
   skos:definition "This is used to indicate data from ocean, atmosphere and islands in the Kara Sea. {Spatial_Coverage\": { \"Southernmost_latitude\": \"66.0375447387754\", \"Northernmost_latitude\": \"81.3699065017207\", \"Westernmost_longitude\": \"53.8187152298353\", \"Easternmost_longitude\": \"106.071492680497\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/LaptevSea>
+<https://vocab.met.no/mmd/Areas/LaptevSea>
   a skos:Concept ;
   skos:prefLabel "Laptev Sea"@en ;
   skos:definition "This is used to indicate data from ocean, atmosphere and islands in the Laptev Sea. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"70.162908594833\", \"Northernmost_latitude\": \"81.2788944213394\", \"Westernmost_longitude\": \"95.2333358094057\", \"Easternmost_longitude\": \"141.63867408902\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/NordicSeas>
+<https://vocab.met.no/mmd/Areas/NordicSeas>
   a skos:Concept ;
   skos:prefLabel "Nordic Seas"@en ;
   skos:definition "This is used to identify the combined area of the Norwegian and the North Seas. It is mainly used to identify oceanic data."@en .
 
-<http://vocab.met.no/mmd/Areas/NorthernHemisphere>
+<https://vocab.met.no/mmd/Areas/NorthernHemisphere>
   a skos:Concept ;
   skos:prefLabel "Northern Hemisphere"@en ;
   skos:definition "This is a general classification to be used when the more specific definitions are not suitable."@en .
 
-<http://vocab.met.no/mmd/Areas/NorthSea>
+<https://vocab.met.no/mmd/Areas/NorthSea>
   a skos:Concept ;
   skos:prefLabel "North Sea"@en ;
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/04/>, <http://vocab.nerc.ac.uk/mmd/P30/current/north_sea/> ;
   skos:definition "This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. The North Sea is located south of the Norwegian Sea, bordered by the Faroe-Shetland area and the Norwegian coast, all the way down to the continent. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"49.2182615683599\", \"Northernmost_latitude\": \"63.5822291317627\", \"Westernmost_longitude\": \"-5.11211185909971\", \"Easternmost_longitude\": \"9.98777190749643\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/NorwegianSea>
+<https://vocab.met.no/mmd/Areas/NorwegianSea>
   a skos:Concept ;
   skos:prefLabel "Norwegian Sea"@en ;
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/06/>, <http://vocab.nerc.ac.uk/mmd/P30/current/norwegian_sea/>, <https://gcmdservices.gsfc.nasa.gov/kms/concept/91dd3935-a1ae-48ca-b263-9b10ac732372> ;
-  skos:broader <http://vocab.met.no/mmd/Areas/Arctic> ;
+  skos:broader <https://vocab.met.no/mmd/Areas/Arctic> ;
   skos:definition "This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. It is bordered by the Greenland Sea, the Barents Sea, the North Sea and the Faroe-Iceland ridge. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"57.9767651784406\", \"Northernmost_latitude\": \"78.1219500577069\", \"Westernmost_longitude\": \"-9.02068831025837\", \"Easternmost_longitude\": \"27.0790684243223\" }}"@en .
 
-<http://vocab.met.no/mmd/Areas/WhiteSea>
+<https://vocab.met.no/mmd/Areas/WhiteSea>
   a skos:Concept ;
   skos:prefLabel "White Sea"@en ;
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/08/> ;
-  skos:broader <http://vocab.met.no/mmd/Areas/Arctic> ;
+  skos:broader <https://vocab.met.no/mmd/Areas/Arctic> ;
   skos:definition "This is used to indicate data from ocean, atmosphere and islands in the White Sea. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"63.1090416470606\", \"Northernmost_latitude\": \"68.7989569132796\", \"Westernmost_longitude\": \"31.8685356938203\", \"Easternmost_longitude\": \"44.8394373774493\" }}"@en .
 
 
-<http://vocab.met.no/mmd/Platform>
+<https://vocab.met.no/mmd/Platform>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Platform"@en ;
   skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms> ;
   skos:definition "This describes the platform used to collect the data."@en ;
-  skos:member <http://vocab.met.no/mmd/Platform/Sentinel-1A>, <http://vocab.met.no/mmd/Platform/Sentinel-1B>, <http://vocab.met.no/mmd/Platform/Sentinel-2A>, <http://vocab.met.no/mmd/Platform/Sentinel-2B>, <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B>, <http://vocab.met.no/mmd/Platform/Metop-A>, <http://vocab.met.no/mmd/Platform/Metop-B>, <http://vocab.met.no/mmd/Platform/Metop-C>, <http://vocab.met.no/mmd/Platform/NOAA-18>, <http://vocab.met.no/mmd/Platform/NOAA-19>, <http://vocab.met.no/mmd/Platform/NOAA-20>, <http://vocab.met.no/mmd/Platform/SNPP>, <http://vocab.met.no/mmd/Platform/Aqua>, <http://vocab.met.no/mmd/Platform/Terra>, <http://vocab.met.no/mmd/Platform/FY-3D>, <http://vocab.met.no/mmd/Platform/FY-3E> .
+  skos:member <https://vocab.met.no/mmd/Platform/Sentinel-1A>, <https://vocab.met.no/mmd/Platform/Sentinel-1B>, <https://vocab.met.no/mmd/Platform/Sentinel-2A>, <https://vocab.met.no/mmd/Platform/Sentinel-2B>, <https://vocab.met.no/mmd/Platform/Sentinel-3A>, <https://vocab.met.no/mmd/Platform/Sentinel-3B>, <https://vocab.met.no/mmd/Platform/Metop-A>, <https://vocab.met.no/mmd/Platform/Metop-B>, <https://vocab.met.no/mmd/Platform/Metop-C>, <https://vocab.met.no/mmd/Platform/NOAA-18>, <https://vocab.met.no/mmd/Platform/NOAA-19>, <https://vocab.met.no/mmd/Platform/NOAA-20>, <https://vocab.met.no/mmd/Platform/SNPP>, <https://vocab.met.no/mmd/Platform/Aqua>, <https://vocab.met.no/mmd/Platform/Terra>, <https://vocab.met.no/mmd/Platform/FY-3D>, <https://vocab.met.no/mmd/Platform/FY-3E> .
 
-<http://vocab.met.no/mmd/Platform/Sentinel-1A>
+<https://vocab.met.no/mmd/Platform/Sentinel-1A>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-1A"@en ;
   skos:altLabel "Sentinel-1A"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/SAR-C> ;  
-  skos:narrower <http://vocab.met.no/mmd/Instrument/SAR-C> ;
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/SAR-C> ;  
+  skos:narrower <https://vocab.met.no/mmd/Instrument/SAR-C> ;
   skos:definition """Sentinel-1 is the European Radar Observatory, representing the first new space component of the GMES (Global Monitoring for Environment and Security) satellite family, designed and developed by ESA and funded by the EC (European Commission). The Copernicus missions (Sentinel-1, -2, and -3) represent the EU contribution to GEOSS (Global Earth Observation System of Systems). Sentinel-1 is composed of a constellation of two satellites, Sentinel-1A and Sentinel-1B, sharing the same orbital plane with a 180° orbital phasing difference. The mission provides an independent operational capability for continuous radar mapping of the Earth with enhanced revisit frequency, coverage, timeliness and reliability for operational services and applications requiring long time series.
 """@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-1>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a>;
   skos:exactMatch <http://gcmdservices.gsfc.nasa.gov/kms/concept/c7279e54-f7c1-4ee7-a957-719d6021a3f6> .
 
-<http://vocab.met.no/mmd/Platform/Sentinel-1B>
+<https://vocab.met.no/mmd/Platform/Sentinel-1B>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-1B"@en ;
   skos:altLabel "Sentinel-1B"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/SAR-C> ;  
-  skos:narrower <http://vocab.met.no/mmd/Instrument/SAR-C> ;
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/SAR-C> ;  
+  skos:narrower <https://vocab.met.no/mmd/Instrument/SAR-C> ;
   skos:definition """Sentinel-1 is the European Radar Observatory, representing the first new space component of the GMES (Global Monitoring for Environment and Security) satellite family, designed and developed by ESA and funded by the EC (European Commission). The Copernicus missions (Sentinel-1, -2, and -3) represent the EU contribution to GEOSS (Global Earth Observation System of Systems). Sentinel-1 is composed of a constellation of two satellites, Sentinel-1A and Sentinel-1B, sharing the same orbital plane with a 180° orbital phasing difference. The mission provides an independent operational capability for continuous radar mapping of the Earth with enhanced revisit frequency, coverage, timeliness and reliability for operational services and applications requiring long time series.
 """@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-1>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_1b>;
   skos:exactMatch <http://gcmdservices.gsfc.nasa.gov/kms/concept/9940dbad-1a9a-4858-a0e8-af35b21277e2> .
 
-<http://vocab.met.no/mmd/Platform/Sentinel-2A>
+<https://vocab.met.no/mmd/Platform/Sentinel-2A>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-2A"@en ;
   skos:altLabel "Sentinel-2A"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/MSI> ;  
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/MSI> ;  
   skos:definition "The Sentinel-2 mission is a land monitoring constellation of two satellites that provide high resolution optical imagery and provide continuity for the current SPOT and Landsat missions. The mission provides a global coverage of the Earth's land surface every 10 days with one satellite and 5 days with 2 satellites, making the data of great use in on-going studies. The satellites are equipped with the state-of-the-art MSI (Multispectral Imager) instrument, that offers high-resolution optical imagery."@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_2a> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/6f1c359b-b1a6-47c1-979e-0689e637fbdc> .
 
-<http://vocab.met.no/mmd/Platform/Sentinel-2B>
+<https://vocab.met.no/mmd/Platform/Sentinel-2B>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-2B"@en ;
   skos:altLabel "Sentinel-2B"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/MSI> ;  
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/MSI> ;  
   skos:definition ""@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_2b> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/f2445400-1981-4ef3-bf7c-f4aa35923ae9> .
 
-<http://vocab.met.no/mmd/Platform/Sentinel-3A>
+<https://vocab.met.no/mmd/Platform/Sentinel-3A>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-3A"@en ;
   skos:altLabel "Sentinel-3A"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/OLCI> , <http://vocab.met.no/mmd/Instrument/SLSTR>, <http://vocab.met.no/mmd/Instrument/MWR> ;  
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/OLCI> , <https://vocab.met.no/mmd/Instrument/SLSTR>, <https://vocab.met.no/mmd/Instrument/MWR> ;  
   skos:definition "Mission Details Launch Date: Sentinel-3A - 16 February 2016 Sentinel-3B - 25 April 2018 Operational lifepsan: 7 years (With consumables for 12) Mission objectives: Measuring sea-surface topography, sea-surface height and significant wave height Measuring ocean and land-surface temperature Measuring ocean and land-surface colour Monitoring sea and land ice topography Sea-water quality and pollution monitoring Inland water monitoring, including rivers and lakes Aid ocean forecasts with acquired data Climate monitoring and modelling Land-use change monitoring Forest cover mapping Fire detection Weather forecasting Measuring Earth's thermal radiation for atmospheric applications Mission Orbit: Orbit Type: Sun-synchronous Orbit Height: 814 km Inclination: 98.6o Repeat Cycle: 27 days Payload: OLCI (Ocean and Land Colour Instrument) SLSTR (Sea and Land Surface Temperature Radiometer) SRAL (Synthetic Aperture Radar Altimeter) MWR (Microwave Radiometer) DORIS LRR (Laser Retroreflector) GNSS (Global Navigation Satellite System) Resolution and Swath Width: OLCI - 1270 km SLSTR - 1420 km Configuration: In addition to the observation instruments, the Sentinel-3 spacecraft will carry the GNSS (Global Navigation Satellite System) and LRR (Laser Retro Reflector) instruments. GNSS will provide precise orbit determination and can track multiple satellites simultaneously. LRR will be used to accurately locate the satellite in orbit using a laser ranging system. The dimensions of the craft are: 3.7 x 2.2 x 2.2 m with a weight (at time of launch) of 1250 kg. Launch vehicle: Rockot (Sentinel-3A and -3B) Operator: EUMETSAT Contractors: Thales Alenia Space is the prime contractor, responsible for constructing the spacecraft and the SRAL instrument, as well as contributing to the supply of the SLSTR instrument. Many European companies are involved in supplying the SLSTR instrument, including SELEX Galileo, RAL (Rutherford Appleton Laboratory), Jena-Optronik, Thales Alenia Space, ABSL and ESA-ESTEC. EADS CASA Espacio is contracted to provide the MWR instrument. CNES is contracted to provide the DORIS instrument. Eurockot and Arianespace are contracted to launch the spacecraft."@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_3a> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/5449d87b-5573-450f-8acb-2fdfeab3c8ce> .
 
-<http://vocab.met.no/mmd/Platform/Sentinel-3B>
+<https://vocab.met.no/mmd/Platform/Sentinel-3B>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Sentinel-3B"@en ;
   skos:altLabel "Sentinel-3B"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/OLCI> , <http://vocab.met.no/mmd/Instrument/SLSTR>, <http://vocab.met.no/mmd/Instrument/MWR> ;  
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/OLCI> , <https://vocab.met.no/mmd/Instrument/SLSTR>, <https://vocab.met.no/mmd/Instrument/MWR> ;  
   skos:definition "The Sentinel-3 (S3) mission of ESA and the EC is one of the elements of the GMES (Global Monitoring for Environment and Security) program, which responds to the requirements for operational and near-real-time monitoring of ocean, land and ice surfaces over a period of 20 years. The topography element of this mission will serve primarily the marine operational users but will also allow the monitoring of sea ice and land ice, as well as inland water surfaces, using novel observation techniques.The Sentinel-3 mission is designed as a constellation of two identical polar orbiting satellites, separated by 180º, for the provision of long-term operational marine and land monitoring services. The operational character of this mission implies a high level of availability of the data products and fast delivery time, which have been important design drivers for the mission."@en ;
   rdfs:seeAlso <https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3>, <https://www.wmo-sat.info/oscar/satellites/view/sentinel_3b> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/41163801-6aac-43e5-aed7-9f52613a6a73> .
 
-<http://vocab.met.no/mmd/Platform/Metop-A>
+<https://vocab.met.no/mmd/Platform/Metop-A>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Metop-A"@en ;
   skos:altLabel "Meteorological operational satellite - A"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
-  skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  skos:narrower <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition "The MetOp-A satellite, developed by a consortium of European companies led by the main contractor EADS-Astrium, France, builds on the heritage gained from a successful series of European satellites, including the French Space Agency's (CNES) SPOT and ESA'S ERS and Envisat. The satellite consists of a Solar Array and two modules: the Payload Module (PLM) and the Service Module (SVM). The PLM accommodates the whole suite of instruments and associated support equipment. It includes advanced versions of the widely used scatterometer and ozone-monitoring instruments already flying onboard the ERS-2 satellite. The SVM, which interfaces with the launcher, provides the main satellite support functions, such as command and control, communications with the ground, power and orbit control and propulsion. MetOp-A carries a set of 'heritage' instruments, provided by the United States National Oceanic and Atmospheric Administration (NOAA) and the French Space Agency (CNES), and a new generation of European instruments offering precise sensing capabilities to both meteorologists and climatologists. http://www.esa.int/esaLP/LPmetop.html [Summary from the ESA MetOp Meteorological Missions home page] Group: Platform_Details Entry_ID: METOP-A Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: METOP Short_Name: METOP-A Long_Name: Meteorological Operational Satellite - A End_Group Group: Platform_Associated_Instruments Short_Name: SARR Short_Name: SEM-2 Short_Name: A-DCS Short_Name: AVHRR-3 Short_Name: HIRS/4 Short_Name: AMSU-B Short_Name: AMSU-A Short_Name: GOME-2 Short_Name: ASCAT Short_Name: GRAS Short_Name: MHS Short_Name: IASI End_Group Group: Orbit Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Online_Resource: http://www.esa.int/esaLP/LPmetop.html Group: Platform_Logistics Launch_Date: 2006-10-19 Launch_Site: Baikonur Cosmodrome, Tyuratam, Russia Primary_Sponsor: ESA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/metop-a> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/8143808e-1005-4fed-a469-c2bd5f1521bf> .
 
-<http://vocab.met.no/mmd/Platform/Metop-B>
+<https://vocab.met.no/mmd/Platform/Metop-B>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Metop-B"@en ;
   skos:altLabel "Meteorological operational satellite - B"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
-  skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  skos:narrower <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/metop-b> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/c9f84df0-e807-46e3-8fce-c33e9201fbc2> .
 
-<http://vocab.met.no/mmd/Platform/Metop-C>
+<https://vocab.met.no/mmd/Platform/Metop-C>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Metop-C"@en ;
   skos:altLabel "Meteorological operational satellite - C"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
-  skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  skos:narrower <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/metop-c> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/6120cea0-c943-4c7c-bddd-8d8648d58022> .
 
-<http://vocab.met.no/mmd/Platform/NOAA-18>
+<https://vocab.met.no/mmd/Platform/NOAA-18>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "NOAA-18"@en ;
   skos:altLabel "National Oceanic and Atmospheric Administration - 18"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
-  skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  skos:narrower <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/noaa_18> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/37afee26-f2fd-47df-b8e0-7cccd71e6b8c> .
 
-<http://vocab.met.no/mmd/Platform/NOAA-19>
+<https://vocab.met.no/mmd/Platform/NOAA-19>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "NOAA-19"@en ;
   skos:altLabel "National Oceanic and Atmospheric Administration - 19"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
-  skos:narrower <http://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
+  skos:narrower <https://vocab.met.no/mmd/Instrument/AVHRR_3> ; 
   skos:definition "[Source: NASA Portal, http://www.nasa.gov/mission_pages/NOAA-N-Prime/main/index.html ] The Delta II carrying NOAA-N Prime lifted off Feb. 6, 2009 at 2:22 a.m. Pacific time, 5:22 a.m. Eastern time from Space Launch Complex-2 at Vandenberg Air Force Base in California. [Image and Text Source: NOAA-N Prime Spacecraft web page, http://goespoes.gsfc.nasa.gov/poes/spacecraft/noaanprime_spacecraft.html ] NOAA-N Prime will be the last in the series of TIROS ATN. NOAA-N' has a planned launch date of February 2009 from Vandenberg AFB, CA by a Delta II launch vehicle. The spacecraft will continue to provide a polar-orbiting platform to support (1) environmental monitoring instruments for imaging and measuring the Earth's atmosphere, its surface, and cloud cover, including Earth radiation, atmospheric ozone, aerosol distribution, sea surface temperature, and vertical temperature and water profiles in the troposphere and stratosphere; (2) measurement of proton and electron flux at orbit altitude; (3) data collection from remote platforms; and (4) the Search and Rescue Satellite-Aided Tracking (SARSAT) system. Additionally, NOAA-N' will be the fifth in the series of support dedicated microwave instruments for the generation of temperature, moisture, surface, and hydrological products in cloudy regions where visible and infrared (IR) instruments have decreased capability. This spacecraft will carry an Advanced - DCS instead of the previous DCS. More Information: http://goespoes.gsfc.nasa.gov/poes/spacecraft/noaanprime_spacecraft.html Group: Platform_Details Entry_ID: NOAA-19 Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: NOAA POES (Polar Orbiting Environmental Satellites) Short_Name: NOAA-19 Long_Name: National Oceanic & Atmospheric Administration-19 End_Group Group: Platform_Associated_Instruments Short_Name: SARR Short_Name: SEM-2 Short_Name: SBUV/2 Short_Name: MHS Short_Name: HIRS/4 Short_Name: AVHRR-3 Short_Name: AMSU-A End_Group Group: Orbit Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2009-01-23 Online_Resource: http://goespoes.gsfc.nasa.gov/poes/index.html Online_Resource: http://www.osd.noaa.gov/POES/noaa_n_prime.htm Online_Resource: http://goespoes.gsfc.nasa.gov/poes/Goes_N_Prime.pdf Online_Resource: http://www2.ncdc.noaa.gov/docs/klm/nnpsupp.htm Online_Resource: http://www.nasa.gov/mission_pages/NOAA-N-Prime/main/index.html Sample_Image: http://goespoes.gsfc.nasa.gov/poes/gallery/N%20Prime/unpacking/Unpacking-5_800px.jpg Group: Platform_Logistics Launch_Date: 2009-02-06 Launch_Site: Vandenberg Air Force Base, USA Primary_Sponsor: USA/NASA Primary_Sponsor: USA/NOAA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/noaa_19> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/b7461b99-2b6f-460a-ae7f-6bb37515684d> .
 
-<http://vocab.met.no/mmd/Platform/NOAA-20>
+<https://vocab.met.no/mmd/Platform/NOAA-20>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "NOAA-20"@en ;
   skos:altLabel "National Oceanic and Atmospheric Administration - 20"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
-  skos:narrower <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/VIIRS> ; 
+  skos:narrower <https://vocab.met.no/mmd/Instrument/VIIRS> ; 
   skos:definition "NOAA-20, which launched into space on November 18, 2017, is the first spacecraft of NOAA's next generation of polar-orbiting satellites. Capitalizing on the success of Suomi NPP, NOAA-20 features five similar instruments: (1) VIIRS, (2) CrIS, (3) ATMS, (4) OMPS-N, and (5) CERES-FM6. NOAA-20 has a design life of seven years and it will circle the Earth in the same orbit as Suomi NPP, although the two satellites will be separated in time and space by 50 minutes. Additional information available at: https://www.jpss.noaa.gov/ Group: Platform_Details Entry_ID: JPSS-1 Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: Joint Polar Satellite System (JPSS) Short_Name: NOAA-20 Long_Name: Joint Polar Satellite System - 1 End_Group Group: Synonymous_Platform_Names Short_Name: C-1 Short_Name: Defense Weather Satellite System Short_Name: DWSS End_Group Group: Platform_Associated_Instruments Short_Name: CERES-FM5 Short_Name: A-DCS Short_Name: ATMS Short_Name: CRIMSS Short_Name: CRIS Short_Name: MIS Short_Name: OMPS Short_Name: SEM-N Short_Name: VIIRS End_Group Group: Orbit Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2007-11-09 Online_Resource: https://www.jpss.noaa.gov/ Group: Platform_Logistics Launch_Date: 2017-11-18 Primary_Sponsor: USA/NOAA Primary_Sponsor: USA/NASA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/noaa_20> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/586db0b3-5f94-466e-b7c1-a2dbedc0c1fc> .
 
-<http://vocab.met.no/mmd/Platform/SNPP>
+<https://vocab.met.no/mmd/Platform/SNPP>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "SNPP"@en ;
   skos:altLabel "Suomi National Polar-orbiting Partnership"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
-  skos:narrower <http://vocab.met.no/mmd/Instrument/VIIRS> ; 
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/VIIRS> ; 
+  skos:narrower <https://vocab.met.no/mmd/Instrument/VIIRS> ; 
   skos:definition "[Text from the NPP Launch Blog, https://www.nasa.gov/mission_pages/NPP/launch/launch_blog.html ] The NPOESS Preparatory Project (NPP) spacecraft lifted off aboard a United Launch Alliance Delta II rocket from Space Launch Complex 2 at Vandenberg Air Force Base in California on Oct. 28, 2011 at 5:48 a.m. EDT. The NPP spacecraft will build on more than four decades Earth observation to help us better understand our climate. The National Polar-Orbiting Operational Environmental Satellite System (NPOESS) Preparatory Project (NPP) is a joint mission involving the National Aeronautics and Space Administration's (NASA) and the NPOESS Integrated Program Office (IPO). The NPP mission collects and distributes remotely-sensed land, ocean, and atmospheric data to the meteorological and global climate change communities as the responsibility for these measurements transitions from existing Earth-observing missions such as Aqua, Terra and Aura, to the NPOESS. It will provide atmospheric and sea surface temperatures, humidity sounding, land and ocean biological productivity, and cloud and aerosol properties. For the IPO, NPP provides risk reduction with an opportunity to demonstrate and validate new instruments and processing algorithms, as well as to demonstrate and validate aspects of the NPOESS command, control, communications and ground processing capabilities prior to the launch of the first NPOESS spacecraft. More Information: https://www.jpss.noaa.gov Group: Platform_Details Entry_ID: SUOMI-NPP Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: Joint Polar Satellite System (JPSS) Short_Name: SUOMI-NPP Long_Name: Suomi National Polar-orbiting Partnership End_Group Group: Platform_Associated_Instruments Short_Name: CRIMSS Short_Name: ATMS Short_Name: CRIS-NPOESS Short_Name: OMPS Short_Name: VIIRS Short_Name: CERES-FM5 End_Group Group: Orbit Repeat_Cycle: 16-day Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2009-02-27 Online_Resource: https://www.jpss.noaa.gov/ Online_Resource: https://www.nasa.gov/mission_pages/NPP/main/index.html Group: Platform_Logistics Launch_Date: 2011-10-28 Launch_Site: Vandenberg Air Force Base, USA Primary_Sponsor: USA/NASA Primary_Sponsor: USA/NOAA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/snpp> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/85a52725-e6a1-430a-8506-c08c59ef31c7> .
 
-<http://vocab.met.no/mmd/Platform/Aqua>
+<https://vocab.met.no/mmd/Platform/Aqua>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Aqua"@en ;
   skos:altLabel "Earth Observation System - Aqua"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/MODIS> ;
-  skos:narrower <http://vocab.met.no/mmd/Instrument/MODIS> ;
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/MODIS> ;
+  skos:narrower <https://vocab.met.no/mmd/Instrument/MODIS> ;
   skos:definition "Aqua is a major international Earth Science satellite mission centered at NASA. Launched on May 4, 2002, the satellite has six different Earth-observing instruments on board and is named for the large amount of information being obtained about water in the Earth system from its stream of approximately 89 Gigabytes of data a day. The water variables being measured include almost all elements of the water cycle and involve water in its liquid, solid, and vapor forms. Additional variables being measured include radiative energy fluxes, aerosols, vegetation cover on the land, phytoplankton and dissolved organic matter in the oceans, and air, land, and water temperatures. Key Aqua Facts Joint with Brazil and Japan Dimensions: 2.7 m x 2.5 m x 6.5 m stowed; 4.8 m x 16.7 m x 8.0 m deployed Mass: 2,934 kg (1,750 kg spacecraft, 1,082 kg instruments, 102 kg propellants) Power: 4,600 W silicon cell array and a NiH2 battery Average Data Rate: 89 Gbytes/day Data Storage: 136-Gbit solid state recorder (SSR) for storage of up to two orbits of data Data Relay Methods: Direct downlink from the SSR to polar ground stations; direct broadcast Data Links: X-band Telemetry: S-band Group: Platform_Details Entry_ID: AQUA Group: Platform_Identification Platform_Category: Earth Observation Satellites Platform_Series_or_Entity: EOS (Earth Observing System) Short_Name: AQUA Long_Name: Earth Observing System, AQUA End_Group Group: Platform_Associated_Instruments Short_Name: CERES-FM4 Short_Name: CERES-FM3 Short_Name: AIRS Short_Name: AMSR-E Short_Name: AMSU-A Short_Name: HSB Short_Name: MODIS End_Group Group: Orbit Orbit_Altitude: 705 km Orbit_Inclination: 98.2 degrees Equator_Crossing: 1:30 p.m. (south to north) and 1:30 a.m. (north to south) Period: 98.8 minutes Repeat_Cycle: 16 days (233 revolutions) Perigee: 699 km (434 mi) Apogee: 706 km (438 mi) Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2007-04-16 Online_Resource: https://aqua.nasa.gov/ Online_Resource: https://global.jaxa.jp/projects/sat/aqua/ Online_Resource: https://www.nasa.gov/mission_pages/aqua/ Group: Platform_Logistics Launch_Date: 2002-05-04 Launch_Site: Vandenberg Air Force Base, USA Design_Life: 6 years Primary_Sponsor: USA/NASA Primary_Sponsor: BRAZIL/INPE Primary_Sponsor: JAPAN/JAXA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/aqua> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/ea7fd15d-190d-43f3-bdd3-75f5d88dc3f8> .
 
-<http://vocab.met.no/mmd/Platform/Terra>
+<https://vocab.met.no/mmd/Platform/Terra>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "Terra"@en ;
   skos:altLabel "Earth Observation System - Terra"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/MODIS> ;
-  skos:narrower <http://vocab.met.no/mmd/Instrument/MODIS> ;
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/MODIS> ;
+  skos:narrower <https://vocab.met.no/mmd/Instrument/MODIS> ;
   skos:definition "Terra is the flagship satellite of NASA's Earth observing systems. Terra is the first EOS (Earth Observing System) platform and provides global data on the state of the atmosphere, land, and oceans, as well as their interactions with solar radiation and with one another. Since the 1950's, it has become increasingly clear that human activities are modifying the composition of the atmosphere on a global scale. As the result of industrialization, the concentration of carbon dioxide has increased by about 20% during this period. More recently, the stratospheric concentrations of chemically-active gases containing chlorine, bromine, and fluorine have dramatically increased. These trends have created issues of global interest including global warming and declining levels of ozone (both globally and in the ozone &hole& in the Antarctic). It has become increasingly clear, however, that these processes do not occur independently of one another and can only be understood in the context of a global system. Accurate and precise measurements are needed to unravel complex and interactive relationships between chemical, radiative, and dynamical processes in the atmosphere, ocean, and on land. As a result, in 1991 NASA initiated a comprehensive program to understand the Earth's atmosphere, oceans, land, and cryosphere (ice and snow) as a single, complex, interactive system. NASA's Earth Observing System (EOS) consists of a series of spaceborne instruments to monitor crucial components of the Earth system, an advanced data handling system, and teams of scientists who will evaluate on-going climate change and predict future changes. Ultimately, EOS will produce scientifically sound recommendations for environmental policy to national and international bodies to mitigate or prepare for these changes. Key Terra Facts: Joint with Japan and Canada Orbit: Type: Near-polar, sun-synchronous Equatorial Crossing: 10:30 a.m. Altitude: 705 km Inclination: 98.1 degrees Period: 98.88 minutes Repeat Cycle: 16 days Dimensions: 2.7 m x 3.3 m x 6.8 m Mass: 5,190 kg Power: 2,530 W Design Life: 6 years Terra Status: Operating instruments: ASTER, CERES, MODIS, MISR, and MOPITT are operating well. ASTER Short Wave Infrared (SWIR) data is unavailable. Current life expectancy: Terra has far exceeded its design life and has a strong chance of operating successfully into the early 2020s. [Summary provided by NASA] Group: Platform_Details Entry_ID: Terra Group: Platform_Identification Platform_Category: Earth Observation Satellites Short_Name: Terra Long_Name: Earth Observing System, Terra (AM-1) End_Group Group: Synonymous_Platform_Names Short_Name: EOS AM-1 End_Group Group: Platform_Associated_Instruments Short_Name: MOPITT Short_Name: MODIS Short_Name: MISR Short_Name: CERES-FM2 Short_Name: CERES-FM1 Short_Name: ASTER End_Group Group: Orbit Orbit_Altitude: 705 km Orbit_Inclination: 98.2 degrees Equator_Crossing: 10:30 a.m. Period: 98.88 minutes Repeat_Cycle: 16 days Orbit_Type: LEO > Low Earth Orbit > Polar Sun-Synchronous End_Group Creation_Date: 2007-02-06 Online_Resource: https://terra.nasa.gov/ Online_Resource: https://www.nasa.gov/mission_pages/terra/index.html Sample_Image: https://www.nasa.gov/mission_pages/terra/spacecraft/index.html Group: Platform_Logistics Launch_Date: 1999-12-18 Launch_Site: VANDENBERG AIR FORCE BASE, USA Design_Life: 6 years Primary_Sponsor: USA/NASA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/terra> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/80eca755-c564-4616-b910-a4c4387b7c54> .
 
-<http://vocab.met.no/mmd/Platform/FY-3D>
+<https://vocab.met.no/mmd/Platform/FY-3D>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "FY-3D"@en ;
   skos:altLabel "Feng-Yun 3D"@en ;
-  sosa:hosts <http://vocab.met.no/mmd/Instrument/MERSI-2> ;
-  sosa:narrower <http://vocab.met.no/mmd/Instrument/MERSI-2> ;
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/MERSI-2> ;
+  sosa:narrower <https://vocab.met.no/mmd/Instrument/MERSI-2> ;
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/fy_3d> .
 
-<http://vocab.met.no/mmd/Platform/FY-3E>
+<https://vocab.met.no/mmd/Platform/FY-3E>
   a skos:Concept, sosa:Platform  ;
   skos:prefLabel "FY-3E"@en ;
   skos:altLabel "Feng-Yun 3E"@en ;
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/fy_3e> .
 
-<http://vocab.met.no/mmd/Instrument>
+<https://vocab.met.no/mmd/Instrument>
   a skos:Collection, <http://purl.org/iso25964/skos-thes#ConceptGroup> ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Instrument"@en ;
   skos:definition "TBW"@en ;
-  skos:member <http://vocab.met.no/mmd/Instrument/SAR-C>, <http://vocab.met.no/mmd/Instrument/MSI>, <http://vocab.met.no/mmd/Instrument/OLCI>, <http://vocab.met.no/mmd/Instrument/SLSTR>, <http://vocab.met.no/mmd/Instrument/MWR>, <http://vocab.met.no/mmd/Instrument/VIIRS>, <http://vocab.met.no/mmd/Instrument/AVHRR_3>, <http://vocab.met.no/mmd/Instrument/MERSI-2>, <http://vocab.met.no/mmd/Instrument/MODIS> .
+  skos:member <https://vocab.met.no/mmd/Instrument/SAR-C>, <https://vocab.met.no/mmd/Instrument/MSI>, <https://vocab.met.no/mmd/Instrument/OLCI>, <https://vocab.met.no/mmd/Instrument/SLSTR>, <https://vocab.met.no/mmd/Instrument/MWR>, <https://vocab.met.no/mmd/Instrument/VIIRS>, <https://vocab.met.no/mmd/Instrument/AVHRR_3>, <https://vocab.met.no/mmd/Instrument/MERSI-2>, <https://vocab.met.no/mmd/Instrument/MODIS> .
 
-<http://vocab.met.no/mmd/Instrument/SAR-C>
+<https://vocab.met.no/mmd/Instrument/SAR-C>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "SAR-C"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-1A>, <http://vocab.met.no/mmd/Platform/Sentinel-1B> ;
-  skos:broader <http://vocab.met.no/mmd/Platform/Sentinel-1A>, <http://vocab.met.no/mmd/Platform/Sentinel-1B> ;
-  skos:narrower <http://vocab.met.no/mmd/Instrument_Modes/SM>, <http://vocab.met.no/mmd/Instrument_Modes/IW>, <http://vocab.met.no/mmd/Instrument_Modes/EW>, <http://vocab.met.no/mmd/Instrument_Modes/WV> ; 
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/Sentinel-1A>, <https://vocab.met.no/mmd/Platform/Sentinel-1B> ;
+  skos:broader <https://vocab.met.no/mmd/Platform/Sentinel-1A>, <https://vocab.met.no/mmd/Platform/Sentinel-1B> ;
+  skos:narrower <https://vocab.met.no/mmd/Instrument_Modes/SM>, <https://vocab.met.no/mmd/Instrument_Modes/IW>, <https://vocab.met.no/mmd/Instrument_Modes/EW>, <https://vocab.met.no/mmd/Instrument_Modes/WV> ; 
   skos:altLabel "Synthetic Aperture Radar (C-band)"@en, "C-SAR"@en ;
   skos:definition "The C-SAR instrument is an active phased array antenna providing fast scanning in elevation (to cover the large range of incidence angle and to support ScanSAR operation) and in azimuth (to allow use of TOPS technique to meet the required image performance). To meet the polarisation requirements, it has dual channel transmit and receive modules and H/V-polarised pairs of slotted waveguides. It has an internal calibration scheme, where transmit signals are routed into the receiver to allow monitoring of amplitude/phase to facilitate high radiometric stability. SENTINEL-1's metallised carbon-fibre-reinforced-plastic radiating waveguides ensure good radiometric stability even though these elements are not covered by the internal calibration scheme. The digital chirp generator and selectable receive filter bandwidths allow efficient use of on-board storage considering the ground range resolution dependence on incidence angle. Group: Instrument_Details Entry_ID: SENTINEL-1 C-SAR Group: Instrument_Identification Instrument_Category: Earth Remote Sensing Instruments Instrument_Class: Active Remote Sensing Instrument_Type: Imaging Radars Short_Name: C-SAR Long_Name: C-Band Synthetic Aperture Radar End_Group Group: Associated_Platforms Short_Name: SENTINEL-1 End_Group Online_Resource: https://sentinel.esa.int/web/sentinel/sentinel-1-sar-wiki/-/wiki/Sentinel%20One/Instrument Creation_Date: 2015-02-05 End_Group"@en ;
   rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar>, <https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/ed400e7c-229e-48be-9a93-84f2fc864448> .
 
-<http://vocab.met.no/mmd/Instrument/MSI>
+<https://vocab.met.no/mmd/Instrument/MSI>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MSI"@en ;
   skos:altLabel "Multi-Spectral Imager for Sentinel-2"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-2A>, <http://vocab.met.no/mmd/Platform/Sentinel-2B> ;
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/Sentinel-2A>, <https://vocab.met.no/mmd/Platform/Sentinel-2B> ;
   skos:definition "The instrument is based on the pushbroom observation concept. The telescope features a TMA (Three Mirror Anastigmat) design with a pupil diameter of 150 mm, providing a very good imaging quality all across its wide FOV (Field of View). The equivalent swath width is 290 km. The telescope structure and the mirrors are made of silicon carbide (SiC) which allows to minimize thermoelastic deformations. The VNIR focal plane is based on monolithic CMOS (Complementary Metal Oxide Semiconductor) detectors while the SWIR focal plane is based on a MCT (Mercury Cadmium Telluride) detector hybridized on a CMOS read-out circuit. A dichroic beamsplitter provides the spectral separation of VNIR and SWIR channels. EADS Astrium SAS of Toulouse is prime for the instrument. The industrial core team also comprises Jena Optronik (Germany), Boostec (Bazet, France), Sener and GMV (Spain), and AMOS, Belgium. The VNIR detectors are built by Astrium-E2V, while the French company Sofradir received a contract to provide the SWIR detectors for MSI. Calibration: A combination of partial on-board calibration with a sun diffuser and vicarious calibration with ground targets is foreseen to guarantee a high quality radiometric performance. State-of-the-art lossy compression based on wavelet transform is applied to reduce the data volume. The compression ratio will be fine tuned for each spectral band to ensure that there is no significant impact on image quality. The observation data are digitized on 12 bit. A shutter mechanism is implemented to prevent the instrument from direct viewing of the sun in orbit and from contamination during launch. The average observation time per orbit is 16.3 minutes, while the peak value is 31 minutes (duty cycle of about 16-31%). Imager type Pushbroom instrument Spectral range (total of 13 bands) 0.4-2.4 µm (VNIR + SWIR) Spectral dispersion technique Dichroic for VNIR and SWIR split In field separation within focal plane Mirror dimensions of telescope M1 = 440 mm x 190 mm M2 = 145 mm x 118 mm M3 = 550 mm x 285 mm SSD (Spatial Sampling Distance) 10 m: (VNIR) B2, B3, B4, B8 (4 bands) 20 m: B5, B6, B7, B8a, B11, B12 (6 bands) 60 m: B1, B9, (3 bands) Swath width 290 km, FOV= 20.6º Detector technologies Monolithic Si (VNIR); hybrid HgCdTe CMOS (SWIR) Detector cooling Cooling of SWIR detector to < 210 K Data quantization 12 bit Instrument mass, power ~ 290 kg, < 266 W Data rate 450 Mbit/s after compression"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/msi_sentinel_2a> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/fc57a9a0-a287-4bcf-a517-20811b55596b> .
 
-<http://vocab.met.no/mmd/Instrument/OLCI>
+<https://vocab.met.no/mmd/Instrument/OLCI>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "OLCI"@en ;
   skos:altLabel "Ocean and Land Colour Imager"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B> ;
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/Sentinel-3A>, <https://vocab.met.no/mmd/Platform/Sentinel-3B> ;
   skos:definition "The OLCI instrument baseline is the successor to ENVISAT MERIS with additional spectral channels, different camera arrangements and simplified on-board processing. The OLCI is a push-broom instrument with five camera modules sharing the field of view. The field of view of the five cameras is arranged in a fan-shaped configuration in the vertical plane, perpendicular to the platform velocity. Each camera has an individual field of view of 14.2° and a 0.6° overlap with its neighbours. The whole field of view is shifted across track by 12.6° away from the sun to minimise the impact of sun glint."@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/olci>, <https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-olci> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/65ed042c-df53-4afb-8b6a-1ea16958015d> .
 
-<http://vocab.met.no/mmd/Instrument/SLSTR>
+<https://vocab.met.no/mmd/Instrument/SLSTR>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "SLSTR"@en ;
   skos:altLabel "Sea and Land Surface Temperature Radiometer"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B> ;
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/Sentinel-3A>, <https://vocab.met.no/mmd/Platform/Sentinel-3B> ;
   skos:definition "The principal aim of the SLSTR instrument mission on-board SENTINEL-3 is to maintain continuity with the (A)ATSR series of instruments. The design supports this by incorporating the basic functionality of AATSR, with the addition of some new, more advanced, features. These include a wider swath, new channels (including two channels dedicated to fire detection), and higher resolution in some channels."@en ;
   rdfs:seeAlso <https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-slstr>, <https://www.wmo-sat.info/oscar/instruments/view/slstr> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/7204c4d5-b7d0-41af-ba90-61d47c6dc610> .
 
-<http://vocab.met.no/mmd/Instrument/MWR>
+<https://vocab.met.no/mmd/Instrument/MWR>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MWR"@en ;
   skos:altLabel "Micro-Wave Radiometer"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Sentinel-3A>, <http://vocab.met.no/mmd/Platform/Sentinel-3B> ;
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/Sentinel-3A>, <https://vocab.met.no/mmd/Platform/Sentinel-3B> ;
   skos:definition "MWR is a nadir looking sounder, operating at 23.8 and 36.5 GHz (K/Ka-band) covering a bandwidth of 200 MHz in each channel. The objective is to provide water vapor and cloud water contents in the field of view of the altimeter, necessary to compensate for the propagation delay induced by these atmospheric components and affecting the radar measurements. Such corrections are only possible over the ocean, where the background noise is stable and can be quantified either by the 3rd (optional) radiometer channel, or derived from the altimeter measurements of the backscattered power. Alternatively, over ice and land surfaces where MWR data cannot be used, wet troposphere corrections will be derived based on global meteorological data and dedicated models. The MWR instrument is being developed by EADS CASA Espacio (ECE) under contract with Thales Alenia Space France (TAS-F) and ESA. MWR measures the thermal radiation emitted by Earth (brightness temperature). The received signal is proportional to the abundance of the atmospheric component emitted at the observed frequency and the sea-surface reflectivity. This information reveals the delay added to the altimeter pulses by moisture in the troposphere. The MWR instrument is comprised of the following part elements: antenna assembly, REU (Radiometer Electronics Units), the main structure and the thermal control hardware. Both K-band and Ka-band channels are fully redundant, except for the antenna assembly, with cold redundancy without cross-strapping. Center frequency, bandwidth 23.8 GHz, 200 MHz 36.5 GHz, 200 MHz Center frequency stability 180 kHz/ºC 220 kHz/ºC Radiometric performance Accuracy: < 3K Sensitivity: 0.29 K Stability: < 0.6 K Accuracy: < 3K Sensitivity: 0.34 K Stability: < 0.6 K Beam efficiency (2.5 HPBW) 94.1% 96.0% Antenna footprint diameter (average HPBW) 23.5 km 18.5 km Calibration cycle ~ 1 / hour Dicke frequency 78.5 Hz (nominal, programmable within 76-80 Hz range) Integration time 152.88 ms (nominal, within 150-157.9 ms range) Dynamic range 2.7 K to 320 K (radiometric performance guaranteed at 150 K - 313 K range) Side-lobe level (SLL) < -36 dB < -45 dB Antenna beam pointing Along-track: 1.98 Cross-track: 0.0º Along-track: 1.93º Cross-track: 0.0ºº Main antenna diameter 60 cm Instrument mass, power consumption ~25 kg, 34 W"@en ;
   rdfs:seeAlso <https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-altimetry/instrument/mwr>, <https://www.wmo-sat.info/oscar/instruments/view/mwr_sentinel_3> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/d81fc4e3-c0b4-4205-82b2-ef2161c169a3> .
 
-<http://vocab.met.no/mmd/Instrument/VIIRS>
+<https://vocab.met.no/mmd/Instrument/VIIRS>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "VIIRS"@en ;
   skos:altLabel "Visible/Infrared Imager Radiometer Suite"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/SNPP>, <http://vocab.met.no/mmd/Platform/NOAA-20> ;
-  skos:broader <http://vocab.met.no/mmd/Platform/SNPP>, <http://vocab.met.no/mmd/Platform/NOAA-20> ;
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/SNPP>, <https://vocab.met.no/mmd/Platform/NOAA-20> ;
+  skos:broader <https://vocab.met.no/mmd/Platform/SNPP>, <https://vocab.met.no/mmd/Platform/NOAA-20> ;
   skos:definition "The Visible Infrared Imaging Radiometer Suite (VIIRS) instrument collects visible and infrared imagery and global observations of land, atmosphere, cryosphere and oceans. Currently flying on the Suomi NPP satellite mission, VIIRS generates many critical environmental products about snow and ice cover, clouds, fog, aerosols, fire, smoke plumes, dust, vegetation health, phytoplankton abundance and chlorophyll. VIIRS will also be on the JPSS-1 and JPSS-2 satellite missions. More Information: https://www.jpss.noaa.gov/viirs.html Mass: Approximately 252 kilograms Average Power: 191 W Development Institutions: Raytheon Company VIIRS Sensor Lead: Bruce Guenther (NOAA) Purpose: To collect measurements of clouds, aerosols, ocean color, surface temperature, fires, and albedo. Group: Instrument_Details Entry_ID: VIIRS Group: Instrument_Identification Instrument_Category: Earth Remote Sensing Instruments Instrument_Class: Passive Remote Sensing Instrument_Type: Spectrometers/Radiometers Instrument_Subtype: Imaging Spectrometers/Radiometers Short_Name: VIIRS Long_Name: Visible-Infrared Imager-Radiometer Suite End_Group Group: Associated_Platforms Short_Name: SUOMI-NPP Short_Name: JPSS-1 End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Visible Number_Channels: 7 Spectral_Frequency_Coverage_Range: 0.412 μm - 0.746 μm End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Near Infrared Number_Channels: 2 Spectral_Frequency_Coverage_Range: 0.865 μm End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Infrared > Reflected Number_Channels: 6 Spectral_Frequency_Coverage_Range: 0.7 μm - 2.25 μm End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Infrared > Thermal Number_Channels: 7 Spectral_Frequency_Coverage_Range: 3.74 μm - 12.013 μm End_Group Online_Resource: https://www.jpss.noaa.gov/viirs.html Creation_Date: 2009-03-17 Group: Instrument_Logistics Instrument_Owner: USA/NOAA Instrument_Owner: USA/NASA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/viirs> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/dd7c719e-5767-4ceb-b83a-66c1401dab4a> .
 
-<http://vocab.met.no/mmd/Instrument/AVHRR_3>
+<https://vocab.met.no/mmd/Instrument/AVHRR_3>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "AVHRR/3"@en ;
   skos:altLabel "Advanced Very High Resolution Radiometer / 3"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Metop-A>, <http://vocab.met.no/mmd/Platform/Metop-B>, <http://vocab.met.no/mmd/Platform/Metop-C>, <http://vocab.met.no/mmd/Platform/NOAA-18>, <http://vocab.met.no/mmd/Platform/NOAA-19> ;
-  skos:broader <http://vocab.met.no/mmd/Platform/Metop-A>, <http://vocab.met.no/mmd/Platform/Metop-B>, <http://vocab.met.no/mmd/Platform/Metop-C>, <http://vocab.met.no/mmd/Platform/NOAA-18>, <http://vocab.met.no/mmd/Platform/NOAA-19> ;
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/Metop-A>, <https://vocab.met.no/mmd/Platform/Metop-B>, <https://vocab.met.no/mmd/Platform/Metop-C>, <https://vocab.met.no/mmd/Platform/NOAA-18>, <https://vocab.met.no/mmd/Platform/NOAA-19> ;
+  skos:broader <https://vocab.met.no/mmd/Platform/Metop-A>, <https://vocab.met.no/mmd/Platform/Metop-B>, <https://vocab.met.no/mmd/Platform/Metop-C>, <https://vocab.met.no/mmd/Platform/NOAA-18>, <https://vocab.met.no/mmd/Platform/NOAA-19> ;
   skos:definition "[ Text Source, ESA Meteorological Missions Homepage, http://www.esa.int/esaLP/SEM9VEG23IE_LPmetop_0.html ] The Advanced Very High Resolution Radiometer (AVHRR/3) is one of the complement of American instruments provided by the National Oceanic and Atmospheric Administration (NOAA) to fly on MetOp-A, B and C. The AVHRR/3 scans the Earth surface in six spectral bands in the range of 0.58 - 12.5 microns. It provides day and night imaging of land, water and clouds, measures sea surface temperature, ice, snow and vegetation cover. The AVHRR/3 is a six-channel imaging radiometer that detects energy in the visible and infrared (IR) portions of the electromagnetic spectrum. The instrument measures reflected solar (visible and near-IR) energy and radiated thermal energy from land, sea, clouds, and the intervening atmosphere. The instrument has an instantaneous field-of-view (IFOV) of 1.3 milliradians providing a nominal spatial resolution of 1.1 km (0.69 mi) at nadir. A continuously rotating elliptical scan mirror provides the cross-track scan, scanning the Earth from ± 55.4° from nadir. The mirror scans at six revolutions per second to provide continuous coverage. The instrument provides spectral and gain improvements to the solar visible channels that provide low light energy detection. Channel 3A, at 1.6 microns, provides snow, ice, and cloud discrimination. Channel 3A will be time-shared with the 3.7-micron channel, designated 3B, to provide five channels of continuous data. An external sun shield and an internal baffle have been added to reduce sunlight impingement into the instrument’s optical cavity and detectors. Group: Instrument_Details Entry_ID: AVHRR-3 Group: Instrument_Identification Instrument_Category: Earth Remote Sensing Instruments Instrument_Class: Passive Remote Sensing Instrument_Type: Spectrometers/Radiometers Instrument_Subtype: Imaging Spectrometers/Radiometers Short_Name: AVHRR-3 Long_Name: Advanced Very High Resolution Radiometer-3 End_Group Group: Associated_Platforms Short_Name: METOP Short_Name: METOP-A Short_Name: METOP-B Short_Name: NOAA-19 Short_Name: NOAA-18 Short_Name: NOAA-17 Short_Name: NOAA-16 Short_Name: NOAA-15 End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Near Infrared Number_Channels: 3 Spectral_Frequency_Coverage_Range: 0.58 μm - 1.64 μm Spectral_Frequency_Resolution: 1.09 km End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Infrared > Thermal Number_Channels: 3 Spectral_Frequency_Coverage_Range: 3.55 μm - 12.5 μm Spectral_Frequency_Resolution: 1.09 km End_Group Online_Resource: http://www2.ncdc.noaa.gov/docs/klm/html/c3/sec3-1.htm Online_Resource: http://www.esa.int/esaLP/SEM9VEG23IE_LPmetop_0.html Online_Resource: http://www.eumetsat.int/Home/Main/Satellites/Metop/Instruments/SP_2010053153142514 Online_Resource: http://database.eohandbook.com/database/instrumentsummary.aspx?instrumentID=403 Sample_Image: http://goespoes.gsfc.nasa.gov/poes/instruments/images/enlarged_avhhr.jpg Creation_Date: 2008-07-22 Group: Instrument_Logistics Instrument_Owner: USA/NOAA Instrument_Owner: USA/NASA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/avhrr_3> ;
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/87c44e15-54c8-407d-a881-8035a2d5512b> .
 
-<http://vocab.met.no/mmd/Instrument/MERSI-2>
+<https://vocab.met.no/mmd/Instrument/MERSI-2>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MERSI-2"@en ;
   skos:altLabel "Medium Resolution Spectral Imager -2"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/FY-3D> ; 
-  skos:broader <http://vocab.met.no/mmd/Platform/FY-3D> ; 
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/FY-3D> ; 
+  skos:broader <https://vocab.met.no/mmd/Platform/FY-3D> ; 
   skos:definition ""@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/mersi_2> .
 
-<http://vocab.met.no/mmd/Instrument/MODIS>
+<https://vocab.met.no/mmd/Instrument/MODIS>
   a skos:Concept, sosa:Sensor ;
   skos:prefLabel "MODIS"@en ;
   skos:altLabel "Moderate-resolution Imaging Spectro-radiometer"@en ;
-  sosa:isHostedBy <http://vocab.met.no/mmd/Platform/Terra> ; 
-  skos:broader <http://vocab.met.no/mmd/Platform/Aqua> ; 
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/Terra> ; 
+  skos:broader <https://vocab.met.no/mmd/Platform/Aqua> ; 
   skos:definition "The Moderate Resolution Imaging Spectroradiometer (MODIS) is a multi-disciplinary, keystone instrument on Aqua and Terra, providing a wide array of multispectral, daily observations of land, ocean, and atmosphere features at spatial resolutions between 250 m and 1000 m. Approximately 40 data products are produced from the MODIS data. Data are distributed not only through the EOS Data and Information Service (EOSDIS) Distributed Active Archive Centers (DAACs) at Goddard Space Flight Center, the EROS Data Center in Sioux Falls, South Dakota, and the National Snow and Ice Data Center (NSIDC) in Boulder, Colorado, but also via over 100 Direct Broadcast (DB) stations distributed world-wide. Key MODIS Facts Heritage: AVHRR, HIRS, Landsat TM, and Nimbus-7 CZCS Instrument Type: Medium-resolution, multi-spectral, cross-track scanning radiometer; daylight reflection and day/night emission spectral imaging Swath Width: 2,300 km at 110 degree (&#177;55 degree) Coverage: Global coverage every 1 to 2 days Spatial Resolution: 250 m, 500 m, 1 km Dimensions: 1.04 m x 1.18 m x 1.63 m Mass: 229 kg Thermal Operating Range: 268 &#177; 5 K Power: 162.5 W (average), 225 W (peak) Duty Cycle: 100% Instrument Nadir IFOV: 250 m (2 bands), 500 m (5 bands), 1,000 m (29 bands) Polarization Sensitivity: 2% from 0.43 &#181;m to 2.2 &#181;m and &#177;45 degree scan Signal-to-Noise Ratios: From 500 to 1100 for 1-km ocean color bands at 70 degree solar zenith angle NEDt: Typically < 0.05 K at 300 K Absolute Irradiance Accuracy: 5% for wavelengths < 3 &#181;m and 1% for wavelengths > 3 &#181;m Group: Instrument_Details Entry_ID: MODIS Group: Instrument_Identification Instrument_Category: Earth Remote Sensing Instruments Instrument_Class: Passive Remote Sensing Instrument_Type: Spectrometers/Radiometers Instrument_Subtype: Imaging Spectrometers/Radiometers Short_Name: MODIS Long_Name: Moderate-Resolution Imaging Spectroradiometer End_Group Group: Associated_Platforms Short_Name: TERRA Short_Name: AQUA End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Visible Number_Channels: 10 Channels Spectral_Frequency_Coverage_Range: 0.4 - 0.7 &#181;m End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Infrared > Reflected Number_Channels: 10 Channels Spectral_Frequency_Coverage_Range: 0.75 - 3 &#181;m End_Group Group: Spectral_Frequency_Information Wavelength_Keyword: Infrared > Thermal Number_Channels: 16 Channels Spectral_Frequency_Coverage_Range: 3.0 - 14.5 &#181;m End_Group Online_Resource: https://modis.gsfc.nasa.gov/ Online_Resource: https://modis-land.gsfc.nasa.gov/ Online_Resource: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table Online_Resource: https://atmosphere-imager.gsfc.nasa.gov/ Online_Resource: https://nsidc.org/data/modis/index.html Online_Resource: https://ladsweb.modaps.eosdis.nasa.gov/ Online_Resource: https://oceancolor.gsfc.nasa.gov Online_Resource: https://mcst.gsfc.nasa.gov/ Online_Resource: https://modis.gsfc.nasa.gov/data/ Online_Resource: https://modis.gsfc.nasa.gov/data/dataprod/index.php Sample_Image: httpa://modis.gsfc.nasa.gov/about/images/modisComponents.jpg Creation_Date: 2007-04-16 Group: Instrument_Logistics Data_Rate: 6.2Mbps (average), 10.5 Mbps (daytime), 3.2 Mbps (nighttime) Instrument_Start_Date: 2002-06-25 Instrument_Owner: USA/NASA End_Group Group: Instrument_Logistics Data_Rate: 6.2Mbps (average), 10.5 Mbps (daytime), 3.2 Mbps (nighttime) Instrument_Start_Date: 2000-02-24 Instrument_Owner: USA/NASA End_Group End_Group"@en ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/modis>; 
   skos:exactMatch <https://gcmdservices.gsfc.nasa.gov/kms/concept/2878f334-35dc-47a7-a3ae-8c5da1adccd3> .
 
 
-<http://vocab.met.no/mmd/Operational_Status>
+<https://vocab.met.no/mmd/Operational_Status>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Operational Status"@en ;
   skos:definition "Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time."@en ;
-  skos:member <http://vocab.met.no/mmd/Operational_Status/Operational>, <http://vocab.met.no/mmd/Operational_Status/Pre-Operational>, <http://vocab.met.no/mmd/Operational_Status/Experimental>, <http://vocab.met.no/mmd/Operational_Status/Scientific> .
+  skos:member <https://vocab.met.no/mmd/Operational_Status/Operational>, <https://vocab.met.no/mmd/Operational_Status/Pre-Operational>, <https://vocab.met.no/mmd/Operational_Status/Experimental>, <https://vocab.met.no/mmd/Operational_Status/Scientific> .
 
-<http://vocab.met.no/mmd/Operational_Status/Operational>
+<https://vocab.met.no/mmd/Operational_Status/Operational>
   a skos:Concept ;
   skos:prefLabel "Operational"@en ;
   skos:definition "This is used to tag datasets that are continously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continous basis with a temporal perspective."@en .
 
-<http://vocab.met.no/mmd/Operational_Status/Pre-Operational>
+<https://vocab.met.no/mmd/Operational_Status/Pre-Operational>
   a skos:Concept ;
   skos:prefLabel "Pre-Operational"@en ;
   skos:definition "This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational."@en .
 
-<http://vocab.met.no/mmd/Operational_Status/Experimental>
+<https://vocab.met.no/mmd/Operational_Status/Experimental>
   a skos:Concept ;
   skos:prefLabel "Experimental"@en ;
   skos:definition "This is used to describe data that belongs to a development and production chain that provides operational data. It is the first step in the process of becoming operational."@en .
 
-<http://vocab.met.no/mmd/Operational_Status/Scientific>
+<https://vocab.met.no/mmd/Operational_Status/Scientific>
   a skos:Concept ;
   skos:prefLabel "Scientific"@en ;
   skos:definition """This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective. 
         """@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords>
+<https://vocab.met.no/mmd/Collection_Keywords>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Collection Keywords"@en ;
   skos:definition "The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository."@en ;
-  skos:member <http://vocab.met.no/mmd/Collection_Keywords/CC>, <http://vocab.met.no/mmd/Collection_Keywords/ADC>, <http://vocab.met.no/mmd/Collection_Keywords/GCW>, <http://vocab.met.no/mmd/Collection_Keywords/NMDC>, <http://vocab.met.no/mmd/Collection_Keywords/SIOS>, <http://vocab.met.no/mmd/Collection_Keywords/NSDN>, <http://vocab.met.no/mmd/Collection_Keywords/DOKI>, <http://vocab.met.no/mmd/Collection_Keywords/DAM>, <http://vocab.met.no/mmd/Collection_Keywords/ACCESS>, <http://vocab.met.no/mmd/Collection_Keywords/NBS>, <http://vocab.met.no/mmd/Collection_Keywords/APPL>, <http://vocab.met.no/mmd/Collection_Keywords/YOPP>, <http://vocab.met.no/mmd/Collection_Keywords/METNCS>, <http://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <http://vocab.met.no/mmd/Collection_Keywords/SESS2019>, <http://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <http://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <http://vocab.met.no/mmd/Collection_Keywords/SIOSAP>, <http://vocab.met.no/mmd/Collection_Keywords/CVL> .
+  skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>, <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>, <https://vocab.met.no/mmd/Collection_Keywords/NSDN>, <https://vocab.met.no/mmd/Collection_Keywords/DOKI>, <https://vocab.met.no/mmd/Collection_Keywords/DAM>, <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>, <https://vocab.met.no/mmd/Collection_Keywords/NBS>, <https://vocab.met.no/mmd/Collection_Keywords/APPL>, <https://vocab.met.no/mmd/Collection_Keywords/YOPP>, <https://vocab.met.no/mmd/Collection_Keywords/METNCS>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>, <https://vocab.met.no/mmd/Collection_Keywords/CVL> .
 
-<http://vocab.met.no/mmd/Collection_Keywords/CC>
+<https://vocab.met.no/mmd/Collection_Keywords/CC>
   a skos:Concept ;
   skos:prefLabel "CC"@en ;
   skos:definition "Datasets related to the Cryosphere in the context of the CryoClim project."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/ADC>
+<https://vocab.met.no/mmd/Collection_Keywords/ADC>
   a skos:Concept ;
   skos:prefLabel "ADC"@en ;
   rdfs:seeAlso <https://adc.met.no/> ;
   skos:definition "Datasets related to the Arctic Data Centre. This is the fall back collection, but it might be that some datasets are not officially part of the ADC collection and thus should only be searchable, but not exported using OAI-PMH."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/GCW>
+<https://vocab.met.no/mmd/Collection_Keywords/GCW>
   a skos:Concept ;
   skos:prefLabel "GCW"@en ;
   skos:definition "Datasets related to the WMO Global Cryosphere Watch."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/NMDC>
+<https://vocab.met.no/mmd/Collection_Keywords/NMDC>
   a skos:Concept ;
   skos:prefLabel "NMDC"@en ;
   skos:definition "Datasets relevant for the Norwegian Marine Data Centre. This is basically datasets of a marine origin, regardless of whether they are of operational or scientific origin."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/SIOS>
+<https://vocab.met.no/mmd/Collection_Keywords/SIOS>
   a skos:Concept ;
   skos:prefLabel "SIOS"@en ;
   rdfs:seeAlso <https://sios-svalbard.org> ;
   skos:definition "Datasets related to the Svalbard Integrated Arctic Earth Observing System."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/NSDN>
+<https://vocab.met.no/mmd/Collection_Keywords/NSDN>
   a skos:Concept ;
   skos:prefLabel "NSDN"@en ;
   skos:definition "Datasets related to the Norwegian Scientific Data Network (NorDataNet)."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/DOKI>
+<https://vocab.met.no/mmd/Collection_Keywords/DOKI>
   a skos:Concept ;
   skos:prefLabel "DOKI"@en ;
   skos:definition "Datasets related to the national contribution to the International Polar Year."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/DAM>
+<https://vocab.met.no/mmd/Collection_Keywords/DAM>
   a skos:Concept ;
   skos:prefLabel "DAM"@en ;
   skos:definition "Datasets in the context of EU FP6 project DAMOCLES."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/ACCESS>
+<https://vocab.met.no/mmd/Collection_Keywords/ACCESS>
   a skos:Concept ;
   skos:prefLabel "ACCESS"@en ;
   skos:definition "Datasets in the context of EU FP7 project ACCESS."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/NBS>
+<https://vocab.met.no/mmd/Collection_Keywords/NBS>
   a skos:Concept ;
   skos:prefLabel "NBS"@en ;
   skos:definition "Datasets in the context of National Ground Segment for satellite data. This is primarily Sentinel datasets."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/APPL>
+<https://vocab.met.no/mmd/Collection_Keywords/APPL>
   a skos:Concept ;
   skos:prefLabel "APPL"@en ;
   skos:definition "Datasets in the context of EU H2020 project APPLICATE."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/YOPP>
+<https://vocab.met.no/mmd/Collection_Keywords/YOPP>
   a skos:Concept ;
   skos:prefLabel "YOPP"@en ;
   skos:definition "Datasets in the context of YOPP."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/METNCS>
+<https://vocab.met.no/mmd/Collection_Keywords/METNCS>
   a skos:Concept ;
   skos:prefLabel "METNCS"@en ;
   skos:definition "Datasets related to the core services at MET Norway."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/SESS2018>
+<https://vocab.met.no/mmd/Collection_Keywords/SESS2018>
   a skos:Concept ;
   skos:prefLabel "SESS2018"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue1> ;
   skos:definition "Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/SESS2019>
+<https://vocab.met.no/mmd/Collection_Keywords/SESS2019>
   a skos:Concept ;
   skos:prefLabel "SESS2019"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue2> ;
   skos:definition "Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/SESS2020>
+<https://vocab.met.no/mmd/Collection_Keywords/SESS2020>
   a skos:Concept ;
   skos:prefLabel "SESS2020"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue3> ;
   skos:definition "Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/SIOSCD>
+<https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>
   a skos:Concept ;
   skos:prefLabel "SIOSCD"@en ;
   skos:definition "Datasets that are SIOS Core Data."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/SIOSAP>
+<https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>
   a skos:Concept ;
   skos:prefLabel "SIOSAP"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/RIAccess> ;
   skos:definition "Datasets from the SIOS Access Programme."@en .
 
-<http://vocab.met.no/mmd/Collection_Keywords/CVL>
+<https://vocab.met.no/mmd/Collection_Keywords/CVL>
   a skos:Concept ;
   skos:prefLabel "CVL"@en ;
   skos:definition "Datasets from the ESA Cryosphere Virtual Lab."@en .
 
 
-<http://vocab.met.no/mmd/Instrument_Modes>
+<https://vocab.met.no/mmd/Instrument_Modes>
   a skos:Collection, <http://purl.org/iso25964/skos-thes#ConceptGroup> ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Instrument Modes"@en ;
   skos:definition "Instrument Modes for Sentinel-1 (SAR-C)"@en ;
   rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes> ; 
-  skos:member <http://vocab.met.no/mmd/Instrument_Modes/SM>, <http://vocab.met.no/mmd/Instrument_Modes/IW>, <http://vocab.met.no/mmd/Instrument_Modes/EW>, <http://vocab.met.no/mmd/Instrument_Modes/WV> .
+  skos:member <https://vocab.met.no/mmd/Instrument_Modes/SM>, <https://vocab.met.no/mmd/Instrument_Modes/IW>, <https://vocab.met.no/mmd/Instrument_Modes/EW>, <https://vocab.met.no/mmd/Instrument_Modes/WV> .
 
-<http://vocab.met.no/mmd/Instrument_Modes/SM>
+<https://vocab.met.no/mmd/Instrument_Modes/SM>
   a skos:Concept ;
   skos:prefLabel "SM"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument/SAR-C> ;
-  skos:narrower <http://vocab.met.no/mmd/Polarisation_Modes/HH>, <http://vocab.met.no/mmd/Polarisation_Modes/VV>, <http://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <http://vocab.met.no/mmd/Polarisation_Modes/VV+VH>; 
+  skos:broader <https://vocab.met.no/mmd/Instrument/SAR-C> ;
+  skos:narrower <https://vocab.met.no/mmd/Polarisation_Modes/HH>, <https://vocab.met.no/mmd/Polarisation_Modes/VV>, <https://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <https://vocab.met.no/mmd/Polarisation_Modes/VV+VH>; 
   rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/stripmap> ; 
   skos:definition "StripMap. Relates to Sentinel-1"@en .
 
-<http://vocab.met.no/mmd/Instrument_Modes/IW>
+<https://vocab.met.no/mmd/Instrument_Modes/IW>
   a skos:Concept ;
   skos:prefLabel "IW"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument/SAR-C> ;
-  skos:narrower <http://vocab.met.no/mmd/Polarisation_Modes/HH>, <http://vocab.met.no/mmd/Polarisation_Modes/VV>, <http://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <http://vocab.met.no/mmd/Polarisation_Modes/VV+VH>; 
+  skos:broader <https://vocab.met.no/mmd/Instrument/SAR-C> ;
+  skos:narrower <https://vocab.met.no/mmd/Polarisation_Modes/HH>, <https://vocab.met.no/mmd/Polarisation_Modes/VV>, <https://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <https://vocab.met.no/mmd/Polarisation_Modes/VV+VH>; 
   rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/interferometric-wide-swath> ; 
   skos:definition "ScanSAR - Interferometric Wide Swath. Relates to Sentinel-1"@en .
 
-<http://vocab.met.no/mmd/Instrument_Modes/EW>
+<https://vocab.met.no/mmd/Instrument_Modes/EW>
   a skos:Concept ;
   skos:prefLabel "EW"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument/SAR-C> ;
-  skos:narrower <http://vocab.met.no/mmd/Polarisation_Modes/HH>, <http://vocab.met.no/mmd/Polarisation_Modes/VV>, <http://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <http://vocab.met.no/mmd/Polarisation_Modes/VV+VH>; 
+  skos:broader <https://vocab.met.no/mmd/Instrument/SAR-C> ;
+  skos:narrower <https://vocab.met.no/mmd/Polarisation_Modes/HH>, <https://vocab.met.no/mmd/Polarisation_Modes/VV>, <https://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <https://vocab.met.no/mmd/Polarisation_Modes/VV+VH>; 
   rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/extra-wide-swath> ;
   skos:definition "ScanSAR - Extra-Wide Swath. Relates to Sentinel-1"@en .
 
-<http://vocab.met.no/mmd/Instrument_Modes/WV>
+<https://vocab.met.no/mmd/Instrument_Modes/WV>
   a skos:Concept ;
   skos:prefLabel "WV"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument/SAR-C> ;
-  skos:narrower <http://vocab.met.no/mmd/Polarisation_Modes/HH>, <http://vocab.met.no/mmd/Polarisation_Modes/VV> ; 
+  skos:broader <https://vocab.met.no/mmd/Instrument/SAR-C> ;
+  skos:narrower <https://vocab.met.no/mmd/Polarisation_Modes/HH>, <https://vocab.met.no/mmd/Polarisation_Modes/VV> ; 
   rdfs:seeAlso <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/wave> ;
   skos:definition "Wave Mode. Relates to Sentinel-1"@en .
 
-<http://vocab.met.no/mmd/Polarisation_Modes>
+<https://vocab.met.no/mmd/Polarisation_Modes>
   a skos:Collection,  isothes:ConceptGroup;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Polarisation Modes"@en ;
   skos:definition "Polarisation Modes"@en ;
-  skos:member <http://vocab.met.no/mmd/Polarisation_Modes/HH>, <http://vocab.met.no/mmd/Polarisation_Modes/VV>, <http://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <http://vocab.met.no/mmd/Polarisation_Modes/VV+VH> .
+  skos:member <https://vocab.met.no/mmd/Polarisation_Modes/HH>, <https://vocab.met.no/mmd/Polarisation_Modes/VV>, <https://vocab.met.no/mmd/Polarisation_Modes/HH+HV>, <https://vocab.met.no/mmd/Polarisation_Modes/VV+VH> .
 
-<http://vocab.met.no/mmd/Polarisation_Modes/HH>
+<https://vocab.met.no/mmd/Polarisation_Modes/HH>
   a skos:Concept ;
   skos:prefLabel "HH"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument_Modes/SM>, <http://vocab.met.no/mmd/Instrument_Modes/IW>, <http://vocab.met.no/mmd/Instrument_Modes/EW>, <http://vocab.met.no/mmd/Instrument_Modes/WV> ;  
+  skos:broader <https://vocab.met.no/mmd/Instrument_Modes/SM>, <https://vocab.met.no/mmd/Instrument_Modes/IW>, <https://vocab.met.no/mmd/Instrument_Modes/EW>, <https://vocab.met.no/mmd/Instrument_Modes/WV> ;  
   skos:definition "Single polarisation mode: Horisontally transmitted and Horisontally received"@en .
 
-<http://vocab.met.no/mmd/Polarisation_Modes/VV>
+<https://vocab.met.no/mmd/Polarisation_Modes/VV>
   a skos:Concept ;
   skos:prefLabel "VV"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument_Modes/SM>, <http://vocab.met.no/mmd/Instrument_Modes/IW>, <http://vocab.met.no/mmd/Instrument_Modes/EW>, <http://vocab.met.no/mmd/Instrument_Modes/WV> ;  
+  skos:broader <https://vocab.met.no/mmd/Instrument_Modes/SM>, <https://vocab.met.no/mmd/Instrument_Modes/IW>, <https://vocab.met.no/mmd/Instrument_Modes/EW>, <https://vocab.met.no/mmd/Instrument_Modes/WV> ;  
   skos:definition "Single polarisation mode: Vertically transmitted and Vertically received"@en .
 
-<http://vocab.met.no/mmd/Polarisation_Modes/HH+HV>
+<https://vocab.met.no/mmd/Polarisation_Modes/HH+HV>
   a skos:Concept ;
   skos:prefLabel "HH+HV"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument_Modes/SM>, <http://vocab.met.no/mmd/Instrument_Modes/IW>, <http://vocab.met.no/mmd/Instrument_Modes/EW> ;  
+  skos:broader <https://vocab.met.no/mmd/Instrument_Modes/SM>, <https://vocab.met.no/mmd/Instrument_Modes/IW>, <https://vocab.met.no/mmd/Instrument_Modes/EW> ;  
   skos:definition "Dual polarisation mode: "@en .
 
-<http://vocab.met.no/mmd/Polarisation_Modes/VV+VH>
+<https://vocab.met.no/mmd/Polarisation_Modes/VV+VH>
   a skos:Concept ;
   skos:prefLabel "VV+VH"@en ;
-  skos:broader <http://vocab.met.no/mmd/Instrument_Modes/SM>, <http://vocab.met.no/mmd/Instrument_Modes/IW>, <http://vocab.met.no/mmd/Instrument_Modes/EW> ;  
+  skos:broader <https://vocab.met.no/mmd/Instrument_Modes/SM>, <https://vocab.met.no/mmd/Instrument_Modes/IW>, <https://vocab.met.no/mmd/Instrument_Modes/EW> ;  
   skos:definition "Dual polarisation mode: "@en .
 
-<http://vocab.met.no/mmd/Contact_Roles>
+<https://vocab.met.no/mmd/Contact_Roles>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <http://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Contact Roles"@en ;
   skos:definition ""@en ;
-  skos:member <http://vocab.met.no/mmd/Contact_Roles/Investigator>, <http://vocab.met.no/mmd/Contact_Roles/TechnicalContact>, <http://vocab.met.no/mmd/Contact_Roles/MetadataAuthor>, <http://vocab.met.no/mmd/Contact_Roles/DataCenterContact> . 
+  skos:member <https://vocab.met.no/mmd/Contact_Roles/Investigator>, <https://vocab.met.no/mmd/Contact_Roles/TechnicalContact>, <https://vocab.met.no/mmd/Contact_Roles/MetadataAuthor>, <https://vocab.met.no/mmd/Contact_Roles/DataCenterContact> . 
 
-<http://vocab.met.no/mmd/Contact_Roles/Investigator>
+<https://vocab.met.no/mmd/Contact_Roles/Investigator>
   a skos:Concept ;
   skos:prefLabel "Investigator"@en ;
   skos:definition "The person who headed the investigation or experiment that resulted in the acquisition of the data described (i.e., Principal Investigator, Experiment Team Leader) and knows the details on data collection and processing."@en .
 
-<http://vocab.met.no/mmd/Contact_Roles/TechnicalContact>
+<https://vocab.met.no/mmd/Contact_Roles/TechnicalContact>
   a skos:Concept ;
   skos:prefLabel "Technical contact"@en ;
   skos:definition "The person who is knowledgeable about the technical content of the data (quality, processing methods, units, available software for further processing)."@en .
 
-<http://vocab.met.no/mmd/Contact_Roles/MetadataAuthor>
+<https://vocab.met.no/mmd/Contact_Roles/MetadataAuthor>
   a skos:Concept ;
   skos:prefLabel "Metadata author"@en ;
   skos:definition "The main responsible person for the generation of the metadata for this dataset. Other people could have been involved, but this is the main contact with regard to the metadata."@en .
 
-<http://vocab.met.no/mmd/Contact_Roles/DataCenterContact>
+<https://vocab.met.no/mmd/Contact_Roles/DataCenterContact>
   a skos:Concept ;
   skos:prefLabel "Data center contact"@en ;
   skos:definition "An individual affiliated with a data center."@en .

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--This xslt converts from mmd to iso 19115 -->
+<!--This xslt converts from mmd to iso 19115-2 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:gmi="http://www.isotc211.org/2005/gmi" 
+    xmlns:gmx="http://www.isotc211.org/2005/gmx"
     xmlns:gml="http://www.opengis.net/gml"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:mmd="http://www.met.no/schema/mmd"
+    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd http://www.isotc211.org/2005/gmi http://www.isotc211.org/2005/gmx/gmi.xsd"
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/mmd:mmd">
-        <xsl:element name="gmd:MD_Metadata">
+        <xsl:element name="gmi:MI_Metadata">
 
             <gmd:language>
                 <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng">English</gmd:LanguageCode>
@@ -169,14 +173,20 @@
                                         <xsl:text>otherRestrictions</xsl:text>
                                     </xsl:element>
                                 </xsl:element>
-        
-                            <xsl:element name="gmd:otherConstraints">
-                                    <xsl:element name="gco:CharacterString">
-                			    <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
-                                    </xsl:element>
+                        
+                                <xsl:element name="gmd:otherConstraints">
+                                        <xsl:element name="gmx:Anchor">
+                                            <xsl:attribute name="xlink:href">
+                            		    <xsl:value-of select="mmd:use_constraint/mmd:resource" />
+                                            </xsl:attribute>
+                            		    <xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                                        </xsl:element>
+                                    <!--xsl:element name="gco:CharacterString">
+		            		<xsl:value-of select="mmd:use_constraint/mmd:identifier" />
+                                    </xsl:element-->
+                                </xsl:element>
+                                
                             </xsl:element>
-                         </xsl:element>
-                            
                         </xsl:element>
 	            </xsl:if>
                     
@@ -192,8 +202,72 @@
                         </xsl:element>
                     </xsl:element>
 
-                </xsl:element>
+                 </xsl:element>
+
             </xsl:element>        
+            
+	    <!--gmi acquisition info-->
+	    <xsl:if test="mmd:platform != ''">
+                <xsl:element name="gmi:acquisitionInformation">
+                    <xsl:element name="gmi:MI_AcquisitionInformation">
+                        <xsl:element name="gmi:platform">
+                            <xsl:element name="gmi:MI_Platform">
+                                <xsl:element name="gmi:identifier">
+                                    <xsl:element name="gmd:MD_Identifier">
+                                        <xsl:element name="gmd:code">
+                                            <xsl:element name="gmx:Anchor">
+                                                 <xsl:attribute name="xlink:href">
+                                                     <xsl:value-of select="mmd:platform/mmd:resource" />
+                                                 </xsl:attribute>
+                                                 <xsl:value-of select="mmd:platform/mmd:short_name" />
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmi:description">
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:value-of select="mmd:platform/mmd:long_name" />
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmi:instrument">
+                                    <xsl:element name="gmi:MI_Instrument">
+                                        <xsl:element name="gmi:identifier">
+                                            <xsl:element name="gmd:MD_Identifier">
+                                                <xsl:element name="gmd:code">
+                                                    <xsl:element name="gmx:Anchor">
+                                                         <xsl:attribute name="xlink:href">
+                                                             <xsl:value-of select="mmd:platform/mmd:instrument/mmd:resource" />
+                                                         </xsl:attribute>
+	            		                         <xsl:value-of select="mmd:platform/mmd:instrument/mmd:short_name" />
+                                                    </xsl:element>
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                        <xsl:element name="gmi:type">
+                                            <xsl:element name="gco:CharacterString">
+	            		                <xsl:value-of select="mmd:platform/mmd:instrument/mmd:long_name" />
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:if>
+
+	    <!--gmi content info-->
+	    <xsl:if test="mmd:platform/mmd:ancillary/mmd:cloud_coverage != ''">
+                <xsl:element name="gmd:contentInfo">
+                    <xsl:element name="gmd:MD_ImageDescription">
+                        <xsl:element name="gmd:cloudCoverPercentage">
+                            <xsl:element name="gco:Real">
+	            	    <xsl:value-of select="mmd:platform/mmd:ancillary/mmd:cloud_coverage" />
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:if>
             
             <xsl:element name="gmd:distributionInfo">
                 <xsl:element name="gmd:MD_Distribution">
@@ -220,10 +294,10 @@
              -->
 
             <gmd:metadataStandardName>
-                <gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
+                <gco:CharacterString>ISO 19115-2 Geographic Information - Metadata Part 2 Extensions for imagery and gridded data</gco:CharacterString>
             </gmd:metadataStandardName>
             <gmd:metadataStandardVersion>
-                <gco:CharacterString>1.0</gco:CharacterString>
+                <gco:CharacterString>ISO 19115-2:2009(E)</gco:CharacterString>
             </gmd:metadataStandardVersion>
             
         </xsl:element>

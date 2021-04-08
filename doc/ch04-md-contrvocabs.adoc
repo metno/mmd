@@ -404,6 +404,13 @@ projected to ground range using an Earth ellipsoid model such as WGS84.
 |OCN |Ocean |Ocean (OCN) products for wind, wave and currents
 applications derived from the SAR data.
 
+|S2MSI1C | Sentinel-2 MSI Level-1C| Ortho-rectified and UTM geo-coded Top-of-Atmosphere 
+Reflectance with sub-pixel multispectral and multi-date registration.
+
+|S2MSI2A | Sentinel-2 MSI Level-2A| Ortho-rectified and UTM geo-coded Bottom-of-Atmosphere 
+multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness 
+(AOT) map, Water Vapour (WV) map, Scene Classification map together with Quality Indicators data.
+
 |=======================================================================
 
 <<platform>>
