@@ -156,7 +156,42 @@
         </xsl:attribute>
 	<xsl:for-each select="mmd:keyword">
         <xsl:element name="mmd:keyword">
-          <xsl:value-of select="." />
+        <xsl:variable name="topic" select="substring-before(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '&gt;')" />
+	  <xsl:choose>
+	      <xsl:when test="contains(../@vocabulary,'gcmd') or contains(../@vocabulary, 'GCMD') or contains(../@vocabulary, 'Global Change Master Directory')">
+	          <xsl:choose>
+	              <xsl:when test="contains(.,'EARTH SCIENCE') or contains(.,'Earth Science')">
+                          <xsl:value-of select="." />
+	              </xsl:when>
+                      <xsl:otherwise>
+	                  <xsl:choose>
+				  <xsl:when test="contains($topic, 'agriculture') or 
+					          contains($topic, 'atmosphere') or 
+						  contains($topic, 'biological classification') or 
+						  contains($topic, 'biosphere') or 
+						  contains($topic, 'climate indicators') or 
+						  contains($topic, 'cryosphere') or 
+						  contains($topic, 'human dimesion') or 
+						  contains($topic, 'land surface') or 
+						  contains($topic, 'oceans') or 
+						  contains($topic, 'paleoclimate') or 
+						  contains($topic, 'solid earth') or 
+						  contains($topic, 'spectral/engineering') or 
+						  contains($topic, 'sun-earth interactions') or 
+						  contains($topic, 'terrestrial hydrosphere')">
+			          <xsl:value-of select="concat('EARTH SCIENCE &gt; ',.)" />
+	                      </xsl:when>
+	                      <xsl:otherwise>
+                                  <xsl:value-of select="." />
+			      </xsl:otherwise>
+		          </xsl:choose>
+	              </xsl:otherwise>
+                  </xsl:choose>
+	      </xsl:when>
+              <xsl:otherwise>
+                   <xsl:value-of select="." />
+	      </xsl:otherwise>
+          </xsl:choose>
         </xsl:element>
         </xsl:for-each>
         <xsl:element name="mmd:resource">

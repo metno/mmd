@@ -336,10 +336,11 @@
 	   <xsl:element name="gmd:title">
               <xsl:element name="gco:CharacterString">
 		 <xsl:choose>
-		     <xsl:when test="@vocabulary = 'CF' or @vocabulary = 'cf' or @vocabulary='GCMD' or @vocabulary= 'gcmd'">
-                         <xsl:variable name="vocabulary" select="@vocabulary" />
-                         <xsl:variable name="mmd_voc_mapping" select="document('')/*/mapping:vocabulary[@mmd=$vocabulary]/@iso" />
-                         <xsl:value-of select="$mmd_voc_mapping" />
+		     <xsl:when test="@vocabulary = 'CF' or @vocabulary = 'cf' or contains(@vocabulary, 'Climate and Forecast')">
+			 <xsl:text>Climate and Forecast (CF) Standard Name Table</xsl:text>
+	             </xsl:when>
+		     <xsl:when test="contains(@vocabulary, 'GCMD') or @vocabulary= 'gcmd' or contains(@vocabulary, 'Global Change Master Directory')">
+			 <xsl:text>Global Change Master Directory (GCMD)</xsl:text>
 	             </xsl:when>
 		     <xsl:otherwise>
                          <xsl:value-of select="@vocabulary" />
@@ -654,8 +655,8 @@
     </xsl:template>
 
     <!-- Mappings for thesaurs -->
-    <mapping:vocabulary iso="Global Change Master Directory (GCMD) Science Keywords" mmd="gcmd" />
-    <mapping:vocabulary iso="Global Change Master Directory (GCMD) Science Keywords" mmd="GCMD" />
+    <mapping:vocabulary iso="Global Change Master Directory (GCMD)" mmd="gcmd" />
+    <mapping:vocabulary iso="Global Change Master Directory (GCMD)" mmd="GCMD" />
     <mapping:vocabulary iso="Climate and Forecast (CF) Standard Name Table" mmd="CF" />
     <mapping:vocabulary iso="Climate and Forecast (CF) Standard Name Table" mmd="cf" />
 
