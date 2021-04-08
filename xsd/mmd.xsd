@@ -199,6 +199,8 @@
             <xs:enumeration value="SLC"></xs:enumeration>
             <xs:enumeration value="GRD"></xs:enumeration>
             <xs:enumeration value="OCN"></xs:enumeration>
+            <xs:enumeration value="S2MSI1C"></xs:enumeration>
+            <xs:enumeration value="S2MSI2A"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="role_type">
