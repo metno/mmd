@@ -940,6 +940,44 @@
   skos:broader <https://vocab.met.no/mmd/Instrument_Modes/SM>, <https://vocab.met.no/mmd/Instrument_Modes/IW>, <https://vocab.met.no/mmd/Instrument_Modes/EW> ;  
   skos:definition "Dual polarisation mode: "@en .
 
+<https://vocab.met.no/mmd/Product_Types>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>; 
+  skos:prefLabel "Product Types"@en ;
+  skos:definition ""@en ;
+  skos:member <https://vocab.met.no/mmd/Product_Types/SLC>, <https://vocab.met.no/mmd/Product_Types/GRD>, <https://vocab.met.no/mmd/Product_Types/OCN>, <https://vocab.met.no/mmd/Product_Types/S2MSI1C>, <https://vocab.met.no/mmd/Product_Types/S2MSI2A> . 
+
+<https://vocab.met.no/mmd/Product_Types/SLC>
+  a skos:Concept ;
+  skos:prefLabel "SLC"@en ;
+  skos:altLabel "Single Look Complex"@en ;
+  skos:definition "Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry."@en .
+
+<https://vocab.met.no/mmd/Product_Types/GRD>
+  a skos:Concept ;
+  skos:prefLabel "GRD"@en ;
+  skos:altLabel "Ground Range Detected"@en ;
+  skos:definition "Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84."@en .
+
+<https://vocab.met.no/mmd/Product_Types/OCN>
+  a skos:Concept ;
+  skos:prefLabel "OCN"@en ;
+  skos:altLabel "Ocean"@en ;
+  skos:definition "Ocean (OCN) products for wind, wave and currents applications derived from the SAR data."@en .
+
+<https://vocab.met.no/mmd/Product_Types/S2MSI1C>
+  a skos:Concept ;
+  skos:prefLabel "S2MSI1C"@en ;
+  skos:altLabel "Sentinel-2 MSI Level-1C"@en ;
+  skos:definition "Ortho-rectified and UTM geo-coded Top-of-Atmosphere Reflectance with sub-pixel multispectral and multi-date registration."@en .
+
+<https://vocab.met.no/mmd/Product_Types/S2MSI2A>
+  a skos:Concept ;
+  skos:prefLabel "S2MSI2A"@en ;
+  skos:altLabel "Sentinel-2 MSI Level-2A"@en ;
+  skos:definition "Ortho-rectified and UTM geo-coded Bottom-of-Atmosphere multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness (AOT) map, Water Vapour (WV) map, Scene Classification map together with Quality Indicators data."@en .
+
+
 <https://vocab.met.no/mmd/Contact_Roles>
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 
