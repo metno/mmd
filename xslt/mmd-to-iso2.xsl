@@ -504,7 +504,7 @@
 	      <xsl:element name="gmd:CI_ResponsibleParty">
 	         <xsl:element name="gmd:organisationName">
 	            <xsl:element name="gco:CharacterString">
-	               <xsl:value-of select="mmd:data_center_name/mmd:long_name" />
+	               <xsl:value-of select="mmd:data_center_name/mmd:short_name" />
                     </xsl:element>
                  </xsl:element>
 	         <xsl:element name="gmd:contactInfo">
