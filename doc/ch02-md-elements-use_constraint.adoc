@@ -16,14 +16,21 @@ Restrictions on the use of the dataset. The use_constraint has the following sub
 
 * identifier: referring to the spdx licenseId.
 * resource: the url to the referred license. 
+* license_text: free text field for datasets that are not using a formal license. If used identifier and resource should be left empty.
 
-See <<use-constraints>> for a list of valid values.
+See <<use-constraints>> for a list of valid values for identifiers and resources.
 
 |Example XML: a|
 ----
 <use_constraint>
    <identifier>CC-BY-4.0</identifier>
    <resource>http://spdx.org/licenses/CC-BY-4.0</resource>
+</use_constraint>
+----
+
+----
+<use_constraint>
+   <license_text>CMIP6 model data produced by EC-Earth-Consortium is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (https://creativecommons.org/licenses). Consult https://pcmdi.llnl.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment. Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file) . The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law.</license_text>
 </use_constraint>
 ----
 
