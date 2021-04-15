@@ -430,7 +430,14 @@
 	      <xsl:element name="gmd:CI_ResponsibleParty">
 	         <xsl:element name="gmd:organisationName">
 	            <xsl:element name="gco:CharacterString">
-	               <xsl:value-of select="mmd:data_center_name/mmd:short_name" />
+		       <xsl:choose>
+			   <xsl:when test="mmd:data_center_name/mmd:long_name != ''">
+	                       <xsl:value-of select="concat(mmd:data_center_name/mmd:short_name, ' &gt; ', mmd:data_center_name/mmd:long_name)" />
+	                   </xsl:when>
+	                   <xsl:otherwise>
+	                       <xsl:value-of select="mmd:data_center_name/mmd:short_name" />
+	                   </xsl:otherwise>
+	               </xsl:choose>
                     </xsl:element>
                  </xsl:element>
 	         <xsl:element name="gmd:contactInfo">
