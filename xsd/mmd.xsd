@@ -154,12 +154,19 @@
     <xs:simpleType name="use_constraint_resource_type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="http://spdx.org/licenses/CC0-1.0"></xs:enumeration>
+            <xs:enumeration value="https://spdx.org/licenses/CC0-1.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-4.0"></xs:enumeration>
+            <xs:enumeration value="https://spdx.org/licenses/CC-BY-4.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-SA-4.0"></xs:enumeration>
+            <xs:enumeration value="https://spdx.org/licenses/CC-BY-SA-4.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-4.0"></xs:enumeration>
+            <xs:enumeration value="https://spdx.org/licenses/CC-BY-NC-4.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-SA-4.0"></xs:enumeration>
+            <xs:enumeration value="https://spdx.org/licenses/CC-BY-NC-SA-4.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-ND-4.0"></xs:enumeration>
-            <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-ND-4.0"/>
+            <xs:enumeration value="https://spdx.org/licenses/CC-BY-ND-4.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-ND-4.0"></xs:enumeration>
+            <xs:enumeration value="https://spdx.org/licenses/CC-BY-NC-ND-4.0"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="instrument_type">
