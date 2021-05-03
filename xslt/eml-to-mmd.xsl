@@ -36,6 +36,7 @@
             <xsl:apply-templates select="intellectualRights" />
             <xsl:apply-templates select="publisher" />
             <xsl:apply-templates select="project" />
+            <!--
             <xsl:element name="mmd:keywords">
                 <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
                 <xsl:apply-templates select="keywordSet" />
@@ -44,6 +45,8 @@
                 <xsl:attribute name="vocabulary">None</xsl:attribute>
                 <xsl:apply-templates select="keywordSet" />
             </xsl:element>
+            -->
+            <xsl:apply-templates select="keywordSet" />
             <xsl:apply-templates select="distribution/online/url" />
             <!-- ... -->
         </xsl:element>
@@ -217,8 +220,15 @@
     </xsl:template>
 
     <xsl:template match="keywordSet">
-        <xsl:element name="mmd:keyword">
-            <xsl:value-of select="keyword" />
+        <xsl:element name="mmd:keywords">
+            <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
+            <xsl:for-each select="keyword">
+                <xsl:if test="contains(.,'EARTH SCIENCE &gt;')">
+                    <xsl:element name="mmd:keyword">
+                        <xsl:value-of select="." />
+                    </xsl:element>
+                </xsl:if>
+            </xsl:for-each>
         </xsl:element>
     </xsl:template>
 
