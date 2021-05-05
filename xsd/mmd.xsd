@@ -138,10 +138,11 @@
         <xs:sequence>
             <xs:element name="identifier" type="mmd:use_constraint_identifier_type" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="resource" type="mmd:use_constraint_resource_type" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="license_text" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:annotation>
-                <xs:documentation>This element holds the a free-text non formal license. If used identifier and resource should be left empty.</xs:documentation>
-            </xs:annotation>
+            <xs:element name="license_text" type="xs:string" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>This element holds the a free-text non formal license. If used identifier and resource should be left empty.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="use_constraint_identifier_type">
