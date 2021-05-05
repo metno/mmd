@@ -9,7 +9,7 @@
 
 |Required |No
 
-|Repetition allowed |Yes
+|Repetition allowed |No
 
 |Description a|
 Description about the datacenter responsible for the distribution of the
