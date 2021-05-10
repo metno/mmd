@@ -645,8 +645,9 @@ sections.</p>
 <li><a href="#keywords">2.24. keywords</a></li>
 <li><a href="#project">2.25. project</a></li>
 <li><a href="#platform">2.26. platform</a></li>
-<li><a href="#activity_type">2.27. activity_type</a></li>
-<li><a href="#dataset_citation">2.28. dataset_citation</a></li>
+<li><a href="#spatial_representation">2.27. spatial_representation</a></li>
+<li><a href="#activity_type">2.28. activity_type</a></li>
+<li><a href="#dataset_citation">2.29. dataset_citation</a></li>
 </ul>
 </li>
 <li><a href="#explanations">3. Explanations</a>
@@ -671,11 +672,12 @@ sections.</p>
 <li><a href="#instrument-modes">4.12. Instrument modes</a></li>
 <li><a href="#polarisation-modes">4.13. Polarisation modes</a></li>
 <li><a href="#product-type">4.14. Product type</a></li>
-<li><a href="#contact-roles">4.15. Contact roles</a></li>
-<li><a href="#mmd-to-iso-mapping-1">4.16. MMD to ISO mapping</a></li>
-<li><a href="#iso-topic-categories">4.17. ISO Topic categories</a></li>
-<li><a href="#related-information-types">4.18. Related Information types</a></li>
-<li><a href="#data-access-types">4.19. Data Access Types</a></li>
+<li><a href="#spatial-representation">4.15. Spatial representation</a></li>
+<li><a href="#contact-roles">4.16. Contact roles</a></li>
+<li><a href="#mmd-to-iso-mapping-1">4.17. MMD to ISO mapping</a></li>
+<li><a href="#iso-topic-categories">4.18. ISO Topic categories</a></li>
+<li><a href="#related-information-types">4.19. Related Information types</a></li>
+<li><a href="#data-access-types">4.20. Data Access Types</a></li>
 </ul>
 </li>
 </ul>
@@ -970,7 +972,7 @@ but to be compatible with DIF the following characters are not allowed:</p>
 controlled vocabulary is defined, this should be added once better
 knowledge of domains are known. Initially at least WMO Information
 System (WIS) type identifiers should be supported. This field should <strong>not</strong>
-be used for DOIs. these should go into <a href="#dataset_citation">Section 2.28</a>.</p>
+be used for DOIs. these should go into <a href="#dataset_citation">Section 2.29</a>.</p>
 </dd>
 </dl>
 </div></div></td>
@@ -2646,7 +2648,7 @@ the following child elements:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>type: Description of the type of information. A controlled vocabulary is required. See <a href="#related-information-types">Section 4.18</a>.</p>
+<p>type: Description of the type of information. A controlled vocabulary is required. See <a href="#related-information-types">Section 4.19</a>.</p>
 </li>
 <li>
 <p>resource: The URL used.</p>
@@ -2743,7 +2745,7 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ISO topic category fetched from a controlled vocabulary. Valid keywords
-are listed in <a href="#iso-topic-categories">Section 4.17</a>.</p>
+are listed in <a href="#iso-topic-categories">Section 4.18</a>.</p>
 </div>
 <div class="paragraph">
 <p>This field is required for compatibility with DIF and ISO</p>
@@ -3140,7 +3142,63 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 </table>
 </div>
 <div class="sect2">
-<h3 id="activity_type"><a class="anchor" href="#activity_type"></a>2.27. activity_type</h3>
+<h3 id="spatial_representation"><a class="anchor" href="#spatial_representation"></a>2.27. spatial_representation</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/mmd/spatial_representation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attributes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repetition allowed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The method used to spatially represent geographic information.</p>
+</div>
+<div class="paragraph">
+<p>Valid entries are: vector, grid, point and trajectory (see <a href="#spatial-representation">Section 4.15</a>).</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Example XML:</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre>&lt;spatial_representation&gt;grid&lt;/spatial_representation&gt;</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DIF equivalent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISO equivalent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MM2 equivalent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="activity_type"><a class="anchor" href="#activity_type"></a>2.28. activity_type</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3196,7 +3254,7 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 </table>
 </div>
 <div class="sect2">
-<h3 id="dataset_citation"><a class="anchor" href="#dataset_citation"></a>2.28. dataset_citation</h3>
+<h3 id="dataset_citation"><a class="anchor" href="#dataset_citation"></a>2.29. dataset_citation</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3923,7 +3981,7 @@ to be linked (which currently is not supported).</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#activity_type">Section 2.27</a></p>
+<p><a href="#activity_type">Section 2.28</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4279,7 +4337,43 @@ multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness
 </div>
 </div>
 <div class="sect2">
-<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.15. Contact roles</h3>
+<h3 id="spatial-representation"><a class="anchor" href="#spatial-representation"></a>4.15. Spatial representation</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vector data is used to represent geographic data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grid data is used to represent geographic data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">point</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a single data point (having no implied coordinate relationship to other points)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trajectory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a series of data points along a path through space with monotonically increasing times</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a href="#spatial_representation">Section 2.27</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.16. Contact roles</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4324,7 +4418,7 @@ element.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="mmd-to-iso-mapping-1"><a class="anchor" href="#mmd-to-iso-mapping-1"></a>4.16. MMD to ISO mapping</h3>
+<h3 id="mmd-to-iso-mapping-1"><a class="anchor" href="#mmd-to-iso-mapping-1"></a>4.17. MMD to ISO mapping</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4357,7 +4451,7 @@ element.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="iso-topic-categories"><a class="anchor" href="#iso-topic-categories"></a>4.17. ISO Topic categories</h3>
+<h3 id="iso-topic-categories"><a class="anchor" href="#iso-topic-categories"></a>4.18. ISO Topic categories</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
@@ -4498,7 +4592,7 @@ telecommunication, radio, and communication networks.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.18. Related Information types</h3>
+<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.19. Related Information types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
@@ -4564,7 +4658,7 @@ Global Observing System approach.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.19. Data Access Types</h3>
+<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.20. Data Access Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4618,7 +4712,7 @@ data.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-05-10 08:06:01 UTC
+Last updated 2021-05-10 08:40:07 UTC
 </div>
 </div>
 </body>
