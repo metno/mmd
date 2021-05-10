@@ -54,6 +54,7 @@
                 <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 -->
                 <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
+                <xs:element name="spatial_representation" type="mmd:spatial_representation" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
@@ -277,6 +278,14 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="NRT"></xs:enumeration>
             <xs:enumeration value="NTC"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="spatial_representation">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="grid"></xs:enumeration>
+            <xs:enumeration value="vector"></xs:enumeration>
+            <xs:enumeration value="point"></xs:enumeration>
+            <xs:enumeration value="trajectory"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="keywords_type">

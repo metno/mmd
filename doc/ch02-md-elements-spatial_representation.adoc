@@ -1,0 +1,24 @@
+[[spatial_representation]]
+=== spatial_representation
+
+[cols="2,8"]
+|===================================================================
+|Element |/mmd/spatial_representation
+|Attributes |None
+|Required |No
+|Repetition allowed |No.
+|Description a|
+The method used to spatially represent geographic information.
+
+Valid entries are: vector, grid, point and trajectory (see <<spatial-representation>>).
+
+|Example XML: a|
+
+----
+<spatial_representation>grid</spatial_representation>
+----
+
+|DIF equivalent |NA
+|ISO equivalent |/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType
+|MM2 equivalent |NA
+|===================================================================
