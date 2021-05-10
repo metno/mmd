@@ -427,6 +427,10 @@ multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness
 
 |grid | Grid data is used to represent geographic data
 
+|point | a single data point (having no implied coordinate relationship to other points)
+
+|trajectory | a series of data points along a path through space with monotonically increasing times
+
 |=======================================================================
 
 <<spatial_representation>>

@@ -10,7 +10,7 @@
 |Description a|
 The method used to spatially represent geographic information.
 
-Valid entries are: vector, grid (see <<spatial-representation>>).
+Valid entries are: vector, grid, point and trajectory (see <<spatial-representation>>).
 
 |Example XML: a|
 
