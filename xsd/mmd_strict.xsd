@@ -54,7 +54,7 @@
                 <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 -->
                 <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-                <xs:element name="spatial_representation" type="mmd:spatial_representation" maxOccurs="1" minOccurs="0"></xs:element>
+                <xs:element name="spatial_representation" type="mmd:spatial_representation" maxOccurs="1" minOccurs="1"></xs:element>
                 <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
                 <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
