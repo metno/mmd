@@ -518,7 +518,10 @@
                         <xsl:choose>
                             <xsl:when test="@vocabulary = 'GCMDSK'">
 	                        <xsl:element name="gmd:title">
-                                    <xsl:element name="gco:CharacterString">
+                                    <xsl:element name="gmx:Anchor">
+	                                <xsl:attribute name="xlink:href">
+	    			            <xsl:text>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</xsl:text>
+	                                </xsl:attribute>
 				        <xsl:text>NASA/GCMD Earth Science Keywords</xsl:text>
                 	            </xsl:element>
 	                        </xsl:element>	
@@ -526,6 +529,54 @@
 		 	            <xsl:element name="gmd:CI_Date">
      			                <xsl:element name="gmd:date">
 			                    <gco:Date>2021-02-12</gco:Date>
+        	                        </xsl:element>	
+			                <xsl:element name="gmd:dateType">
+			                    <xsl:element name="gmd:CI_DateTypeCode">
+			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                <xsl:text>publication</xsl:text>
+        	                            </xsl:element>	
+        	                        </xsl:element>	
+        	                  </xsl:element>	
+        	                </xsl:element>	
+                            </xsl:when>
+                            <xsl:when test="@vocabulary = 'GCMDLOC'">
+	                        <xsl:element name="gmd:title">
+                                    <xsl:element name="gmx:Anchor">
+	                                <xsl:attribute name="xlink:href">
+	    			            <xsl:text>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations</xsl:text>
+	                                </xsl:attribute>
+				        <xsl:text>NASA/GCMD Locations</xsl:text>
+                	            </xsl:element>
+	                        </xsl:element>	
+			        <xsl:element name="gmd:date">
+		 	            <xsl:element name="gmd:CI_Date">
+     			                <xsl:element name="gmd:date">
+			                    <gco:Date>2021-02-01</gco:Date>
+        	                        </xsl:element>	
+			                <xsl:element name="gmd:dateType">
+			                    <xsl:element name="gmd:CI_DateTypeCode">
+			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                <xsl:text>publication</xsl:text>
+        	                            </xsl:element>	
+        	                        </xsl:element>	
+        	                  </xsl:element>	
+        	                </xsl:element>	
+                            </xsl:when>
+                            <xsl:when test="@vocabulary = 'GCMDPROV'">
+	                        <xsl:element name="gmd:title">
+                                    <xsl:element name="gmx:Anchor">
+	                                <xsl:attribute name="xlink:href">
+	    			            <xsl:text>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers</xsl:text>
+	                                </xsl:attribute>
+				        <xsl:text>NASA/GCMD Providers</xsl:text>
+                	            </xsl:element>
+	                        </xsl:element>	
+			        <xsl:element name="gmd:date">
+		 	            <xsl:element name="gmd:CI_Date">
+     			                <xsl:element name="gmd:date">
+			                    <gco:Date>2021-04-26</gco:Date>
         	                        </xsl:element>	
 			                <xsl:element name="gmd:dateType">
 			                    <xsl:element name="gmd:CI_DateTypeCode">
