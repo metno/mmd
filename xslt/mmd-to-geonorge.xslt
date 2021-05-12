@@ -16,7 +16,7 @@
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/mmd:mmd">
-        <xsl:element name="gmi:MI_Metadata">
+        <xsl:element name="gmd:MD_Metadata">
 
 	    <!--metadata identfier. INSPIRE: Mandatory for dataset and dataset series. multiplicity [1..*]-->
             <xsl:apply-templates select="mmd:metadata_identifier" />
@@ -24,29 +24,16 @@
             <gmd:language>
 		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng">English</gmd:LanguageCode>
             </gmd:language>
-            <gmd:locale>
-                <gmd:PT_Locale id="locale-nob">
-                    <gmd:languageCode>
-                        <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="nob">Norwegian</gmd:LanguageCode>
-                    </gmd:languageCode>
-                    <gmd:characterEncoding>
-                        <gmd:MD_CharacterSetCode
-                            codeList="resources/Codelist/gmxcodelists.xml#MD_CharacterSetCode"
-                            codeListValue="utf8"/>
-                    </gmd:characterEncoding>
-                </gmd:PT_Locale>
-            </gmd:locale>            
-
-            <!--resource type is mandatory, multiplicity [1]-->
-            <gmd:hierarchyLevel>
-		    <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
-            </gmd:hierarchyLevel>
-            
             <!--Conditional for spatial dataset and spatial dataset series: Mandatory if the resource includes textual information. [0..*] for datasets and series-->		
             <gmd:characterSet>
 		    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
             </gmd:characterSet>
         
+            <!--resource type is mandatory, multiplicity [1]-->
+            <gmd:hierarchyLevel>
+		    <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
+            </gmd:hierarchyLevel>
+            
             <!--Party responsible for the metadata information (M) multiplicity [1..*] -->
             <xsl:element name="gmd:contact">
 	        <xsl:apply-templates select="mmd:personnel[mmd:role = 'Metadata author']" />
@@ -72,6 +59,19 @@
            <gmd:metadataStandardVersion>
                <gco:CharacterString>1.0</gco:CharacterString>
            </gmd:metadataStandardVersion>
+
+            <gmd:locale>
+                <gmd:PT_Locale id="locale-nor">
+                    <gmd:languageCode>
+                        <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="nor">Norwegian</gmd:LanguageCode>
+                    </gmd:languageCode>
+                    <gmd:characterEncoding>
+                        <gmd:MD_CharacterSetCode
+                            codeList="resources/Codelist/gmxcodelists.xml#MD_CharacterSetCode"
+                            codeListValue="utf8"/>
+                    </gmd:characterEncoding>
+                </gmd:PT_Locale>
+            </gmd:locale>            
 
 	   <xsl:element name="gmd:referenceSystemInfo">
                <xsl:element name="gmd:MD_ReferenceSystem">
@@ -113,9 +113,11 @@
 		    <!--abstract (M) multiplicity [1] -->
                     <xsl:apply-templates select="mmd:abstract[@xml:lang = 'en']" />
 		    <!--personnel (M) multiplicity [1] Relative to a responsible organisation, but there may be many responsible organisations for a single resource-->
-                    <xsl:element name="gmd:pointOfContact">
-		        <xsl:apply-templates select="mmd:personnel[mmd:role != 'Metadata author']" />
-                    </xsl:element>
+		    <xsl:for-each select="mmd:personnel[mmd:role != 'Metadata author']">
+                        <xsl:element name="gmd:pointOfContact">
+			    <xsl:apply-templates select="." />
+                        </xsl:element>
+		    </xsl:for-each>
 		    <!--keywords (M) multiplicity [1..*] -->
                     <xsl:apply-templates select="mmd:keywords" />
 
@@ -204,7 +206,7 @@
 
             </xsl:element>        
 
-	    <!--gmi acquisition info-->
+	    <!--gmi acquisition info
 	    <xsl:if test="mmd:platform != ''">
                 <xsl:element name="gmi:acquisitionInformation">
                     <xsl:element name="gmi:MI_AcquisitionInformation">
@@ -252,7 +254,7 @@
                         </xsl:element>
                     </xsl:element>
                 </xsl:element>
-            </xsl:if>
+            </xsl:if-->
 
 	    <!--gmi content info-->
 	    <xsl:if test="mmd:platform/mmd:ancillary/mmd:cloud_coverage != ''">
@@ -293,6 +295,7 @@
 				<xsl:element name="gmd:MD_ScopeCode"> 
 			            <xsl:attribute name="codeListValue">dataset</xsl:attribute>
 			            <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				    <xsl:text>dataset</xsl:text>
                                 </xsl:element>        
                             </xsl:element>        
                         </xsl:element>        
@@ -368,15 +371,15 @@
     <xsl:template match="mmd:title">
 
         <xsl:element name="gmd:title">
-            <xsl:attribute name="xsi:type">PT_FreeText_PropertyType</xsl:attribute>
+            <xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
             <xsl:element name="gco:CharacterString">
                 <xsl:value-of select="." />
             </xsl:element>
             <xsl:element name="gmd:PT_FreeText">
                 <xsl:element name="gmd:textGroup">
                     <xsl:element name="gmd:LocalisedCharacterString">
-                        <xsl:attribute name="locale">#locale-nob</xsl:attribute>
-                        <xsl:value-of select="../mmd:title[@xml:lang = 'no']" />
+                        <xsl:attribute name="locale">#locale-nor</xsl:attribute>
+                           <xsl:value-of select="../mmd:title[@xml:lang = 'no']" />
                     </xsl:element>
                 </xsl:element>
             </xsl:element>
@@ -388,14 +391,14 @@
     <xsl:template match="mmd:abstract">
     
         <xsl:element name="gmd:abstract">
-            <xsl:attribute name="xsi:type">PT_FreeText_PropertyType</xsl:attribute>
+            <xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
             <xsl:element name="gco:CharacterString">
                 <xsl:value-of select="." />
             </xsl:element>
             <xsl:element name="gmd:PT_FreeText">
                 <xsl:element name="gmd:textGroup">
                     <xsl:element name="gmd:LocalisedCharacterString">
-                        <xsl:attribute name="locale">#locale-nob</xsl:attribute>
+                        <xsl:attribute name="locale">#locale-nor</xsl:attribute>
                         <xsl:value-of select="../mmd:abstract[@xml:lang = 'no']" />
                     </xsl:element>
                 </xsl:element>
@@ -513,7 +516,7 @@
 	        <xsl:element name="gmd:thesaurusName">
 	            <xsl:element name="gmd:CI_Citation">
                         <xsl:choose>
-                            <xsl:when test="@vocabulary = 'GCMD'">
+                            <xsl:when test="@vocabulary = 'GCMDSK'">
 	                        <xsl:element name="gmd:title">
                                     <xsl:element name="gco:CharacterString">
 				        <xsl:text>NASA/GCMD Earth Science Keywords</xsl:text>
@@ -558,7 +561,7 @@
         	                  </xsl:element>	
         	                </xsl:element>	
                             </xsl:when>
-                            <xsl:when test="@vocabulary = 'Norwegian thematic categories'">
+                            <xsl:when test="@vocabulary = 'NORTHEMES'">
 			        <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
 	                                <xsl:attribute name="xlink:href">
@@ -791,7 +794,7 @@
                     </xsl:element>
                 </xsl:element>
             </xsl:element>
-
+        
 	    <!--Mandatory [1] relative to a responsible organisation, but there may be many responsible organisations for a single resource--> 
             <xsl:element name="gmd:role">
                 <xsl:element name="gmd:CI_RoleCode">
@@ -800,9 +803,9 @@
                         <xsl:choose>
                             <xsl:when test="mmd:role = 'Investigator'">
                                 <xsl:attribute name="codeListValue">
-                                    <xsl:text>principalInvestigator</xsl:text>
+                                    <xsl:text>owner</xsl:text>
                                 </xsl:attribute>
-                                <xsl:text>principalInvestigator</xsl:text>
+                                <xsl:text>owner</xsl:text>
                             </xsl:when>
                             <xsl:when test="mmd:role = 'Technical contact'">
                                 <xsl:attribute name="codeListValue">
@@ -812,9 +815,9 @@
                             </xsl:when>
                             <xsl:when test="mmd:role = 'Metadata author'">
                                 <xsl:attribute name="codeListValue">
-                                    <xsl:text>owner</xsl:text>
+                                    <xsl:text>pointOfContact</xsl:text>
                                 </xsl:attribute>
-                                <xsl:text>owner</xsl:text>
+                                <xsl:text>pointOfContact</xsl:text>
                             </xsl:when>
                             <xsl:when test="mmd:role = 'Data center contact'">
                                 <xsl:attribute name="codeListValue">
@@ -831,7 +834,7 @@
                         </xsl:choose>
                 </xsl:element>             
             </xsl:element>
-
+        
         </xsl:element>
     
     </xsl:template>
