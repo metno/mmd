@@ -25,7 +25,7 @@ element has two child elements:
 * keyword: A single keyword describing the dataset. This can be hierarchically like GCMD using a separator.
 * separator: the character used as separator. This could be e.g. the GCMD ‘>’, but in XML this is encoded as ‘&gt;’. Other valid separators are: \| / -. 
 
-Additional controlled vocabularies maye be used, as WIGOS (https://codes.wmo.int/wmdr/) and SeaDataNet <<anchor-4, (see 12)>> etc. The primary usage for this element is to describe variables in the dataset, but it
+Additional controlled vocabularies may be used, as WIGOS (https://codes.wmo.int/wmdr/) and SeaDataNet <<anchor-4, (see 12)>> etc. The primary usage for this element is to describe variables in the dataset, but it
 could also be used to describe other features.
 
 |Example XML: a|
