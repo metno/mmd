@@ -297,8 +297,18 @@
             <xs:element name="resource" type="xs:string" minOccurs="0"></xs:element>
             <xs:element name="separator" type="xs:string" minOccurs="0"></xs:element>
         </xs:sequence>
-        <xs:attribute name="vocabulary" type="xs:string"></xs:attribute>
+        <xs:attribute name="vocabulary" type="mmd:vocabulary_type"></xs:attribute>
     </xs:complexType>
+    <xs:simpleType name="vocabulary_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GCMDSK"></xs:enumeration>
+            <xs:enumeration value="GCMDLOC"></xs:enumeration>
+            <xs:enumeration value="GCMDPROV"></xs:enumeration>
+            <xs:enumeration value="CFSTDN"></xs:enumeration>
+            <xs:enumeration value="GEMET"></xs:enumeration>
+            <xs:enumeration value="NORTHEMES"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="data_access_type">
         <xs:sequence>
             <xs:element name="name" type="xs:string" minOccurs="0"></xs:element>
