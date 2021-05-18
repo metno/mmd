@@ -667,17 +667,18 @@ sections.</p>
 <li><a href="#use-constraints">4.7. Use constraints</a></li>
 <li><a href="#activity-type">4.8. Activity type</a></li>
 <li><a href="#variable-parameter-descriptions">4.9. Variable/parameter descriptions</a></li>
-<li><a href="#platform-1">4.10. Platform</a></li>
-<li><a href="#instruments">4.11. Instruments</a></li>
-<li><a href="#instrument-modes">4.12. Instrument modes</a></li>
-<li><a href="#polarisation-modes">4.13. Polarisation modes</a></li>
-<li><a href="#product-type">4.14. Product type</a></li>
-<li><a href="#spatial-representation">4.15. Spatial representation</a></li>
-<li><a href="#contact-roles">4.16. Contact roles</a></li>
-<li><a href="#mmd-to-iso-mapping-1">4.17. MMD to ISO mapping</a></li>
-<li><a href="#iso-topic-categories">4.18. ISO Topic categories</a></li>
-<li><a href="#related-information-types">4.19. Related Information types</a></li>
-<li><a href="#data-access-types">4.20. Data Access Types</a></li>
+<li><a href="#keywords-vocabulary">4.10. Keywords Vocabulary</a></li>
+<li><a href="#platform-1">4.11. Platform</a></li>
+<li><a href="#instruments">4.12. Instruments</a></li>
+<li><a href="#instrument-modes">4.13. Instrument modes</a></li>
+<li><a href="#polarisation-modes">4.14. Polarisation modes</a></li>
+<li><a href="#product-type">4.15. Product type</a></li>
+<li><a href="#spatial-representation">4.16. Spatial representation</a></li>
+<li><a href="#contact-roles">4.17. Contact roles</a></li>
+<li><a href="#mmd-to-iso-mapping-1">4.18. MMD to ISO mapping</a></li>
+<li><a href="#iso-topic-categories">4.19. ISO Topic categories</a></li>
+<li><a href="#related-information-types">4.20. Related Information types</a></li>
+<li><a href="#data-access-types">4.21. Data Access Types</a></li>
 </ul>
 </li>
 </ul>
@@ -730,14 +731,14 @@ Directory Interchange Format</a></p>
 <p>ISO8601…</p>
 </li>
 <li>
-<p><a id="anchor-2"></a><a href="http://gcmdservices.gsfc.nasa.gov/static/kms/sciencekeywords/sciencekeywords.csv">GCMD Science Keywords</a></p>
+<p><a id="anchor-2"></a><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=csv">GCMD Science Keywords</a></p>
 </li>
 <li>
 <p><a id="anchor-3"></a><a href="http://cfconventions.org/standard-names.html">Climate and
 Forecast Standard Names</a></p>
 </li>
 <li>
-<p><a id="anchor-4"></a>SeaDataNet</p>
+<p><a id="anchor-4"></a><a href="https://vocab.seadatanet.org/search">SeaDataNet</a></p>
 </li>
 <li>
 <p><a href="http://docs.opendap.org/index.php/Documentation">OPeNDAP</a></p>
@@ -2648,7 +2649,7 @@ the following child elements:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>type: Description of the type of information. A controlled vocabulary is required. See <a href="#related-information-types">Section 4.19</a>.</p>
+<p>type: Description of the type of information. A controlled vocabulary is required. See <a href="#related-information-types">Section 4.20</a>.</p>
 </li>
 <li>
 <p>resource: The URL used.</p>
@@ -2745,7 +2746,7 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ISO topic category fetched from a controlled vocabulary. Valid keywords
-are listed in <a href="#iso-topic-categories">Section 4.18</a>.</p>
+are listed in <a href="#iso-topic-categories">Section 4.19</a>.</p>
 </div>
 <div class="paragraph">
 <p>This field is required for compatibility with DIF and ISO</p>
@@ -2794,7 +2795,7 @@ gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>vocabulary: The vocabulary where the keyword is fetched from. The vocabulary “none” is used if the keyword is not from a vocabulary. The recommended vocabulary to use is "GCMD", see <a href="#variable-parameter-descriptions">Section 4.9</a> for further details. Other valid vocabularies are e.g. "WIGOS". Search services are currently based on GCMD Science keywords.</p>
+<p>vocabulary: The vocabulary where the keyword is fetched from. The vocabulary “none” is used if the keyword is not from a vocabulary. The recommended vocabularies to use are listed in <a href="#keywords-vocabulary">Section 4.10</a>, see also <a href="#variable-parameter-descriptions">Section 4.9</a> for further details. Search services are currently based on GCMD Science keywords (GCMDSK).</p>
 </li>
 </ul>
 </div></div></td>
@@ -2829,14 +2830,13 @@ element has two child elements:</p>
 <p>keyword: A single keyword describing the dataset. This can be hierarchically like GCMD using a separator.</p>
 </li>
 <li>
-<p>separator: the character used as separator. This could be e.g. the GCMD ‘&gt;’, but in XML this is encoded as ‘&gt;’. Other valid separators are: | / -.
-Valid controlled vocabularies are GCMD Science Keywords
-<a href="#anchor-2">[10</a>], Climate and Forecast Standard Names
-<a href="#anchor-3">[11</a>], SeaDataNet <a href="#anchor-4">[12</a>] etc. The primary
-usage for this element is to describe variables in the dataset, but it
-could also be used to describe other features.</p>
+<p>separator: the character used as separator. This could be e.g. the GCMD ‘&gt;’, but in XML this is encoded as ‘&gt;’. Other valid separators are: | / -.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Additional controlled vocabularies may be used, as WIGOS (<a href="https://codes.wmo.int/wmdr/" class="bare">https://codes.wmo.int/wmdr/</a>) and SeaDataNet <a href="#anchor-4">(see 12)</a> etc. The primary usage for this element is to describe variables in the dataset, but it
+could also be used to describe other features.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2848,10 +2848,10 @@ could also be used to describe other features.</p>
      &lt;keyword&gt;Manual Generated Ice Edge&lt;/keyword&gt;
 &lt;/keywords&gt;
 
-&lt;keywords vocabulary="GCMD"&gt;
-    &lt;keyword&gt;Earth Science - Climate Indicators - Teleconnections - North Atlantic Oscillation&lt;/keyword&gt;
-    &lt;resource&gt;https://gcmdservices.gsfc.nasa.gov/static/kms/&lt;/resource&gt;
-    &lt;separator&gt;-&lt;/separator&gt;
+&lt;keywords vocabulary="GCMDSK"&gt;
+    &lt;keyword&gt;Earth Science &amp;gt; Climate Indicators &amp;gt; Teleconnections &amp;gt; North Atlantic Oscillation&lt;/keyword&gt;
+    &lt;resource&gt;https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords&lt;/resource&gt;
+    &lt;separator&gt;&amp;gt;&lt;/separator&gt;
 &lt;/keywords&gt;</pre>
 </div>
 </div></div></td>
@@ -2981,18 +2981,18 @@ the following child elements:</p>
 <dl>
 <dt class="hdlist1">short_name</dt>
 <dd>
-<p>is the abbreviated name of the platform (see <a href="#platform-1">Section 4.10</a>) used to
+<p>is the abbreviated name of the platform (see <a href="#platform-1">Section 4.11</a>) used to
 acquire the data</p>
 </dd>
 <dt class="hdlist1">long_name</dt>
 <dd>
-<p>is the full name of the platform (see <a href="#platform-1">Section 4.10</a>) used
+<p>is the full name of the platform (see <a href="#platform-1">Section 4.11</a>) used
 to acquire the data.</p>
 </dd>
 <dt class="hdlist1">resource</dt>
 <dd>
 <p>is a link to further information about the satellite. For this purpose
-descriptions from <a href="https://www.wmo-sat.info/oscar/satellites" class="bare">https://www.wmo-sat.info/oscar/satellites</a> are used (see <a href="#platform-1">Section 4.10</a>)</p>
+descriptions from <a href="https://www.wmo-sat.info/oscar/satellites" class="bare">https://www.wmo-sat.info/oscar/satellites</a> are used (see <a href="#platform-1">Section 4.11</a>)</p>
 </dd>
 <dt class="hdlist1">orbit_relative</dt>
 <dd>
@@ -3020,23 +3020,23 @@ internal MET use cases that has been long needed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>short_name is an acronym for the sensor, see <a href="#instruments">Section 4.11</a></p>
+<p>short_name is an acronym for the sensor, see <a href="#instruments">Section 4.12</a></p>
 </li>
 <li>
-<p>long_name is the full name, see <a href="#instruments">Section 4.11</a></p>
+<p>long_name is the full name, see <a href="#instruments">Section 4.12</a></p>
 </li>
 <li>
-<p>resource is a link to further information in WIGOS space, see <a href="#instruments">Section 4.11</a></p>
+<p>resource is a link to further information in WIGOS space, see <a href="#instruments">Section 4.12</a></p>
 </li>
 <li>
 <p>mode is specific for SAR (can be for other instruments in the future),<br>
-see <a href="#instrument-modes">Section 4.12</a>.</p>
+see <a href="#instrument-modes">Section 4.13</a>.</p>
 </li>
 <li>
-<p>polarisation is also for SAR, see <a href="#polarisation-modes">Section 4.13</a></p>
+<p>polarisation is also for SAR, see <a href="#polarisation-modes">Section 4.14</a></p>
 </li>
 <li>
-<p>product_type is for the Sentinel satellites, see <a href="#product-type">Section 4.14</a> for<br>
+<p>product_type is for the Sentinel satellites, see <a href="#product-type">Section 4.15</a> for<br>
 more information.</p>
 </li>
 </ul>
@@ -3171,7 +3171,7 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 <p>The method used to spatially represent geographic information.</p>
 </div>
 <div class="paragraph">
-<p>Valid entries are: vector, grid, point and trajectory (see <a href="#spatial-representation">Section 4.15</a>).</p>
+<p>Valid entries are: vector, grid, point and trajectory (see <a href="#spatial-representation">Section 4.16</a>).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4028,7 +4028,59 @@ variable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="platform-1"><a class="anchor" href="#platform-1"></a>4.10. Platform</h3>
+<h3 id="keywords-vocabulary"><a class="anchor" href="#keywords-vocabulary"></a>4.10. Keywords Vocabulary</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Vocabulary</th>
+<th class="tableblock halign-left valign-top">Resource</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GCMDSK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GCMD Science Keywords</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GCMDLOC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GCMD Locations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GCMDPROV</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GCMD Providers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CFSTDN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CF Standard Names</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cfconventions.org/standard-names.html" class="bare">https://cfconventions.org/standard-names.html</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GEMET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INSPIRE Themes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://inspire.ec.europa.eu/theme" class="bare">http://inspire.ec.europa.eu/theme</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NORTHEMES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GeoNorge Themes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://register.geonorge.no/subregister/metadata-kodelister/kartverket/nasjonal-temainndeling" class="bare">https://register.geonorge.no/subregister/metadata-kodelister/kartverket/nasjonal-temainndeling</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a href="#keywords">Section 2.24</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="platform-1"><a class="anchor" href="#platform-1"></a>4.11. Platform</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
@@ -4135,7 +4187,7 @@ variable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="instruments"><a class="anchor" href="#instruments"></a>4.11. Instruments</h3>
+<h3 id="instruments"><a class="anchor" href="#instruments"></a>4.12. Instruments</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 9.0909%;">
@@ -4202,7 +4254,7 @@ variable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="instrument-modes"><a class="anchor" href="#instrument-modes"></a>4.12. Instrument modes</h3>
+<h3 id="instrument-modes"><a class="anchor" href="#instrument-modes"></a>4.13. Instrument modes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
@@ -4238,7 +4290,7 @@ variable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="polarisation-modes"><a class="anchor" href="#polarisation-modes"></a>4.13. Polarisation modes</h3>
+<h3 id="polarisation-modes"><a class="anchor" href="#polarisation-modes"></a>4.14. Polarisation modes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
@@ -4282,7 +4334,7 @@ variable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="product-type"><a class="anchor" href="#product-type"></a>4.14. Product type</h3>
+<h3 id="product-type"><a class="anchor" href="#product-type"></a>4.15. Product type</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
@@ -4337,7 +4389,7 @@ multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness
 </div>
 </div>
 <div class="sect2">
-<h3 id="spatial-representation"><a class="anchor" href="#spatial-representation"></a>4.15. Spatial representation</h3>
+<h3 id="spatial-representation"><a class="anchor" href="#spatial-representation"></a>4.16. Spatial representation</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
@@ -4373,7 +4425,7 @@ multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness
 </div>
 </div>
 <div class="sect2">
-<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.16. Contact roles</h3>
+<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.17. Contact roles</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4418,7 +4470,7 @@ element.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="mmd-to-iso-mapping-1"><a class="anchor" href="#mmd-to-iso-mapping-1"></a>4.17. MMD to ISO mapping</h3>
+<h3 id="mmd-to-iso-mapping-1"><a class="anchor" href="#mmd-to-iso-mapping-1"></a>4.18. MMD to ISO mapping</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4451,7 +4503,7 @@ element.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="iso-topic-categories"><a class="anchor" href="#iso-topic-categories"></a>4.18. ISO Topic categories</h3>
+<h3 id="iso-topic-categories"><a class="anchor" href="#iso-topic-categories"></a>4.19. ISO Topic categories</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
@@ -4592,7 +4644,7 @@ telecommunication, radio, and communication networks.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.19. Related Information types</h3>
+<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.20. Related Information types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
@@ -4658,7 +4710,7 @@ Global Observing System approach.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.20. Data Access Types</h3>
+<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.21. Data Access Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4712,7 +4764,7 @@ data.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-05-10 08:40:07 UTC
+Last updated 2021-05-18 07:53:21 UTC
 </div>
 </div>
 </body>
