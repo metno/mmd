@@ -1,0 +1,28 @@
+[[data_quality]]
+=== data_quality
+
+[cols="2,8"]
+|=======================================================================
+|Element |/mmd/data_quality
+
+|Attributes |None
+
+|Required |No
+
+|Repetition allowed |No
+
+|Description |The level of quality control performed on the dataset/product. Valid keywords are listed in <<data-quality>>.
+
+|Example XML: a|
+----
+<quality_control>
+	Basic quality control
+</quality_control>
+----
+
+|DIF equivalent a|quality
+
+|ISO equivalent a|
+
+|MM2 equivalent a|/metadata@name='???'
+|=======================================================================
