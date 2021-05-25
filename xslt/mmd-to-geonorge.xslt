@@ -895,7 +895,7 @@
     <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS" />    
     <mapping:data_access_type_osgeo iso="OGC:WFS" mmd="OGC WFS" />    
     <mapping:data_access_type_osgeo iso="ftp" mmd="FTP" />
-    <mapping:data_access_type_osgeo iso="download" mmd="HTTP" />
+    <mapping:data_access_type_osgeo iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
     <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
 
     <mapping:language_code inspire="eng" mmd="en" />    
