@@ -639,8 +639,8 @@ data.
 
 <<data_access>>
 
-[[data-quality]]
-=== Data Quality Control
+[[quality-control]]
+=== Quality Control
 
 [cols="2,5"]
 |=======================================================================
@@ -656,7 +656,7 @@ data.
 
 |=======================================================================
 
-<<data_quality>>
+<<quality-control>>
 
 
 
