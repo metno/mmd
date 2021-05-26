@@ -23,7 +23,7 @@ Additional information about data quality control can be provided through the re
 
 |DIF equivalent a|quality
 
-|ISO equivalent a|
+|ISO equivalent a|/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:MD_DataQuality/gmd:report/gmd:DQ_Element/gmd:DQ_DescriptiveResult
 
 |MM2 equivalent a|NA
 |=======================================================================
