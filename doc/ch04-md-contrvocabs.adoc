@@ -638,3 +638,25 @@ data.
 |=======================================================================
 
 <<data_access>>
+
+[[quality-control]]
+=== Quality Control
+
+[cols="2,5"]
+|=======================================================================
+|Code |Description
+
+|No quality control |No quality control has been performed on the dataset.
+
+|Basic quality control |A basic quality control has been performed on the dataset. The result of the quality control follows the data as flags. 
+
+|Extended quality control |The dataset has undergone basic real time quality control and more advanced quality control. The advanced quality control may include controls on the temporal and spacial scale. The result follows the data as flags.
+
+|Comprehensive quality control |The dataset has undergone extensive quality control, including but not limited to basic and advanced automatic controls and regular manual control. The result of the quality control follows the data as flags.
+
+|=======================================================================
+
+<<quality-control>>
+
+
+
