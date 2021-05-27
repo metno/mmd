@@ -1005,4 +1005,30 @@
   skos:prefLabel "Data center contact"@en ;
   skos:definition "An individual affiliated with a data center."@en .
 
+<https://vocab.met.no/mmd/Quality_Control>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd> ;
+  skos:prefLabel "Quality Control"@en ;
+  skos:definition "A controlled vocabulary for the level of quality control performed on the dataset/product."@en ;
+  skos:member <https://vocab.met.no/mmd/Quality_Control/NoQualityControl>, <https://vocab.met.no/mmd/Quality_Control/BasicQualityControl>, <https://vocab.met.no/mmd/Quality_Control/ExtendedQualityControl>, <https://vocab.met.no/mmd/Quality_Control/ComprehensiveQualityControl> .
+
+<https://vocab.met.no/mmd/Quality_Control/NoQualityControl>
+  a skos:Concept ;
+  skos:prefLabel "No quality control"@en ;
+  skos:definition "No quality control has been performed on the dataset."@en .
+
+<https://vocab.met.no/mmd/Quality_Control/BasicQualityControl>
+  a skos:Concept ;
+  skos:prefLabel "Basic quality control"@en ;
+  skos:definition "A basic quality control has been performed on the dataset. The result of the quality control follows the data as flags."@en .
+
+<https://vocab.met.no/mmd/Quality_Control/ExtendedQualityControl>
+  a skos:Concept ;
+  skos:prefLabel "Extended quality control"@en ;
+  skos:definition "The dataset has undergone basic real time quality control and more advanced quality control. The advanced quality control may include controls on the temporal and spacial scale. The result follows the data as flags."@en .
+
+<https://vocab.met.no/mmd/Quality_Control/ComprehensiveQualityControl>
+  a skos:Concept ;
+  skos:prefLabel "Comprehensive quality control"@en ;
+  skos:definition "The dataset has undergone extensive quality control, including but not limited to basic and advanced automatic controls and regular manual control. The result of the quality control follows the data as flags."@en .
 

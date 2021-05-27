@@ -646,7 +646,7 @@ data.
 |=======================================================================
 |Code |Description
 
-|No quality control | No quality control has been performed on the dataset
+|No quality control |No quality control has been performed on the dataset.
 
 |Basic quality control |A basic quality control has been performed on the dataset. The result of the quality control follows the data as flags. 
 

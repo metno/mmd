@@ -32,7 +32,7 @@
 		<mmd:keyword>ice_edge</mmd:keyword>
 		<mmd:keyword>Manual Generated Ice Edge</mmd:keyword>
 	</mmd:keywords>
-	<mmd:keywords vocabulary="GCMD">
+	<mmd:keywords vocabulary="GCMDSK">
 		<mmd:keyword>Earth Science - Climate Indicators - Teleconnections -North Atlantic Oscillation</mmd:keyword>
 		<mmd:resource>https://gcmdservices.gsfc.nasa.gov/static/kms/</mmd:resource>
 		<mmd:separator>-</mmd:separator>
@@ -143,6 +143,8 @@
 		<mmd:url></mmd:url>
 		<mmd:other></mmd:other>
 	</mmd:dataset_citation>
+
+	<mmd:quality_control>Basic quality control</mmd:quality_control>
 
 	<mmd:geographic_extent>
 		<mmd:rectangle srsName="EPSG:4326">

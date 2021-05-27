@@ -12,18 +12,16 @@
 |Repetition allowed |No
 
 |Description |The level of quality control performed on the dataset/product. Valid keywords are listed in <<quality-control>>.
-Additional information about data quality control can be provided through the related_information element. Additional information can be a more detailed description of the quality control or URLs to the quality control documentation.
+Additional information about data quality control can be provided through the related_information element providing a URL to the quality control documentation.
 
 |Example XML: a|
 ----
-<quality_control>
-	Basic quality control
-</quality_control>
+<quality_control>Basic quality control</quality_control>
 ----
 
-|DIF equivalent a|quality
+|DIF equivalent a|Quality
 
-|ISO equivalent a|/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:MD_DataQuality/gmd:report/gmd:DQ_Element/gmd:DQ_DescriptiveResult
+|ISO equivalent a|To be defined
 
 |MM2 equivalent a|NA
 |=======================================================================
