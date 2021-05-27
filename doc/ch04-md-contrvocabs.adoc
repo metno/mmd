@@ -652,7 +652,7 @@ data.
 
 |Extended quality control |The dataset has undergone basic real time quality control and more advanced quality control. The advanced quality control may include controls on the temporal and spacial scale. The result follows the data as flags.
 
-|Extensive quality control |The dataset has undergone extensive quality control, including but not limited to basic and advanced automatic controls and regular manual control. The result of the quality control follows the data as flags.
+|Comprehensive quality control |The dataset has undergone extensive quality control, including but not limited to basic and advanced automatic controls and regular manual control. The result of the quality control follows the data as flags.
 
 |=======================================================================
 
