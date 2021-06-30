@@ -144,7 +144,10 @@ class Nc_to_mmd(object):
                                             ET.QName(ns_map['mmd'],
                                                 'email')).text = 'Not available' 
                                 elif ga in 'publisher_name':
-                                    org_list = ncin.getncattr('institution').split(',')
+                                    if ncin.getncattr('publisher_type') == "institution":
+                                        org_list = ncin.getncattr('publisher_name')
+                                    else:
+                                        org_list = ncin.getncattr('publisher_institution').split(',')
                                     email_list = ncin.getncattr('publisher_email').split(',')
                                     parent_element = ET.SubElement(root,
                                             ET.QName(ns_map['mmd'],
@@ -224,7 +227,7 @@ class Nc_to_mmd(object):
                                     # and split in long and short name if
                                     # so
                                     for el in project_list:
-                                        if '(' in value:
+                                        if '(' in el:
                                             mylongname = el.split('(')[0].rstrip()
                                             myshortname = el.split('(')[1].rstrip(')')
                                         else:
