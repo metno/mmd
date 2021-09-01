@@ -13,7 +13,7 @@ Meaning this should consume both DIF 8, 9 and 10.
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
     <xsl:key name="isoc" match="skos:Concept" use="skos:altLabel"/>
-    <xsl:variable name="isoLUD" select="document('../thesauri/mmd_isotopiccategory.xml')"/>
+    <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
     <!--
     <xsl:key name="isoc" match="Concept" use="altLabel"/>
 -->
