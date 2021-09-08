@@ -237,7 +237,7 @@ This is a draft implementation for MMD to DCAT-AP conversion limited to the desc
                             </xsl:attribute>
                         </xsl:when>
                         <xsl:otherwise-->
-                            <xsl:element name="rdf:label">
+                            <xsl:element name="rdfs:label">
                                 <xsl:value-of select="." />
                             </xsl:element>
                         <!--/xsl:otherwise>

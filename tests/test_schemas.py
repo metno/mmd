@@ -2,6 +2,7 @@ import os
 import lxml
 import pathlib
 import unittest
+import rdflib
 
 import lxml.etree as ET
 
@@ -24,4 +25,17 @@ class TestXSLTs(unittest.TestCase):
         self.assertIsInstance(transform_to_dcat, lxml.etree.XSLT)
 
     def test_mmd_to_dcatap_translation(self):
-        intentionally failing - please use an example MMD file and check that it is translated
+        inputpath = os.path.join(pathlib.Path.cwd(), 'input-examples', 'foo.xml')
+        dom = ET.parse(inputpath)
+        xsltfile = os.path.join(pathlib.Path.cwd(), 'xslt', 'mmd-to-dcatap.xsl')
+        xslt = ET.parse(xsltfile)
+        transform = ET.XSLT(xslt)
+        newdom = transform(dom)
+        self.graph = rdflib.Graph()
+        self.rdfObj = rdflib
+        dcatap = ET.tostring(newdom, xml_declaration = True, encoding='UTF-8', pretty_print=True)
+        try:
+            isinstance(self.graph.parse(data=dcatap, format="xml"), self.rdfObj.graph.Graph)
+        except IOError as io_err:
+            print("Error, %s" % io_err)
+        
