@@ -31,7 +31,7 @@ class TestXSLTs(unittest.TestCase):
         xslt = ET.parse(xsltfile)
         transform = ET.XSLT(xslt)
         newdom = transform(dom)
-        self.graph = rdflib.Graph()
+        graph = rdflib.Graph()
         self.rdfObj = rdflib
         dcatap = ET.tostring(newdom, xml_declaration = True, encoding='UTF-8', pretty_print=True)
         self.assertIsInstance(rdflib.Graph().parse(data=dcatap, format="xml"), rdflib.graph.Graph)
