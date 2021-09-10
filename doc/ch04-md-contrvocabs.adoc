@@ -319,7 +319,7 @@ variable.
 |GCMDPROV | GCMD Providers | https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers
 |CFSTDN | CF Standard Names | https://cfconventions.org/standard-names.html
 |GEMET | INSPIRE Themes | http://inspire.ec.europa.eu/theme
-|NORTHEMES |GeoNorge Themes | https://register.geonorge.no/subregister/metadata-kodelister/kartverket/nasjonal-temainndeling
+|NORTHEMES |GeoNorge Themes | https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling
 |============================================================================
 
 <<keywords>>
