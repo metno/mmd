@@ -16,3 +16,9 @@ class TestXSDs(unittest.TestCase):
         xsd_schema = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd_strict.xsd')
         xmlschema_mmd = ET.XMLSchema(ET.parse(xsd_schema))
         self.assertIsInstance(xmlschema_mmd, lxml.etree.XMLSchema)
+
+class TestXSLTs(unittest.TestCase):
+
+    def test_mmd_to_geonorge_xslt(self):
+        translator = ET.XSLT(ET.parse('xslt/mmd-to-geonorge.xslt'))
+        self.assertIsInstance(translator, lxml.etree.XSLT)
