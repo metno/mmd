@@ -616,7 +616,7 @@
 			        <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
 	                                <xsl:attribute name="xlink:href">
-	    			            <xsl:text>https://register.geonorge.no/subregister/metadata-kodelister/kartverket/nasjonal-temainndeling</xsl:text>
+	    			            <xsl:text>https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling</xsl:text>
 	                                </xsl:attribute>
 	        	                <xsl:text>Norwegian thematic categories</xsl:text>
                                     </xsl:element>
