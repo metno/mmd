@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+This is a draft implementation for MMD to WMO Core profile conversion.
+-->
+
 <xsl:stylesheet 
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
-    xmlns:gmi="http://www.isotc211.org/2005/gmi" 
     xmlns:gml="http://www.opengis.net/gml/3.2"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd http://www.isotc211.org/2005/gmi http://www.isotc211.org/2005/gmx/gmi.xsd"
+    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://wis.wmo.int/2011/schemata/iso19139_2007/schema/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://wis.wmo.int/2011/schemata/iso19139_2007/schema/gmx/gmx.xsd"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
     version="1.0">
+
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="gmd:MD_Metadata">
+            <xsl:copy-of select="document('')/xsl:stylesheet/namespace::*[name()!='xsl' and name()!='mapping' and name()!='mmd']"/>
+	    <xsl:copy-of select="document('')/*/@xsi:schemaLocation"/>
 
 	    <!--M metadata identfier. -->
             <xsl:apply-templates select="mmd:metadata_identifier" />
 
-            <!--gmd:language>
+            <gmd:language>
 		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng">English</gmd:LanguageCode>
             </gmd:language>
             <gmd:characterSet>
 		    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
-            </gmd:characterSet-->
-        
-            <!--O MD_ScopeCode «CodeList» scope to which the metadata applies-->
+            </gmd:characterSet>
             <gmd:hierarchyLevel>
 		    <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
             </gmd:hierarchyLevel>
             
-            <!--m party responsible for the metadata-->
+            <!--M party responsible for the metadata-->
             <xsl:element name="gmd:contact">
 	        <xsl:apply-templates select="mmd:personnel[mmd:role = 'Metadata author']" />
             </xsl:element>
@@ -86,13 +90,7 @@
 
 		    <!--abstract (M) multiplicity [1] -->
                     <xsl:apply-templates select="mmd:abstract[@xml:lang = 'en']" />
-		    <!--personnel (M) multiplicity [1] Relative to a responsible organisation, but there may be many responsible organisations for a single resource-->
-		    <!--xsl:for-each select="mmd:personnel[mmd:role != 'Metadata author']">
-                        <xsl:element name="gmd:pointOfContact">
-			    <xsl:apply-templates select="." />
-                        </xsl:element>
-		    </xsl:for-each-->
-		    <!--keywords (M) multiplicity [1..*] -->
+		    <!--keywords (M) multiplicity [1..*] and requirements 8.2.1, 8.2.2, 8.2.3, 9.1.1-->
                     <gmd:descriptiveKeywords>
                       <gmd:MD_Keywords>
                         <gmd:keyword>
@@ -123,66 +121,37 @@
 		    
                     <xsl:apply-templates select="mmd:keywords" />
 
-	     	    <!--access_constraint Conditional: referring to limitations on public access. Mandatory if accessConstraints or classification are not documented, multiplicity [0..*] for otherConstraints per instance of MD_LegalConstraints-->	
-                    <!--xsl:element name="gmd:resourceConstraints">
-                        <xsl:element name="gmd:MD_LegalConstraints">
-                    
-                            <xsl:element name="gmd:accessConstraints">
-                                <xsl:element name="gmd:MD_RestrictionCode">
-                                    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
-                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                                    <xsl:text>otherRestrictions</xsl:text>
-                                </xsl:element>
-                            </xsl:element>
-                    
-                            <xsl:element name="gmd:otherConstraints">
-                                <xsl:choose>
-                                <xsl:when test="mmd:access_constraint !=''">		     
-                        	    <xsl:choose>
-                                        <xsl:when test="mmd:access_constraint = 'Open'">		     
-                                            <xsl:element name="gmx:Anchor">
-                                                <xsl:attribute name="xlink:href">
-                        	        	    <xsl:text>http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations</xsl:text>
-                                                </xsl:attribute>
-                        	                <xsl:text>Open data</xsl:text>
-                                           </xsl:element>
-                        	        </xsl:when>
-                        	        <xsl:otherwise>
-                                            <xsl:element name="gco:CharacterString">
-                                                <xsl:value-of select="mmd:access_constraint" />
-                                            </xsl:element>
-                        	        </xsl:otherwise>
-                    	            </xsl:choose>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:element name="gco:CharacterString">
-                                        <xsl:text>conditionsUnknown</xsl:text>
+	     	    <!--access_constraint -->	
+                    <xsl:if test="mmd:access_constraint !=''">		     
+                        <xsl:element name="gmd:resourceConstraints">
+                            <xsl:element name="gmd:MD_LegalConstraints">
+                        
+                                <xsl:element name="gmd:accessConstraints">
+                                    <xsl:element name="gmd:MD_RestrictionCode">
+                                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                        <xsl:text>otherRestrictions</xsl:text>
                                     </xsl:element>
-                                </xsl:otherwise>
-                                </xsl:choose>
+                                </xsl:element>
+                        
+                                <xsl:element name="gmd:otherConstraints">
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:value-of select="mmd:access_constraint" />
+                                    </xsl:element>
+                                </xsl:element>
+                        
                             </xsl:element>
-                    
                         </xsl:element>
-                    </xsl:element-->
+                    </xsl:if>
 
-		    <!--use_constraints (M) multiplicity [1..*] -->
+		    <!--use_constraints requirements 9.3.1 and 9.3.2-->
                     <xsl:apply-templates select="mmd:use_constraint" />
-
-		    <!--xsl:element name="gmd:spatialRepresentationType">
-		        <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
-			    <xsl:attribute name="codeList">http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
-			    <xsl:attribute name="codeListValue">
-                                <xsl:value-of select="mmd:spatial_representation" />
-			    </xsl:attribute>
-                                <xsl:value-of select="mmd:spatial_representation" />
-		        </xsl:element>
-		    </xsl:element-->
 
 		    <xsl:element name="gmd:language">
 		        <xsl:element name="gmd:LanguageCode">
 		        <xsl:attribute name="codeList">http://www.loc.gov/standards/iso639-2/</xsl:attribute> 
                             <xsl:variable name="language" select="mmd:dataset_language" />
-                            <xsl:variable name="language_mapping" select="document('')/*/mapping:language_code[@mmd=$language]/@inspire" />
+                            <xsl:variable name="language_mapping" select="document('')/*/mapping:language_code[@mmd=$language]/@iso" />
 			        <xsl:attribute name="codeListValue">
                                     <xsl:value-of select="$language_mapping" />
 			        </xsl:attribute>
@@ -195,11 +164,9 @@
 
                     <xsl:element name="gmd:extent">
                         <xsl:element name="gmd:EX_Extent">
-		           <!--geographical extent (M) multiplicity [1..*] -->
+		           <!--geographical extent requirement 8.2.4 multiplicity [1..*] -->
                             <xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
                             <xsl:apply-templates select="mmd:geographic_extent/mmd:polygon" />
-			    <!--temporal extent Conditional: At least one temporal reference is required 
-				 multiplicity [0..*] -->
 			    <xsl:apply-templates select="mmd:temporal_extent"/>
                         </xsl:element>                    
                     </xsl:element>
@@ -216,7 +183,6 @@
 
                     <xsl:element name="gmd:transferOptions">
                         <xsl:element name="gmd:MD_DigitalTransferOptions">
-                       	   <!--data_access. INSPIRE: Conditional for spatial dataset and spatial dataset series: Mandatory if a URL is available to obtain more information on the resources and/or access related services. multiplicity [0..*]-->
                             <xsl:apply-templates select="mmd:data_access" />
                         </xsl:element>
 		    </xsl:element>
@@ -224,83 +190,20 @@
                 </xsl:element>
             </xsl:element>
 
-
-	    <!--Lineage (M) multiplicity [1]-->
-            <xsl:element name="gmd:dataQualityInfo">        
- 	        <xsl:element name="gmd:DQ_DataQuality">        
- 	            <xsl:element name="gmd:scope">        
- 	                <xsl:element name="gmd:DQ_Scope">        
- 	                    <xsl:element name="gmd:level">        
-				<xsl:element name="gmd:MD_ScopeCode"> 
-			            <xsl:attribute name="codeListValue">dataset</xsl:attribute>
-			            <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
-				    <xsl:text>dataset</xsl:text>
-                                </xsl:element>        
-                            </xsl:element>        
-                        </xsl:element>        
-                    </xsl:element>        
- 	            <xsl:element name="gmd:report">        
- 	                <xsl:element name="gmd:DQ_DomainConsistency">        
- 	                    <xsl:element name="gmd:result">        
- 	                        <xsl:element name="gmd:DQ_ConformanceResult">        
-				    <!--Mandatory [1] understood in the context of a conformity statement when reported in the metadata –   there may be more than one conformity statement-->
- 	                            <xsl:element name="gmd:specification">        
-	                                 <xsl:element name="gmd:CI_Citation">
-	                                     <xsl:element name="gmd:title">
-                                                 <xsl:element name="gco:CharacterString">
-		                             	     <xsl:text>COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</xsl:text>
-                                                 </xsl:element>
-	                                     </xsl:element>	
-					     <xsl:element name="gmd:date">
-		 	 	 	         <xsl:element name="gmd:CI_Date">
-     					             <xsl:element name="gmd:date">
-					                 <gco:Date>2010-12-08</gco:Date>
-        	                                     </xsl:element>	
-						     <xsl:element name="gmd:dateType">
-						         <xsl:element name="gmd:CI_DateTypeCode">
-							 <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
-						             <xsl:attribute name="codeListValue">publication</xsl:attribute>
-                                                             <xsl:text>publication</xsl:text>
-        	                                         </xsl:element>	
-        	                                     </xsl:element>	
-        	                                </xsl:element>	
-        	                             </xsl:element>	
-        	                         </xsl:element>	
-                                    </xsl:element>        
-	                            <xsl:element name="gmd:explanation">
-                                        <xsl:element name="gco:CharacterString">
-		                            <xsl:text>The dataset has not been evaluated against the requirements of Inspire</xsl:text>
-                                        </xsl:element>
-	                            </xsl:element>	
-	                            <xsl:element name="gmd:pass">
-				            <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
-	                            </xsl:element>	
-                                </xsl:element>        
-                            </xsl:element>        
-                        </xsl:element>        
-                    </xsl:element>        
- 	            <xsl:element name="gmd:lineage">        
- 	                <xsl:element name="gmd:LI_Lineage">        
- 	                    <xsl:element name="gmd:statement">        
- 	                        <xsl:element name="gco:CharacterString">No lineage statement has been provided</xsl:element>        
-                            </xsl:element>        
-                        </xsl:element>        
-                    </xsl:element>        
-                </xsl:element>        
-            </xsl:element>        
-
-            
         </xsl:element>
             
     </xsl:template>
 
     <!--templates-->
+
     <!--metadata identifier-->
     <xsl:template match="mmd:metadata_identifier">
 
         <xsl:element name="gmd:fileIdentifier">
             <xsl:element name="gco:CharacterString">
-                <xsl:value-of select="concat('urn:x-wmo:md:int.wmo.wis::',.)" />
+		<!--test requirement 9.2.1-->
+                <!--xsl:value-of select="concat('urn:x-wmo:md:int.wmo.wis::',.)" /-->
+                <xsl:value-of select="." />
             </xsl:element>
         </xsl:element>
 
@@ -379,13 +282,11 @@
                         <xsl:value-of select="$mmd_da_mapping" />
                     </xsl:element>
                 </xsl:element>            
-		<!--not mandatory in INSPIRE-->
                 <xsl:element name="gmd:name">
                     <xsl:element name="gco:CharacterString">
                         <xsl:value-of select="mmd:name" />
                     </xsl:element>
                 </xsl:element>
-		<!--not mandatory in INSPIRE-->
                 <xsl:element name="gmd:description">
                     <xsl:element name="gco:CharacterString">
                         <xsl:value-of select="mmd:description" />
@@ -395,7 +296,7 @@
                     <xsl:element name="gmd:CI_OnLineFunctionCode">
 		    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode</xsl:attribute>
                             <xsl:choose>
-                                <xsl:when test="mmd:type = 'HTTP' or 'OPENDAP'">
+                                <xsl:when test="mmd:type = 'HTTP' or 'OPeNDAP'">
                                     <xsl:attribute name="codeListValue">
                                         <xsl:text>download</xsl:text>
                                     </xsl:attribute>
@@ -799,6 +700,15 @@
                  <xsl:element name="gmd:otherConstraints">
                          <xsl:element name="gmx:Anchor">
                              <xsl:attribute name="xlink:href">
+				     <xsl:text>http://wis.wmo.int/2012/codelists/WMOCodeLists.xml#WMO_DataLicenseCode</xsl:text>
+                             </xsl:attribute>
+			     <xsl:text>WMOOther</xsl:text>
+                         </xsl:element>
+                 </xsl:element>
+
+                 <xsl:element name="gmd:otherConstraints">
+                         <xsl:element name="gmx:Anchor">
+                             <xsl:attribute name="xlink:href">
                                  <xsl:value-of select="mmd:resource" />
                              </xsl:attribute>
                                  <xsl:value-of select="mmd:identifier" />
@@ -822,7 +732,6 @@
                 <xsl:element name="gmd:CI_Contact">
                     <xsl:element name="gmd:address">
                         <xsl:element name="gmd:CI_Address">
-			    <!--[1..*] (characterString)-->	
                             <xsl:element name="gmd:electronicMailAddress">
                                 <xsl:element name="gco:CharacterString">
                                     <xsl:value-of select="mmd:email" />
@@ -833,17 +742,15 @@
                 </xsl:element>
             </xsl:element>
         
-	    <!--Mandatory [1] relative to a responsible organisation, but there may be many responsible organisations for a single resource--> 
             <xsl:element name="gmd:role">
                 <xsl:element name="gmd:CI_RoleCode">
                     <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
-		        <!--mapping should be revised-->
                         <xsl:choose>
                             <xsl:when test="mmd:role = 'Investigator'">
                                 <xsl:attribute name="codeListValue">
-                                    <xsl:text>owner</xsl:text>
+                                    <xsl:text>principalInvestigator</xsl:text>
                                 </xsl:attribute>
-                                <xsl:text>owner</xsl:text>
+                                <xsl:text>principalInvestigator</xsl:text>
                             </xsl:when>
                             <xsl:when test="mmd:role = 'Technical contact'">
                                 <xsl:attribute name="codeListValue">
@@ -885,6 +792,6 @@
     <mapping:data_access_type_osgeo iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
     <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
 
-    <mapping:language_code inspire="eng" mmd="en" />    
+    <mapping:language_code iso="eng" mmd="en" />    
 
 </xsl:stylesheet>
