@@ -89,28 +89,39 @@
     </xsl:template>
 
     <xsl:template match="mmd:last_metadata_update">
-      <xsl:element name="mmd:last_metadata_update">
-      <!--We don't have records of what type of record is the last_metadata_update in the v2 release-->
-      <!--xsl:element name="mmd:update">
-         <xsl:element name="mmd:datetime">
-            <xsl:value-of select="." />
-         </xsl:element>
-         <xsl:element name="mmd:type">
-            <xsl:text>Created</xsl:text>
-         </xsl:element>
-      </xsl:element-->
-      <xsl:element name="mmd:update">
-        <xsl:element name="mmd:datetime">
-            <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')"/>
-        </xsl:element>
-         <xsl:element name="mmd:type">
-            <xsl:text>Minor modification</xsl:text>
-         </xsl:element>
-         <xsl:element name="mmd:note">
-            <xsl:text>Changed version of metadata standard to MMD v3</xsl:text>
-         </xsl:element>
-      </xsl:element>
-      </xsl:element>
+      <xsl:choose>
+          <xsl:when test="mmd:update">
+              <xsl:element name="mmd:last_metadata_update">
+		  <xsl:copy-of select="./*"/>
+                  <xsl:element name="mmd:update">
+                      <xsl:element name="mmd:datetime">
+                          <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')"/>
+                      </xsl:element>
+                      <xsl:element name="mmd:type">
+                          <xsl:text>Minor modification</xsl:text>
+                      </xsl:element>
+                      <xsl:element name="mmd:note">
+                          <xsl:text>Changed version of metadata standard to MMD v3</xsl:text>
+                      </xsl:element>
+                  </xsl:element>
+              </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:element name="mmd:last_metadata_update">
+                  <xsl:element name="mmd:update">
+                      <xsl:element name="mmd:datetime">
+                          <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')"/>
+                      </xsl:element>
+                      <xsl:element name="mmd:type">
+                          <xsl:text>Minor modification</xsl:text>
+                      </xsl:element>
+                      <xsl:element name="mmd:note">
+                          <xsl:text>Changed version of metadata standard to MMD v3</xsl:text>
+                      </xsl:element>
+                  </xsl:element>
+              </xsl:element>
+          </xsl:otherwise>
+      </xsl:choose>
     </xsl:template>
 
 
@@ -223,6 +234,15 @@
 
      <xsl:template match="mmd:use_constraint">
         <xsl:element name="mmd:use_constraint">
+	      <!--some records might already be v3-->
+	      <xsl:if test="mmd:identifier">
+		 <xsl:element name="mmd:identifier">
+                     <xsl:value-of select="mmd:identifier" />
+	         </xsl:element>
+		 <xsl:element name="mmd:resource">
+                     <xsl:value-of select="mmd:resource" />
+	         </xsl:element>
+	      </xsl:if>
               <xsl:if test=". = 'Public domain'">
 		 <xsl:element name="mmd:identifier">
                     <xsl:text>CC0-1.0</xsl:text>
@@ -500,43 +520,50 @@
     </xsl:template>
 
     <xsl:template match="mmd:dataset_citation">
+	<xsl:choose>
+	<xsl:when test="mmd:author">
+	    <xsl:copy-of select="."/>
+	</xsl:when>
+	<xsl:otherwise>
 	    <xsl:if test="* !=''">
-        <xsl:element name="mmd:dataset_citation">
-           <xsl:element name="mmd:author">
-	      <xsl:value-of select="mmd:dataset_creator"/>
-           </xsl:element>
-           <xsl:element name="mmd:title">
-	      <xsl:value-of select="mmd:dataset_title"/>
-           </xsl:element>
-           <xsl:element name="mmd:series">
-	      <xsl:value-of select="mmd:dataset_series_name"/>
-           </xsl:element>
-           <xsl:element name="mmd:publication_date">
-	      <xsl:value-of select="mmd:dataset_release_date"/>
-           </xsl:element>
-           <xsl:element name="mmd:publication_place">
-	      <xsl:value-of select="mmd:release_place"/>
-           </xsl:element>
-           <xsl:element name="mmd:publisher">
-	      <xsl:value-of select="mmd:dataset_publisher"/>
-           </xsl:element>
-           <xsl:element name="mmd:edition">
-	      <xsl:value-of select="mmd:version"/>
-           </xsl:element>
-           <xsl:element name="mmd:issue">
-	      <xsl:value-of select="mmd:issue_identification"/>
-           </xsl:element>
-           <xsl:element name="mmd:other">
-	      <xsl:value-of select="mmd:other_citation_details"/>
-           </xsl:element>
-           <xsl:element name="mmd:doi">
-	      <xsl:value-of select="mmd:dataset_doi"/>
-           </xsl:element>
-           <xsl:element name="mmd:url">
-	      <xsl:value-of select="mmd:online_resource"/>
-           </xsl:element>
-        </xsl:element>
-       </xsl:if>
+                <xsl:element name="mmd:dataset_citation">
+                   <xsl:element name="mmd:author">
+	              <xsl:value-of select="mmd:dataset_creator"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:title">
+	              <xsl:value-of select="mmd:dataset_title"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:series">
+	              <xsl:value-of select="mmd:dataset_series_name"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:publication_date">
+	              <xsl:value-of select="mmd:dataset_release_date"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:publication_place">
+	              <xsl:value-of select="mmd:release_place"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:publisher">
+	              <xsl:value-of select="mmd:dataset_publisher"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:edition">
+	              <xsl:value-of select="mmd:version"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:issue">
+	              <xsl:value-of select="mmd:issue_identification"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:other">
+	              <xsl:value-of select="mmd:other_citation_details"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:doi">
+	              <xsl:value-of select="mmd:dataset_doi"/>
+                   </xsl:element>
+                   <xsl:element name="mmd:url">
+	              <xsl:value-of select="mmd:online_resource"/>
+                   </xsl:element>
+               </xsl:element>
+            </xsl:if>
+	</xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="mmd:data_access">
