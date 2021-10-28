@@ -472,7 +472,14 @@ Meaning this should consume both DIF 8, 9 and 10.
                     <xsl:element name="mmd:last_metadata_update">
                         <xsl:element name="mmd:update">
                             <xsl:element name="mmd:datetime">
-                                <xsl:value-of select="../dif:DIF_Creation_Date" />
+                                <xsl:choose>
+                                    <xsl:when test="../dif:DIF_Creation_Date[contains(text(),'/')]">
+                                        <xsl:value-of select=                      "translate(../dif:DIF_Creation_Date, '/', '-')" />
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="../dif:DIF_Creation_Date" />
+                                    </xsl:otherwise>
+                                </xsl:choose>
                                 <xsl:text>T00:00:00.001Z</xsl:text>
                             </xsl:element>
                             <xsl:element name="mmd:type">
@@ -493,12 +500,12 @@ Meaning this should consume both DIF 8, 9 and 10.
 
                                 </xsl:call-template>
                                 <!--xsl:text>T00:00:00.001Z</xsl:text-->
-                            </xsl:element>
-                            <xsl:element name="mmd:type">
-                                <xsl:text>Minor modification</xsl:text>
-                            </xsl:element>
-                            <xsl:element name="mmd:note">
-                                <xsl:text>Made by transformation from DIF record, type is hardcoded.</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="mmd:type">
+                            <xsl:text>Minor modification</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="mmd:note">
+                            <xsl:text>Made by transformation from DIF record, type is hardcoded.</xsl:text>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
