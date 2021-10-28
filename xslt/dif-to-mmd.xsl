@@ -424,6 +424,15 @@ Meaning this should consume both DIF 8, 9 and 10.
                       <xsl:when test="dif:Role[contains(text(),'principalInvestigator')]">
                           <xsl:text>Investigator</xsl:text>
                       </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'resourceProvider')]">
+                          <xsl:text>Metadata author</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'publisher')]">
+                          <xsl:text>Data center contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'processor')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
                       <xsl:otherwise>
                           <!--xsl:value-of select="." /-->
                           <xsl:variable name="string-mod">
