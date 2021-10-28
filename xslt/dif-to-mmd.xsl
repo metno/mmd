@@ -44,7 +44,7 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:apply-templates select="dif:Related_URL" />
             <xsl:apply-templates select="dif:Data_Set_Citation" />
             <xsl:apply-templates select="dif:Data_Center" />
-            <xsl:apply-templates select="dif:Originating_Center" />
+            <!--xsl:apply-templates select="dif:Originating_Center" /-->
             <xsl:apply-templates select="dif:Parent_DIF" />
             <!-- ... -->
         </xsl:element>
@@ -296,6 +296,7 @@ Meaning this should consume both DIF 8, 9 and 10.
         </xsl:template>
 
 
+        <!--
         <xsl:template match="dif:Originating_Center">
             <xsl:element name="mmd:personnel">
               <xsl:element name="mmd:role">
@@ -306,10 +307,7 @@ Meaning this should consume both DIF 8, 9 and 10.
 			<xsl:with-param name="with" select="'contact'" />
 		      </xsl:call-template>
 		    </xsl:variable>
-
-		    <!-- Output -->
 		    <xsl:value-of select="$string-mod" />
-                  <!--  <xsl:value-of select="/dif:DIF/dif:Personnel/dif:Role" /> -->
                 </xsl:element>
                 <xsl:element name="mmd:name">
                     <xsl:value-of select="/dif:DIF/dif:Personnel/dif:First_Name"/>  <xsl:text> </xsl:text> <xsl:value-of select="/dif:DIF/dif:Personnel/dif:Last_Name"/>
@@ -323,7 +321,8 @@ Meaning this should consume both DIF 8, 9 and 10.
                     <xsl:value-of select="."/>
                 </xsl:element>
             </xsl:element>
-        </xsl:template>
+            </xsl:template>
+        -->
 
         <xsl:template match="dif:Data_Center">
             <xsl:element name="mmd:data_center">
@@ -338,11 +337,6 @@ Meaning this should consume both DIF 8, 9 and 10.
                 <xsl:element name="mmd:data_center_url">
                     <xsl:value-of select="dif:Data_Center_URL" />
                 </xsl:element>
-		<!--TODO: Fix when alternate_identifier has been defined
-                <xsl:element name="mmd:dataset_id">
-                    <xsl:value-of select="dif:Data_Set_ID" />
-                </xsl:element>
-                -->
                 <!-- removed 2020-03-25
                 <xsl:element name="mmd:contact">
                   <xsl:element name="mmd:role">
@@ -378,6 +372,23 @@ Meaning this should consume both DIF 8, 9 and 10.
                 </xsl:element>
                     -->
             </xsl:element>
+
+            <xsl:element name="mmd:personnel">
+                <xsl:element name="mmd:role">
+                    <xsl:text>Data center contact</xsl:text>
+                </xsl:element>
+                <xsl:element name="mmd:name">
+                    <xsl:value-of select="dif:Personnel/dif:First_Name"/>
+                    <xsl:text> </xsl:text>
+                    <xsl:value-of select="dif:Personnel/dif:Last_Name"/>
+                </xsl:element>
+                <xsl:element name="mmd:email">
+                    <xsl:value-of select="dif:Personnel/dif:Email"/>
+                </xsl:element>
+                <xsl:element name="mmd:organisation">
+                    <xsl:value-of select="dif:Long_Name"/>
+                </xsl:element>
+            </xsl:element>
         </xsl:template>
 
 
@@ -402,16 +413,29 @@ Meaning this should consume both DIF 8, 9 and 10.
         <xsl:template match="dif:Personnel">
             <xsl:element name="mmd:personnel">
 	      <xsl:element name="mmd:role">
-		  <xsl:variable name="string-mod">
-		      <xsl:call-template name="string-replace">
-			<xsl:with-param name="string"  select="dif:Role"/>
-			<xsl:with-param name="replace" select="'Contact'" />
-			<xsl:with-param name="with" select="'contact'" />
-		      </xsl:call-template>
-		    </xsl:variable>
-
-		    <!-- Output -->
+                  <xsl:choose>
+                      <xsl:when test="dif:Role[contains(text(),'DIF Author')]">
+                          <xsl:text>Metadata author</xsl:text>
+                      </xsl:when>
+                      <!-- Fix for NIPR data, as they are not following the standard -->
+                      <xsl:when test="dif:Role[contains(text(),'pointOfContact')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'principalInvestigator')]">
+                          <xsl:text>Investigator</xsl:text>
+                      </xsl:when>
+                      <xsl:otherwise>
+                          <!--xsl:value-of select="." /-->
+                          <xsl:variable name="string-mod">
+                              <xsl:call-template name="string-replace">
+                                  <xsl:with-param name="string"  select="dif:Role"/>
+                                  <xsl:with-param name="replace" select="'Contact'" />
+                                  <xsl:with-param name="with" select="'contact'" />
+                              </xsl:call-template>
+                          </xsl:variable>
 		    <xsl:value-of select="$string-mod" />
+                      </xsl:otherwise>
+                  </xsl:choose>
                  <!--   <xsl:value-of select="dif:Role"/> -->
                 </xsl:element>
 	      <xsl:element name="mmd:name">
@@ -437,20 +461,38 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:choose>
                 <xsl:when test="current()=''">
                     <xsl:element name="mmd:last_metadata_update">
-                      <xsl:value-of select="../dif:DIF_Creation_Date" />
-		      <xsl:text>T00:00:00.001Z</xsl:text>
+                        <xsl:element name="mmd:update">
+                            <xsl:element name="mmd:datetime">
+                                <xsl:value-of select="../dif:DIF_Creation_Date" />
+                                <xsl:text>T00:00:00.001Z</xsl:text>
+                            </xsl:element>
+                            <xsl:element name="mmd:type">
+                                <xsl:text>Created</xsl:text>
+                            </xsl:element>
+                            <xsl:element name="mmd:note">
+                                <xsl:text>Made by transformation from DIF record</xsl:text>
+                            </xsl:element>
+                        </xsl:element>
                     </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:element name="mmd:last_metadata_update">
-                     <!-- <xsl:value-of select="." /> -->
-		       <xsl:call-template name="formatdate">
-                  <!--xsl:value-of select="dif:Start_Date" /-->
-                  <xsl:with-param name="datestr" select="." />
-		   
-              </xsl:call-template>
-	      <xsl:text>T00:00:00.001Z</xsl:text>
-		    </xsl:element>
+                        <xsl:element name="mmd:update">
+                            <xsl:element name="mmd:datetime">
+                                <xsl:call-template name="formatdate">
+                                    <xsl:with-param name="datestr" select="." />
+
+                                </xsl:call-template>
+                                <!--xsl:text>T00:00:00.001Z</xsl:text-->
+                            </xsl:element>
+                            <xsl:element name="mmd:type">
+                                <xsl:text>Minor modification</xsl:text>
+                            </xsl:element>
+                            <xsl:element name="mmd:note">
+                                <xsl:text>Made by transformation from DIF record, type is hardcoded.</xsl:text>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:template>
