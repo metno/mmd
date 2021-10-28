@@ -417,14 +417,23 @@ Meaning this should consume both DIF 8, 9 and 10.
                       <xsl:when test="dif:Role[contains(text(),'DIF Author')]">
                           <xsl:text>Metadata author</xsl:text>
                       </xsl:when>
-                      <!-- Fix for NIPR data, as they are not following the standard -->
+                      <!-- Fix for NIPR data, as they are not following the standard. To be extracted and handled as lookup table or SKOS -->
                       <xsl:when test="dif:Role[contains(text(),'pointOfContact')]">
                           <xsl:text>Technical contact</xsl:text>
                       </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'principalInvestigator')]">
                           <xsl:text>Investigator</xsl:text>
                       </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'originator')]">
+                          <xsl:text>Investigator</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Investigaror')]">
+                          <xsl:text>Investigator</xsl:text>
+                      </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'resourceProvider')]">
+                          <xsl:text>Metadata author</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Data manager')]">
                           <xsl:text>Metadata author</xsl:text>
                       </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'publisher')]">
@@ -432,6 +441,45 @@ Meaning this should consume both DIF 8, 9 and 10.
                       </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'processor')]">
                           <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'owner')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Author')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'author')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Observer')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'user')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Coordinator')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Contributor')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Station manager')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Data maneger')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Programmer')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Advisor')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'Data provider')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'distributor')]">
+                          <xsl:text>Data center contact</xsl:text>
                       </xsl:when>
                       <xsl:otherwise>
                           <!--xsl:value-of select="." /-->
