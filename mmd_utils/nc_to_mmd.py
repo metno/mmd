@@ -108,6 +108,16 @@ class Nc_to_mmd(object):
                                 value_list = ncin.getncattr(ga).split(',')
                             elif ga in 'keywords' and ',' in ncin.getncattr(ga):
                                 value_list = ncin.getncattr(ga).split(',')
+                                # Below whilw testing
+                                tmplist = [] 
+                                for ele in value_list:
+                                    if 'GCMDLOC' in ele or 'GCMDPROV' in ele:
+                                        continue
+                                    else:
+                                        ele = ele.replace('GCMDSK:','')
+                                        tmplist.append(ele)
+                                value_list = tmplist
+                                #print(value_list)
                             # Need to create a new personnel tag for each
                             # and add role as well... i.e. nesting
                             # elements
@@ -145,7 +155,7 @@ class Nc_to_mmd(object):
                                                 'email')).text = 'Not available' 
                                 elif ga in 'publisher_name':
                                     if ncin.getncattr('publisher_type') == "institution":
-                                        org_list = ncin.getncattr('publisher_name')
+                                        org_list = ncin.getncattr('publisher_name').split(',')
                                     else:
                                         org_list = ncin.getncattr('publisher_institution').split(',')
                                     email_list = ncin.getncattr('publisher_email').split(',')
@@ -158,7 +168,7 @@ class Nc_to_mmd(object):
                                     ET.SubElement(parent_element,
                                         ET.QName(ns_map['mmd'],
                                             'role')).text = 'Technical contact'
-                                    if k < len(org_list) and org_list[k]:
+                                    if k < len(org_list) and org_list[k] and isinstance(org_list,list):
                                         ET.SubElement(parent_element,
                                             ET.QName(ns_map['mmd'],
                                                 'organisation')).text = org_list[k]
@@ -290,7 +300,8 @@ class Nc_to_mmd(object):
                             if ga == 'keywords_vocabulary':
                                 attrib = e.split('_')[-1]
                                 for keywords_element in root.findall(ET.QName(ns_map['mmd'], 'keywords')):
-                                    keywords_element.attrib[attrib] = ncin.getncattr(ga)
+                                    # while testing keywords_element.attrib[attrib] = ncin.getncattr(ga)
+                                    keywords_element.attrib[attrib] = 'GCMD' 
                             elif ga == 'geospatial_bounds_crs':
                                 attrib = e.split('_')[-1]
                                 for geospatial_element in root.findall(ET.QName(ns_map['mmd'], 'rectangle')):
