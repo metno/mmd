@@ -89,29 +89,62 @@
 </xsl:template>
 
 <xsl:template match="mmd:last_metadata_update">
-    <xsl:element name="mmd:update">
-        <xsl:element name="mmd:datetime">
-            <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')"/>
-        </xsl:element>
-        <xsl:element name="mmd:type">
-            <xsl:text>Minor modification</xsl:text>
-        </xsl:element>
-        <xsl:element name="mmd:note">
-            <xsl:text>Changed version of metadata standard to MMD v3</xsl:text>
-        </xsl:element>
-    </xsl:element>
-    <xsl:element name="mmd:last_metadata_update">
-        <xsl:element name="mmd:update">
-            <xsl:element name="mmd:datetime">
-                <xsl:value-of select="." />
-            </xsl:element>
-            <xsl:element name="mmd:type">
-                <xsl:text>Original record</xsl:text>
-            </xsl:element>
-            <xsl:element name="mmd:note">
-            </xsl:element>
-        </xsl:element>
-    </xsl:element>
+      <xsl:choose>
+	  <!--record alrady has v3 metadata element-->
+          <xsl:when test="mmd:update">
+              <xsl:element name="mmd:last_metadata_update">
+		  <xsl:choose>
+		      <!--metadata record has already been parsed to v3-->
+		      <xsl:when test="mmd:update/mmd:note ='Changed version of metadata standard to MMD v3' or mmd:update/mmd:note = 'Converting from MMD-2 to MMD-3'">
+		          <xsl:copy-of select="./*"/>
+		      </xsl:when>
+		      <!--metadata record has not been parsed-->
+		      <xsl:otherwise>
+		          <xsl:copy-of select="./*"/>
+                          <xsl:element name="mmd:update">
+                              <xsl:element name="mmd:datetime">
+                                  <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')"/>
+                              </xsl:element>
+                              <xsl:element name="mmd:type">
+                                  <xsl:text>Minor modification</xsl:text>
+                              </xsl:element>
+                              <xsl:element name="mmd:note">
+                                  <xsl:text>Changed version of metadata standard to MMD v3</xsl:text>
+                              </xsl:element>
+                          </xsl:element>
+		      </xsl:otherwise>
+		  </xsl:choose>
+              </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+	      <!--record has v2 metadata element-->
+              <xsl:element name="mmd:last_metadata_update">
+                  <xsl:element name="mmd:update">
+                      <xsl:element name="mmd:datetime">
+                          <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')"/>
+                      </xsl:element>
+                      <xsl:element name="mmd:type">
+                          <xsl:text>Minor modification</xsl:text>
+                      </xsl:element>
+                      <xsl:element name="mmd:note">
+                          <xsl:text>Changed version of metadata standard to MMD v3</xsl:text>
+                      </xsl:element>
+                  </xsl:element>
+                  <xsl:element name="mmd:update">
+                      <xsl:element name="mmd:datetime">
+                          <xsl:value-of select="." />
+                      </xsl:element>
+		      <!--this type should be added in the controlled vocabulary-->
+                      <xsl:element name="mmd:type">
+                          <xsl:text>Original record</xsl:text>
+                      </xsl:element>
+                      <xsl:element name="mmd:note">
+                          <xsl:text>Original record from MMD v2</xsl:text>
+                      </xsl:element>
+                  </xsl:element>
+              </xsl:element>
+          </xsl:otherwise>
+      </xsl:choose>
 </xsl:template>
 
 
