@@ -74,7 +74,14 @@
                         <xsl:element name="gmd:CI_Citation">
                 
                             <!-- non-english elements taken care of within template -->
-                            <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
+			    <xsl:choose>
+			        <xsl:when test="mmd:title[@xml:lang = 'en']">
+                                    <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
+			        </xsl:when>
+			        <xsl:otherwise>
+                                    <xsl:apply-templates select="mmd:title" />
+			        </xsl:otherwise>
+		            </xsl:choose>
                             
                             
                             <xsl:element name="gmd:date">
@@ -121,7 +128,14 @@
                     </xsl:element>
                     
                     <!-- non-english elements taken care of within template -->
-                    <xsl:apply-templates select="mmd:abstract[@xml:lang = 'en']" />
+		    <xsl:choose>
+		        <xsl:when test="mmd:abstract[@xml:lang = 'en']">
+                            <xsl:apply-templates select="mmd:abstract[@xml:lang = 'en']" />
+		        </xsl:when>
+		        <xsl:otherwise>
+                            <xsl:apply-templates select="mmd:abstract" />
+		        </xsl:otherwise>
+		    </xsl:choose>
                     
                     <xsl:apply-templates select="mmd:iso_topic_category" />
                     
