@@ -424,10 +424,10 @@
 	   <xsl:element name="gmd:title">
               <xsl:element name="gco:CharacterString">
 		 <xsl:choose>
-		     <xsl:when test="@vocabulary = 'CF' or @vocabulary = 'cf' or contains(@vocabulary, 'Climate and Forecast')">
+		     <xsl:when test="@vocabulary = 'CF' or @vocabulary = 'CFSTDN' or @vocabulary = 'cf' or contains(@vocabulary, 'Climate and Forecast')">
 			 <xsl:text>Climate and Forecast (CF) Standard Name Table</xsl:text>
 	             </xsl:when>
-		     <xsl:when test="contains(@vocabulary, 'GCMD') or @vocabulary= 'gcmd' or contains(@vocabulary, 'Global Change Master Directory')">
+		     <xsl:when test="contains(@vocabulary, 'GCMD') or @vocabulary= 'GCMDSK' or @vocabulary= 'gcmd' or contains(@vocabulary, 'Global Change Master Directory')">
 			 <xsl:text>Global Change Master Directory (GCMD)</xsl:text>
 	             </xsl:when>
 		     <xsl:otherwise>
