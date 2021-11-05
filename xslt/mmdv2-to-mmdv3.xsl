@@ -55,7 +55,14 @@
 <xsl:template match="mmd:title">
     <xsl:element name="mmd:title">
         <xsl:attribute name="xml:lang">
-            <xsl:value-of select="@xml:lang" />
+	    <xsl:choose>
+	        <xsl:when test="@xml:lang">
+                    <xsl:value-of select="@xml:lang" />
+	        </xsl:when>
+	        <xsl:otherwise>
+		    <xsl:text>en</xsl:text>
+	        </xsl:otherwise>
+	    </xsl:choose>
         </xsl:attribute>
         <xsl:value-of select="." />
     </xsl:element>
@@ -64,7 +71,14 @@
 <xsl:template match="mmd:abstract">
     <xsl:element name="mmd:abstract">
         <xsl:attribute name="xml:lang">
-            <xsl:value-of select="@xml:lang" />
+	    <xsl:choose>
+	        <xsl:when test="@xml:lang">
+                    <xsl:value-of select="@xml:lang" />
+	        </xsl:when>
+	        <xsl:otherwise>
+		    <xsl:text>en</xsl:text>
+	        </xsl:otherwise>
+	    </xsl:choose>
         </xsl:attribute>
         <xsl:value-of select="." />
     </xsl:element>
