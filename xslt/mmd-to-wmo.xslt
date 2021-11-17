@@ -532,6 +532,20 @@ This is a draft implementation for MMD to WMO Core profile conversion.
                                         <xsl:value-of select="@vocabulary" />
                 	            </xsl:element>
 	                        </xsl:element>	
+			        <xsl:element name="gmd:date">
+		 	            <xsl:element name="gmd:CI_Date">
+     			                <xsl:element name="gmd:date">
+		                            <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+        	                        </xsl:element>	
+			                <xsl:element name="gmd:dateType">
+			                    <xsl:element name="gmd:CI_DateTypeCode">
+			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                <xsl:text>publication</xsl:text>
+        	                            </xsl:element>	
+        	                        </xsl:element>	
+        	                  </xsl:element>	
+        	                </xsl:element>	
                             </xsl:otherwise>
                         </xsl:choose>
         	    </xsl:element>	
@@ -597,16 +611,18 @@ This is a draft implementation for MMD to WMO Core profile conversion.
                             <xsl:value-of select="mmd:start_date" />
                         </xsl:element>
 			<xsl:choose>
-			<xsl:when test="string-length(mmd:end_date) > 0">
-                            <xsl:element name="gml:endPosition">
-                                <xsl:value-of select="mmd:end_date" />
-                            </xsl:element>
-		        </xsl:when>
-			<xsl:otherwise>
-                            <xsl:element name="gml:endPosition">
-				<xsl:text>unknown</xsl:text>
-                            </xsl:element>
-		        </xsl:otherwise>
+			    <xsl:when test="string-length(mmd:end_date) > 0">
+                                <xsl:element name="gml:endPosition">
+                                    <xsl:value-of select="mmd:end_date" />
+                                </xsl:element>
+		            </xsl:when>
+			    <xsl:otherwise>
+                                <xsl:element name="gml:endPosition">
+			            <xsl:attribute name="indeterminatePosition">
+					<xsl:text>now</xsl:text>
+				    </xsl:attribute>
+                                </xsl:element>
+		             </xsl:otherwise>
 		        </xsl:choose>
                     </xsl:element>
                 </xsl:element>
@@ -621,9 +637,16 @@ This is a draft implementation for MMD to WMO Core profile conversion.
         <xsl:element name="gmd:date">
             <xsl:element name="gmd:CI_Date">
                 <xsl:element name="gmd:date">
-                    <xsl:element name="gco:Date">
-                        <xsl:value-of select="." />
-                    </xsl:element>
+		    <xsl:choose>
+		        <xsl:when test=". !='' ">
+                            <xsl:element name="gco:Date">
+                                <xsl:value-of select="." />
+                            </xsl:element>
+		        </xsl:when>
+		        <xsl:otherwise>
+		            <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+		        </xsl:otherwise>
+		    </xsl:choose>
                 </xsl:element>
                 <xsl:element name="gmd:dateType">
                     <xsl:element name="gmd:CI_DateTypeCode">
