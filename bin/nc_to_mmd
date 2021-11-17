@@ -28,18 +28,6 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit()
 
-    #print(args.parse_services)
-    #print(args.parse_wms_layers)
-
     main(input_file=args.input_file, output_path=args.output_path,
             parse_services=args.parse_services, parse_wmslayers=args.parse_wms_layers, print_file=True)
 
-#def main():
-#    op = ''
-#    on = 'multisensor_sic.xml'
-#    nc = "http://thredds.met.no/thredds/dodsC/sea_ice/SIW-METNO-ARC-SEAICE_HR-OBS/ice_conc_svalbard_aggregated"
-#    md = Nc_to_mmd(op,on,nc)
-#    md.to_mmd()
-#
-#if __name__=='__main__':
-#    main()

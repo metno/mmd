@@ -15,13 +15,14 @@ import os
 import argparse
 import threddsclient
 from mmd_utils.nc_to_mmd import Nc_to_mmd
+#from mmd_utils import nc_to_mmd
 import lxml.etree as ET
 from datetime import datetime
 import pytz
 import uuid
 
 def traverse_thredds(mystart, dstdir, mydepth):
-    print('Traversing:', mystart)
+    print('Traversing:', mystart, 'to depth', mydepth)
     #mystart = 'https://thredds.met.no/thredds/arcticdata/arcticdata.xml'
     #print(mystart)
     ns_map = {'mmd': "http://www.met.no/schema/mmd",
@@ -41,7 +42,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         infile = ds.opendap_url()
         outfile = os.path.splitext(ds.name)[0]+'.xml'
         try:
-            md = Nc_to_mmd(dstdir, outfile, infile, False, False)
+            md = nc_to_mmd.Nc_to_mmd(dstdir, outfile, infile, False, False, False)
         except Exception as e:
             print('Something failed setting up ACDD extraction', e)
             continue

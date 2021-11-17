@@ -1,20 +1,24 @@
-""" Script for parsing metadata content of NetCDF files and create a MET Norway
+""" 
+Script for parsing metadata content of NetCDF files and create a MET Norway
 Metadata format specification document (MMD) based on the discovery metadata .
 
 Will work on CF and ACDD compliant files.
 
-Author(s):     Trygve Halsne
+Author(s):     Trygve Halsne, Øystein Godøy
 Created:       2019-11-25 (YYYY-mm-dd)
-Modifications:
+Modifications: 2021-11-30 (major rewrite)
 Copyright:     (c) Norwegian Meteorological Institute, 2019
-Usage:         See main() method at the bottom of the script
 
 """
 from pathlib import Path
 from netCDF4 import Dataset
 import lxml.etree as ET
 import datetime as dt
-
+from dateutil.parser import parse
+import sys
+import os
+import re
+import validators
 
 class Nc_to_mmd(object):
 
@@ -31,7 +35,10 @@ class Nc_to_mmd(object):
 
         """
         super(Nc_to_mmd, self).__init__()
-        self.output_path = output_path
+        if output_path.endswith('/'):
+            self.output_path = output_path
+        else:
+            self.output_path = output_path+'/'
         self.output_name = output_name
         self.netcdf_product = netcdf_product
         self.parse_services = parse_services
@@ -43,13 +50,6 @@ class Nc_to_mmd(object):
         Method for parsing content of NetCDF file, mapping discovery
         metadata to MMD, and writes MMD to disk.
         """
-
-        # Why
-        cf_mmd_lut = self.generate_cf_acdd_mmd_lut()
-        # Some mandatory MMD does not have equivalent in ACDD
-        # Make one to one mapping
-        cf_mmd_lut.update(self.generate_cf_mmd_lut_missing_acdd())
-        mmd_required_elements = self.required_mmd_elements()
 
         try:
             ncin = Dataset(self.netcdf_product)
@@ -66,9 +66,19 @@ class Nc_to_mmd(object):
                  # 'gml': "http://www.opengis.net/gml"}
         root = ET.Element(ET.QName(ns_map['mmd'], 'mmd'), nsmap=ns_map)
 
-        # Add mandatory elements if not done
-        if 'date_metadata_modified' not in global_attributes:
-            # Add last_metadata_update
+        # Write MMD elements from global attributes in NetCDF following a KISS approach starting with the required MMD element and looking for the ACDD element to parse. 
+
+        # Extract metadata identifier. This relies on the ACDD attributes id and naming_authority
+        if 'id' in global_attributes:
+            self.add_identifier(root, ns_map, ncin, global_attributes)
+
+        # Create metadata status. Default is active. Done above, rewrite... 
+        self.add_metadata_status(root, ns_map)
+
+        # Extract last metadata update. Multiple elements to process. Check both date_created and date_metadata_modified
+        if 'date_created' in global_attributes:
+            self.add_last_metadata_update(root, ns_map, ncin, global_attributes)
+        else:
             myel = ET.SubElement(root,ET.QName(ns_map['mmd'],'last_metadata_update'))
             myel2 = ET.SubElement(myel,ET.QName(ns_map['mmd'],'update'))
             ET.SubElement(myel2,
@@ -76,262 +86,312 @@ class Nc_to_mmd(object):
             ET.SubElement(myel2,ET.QName(ns_map['mmd'],'type')).text = 'Created'
             ET.SubElement(myel2,ET.QName(ns_map['mmd'],'note')).text = 'Automatically generated from ACDD elements'
 
-        # Write MMD elements from global attributes in NetCDF
-        for ga in global_attributes:
+        # Extract collection?? Not supported by ACDD, add afterwards using filter records from harvester. To be reconsidered in the future.
 
-            # Check if global attribute is in the Look Up Table
-            if ga in cf_mmd_lut.keys():
-                # Check if global attribute has a MMD mapping
-                if cf_mmd_lut[ga]:
-                    all_elements = cf_mmd_lut[ga].split(',')
-                    len_elements = len(all_elements)
-                    parent_element = root
-                    for i, e in enumerate(all_elements):
-                        if ga in [
-                            'creator_email','creator_url',
-                            'publisher_email',
-                            'institution']:
-                            continue
+        # Extract title
+        if 'title' in global_attributes:
+            self.add_title(root, ns_map, ncin)
 
-                        # Check if the element is an attribute to an element
-                        # Postpone handling to next loop
-                        if e.startswith('attrib_'):
-                            continue
+        # Extract abstract
+        if 'summary' in global_attributes:
+            self.add_abstract(root, ns_map, ncin)
 
-                        # Check if we have iterated to the end of the children
-                        # Not good since we duplicate code, check this
-                        # later
-                        elif i == len_elements-1:
-                            value_list = [ncin.getncattr(ga)]
-                            # Split some elements by comma into list
-                            if ga in 'iso_topic_category':
-                                value_list = ncin.getncattr(ga).split(',')
-                            elif ga in 'keywords' and ',' in ncin.getncattr(ga):
-                                value_list = ncin.getncattr(ga).split(',')
-                                # Below whilw testing
-                                tmplist = [] 
-                                for ele in value_list:
-                                    if 'GCMDLOC' in ele or 'GCMDPROV' in ele:
-                                        continue
-                                    else:
-                                        ele = ele.replace('GCMDSK:','')
-                                        tmplist.append(ele)
-                                value_list = tmplist
-                                #print(value_list)
-                            # Need to create a new personnel tag for each
-                            # and add role as well... i.e. nesting
-                            # elements
-                            elif ga in 'creator_name':
-                                value_list = ncin.getncattr(ga).split(',')
-                                org_list = ncin.getncattr('creator_institution').split(',')
-                                email_list = ncin.getncattr('creator_email').split(',')
+        # Extract geographic extent
+        if 'geospatial_lat_max' in global_attributes and 'geospatial_lat_min' in global_attributes and 'geospatial_lon_max' in global_attributes and 'geospatial_lon_min' in global_attributes:
+            self.add_geographic_extent(root, ns_map, ncin, global_attributes)
 
-                            for k,value in enumerate(value_list):
-                                if ga in 'creator_name':
-                                    parent_element = ET.SubElement(root,
-                                            ET.QName(ns_map['mmd'],
-                                                'personnel'))
-                                    current_element = ET.SubElement(
-                                            parent_element, 
-                                            ET.QName(ns_map['mmd'], e))
-                                    ET.SubElement(parent_element,
-                                        ET.QName(ns_map['mmd'],
-                                            'role')).text = 'Investigator'
-                                    if 'org_list' in locals() and k < len(org_list) and org_list[k]:
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'organisation')).text = org_list[k]
-                                    else:
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'organisation')).text = 'Not available' 
-                                    if 'email_list' in locals() and k < len(email_list) and email_list[k]:
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'email')).text = email_list[k]
-                                    else:
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'email')).text = 'Not available' 
-                                elif ga in 'publisher_name':
-                                    if ncin.getncattr('publisher_type') == "institution":
-                                        org_list = ncin.getncattr('publisher_name').split(',')
-                                    else:
-                                        org_list = ncin.getncattr('publisher_institution').split(',')
-                                    email_list = ncin.getncattr('publisher_email').split(',')
-                                    parent_element = ET.SubElement(root,
-                                            ET.QName(ns_map['mmd'],
-                                                'personnel'))
-                                    current_element = ET.SubElement(
-                                            parent_element, 
-                                            ET.QName(ns_map['mmd'], e))
-                                    ET.SubElement(parent_element,
-                                        ET.QName(ns_map['mmd'],
-                                            'role')).text = 'Technical contact'
-                                    if k < len(org_list) and org_list[k] and isinstance(org_list,list):
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'organisation')).text = org_list[k]
-                                    else:
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'organisation')).text = 'Not available' 
-                                    if k < len(org_list) and email_list[k]:
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'email')).text = email_list[k]
-                                    else:
-                                        ET.SubElement(parent_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'email')).text = 'Not available' 
-                                elif ga in 'publisher_url':
-                                    #current_element = ET.SubElement(parent_element,
-                                    #        ET.QName(ns_map['mmd'],
-                                    #            'data_center'))
-                                    sub_element = ET.SubElement(current_element,
-                                            ET.QName(ns_map['mmd'],
-                                                'data_center_name'))
-                                    if ncin.getncattr('publisher_name'):
-                                        # Split string, assuming long and
-                                        # short names are divided by
-                                        # paranetheses (short within
-                                        # parantheses)
-                                        mystring = ncin.getncattr('publisher_name')
-                                        if '(' in mystring:
-                                            mylongname = mystring.split('(')[0].rstrip()
-                                            myshortname = mystring.split('(')[1].rstrip(')') 
-                                        else:
-                                            mylongname = mystring
-                                            myshortname = 'Not available'
-                                    elif ncin.getncattr('institution'):
-                                        mystring = ncin.getncattr('institution')
-                                        if '(' in mystring:
-                                            mylongname = mystring.split('(')[0].rstrip()
-                                            myshortname = mystring.split('(')[1].rstrip(')') 
-                                        else:
-                                            mylongname = mystring
-                                            myshortname = 'Not available'
-                                    else:
-                                        mylongname = 'Not available'
-                                        myshortname = 'Not available'
-                                    ET.SubElement(sub_element,
-                                        ET.QName(ns_map['mmd'],
-                                            'long_name')).text = mylongname
-                                    ET.SubElement(sub_element,
-                                        ET.QName(ns_map['mmd'],
-                                            'short_name')).text = myshortname
-                                    if  ncin.getncattr('publisher_url'):
-                                        ET.SubElement(current_element,
-                                                ET.QName(ns_map['mmd'],
-                                                    'data_centre_url')).text = ncin.getncattr('publisher_url')
-                                    else:
-                                        ET.SubElement(current_element,
-                                                ET.QName(ns_map['mmd'],
-                                                    'data_centre_url')).text = 'Not available' 
-                                else:
-                                    if ga != 'project':
-                                        current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
-                                if ga == 'project':
-                                    project_list = value.split(',')
-                                    # Check if project anem contains ()
-                                    # and split in long and short name if
-                                    # so
-                                    for el in project_list:
-                                        if '(' in el:
-                                            mylongname = el.split('(')[0].rstrip()
-                                            myshortname = el.split('(')[1].rstrip(')')
-                                        else:
-                                            mylongname = el
-                                            myshortname = 'Not available'
-                                            
-                                        #current_element.text = mylongname
-                                        current_element =ET.SubElement(parent_element,ET.QName(ns_map['mmd'],'project'))
-                                        ET.SubElement(current_element,
-                                                ET.QName(ns_map['mmd'],'long_name')).text = mylongname
-                                        ET.SubElement(current_element,
-                                                ET.QName(ns_map['mmd'],'short_name')).text = myshortname
-                                elif ga != 'publisher_url':
-                                    current_element.text = str(value).lstrip()
+        # Extract temporal extent
+        if 'time_coverage_start' in global_attributes and 'time_coverage_end' in global_attributes:
+            self.add_temporal_extent(root, ns_map, ncin)
 
-                        # Checks to avoid duplication
-                        else:
+        # Extract personnel. Need to extract multiple fields.
+        self.add_personnel(root, ns_map, ncin, global_attributes)
 
-                            # Check if parent element already exist to avoid duplication
-                            if root.findall(parent_element.tag):
-                                parent_element = root.findall(parent_element.tag)[0]
+        # Extract data centre. Need to extract multiple fields.
+        if 'publisher_name' in global_attributes:
+            self.add_data_centre(root, ns_map, ncin, global_attributes)
 
-                            # Check if current_element already exist to
-                            # avoid duplication
-                            current_element = None
-                            for c in parent_element.getchildren():
-                                if c.tag == ET.QName(ns_map['mmd'], e):
-                                    current_element = c
-                                    continue
+        # Extract use constraint
+        if 'license' in global_attributes:
+            self.add_use_constraint(root, ns_map, ncin)
 
-                            # If element doesn't exist, add it (some
-                            # constraints)
-                            if current_element is None:
-                                if e not in ['personnel','project']:
-                                    current_element = ET.SubElement(parent_element, ET.QName(ns_map['mmd'], e))
-                                else:
-                                    continue
-                                # Set this to None by default and change
-                                # if specified in next loop
-                                if e == 'keywords':
-                                    current_element.set('vocabulary','None')
+        # Extract keywords, need to parse both keywords and keywords_vocabulary
+        if 'keywords' in global_attributes:
+            self.add_keywords(root,ns_map,ncin, global_attributes)
 
-                            parent_element = current_element
+        # Extract project
+        if 'project' in global_attributes:
+            self.add_project(root, ns_map, ncin)
 
-                        #print('>>>>\n',ga)
-                        #print('\n',ET.tostring(current_element))
+        # Extract platform
+        if 'platform' in global_attributes:
+            self.add_platform(root, ns_map, ncin, global_attributes)
+            
+        # Add related_information. There is currently no relevant ACDD element to process here.
 
+        # Add related_dataset. There is currently no relevant ACDD element to process here.
 
-        # add MMD attribute values from CF and ACDD
-        for ga in global_attributes:
+        # Extract dataset citation FIXME
+        #if 'references' in global_attributes:
+        #    self.add_dataset_citation(root, ns_map, ncin)
 
-            if ga in cf_mmd_lut.keys():
-                if cf_mmd_lut[ga]:
-                    all_elements = cf_mmd_lut[ga].split(',')
-                    len_elements = len(all_elements)
-                    parent_element = root
+        # Extract data access??
+        # Do not add here, handle this in traversing THREDDS catalogs
 
-                    for i, e in enumerate(all_elements):
-                        if e.startswith('attrib_'):
-                            if ga == 'keywords_vocabulary':
-                                attrib = e.split('_')[-1]
-                                for keywords_element in root.findall(ET.QName(ns_map['mmd'], 'keywords')):
-                                    # while testing keywords_element.attrib[attrib] = ncin.getncattr(ga)
-                                    keywords_element.attrib[attrib] = 'GCMD' 
-                            elif ga == 'geospatial_bounds_crs':
-                                attrib = e.split('_')[-1]
-                                for geospatial_element in root.findall(ET.QName(ns_map['mmd'], 'rectangle')):
-                                    geospatial_element.attrib[attrib] = ncin.getncattr(ga)
-                            elif ga == 'title_lang':
-                                attrib = e.split('_')[-1]
-                                for title_element in root.findall(ET.QName(ns_map['mmd'], 'title')):
-                                    title_element.attrib[
-                                            '{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
-                            elif ga == 'summary_lang':
-                                attrib = e.split('_')[-1]
-                                for element in root.findall(ET.QName(ns_map['mmd'], 'abstract')):
-                                    element.attrib[
-                                            '{http://www.w3.org/XML/1998/namespace}' + attrib] = ncin.getncattr(ga)
-                            else:
-                                print("Warning: don't know how to handle attrib: ", e)
+        # Extract related information?? This is not directly supported in ACDD.
 
-        # Add empty/commented required  MMD elements that are not found in NetCDF file
-        """ Removed by Øystein Godøy, METNO/FOU, 2020-10-21 
-        for k, v in mmd_required_elements.items():
+        # Extract activity type. Relying on the ACDD element source or local extension
+        if 'source' in global_attributes:
+            self.add_activity_type(root, ns_map, ncin, global_attributes)
 
-            # check if required element is part of output MMD (ie. of NetCDF file)
-            if not len(root.findall(ET.QName(ns_map['mmd'], k))) > 0:
-                print('Did not find required element: {}.'.format(k))
-                if not v:
-                    root.append(ET.Comment('<mmd:{}></mmd:{}>'.format(k, k)))
-                else:
-                    root.append(ET.Comment('<mmd:{}>{}</mmd:{}>'.format(k, v, k)))
-        """
+        # Extract ISO topic category
 
+        # Set dataset production status?? Not supported by ACDD
+
+        # Set operational status. This need specific care and checking for compliance
+        if 'processing_level' in global_attributes or 'operational_status' in global_attributes:
+            self.add_operational_status(root, ns_map, ncin, global_attributes)
+
+        # Set dataset_production_status. This is not supported by ACDD and is left empty for now.
+
+        #print(ET.tostring(root, pretty_print=True).decode())
+        #sys.exit()
+
+        if not self.output_name.endswith('.xml'):
+            output_file = str(self.output_path + self.output_name) + '.xml'
+        else:
+            output_file = str(self.output_path + self.output_name)
+
+        et = ET.ElementTree(root)
+        #et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
+
+        # Printing to file is optional
+        if self.print_file:
+            et.write(output_file, pretty_print=True)
+        else:
+            return(et)
+        return
+
+    # Relying on ACDD elements id and naming_authority
+    # Implementation of naming_authority is pending FIXME
+    def add_identifier(self, myxmltree, mynsmap, ncin, myattrs):
+        myid = getattr(ncin, 'id')
+        if 'naming_authority' in myattrs:
+            mynamaut = getattr(ncin, 'naming_authority')
+        else:
+            mynamaut = 'None'
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'metadata_identifier'))
+        myel.text = myid
+
+    def add_metadata_status(self, myxmltree, mynsmap):
+        ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'metadata_status')).text = 'Active'
+
+    # Check both date_created and date_metadata_modified
+    # FIXME add multiple updates
+    def add_last_metadata_update(self, myxmltree, mynsmap, ncin, myattrs):
+        mydatetime = parse(getattr(ncin, 'date_created'))
+        if 'date_metadata_modified' in myattrs:
+            myupdate = getattr(ncin, 'date_metadata_modified')
+        else:
+            myupdate = None
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'last_metadata_update'))
+        myel2 = ET.SubElement(myel,ET.QName(mynsmap['mmd'],'update'))
+        myel3 = ET.SubElement(myel2,ET.QName(mynsmap['mmd'],'datetime'))
+        myel3.text = mydatetime.strftime("%Y-%m-%dT%H:%M:%SZ") # FIXME, check datetime format
+        myel3 = ET.SubElement(myel2,ET.QName(mynsmap['mmd'],'type'))
+        myel3.text = 'Created'
+        myel3 = ET.SubElement(myel2,ET.QName(mynsmap['mmd'],'note'))
+        myel3.text = 'MMD record created from the NetCDF file'
+
+    # Assuming english as default language
+    def add_title(self, myxmltree, mynsmap, ncin):
+        mytitle = getattr(ncin, 'title')
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'title'))
+        myel.text = mytitle
+        myel.set('lang','en')
+
+    # Assuming english as default language
+    def add_abstract(self, myxmltree, mynsmap, ncin):
+        myabstract = getattr(ncin, 'summary')
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'abstract'))
+        myel.text = myabstract
+        myel.set('lang','en')
+
+    # Add check and rewrite of longitudes.
+    def add_geographic_extent(self, myxmltree, mynsmap, ncin, myattrs):
+        mylist = ['geospatial_lat_max','geospatial_lat_min','geospatial_lon_max','geospatial_lon_min']
+        # Check if all 4 corners of bounding box is provided
+        for el in mylist:
+            if el not in myattrs:
+                print(el, ' is not found in the global attributes, bailing out')
+                return
+        # All 4 corners of the bounding box exist, proceeding
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'geographic_extent'))
+        myel2 = ET.SubElement(myel,ET.QName(mynsmap['mmd'],'rectangle'))
+        myel2.set('srsName','EPSG:4326')
+        for el in mylist:
+            mycont = getattr(ncin, el)
+            if 'lat_max' in el:
+                myel31 = ET.SubElement(myel2,ET.QName(mynsmap['mmd'],'north'))
+                myel31.text = str(mycont)
+            elif 'lat_min' in el:
+                myel32 = ET.SubElement(myel2,ET.QName(mynsmap['mmd'],'south'))
+                myel32.text = str(mycont)
+            elif 'lon_max' in el:
+                myel33 = ET.SubElement(myel2,ET.QName(mynsmap['mmd'],'east'))
+                myel33.text = str(mycont)
+            elif 'lon_min' in el:
+                myel34 = ET.SubElement(myel2,ET.QName(mynsmap['mmd'],'west'))
+                myel34.text = str(mycont)
+
+    # Add temporal
+    def add_temporal_extent(self, myxmltree, mynsmap, ncin):
+        mystarttime = parse(getattr(ncin,'time_coverage_start'))
+        myendtime = parse(getattr(ncin,'time_coverage_end'))
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'temporal_extent'))
+        ET.SubElement(myel, ET.QName(mynsmap['mmd'],'start_date')).text = mystarttime.strftime('%Y-%m-%dT%H:%M:%SZ')
+        ET.SubElement(myel, ET.QName(mynsmap['mmd'],'end_date')).text = myendtime.strftime('%Y-%m-%dT%H:%M:%SZ')
+
+    # Add personnel, quite complex...
+    # Creator is related to Principal investigator, contributor to technical contact and metadata author (no way to differentiate) and pubisher to data centre hosting data
+    # FIXME add splitting of elements...
+    def add_personnel(self, myxmltree, mynsmap, ncin, myattrs):
+        # Not used yet...
+        #myels2check = ['creator_name', 'creator_email', 'creator_url', 'creator_type', 'creator_institution',
+        #        'contributor_name', 'contributor_role',
+        #        'publisher_name', 'publisher_email', 'publisher_url', 'publisher_type', 'publisher_institution',]
+        if 'creator_name' in myattrs:
+            # Handle PI information
+            myel = ET.SubElement(myxmltree, ET.QName(mynsmap['mmd'], 'personnel'))
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'name')).text = getattr(ncin,'creator_name')
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'role')).text = 'Investigator'
+            if 'creator_email' in myattrs:
+                ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'email')).text = getattr(ncin, 'creator_email')
+            if 'creator_institution' in myattrs:
+                ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'organisation')).text = getattr(ncin, 'creator_institution')
+        if 'contributor_name' in myattrs:
+            # Handle technical contact
+            myel = ET.SubElement(myxmltree, ET.QName(mynsmap['mmd'], 'personnel'))
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'name')).text = getattr(ncin,'contributor_name')
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'role')).text = 'Technical contact'
+            if 'contributor_email' in myattrs:
+                ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'email')).text = getattr(ncin, 'contributor_email')
+            if 'contributor_institution' in myattrs:
+                ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'organisation')).text = getattr(ncin, 'contributor_institution')
+        if 'publisher_name' in myattrs:
+            # Handle data center personnel
+            myel = ET.SubElement(myxmltree, ET.QName(mynsmap['mmd'], 'personnel'))
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'name')).text = getattr(ncin,'publisher_name')
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'role')).text = 'Data center contact'
+            if 'publisher_email' in myattrs:
+                ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'email')).text = getattr(ncin, 'publisher_email')
+            if 'publisher_institution' in myattrs:
+                ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'organisation')).text = getattr(ncin, 'publisher_institution')
+
+    # Add data centre
+    def add_data_centre(self, myxmltree, mynsmap, ncin, myattrs):
+        myel = ET.SubElement(myxmltree, ET.QName(mynsmap['mmd'], 'data_center'))
+        if 'publisher_institution' in myattrs:
+            myel2 = ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'data_center_name'))
+            ET.SubElement(myel2, ET.QName(mynsmap['mmd'], 'long_name')).text = getattr(ncin, 'publisher_institution')
+            ET.SubElement(myel2, ET.QName(mynsmap['mmd'], 'short_name')).text = ''
+        if 'publisher_url' in myattrs:
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'data_center_url')).text = getattr(ncin, 'publisher_url')
+
+    # Assuming either Free or None or a combination of a URL with an identifier included in parantheses. MMD relies on the SPDX approach of licenses with a n identifier and a resource (URL) for the lcense. License_text is supported to handle free text approaches.
+    # Add lookup on identifier in SPDX
+    def add_use_constraint(self, myxmltree, mynsmap, ncin):
+        myurl = None
+        mylicense = getattr(ncin, 'license')
+        if validators.url(mylicense):
+            myurl = mylicense
+            myid = 'NA' # FIXME, use identifier in parantheses
+        else:
+            mytext = mylicense
+        myel = ET.SubElement(myxmltree, ET.QName(mynsmap['mmd'], 'use_constraint'))
+        if myurl:
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'resource')).text = myurl
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'identifier')).text = myid
+        else:
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'license_text')).text = mytext
+
+    # Relying on keywords and keywords_vocabulary
+    # Rewrite to extract from CF standard names later
+    # Need to check if checking on GCMDLOC and GCMDPROV is required in the future
+    def add_keywords(self, myxmltree, mynsmap, ncin, myattrs):
+        mykeyw = getattr(ncin, 'keywords')
+        if 'keywords_vocabulary' in myattrs:
+            mykeyw_voc = getattr(ncin, 'keywords_vocabulary')
+        else:
+            mykeyw_voc = 'None'
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'keywords'))
+        values = getattr(ncin,'keywords').split(',')
+        for el in values:
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'],'keyword')).text = el
+            if re.match('Earth Science >',el,re.IGNORECASE):
+                mykeyw_voc = 'GCMDSK'
+        myel.set('vocabulary',mykeyw_voc)
+
+    def add_project(self, myxmltree, mynsmap, ncin):
+        myprojects = getattr(ncin, 'project').split(',')
+        for el in myprojects:
+            myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'project'))
+            # Split in short and long name for each project
+            if '(' in el:
+                mylongname = el.split('(')[0]
+                myshortname = el.split('(')[1].rstrip(')')
+            else:
+                mylongname = el
+                myshortname = ''
+            myel2 = ET.SubElement(myel,ET.QName(mynsmap['mmd'],'long_name'))
+            myel2.text = mylongname.strip()
+            myel2 = ET.SubElement(myel,ET.QName(mynsmap['mmd'],'short_name'))
+            myel2.text = myshortname.strip()
+
+    # Add platform, relies on controlled vocabualry in MMD, will read platform and platform_vcoabulary from ACDD if the latter is present and map
+    def add_platform(self, myxmltree, mynsmap, ncin, myattrs):
+        myplatform = getattr(ncin, 'platform')
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'platform'))
+        # Not added yet since MMD only relies on satellite data for now.
+        valid_statements = []
+        myel.text = myplatform
+
+    # Add activity_type, relies on source and controlled vocabulary. If vocabulary isn't used leave open. Uses local extension if available
+    def add_activity_type(self, myxmltree, mynsmap, ncin, myattrs):
+        if 'activity_type' in myattrs:
+            myactivity = getattr(ncin, 'activity_type')
+        else:
+            myactivity = getattr(ncin, 'source')
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'activity_type'))
+        # Not added yet since MMD only relies on satellite data for now.
+        valid_statements = ['Aircraft', 'Space Borne Instrument','Numerical Simulation', 'Climate Indicator', 'In Situ Land-based station(Land station) (Field Experiment)', 'In Situ Ship-based station(Cruise)', 'In Situ Ocean fixed station(Moored instrument)', 'In Situ Ocean moving station(Float)', 'In Situ Ice-based station(Ice station) (Field Experiment)', 'Interview/Questionnaire(Interview) (Questionnaire)', 'Maps/Charts/Photographs(Maps) (Charts)(Photographs)']
+        if myactivity in valid_statements:
+            myel.text = myactivity
+        else:
+            myel.text = 'Not available'
+
+    # This relies on specific formatting of the global attribute. If not followed, it will be ignored and status set to Scientific. Use local extension to ACDD if available
+    def add_operational_status(self, myxmltree, mynsmap, ncin, myattrs):
+        if 'operational_status' in myattrs:
+            myoperstat = getattr(ncin, 'operational_status')
+        else:
+            myoperstat = getattr(ncin, 'processing_level')
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'operational_status'))
+        valid_statements = ['Operational', 'Pre-Operational','Experimental', 'Scientific']
+        if myoperstat in valid_statements:
+            myel.text = myoperstat
+        else:
+            myel.text = 'Scientific'
+
+    # Add dataset_citation, relies on ACDD element references and these being present as a DOI. FIXME
+    def add_dataset_citation(self, myxmltree, ncin, myattrs):
+        if 'references' in myattrs:
+            print('I found it...')
+        myref = getattr(ncin, 'references')
+        myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'dataset_citation'))
+
+    # Add OPeNDAP URL etc if processing an OPeNDAP URL. FIXME, decide whether to keep or rely on traversing of THREDDS.
+    def add_web_services(self, myxmltree):
         # Add OPeNDAP data_access if "netcdf_product" is OPeNDAP url
         if 'dodsC' in self.netcdf_product and self.parse_services == True:
             da_element = ET.SubElement(root, ET.QName(ns_map['mmd'], 'data_access'))
@@ -379,156 +439,6 @@ class Nc_to_mmd(object):
                     # Need to add get capabilities to the wms resource
                     res += '?service=WMS&version=1.3.0&request=GetCapabilities'
                 dacc_res.text = res
-
-        # Add OGC WMS data_access as comment
-        """ removed by Øystein Godøy, METNO/FOU, 2020-10-06 taken from
-        THREDDS directly
-        root.append(ET.Comment(str('<mmd:data_access>\n\t<mmd:type>OGC WMS</mmd:type>\n\t<mmd:description>OGC Web '
-                                   'Mapping Service, URI to GetCapabilities Document.</mmd:description>\n\t'
-                                   '<mmd:resource></mmd:resource>\n\t<mmd:wms_layers>\n\t\t<mmd:wms_layer>'
-                                   '</mmd:wms_layer>\n\t</mmd:wms_layers>\n</mmd:data_access>')))
-        """
-
-        #print(ET.tostring(root,pretty_print=True).decode("utf-8"))
-        #sys.exit()
-
-        if not self.output_name.endswith('.xml'):
-            output_file = str(self.output_path + self.output_name) + '.xml'
-        else:
-            output_file = str(self.output_path + self.output_name)
-
-        et = ET.ElementTree(root)
-        #et = ET.ElementTree(ET.fromstring(ET.tostring(root, pretty_print=True).decode("utf-8")))
-
-        # Printing to file is optional
-        if self.print_file:
-            et.write(output_file, pretty_print=True)
-        else:
-            return(et)
-
-    def required_mmd_elements(self):
-        """ Create dict with required MMD elements"""
-
-        mmd_required_elements = {
-                'metadata_identifier': None,
-                'metadata_status': None,
-                'collection': None,
-                'title': None,
-                'abstract': None,
-                'last_metadata_update': None,
-                'dataset_production_status': None,
-                'operational_status': None,
-                'iso_topic_category': None,
-                'keywords': '\n\t\t<mmd:keyword></mmd:keyword>\n\t',
-                'temporal_extent': '\n\t\t<mmd:start_date></mmd:start_date>\n\t',
-                'geographic_extent': str('\n\t\t<mmd:rectangle srsName=""> \n\t\t\t<mmd:north></mmd:north> \n\t\t\t'
-                                         '<mmd:south></mmd:south> \n\t\t\t<mmd:east></mmd:east> \n\t\t\t<mmd:west>'
-                                         '</mmd:west> \n\t\t</mmd:rectangle>\n\t')
-            }
-        return mmd_required_elements
-
-    def generate_cf_mmd_lut_missing_acdd(self):
-        """ Translation dict between ACDD and MMD (dict={ACDD: MDD})
-
-        Create lookup table for mandatory MMD elements missing in the ACDD
-        but that still is present as global attributes in the netCDF file"""
-
-        cf_mmd = {'metadata_status': 'metadata_status',
-                  'collection': 'collection',
-                  'dataset_production_status': 'dataset_production_status',
-                  'iso_topic_category': 'iso_topic_category',
-                  'platform': 'platform,short_name',
-                  'platform_long_name': 'platform,long_name',
-                  'platform_resource': 'platform,resource',
-                  'instrument': 'platform,instrument,short_name',
-                  'instrument_long_name': 'platform,instrument,long_name',
-                  'instrument_resource': 'platform,instrument,resource',
-                  'ancillary_timeliness': 'platform,ancillary,timeliness',
-                  'title_lang': 'attrib_lang',
-                  'summary_lang': 'attrib_lang',
-                  'license': 'use_constraint,identifier',
-                  'license_resource': 'use_constraint,resource',
-                  'publisher_country': 'personnel,country',
-                  'creator_role': 'personnel,role',
-                  'date_metadata_modified': 'last_metadata_update,update,datetime',
-                  'date_metadata_modified_type': 'last_metadata_update,update,type',
-                  'date_metadata_modified_note': 'last_metadata_update,update,note'}
-
-        return cf_mmd
-
-    def generate_cf_acdd_mmd_lut(self):
-        """ Create the Look Up Table for CF/ACDD and MMD on the form:
-        {CF/ACDD-element: MMD-element} """
-
-        # This is not used everywhere as some of the elements are nested
-        # and cannot be represented by a structure like this. Should make
-        # this a list of lists.
-        # Øystein Godøy, METNO/FOU, 2020-10-22 
-
-        cf_acdd_mmd_lut = {
-                'title': 'title',
-                'summary': 'abstract',
-                'keywords': 'keywords,keyword',
-                'keywords_vocabulary': 'attrib_vocabulary',
-                'Conventions': None,
-                'id': 'metadata_identifier',
-                'naming_authority': 'reference',
-                'history': None,
-                'source': None,
-                'activity_type': 'activity_type',
-                'processing_level': 'operational_status',
-                'comment': None,
-                'acknowledgement': 'reference',
-                'license': 'use_constraint',
-                'standard_name_vocabulary': None,
-                'date_created': None,
-                'creator_name': 'personnel,name',
-                'creator_email': 'personnel,email',
-                'creator_url': None,
-                'project': 'project',
-                'publisher_name': 'personnel,name',
-                'publisher_email': 'personnel,email',
-                'publisher_url': 'data_center,data_center_url',
-                'geospatial_bounds': None,
-                'geospatial_bounds_crs': 'attrib_srsName',
-                'geospatial_bounds_vertical_crs': None,
-                'geospatial_lat_min': 'geographic_extent,rectangle,south',
-                'geospatial_lat_max': 'geographic_extent,rectangle,north',
-                'geospatial_lon_min': 'geographic_extent,rectangle,west',
-                'geospatial_lon_max': 'geographic_extent,rectangle,east',
-                'geospatial_vertical_min': None,
-                'geospatial_vertical_max': None,
-                'geospatial_vertical_positive': None,
-                'time_coverage_start': 'temporal_extent,start_date',
-                'time_coverage_end': 'temporal_extent,end_date',
-                'time_coverage_duration': None,
-                'time_coverage_resolution': None,
-                'creator_type': None,
-                'publisher_type': None,
-                'publisher_institution': 'personnel,organisation',
-                'contributor_name': 'data_center,contact,name',
-                'contributor_role': 'data_center,contact,role',
-                'institution': 'data_center,data_center_name,long_name',
-                'creator_institution': 'dataset_citation,dataset_publisher',
-                'metadata_link': 'dataset_citation,online_resource',
-                'references': 'dataset_citation,other_citation_details',
-                'product_version': 'dataset_citation,version',
-                'geospatial_lat_units': None,
-                'geospatial_lat_resolution': None,
-                'geospatial_lon_units': None,
-                'geospatial_lon_resolution': None,
-                'geospatial_vertical_units': None,
-                'geospatial_vertical_resolution': None,
-                'date_modified': None,
-                'date_issued': None,
-                'date_metadata_modified': 'last_metadata_update',
-                'platform': None,
-                'platform_vocabulary': None,
-                'instrument': 'instrument,long_name',
-                'instrument_vocabulary': None,
-                'cdm_data_type': None}
-        return cf_acdd_mmd_lut
-
 
 def main(input_file=None, output_path='./',parse_services=False,parse_wmslayers=False, print_file=False):
     """Run the the mdd creation from netcdf"""
