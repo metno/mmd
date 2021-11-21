@@ -20,7 +20,7 @@ def main(argv):
         usage()
     for opt, arg in opts:
         if opt == '-h':
-            print (sys.argv[0]+' -n <dataset_name>')
+            usage()
             sys.exit()
         elif opt in ("-i", "--ifile"):
             infile = arg
