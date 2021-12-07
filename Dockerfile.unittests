@@ -13,7 +13,8 @@ RUN apt-get update && \
                 "mock" \
                 "rdflib" \
                 "lxml" \
-                "python-dateutil"
+                "python-dateutil" \
+                "validators"
 
 VOLUME /src
 WORKDIR /src
