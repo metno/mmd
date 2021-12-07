@@ -12,7 +12,8 @@ RUN apt-get update && \
                 "nose" \
                 "mock" \
                 "rdflib" \
-                "lxml"
+                "lxml" \
+                "dateutil"
 
 VOLUME /src
 WORKDIR /src
