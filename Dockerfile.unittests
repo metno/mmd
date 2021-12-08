@@ -12,7 +12,9 @@ RUN apt-get update && \
                 "nose" \
                 "mock" \
                 "rdflib" \
-                "lxml"
+                "lxml" \
+                "python-dateutil" \
+                "validators"
 
 VOLUME /src
 WORKDIR /src
