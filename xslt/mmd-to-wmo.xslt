@@ -84,7 +84,7 @@ This is a draft implementation for MMD to WMO Core profile conversion.
 	                <!--title (M) multiplicity [1]-->
                         <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
                         <xsl:apply-templates select="mmd:dataset_citation/mmd:publication_date" />
-                        <xsl:apply-templates select="mmd:last_metadata_update" />
+                        <!--xsl:apply-templates select="mmd:last_metadata_update" /-->
                         </xsl:element>
                     </xsl:element>        
 
