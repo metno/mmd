@@ -27,6 +27,8 @@
         <xsl:apply-templates select="mmd:keywords" />
         <xsl:apply-templates select="mmd:operational_status" />
         <xsl:apply-templates select="mmd:dataset_language" />
+        <xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
+        <xsl:apply-templates select="mmd:geographic_extent/mmd:polygon" />
         <xsl:apply-templates select="mmd:access_constraint" />
         <xsl:apply-templates select="mmd:use_constraint" />
         <xsl:apply-templates select="mmd:project" />
@@ -38,8 +40,6 @@
         <xsl:apply-templates select="mmd:data_access" />
         <xsl:apply-templates select="mmd:data_center" />
         <xsl:apply-templates select="mmd:related_dataset" />
-        <xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
-        <xsl:apply-templates select="mmd:geographic_extent/mmd:polygon" />
         <xsl:apply-templates select="mmd:system_specific_product_category" />
         <xsl:apply-templates select="mmd:system_specific_product_relevance" />
 
@@ -109,7 +109,7 @@
               <xsl:element name="mmd:last_metadata_update">
 		  <xsl:choose>
 		      <!--metadata record has already been parsed to v3-->
-		      <xsl:when test="mmd:update/mmd:note ='Changed version of metadata standard to MMD v3' or mmd:update/mmd:note = 'Converting from MMD-2 to MMD-3'">
+		      <xsl:when test="contains(mmd:update/mmd:note,'Changed version of metadata standard to MMD v3') or mmd:update/mmd:note = 'Converting from MMD-2 to MMD-3'">
 		          <xsl:copy-of select="./*"/>
 		      </xsl:when>
 		      <!--metadata record has not been parsed-->
@@ -200,13 +200,23 @@
 <xsl:template match="mmd:keywords">
     <xsl:element name="mmd:keywords">
         <xsl:attribute name="vocabulary">
-            <xsl:value-of select="@vocabulary" />
+	    <xsl:choose>
+		<xsl:when test="contains(@vocabulary,'gcmd') or @vocabulary = 'GCMD' or contains(@vocabulary, 'Global Change Master Directory')">
+	            <xsl:text>GCMDSK</xsl:text>
+		</xsl:when>
+		<xsl:when test="contains(@vocabulary,'cf') or contains(@vocabulary, 'CF') or contains(@vocabulary, 'Climate and Forecast')">
+	            <xsl:text>CFSTDN</xsl:text>
+		</xsl:when>
+		<xsl:otherwise>
+                    <xsl:value-of select="@vocabulary" />
+		</xsl:otherwise>
+	    </xsl:choose>
         </xsl:attribute>
         <xsl:for-each select="mmd:keyword">
             <xsl:element name="mmd:keyword">
                 <xsl:variable name="topic" select="substring-before(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '&gt;')" />
                 <xsl:choose>
-                    <xsl:when test="contains(../@vocabulary,'gcmd') or contains(../@vocabulary, 'GCMD') or contains(../@vocabulary, 'Global Change Master Directory')">
+                    <xsl:when test="contains(../@vocabulary,'gcmd') or ../@vocabulary = 'GCMD' or ../@vocabulary = 'GCMDSK' or contains(../@vocabulary, 'Global Change Master Directory')">
                         <xsl:choose>
                             <xsl:when test="contains(.,'EARTH SCIENCE') or contains(.,'Earth Science')">
                                 <xsl:value-of select="." />
@@ -243,12 +253,27 @@
         </xsl:element>
     </xsl:for-each>
     <xsl:element name="mmd:resource">
-        <xsl:value-of select="mmd:reference" />
+	<xsl:choose>
+	    <xsl:when test="contains(@vocabulary,'gcmd') or @vocabulary = 'GCMD' or @vocabulary = 'GCMDSK' or contains(@vocabulary, 'Global Change Master Directory')">
+	        <xsl:text>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</xsl:text>
+	    </xsl:when>
+	    <xsl:when test="contains(@vocabulary,'cf') or contains(@vocabulary, 'CF') or @vocabulary = 'CFSDTN' or contains(@vocabulary, 'Climate and Forecast')">
+	        <xsl:text>https://cfconventions.org/standard-names.html</xsl:text>
+	    </xsl:when>
+	    <xsl:otherwise>
+		<xsl:if test="mmd:reference">
+                    <xsl:value-of select="mmd:reference" />
+	        </xsl:if>
+		<xsl:if test="mmd:resource">
+                    <xsl:value-of select="mmd:resource" />
+	        </xsl:if>
+	    </xsl:otherwise>
+	</xsl:choose>
     </xsl:element>
     <xsl:element name="mmd:separator">
         <xsl:value-of select="mmd:separator" />
     </xsl:element>
-</xsl:element>
+    </xsl:element>
     </xsl:template>
 
     <xsl:template match="mmd:operational_status">
@@ -518,6 +543,9 @@
             <xsl:element name="mmd:name">
                 <xsl:value-of select="mmd:name"/>
             </xsl:element>
+            <xsl:element name="mmd:organisation">
+                <xsl:value-of select="mmd:organisation"/>
+            </xsl:element>
             <xsl:element name="mmd:email">
                 <xsl:value-of select="mmd:email"/>
             </xsl:element>
@@ -531,9 +559,6 @@
                     <xsl:value-of select="mmd:fax"/>
                 </xsl:element>
             </xsl:if>
-            <xsl:element name="mmd:organisation">
-                <xsl:value-of select="mmd:organisation"/>
-            </xsl:element>
             <xsl:if test="mmd:contact_address !=''">
                 <xsl:element name="mmd:contact_address">
                     <xsl:element name="mmd:address">
@@ -712,7 +737,14 @@
         <xsl:element name="mmd:geographic_extent">
             <xsl:element name="mmd:rectangle">
                 <xsl:attribute name="srsName">
-                    <xsl:value-of select="@srsName"/>
+                <xsl:choose>
+                    <xsl:when test="@srsName != ''">
+                        <xsl:value-of select="@srsName" />
+                    </xsl:when>
+                    <xsl:otherwise>
+			<xsl:text>EPSG:4326</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
                 </xsl:attribute>
                 <xsl:element name="mmd:north">
                     <xsl:value-of select="mmd:north"/>
@@ -720,11 +752,11 @@
                 <xsl:element name="mmd:south">
                     <xsl:value-of select="mmd:south"/>
                 </xsl:element>
-                <xsl:element name="mmd:west">
-                    <xsl:value-of select="mmd:west"/>
-                </xsl:element>
                 <xsl:element name="mmd:east">
                     <xsl:value-of select="mmd:east"/>
+                </xsl:element>
+                <xsl:element name="mmd:west">
+                    <xsl:value-of select="mmd:west"/>
                 </xsl:element>
             </xsl:element>
         </xsl:element>

@@ -87,6 +87,7 @@
             <xs:enumeration value="Created"></xs:enumeration>
             <xs:enumeration value="Minor modification"></xs:enumeration>
             <xs:enumeration value="Major modification"></xs:enumeration>
+            <xs:enumeration value="Original record"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="temporal_extent_type">
