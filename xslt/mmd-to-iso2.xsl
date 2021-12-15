@@ -158,7 +158,7 @@
                                 </xsl:element>                            
                             </xsl:element>
 
-                            <!--xsl:element name="gmd:identifier">
+                            <xsl:element name="gmd:identifier">
                                 <xsl:element name="gmd:MD_Identifier">
                                     <xsl:element name="gmd:code">
                                         <xsl:element name="gco:CharacterString">
@@ -166,7 +166,7 @@
                                         </xsl:element>					    
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:element-->
+                            </xsl:element>
                             
                         </xsl:element>
                     </xsl:element>
