@@ -397,7 +397,7 @@
         	                                     </xsl:element>	
 						     <xsl:element name="gmd:dateType">
 						         <xsl:element name="gmd:CI_DateTypeCode">
-							 <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+							 <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
 						             <xsl:attribute name="codeListValue">publication</xsl:attribute>
                                                              <xsl:text>publication</xsl:text>
         	                                         </xsl:element>	
@@ -532,9 +532,9 @@
                 </xsl:element>                
                 <xsl:element name="gmd:function">
                     <xsl:element name="gmd:CI_OnLineFunctionCode">
-		    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode</xsl:attribute>
+		    <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode</xsl:attribute>
                             <xsl:choose>
-                                <xsl:when test="mmd:type = 'HTTP' or 'OPENDAP'">
+                                <xsl:when test="mmd:type = 'HTTP' or mmd:type = 'OPeNDAP'">
                                     <xsl:attribute name="codeListValue">
                                         <xsl:text>download</xsl:text>
                                     </xsl:attribute>
@@ -637,7 +637,7 @@
         	                        </xsl:element>	
 			                <xsl:element name="gmd:dateType">
 			                    <xsl:element name="gmd:CI_DateTypeCode">
-			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
 			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
                                                 <xsl:text>publication</xsl:text>
         	                            </xsl:element>	
@@ -661,7 +661,7 @@
         	                        </xsl:element>	
 			                <xsl:element name="gmd:dateType">
 			                    <xsl:element name="gmd:CI_DateTypeCode">
-			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
 			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
                                                 <xsl:text>publication</xsl:text>
         	                            </xsl:element>	
@@ -685,7 +685,7 @@
         	                        </xsl:element>	
 			                <xsl:element name="gmd:dateType">
 			                    <xsl:element name="gmd:CI_DateTypeCode">
-			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
 			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
                                                 <xsl:text>publication</xsl:text>
         	                            </xsl:element>	
@@ -709,7 +709,7 @@
         	                        </xsl:element>	
 			                <xsl:element name="gmd:dateType">
 			                    <xsl:element name="gmd:CI_DateTypeCode">
-			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
 			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
                                                 <xsl:text>publication</xsl:text>
         	                            </xsl:element>	
@@ -757,7 +757,7 @@
         	                        </xsl:element>	
 			                <xsl:element name="gmd:dateType">
 			                    <xsl:element name="gmd:CI_DateTypeCode">
-			                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
+			                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute> 
 			                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
                                                 <xsl:text>publication</xsl:text>
         	                            </xsl:element>	
@@ -922,7 +922,7 @@
                 </xsl:element>
                 <xsl:element name="gmd:dateType">
                     <xsl:element name="gmd:CI_DateTypeCode">
-                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
                         <xsl:attribute name="codeListValue">publication</xsl:attribute>
                         <xsl:text>publication</xsl:text>
                     </xsl:element>
@@ -944,7 +944,7 @@
                 </xsl:element>
                 <xsl:element name="gmd:dateType">
                     <xsl:element name="gmd:CI_DateTypeCode">
-		    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+		    <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
                         <xsl:attribute name="codeListValue">creation</xsl:attribute>
                         <xsl:text>creation</xsl:text>
                     </xsl:element>
@@ -970,7 +970,7 @@
                 </xsl:element>
                 <xsl:element name="gmd:dateType">
                     <xsl:element name="gmd:CI_DateTypeCode">
-                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
                         <xsl:attribute name="codeListValue">revision</xsl:attribute>
                         <xsl:text>revision</xsl:text>
                     </xsl:element>
