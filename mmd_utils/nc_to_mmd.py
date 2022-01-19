@@ -132,8 +132,8 @@ class Nc_to_mmd(object):
         # Add related_dataset. There is currently no relevant ACDD element to process here.
 
         # Extract dataset citation FIXME
-        #if 'references' in global_attributes:
-        #    self.add_dataset_citation(root, ns_map, ncin)
+        if 'references' in global_attributes:
+            self.add_dataset_citation(root, ns_map, ncin)
 
         # Extract data access??
         # Do not add here, handle this in traversing THREDDS catalogs
@@ -299,7 +299,7 @@ class Nc_to_mmd(object):
             ET.SubElement(myel, ET.QName(mynsmap['mmd'], 'data_center_url')).text = getattr(ncin, 'publisher_url')
 
     # Assuming either Free or None or a combination of a URL with an identifier included in parantheses. MMD relies on the SPDX approach of licenses with a n identifier and a resource (URL) for the lcense. License_text is supported to handle free text approaches.
-    # Add lookup on identifier in SPDX
+    # Add lookup on identifier in SPDX. spdx-lookup only returns text seemingly, not the URL
     def add_use_constraint(self, myxmltree, mynsmap, ncin):
         myurl = None
         mylicense = getattr(ncin, 'license')
@@ -318,16 +318,33 @@ class Nc_to_mmd(object):
     # Relying on keywords and keywords_vocabulary
     # Rewrite to extract from CF standard names later
     # Need to check if checking on GCMDLOC and GCMDPROV is required in the future
+    # FIXME doesn't handle multiple lists yet
     def add_keywords(self, myxmltree, mynsmap, ncin, myattrs):
         mykeyw = getattr(ncin, 'keywords')
         if 'keywords_vocabulary' in myattrs:
             mykeyw_voc = getattr(ncin, 'keywords_vocabulary')
+            if ':' in mykeyw_voc:
+                myarr = mykeyw_voc.split(':')
+            if len(myarr) == 4:
+                mykeyw_voc = myarr[0]
+                mykeyw_nam = myarr[1]
+                mykeyw_res = ':'.join(myarr[2:4])
+            else:
+                mykeyw_voc = myarr[0]
+                mykeyw_nam = myarr[1]
         else:
             mykeyw_voc = 'None'
         myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'keywords'))
+        tmp = getattr(ncin, 'keywords')
+        #print(type(tmp))
+        #print(tmp)
         values = getattr(ncin,'keywords').split(',')
         for el in values:
-            ET.SubElement(myel, ET.QName(mynsmap['mmd'],'keyword')).text = el
+            if ':' in el:
+                kw = el.split(':')[-1]
+            else:
+                kw = el
+            ET.SubElement(myel, ET.QName(mynsmap['mmd'],'keyword')).text = kw
             if re.match('Earth Science >',el,re.IGNORECASE):
                 mykeyw_voc = 'GCMDSK'
         myel.set('vocabulary',mykeyw_voc)
@@ -384,11 +401,26 @@ class Nc_to_mmd(object):
             myel.text = 'Scientific'
 
     # Add dataset_citation, relies on ACDD element references and these being present as a DOI. FIXME
-    def add_dataset_citation(self, myxmltree, ncin, myattrs):
-        if 'references' in myattrs:
-            print('I found it...')
+    def add_dataset_citation(self, myxmltree, mynsmap, ncin):
         myref = getattr(ncin, 'references')
+        # Check if attribute is URL
+        regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+        urls = re.findall(regex,myref)
+        refurl = None
+        refdoi = None
+        if urls is not None:
+            for u in urls:
+                if isinstance(u,tuple):
+                    if validators.url(u[0]):
+                        if 'doi.org' in u[0]:
+                            refdoi = u[0]
+                        else:
+                            refurl = u[0]
         myel = ET.SubElement(myxmltree,ET.QName(mynsmap['mmd'],'dataset_citation'))
+        if refdoi is not None:
+            ET.SubElement(myel,ET.QName(mynsmap['mmd'],'doi')).text = refdoi
+        if refurl is not None:
+            ET.SubElement(myel,ET.QName(mynsmap['mmd'],'url')).text = refurl
 
     # Add OPeNDAP URL etc if processing an OPeNDAP URL. FIXME, decide whether to keep or rely on traversing of THREDDS.
     def add_web_services(self, myxmltree):

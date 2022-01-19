@@ -42,7 +42,7 @@ def traverse_thredds(mystart, dstdir, mydepth):
         infile = ds.opendap_url()
         outfile = os.path.splitext(ds.name)[0]+'.xml'
         try:
-            md = nc_to_mmd.Nc_to_mmd(dstdir, outfile, infile, False, False, False)
+            md = Nc_to_mmd(dstdir, outfile, infile, False, False, False)
         except Exception as e:
             print('Something failed setting up ACDD extraction', e)
             continue
@@ -62,16 +62,36 @@ def traverse_thredds(mystart, dstdir, mydepth):
         mynode = myxml.find("./mmd:metadata_identifier", myroot.nsmap)
         #print(mynode.text, ds.url.replace('catalog.xml?dataset=',''))
         # If ID is not a UUID, replace with a newly generated UUID
+        # Check if UUID is prefixed by namespace
         if mynode is not None:
             try:
                 uuidver = uuid.UUID(mynode.text).version
             except ValueError:
-                print("\tNot containing an UUID, replacing identifier.")
-                try:
-                    mynode.text = str(uuid.uuid5(uuid.NAMESPACE_URL,
-                        ds.url.replace('catalog.xml?dataset=','')))
-                except TypeError as e:
-                    print(e)
+                print("\tNot containing a straight UUID, checks further.")
+                # Checking if containing UUID with namespace
+                if any((c in set('.:')) for c in mynode.text):
+                    if ':' in mynode.text:
+                        mystr = mynode.text.split(':')[-1]
+                        try:
+                            uuidver = uuid.UUID(mystr).version
+                        except ValueError:
+                            print('\tDoes not recognise %s as a valid identifier', mystr)
+                            try:
+                                mynode.text = str(uuid.uuid5(uuid.NAMESPACE_URL,
+                                    ds.url.replace('catalog.xml?dataset=','')))
+                            except TypeError as e:
+                                print(e)
+                        print('\tContains identifier with namespace prefixed UUID')
+                    elif '.' in mynode.text:
+                        mystr = mynode.text.split('.')[-1]
+                        print('\tThis type of identifier is not properly supported yet')
+                        sys.exit()
+                else:
+                    try:
+                        mynode.text = str(uuid.uuid5(uuid.NAMESPACE_URL,
+                            ds.url.replace('catalog.xml?dataset=','')))
+                    except TypeError as e:
+                        print(e)
         else:
             try:
                 mynode = ET.Element("{http://www.met.no/schema/mmd}metadata_identifier")
