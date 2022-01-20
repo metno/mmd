@@ -105,9 +105,10 @@ def traverse_thredds(mystart, dstdir, mydepth):
                 print(e)
 
         # Add metadata_status
-        mynode = ET.Element("{http://www.met.no/schema/mmd}metadata_status")
-        mynode.text = 'Active'
-        myroot.insert(4, mynode)
+        # Already done, removing
+        #mynode = ET.Element("{http://www.met.no/schema/mmd}metadata_status")
+        #mynode.text = 'Active'
+        #myroot.insert(4, mynode)
 
         # Add and update last_metdata_update
         # Removed for now since covered by nc_to_mmd
