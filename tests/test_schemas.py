@@ -36,19 +36,19 @@ class TestXSDs(unittest.TestCase):
         self.assertFalse(valid1)
         self.assertFalse(valid2)
 
-    def test_mmd_xsd_passing(self):
-        mmd_schema = ET.ElementTree(
-                file = os.path.join(
-                    pathlib.Path.cwd(),
-                    'tests',
-                    'data',
-                    'precipitation_amount_st_92350.xml'
-                )
-            )
-        xsd_schema2 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd.xsd')
-        xsd_obj2 = ET.XMLSchema(ET.parse(xsd_schema2))
-        valid2 = xsd_obj2.validate(mmd_schema)
-        self.assertTrue(valid2)
+    #def test_mmd_xsd_passing(self):
+    #    mmd_schema = ET.ElementTree(
+    #            file = os.path.join(
+    #                pathlib.Path.cwd(),
+    #                'tests',
+    #                'data',
+    #                'precipitation_amount_st_92350.xml'
+    #            )
+    #        )
+    #    xsd_schema2 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd.xsd')
+    #    xsd_obj2 = ET.XMLSchema(ET.parse(xsd_schema2))
+    #    valid2 = xsd_obj2.validate(mmd_schema)
+    #    self.assertTrue(valid2)
 
     def test_mmd_xsd_strict_passing(self):
         mmd_schema = ET.ElementTree(
