@@ -23,7 +23,7 @@ collection (M),-,-,
 title (M),Entry_Title (M),Entry_Title (M),
 abstract (M),Summary/Abstract (M),Summary/Abstract (M),
 temporal_extent/start_date,Temporal_Coverage/Start_Date,Temporal_Coverage/Range_DateTime/Beginning_Date_Time,
-temporal_extent/end_date,Temporal_Coverage/End_Date,Temporal_Coverage/Range_DateTime/Ending_Date_Time,
+temporal_extent/end_date,Temporal_Coverage/Stop_Date,Temporal_Coverage/Range_DateTime/Ending_Date_Time,
 -,Paleo_Temporal_Coverage,Temporal_Coverage/Paleo_DateTime,
 -,-,Spatial_Coverage/Spatial_Coverage_Type,DIF 10.3 controlled voc. SpatialCoverageTypeEnum
 -,-,Spatial_Coverage/Granule_Spatial_Representation (M),DIF 10.3 controlled voc. GranuleSpatialRepresentationEnum
