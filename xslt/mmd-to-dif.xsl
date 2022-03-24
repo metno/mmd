@@ -30,11 +30,11 @@
                         </xsl:choose>
                         <xsl:apply-templates select="mmd:personnel[mmd:role !='Data center contact']" />
 			<xsl:apply-templates select="mmd:keywords[@vocabulary = 'GCMDSK']" />
-			<xsl:apply-templates select="mmd:iso_topic_category" />
+			<xsl:apply-templates select="mmd:iso_topic_category[. != 'Not available']" />
 			<xsl:apply-templates select="mmd:keywords[not(@vocabulary = 'GCMDSK' or @vocabulary = 'GCMDLOC')]" />
 			<xsl:apply-templates select="mmd:platform" />
 			<xsl:apply-templates select="mmd:temporal_extent" />
-			<xsl:apply-templates select="mmd:dataset_production_status" />
+			<xsl:apply-templates select="mmd:dataset_production_status[. != 'Not available']" />
 			<xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
 			<xsl:apply-templates select="mmd:keywords[@vocabulary = 'GCMDLOC']" />
 			<xsl:apply-templates select="mmd:location" />

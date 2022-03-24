@@ -84,6 +84,9 @@ been completed.
 
 |Obsolete |A new version of the dataset has been generated. The new
 version should be used, this is kept for back tracing.
+
+|Not available | The production status of the dataset is not available 
+or not provided.
 |=======================================================================
 
 <<dataset_production_status>>
@@ -102,6 +105,7 @@ version should be used, this is kept for back tracing.
 |planned |Planned
 |required |Planned
 |underDevelopment |Planned
+|Blank or element does not exist | Not available
 |===========================
 
 [[mmd-to-iso-mapping]]
@@ -115,6 +119,7 @@ version should be used, this is kept for back tracing.
 |In Work |onGoing
 |Complete |Complete
 |Obsolete |obsolete
+|Not available | Skip element 
 |==================
 
 [[operational-status]]
@@ -142,6 +147,9 @@ the first step in the process of becoming operational.
 |Scientific |This is used to describe purely scientific products. That
 is products generated through scientific projects and usually with a
 limited temporal perspective.
+
+|Not available | This is used when information on the operational status 
+is not available or not provided.
 |=======================================================================
 
 <<operational_status>>
@@ -275,6 +283,9 @@ time lapse photographic session of a specific site illustrating e.g.
 snow cover or cloud cover. It can also be used to tagdocuments or maps
 describing the nature of a field station. It would then require datasets
 to be linked (which currently is not supported).
+
+|Not available | This is used when information on the activity type is not 
+available or not provided.
 |=======================================================================
 
 <<activity_type>>
@@ -320,6 +331,7 @@ variable.
 |CFSTDN | CF Standard Names | https://cfconventions.org/standard-names.html
 |GEMET | INSPIRE Themes | http://inspire.ec.europa.eu/theme
 |NORTHEMES |GeoNorge Themes | https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling
+|None | - | -
 |============================================================================
 
 <<keywords>>
@@ -582,6 +594,8 @@ describing hydroelectricity, geothermal, solar, and nuclear sources of
 energy, water purification and distribution, sewage collection and
 disposal, electricity and gas distribution, data communication,
 telecommunication, radio, and communication networks.
+
+|Not available | The ISO topic category is not available or not provided.
 |=======================================================================
 
 <<iso_topic_category>>

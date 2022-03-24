@@ -225,6 +225,7 @@
             <xs:enumeration value="In Work"></xs:enumeration>
             <xs:enumeration value="Complete"></xs:enumeration>
             <xs:enumeration value="Obsolete"></xs:enumeration>
+            <xs:enumeration value="Not available"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="iso_topic_category_type">
@@ -248,6 +249,7 @@
             <xs:enumeration value="structure"></xs:enumeration>
             <xs:enumeration value="transportation"></xs:enumeration>
             <xs:enumeration value="utilitiesCommunications"></xs:enumeration>
+            <xs:enumeration value="Not available"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="platform_type">
@@ -388,6 +390,7 @@
             <xs:enumeration value="Pre-Operational"></xs:enumeration>
             <xs:enumeration value="Experimental"></xs:enumeration>
             <xs:enumeration value="Scientific"/>
+            <xs:enumeration value="Not available"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="related_information_type">

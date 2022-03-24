@@ -181,7 +181,9 @@
 		        </xsl:otherwise>
 		    </xsl:choose>
 
-                    <xsl:apply-templates select="mmd:dataset_production_status" />
+		    <xsl:if test="mmd:dataset_production_status != 'Not available'">
+                        <xsl:apply-templates select="mmd:dataset_production_status" />
+	            </xsl:if>
                     
 		    <xsl:for-each select="mmd:personnel[mmd:role != 'Metadata author']">
                         <xsl:element name="gmd:pointOfContact">
@@ -265,7 +267,9 @@
                     </xsl:element>
 
 
-                    <xsl:apply-templates select="mmd:iso_topic_category" />
+		    <xsl:if test="mmd:iso_topic_category != 'Not available'">
+                        <xsl:apply-templates select="mmd:iso_topic_category" />
+	            </xsl:if>
                     
                     <xsl:element name="gmd:extent">
                         <xsl:element name="gmd:EX_Extent">

@@ -12,7 +12,7 @@ Meaning this should consume both DIF 8, 9 and 10.
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
-    <xsl:key name="isoc" match="skos:Concept" use="skos:altLabel"/>
+    <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:altLabel"/>
     <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
     <!--
     <xsl:key name="isoc" match="Concept" use="altLabel"/>
@@ -25,13 +25,31 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:apply-templates select="dif:Summary" />
             <xsl:apply-templates select="dif:Personnel" />
             <xsl:element name="mmd:metadata_status">Active</xsl:element>
-            <xsl:apply-templates select="dif:Data_Set_Progress" />
+	    <xsl:element name="mmd:dataset_production_status">
+		<xsl:choose>
+		    <xsl:when test="dif:Data_Set_Progress">
+                        <xsl:apply-templates select="dif:Data_Set_Progress" />
+		    </xsl:when>
+		    <xsl:otherwise>
+			<xsl:text>Not available</xsl:text>
+		    </xsl:otherwise>
+		</xsl:choose>
+	    </xsl:element>
             <xsl:element name="mmd:collection">ADC</xsl:element>
             <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
             <xsl:apply-templates select="dif:Temporal_Coverage" />
-            <xsl:apply-templates select="dif:ISO_Topic_Category" />
+	    <xsl:element name="mmd:iso_topic_category">
+		<xsl:choose>
+		    <xsl:when test="dif:ISO_Topic_Category">
+                        <xsl:apply-templates select="dif:ISO_Topic_Category" />
+		    </xsl:when>
+		    <xsl:otherwise>
+			<xsl:text>Not available</xsl:text>
+		    </xsl:otherwise>
+		</xsl:choose>
+	    </xsl:element>
             <xsl:element name="mmd:keywords">
-                <xsl:attribute name="vocabulary">gcmd</xsl:attribute>
+                <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
                 <xsl:apply-templates select="dif:Parameters" />
             </xsl:element>
             <xsl:element name="mmd:keywords">
@@ -134,14 +152,12 @@ Meaning this should consume both DIF 8, 9 and 10.
   </xsl:template>
 
   <xsl:template match="dif:ISO_Topic_Category">
-      <xsl:element name="mmd:iso_topic_category">
-          <xsl:variable name="isov" select="." />
-          <xsl:for-each select="$isoLUD">
-              <xsl:value-of select ="name()" />
-              <xsl:variable name="isoe" select="key('isoc',$isov)/skos:prefLabel"/>
-              <xsl:value-of select="$isoe"/>
-          </xsl:for-each>
-      </xsl:element>
+      <xsl:variable name="isov" select="." />
+      <xsl:for-each select="$isoLUD">
+          <xsl:value-of select ="name()" />
+          <xsl:variable name="isoe" select="key('isoc',$isov)/skos:prefLabel"/>
+          <xsl:value-of select="$isoe"/>
+      </xsl:for-each>
   </xsl:template>
 
 
@@ -159,9 +175,7 @@ Meaning this should consume both DIF 8, 9 and 10.
   </xsl:template>
 
   <xsl:template match="dif:Data_Set_Progress">
-      <xsl:element name="mmd:dataset_production_status">
-          <xsl:value-of select="." />
-      </xsl:element>
+      <xsl:value-of select="." />
   </xsl:template>
 
   <xsl:template match="dif:Temporal_Coverage">

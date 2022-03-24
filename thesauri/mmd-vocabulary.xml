@@ -150,9 +150,11 @@
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Dataset Production Status</skos:prefLabel>
     <skos:definition xml:lang="en">Production status for the dataset.</skos:definition>
+    <skos:changeNote xml:lang="en">2022-03-16, Added Concept &quot;Not available&quot; in collection</skos:changeNote>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Dataset_Production_Status/Planned">
         <skos:prefLabel xml:lang="en">Planned</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/0f1e9a71-9bda-43d6-86ef-f29472c36ebf"/>
         <skos:definition xml:lang="en">Refers to data sets to be collected in the future and are thus unavailable at the present time. For Example: The Hydro spacecraft has not been launched, but information on planned data sets may be available.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -160,6 +162,7 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Dataset_Production_Status/InWork">
         <skos:prefLabel xml:lang="en">In Work</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/946029f4-771c-4399-b0ed-e9e709f05fc1"/>
         <skos:definition xml:lang="en">Refers to data sets currently undergoing production or data that is continuously being collected or updated. For Example: data from the AIRS instrument on Aqua is being collected continuously.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -167,6 +170,7 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Dataset_Production_Status/Complete">
         <skos:prefLabel xml:lang="en">Complete</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/4607c5df-a8ed-415b-b962-d28e7583d1ef"/>
         <skos:definition xml:lang="en">Refers to data sets in which no updates or further data collection will be made. For Example: Nimbus-7 SMMR data collection has been completed.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -178,6 +182,12 @@
       </skos:Concept>
     </skos:member>
 
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Dataset_Production_Status/NotAvailable">
+        <skos:prefLabel xml:lang="en">Not available</skos:prefLabel>
+        <skos:definition xml:lang="en">The production status of the dataset is not available or not provided.</skos:definition>
+      </skos:Concept>
+    </skos:member>
   </skos:Collection>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Activity_Type">
@@ -185,6 +195,7 @@
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Activity Type</skos:prefLabel>
     <skos:definition xml:lang="en">Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</skos:definition>
+    <skos:changeNote xml:lang="en">2022-03-16, Added Concept &quot;Not available&quot; in collection</skos:changeNote>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Activity_Type/Aircraft">
         <skos:prefLabel xml:lang="en">Aircraft</skos:prefLabel>
@@ -275,6 +286,12 @@
       </skos:Concept>
     </skos:member>
 
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Activity_Type/NotAvailable">
+        <skos:prefLabel xml:lang="en">Not available</skos:prefLabel>
+        <skos:definition xml:lang="en">This is used when information on the activity type is not available or not provided.</skos:definition>
+      </skos:Concept>
+    </skos:member>
   </skos:Collection>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/ISO_Topic_Category">
@@ -283,6 +300,7 @@
     <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P05/current/"/>
     <skos:prefLabel xml:lang="en">ISO Topic Category</skos:prefLabel>
     <skos:definition xml:lang="en">Terms defined by ISO describing data themes.</skos:definition>
+    <skos:changeNote xml:lang="en">2022-03-16, Added Concept &quot;Not available&quot; in collection</skos:changeNote>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters">
         <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P05/current/002/"/>
@@ -454,6 +472,12 @@
       </skos:Concept>
     </skos:member>
 
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/ISO_Topic_Category/NotAvailable">
+        <skos:definition xml:lang="en">The iso topic category is not available or not provided.</skos:definition>
+        <skos:prefLabel xml:lang="en">Not available</skos:prefLabel>
+      </skos:Concept>
+    </skos:member>
   </skos:Collection>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Access_Constraint">
@@ -1020,6 +1044,7 @@
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Operational Status</skos:prefLabel>
     <skos:definition xml:lang="en">Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time.</skos:definition>
+    <skos:changeNote xml:lang="en">2022-03-16, Added Concept &quot;Not available&quot; in collection</skos:changeNote>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Operational_Status/Operational">
         <skos:prefLabel xml:lang="en">Operational</skos:prefLabel>
@@ -1049,6 +1074,12 @@
       </skos:Concept>
     </skos:member>
 
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Operational_Status/NotAvailable">
+        <skos:prefLabel xml:lang="en">Not available</skos:prefLabel>
+        <skos:definition xml:lang="en">This is used when information on the operational status is not available or not provided.</skos:definition>
+      </skos:Concept>
+    </skos:member>
   </skos:Collection>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Collection_Keywords">
