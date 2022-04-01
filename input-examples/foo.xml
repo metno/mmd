@@ -34,7 +34,7 @@
 	</mmd:keywords>
 	<mmd:keywords vocabulary="GCMDSK">
 		<mmd:keyword>Earth Science - Climate Indicators - Teleconnections -North Atlantic Oscillation</mmd:keyword>
-		<mmd:resource>https://gcmdservices.gsfc.nasa.gov/static/kms/</mmd:resource>
+		<mmd:resource>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</mmd:resource>
 		<mmd:separator>-</mmd:separator>
 	</mmd:keywords>
 

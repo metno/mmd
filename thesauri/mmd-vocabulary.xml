@@ -623,7 +623,7 @@
     <skos:prefLabel xml:lang="en">Norwegian Sea</skos:prefLabel>
     <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/06/"/>
     <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/norwegian_sea/"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/91dd3935-a1ae-48ca-b263-9b10ac732372"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/91dd3935-a1ae-48ca-b263-9b10ac732372"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Areas/Arctic"/>
     <skos:definition xml:lang="en">This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. It is bordered by the Greenland Sea, the Barents Sea, the North Sea and the Faroe-Iceland ridge. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;57.9767651784406&quot;, &quot;Northernmost_latitude&quot;: &quot;78.1219500577069&quot;, &quot;Westernmost_longitude&quot;: &quot;-9.02068831025837&quot;, &quot;Easternmost_longitude&quot;: &quot;27.0790684243223&quot; }}</skos:definition>
   </skos:Concept>
@@ -681,7 +681,7 @@
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-1"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-1"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a"/>
-    <skos:exactMatch rdf:resource="http://gcmdservices.gsfc.nasa.gov/kms/concept/c7279e54-f7c1-4ee7-a957-719d6021a3f6"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/c7279e54-f7c1-4ee7-a957-719d6021a3f6"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-1B">
@@ -695,7 +695,7 @@
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-1"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-1"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_1b"/>
-    <skos:exactMatch rdf:resource="http://gcmdservices.gsfc.nasa.gov/kms/concept/9940dbad-1a9a-4858-a0e8-af35b21277e2"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/9940dbad-1a9a-4858-a0e8-af35b21277e2"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-2A">
@@ -707,7 +707,7 @@
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-2"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_2a"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/6f1c359b-b1a6-47c1-979e-0689e637fbdc"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/6f1c359b-b1a6-47c1-979e-0689e637fbdc"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-2B">
@@ -719,7 +719,7 @@
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-2"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_2b"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/f2445400-1981-4ef3-bf7c-f4aa35923ae9"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/f2445400-1981-4ef3-bf7c-f4aa35923ae9"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-3A">
@@ -733,7 +733,7 @@
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-3"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_3a"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/5449d87b-5573-450f-8acb-2fdfeab3c8ce"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/5449d87b-5573-450f-8acb-2fdfeab3c8ce"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-3B">
@@ -747,7 +747,7 @@
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-3"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_3b"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/41163801-6aac-43e5-aed7-9f52613a6a73"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/41163801-6aac-43e5-aed7-9f52613a6a73"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Metop-A">
@@ -759,7 +759,7 @@
     <skos:definition xml:lang="en">The MetOp series, developed by a consortium of European companies led by the main contractor EADS-Astrium, France, builds on the heritage gained from a successful series of European satellites, including the French space agency’s (CNES) SPOT and ESA’s ERS and Envisat. The satellite consists and two modules: the Payload Module (PLM) and the Service Module (SVM), and a large solar array. The PLM accommodates the whole suite of instruments and associated support equipment. MetOp-A was launched in October 2006 from the Baikonur Cosmodrome in Kazakhstan on a Soyuz/ST Fregat operated by Starsem.</skos:definition>
     <dc:source rdf:resource="https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/MetOp/About_the_satellite"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/metop-a"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/8143808e-1005-4fed-a469-c2bd5f1521bf"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/8143808e-1005-4fed-a469-c2bd5f1521bf"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Metop-B">
@@ -771,7 +771,7 @@
     <skos:definition xml:lang="en">The MetOp series, developed by a consortium of European companies led by the main contractor EADS-Astrium, France, builds on the heritage gained from a successful series of European satellites, including the French space agency’s (CNES) SPOT and ESA’s ERS and Envisat. The satellite consists and two modules: the Payload Module (PLM) and the Service Module (SVM), and a large solar array. The PLM accommodates the whole suite of instruments and associated support equipment. MetOp-B was launched on 17 September 2012. </skos:definition>
     <dc:source rdf:resource="https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/MetOp/About_the_satellite"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/metop-b"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/c9f84df0-e807-46e3-8fce-c33e9201fbc2"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/c9f84df0-e807-46e3-8fce-c33e9201fbc2"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Metop-C">
@@ -783,7 +783,7 @@
     <skos:definition xml:lang="en">The MetOp series, developed by a consortium of European companies led by the main contractor EADS-Astrium, France, builds on the heritage gained from a successful series of European satellites, including the French space agency’s (CNES) SPOT and ESA’s ERS and Envisat. The satellite consists and two modules: the Payload Module (PLM) and the Service Module (SVM), and a large solar array. The PLM accommodates the whole suite of instruments and associated support equipment. MetOp-C joined MetOp series in orbit in November 2018.</skos:definition>
     <dc:source rdf:resource="https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/MetOp/About_the_satellite"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/metop-c"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/6120cea0-c943-4c7c-bddd-8d8648d58022"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/6120cea0-c943-4c7c-bddd-8d8648d58022"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/NOAA-18">
@@ -795,7 +795,7 @@
     <skos:definition xml:lang="en">NOAA 18 continues the fourth-generation of operational, polar orbiting, meteorological satellite series (NOAA K-N) operated by the National Environmental Satellite Service (NESS) of the National Oceanic and Atmospheric Administration (NOAA). NOAA 18 also continues the series of Advanced TIROS-N (ATN) spacecraft begun with the launch of NOAA 8 (NOAA-E) in 1983 but with additional new and improved instrumentation over the NOAA A-J series and a new launch vehicle (Titan II). NOAA 18 will be in an afternoon equator-crossing orbit and is intended to replace NOAA 17 as the prime afternoon spacecraft.</skos:definition>
     <dc:source rdf:resource="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2005-018A"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/noaa_18"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/37afee26-f2fd-47df-b8e0-7cccd71e6b8c"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/37afee26-f2fd-47df-b8e0-7cccd71e6b8c"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/NOAA-19">
@@ -807,7 +807,7 @@
     <skos:definition xml:lang="en">NOAA 19, or NOAA-N Prime, was launched 06 February 2009 at 10:22 UT aboard a Delta 2 rocket from Vandenberg. The 1440 kg satellite was built by Lockheed Martin Space Systems Company. The NOAA polar operational environmental satellites collect global data on: cloud cover; surface conditions such as ice, snow, and vegetation; atmospheric temperatures; and, moisture, aerosol, and ozone distributions. They also collect and relay information from fixed and moving data platforms</skos:definition>
     <dc:source rdf:resource="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2009-005A"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/noaa_19"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/b7461b99-2b6f-460a-ae7f-6bb37515684d"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/b7461b99-2b6f-460a-ae7f-6bb37515684d"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/NOAA-20">
@@ -819,7 +819,7 @@
     <skos:definition xml:lang="en">NOAA 20 is the first satellite launched in the Joint Polar Satellite System (JPSS). JPSS will provide global environmental data used in numerical weather prediction models for forecasts, and scientific data used for climate monitoring.</skos:definition>
     <dc:source rdf:resource="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2017-073A"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/noaa_20"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/586db0b3-5f94-466e-b7c1-a2dbedc0c1fc"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/586db0b3-5f94-466e-b7c1-a2dbedc0c1fc"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/SNPP">
@@ -831,7 +831,7 @@
     <skos:definition xml:lang="en">Suomi National Polar-orbiting Partnership, formerly known as the NPOESS Preparatory Project, will serve as a bridge between the EOS satellites and the forthcoming series of Joint Polar Satellite System (JPSS) satellites. Suomi NPP represents a critical first step in building this next-generation satellite system. The JPSS satellites, previously called the National Polar-orbiting Operational Environmental Satellite System (NPOESS), will be developed by NASA for the National Oceanic and Atmospheric Administration (NOAA). Suomi NPP will carry five science instruments and test key technologies for the JPSS missions. Suomi NPP is the first satellite mission to address the challenge of acquiring a wide range of land, ocean, and atmospheric measurements for Earth system science while simultaneously preparing to address operational requirements for weather forecasting.</skos:definition>
     <dc:source rdf:resource="https://www.nasa.gov/mission_pages/NPP/main/index.html"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/snpp"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/85a52725-e6a1-430a-8506-c08c59ef31c7"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/85a52725-e6a1-430a-8506-c08c59ef31c7"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Aqua">
@@ -843,7 +843,7 @@
     <skos:definition xml:lang="en">Aqua, Latin for water, is a NASA Earth Science satellite mission named for the large amount of information that the mission is collecting about the Earth's water cycle, including evaporation from the oceans, water vapor in the atmosphere, clouds, precipitation, soil moisture, sea ice, land ice, and snow cover on the land and ice. Additional variables also being measured by Aqua include radiative energy fluxes, aerosols, vegetation cover on the land, phytoplankton and dissolved organic matter in the oceans, and air, land, and water temperatures.</skos:definition>
     <dc:source rdf:resource="https://aqua.nasa.gov/"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/aqua"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/ea7fd15d-190d-43f3-bdd3-75f5d88dc3f8"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/ea7fd15d-190d-43f3-bdd3-75f5d88dc3f8"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Terra">
@@ -855,7 +855,7 @@
     <skos:definition xml:lang="en">Terra explores the connections between Earth's atmosphere, land, snow and ice, ocean, and energy balance to understand Earth's climate and climate change and to map the impact of human activity and natural disasters on communities and ecosystems.</skos:definition>
     <dc:source rdf:resource="https://terra.nasa.gov/"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/terra"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/80eca755-c564-4616-b910-a4c4387b7c54"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/80eca755-c564-4616-b910-a4c4387b7c54"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/FY-3D">
@@ -902,7 +902,7 @@
     <dc:source rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-1-sar/sar-instrument"/>
     <rdfs:seeAlso rdf:resource="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/ed400e7c-229e-48be-9a93-84f2fc864448"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/ed400e7c-229e-48be-9a93-84f2fc864448"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/MSI">
@@ -914,7 +914,7 @@
     <skos:definition xml:lang="en">The design of the Multispectral Instrument (MSI) on-board SENTINEL-2 has been driven by the requirement for large swath high geometrical and spectral performance of the measurements. The MSI measures the Earth's reflected radiance in 13 spectral bands from VNIR to SWIR.</skos:definition>
     <dc:source rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/msi-instrument"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/msi_sentinel_2a"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/fc57a9a0-a287-4bcf-a517-20811b55596b"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/fc57a9a0-a287-4bcf-a517-20811b55596b"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/OLCI">
@@ -927,7 +927,7 @@
     <dc:source rdf:resource="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-3-olci/olci-instrument"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/olci"/>
     <rdfs:seeAlso rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-olci"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/65ed042c-df53-4afb-8b6a-1ea16958015d"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/65ed042c-df53-4afb-8b6a-1ea16958015d"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/SLSTR">
@@ -940,7 +940,7 @@
     <dc:source rdf:resource="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-3-slstr/instrument"/>
     <rdfs:seeAlso rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-slstr"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/slstr"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/7204c4d5-b7d0-41af-ba90-61d47c6dc610"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/7204c4d5-b7d0-41af-ba90-61d47c6dc610"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/MWR">
@@ -953,7 +953,7 @@
     <dc:source rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-altimetry/instrument/mwr"/>
     <rdfs:seeAlso rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-altimetry/instrument/mwr"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/mwr_sentinel_3"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/d81fc4e3-c0b4-4205-82b2-ef2161c169a3"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/d81fc4e3-c0b4-4205-82b2-ef2161c169a3"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/VIIRS">
@@ -967,7 +967,7 @@
     <skos:definition xml:lang="en">The Visible Infrared Imaging Radiometer Suite (VIIRS) instrument collects visible and infrared imagery and global observations of land, atmosphere, cryosphere and oceans. VIIRS features daily multi-band imaging capabilities to support the acquisition of high-resolution atmospheric imagery and other instrument products, including visible and infrared imaging of hurricanes and detection of fires, smoke and atmospheric aerosols. </skos:definition>
     <dc:source rdf:resource="https://www.jpss.noaa.gov/viirs.html"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/viirs"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/dd7c719e-5767-4ceb-b83a-66c1401dab4a"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/dd7c719e-5767-4ceb-b83a-66c1401dab4a"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/AVHRR_3">
@@ -987,7 +987,7 @@
     <skos:definition xml:lang="en">The Advanced Very High Resolution Radiometer (AVHRR/3) is one of the complement of American instruments provided by the National Oceanic and Atmospheric Administration (NOAA) to fly on MetOp-A, B and C. The AVHRR/3 scans the Earth surface in six spectral bands in the range of 0.58 - 12.5 microns. It provides day and night imaging of land, water and clouds, measures sea surface temperature, ice, snow and vegetation cover.</skos:definition>
     <dc:source rdf:resource="https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/MetOp/About_AVHRR_3"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/avhrr_3"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/87c44e15-54c8-407d-a881-8035a2d5512b"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/87c44e15-54c8-407d-a881-8035a2d5512b"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/MERSI-2">
@@ -1012,7 +1012,7 @@
     <skos:definition xml:lang="en">MODIS (or Moderate Resolution Imaging Spectroradiometer) is a key instrument aboard the Terra (originally known as EOS AM-1) and Aqua (originally known as EOS PM-1) satellites. Terra's orbit around the Earth is timed so that it passes from north to south across the equator in the morning, while Aqua passes south to north over the equator in the afternoon. Terra MODIS and Aqua MODIS are viewing the entire Earth's surface every 1 to 2 days, acquiring data in 36 spectral bands, or groups of wavelengths (see MODIS Technical Specifications). These data will improve our understanding of global dynamics and processes occurring on the land, in the oceans, and in the lower atmosphere. MODIS is playing a vital role in the development of validated, global, interactive Earth system models able to predict global change accurately enough to assist policy makers in making sound decisions concerning the protection of our environment.</skos:definition>
     <dc:source rdf:resource="https://modis.gsfc.nasa.gov/about/"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/modis"/>
-    <skos:exactMatch rdf:resource="https://gcmdservices.gsfc.nasa.gov/kms/concept/2878f334-35dc-47a7-a3ae-8c5da1adccd3"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/2878f334-35dc-47a7-a3ae-8c5da1adccd3"/>
   </skos:Concept>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Operational_Status">

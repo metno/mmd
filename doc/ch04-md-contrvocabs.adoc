@@ -287,10 +287,10 @@ Keywords. The GCMD Science Keywords are available in multiple forms.
 
 GCMD Science Keywords
 
- . https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=csv comma separated file
- . https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=json JSON
- . https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=rdf RDF
- . https://gcmdservices.gsfc.nasa.gov/kms/capabilities?format=html API
+ . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=csv comma separated file
+ . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=json JSON
+ . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=rdf RDF
+ . https://gcmd.earthdata.nasa.gov/kms/capabilities?format=html API
 
 However many datasets are encoded using the
 http://cfconventions.org[Climate and Forecast convention]. In this CF
