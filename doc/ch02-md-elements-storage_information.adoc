@@ -13,7 +13,7 @@
 
 |Description a|Information about the underlying data storage when this is
 available. File format specifications must follow a controlled vocabulary,
-as must checksums. Allowed file formats are available in https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/GranuleDataFormat/?format=rdf[skos].
+as must checksums. Allowed file formats are available in https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/GranuleDataFormat/?format=rdf[skos].
 Checksums can be md5sum, shasum (sha256sum, sha384sum,
 sha512sum) and other higher order approaches. Sub elements include:
 
