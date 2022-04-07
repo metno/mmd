@@ -4,19 +4,22 @@
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
-    xmlns:gmi="http://www.isotc211.org/2005/gmi" 
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd http://www.isotc211.org/2005/gmi http://www.isotc211.org/2005/gmx/gmi.xsd"
+    xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
+    <!--file name should be passed as stringparam file_name "filename" and have parent in the file name if the mmd record is a parent dataset-->
+    <xsl:param name="file_name" />
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="gmd:MD_Metadata">
+	    <xsl:copy-of select="document('')/xsl:stylesheet/namespace::*[name()!='xsl' and name()!='mapping' and name()!='mmd']"/>
+            <xsl:copy-of select="document('')/*/@xsi:schemaLocation"/>
 
 	    <!--metadata identfier. INSPIRE: Mandatory for dataset and dataset series. multiplicity [1..*]-->
             <xsl:apply-templates select="mmd:metadata_identifier" />
@@ -28,11 +31,30 @@
             <gmd:characterSet>
 		    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
             </gmd:characterSet>
+	    <xsl:if test="mmd:related_dataset/@relation_type = 'parent'">
+		<gmd:parentIdentifier>
+		    <gco:CharacterString>
+                        <xsl:value-of select="mmd:related_dataset[@relation_type = 'parent']"/>
+		    </gco:CharacterString>
+		</gmd:parentIdentifier>
+            </xsl:if>
         
             <!--resource type is mandatory, multiplicity [1]-->
-            <gmd:hierarchyLevel>
-		    <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
-            </gmd:hierarchyLevel>
+	    <xsl:choose>
+	        <xsl:when test="contains($file_name, 'parent')">
+                    <gmd:hierarchyLevel>
+	                <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="series"/>
+                    </gmd:hierarchyLevel>
+                    <gmd:hierarchyLevelName>
+                        <gco:CharacterString>series_time</gco:CharacterString>
+                    </gmd:hierarchyLevelName>		    
+	        </xsl:when>
+	        <xsl:otherwise>
+                    <gmd:hierarchyLevel>
+	                <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
+                    </gmd:hierarchyLevel>
+	        </xsl:otherwise>
+            </xsl:choose>
             
             <!--Party responsible for the metadata information (M) multiplicity [1..*] -->
             <xsl:element name="gmd:contact">
@@ -95,7 +117,6 @@
 	                <!--title (M) multiplicity [1]-->
                         <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
                         <xsl:apply-templates select="mmd:dataset_citation/mmd:publication_date" />
-                        <xsl:apply-templates select="mmd:last_metadata_update" />
 			<!--it should be the DOI, or a URL. Identifier for now-->
                         <xsl:element name="gmd:identifier">
                             <xsl:element name="gmd:MD_Identifier">
@@ -293,9 +314,18 @@
  	                <xsl:element name="gmd:DQ_Scope">        
  	                    <xsl:element name="gmd:level">        
 				<xsl:element name="gmd:MD_ScopeCode"> 
-			            <xsl:attribute name="codeListValue">dataset</xsl:attribute>
-			            <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
-				    <xsl:text>dataset</xsl:text>
+                                    <xsl:choose>
+                                        <xsl:when test="contains($file_name, 'parent')">
+			                    <xsl:attribute name="codeListValue">series</xsl:attribute>
+			                    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				            <xsl:text>series</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+			                    <xsl:attribute name="codeListValue">dataset</xsl:attribute>
+			                    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				            <xsl:text>dataset</xsl:text>
+					</xsl:otherwise>
+				    </xsl:choose>
                                 </xsl:element>        
                             </xsl:element>        
                         </xsl:element>        
@@ -713,9 +743,22 @@
                             </xsl:element>
 		        </xsl:when>
 			<xsl:otherwise>
-                            <xsl:element name="gml:endPosition">
-				<xsl:text>unknown</xsl:text>
-                            </xsl:element>
+			    <xsl:choose>
+			        <xsl:when test="contains($file_name, 'parent')">
+                                    <xsl:element name="gml:endPosition">
+			                <xsl:attribute name="indeterminatePosition">
+			                    <xsl:text>now</xsl:text>
+			                </xsl:attribute>
+                                    </xsl:element>
+			        </xsl:when>
+			        <xsl:otherwise>
+                                    <xsl:element name="gml:endPosition">
+			                <xsl:attribute name="indeterminatePosition">
+			                    <xsl:text>unknown</xsl:text>
+			                </xsl:attribute>
+                                    </xsl:element>
+			        </xsl:otherwise>
+			    </xsl:choose>
 		        </xsl:otherwise>
 		        </xsl:choose>
                     </xsl:element>
@@ -731,13 +774,20 @@
         <xsl:element name="gmd:date">
             <xsl:element name="gmd:CI_Date">
                 <xsl:element name="gmd:date">
-                    <xsl:element name="gco:Date">
-                        <xsl:value-of select="." />
-                    </xsl:element>
+                    <xsl:choose>
+                        <xsl:when test=". !='' ">
+                            <xsl:element name="gco:Date">
+                                <xsl:value-of select="." />
+                            </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:element>
                 <xsl:element name="gmd:dateType">
                     <xsl:element name="gmd:CI_DateTypeCode">
-		    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                        <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
                         <xsl:attribute name="codeListValue">publication</xsl:attribute>
                         <xsl:text>publication</xsl:text>
                     </xsl:element>
@@ -825,11 +875,31 @@
     <xsl:template match="mmd:personnel">
     
         <xsl:element name="gmd:CI_ResponsibleParty">
-            <xsl:element name="gmd:organisationName">
-                <xsl:element name="gco:CharacterString">
-                    <xsl:value-of select="mmd:organisation" />
-                </xsl:element>
-            </xsl:element>            
+	    <xsl:choose>
+	        <xsl:when test="mmd:organisation = 'Norwegian Meteorological Institute'">
+                    <xsl:element name="gmd:organisationName">
+			<xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
+                        <xsl:element name="gco:CharacterString">
+                            <xsl:value-of select="mmd:organisation" />
+                        </xsl:element>
+                        <xsl:element name="gmd:PT_FreeText">
+                            <xsl:element name="gmd:textGroup">
+                                <xsl:element name="gmd:LocalisedCharacterString">
+                                    <xsl:attribute name="locale">#locale-nor</xsl:attribute>
+			    	<xsl:text>Meteorologisk institutt</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>            
+	        </xsl:when>
+	        <xsl:otherwise>
+                    <xsl:element name="gmd:organisationName">
+                        <xsl:element name="gco:CharacterString">
+                            <xsl:value-of select="mmd:organisation" />
+                        </xsl:element>
+                    </xsl:element>            
+	        </xsl:otherwise>
+	    </xsl:choose>
             
             <xsl:element name="gmd:contactInfo">
                 <xsl:element name="gmd:CI_Contact">
