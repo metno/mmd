@@ -117,7 +117,6 @@
 	                <!--title (M) multiplicity [1]-->
                         <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
                         <xsl:apply-templates select="mmd:dataset_citation/mmd:publication_date" />
-                        <!--xsl:apply-templates select="mmd:last_metadata_update" /-->
 			<!--it should be the DOI, or a URL. Identifier for now-->
                         <xsl:element name="gmd:identifier">
                             <xsl:element name="gmd:MD_Identifier">
