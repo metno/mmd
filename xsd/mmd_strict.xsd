@@ -112,7 +112,13 @@
             <xs:element name="east" type="xs:double"></xs:element>
             <xs:element name="west" type="xs:double"></xs:element>
         </xs:all>
-        <xs:attribute name="srsName" type="xs:string" use="required" />
+        <xs:attribute name="srsName" use="required" >
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="geographic_extent_type">
         <xs:sequence>
