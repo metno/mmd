@@ -41,7 +41,6 @@
             </gmd:hierarchyLevel>        
 
             <xsl:apply-templates select="mmd:metadata_identifier" />
-            <xsl:apply-templates select="mmd:dataset_production_status" />
             <xsl:element name="gmd:dateStamp">
                 <xsl:element name="gco:DateTime">
 	            <xsl:variable name="latest">
@@ -119,7 +118,12 @@
                     <!-- non-english elements taken care of within template -->
                     <xsl:apply-templates select="mmd:abstract[@xml:lang = 'en']" />
                     
-                    <xsl:apply-templates select="mmd:iso_topic_category" />
+		    <xsl:if test="mmd:dataset_production_status != 'Not available'">
+		        <xsl:apply-templates select="mmd:dataset_production_status" />
+	            </xsl:if>
+		    <xsl:if test="mmd:iso_topic_category != 'Not available'">
+                        <xsl:apply-templates select="mmd:iso_topic_category" />
+	            </xsl:if>
                     
                     <xsl:element name="gmd:pointOfContact">
                         <xsl:apply-templates select="mmd:personnel[mmd:role != 'Metadata author']" />
@@ -336,10 +340,10 @@
 	   <xsl:element name="gmd:title">
               <xsl:element name="gco:CharacterString">
 		 <xsl:choose>
-		     <xsl:when test="@vocabulary = 'CF' or @vocabulary = 'cf' or contains(@vocabulary, 'Climate and Forecast')">
+		     <xsl:when test="@vocabulary = 'CFSTDN' or @vocabulary = 'CF' or @vocabulary = 'cf' or contains(@vocabulary, 'Climate and Forecast')">
 			 <xsl:text>Climate and Forecast (CF) Standard Name Table</xsl:text>
 	             </xsl:when>
-		     <xsl:when test="contains(@vocabulary, 'GCMD') or @vocabulary= 'gcmd' or contains(@vocabulary, 'Global Change Master Directory')">
+		     <xsl:when test="contains(@vocabulary, 'GCMD') or @vocabulary= 'gcmd' or @vocabulary= 'GCMDSK' or contains(@vocabulary, 'Global Change Master Directory')">
 			 <xsl:text>Global Change Master Directory (GCMD)</xsl:text>
 	             </xsl:when>
 		     <xsl:otherwise>

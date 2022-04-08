@@ -99,21 +99,25 @@
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Dataset Production Status"@en ;
   skos:definition "Production status for the dataset."@en ;
-  skos:member <https://vocab.met.no/mmd/Dataset_Production_Status/Planned>, <https://vocab.met.no/mmd/Dataset_Production_Status/InWork>, <https://vocab.met.no/mmd/Dataset_Production_Status/Complete>, <https://vocab.met.no/mmd/Dataset_Production_Status/Obsolete> .
+  skos:changeNote "2022-03-16, Added Concept \"Not available\" in collection"@en ;
+  skos:member <https://vocab.met.no/mmd/Dataset_Production_Status/Planned>, <https://vocab.met.no/mmd/Dataset_Production_Status/InWork>, <https://vocab.met.no/mmd/Dataset_Production_Status/Complete>, <https://vocab.met.no/mmd/Dataset_Production_Status/Obsolete>, <https://vocab.met.no/mmd/Dataset_Production_Status/NotAvailable> .
 
 <https://vocab.met.no/mmd/Dataset_Production_Status/Planned>
   a skos:Concept ;
   skos:prefLabel "Planned"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/0f1e9a71-9bda-43d6-86ef-f29472c36ebf> ;
   skos:definition "Refers to data sets to be collected in the future and are thus unavailable at the present time. For Example: The Hydro spacecraft has not been launched, but information on planned data sets may be available."@en .
 
 <https://vocab.met.no/mmd/Dataset_Production_Status/InWork>
   a skos:Concept ;
   skos:prefLabel "In Work"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/946029f4-771c-4399-b0ed-e9e709f05fc1> ;
   skos:definition "Refers to data sets currently undergoing production or data that is continuously being collected or updated. For Example: data from the AIRS instrument on Aqua is being collected continuously."@en .
 
 <https://vocab.met.no/mmd/Dataset_Production_Status/Complete>
   a skos:Concept ;
   skos:prefLabel "Complete"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/4607c5df-a8ed-415b-b962-d28e7583d1ef> ;
   skos:definition "Refers to data sets in which no updates or further data collection will be made. For Example: Nimbus-7 SMMR data collection has been completed."@en .
 
 <https://vocab.met.no/mmd/Dataset_Production_Status/Obsolete>
@@ -121,13 +125,19 @@
   skos:prefLabel "Obsolete"@en ;
   skos:definition "A new version of the dataset has been generated. The new version should be used, this is kept for back tracing."@en .
 
+<https://vocab.met.no/mmd/Dataset_Production_Status/NotAvailable>
+  a skos:Concept ;
+  skos:prefLabel "Not available"@en ;
+  skos:definition "The production status of the dataset is not available or not provided."@en .
+
 
 <https://vocab.met.no/mmd/Activity_Type>
   a skos:Collection, isothes:ConceptGroup;
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Activity Type"@en ;
   skos:definition "Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets."@en ;
-  skos:member <https://vocab.met.no/mmd/Activity_Type/Aircraft>, <https://vocab.met.no/mmd/Activity_Type/SpaceBorneInstrument>, <https://vocab.met.no/mmd/Activity_Type/NumericalSimulation>, <https://vocab.met.no/mmd/Activity_Type/ClimateIndicator>, <https://vocab.met.no/mmd/Activity_Type/InSituLandBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanFixedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanMovingStation>, <https://vocab.met.no/mmd/Activity_Type/InSituIceBasedStation>, <https://vocab.met.no/mmd/Activity_Type/Interview-Questionnaire>, <https://vocab.met.no/mmd/Activity_Type/Maps-Charts-Photographs> .
+  skos:changeNote "2022-03-16, Added Concept \"Not available\" in collection"@en ;
+  skos:member <https://vocab.met.no/mmd/Activity_Type/Aircraft>, <https://vocab.met.no/mmd/Activity_Type/SpaceBorneInstrument>, <https://vocab.met.no/mmd/Activity_Type/NumericalSimulation>, <https://vocab.met.no/mmd/Activity_Type/ClimateIndicator>, <https://vocab.met.no/mmd/Activity_Type/InSituLandBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanFixedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanMovingStation>, <https://vocab.met.no/mmd/Activity_Type/InSituIceBasedStation>, <https://vocab.met.no/mmd/Activity_Type/Interview-Questionnaire>, <https://vocab.met.no/mmd/Activity_Type/Maps-Charts-Photographs>, <https://vocab.met.no/mmd/Activity_Type/NotAvailable> .
 
 <https://vocab.met.no/mmd/Activity_Type/Aircraft>
   a skos:Concept ;
@@ -194,6 +204,11 @@
   skos:altLabel "Maps"@en, "Charts"@en, "Photographs"@en ;
   skos:definition "This is used to tag datasets containing imagery or PDF documents. This could e.g. be a time lapse photographic session of a specific site illustrating e.g. snow cover or cloud cover. It can also be used to tag documents or maps describing the nature of a field station. It would then require datasets to be linked (which currently is not supported)."@en .
 
+<https://vocab.met.no/mmd/Activity_Type/NotAvailable>
+  a skos:Concept ;
+  skos:prefLabel "Not available"@en ;
+  skos:definition "This is used when information on the activity type is not available or not provided."@en .
+
 
 <https://vocab.met.no/mmd/ISO_Topic_Category>
   a skos:Collection, isothes:ConceptGroup ;
@@ -201,7 +216,8 @@
   skos:exactMatch <http://vocab.nerc.ac.uk/mmd/P05/current/> ;
   skos:prefLabel "ISO Topic Category"@en ;
   skos:definition "Terms defined by ISO describing data themes."@en ;
-  skos:member <https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>, <https://vocab.met.no/mmd/ISO_Topic_Category/intelligenceMilitary>, <https://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere>, <https://vocab.met.no/mmd/ISO_Topic_Category/utilitiesCommunications>, <https://vocab.met.no/mmd/ISO_Topic_Category/farming>, <https://vocab.met.no/mmd/ISO_Topic_Category/imageryBaseMapsEarthCover>, <https://vocab.met.no/mmd/ISO_Topic_Category/structure>, <https://vocab.met.no/mmd/ISO_Topic_Category/health>, <https://vocab.met.no/mmd/ISO_Topic_Category/elevation>, <https://vocab.met.no/mmd/ISO_Topic_Category/society>, <https://vocab.met.no/mmd/ISO_Topic_Category/environment>, <https://vocab.met.no/mmd/ISO_Topic_Category/extraTerrestrial>, <https://vocab.met.no/mmd/ISO_Topic_Category/biota>, <https://vocab.met.no/mmd/ISO_Topic_Category/disaster>, <https://vocab.met.no/mmd/ISO_Topic_Category/transportation>, <https://vocab.met.no/mmd/ISO_Topic_Category/geoscientificInformation>, <https://vocab.met.no/mmd/ISO_Topic_Category/oceans>, <https://vocab.met.no/mmd/ISO_Topic_Category/economy>, <https://vocab.met.no/mmd/ISO_Topic_Category/planningCadastre>, <https://vocab.met.no/mmd/ISO_Topic_Category/location>, <https://vocab.met.no/mmd/ISO_Topic_Category/boundaries> .
+  skos:changeNote "2022-03-16, Added Concept \"Not available\" in collection"@en ;
+  skos:member <https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>, <https://vocab.met.no/mmd/ISO_Topic_Category/intelligenceMilitary>, <https://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere>, <https://vocab.met.no/mmd/ISO_Topic_Category/utilitiesCommunications>, <https://vocab.met.no/mmd/ISO_Topic_Category/farming>, <https://vocab.met.no/mmd/ISO_Topic_Category/imageryBaseMapsEarthCover>, <https://vocab.met.no/mmd/ISO_Topic_Category/structure>, <https://vocab.met.no/mmd/ISO_Topic_Category/health>, <https://vocab.met.no/mmd/ISO_Topic_Category/elevation>, <https://vocab.met.no/mmd/ISO_Topic_Category/society>, <https://vocab.met.no/mmd/ISO_Topic_Category/environment>, <https://vocab.met.no/mmd/ISO_Topic_Category/extraTerrestrial>, <https://vocab.met.no/mmd/ISO_Topic_Category/biota>, <https://vocab.met.no/mmd/ISO_Topic_Category/disaster>, <https://vocab.met.no/mmd/ISO_Topic_Category/transportation>, <https://vocab.met.no/mmd/ISO_Topic_Category/geoscientificInformation>, <https://vocab.met.no/mmd/ISO_Topic_Category/oceans>, <https://vocab.met.no/mmd/ISO_Topic_Category/economy>, <https://vocab.met.no/mmd/ISO_Topic_Category/planningCadastre>, <https://vocab.met.no/mmd/ISO_Topic_Category/location>, <https://vocab.met.no/mmd/ISO_Topic_Category/boundaries>, <https://vocab.met.no/mmd/ISO_Topic_Category/NotAvailable> .
 
 <https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>
   a skos:Concept ;
@@ -330,6 +346,11 @@
   skos:definition " Legal land descriptions, for example political and administrative boundaries, governmental units, marine boundaries, voting districts, school districts, international boundaries"@en ;
   skos:prefLabel "boundaries"@en ;
   skos:altLabel "BOUNDARIES"@en .
+
+<https://vocab.met.no/mmd/ISO_Topic_Category/NotAvailable>
+  a skos:Concept ;
+  skos:definition "The iso topic category is not available or not provided."@en ;
+  skos:prefLabel "Not available"@en .
 
 
 <https://vocab.met.no/mmd/Access_Constraint>
@@ -762,7 +783,8 @@
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Operational Status"@en ;
   skos:definition "Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time."@en ;
-  skos:member <https://vocab.met.no/mmd/Operational_Status/Operational>, <https://vocab.met.no/mmd/Operational_Status/Pre-Operational>, <https://vocab.met.no/mmd/Operational_Status/Experimental>, <https://vocab.met.no/mmd/Operational_Status/Scientific> .
+  skos:changeNote "2022-03-16, Added Concept \"Not available\" in collection"@en ;
+  skos:member <https://vocab.met.no/mmd/Operational_Status/Operational>, <https://vocab.met.no/mmd/Operational_Status/Pre-Operational>, <https://vocab.met.no/mmd/Operational_Status/Experimental>, <https://vocab.met.no/mmd/Operational_Status/Scientific>, <https://vocab.met.no/mmd/Operational_Status/NotAvailable> .
 
 <https://vocab.met.no/mmd/Operational_Status/Operational>
   a skos:Concept ;
@@ -784,6 +806,11 @@
   skos:prefLabel "Scientific"@en ;
   skos:definition """This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective. 
         """@en .
+
+<https://vocab.met.no/mmd/Operational_Status/NotAvailable>
+  a skos:Concept ;
+  skos:prefLabel "Not available"@en ;
+  skos:definition "This is used when information on the operational status is not available or not provided."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords>
   a skos:Collection, isothes:ConceptGroup ;

@@ -24,8 +24,26 @@
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" />
             <xsl:apply-templates select="gmd:fileIdentifier/gco:CharacterString" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status"/>
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
+	    <xsl:element name="mmd:dataset_production_status">
+		<xsl:choose>
+		    <xsl:when test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status">
+                        <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status"/>
+		    </xsl:when>
+		    <xsl:otherwise>
+			<xsl:text>Not available</xsl:text>
+		    </xsl:otherwise>
+		</xsl:choose>
+	    </xsl:element>
+	    <xsl:element name="mmd:iso_topic_category">
+		<xsl:choose>
+		    <xsl:when test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode">
+                        <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
+		    </xsl:when>
+		    <xsl:otherwise>
+			<xsl:text>Not available</xsl:text>
+		    </xsl:otherwise>
+		</xsl:choose>
+	    </xsl:element>
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent" />
             
             <xsl:apply-templates select="gmd:contact/gmd:CI_ResponsibleParty" />
@@ -84,9 +102,7 @@
         <xsl:variable name="iso_status" select="normalize-space(gmd:MD_ProgressCode/@codeListValue)" />
         <xsl:variable name="iso_status_mapping" select="document('')/*/mapping:dataset_status[@iso=$iso_status]" />
         <xsl:value-of select="$iso_status_mapping" />
-        <xsl:element name="mmd:dataset_production_status">
-            <xsl:value-of select="$iso_status_mapping/@mmd"></xsl:value-of>                    
-        </xsl:element>    
+        <xsl:value-of select="$iso_status_mapping/@mmd"></xsl:value-of>
     </xsl:template>
 
 
@@ -100,9 +116,7 @@
     <mapping:dataset_status iso="underDevelopment" mmd="Planned" />
 
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode">
-        <xsl:element name="mmd:iso_topic_category">
-            <xsl:value-of select="." />
-        </xsl:element>
+        <xsl:value-of select="." />
     </xsl:template>    
     
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent">    
@@ -253,7 +267,7 @@
     <xsl:template match="gmd:descriptiveKeywords/gmd:MD_Keywords">
     
         <xsl:element name="mmd:keywords">
-            <xsl:attribute name="vocabulary">none</xsl:attribute>
+            <xsl:attribute name="vocabulary">None</xsl:attribute>
             <xsl:apply-templates select="gmd:keyword" />
         </xsl:element>
     
