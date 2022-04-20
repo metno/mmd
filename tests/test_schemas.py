@@ -18,6 +18,66 @@ class TestXSDs(unittest.TestCase):
         xmlschema_mmd = ET.XMLSchema(ET.parse(xsd_schema))
         self.assertIsInstance(xmlschema_mmd, lxml.etree.XMLSchema)
 
+    def test_mmd_xsd_strict_fails_on_missing_attr(self):
+        mmd_schema = ET.ElementTree(
+                file = os.path.join(
+                    pathlib.Path.cwd(),
+                    'tests',
+                    'data',
+                    'precipitation_amount_st_92350_EMPTY_ATTR.xml'
+                )
+            )
+        xsd_schema1 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd_strict.xsd')
+        xsd_schema2 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd.xsd')
+        xsd_obj1 = ET.XMLSchema(ET.parse(xsd_schema1))
+        xsd_obj2 = ET.XMLSchema(ET.parse(xsd_schema2))
+        valid1 = xsd_obj1.validate(mmd_schema)
+        valid2 = xsd_obj2.validate(mmd_schema)
+        self.assertFalse(valid1)
+        self.assertFalse(valid2)
+
+    def test_mmd_xsd_strict_fails_on_missing_lang_attr(self):
+        mmd_schema = ET.ElementTree(
+                file = os.path.join(
+                    pathlib.Path.cwd(),
+                    'tests',
+                    'data',
+                    'precipitation_amount_st_92350_NO_LANG_ATTR.xml'
+                )
+            )
+        xsd_schema1 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd_strict.xsd')
+        xsd_obj1 = ET.XMLSchema(ET.parse(xsd_schema1))
+        valid1 = xsd_obj1.validate(mmd_schema)
+        self.assertFalse(valid1)
+
+    #def test_mmd_xsd_passing(self):
+    #    mmd_schema = ET.ElementTree(
+    #            file = os.path.join(
+    #                pathlib.Path.cwd(),
+    #                'tests',
+    #                'data',
+    #                'precipitation_amount_st_92350.xml'
+    #            )
+    #        )
+    #    xsd_schema2 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd.xsd')
+    #    xsd_obj2 = ET.XMLSchema(ET.parse(xsd_schema2))
+    #    valid2 = xsd_obj2.validate(mmd_schema)
+    #    self.assertTrue(valid2)
+
+    def test_mmd_xsd_strict_passing(self):
+        mmd_schema = ET.ElementTree(
+                file = os.path.join(
+                    pathlib.Path.cwd(),
+                    'tests',
+                    'data',
+                    'precipitation_amount_st_92350.xml'
+                )
+            )
+        xsd_schema1 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd_strict.xsd')
+        xsd_obj1 = ET.XMLSchema(ET.parse(xsd_schema1))
+        valid1 = xsd_obj1.validate(mmd_schema)
+        self.assertTrue(valid1)
+
 class TestXSLTs(unittest.TestCase):
 
     def test_mmd_to_geonorge_xslt(self):

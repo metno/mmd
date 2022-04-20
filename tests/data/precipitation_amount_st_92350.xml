@@ -1,0 +1,118 @@
+<mmd:mmd xmlns:mmd="http://www.met.no/schema/mmd" xmlns:gml="http://www.opengis.net/gml">
+  <mmd:metadata_identifier>ee6fb8de-8ebd-4df6-95dd-83a44d21dfc7</mmd:metadata_identifier>
+  <mmd:title xml:lang="en">sum(precipitation_amount PT1H) observations from weather station NORDSTRAUM I KVÆNANGEN (station ID 92350)</mmd:title>
+  <mmd:title xml:lang="no">sum(precipitation_amount PT1H) observasjoner fra værstasjonene NORDSTRAUM I KVÆNANGEN (id 92350)</mmd:title>
+  <mmd:abstract xml:lang="en">Timeseries of sum(precipitation_amount PT1H) observations from the Norwegian weather station NORDSTRAUM I KVÆNANGEN (station ID 92350). The observations have been through the data collection system of the Norwegian Meteorological institute which includes a number of automated and manual quality control routines. The number of available quality control routines is element dependent.</mmd:abstract>
+  <mmd:abstract xml:lang="no">Tidsserier av sum(precipitation_amount PT1H) observasjoner fra den norske værstasjonen NORDSTRAUM I KVÆNANGEN (id 92350). Observasjonene har vært igjennom datainnsamlingen hos Meteorologisk institutt som inkluderer en rekke automatiserte og manuelle kvalitetskontrollrutiner. Antallet tilgjengelige kvalitetskontrollrutiner avhenger av type element/parameter.</mmd:abstract>
+  <mmd:metadata_status>Active</mmd:metadata_status>
+  <mmd:dataset_production_status>In Work</mmd:dataset_production_status>
+  <mmd:collection>METNCS</mmd:collection>
+  <mmd:last_metadata_update>
+    <mmd:update>
+      <mmd:datetime>2022-03-07T16:00:53.296465+00:00</mmd:datetime>
+      <mmd:type>Created</mmd:type>
+    </mmd:update>
+  </mmd:last_metadata_update>
+  <mmd:temporal_extent>
+    <mmd:start_date>2018-10-11T13:00:00</mmd:start_date>
+  </mmd:temporal_extent>
+  <mmd:iso_topic_category>climatologyMeteorologyAtmosphere</mmd:iso_topic_category>
+  <mmd:keywords vocabulary="GEMET">
+    <mmd:keyword>Atmospheric conditions</mmd:keyword>
+    <mmd:resource>http://inspire.ec.europa.eu/theme</mmd:resource>
+    <mmd:separator></mmd:separator>
+  </mmd:keywords>
+  <mmd:keywords vocabulary="NORTHEMES">
+    <mmd:keyword>Weather and climate</mmd:keyword>
+    <mmd:resource>https://register.geonorge.no/subregister/metadata-kodelister/kartverket/nasjonal-temainndeling</mmd:resource>
+    <mmd:separator></mmd:separator>
+  </mmd:keywords>
+  <mmd:keywords vocabulary="GCMDPROV">
+    <mmd:keyword>Government Agencies-non-US &gt; Norway &gt; NO/MET &gt; Norwegian Meteorological Institute</mmd:keyword>
+    <mmd:resource>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers</mmd:resource>
+    <mmd:separator></mmd:separator>
+  </mmd:keywords>
+  <mmd:keywords vocabulary="GCMDSK">
+    <mmd:keyword>EARTH SCIENCE &gt; ATMOSPHERE &gt; PRECIPITATION &gt; PRECIPITATION AMOUNT</mmd:keyword>
+    <mmd:resource>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</mmd:resource>
+    <mmd:separator></mmd:separator>
+  </mmd:keywords>
+  <mmd:keywords vocabulary="CFSTDN">
+    <mmd:keyword>precipitation_amount</mmd:keyword>
+    <mmd:resource>https://cfconventions.org/standard-names.html</mmd:resource>
+    <mmd:separator></mmd:separator>
+  </mmd:keywords>
+  <mmd:geographic_extent>
+    <mmd:rectangle srsName="EPSG:4326">
+      <mmd:north>69.836200</mmd:north>
+      <mmd:south>69.836200</mmd:south>
+      <mmd:east>21.895800</mmd:east>
+      <mmd:west>21.895800</mmd:west>
+    </mmd:rectangle>
+  </mmd:geographic_extent>
+  <mmd:dataset_language>en</mmd:dataset_language>
+  <mmd:operational_status>Operational</mmd:operational_status>
+  <mmd:access_constraint>Open</mmd:access_constraint>
+  <mmd:use_constraint>
+    <mmd:identifier>CC-BY-4.0</mmd:identifier>
+    <mmd:resource>https://spdx.org/licenses/CC-BY-4.0</mmd:resource>
+  </mmd:use_constraint>
+  <mmd:personnel>
+    <mmd:role>Technical contact</mmd:role>
+    <mmd:name>Louise Oram</mmd:name>
+    <mmd:email>observation_data_archive@met.no</mmd:email>
+    <mmd:organisation>METNO</mmd:organisation>
+  </mmd:personnel>
+  <mmd:personnel>
+    <mmd:role>Data center contact</mmd:role>
+    <mmd:name>Vegar Kristiansen</mmd:name>
+    <mmd:email>observation_data_archive@met.no</mmd:email>
+    <mmd:organisation>METNO</mmd:organisation>
+  </mmd:personnel>
+  <mmd:personnel>
+    <mmd:role>Investigator</mmd:role>
+    <mmd:name>Vegar Kristiansen</mmd:name>
+    <mmd:email>observation_data_archive@met.no</mmd:email>
+    <mmd:organisation>METNO</mmd:organisation>
+  </mmd:personnel>
+  <mmd:personnel>
+    <mmd:role>Metadata author</mmd:role>
+    <mmd:name>Nina Larsgard</mmd:name>
+    <mmd:email>observations_data_archive@met.no</mmd:email>
+    <mmd:organisation>METNO</mmd:organisation>
+  </mmd:personnel>
+  <mmd:data_center>
+    <mmd:data_center_name>
+      <mmd:short_name>METNO</mmd:short_name>
+      <mmd:long_name>MET Norway</mmd:long_name>
+    </mmd:data_center_name>
+    <mmd:data_center_url>http://met.no</mmd:data_center_url>
+  </mmd:data_center>
+  <mmd:data_access>
+    <mmd:type>HTTP</mmd:type>
+    <mmd:description>Link to download from FROST API. Requires authentification. More information at https://frost.met.no/index.html</mmd:description>
+    <mmd:resource>https://frost-staging.met.no/api/v1/obs/met.no/filter/get?stationids=92350&amp;parameterids=106&amp;levels=0&amp;time=latest&amp;incobs=true</mmd:resource>
+  </mmd:data_access>
+  <mmd:data_access>
+    <mmd:type>OPeNDAP</mmd:type>
+    <mmd:description>Open-source Project for a Network Data Access Protocol</mmd:description>
+    <mmd:resource>https://thredds.met.no/thredds/dodsC/FROST_NC/precipitation_amount_st_92350.nc</mmd:resource>
+  </mmd:data_access>
+  <mmd:data_access>
+    <mmd:type>HTTP</mmd:type>
+    <mmd:description>Direct download of file</mmd:description>
+    <mmd:resource>https://thredds.met.no/thredds/fileServer/FROST_NC/precipitation_amount_st_92350.nc</mmd:resource>
+  </mmd:data_access>
+  <mmd:platform>
+    <mmd:short_name>NORDSTRAUM I KVÆNANGEN</mmd:short_name>
+    <mmd:long_name>NORDSTRAUM I KVÆNANGEN</mmd:long_name>
+    <mmd:resource>https://oscar.wmo.int/surface/#/search/station/stationReportDetails/0-20000-0-01045</mmd:resource>
+  </mmd:platform>
+  <mmd:spatial_representation>point</mmd:spatial_representation>
+  <mmd:activity_type>In Situ Land-based station</mmd:activity_type>
+  <mmd:dataset_citation>
+    <mmd:author>Louise Oram, Vegar Kristiansen, Nina Larsgard</mmd:author>
+    <mmd:publication_date>2022-03-07T16:00:53.296465+00:00</mmd:publication_date>
+    <mmd:title>sum(precipitation_amount PT1H) observations from weather station NORDSTRAUM I KVÆNANGEN (station ID 92350)</mmd:title>
+  </mmd:dataset_citation>
+</mmd:mmd>
