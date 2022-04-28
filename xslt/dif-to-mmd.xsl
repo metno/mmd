@@ -10,6 +10,7 @@ Meaning this should consume both DIF 8, 9 and 10.
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
     <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:altLabel"/>
