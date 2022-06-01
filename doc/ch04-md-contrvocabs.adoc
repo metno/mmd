@@ -360,6 +360,7 @@ variable.
 |Terra      |Earth Observation System - Terra | http://www.wmo-sat.info/oscar/satellites/view/terra
 |FY-3D      |Feng-Yun 3D | https://www.wmo-sat.info/oscar/satellites/view/fy_3d
 |FY-3E      |Feng-Yun 3E | https://www.wmo-sat.info/oscar/satellites/view/fy_3e
+|GCOM-W1    |Global Change Observation Mission 1st-Water | https://www.wmo-sat.info/oscar/satellites/view/gcom_w
 |============================================================================
 
 <<platform>>
@@ -380,6 +381,7 @@ variable.
 |AVHRR/3     |Advanced Very High Resolution Radiometer / 3 | https://www.wmo-sat.info/oscar/instruments/view/avhrr_3
 |MERSI-2     |Medium Resolution Spectral Imager -2        | https://www.wmo-sat.info/oscar/instruments/view/mersi_2
 |MODIS       |Moderate-resolution Imaging Spectro-radiometer | https://www.wmo-sat.info/oscar/instruments/view/modis
+|AMSR2       |Advanced Microwave Scanning Radiometer 2 | https://www.wmo-sat.info/oscar/instruments/view/amsr2
 |===============================================================================================================
 
 <<platform>>

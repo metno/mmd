@@ -492,7 +492,7 @@
   skos:prefLabel "Platform"@en ;
   skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms> ;
   skos:definition "This describes the platform used to collect the data."@en ;
-  skos:member <https://vocab.met.no/mmd/Platform/Sentinel-1A>, <https://vocab.met.no/mmd/Platform/Sentinel-1B>, <https://vocab.met.no/mmd/Platform/Sentinel-2A>, <https://vocab.met.no/mmd/Platform/Sentinel-2B>, <https://vocab.met.no/mmd/Platform/Sentinel-3A>, <https://vocab.met.no/mmd/Platform/Sentinel-3B>, <https://vocab.met.no/mmd/Platform/Metop-A>, <https://vocab.met.no/mmd/Platform/Metop-B>, <https://vocab.met.no/mmd/Platform/Metop-C>, <https://vocab.met.no/mmd/Platform/NOAA-18>, <https://vocab.met.no/mmd/Platform/NOAA-19>, <https://vocab.met.no/mmd/Platform/NOAA-20>, <https://vocab.met.no/mmd/Platform/SNPP>, <https://vocab.met.no/mmd/Platform/Aqua>, <https://vocab.met.no/mmd/Platform/Terra>, <https://vocab.met.no/mmd/Platform/FY-3D>, <https://vocab.met.no/mmd/Platform/FY-3E> .
+  skos:member <https://vocab.met.no/mmd/Platform/Sentinel-1A>, <https://vocab.met.no/mmd/Platform/Sentinel-1B>, <https://vocab.met.no/mmd/Platform/Sentinel-2A>, <https://vocab.met.no/mmd/Platform/Sentinel-2B>, <https://vocab.met.no/mmd/Platform/Sentinel-3A>, <https://vocab.met.no/mmd/Platform/Sentinel-3B>, <https://vocab.met.no/mmd/Platform/Metop-A>, <https://vocab.met.no/mmd/Platform/Metop-B>, <https://vocab.met.no/mmd/Platform/Metop-C>, <https://vocab.met.no/mmd/Platform/NOAA-18>, <https://vocab.met.no/mmd/Platform/NOAA-19>, <https://vocab.met.no/mmd/Platform/NOAA-20>, <https://vocab.met.no/mmd/Platform/SNPP>, <https://vocab.met.no/mmd/Platform/Aqua>, <https://vocab.met.no/mmd/Platform/Terra>, <https://vocab.met.no/mmd/Platform/FY-3D>, <https://vocab.met.no/mmd/Platform/FY-3E>, <https://vocab.met.no/mmd/Platform/GCOM-W1> .
 
 <https://vocab.met.no/mmd/Platform/Sentinel-1A>
   a skos:Concept, sosa:Platform  ;
@@ -675,12 +675,23 @@
   dc:source <https://directory.eoportal.org/web/eoportal/satellite-missions/f/fy-3> ; 
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/fy_3e> .
 
+<https://vocab.met.no/mmd/Platform/GCOM-W1>
+  a skos:Concept, sosa:Platform  ;
+  skos:prefLabel "GCOM-W1"@en ;
+  skos:altLabel "Global Change Observation Mission 1st-Water"@en ;
+  sosa:hosts <https://vocab.met.no/mmd/Instrument/AMSR2> ;
+  sosa:narrower <https://vocab.met.no/mmd/Instrument/AMSR2> ;
+  skos:definition "The Global Change Observation Mission (GCOM) aims to construct, use, and verify systems that enable continuous global-scale observations (for 10 to 15 years) of effective geophysical parameters for elucidating global climate change and water circulation mechanisms. The GCOM mission is a two series of satellites, GCOM-W for observing water circulation changes and GCOM-C for climate changes. The GCOM-W with a microwave radiometer onboard will observe precipitation, vapor amounts, wind velocity above the ocean, sea water temperature, water levels on land areas, and snow depths."@en ;
+  dc:source <https://global.jaxa.jp/projects/sat/gcom_w/> ;
+  rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/gcom_w> ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/8781da14-5ced-4d64-81cd-8daa10a1c30d> .
+
 <https://vocab.met.no/mmd/Instrument>
   a skos:Collection, <http://purl.org/iso25964/skos-thes#ConceptGroup> ;
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Instrument"@en ;
   skos:definition "TBW"@en ;
-  skos:member <https://vocab.met.no/mmd/Instrument/SAR-C>, <https://vocab.met.no/mmd/Instrument/MSI>, <https://vocab.met.no/mmd/Instrument/OLCI>, <https://vocab.met.no/mmd/Instrument/SLSTR>, <https://vocab.met.no/mmd/Instrument/MWR>, <https://vocab.met.no/mmd/Instrument/VIIRS>, <https://vocab.met.no/mmd/Instrument/AVHRR_3>, <https://vocab.met.no/mmd/Instrument/MERSI-2>, <https://vocab.met.no/mmd/Instrument/MODIS> .
+  skos:member <https://vocab.met.no/mmd/Instrument/SAR-C>, <https://vocab.met.no/mmd/Instrument/MSI>, <https://vocab.met.no/mmd/Instrument/OLCI>, <https://vocab.met.no/mmd/Instrument/SLSTR>, <https://vocab.met.no/mmd/Instrument/MWR>, <https://vocab.met.no/mmd/Instrument/VIIRS>, <https://vocab.met.no/mmd/Instrument/AVHRR_3>, <https://vocab.met.no/mmd/Instrument/MERSI-2>, <https://vocab.met.no/mmd/Instrument/MODIS>, <https://vocab.met.no/mmd/Instrument/AMSR2> .
 
 <https://vocab.met.no/mmd/Instrument/SAR-C>
   a skos:Concept, sosa:Sensor ;
@@ -776,6 +787,17 @@
   dc:source <https://modis.gsfc.nasa.gov/about/> ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/modis>; 
   skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/2878f334-35dc-47a7-a3ae-8c5da1adccd3> .
+
+<https://vocab.met.no/mmd/Instrument/AMSR2>
+  a skos:Concept, sosa:Sensor ;
+  skos:prefLabel "AMSR2"@en ;
+  skos:altLabel "Advanced Microwave Scanning Radiometer 2"@en ;
+  sosa:isHostedBy <https://vocab.met.no/mmd/Platform/GCOM-W1> ;
+  skos:broader <https://vocab.met.no/mmd/Platform/GCOM-W1> ;
+  skos:definition "The Advanced Microwave Scanning Radiometer 2 (AMSR2) onboard the GCOM-W satellite is a remote sensing instrument for measuring weak microwave emission from the surface and the atmosphere of the Earth. From about 700 km above the Earth, AMSR2 will provide us highly accurate measurements of the intensity of microwave emission and scattering. The antenna of AMSR2 rotates once per 1.5 seconds and obtains data over a 1450 km swath. This conical scan mechanism enables AMSR2 to acquire a set of daytime and nighttime data with more than 99% coverage of the Earth every 2 days."@en ;
+  dc:source <https://suzaku.eorc.jaxa.jp/GCOM_W/w_amsr2/whats_amsr2.html> ;
+  rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/amsr2> ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/92d834e1-689c-4d12-8c4a-74ee4cf75b36> .
 
 
 <https://vocab.met.no/mmd/Operational_Status>

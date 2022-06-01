@@ -681,6 +681,7 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Aqua"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Terra"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/FY-3D"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/GCOM-W1"/>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/FY-3E">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
@@ -893,6 +894,18 @@
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/fy_3d"/>
   </skos:Concept>
 
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/GCOM-W1">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">GCOM-W1</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Global Change Observation Mission 1st-Water</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/AMSR2"/>
+    <sosa:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/AMSR2"/>
+    <skos:definition xml:lang="en">The Global Change Observation Mission (GCOM) aims to construct, use, and verify systems that enable continuous global-scale observations (for 10 to 15 years) of effective geophysical parameters for elucidating global climate change and water circulation mechanisms. The GCOM mission is a two series of satellites, GCOM-W for observing water circulation changes and GCOM-C for climate changes. The GCOM-W with a microwave radiometer onboard will observe precipitation, vapor amounts, wind velocity above the ocean, sea water temperature, water levels on land areas, and snow depths.</skos:definition>
+    <dc:source rdf:resource="https://global.jaxa.jp/projects/sat/gcom_w/"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/gcom_w"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/8781da14-5ced-4d64-81cd-8daa10a1c30d"/>
+  </skos:Concept>
+
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Instrument">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
@@ -907,6 +920,7 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/AVHRR_3"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MERSI-2"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MODIS"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/AMSR2"/>
   </skos:Collection>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/SAR-C">
@@ -1037,6 +1051,18 @@
     <dc:source rdf:resource="https://modis.gsfc.nasa.gov/about/"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/modis"/>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/2878f334-35dc-47a7-a3ae-8c5da1adccd3"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/AMSR2">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <skos:prefLabel xml:lang="en">AMSR2</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Advanced Microwave Scanning Radiometer 2</skos:altLabel>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/GCOM-W1"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/GCOM-W1"/>
+    <skos:definition xml:lang="en">The Advanced Microwave Scanning Radiometer 2 (AMSR2) onboard the GCOM-W satellite is a remote sensing instrument for measuring weak microwave emission from the surface and the atmosphere of the Earth. From about 700 km above the Earth, AMSR2 will provide us highly accurate measurements of the intensity of microwave emission and scattering. The antenna of AMSR2 rotates once per 1.5 seconds and obtains data over a 1450 km swath. This conical scan mechanism enables AMSR2 to acquire a set of daytime and nighttime data with more than 99% coverage of the Earth every 2 days.</skos:definition>
+    <dc:source rdf:resource="https://suzaku.eorc.jaxa.jp/GCOM_W/w_amsr2/whats_amsr2.html"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/amsr2"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/92d834e1-689c-4d12-8c4a-74ee4cf75b36"/>
   </skos:Concept>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Operational_Status">
