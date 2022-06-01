@@ -82,9 +82,30 @@ This is a draft implementation for MMD to WMO Core profile conversion.
                     <xsl:element name="gmd:citation">
                         <xsl:element name="gmd:CI_Citation">
 	                <!--title (M) multiplicity [1]-->
-                        <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
-                        <xsl:apply-templates select="mmd:dataset_citation/mmd:publication_date" />
-                        <!--xsl:apply-templates select="mmd:last_metadata_update" /-->
+                            <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
+                            <xsl:element name="gmd:date">
+                                <xsl:element name="gmd:CI_Date">
+                                    <xsl:element name="gmd:date">
+                                        <xsl:choose>
+                                            <xsl:when test="mmd:dataset_citation/mmd:publication_date !='' ">
+                                                <xsl:element name="gco:Date">
+                                                    <xsl:value-of select="mmd:dataset_citation/mmd:publication_date" />
+                                                </xsl:element>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:element>
+                                    <xsl:element name="gmd:dateType">
+                                        <xsl:element name="gmd:CI_DateTypeCode">
+                                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                            <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                            <xsl:text>publication</xsl:text>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
                         </xsl:element>
                     </xsl:element>        
 
