@@ -662,7 +662,7 @@
   skos:prefLabel "FY-3D"@en ;
   skos:altLabel "Feng-Yun 3D"@en ;
   sosa:hosts <https://vocab.met.no/mmd/Instrument/MERSI-2> ;
-  sosa:narrower <https://vocab.met.no/mmd/Instrument/MERSI-2> ;
+  skos:narrower <https://vocab.met.no/mmd/Instrument/MERSI-2> ;
   skos:definition "The FY-3 series of CMA/NSMC (China Meteorological Administration/National Satellite Meteorological Center) represents the second generation of Chinese polar-orbiting meteorological satellites (follow-on of FY-1 series). The FY-3 series represents a cooperative program between CMA and CNSA (China National Space Administration); it was initially approved in 1998 and entered full-scale development in 1999. Key aspects of the FY-3 satellite series include collecting atmospheric data for intermediate- and long-term weather forecasting and global climate research."@en ;
   dc:source <https://directory.eoportal.org/web/eoportal/satellite-missions/f/fy-3> ; 
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/fy_3d> .
@@ -680,7 +680,7 @@
   skos:prefLabel "GCOM-W1"@en ;
   skos:altLabel "Global Change Observation Mission 1st-Water"@en ;
   sosa:hosts <https://vocab.met.no/mmd/Instrument/AMSR2> ;
-  sosa:narrower <https://vocab.met.no/mmd/Instrument/AMSR2> ;
+  skos:narrower <https://vocab.met.no/mmd/Instrument/AMSR2> ;
   skos:definition "The Global Change Observation Mission (GCOM) aims to construct, use, and verify systems that enable continuous global-scale observations (for 10 to 15 years) of effective geophysical parameters for elucidating global climate change and water circulation mechanisms. The GCOM mission is a two series of satellites, GCOM-W for observing water circulation changes and GCOM-C for climate changes. The GCOM-W with a microwave radiometer onboard will observe precipitation, vapor amounts, wind velocity above the ocean, sea water temperature, water levels on land areas, and snow depths."@en ;
   dc:source <https://global.jaxa.jp/projects/sat/gcom_w/> ;
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/satellites/view/gcom_w> ;
