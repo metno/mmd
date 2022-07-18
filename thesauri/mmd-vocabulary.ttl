@@ -37,6 +37,60 @@
   a foaf:Organization, prov:Agent ; 
   foaf:name "Norwegian Meteorological Institute" . 
 
+<https://vocab.met.no/mmd/Keywords_Vocabulary>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:prefLabel "Keywords Vocabulary"@en ;
+  skos:definition "The vocabulary where the keyword is fetched from."@en ;
+  skos:member <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDSK>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDLOC>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPROV>, <https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GEMET>, <https://vocab.met.no/mmd/Keywords_Vocabulary/NORTHEMES>, <https://vocab.met.no/mmd/Keywords_Vocabulary/None> .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDSK>
+  a skos:Concept ;
+  skos:prefLabel "GCMDSK"@en ;
+  skos:altLabel "GCMD Science Keywords"@en ;
+  rdfs:seeAlso <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords> ;
+  skos:definition "This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Earth Science Keywords list."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDLOC>
+  a skos:Concept ;
+  skos:prefLabel "GCMDLOC"@en ;
+  skos:altLabel "GCMD Locations"@en ;
+  rdfs:seeAlso <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations> ;
+  skos:definition "This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Location Keywords list."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPROV>
+  a skos:Concept ;
+  skos:prefLabel "GCMDPROV"@en ;
+  skos:altLabel "GCMD Providers"@en ;
+  rdfs:seeAlso <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers> ;
+  skos:definition "This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Data Center/Service Provider Keywords list."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN>
+  a skos:Concept ;
+  skos:prefLabel "CFSTDN"@en ;
+  skos:altLabel "CF Standard Names"@en ;
+  rdfs:seeAlso <https://cfconventions.org/standard-names.html> ;
+  skos:definition "This vocabulary should be used to provide keywords from The Climate and Forecast (CF) Standard Names tables."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/GEMET>
+  a skos:Concept ;
+  skos:prefLabel "GEMET"@en ;
+  skos:altLabel "INSPIRE Themes"@en ;
+  rdfs:seeAlso <http://inspire.ec.europa.eu/theme> ;
+  skos:definition "This vocabulary should be used to provide keywords from The GEMET - INSPIRE theme register."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/NORTHEMES>
+  a skos:Concept ;
+  skos:prefLabel "NORTHEMES"@en ;
+  skos:altLabel "GeoNorge Themes"@en ;
+  rdfs:seeAlso <https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling> ;
+  skos:definition "This vocabulary should be used to provide keywords from The GeoNorge National topic category list."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/None>
+  a skos:Concept ;
+  skos:prefLabel "None"@en ;
+  skos:definition "This tag should be used to provide keywords that do not belong to a controlled vocabulary."@en .
+
 <https://vocab.met.no/mmd/Use_Constraint>
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 
@@ -352,6 +406,117 @@
   skos:definition "The iso topic category is not available or not provided."@en ;
   skos:prefLabel "Not available"@en .
 
+<https://vocab.met.no/mmd/Related_Information_Types>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:prefLabel "Related Information Types"@en ;
+  skos:definition "Description of the type of related information provided."@en ;
+  skos:member <https://vocab.met.no/mmd/Related_Information_Types/ProjectHomePage>, <https://vocab.met.no/mmd/Related_Information_Types/UsersGuide>, <https://vocab.met.no/mmd/Related_Information_Types/DatasetLandingPage>, <https://vocab.met.no/mmd/Related_Information_Types/ScientificPublication>, <https://vocab.met.no/mmd/Related_Information_Types/DataPaper>, <https://vocab.met.no/mmd/Related_Information_Types/DataManagementPlan>, <https://vocab.met.no/mmd/Related_Information_Types/Software>, <https://vocab.met.no/mmd/Related_Information_Types/OtherDocumentation>, <https://vocab.met.no/mmd/Related_Information_Types/ObservationFacility>, <https://vocab.met.no/mmd/Related_Information_Types/ExtendedMetadata> .
+
+<https://vocab.met.no/mmd/Related_Information_Types/ProjectHomePage>
+  a skos:Concept ;
+  skos:prefLabel "Project home page"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/6e72d128-7d28-4bd0-bac0-8c5ffd8b31f1> ;
+  skos:definition "URI to the project home page generating the data."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/UsersGuide>
+  a skos:Concept ;
+  skos:prefLabel "Users guide"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/d1996d91-e824-4b24-b94e-3aae4543b63b> ;
+  skos:definition "URI to a users guide or product manual for the dataset."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/DatasetLandingPage>
+  a skos:Concept ;
+  skos:prefLabel "Dataset landing page"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/8826912b-c89e-4810-b446-39b98b5d937c> ;
+  skos:definition "A dataset landing page."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/ScientificPublication>
+  a skos:Concept ;
+  skos:prefLabel "Scientific publication"@en ;
+  skos:broader <https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484> ;
+  skos:definition "A scientific publication."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/DataPaper>
+  a skos:Concept ;
+  skos:prefLabel "Data paper"@en ;
+  skos:broader <https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484> ;
+  skos:definition "A factual and objective publication with a focused intent to identify and describe specific data, sets of data, or data collections to facilitate discoverability."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/DataManagementPlan>
+  a skos:Concept ;
+  skos:prefLabel "Data management plan"@en ;
+  skos:definition "The data management plan (DMP) associated to the data."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/Software>
+  a skos:Concept ;
+  skos:prefLabel "Software"@en ;
+  skos:definition "A computer program in source code (text) or compiled form."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/OtherDocumentation>
+  a skos:Concept ;
+  skos:prefLabel "Other documentation"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/aebf20eb-39c7-4f4f-aecf-a628f703867b> ;
+  skos:definition "A resource consisting primarily of words for reading, e.g. grey literature, lab notes, accompanying materials, conference poster."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/ObservationFacility>
+  a skos:Concept ;
+  skos:prefLabel "Observation facility"@en ;
+  skos:definition "For observational data (in situ or remote) an information page containing more detailed information on the observation facility following OGC Observations and Measurements or WMO Integrated Global Observing System approach."@en .
+
+<https://vocab.met.no/mmd/Related_Information_Types/ExtendedMetadata>
+  a skos:Concept ;
+  skos:prefLabel "Extended metadata"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/3c9d4493-22fd-48a8-9af5-bf0d16b7ede5> ;
+  skos:definition "Additional unspecified metadata on the data."@en .
+
+<https://vocab.met.no/mmd/Data_Access_Types>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:prefLabel "Data Access Types"@en ;
+  skos:definition "Description of the type of data access provided."@en ;
+  skos:member <https://vocab.met.no/mmd/Data_Access_Types/HTTP>, <https://vocab.met.no/mmd/Data_Access_Types/OPeNDAP>, <https://vocab.met.no/mmd/Data_Access_Types/OGCWMS>, <https://vocab.met.no/mmd/Data_Access_Types/OGCWFS>, <https://vocab.met.no/mmd/Data_Access_Types/OGCWCS>, <https://vocab.met.no/mmd/Data_Access_Types/FTP>, <https://vocab.met.no/mmd/Data_Access_Types/ODATA> .
+
+<https://vocab.met.no/mmd/Data_Access_Types/HTTP>
+  a skos:Concept ;
+  skos:prefLabel "HTTP"@en ;
+  skos:broader <https://gcmd.earthdata.nasa.gov/kms/concept/8e33a2dd-df13-4079-8636-391abb5344c6> ;
+  skos:definition "Direct access to the full data file. May require authentication, but should point directly to the data file or a catalogue containing the data."@en .
+
+<https://vocab.met.no/mmd/Data_Access_Types/OPeNDAP>
+  a skos:Concept ;
+  skos:prefLabel "OPeNDAP"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/eae7a041-b004-48df-8d4e-d758969e3185> ;
+  skos:definition "Open-source Project for a Network Data Access Protocol"@en .
+
+<https://vocab.met.no/mmd/Data_Access_Types/OGCWMS>
+  a skos:Concept ;
+  skos:prefLabel "OGC WMS"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/b0e2089c-3c1d-4c12-b833-e07365a4038e> ;
+  skos:definition "OGC Web Mapping Service, URI to GetCapabilities Document."@en .
+
+<https://vocab.met.no/mmd/Data_Access_Types/OGCWFS>
+  a skos:Concept ;
+  skos:prefLabel "OGC WFS"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/c4d406e6-7a34-42aa-bd79-f7f9265cc7bd> ;
+  skos:definition "OGC Web Feature Service, URI to GetCapabilities Document."@en .
+
+<https://vocab.met.no/mmd/Data_Access_Types/OGCWCS>
+  a skos:Concept ;
+  skos:prefLabel "OGC WCS"@en ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/029540bb-7f5c-44ba-8578-61e2f858be60> ;
+  skos:definition "OGC Web Coverage Service, URI to GetCapabilities Document."@en .
+
+<https://vocab.met.no/mmd/Data_Access_Types/FTP>
+  a skos:Concept ;
+  skos:prefLabel "FTP"@en ;
+  skos:broader <https://gcmd.earthdata.nasa.gov/kms/concept/8e33a2dd-df13-4079-8636-391abb5344c6> ;
+  skos:definition "File Transfer Protocol."@en .
+
+<https://vocab.met.no/mmd/Data_Access_Types/ODATA>
+  a skos:Concept ;
+  skos:prefLabel "ODATA"@en ;
+  skos:definition "Open Data Protocol."@en .
 
 <https://vocab.met.no/mmd/Access_Constraint>
   a skos:Collection, isothes:ConceptGroup ;

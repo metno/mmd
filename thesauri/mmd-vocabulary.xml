@@ -48,6 +48,74 @@
 
   </skos:ConceptScheme>
 
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Keywords Vocabulary</skos:prefLabel>
+    <skos:definition xml:lang="en">The vocabulary where the keyword is fetched from.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDSK">
+        <skos:prefLabel xml:lang="en">GCMDSK</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GCMD Science Keywords</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Earth Science Keywords list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDLOC">
+        <skos:prefLabel xml:lang="en">GCMDLOC</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GCMD Locations</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Location Keywords list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPROV">
+        <skos:prefLabel xml:lang="en">GCMDPROV</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GCMD Providers</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Data Center/Service Provider Keywords list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN">
+        <skos:prefLabel xml:lang="en">CFSTDN</skos:prefLabel>
+        <skos:altLabel xml:lang="en">CF Standard Names</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://cfconventions.org/standard-names.html"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Climate and Forecast (CF) Standard Names tables.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GEMET">
+        <skos:prefLabel xml:lang="en">GEMET</skos:prefLabel>
+        <skos:altLabel xml:lang="en">INSPIRE Themes</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="http://inspire.ec.europa.eu/theme"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The GEMET - INSPIRE theme register.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/NORTHEMES">
+        <skos:prefLabel xml:lang="en">NORTHEMES</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GeoNorge Themes</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The GeoNorge National topic category list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/None">
+        <skos:prefLabel xml:lang="en">None</skos:prefLabel>
+        <skos:definition xml:lang="en">This tag should be used to provide keywords that do not belong to a controlled vocabulary.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
+
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Use_Constraint">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
@@ -478,6 +546,152 @@
         <skos:prefLabel xml:lang="en">Not available</skos:prefLabel>
       </skos:Concept>
     </skos:member>
+  </skos:Collection>
+
+<skos:Collection rdf:about="https://vocab.met.no/mmd/Related_Information_Types">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Related Information Types</skos:prefLabel>
+    <skos:definition xml:lang="en">Description of the type of related information provided.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/ProjectHomePage">
+        <skos:prefLabel xml:lang="en">Project home page</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/6e72d128-7d28-4bd0-bac0-8c5ffd8b31f1"/>
+        <skos:definition xml:lang="en">URI to the project home page generating the data.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/UsersGuide">
+        <skos:prefLabel xml:lang="en">Users guide</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/d1996d91-e824-4b24-b94e-3aae4543b63b"/>
+        <skos:definition xml:lang="en">URI to a users guide or product manual for the dataset.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/DatasetLandingPage">
+        <skos:prefLabel xml:lang="en">Dataset landing page</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/8826912b-c89e-4810-b446-39b98b5d937c"/>
+        <skos:definition xml:lang="en">A dataset landing page.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/ScientificPublication">
+        <skos:prefLabel xml:lang="en">Scientific publication</skos:prefLabel>
+        <skos:broader rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484"/>
+        <skos:definition xml:lang="en">A scientific publication.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/DataPaper">
+        <skos:prefLabel xml:lang="en">Data paper</skos:prefLabel>
+        <skos:broader rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484"/>
+        <skos:definition xml:lang="en">A factual and objective publication with a focused intent to identify and describe specific data, sets of data, or data collections to facilitate discoverability.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/DataManagementPlan">
+        <skos:prefLabel xml:lang="en">Data management plan</skos:prefLabel>
+        <skos:definition xml:lang="en">The data management plan (DMP) associated to the data.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/Software">
+        <skos:prefLabel xml:lang="en">Software</skos:prefLabel>
+        <skos:definition xml:lang="en">A computer program in source code (text) or compiled form.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/OtherDocumentation">
+        <skos:prefLabel xml:lang="en">Other documentation</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/aebf20eb-39c7-4f4f-aecf-a628f703867b"/>
+        <skos:definition xml:lang="en">A resource consisting primarily of words for reading, e.g. grey literature, lab notes, accompanying materials, conference poster.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/ObservationFacility">
+        <skos:prefLabel xml:lang="en">Observation facility</skos:prefLabel>
+        <skos:definition xml:lang="en">For observational data (in situ or remote) an information page containing more detailed information on the observation facility following OGC Observations and Measurements or WMO Integrated Global Observing System approach.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/ExtendedMetadata">
+        <skos:prefLabel xml:lang="en">Extended metadata</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/3c9d4493-22fd-48a8-9af5-bf0d16b7ede5"/>
+        <skos:definition xml:lang="en">Additional unspecified metadata on the data.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
+
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Data_Access_Types">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Data Access Types</skos:prefLabel>
+    <skos:definition xml:lang="en">Description of the type of data access provided.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/HTTP">
+        <skos:prefLabel xml:lang="en">HTTP</skos:prefLabel>
+        <skos:broader rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/8e33a2dd-df13-4079-8636-391abb5344c6"/>
+        <skos:definition xml:lang="en">Direct access to the full data file. May require authentication, but should point directly to the data file or a catalogue containing the data.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/OPeNDAP">
+        <skos:prefLabel xml:lang="en">OPeNDAP</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/eae7a041-b004-48df-8d4e-d758969e3185"/>
+        <skos:definition xml:lang="en">Open-source Project for a Network Data Access Protocol</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/OGCWMS">
+        <skos:prefLabel xml:lang="en">OGC WMS</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/b0e2089c-3c1d-4c12-b833-e07365a4038e"/>
+        <skos:definition xml:lang="en">OGC Web Mapping Service, URI to GetCapabilities Document.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/OGCWFS">
+        <skos:prefLabel xml:lang="en">OGC WFS</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/c4d406e6-7a34-42aa-bd79-f7f9265cc7bd"/>
+        <skos:definition xml:lang="en">OGC Web Feature Service, URI to GetCapabilities Document.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/OGCWCS">
+        <skos:prefLabel xml:lang="en">OGC WCS</skos:prefLabel>
+        <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/029540bb-7f5c-44ba-8578-61e2f858be60"/>
+        <skos:definition xml:lang="en">OGC Web Coverage Service, URI to GetCapabilities Document.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/FTP">
+        <skos:prefLabel xml:lang="en">FTP</skos:prefLabel>
+        <skos:broader rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/8e33a2dd-df13-4079-8636-391abb5344c6"/>
+        <skos:definition xml:lang="en">File Transfer Protocol.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/ODATA">
+        <skos:prefLabel xml:lang="en">ODATA</skos:prefLabel>
+        <skos:definition xml:lang="en">Open Data Protocol.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
   </skos:Collection>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Access_Constraint">
