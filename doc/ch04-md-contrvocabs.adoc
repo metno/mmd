@@ -56,6 +56,8 @@ data. This is primarily Sentinel datasets.
 
 |SIOSAP |Datasets from the SIOS Access Programme. 
 
+|SIOSIN |Datasets from the SIOS InfraNor Project.
+
 |CVL |Datasets from the ESA Cryosphere Virtual Lab.
 
 |=======================================================================

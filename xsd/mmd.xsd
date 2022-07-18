@@ -421,6 +421,7 @@
             <xs:enumeration value="SESS2020"></xs:enumeration>
             <xs:enumeration value="SIOSCD"></xs:enumeration>
             <xs:enumeration value="SIOSAP"></xs:enumeration>
+            <xs:enumeration value="SIOSIN"></xs:enumeration>
             <xs:enumeration value="CVL"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>

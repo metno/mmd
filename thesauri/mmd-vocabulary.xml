@@ -1246,6 +1246,14 @@
     </skos:member>
 
     <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/SIOSIN">
+        <skos:prefLabel xml:lang="en">SIOSIN</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://sios-svalbard.org/InfraNor"/>
+        <skos:definition xml:lang="en">Datasets from the SIOS InfraNor Project.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/CVL">
         <skos:prefLabel xml:lang="en">CVL</skos:prefLabel>
         <skos:definition xml:lang="en">Datasets from the ESA Cryosphere Virtual Lab.</skos:definition>
