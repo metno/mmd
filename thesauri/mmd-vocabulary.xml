@@ -1125,12 +1125,15 @@
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Instrument</skos:prefLabel>
     <skos:definition xml:lang="en">TBW</skos:definition>
+    <skos:changeNote xml:lang="en">2022-07-20, Added Concept AVHRR and SSM/I in collection</skos:changeNote>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/SAR-C"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MWR"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/VIIRS"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/SSM_I"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/AVHRR"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/AVHRR_3"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MERSI-2"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MODIS"/>
@@ -1220,6 +1223,26 @@
     <dc:source rdf:resource="https://www.jpss.noaa.gov/viirs.html"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/viirs"/>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/dd7c719e-5767-4ceb-b83a-66c1401dab4a"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/SSM_I">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <skos:prefLabel xml:lang="en">SSM/I</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Special Sensor Microwave - Imager</skos:altLabel>
+    <skos:definition xml:lang="en">The Special Sensor Microwave – Imager (SSM/I) on DMSP satellites was operated on DMSP-F08 to DMSP-F15 from 1987-2008. It was a seven channel passive microwave imaging radiometer that measured horizontal (H) and vertical polarization (V) at three frequencies (19, 37, and 85 GHz) and vertical polarization at 22 GHz. These measurements are provided at a sampling of 25 km for the 19, 37, and 22 GHz channels and a sampling of 15 km for the 85 GHz channel. CM SAF provides reprocessed SSM/I radiances and a big set of derived atmospheric variables over the ocean. OSI SAF uses the radiances for their long sea ice coverage data record.</skos:definition>
+    <dc:source rdf:resource="https://www.eumetsat.int/satellites-instruments"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/ssm_i"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/c5058bd9-6183-4c0a-a6aa-611540ba1196"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/AVHRR">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <skos:prefLabel xml:lang="en">AVHRR</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Advanced Very High Resolution Radiometer</skos:altLabel>
+    <skos:definition xml:lang="en">AVHRR is an across track scanner that senses the Earth’s outgoing radiation from horizon to horizon in six channels (three solar channels in the visible-near infrared region and three thermal infrared channels), with a spatial resolution of 1km at nadir. AVHRR has applications within operational meteorology — measuring cloud properties (height, temperature, phase); land analysis — supplying data for calculating vegetation indices, soil moisture, snow cover, and land surface temperature (skin); ocean analysis — supplying data for deriving sea surface temperature and sea ice concentration, and aerosols and fire detection. AVHRR supports the IASI mission with sounding geolocation; cloud characterisation within the IASI FOV, and support to scene inhomogeneity quantification for the correction of the IASI spectral response.</skos:definition>
+    <dc:source rdf:resource="https://www.eumetsat.int/avhrr"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/avhrr"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/e64e83bd-02b3-4a47-830d-00e1aa4b04d3"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/AVHRR_3">

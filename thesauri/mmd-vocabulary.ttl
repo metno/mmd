@@ -856,7 +856,8 @@
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Instrument"@en ;
   skos:definition "TBW"@en ;
-  skos:member <https://vocab.met.no/mmd/Instrument/SAR-C>, <https://vocab.met.no/mmd/Instrument/MSI>, <https://vocab.met.no/mmd/Instrument/OLCI>, <https://vocab.met.no/mmd/Instrument/SLSTR>, <https://vocab.met.no/mmd/Instrument/MWR>, <https://vocab.met.no/mmd/Instrument/VIIRS>, <https://vocab.met.no/mmd/Instrument/AVHRR_3>, <https://vocab.met.no/mmd/Instrument/MERSI-2>, <https://vocab.met.no/mmd/Instrument/MODIS>, <https://vocab.met.no/mmd/Instrument/AMSR2> .
+  skos:changeNote "2022-07-20, Added Concept AVHRR and SSM/I in collection"@en ;
+  skos:member <https://vocab.met.no/mmd/Instrument/SAR-C>, <https://vocab.met.no/mmd/Instrument/MSI>, <https://vocab.met.no/mmd/Instrument/OLCI>, <https://vocab.met.no/mmd/Instrument/SLSTR>, <https://vocab.met.no/mmd/Instrument/MWR>, <https://vocab.met.no/mmd/Instrument/VIIRS>, <https://vocab.met.no/mmd/Instrument/SSM_I>, <https://vocab.met.no/mmd/Instrument/AVHRR>, <https://vocab.met.no/mmd/Instrument/AVHRR_3>, <https://vocab.met.no/mmd/Instrument/MERSI-2>, <https://vocab.met.no/mmd/Instrument/MODIS>, <https://vocab.met.no/mmd/Instrument/AMSR2> .
 
 <https://vocab.met.no/mmd/Instrument/SAR-C>
   a skos:Concept, sosa:Sensor ;
@@ -920,6 +921,24 @@
   dc:source <https://www.jpss.noaa.gov/viirs.html> ; 
   rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/viirs> ;
   skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/dd7c719e-5767-4ceb-b83a-66c1401dab4a> .
+
+<https://vocab.met.no/mmd/Instrument/SSM_I>
+  a skos:Concept, sosa:Sensor ;
+  skos:prefLabel "SSM/I"@en ;
+  skos:altLabel "Special Sensor Microwave - Imager"@en ;
+  skos:definition "The Special Sensor Microwave – Imager (SSM/I) on DMSP satellites was operated on DMSP-F08 to DMSP-F15 from 1987-2008. It was a seven channel passive microwave imaging radiometer that measured horizontal (H) and vertical polarization (V) at three frequencies (19, 37, and 85 GHz) and vertical polarization at 22 GHz. These measurements are provided at a sampling of 25 km for the 19, 37, and 22 GHz channels and a sampling of 15 km for the 85 GHz channel. CM SAF provides reprocessed SSM/I radiances and a big set of derived atmospheric variables over the ocean. OSI SAF uses the radiances for their long sea ice coverage data record."@en ;
+  dc:source <https://www.eumetsat.int/satellites-instruments> ;
+  rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/ssm_i> ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/c5058bd9-6183-4c0a-a6aa-611540ba1196> .
+
+<https://vocab.met.no/mmd/Instrument/AVHRR>
+  a skos:Concept, sosa:Sensor ;
+  skos:prefLabel "AVHRR"@en ;
+  skos:altLabel "Advanced Very High Resolution Radiometer"@en ;
+  skos:definition "AVHRR is an across track scanner that senses the Earth’s outgoing radiation from horizon to horizon in six channels (three solar channels in the visible-near infrared region and three thermal infrared channels), with a spatial resolution of 1km at nadir. AVHRR has applications within operational meteorology — measuring cloud properties (height, temperature, phase); land analysis — supplying data for calculating vegetation indices, soil moisture, snow cover, and land surface temperature (skin); ocean analysis — supplying data for deriving sea surface temperature and sea ice concentration, and aerosols and fire detection. AVHRR supports the IASI mission with sounding geolocation; cloud characterisation within the IASI FOV, and support to scene inhomogeneity quantification for the correction of the IASI spectral response."@en ;
+  dc:source <https://www.eumetsat.int/avhrr> ;
+  rdfs:seeAlso <https://www.wmo-sat.info/oscar/instruments/view/avhrr> ;
+  skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/e64e83bd-02b3-4a47-830d-00e1aa4b04d3> .
 
 <https://vocab.met.no/mmd/Instrument/AVHRR_3>
   a skos:Concept, sosa:Sensor ;
