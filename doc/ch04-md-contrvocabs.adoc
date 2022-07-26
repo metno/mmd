@@ -380,6 +380,8 @@ variable.
 |SLSTR       |Sea and Land Surface Temperature Radiometer | https://www.wmo-sat.info/oscar/instruments/view/slstr
 |MWR         |Micro-Wave Radiometer                       | https://www.wmo-sat.info/oscar/instruments/view/mwr_sentinel_3
 |VIIRS       |Visible/Infrared Imager Radiometer Suite    | https://www.wmo-sat.info/oscar/instruments/view/viirs
+|SSM/I       |Special Sensor Microwave - Imager           | https://www.wmo-sat.info/oscar/instruments/view/ssm_i
+|AVHRR       |Advanced Very High Resolution Radiometer    | https://www.wmo-sat.info/oscar/instruments/view/avhrr
 |AVHRR/3     |Advanced Very High Resolution Radiometer / 3 | https://www.wmo-sat.info/oscar/instruments/view/avhrr_3
 |MERSI-2     |Medium Resolution Spectral Imager -2        | https://www.wmo-sat.info/oscar/instruments/view/mersi_2
 |MODIS       |Moderate-resolution Imaging Spectro-radiometer | https://www.wmo-sat.info/oscar/instruments/view/modis
