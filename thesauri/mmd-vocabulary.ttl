@@ -267,7 +267,7 @@
 <https://vocab.met.no/mmd/ISO_Topic_Category>
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 
-  skos:exactMatch <http://vocab.nerc.ac.uk/mmd/P05/current/> ;
+  skos:exactMatch <http://vocab.nerc.ac.uk/collection/P05/current/> ;
   skos:prefLabel "ISO Topic Category"@en ;
   skos:definition "Terms defined by ISO describing data themes."@en ;
   skos:changeNote "2022-03-16, Added Concept \"Not available\" in collection"@en ;
@@ -275,7 +275,7 @@
 
 <https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters>
   a skos:Concept ;
-  skos:exactMatch <http://vocab.nerc.ac.uk/mmd/P05/current/002/> ;
+  skos:exactMatch <http://vocab.nerc.ac.uk/collection/P05/current/002/> ;
   skos:definition "Inland water features, drainage systems and characteristics, for example rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods and flood hazards, water quality, hydrographic charts, watersheds, wetlands, hydrography"@en ;
   skos:prefLabel "inlandWaters"@en ;
   skos:altLabel "INLAND WATERS"@en .
@@ -288,7 +288,7 @@
 
 <https://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere>
   a skos:Concept ;
-  skos:exactMatch <http://vocab.nerc.ac.uk/mmd/P05/current/004/> ;
+  skos:exactMatch <http://vocab.nerc.ac.uk/collection/P05/current/004/> ;
   skos:definition "Processes and phenomena of the atmosphere, for example cloud cover, weather, climate, atmospheric conditions, climate change, precipitation"@en ;
   skos:prefLabel "climatologyMeteorologyAtmosphere"@en ;
   skos:altLabel "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE"@en .
@@ -563,15 +563,15 @@
   a skos:Concept ;
   skos:prefLabel "Arctic"@en ;
   skos:altLabel "Central Arctic"@en ;
-  skos:closeMatch <http://vocab.nerc.ac.uk/mmd/C16/current/17/>, <http://vocab.nerc.ac.uk/mmd/C19/current/9/>, <http://vocab.nerc.ac.uk/mmd/P30/current/arctic_ocean/> ;
-  skos:narrowMatch <http://vocab.nerc.ac.uk/mmd/C16/current/08/> ;
+  skos:closeMatch <http://vocab.nerc.ac.uk/collection/C16/current/17/>, <http://vocab.nerc.ac.uk/collection/C19/current/9/>, <http://vocab.nerc.ac.uk/collection/P30/current/arctic_ocean/> ;
+  skos:narrowMatch <http://vocab.nerc.ac.uk/collection/C16/current/08/> ;
   skos:narrower <https://vocab.met.no/mmd/Areas/WhiteSea>, <https://vocab.met.no/mmd/Areas/NorwegianSea> ;
   skos:definition "This is used to indicate that data are located in the Arctic. The definition of the Arctic may however differ as no unique definition exists. In MetaMod context this should refer to data located nortwards of the Arctic Circle, i.e. 65 degrees North."@en .
 
 <https://vocab.met.no/mmd/Areas/BarentsSea>
   a skos:Concept ;
   skos:prefLabel "Barents Sea"@en ;
-  skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/07/>, <http://vocab.nerc.ac.uk/mmd/C19/current/9_4/>, <http://vocab.nerc.ac.uk/mmd/P30/current/barents_sea/> ;
+  skos:exactMatch <http://vocab.nerc.ac.uk/collection/C16/current/07/>, <http://vocab.nerc.ac.uk/collection/C19/current/9_4/>, <http://vocab.nerc.ac.uk/collection/P30/current/barents_sea/> ;
   skos:definition "This is used to indicate data located in the Barents Sea. The definition of this ocean area may differ as no unique definition exists. In MetaMod context this is usually used to refer to observations within or above the sea. It can also be used to identify observations at islands, but such would preferably be indicated with Svalbard if belonging to these islands. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"65.5666560048002\", \"Northernmost_latitude\": \"82.2514153220693\", \"Westernmost_longitude\": \"16.2694762982728\", \"Easternmost_longitude\": \"68.9755338269347\" }}"@en .
 
 <https://vocab.met.no/mmd/Areas/BeaufortSea>
@@ -593,7 +593,7 @@
   a skos:Concept ;
   skos:prefLabel "East Siberian Sea"@en ;
   skos:definition "{\"Spatial_Coverage\": { \"Southernmost_latitude\": \"67.7983955527279\", \"Northernmost_latitude\": \"79.0000019038462\", \"Westernmost_longitude\": \"138.401622654881\", \"Easternmost_longitude\": \"180\" }}"@en ;
-  skos:broader <http://vocab.nerc.ac.uk/mmd/C19/current/9/> .
+  skos:broader <http://vocab.nerc.ac.uk/collection/C19/current/9/> .
 
 <https://vocab.met.no/mmd/Areas/FramStrait>
   a skos:Concept ;
@@ -633,20 +633,20 @@
 <https://vocab.met.no/mmd/Areas/NorthSea>
   a skos:Concept ;
   skos:prefLabel "North Sea"@en ;
-  skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/04/>, <http://vocab.nerc.ac.uk/mmd/P30/current/north_sea/> ;
+  skos:exactMatch <http://vocab.nerc.ac.uk/collection/C16/current/04/>, <http://vocab.nerc.ac.uk/collection/P30/current/north_sea/> ;
   skos:definition "This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. The North Sea is located south of the Norwegian Sea, bordered by the Faroe-Shetland area and the Norwegian coast, all the way down to the continent. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"49.2182615683599\", \"Northernmost_latitude\": \"63.5822291317627\", \"Westernmost_longitude\": \"-5.11211185909971\", \"Easternmost_longitude\": \"9.98777190749643\" }}"@en .
 
 <https://vocab.met.no/mmd/Areas/NorwegianSea>
   a skos:Concept ;
   skos:prefLabel "Norwegian Sea"@en ;
-  skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/06/>, <http://vocab.nerc.ac.uk/mmd/P30/current/norwegian_sea/>, <https://gcmd.earthdata.nasa.gov/kms/concept/91dd3935-a1ae-48ca-b263-9b10ac732372> ;
+  skos:exactMatch <http://vocab.nerc.ac.uk/collection/C16/current/06/>, <http://vocab.nerc.ac.uk/collection/P30/current/norwegian_sea/>, <https://gcmd.earthdata.nasa.gov/kms/concept/91dd3935-a1ae-48ca-b263-9b10ac732372> ;
   skos:broader <https://vocab.met.no/mmd/Areas/Arctic> ;
   skos:definition "This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. It is bordered by the Greenland Sea, the Barents Sea, the North Sea and the Faroe-Iceland ridge. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"57.9767651784406\", \"Northernmost_latitude\": \"78.1219500577069\", \"Westernmost_longitude\": \"-9.02068831025837\", \"Easternmost_longitude\": \"27.0790684243223\" }}"@en .
 
 <https://vocab.met.no/mmd/Areas/WhiteSea>
   a skos:Concept ;
   skos:prefLabel "White Sea"@en ;
-  skos:exactMatch <http://vocab.nerc.ac.uk/mmd/C16/current/08/> ;
+  skos:exactMatch <http://vocab.nerc.ac.uk/collection/C16/current/08/> ;
   skos:broader <https://vocab.met.no/mmd/Areas/Arctic> ;
   skos:definition "This is used to indicate data from ocean, atmosphere and islands in the White Sea. {\"Spatial_Coverage\": { \"Southernmost_latitude\": \"63.1090416470606\", \"Northernmost_latitude\": \"68.7989569132796\", \"Westernmost_longitude\": \"31.8685356938203\", \"Easternmost_longitude\": \"44.8394373774493\" }}"@en .
 
@@ -1023,12 +1023,17 @@
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Collection Keywords"@en ;
   skos:definition "The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository."@en ;
-  skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>, <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>, <https://vocab.met.no/mmd/Collection_Keywords/NSDN>, <https://vocab.met.no/mmd/Collection_Keywords/DOKI>, <https://vocab.met.no/mmd/Collection_Keywords/DAM>, <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>, <https://vocab.met.no/mmd/Collection_Keywords/NBS>, <https://vocab.met.no/mmd/Collection_Keywords/APPL>, <https://vocab.met.no/mmd/Collection_Keywords/YOPP>, <https://vocab.met.no/mmd/Collection_Keywords/METNCS>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>, <https://vocab.met.no/mmd/Collection_Keywords/CVL> .
+  skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/NMAP>, <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>, <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>, <https://vocab.met.no/mmd/Collection_Keywords/NSDN>, <https://vocab.met.no/mmd/Collection_Keywords/DOKI>, <https://vocab.met.no/mmd/Collection_Keywords/DAM>, <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>, <https://vocab.met.no/mmd/Collection_Keywords/NBS>, <https://vocab.met.no/mmd/Collection_Keywords/APPL>, <https://vocab.met.no/mmd/Collection_Keywords/YOPP>, <https://vocab.met.no/mmd/Collection_Keywords/METNCS>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>, <https://vocab.met.no/mmd/Collection_Keywords/CVL> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/CC>
   a skos:Concept ;
   skos:prefLabel "CC"@en ;
   skos:definition "Datasets related to the Cryosphere in the context of the CryoClim project."@en .
+
+<https://vocab.met.no/mmd/Collection_Keywords/NMAP>
+  a skos:Concept ;
+  skos:prefLabel "NMAP"@en ;
+  skos:definition "Remote sensing datasets or higher order products based on remote sensing datasets generated in the context of the Norwegian Satellite Earth Observation Database for Marine and Polar Research (NORMAP)."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/ADC>
   a skos:Concept ;

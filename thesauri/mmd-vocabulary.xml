@@ -365,13 +365,13 @@
   <skos:Collection rdf:about="https://vocab.met.no/mmd/ISO_Topic_Category">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
-    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P05/current/"/>
+    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/P05/current/"/>
     <skos:prefLabel xml:lang="en">ISO Topic Category</skos:prefLabel>
     <skos:definition xml:lang="en">Terms defined by ISO describing data themes.</skos:definition>
     <skos:changeNote xml:lang="en">2022-03-16, Added Concept &quot;Not available&quot; in collection</skos:changeNote>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/ISO_Topic_Category/inlandWaters">
-        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P05/current/002/"/>
+        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/P05/current/002/"/>
         <skos:definition xml:lang="en">Inland water features, drainage systems and characteristics, for example rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods and flood hazards, water quality, hydrographic charts, watersheds, wetlands, hydrography</skos:definition>
         <skos:prefLabel xml:lang="en">inlandWaters</skos:prefLabel>
         <skos:altLabel xml:lang="en">INLAND WATERS</skos:altLabel>
@@ -388,7 +388,7 @@
 
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/ISO_Topic_Category/climatologyMeteorologyAtmosphere">
-        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P05/current/004/"/>
+        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/P05/current/004/"/>
         <skos:definition xml:lang="en">Processes and phenomena of the atmosphere, for example cloud cover, weather, climate, atmospheric conditions, climate change, precipitation</skos:definition>
         <skos:prefLabel xml:lang="en">climatologyMeteorologyAtmosphere</skos:prefLabel>
         <skos:altLabel xml:lang="en">CLIMATOLOGY/METEOROLOGY/ATMOSPHERE</skos:altLabel>
@@ -747,9 +747,9 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/BarentsSea">
         <skos:prefLabel xml:lang="en">Barents Sea</skos:prefLabel>
-        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/07/"/>
-        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C19/current/9_4/"/>
-        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/barents_sea/"/>
+        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C16/current/07/"/>
+        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C19/current/9_4/"/>
+        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/P30/current/barents_sea/"/>
         <skos:definition xml:lang="en">This is used to indicate data located in the Barents Sea. The definition of this ocean area may differ as no unique definition exists. In MetaMod context this is usually used to refer to observations within or above the sea. It can also be used to identify observations at islands, but such would preferably be indicated with Svalbard if belonging to these islands. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;65.5666560048002&quot;, &quot;Northernmost_latitude&quot;: &quot;82.2514153220693&quot;, &quot;Westernmost_longitude&quot;: &quot;16.2694762982728&quot;, &quot;Easternmost_longitude&quot;: &quot;68.9755338269347&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -779,7 +779,7 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/EastSiberianSea">
         <skos:prefLabel xml:lang="en">East Siberian Sea</skos:prefLabel>
         <skos:definition xml:lang="en">{&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;67.7983955527279&quot;, &quot;Northernmost_latitude&quot;: &quot;79.0000019038462&quot;, &quot;Westernmost_longitude&quot;: &quot;138.401622654881&quot;, &quot;Easternmost_longitude&quot;: &quot;180&quot; }}</skos:definition>
-        <skos:broader rdf:resource="http://vocab.nerc.ac.uk/mmd/C19/current/9/"/>
+        <skos:broader rdf:resource="http://vocab.nerc.ac.uk/collection/C19/current/9/"/>
       </skos:Concept>
     </skos:member>
 
@@ -835,8 +835,8 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/NorthSea">
         <skos:prefLabel xml:lang="en">North Sea</skos:prefLabel>
-        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/04/"/>
-        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/north_sea/"/>
+        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C16/current/04/"/>
+        <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/P30/current/north_sea/"/>
         <skos:definition xml:lang="en">This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. The North Sea is located south of the Norwegian Sea, bordered by the Faroe-Shetland area and the Norwegian coast, all the way down to the continent. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;49.2182615683599&quot;, &quot;Northernmost_latitude&quot;: &quot;63.5822291317627&quot;, &quot;Westernmost_longitude&quot;: &quot;-5.11211185909971&quot;, &quot;Easternmost_longitude&quot;: &quot;9.98777190749643&quot; }}</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -848,10 +848,10 @@
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/Arctic">
     <skos:prefLabel xml:lang="en">Arctic</skos:prefLabel>
     <skos:altLabel xml:lang="en">Central Arctic</skos:altLabel>
-    <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/17/"/>
-    <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C19/current/9/"/>
-    <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/arctic_ocean/"/>
-    <skos:narrowMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/08/"/>
+    <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C16/current/17/"/>
+    <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C19/current/9/"/>
+    <skos:closeMatch rdf:resource="http://vocab.nerc.ac.uk/collection/P30/current/arctic_ocean/"/>
+    <skos:narrowMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C16/current/08/"/>
     <skos:narrower rdf:resource="https://vocab.met.no/mmd/Areas/WhiteSea"/>
     <skos:narrower rdf:resource="https://vocab.met.no/mmd/Areas/NorwegianSea"/>
     <skos:definition xml:lang="en">This is used to indicate that data are located in the Arctic. The definition of the Arctic may however differ as no unique definition exists. In MetaMod context this should refer to data located nortwards of the Arctic Circle, i.e. 65 degrees North.</skos:definition>
@@ -859,8 +859,8 @@
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/NorwegianSea">
     <skos:prefLabel xml:lang="en">Norwegian Sea</skos:prefLabel>
-    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/06/"/>
-    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/P30/current/norwegian_sea/"/>
+    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C16/current/06/"/>
+    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/P30/current/norwegian_sea/"/>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/91dd3935-a1ae-48ca-b263-9b10ac732372"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Areas/Arctic"/>
     <skos:definition xml:lang="en">This is used to identify data from the North Sea. Primarily it is used for oceanic observations as well as observations from platforms. It is bordered by the Greenland Sea, the Barents Sea, the North Sea and the Faroe-Iceland ridge. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;57.9767651784406&quot;, &quot;Northernmost_latitude&quot;: &quot;78.1219500577069&quot;, &quot;Westernmost_longitude&quot;: &quot;-9.02068831025837&quot;, &quot;Easternmost_longitude&quot;: &quot;27.0790684243223&quot; }}</skos:definition>
@@ -868,7 +868,7 @@
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Areas/WhiteSea">
     <skos:prefLabel xml:lang="en">White Sea</skos:prefLabel>
-    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/mmd/C16/current/08/"/>
+    <skos:exactMatch rdf:resource="http://vocab.nerc.ac.uk/collection/C16/current/08/"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Areas/Arctic"/>
     <skos:definition xml:lang="en">This is used to indicate data from ocean, atmosphere and islands in the White Sea. {&quot;Spatial_Coverage&quot;: { &quot;Southernmost_latitude&quot;: &quot;63.1090416470606&quot;, &quot;Northernmost_latitude&quot;: &quot;68.7989569132796&quot;, &quot;Westernmost_longitude&quot;: &quot;31.8685356938203&quot;, &quot;Easternmost_longitude&quot;: &quot;44.8394373774493&quot; }}</skos:definition>
   </skos:Concept>
@@ -1354,6 +1354,13 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/CC">
         <skos:prefLabel xml:lang="en">CC</skos:prefLabel>
         <skos:definition xml:lang="en">Datasets related to the Cryosphere in the context of the CryoClim project.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/NMAP">
+        <skos:prefLabel xml:lang="en">NMAP</skos:prefLabel>
+        <skos:definition xml:lang="en">Remote sensing datasets or higher order products based on remote sensing datasets generated in the context of the Norwegian Satellite Earth Observation Database for Marine and Polar Research (NORMAP).</skos:definition>
       </skos:Concept>
     </skos:member>
 
