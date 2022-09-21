@@ -376,8 +376,11 @@
     <!-- Extract information on online resources -->
     <!-- mapping between protocol names -->
     <mapping:protocol_names external="OPeNDAP:OPeNDAP" mmd="OPeNDAP" />
+    <mapping:protocol_names external="WWW:OPENDAP" mmd="OPeNDAP" />
     <mapping:protocol_names external="WWW:LINK-1.0-http--opendap" mmd="OPeNDAP" />
     <mapping:protocol_names external="file" mmd="HTTP" />
+    <mapping:protocol_names external="WWW:FTP" mmd="HTTP" />
+    <mapping:protocol_names external="OGC:WMS:getCapabilities" mmd="OGC WMS" />
     <mapping:protocol_names external="OGC:WFS" mmd="OGC WFS" />
     <mapping:protocol_names external="OGC:GML" mmd="OGC GML" />
     <mapping:protocol_names external="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
