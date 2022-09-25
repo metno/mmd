@@ -119,6 +119,9 @@ Meaning this should consume both DIF 8, 9 and 10.
           <xsl:element name="mmd:version">
               <xsl:value-of select="dif:Version" />
           </xsl:element>
+          <xsl:element name="mmd:doi">
+              <xsl:value-of select="dif:Dataset_DOI" />
+          </xsl:element>
           <!--
                 <xsl:element name="mmd:dataset_presentation_form">
                         <xsl:value-of select="dif:Data_Presentation_Form" />
