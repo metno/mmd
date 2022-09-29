@@ -373,7 +373,7 @@ This is a draft implementation for MMD to WMO Core profile conversion.
 	               </xsl:element>
                     </xsl:element>
                 </xsl:for-each>
-                <xsl:if test="@vocabulary = 'GCMDSK' or @vocabulary = 'GEMET' or @vocabulary = 'NORTHEMES'  or @vocabulary = 'WMOCAT' ">
+                <xsl:if test="@vocabulary = 'GCMDSK' or @vocabulary = 'GEMET' or @vocabulary = 'NORTHEMES'  or @vocabulary = 'WMOCAT' or @vocabulary = 'CFSTDN'">
 	            <xsl:element name="gmd:type">
 	                <xsl:element name="gmd:MD_KeywordTypeCode">
 			    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
@@ -498,6 +498,30 @@ This is a draft implementation for MMD to WMO Core profile conversion.
         	                        </xsl:element>	
         	                  </xsl:element>	
         	                </xsl:element>	
+                            </xsl:when>
+                            <xsl:when test="@vocabulary = 'CF' or @vocabulary = 'CFSTDN' or @vocabulary = 'cf' or contains(@vocabulary, 'Climate and Forecast')">
+                                <xsl:element name="gmd:title">
+                                    <xsl:element name="gmx:Anchor">
+                                        <xsl:attribute name="xlink:href">
+                                            <xsl:text>https://cfconventions.org/standard-names.html</xsl:text>
+                                        </xsl:attribute>
+                                        <xsl:text>CF Standard Names</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmd:date">
+                                    <xsl:element name="gmd:CI_Date">
+                                        <xsl:element name="gmd:date">
+                                            <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                        </xsl:element>
+                                        <xsl:element name="gmd:dateType">
+                                            <xsl:element name="gmd:CI_DateTypeCode">
+                                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                <xsl:text>publication</xsl:text>
+                                            </xsl:element>
+                                        </xsl:element>
+                                  </xsl:element>
+                                </xsl:element>
                             </xsl:when>
                             <xsl:when test="@vocabulary = 'NORTHEMES'">
 			        <xsl:element name="gmd:title">
