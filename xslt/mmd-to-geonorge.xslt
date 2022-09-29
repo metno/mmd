@@ -13,8 +13,14 @@
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
-    <!--file name should be passed as stringparam file_name "filename" and have parent in the file name if the mmd record is a parent dataset-->
-    <xsl:param name="file_name" />
+    <!--A stringparam path_to_parent_list pointing at an xml file containing the list of metadata_identifier of parent datasets can be passed to the current file. The file structure is:
+         <?xml version="1.0" encoding="utf-8"?>
+           <parent>
+              <id>64db6102-14ce-41e9-b93b-61dbb2cb8b4e</id>
+           </parent>
+    -->
+    <xsl:param name="path_to_parent_list" />
+    <xsl:key name="lookupKey" match="id" use="."/>
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="gmd:MD_Metadata">
@@ -38,23 +44,37 @@
 		    </gco:CharacterString>
 		</gmd:parentIdentifier>
             </xsl:if>
-        
+
             <!--resource type is mandatory, multiplicity [1]-->
 	    <xsl:choose>
-	        <xsl:when test="contains($file_name, 'parent')">
-                    <gmd:hierarchyLevel>
-	                <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="series"/>
-                    </gmd:hierarchyLevel>
-                    <gmd:hierarchyLevelName>
-                        <gco:CharacterString>series_time</gco:CharacterString>
-                    </gmd:hierarchyLevelName>		    
-	        </xsl:when>
+	        <xsl:when test="$path_to_parent_list">
+                  <xsl:variable name="lookupDoc" select="document($path_to_parent_list)" />
+	          <xsl:variable name="dataKey" select="mmd:metadata_identifier"/>
+	          <xsl:for-each select="$lookupDoc" >
+	             <xsl:choose>
+	                <xsl:when test="key('lookupKey', $dataKey)">
+                           <gmd:hierarchyLevel>
+	                       <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="series"/>
+                           </gmd:hierarchyLevel>
+                           <gmd:hierarchyLevelName>
+                               <gco:CharacterString>series_time</gco:CharacterString>
+                           </gmd:hierarchyLevelName>
+	                </xsl:when>
+	                <xsl:otherwise>
+                           <gmd:hierarchyLevel>
+	                       <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
+                           </gmd:hierarchyLevel>
+	                </xsl:otherwise>
+	             </xsl:choose>
+                  </xsl:for-each>
+                </xsl:when>
 	        <xsl:otherwise>
-                    <gmd:hierarchyLevel>
-	                <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
-                    </gmd:hierarchyLevel>
+                   <gmd:hierarchyLevel>
+	               <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
+                   </gmd:hierarchyLevel>
 	        </xsl:otherwise>
-            </xsl:choose>
+	    </xsl:choose>
+
             
             <!--Party responsible for the metadata information (M) multiplicity [1..*] -->
             <xsl:element name="gmd:contact">
@@ -314,17 +334,30 @@
  	                <xsl:element name="gmd:DQ_Scope">        
  	                    <xsl:element name="gmd:level">        
 				<xsl:element name="gmd:MD_ScopeCode"> 
-                                    <xsl:choose>
-                                        <xsl:when test="contains($file_name, 'parent')">
-			                    <xsl:attribute name="codeListValue">series</xsl:attribute>
-			                    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
-				            <xsl:text>series</xsl:text>
-					</xsl:when>
-					<xsl:otherwise>
-			                    <xsl:attribute name="codeListValue">dataset</xsl:attribute>
-			                    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
-				            <xsl:text>dataset</xsl:text>
-					</xsl:otherwise>
+	                            <xsl:choose>
+	                                <xsl:when test="$path_to_parent_list">
+                                           <xsl:variable name="lookupDoc" select="document($path_to_parent_list)" />
+	                                   <xsl:variable name="dataKey" select="mmd:metadata_identifier"/>
+	                                   <xsl:for-each select="$lookupDoc" >
+	                                      <xsl:choose>
+	                                         <xsl:when test="key('lookupKey', $dataKey)">
+			                            <xsl:attribute name="codeListValue">series</xsl:attribute>
+			                            <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				                    <xsl:text>series</xsl:text>
+	                                         </xsl:when>
+	                                         <xsl:otherwise>
+			                            <xsl:attribute name="codeListValue">dataset</xsl:attribute>
+			                            <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				                    <xsl:text>dataset</xsl:text>
+	                                         </xsl:otherwise>
+	                                      </xsl:choose>
+                                           </xsl:for-each>
+				        </xsl:when>
+				        <xsl:otherwise>
+			                     <xsl:attribute name="codeListValue">dataset</xsl:attribute>
+			                     <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				             <xsl:text>dataset</xsl:text>
+				        </xsl:otherwise>
 				    </xsl:choose>
                                 </xsl:element>        
                             </xsl:element>        
@@ -737,29 +770,44 @@
                             <xsl:value-of select="mmd:start_date" />
                         </xsl:element>
 			<xsl:choose>
-			<xsl:when test="string-length(mmd:end_date) > 0">
-                            <xsl:element name="gml:endPosition">
-                                <xsl:value-of select="mmd:end_date" />
-                            </xsl:element>
-		        </xsl:when>
-			<xsl:otherwise>
-			    <xsl:choose>
-			        <xsl:when test="contains($file_name, 'parent')">
-                                    <xsl:element name="gml:endPosition">
-			                <xsl:attribute name="indeterminatePosition">
-			                    <xsl:text>now</xsl:text>
-			                </xsl:attribute>
-                                    </xsl:element>
-			        </xsl:when>
-			        <xsl:otherwise>
-                                    <xsl:element name="gml:endPosition">
-			                <xsl:attribute name="indeterminatePosition">
-			                    <xsl:text>unknown</xsl:text>
-			                </xsl:attribute>
-                                    </xsl:element>
-			        </xsl:otherwise>
-			    </xsl:choose>
-		        </xsl:otherwise>
+		            <xsl:when test="string-length(mmd:end_date) > 0">
+                                <xsl:element name="gml:endPosition">
+                                    <xsl:value-of select="mmd:end_date" />
+                                </xsl:element>
+		            </xsl:when>
+			    <xsl:otherwise>
+	                        <xsl:choose>
+	                            <xsl:when test="$path_to_parent_list">
+                                        <xsl:variable name="lookupDoc" select="document($path_to_parent_list)" />
+                                        <xsl:variable name="dataKey" select="../mmd:metadata_identifier"/>
+	                                <xsl:for-each select="$lookupDoc" >
+	                                <xsl:choose>
+	                                    <xsl:when test="key('lookupKey', $dataKey)">
+                                                <xsl:element name="gml:endPosition">
+				                    <xsl:attribute name="indeterminatePosition">
+				                        <xsl:text>now</xsl:text>
+				                    </xsl:attribute>
+                                                </xsl:element>
+	                                    </xsl:when>
+	                                    <xsl:otherwise>
+                                                <xsl:element name="gml:endPosition">
+				                    <xsl:attribute name="indeterminatePosition">
+				                        <xsl:text>unknown</xsl:text>
+				                    </xsl:attribute>
+                                                </xsl:element>
+	                                    </xsl:otherwise>
+	                                </xsl:choose>
+                                        </xsl:for-each>
+				    </xsl:when>
+				    <xsl:otherwise>
+                                        <xsl:element name="gml:endPosition">
+				            <xsl:attribute name="indeterminatePosition">
+				                <xsl:text>unknown</xsl:text>
+				            </xsl:attribute>
+                                        </xsl:element>
+				    </xsl:otherwise>
+				 </xsl:choose>
+		            </xsl:otherwise>
 		        </xsl:choose>
                     </xsl:element>
                 </xsl:element>
