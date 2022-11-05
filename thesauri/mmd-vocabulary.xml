@@ -1475,6 +1475,14 @@
     </skos:member>
 
     <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/SESS2022">
+        <skos:prefLabel xml:lang="en">SESS2022</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://sios-svalbard.org/SESS_Issue5"/>
+        <skos:definition xml:lang="en">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2022.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/SIOSCD">
         <skos:prefLabel xml:lang="en">SIOSCD</skos:prefLabel>
         <skos:definition xml:lang="en">Datasets that are SIOS Core Data.</skos:definition>

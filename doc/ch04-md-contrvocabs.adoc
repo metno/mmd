@@ -52,6 +52,8 @@ data. This is primarily Sentinel datasets.
 
 |SESS2020 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020.
 
+|SESS2022 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2022.
+
 |SIOSCD |Datasets that are SIOS Core Data.
 
 |SIOSAP |Datasets from the SIOS Access Programme. 
