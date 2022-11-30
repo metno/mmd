@@ -24,7 +24,6 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:apply-templates select="dif:Entry_ID" />
             <xsl:apply-templates select="dif:Entry_Title" />
             <xsl:apply-templates select="dif:Summary" />
-            <xsl:apply-templates select="dif:Personnel" />
             <xsl:element name="mmd:metadata_status">Active</xsl:element>
 	    <xsl:element name="mmd:dataset_production_status">
 		<xsl:choose>
@@ -39,16 +38,16 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:element name="mmd:collection">ADC</xsl:element>
             <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
             <xsl:apply-templates select="dif:Temporal_Coverage" />
-	    <xsl:element name="mmd:iso_topic_category">
-		<xsl:choose>
-		    <xsl:when test="dif:ISO_Topic_Category">
-                        <xsl:apply-templates select="dif:ISO_Topic_Category" />
-		    </xsl:when>
-		    <xsl:otherwise>
-			<xsl:text>Not available</xsl:text>
-		    </xsl:otherwise>
-		</xsl:choose>
-	    </xsl:element>
+            <xsl:choose>
+	        <xsl:when test="dif:ISO_Topic_Category">
+                    <xsl:apply-templates select="dif:ISO_Topic_Category" />
+		</xsl:when>
+		<xsl:otherwise>
+	            <xsl:element name="mmd:iso_topic_category">
+		        <xsl:text>Not available</xsl:text>
+	            </xsl:element>
+		</xsl:otherwise>
+	    </xsl:choose>
             <xsl:element name="mmd:keywords">
                 <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
                 <xsl:apply-templates select="dif:Parameters" />
@@ -61,6 +60,7 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:apply-templates select="dif:Spatial_Coverage" />
             <xsl:apply-templates select="dif:Access_Constraints" />
             <xsl:apply-templates select="dif:Related_URL" />
+            <xsl:apply-templates select="dif:Personnel" />
             <xsl:apply-templates select="dif:Data_Set_Citation" />
             <xsl:apply-templates select="dif:Data_Center" />
             <!--xsl:apply-templates select="dif:Originating_Center" /-->
@@ -95,39 +95,36 @@ Meaning this should consume both DIF 8, 9 and 10.
 
   <xsl:template match="dif:Data_Set_Citation">
       <xsl:element name="mmd:dataset_citation">
-          <xsl:element name="mmd:dataset_creator">
+          <xsl:element name="mmd:author">
               <xsl:value-of select="dif:Dataset_Creator" />
           </xsl:element>
-          <xsl:element name="mmd:dataset_editor">
-              <xsl:value-of select="dif:Dataset_Editor" />
-          </xsl:element>
-          <xsl:element name="mmd:dataset_title">
+          <xsl:element name="mmd:title">
               <xsl:value-of select="dif:Dataset_Title" />
           </xsl:element>
-          <xsl:element name="mmd:dataset_series_name">
+          <xsl:element name="mmd:series">
               <xsl:value-of select="dif:Dataset_Series_Name" />
           </xsl:element>
-          <xsl:element name="mmd:dataset_release_date">
+          <xsl:element name="mmd:publication_date">
               <xsl:value-of select="dif:Dataset_Release_Date" />
           </xsl:element>
-          <xsl:element name="mmd:dataset_release_place">
+          <xsl:element name="mmd:publication_place">
               <xsl:value-of select="dif:Dataset_Release_Place" />
           </xsl:element>
-          <xsl:element name="mmd:dataset_publisher">
+          <xsl:element name="mmd:publisher">
               <xsl:value-of select="dif:Dataset_Publisher" />
           </xsl:element>
-          <xsl:element name="mmd:version">
+          <xsl:element name="mmd:edition">
               <xsl:value-of select="dif:Version" />
           </xsl:element>
           <xsl:element name="mmd:doi">
               <xsl:value-of select="dif:Dataset_DOI" />
           </xsl:element>
+          <xsl:element name="mmd:url">
+                  <xsl:value-of select="dif:Online_Resource" />
+          </xsl:element>
           <!--
                 <xsl:element name="mmd:dataset_presentation_form">
                         <xsl:value-of select="dif:Data_Presentation_Form" />
-                </xsl:element>
-                <xsl:element name="mmd:online_resource">
-                        <xsl:value-of select="dif:Online_Resource" />
                 </xsl:element>
                 -->
         </xsl:element>
@@ -160,7 +157,9 @@ Meaning this should consume both DIF 8, 9 and 10.
       <xsl:for-each select="$isoLUD">
           <xsl:value-of select ="name()" />
           <xsl:variable name="isoe" select="key('isoc',$isov)/skos:prefLabel"/>
-          <xsl:value-of select="$isoe"/>
+	  <xsl:element name="mmd:iso_topic_category">
+              <xsl:value-of select="$isoe"/>
+	  </xsl:element>
       </xsl:for-each>
   </xsl:template>
 
@@ -417,6 +416,7 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:choose>
                 <xsl:when test="dif:Abstract">
                     <xsl:element name="mmd:abstract">
+			<xsl:attribute name="xml:lang">en</xsl:attribute>
                         <xsl:value-of select="dif:Abstract" />
                     </xsl:element>
                 </xsl:when>
