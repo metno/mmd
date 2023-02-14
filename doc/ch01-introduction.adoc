@@ -24,8 +24,7 @@ Directory Interchange Format]
 8.  http://wiki.esipfed.org/index.php?title=Category:Attribute_Conventions_Dataset_Discovery[Attribute Convention for Dataset Discovery]
 9.  ISO8601…
 10. [[anchor-2]]https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=csv[GCMD Science Keywords]
-11. [[anchor-3]]http://cfconventions.org/standard-names.html[Climate and
-Forecast Standard Names]
+11. [[anchor-3]]https://vocab.nerc.ac.uk/standard_name/[Climate and Forecast Standard Names]
 12. [[anchor-4]]https://vocab.seadatanet.org/search[SeaDataNet]
 13. http://docs.opendap.org/index.php/Documentation[OPeNDAP]
 

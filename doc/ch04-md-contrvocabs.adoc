@@ -310,7 +310,7 @@ GCMD Science Keywords
 However many datasets are encoded using the
 http://cfconventions.org[Climate and Forecast convention]. In this CF
 Standard Names are used. These are available through
-http://cfconventions.org/Data/cf-standard-names/70/build/cf-standard-name-table.html and can be converted to GCMD Science Keywords using
+http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html and can be converted to GCMD Science Keywords using
 http://dap.onc.uvic.ca/erddap/convert/keywords.html (further information
 to be provided).
 
@@ -332,7 +332,7 @@ variable.
 |GCMDSK |GCMD Science Keywords | https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords
 |GCMDLOC |GCMD Locations | https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations
 |GCMDPROV | GCMD Providers | https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers
-|CFSTDN | CF Standard Names | https://cfconventions.org/standard-names.html
+|CFSTDN | CF Standard Names | https://vocab.nerc.ac.uk/standard_name/
 |GEMET | INSPIRE Themes | http://inspire.ec.europa.eu/theme
 |NORTHEMES |GeoNorge Themes | https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling
 |None | - | -

@@ -69,7 +69,7 @@
   a skos:Concept ;
   skos:prefLabel "CFSTDN"@en ;
   skos:altLabel "CF Standard Names"@en ;
-  rdfs:seeAlso <https://cfconventions.org/standard-names.html> ;
+  rdfs:seeAlso <https://vocab.nerc.ac.uk/standard_name/> ;
   skos:definition "This vocabulary should be used to provide keywords from The Climate and Forecast (CF) Standard Names tables."@en .
 
 <https://vocab.met.no/mmd/Keywords_Vocabulary/GEMET>
