@@ -84,7 +84,7 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN">
         <skos:prefLabel xml:lang="en">CFSTDN</skos:prefLabel>
         <skos:altLabel xml:lang="en">CF Standard Names</skos:altLabel>
-        <rdfs:seeAlso rdf:resource="https://cfconventions.org/standard-names.html"/>
+        <rdfs:seeAlso rdf:resource="https://vocab.nerc.ac.uk/standard_name/"/>
         <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Climate and Forecast (CF) Standard Names tables.</skos:definition>
       </skos:Concept>
     </skos:member>

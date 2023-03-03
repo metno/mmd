@@ -39,7 +39,7 @@
   </mmd:keywords>
   <mmd:keywords vocabulary="CFSTDN">
     <mmd:keyword>precipitation_amount</mmd:keyword>
-    <mmd:resource>https://cfconventions.org/standard-names.html</mmd:resource>
+    <mmd:resource>https://vocab.nerc.ac.uk/standard_name/</mmd:resource>
     <mmd:separator></mmd:separator>
   </mmd:keywords>
   <mmd:geographic_extent>

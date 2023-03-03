@@ -258,7 +258,7 @@
 	        <xsl:text>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</xsl:text>
 	    </xsl:when>
 	    <xsl:when test="contains(@vocabulary,'cf') or contains(@vocabulary, 'CF') or @vocabulary = 'CFSDTN' or contains(@vocabulary, 'Climate and Forecast')">
-	        <xsl:text>https://cfconventions.org/standard-names.html</xsl:text>
+	        <xsl:text>https://vocab.nerc.ac.uk/standard_name/</xsl:text>
 	    </xsl:when>
 	    <xsl:otherwise>
 		<xsl:if test="mmd:reference">

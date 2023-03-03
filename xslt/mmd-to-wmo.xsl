@@ -503,7 +503,7 @@ This is a draft implementation for MMD to WMO Core profile conversion.
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
-                                            <xsl:text>https://cfconventions.org/standard-names.html</xsl:text>
+                                            <xsl:text>https://vocab.nerc.ac.uk/standard_name/</xsl:text>
                                         </xsl:attribute>
                                         <xsl:text>CF Standard Names</xsl:text>
                                     </xsl:element>
