@@ -424,6 +424,7 @@
             <xs:enumeration value="SIOSAP"></xs:enumeration>
             <xs:enumeration value="SIOSIN"></xs:enumeration>
             <xs:enumeration value="CVL"></xs:enumeration>
+            <xs:enumeration value="AeN"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 

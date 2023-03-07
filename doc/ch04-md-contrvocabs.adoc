@@ -62,6 +62,8 @@ data. This is primarily Sentinel datasets.
 
 |CVL |Datasets from the ESA Cryosphere Virtual Lab.
 
+|AeN |Datasets from the Arven etter Nansen Project.
+
 |=======================================================================
 
 <<collection>>
