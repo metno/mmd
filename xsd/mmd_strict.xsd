@@ -138,7 +138,7 @@
     </xs:complexType>
     <xs:complexType name="project_type">
         <xs:sequence>
-            <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
         </xs:sequence>
     </xs:complexType>
