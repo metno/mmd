@@ -407,6 +407,7 @@
     </xs:complexType>
     <xs:simpleType name="operational_status_type">
         <xs:restriction base="xs:string">
+            <xs:enumeration value="Not available"></xs:enumeration>
             <xs:enumeration value="Operational"></xs:enumeration>
             <xs:enumeration value="Pre-Operational"></xs:enumeration>
             <xs:enumeration value="Experimental"></xs:enumeration>
