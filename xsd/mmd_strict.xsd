@@ -54,7 +54,7 @@
                 <xs:element name="instrument" type="mmd:instrument_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 -->
                 <xs:element name="platform" type="mmd:platform_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
-                <xs:element name="spatial_representation" type="mmd:spatial_representation" maxOccurs="1" minOccurs="1"></xs:element>
+                <xs:element name="spatial_representation" type="mmd:spatial_representation" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="related_information" type="mmd:related_information_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
                 <xs:element name="personnel" type="mmd:personnel_type" maxOccurs="unbounded" minOccurs="1"></xs:element>
                 <xs:element name="dataset_citation" type="mmd:dataset_citation_type" maxOccurs="unbounded" minOccurs="0"></xs:element>
@@ -138,7 +138,7 @@
     </xs:complexType>
     <xs:complexType name="project_type">
         <xs:sequence>
-            <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="short_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
             <xs:element name="long_name" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
         </xs:sequence>
     </xs:complexType>
@@ -242,6 +242,7 @@
             <xs:enumeration value="In Work"></xs:enumeration>
             <xs:enumeration value="Complete"></xs:enumeration>
             <xs:enumeration value="Obsolete"></xs:enumeration>
+            <xs:enumeration value="Not available"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="iso_topic_category_type">
@@ -265,6 +266,7 @@
             <xs:enumeration value="structure"></xs:enumeration>
             <xs:enumeration value="transportation"></xs:enumeration>
             <xs:enumeration value="utilitiesCommunications"></xs:enumeration>
+            <xs:enumeration value="Not available"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="platform_type">
@@ -407,11 +409,11 @@
     </xs:complexType>
     <xs:simpleType name="operational_status_type">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="Not available"></xs:enumeration>
             <xs:enumeration value="Operational"></xs:enumeration>
             <xs:enumeration value="Pre-Operational"></xs:enumeration>
             <xs:enumeration value="Experimental"></xs:enumeration>
             <xs:enumeration value="Scientific"/>
+            <xs:enumeration value="Not available"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="related_information_type">
@@ -440,6 +442,7 @@
             <xs:enumeration value="SESS2018"></xs:enumeration>
             <xs:enumeration value="SESS2019"></xs:enumeration>
             <xs:enumeration value="SESS2020"></xs:enumeration>
+            <xs:enumeration value="SESS2022"></xs:enumeration>
             <xs:enumeration value="SIOSCD"></xs:enumeration>
             <xs:enumeration value="SIOSAP"></xs:enumeration>
             <xs:enumeration value="SIOSIN"></xs:enumeration>
