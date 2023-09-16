@@ -41,6 +41,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
 	    </xsl:element>
             <xsl:element name="mmd:collection">ADC</xsl:element>
             <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
+            <xsl:apply-templates select="dif:Metadata_Dates" />
             <xsl:apply-templates select="dif:Temporal_Coverage" />
             <xsl:choose>
 	        <xsl:when test="dif:ISO_Topic_Category">
@@ -271,7 +272,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                   </xsl:element>
               </xsl:element>
           </xsl:when>
-          <xsl:when test="dif:Geometry/dif:Point">
+          <xsl:when test="dif:Geometry/dif:Polygon/dif:Boundary/dif:Point">
           <!-- For the time being and based on the current search model for MMD, Points are translated into a bounding box. Øystein Godøy, METNO/FOU, 2023-04-27 -->
           <!-- XSLT 2 version, but doesn't help us in python...
               <xsl:element name="mmd:rectangle">
@@ -676,6 +677,38 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         </xsl:template>
 
         <xsl:template match="dif:Metadata_Version">
+        </xsl:template>
+
+        <!-- For DIF10, no date transformation for now... -->
+        <xsl:template match="dif:Metadata_Dates">
+            <xsl:element name="mmd:last_metadata_update">
+                <xsl:if test="dif:Metadata_Creation" >
+                    <xsl:element name="mmd:update">
+                        <xsl:element name="mmd:datetime">
+                            <xsl:value-of select="dif:Metadata_Creation" />
+                        </xsl:element>
+                        <xsl:element name="mmd:type">
+                            <xsl:text>Created</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="mmd:note">
+                            <xsl:text>Made by transformation from DIF10 record</xsl:text>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:if>
+                <xsl:if test="dif:Metadata_Last_Revision" >
+                    <xsl:element name="mmd:update">
+                        <xsl:element name="mmd:datetime">
+                            <xsl:value-of select="dif:Metadata_Last_Revision" />
+                        </xsl:element>
+                        <xsl:element name="mmd:type">
+                            <xsl:text>Major modification</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="mmd:note">
+                            <xsl:text>Captured from DIF10 record</xsl:text>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:if>
+            </xsl:element>
         </xsl:template>
 
         <xsl:template match="dif:Last_DIF_Revision_Date">
