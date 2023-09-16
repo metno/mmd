@@ -221,7 +221,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
               <xsl:choose>
                   <xsl:when test="dif:Periodic_DateTime">
                       <xsl:call-template name="formatdate">
-                          <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:Stop_Date" />
+                          <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:End_Date" />
                       </xsl:call-template>
                   </xsl:when>
                   <xsl:when test="dif:Range_DateTime">
