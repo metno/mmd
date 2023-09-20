@@ -3,6 +3,8 @@
 <!--
 Not fully adapted for DIF 10, some elements are supported though.
 Meaning this should consume both DIF 8, 9 and 10.
+
+Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24 
 -->
 
 <xsl:stylesheet 
@@ -18,6 +20,8 @@ Meaning this should consume both DIF 8, 9 and 10.
     <!--
     <xsl:key name="isoc" match="Concept" use="altLabel"/>
 -->
+    <xsl:key name="mylat" match="//dif:Point_Latitude" use="."/>
+    <xsl:key name="mylon" match="//dif:Point_Longitude" use="."/>
 
     <xsl:template match="/dif:DIF">
         <xsl:element name="mmd:mmd">
@@ -37,6 +41,7 @@ Meaning this should consume both DIF 8, 9 and 10.
 	    </xsl:element>
             <xsl:element name="mmd:collection">ADC</xsl:element>
             <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
+            <xsl:apply-templates select="dif:Metadata_Dates" />
             <xsl:apply-templates select="dif:Temporal_Coverage" />
             <xsl:choose>
 	        <xsl:when test="dif:ISO_Topic_Category">
@@ -50,7 +55,7 @@ Meaning this should consume both DIF 8, 9 and 10.
 	    </xsl:choose>
             <xsl:element name="mmd:keywords">
                 <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
-                <xsl:apply-templates select="dif:Parameters" />
+                <xsl:apply-templates select="dif:Parameters|dif:Science_Keywords" />
             </xsl:element>
             <xsl:element name="mmd:keywords">
                 <xsl:attribute name="vocabulary">None</xsl:attribute>
@@ -63,6 +68,7 @@ Meaning this should consume both DIF 8, 9 and 10.
             <xsl:apply-templates select="dif:Personnel" />
             <xsl:apply-templates select="dif:Data_Set_Citation" />
             <xsl:apply-templates select="dif:Data_Center" />
+            <xsl:apply-templates select="dif:Organization" />
             <!--xsl:apply-templates select="dif:Originating_Center" /-->
             <xsl:apply-templates select="dif:Parent_DIF" />
             <!-- ... -->
@@ -79,9 +85,18 @@ Meaning this should consume both DIF 8, 9 and 10.
 
 
   <xsl:template match="dif:Entry_ID">
-      <xsl:element name="mmd:metadata_identifier">
-          <xsl:value-of select="." />
-      </xsl:element>
+      <xsl:choose>
+          <xsl:when test="dif:Short_Name">
+              <xsl:element name="mmd:metadata_identifier">
+                  <xsl:value-of select="dif:Short_Name" />
+              </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:element name="mmd:metadata_identifier">
+                  <xsl:value-of select="." />
+              </xsl:element>
+          </xsl:otherwise>
+      </xsl:choose>
   </xsl:template>
 
 
@@ -137,7 +152,7 @@ Meaning this should consume both DIF 8, 9 and 10.
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="dif:Parameters">
+    <xsl:template match="dif:Parameters|dif:Science_Keywords">
         <xsl:if test="/dif:DIF[not(contains(dif:Entry_ID,'PANGAEA'))]">
             <!--
           <xsl:element name="mmd:keywords">
@@ -184,16 +199,42 @@ Meaning this should consume both DIF 8, 9 and 10.
   <xsl:template match="dif:Temporal_Coverage">
       <xsl:element name="mmd:temporal_extent">
           <xsl:element name="mmd:start_date">
-              <xsl:call-template name="formatdate">
-                  <!--xsl:value-of select="dif:Start_Date" /-->
-                  <xsl:with-param name="datestr" select="dif:Start_Date" />
-              </xsl:call-template>
+              <xsl:choose>
+                  <xsl:when test="dif:Periodic_DateTime">
+                      <xsl:call-template name="formatdate">
+                          <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:Start_Date" />
+                      </xsl:call-template>
+                  </xsl:when>
+                  <xsl:when test="dif:Range_DateTime">
+                      <xsl:call-template name="formatdate">
+                          <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Beginning_Date_Time" />
+                      </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                      <xsl:call-template name="formatdate">
+                          <xsl:with-param name="datestr" select="dif:Start_Date" />
+                      </xsl:call-template>
+                  </xsl:otherwise>
+              </xsl:choose>
           </xsl:element>
           <xsl:element name="mmd:end_date">
-              <xsl:call-template name="formatdate">
-                  <xsl:with-param name="datestr" select="dif:Stop_Date" />
-              </xsl:call-template>
-              <!--xsl:value-of select="dif:Stop_Date" /-->
+              <xsl:choose>
+                  <xsl:when test="dif:Periodic_DateTime">
+                      <xsl:call-template name="formatdate">
+                          <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:End_Date" />
+                      </xsl:call-template>
+                  </xsl:when>
+                  <xsl:when test="dif:Range_DateTime">
+                      <xsl:call-template name="formatdate">
+                          <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Ending_Date_Time" />
+                      </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                      <xsl:call-template name="formatdate">
+                          <xsl:with-param name="datestr" select="dif:Stop_Date" />
+                      </xsl:call-template>
+                  </xsl:otherwise>
+              </xsl:choose>
           </xsl:element>
       </xsl:element>
   </xsl:template>
@@ -206,27 +247,109 @@ Meaning this should consume both DIF 8, 9 and 10.
   </xsl:template>
 -->
 
-        <xsl:template match="dif:Spatial_Coverage">
-            <xsl:element name="mmd:geographic_extent">
-                <xsl:element name="mmd:rectangle">
-                    <xsl:attribute name="srsName">
-                        <xsl:value-of select="'EPSG:4326'" />
-                    </xsl:attribute>
-                    <xsl:element name="mmd:south">
-                        <xsl:value-of select="dif:Southernmost_Latitude" />
-                    </xsl:element>
-                    <xsl:element name="mmd:north">
-                        <xsl:value-of select="dif:Northernmost_Latitude" />
-                    </xsl:element>
-                    <xsl:element name="mmd:west">
-                        <xsl:value-of select="dif:Westernmost_Longitude" />
-                    </xsl:element>
-                    <xsl:element name="mmd:east">
-                        <xsl:value-of select="dif:Easternmost_Longitude" />
-                    </xsl:element>
-                </xsl:element>
-            </xsl:element>
-        </xsl:template>
+  <!-- Need to fix points for KOPRI
+  -->
+  <xsl:template match="dif:Spatial_Coverage">
+      <xsl:choose>
+          <xsl:when test="dif:Geometry/dif:Bounding_Rectangle">
+              <xsl:element name="mmd:geographic_extent">
+                  <xsl:element name="mmd:rectangle">
+                      <xsl:attribute name="srsName">
+                          <xsl:value-of select="'EPSG:4326'" />
+                      </xsl:attribute>
+                      <xsl:element name="mmd:south">
+                          <xsl:value-of select="dif:Geometry/dif:Bounding_Rectangle/dif:Southernmost_Latitude" />
+                      </xsl:element>
+                      <xsl:element name="mmd:north">
+                          <xsl:value-of select="dif:Geometry/dif:Bounding_Rectangle/dif:Northernmost_Latitude" />
+                      </xsl:element>
+                      <xsl:element name="mmd:west">
+                          <xsl:value-of select="dif:Geometry/dif:Bounding_Rectangle/dif:Westernmost_Longitude" />
+                      </xsl:element>
+                      <xsl:element name="mmd:east">
+                          <xsl:value-of select="dif:Geometry/dif:Bounding_Rectangle/dif:Easternmost_Longitude" />
+                      </xsl:element>
+                  </xsl:element>
+              </xsl:element>
+          </xsl:when>
+          <xsl:when test="dif:Geometry/dif:Polygon/dif:Boundary/dif:Point">
+          <!-- For the time being and based on the current search model for MMD, Points are translated into a bounding box. Øystein Godøy, METNO/FOU, 2023-04-27 -->
+          <!-- XSLT 2 version, but doesn't help us in python...
+              <xsl:element name="mmd:rectangle">
+              <xsl:attribute name="srsName">
+              <xsl:value-of select="'EPSG:4326'" />
+              </xsl:attribute>
+              <xsl:element name="mmd:north">
+              <xsl:value-of select="max(//dif:Point_Latitude)"/>
+              </xsl:element>
+              <xsl:element name="mmd:south">
+              <xsl:value-of select="min(//dif:Point_Latitude)"/>
+              </xsl:element>
+              <xsl:element name="mmd:east">
+              <xsl:value-of select="max(//dif:Point_Longitude)"/>
+              </xsl:element>
+              <xsl:element name="mmd:west">
+              <xsl:value-of select="min(//dif:Point_Longitude)"/>
+              </xsl:element>
+              </xsl:element>
+          -->
+              <xsl:element name="mmd:geographic_extent">
+                  <xsl:element name="mmd:rectangle">
+                      <xsl:attribute name="srsName">
+                          <xsl:value-of select="'EPSG:4326'" />
+                      </xsl:attribute>
+                      <xsl:for-each select="key('mylat',//dif:Point_Latitude)">
+                          <xsl:sort select="." data-type="number" order="ascending"/>
+                          <xsl:if test="position() = 1">
+                              <xsl:element name="mmd:south">
+                                  <xsl:value-of select="."/>
+                              </xsl:element>
+                          </xsl:if>
+                          <xsl:if test="position() = last()">
+                              <xsl:element name="mmd:north">
+                                  <xsl:value-of select="."/>
+                              </xsl:element>
+                          </xsl:if>
+                      </xsl:for-each>
+                      <xsl:for-each select="key('mylon',//dif:Point_Longitude)">
+                          <xsl:sort select="." data-type="number" order="ascending"/>
+                          <xsl:if test="position() = 1">
+                              <xsl:element name="mmd:west">
+                                  <xsl:value-of select="."/>
+                              </xsl:element>
+                          </xsl:if>
+                          <xsl:if test="position() = last()">
+                              <xsl:element name="mmd:east">
+                                  <xsl:value-of select="."/>
+                              </xsl:element>
+                          </xsl:if>
+                      </xsl:for-each>
+                  </xsl:element>
+              </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:element name="mmd:geographic_extent">
+                  <xsl:element name="mmd:rectangle">
+                      <xsl:attribute name="srsName">
+                          <xsl:value-of select="'EPSG:4326'" />
+                      </xsl:attribute>
+                      <xsl:element name="mmd:south">
+                          <xsl:value-of select="dif:Southernmost_Latitude" />
+                      </xsl:element>
+                      <xsl:element name="mmd:north">
+                          <xsl:value-of select="dif:Northernmost_Latitude" />
+                      </xsl:element>
+                      <xsl:element name="mmd:west">
+                          <xsl:value-of select="dif:Westernmost_Longitude" />
+                      </xsl:element>
+                      <xsl:element name="mmd:east">
+                          <xsl:value-of select="dif:Easternmost_Longitude" />
+                      </xsl:element>
+                  </xsl:element>
+              </xsl:element>
+          </xsl:otherwise>
+      </xsl:choose>
+  </xsl:template>
 
         <!-- Fix me -->
         <xsl:template match="dif:Location">
@@ -354,40 +477,6 @@ Meaning this should consume both DIF 8, 9 and 10.
                 <xsl:element name="mmd:data_center_url">
                     <xsl:value-of select="dif:Data_Center_URL" />
                 </xsl:element>
-                <!-- removed 2020-03-25
-                <xsl:element name="mmd:contact">
-                  <xsl:element name="mmd:role">
-		    <xsl:variable name="string-mod">
-		      <xsl:call-template name="string-replace">
-			<xsl:with-param name="string"  select="dif:Personnel/dif:Role"/>
-			<xsl:with-param name="replace" select="'Contact'" />
-			<xsl:with-param name="with" select="'contact'" />
-		      </xsl:call-template>
-		    </xsl:variable>
-                    -->
-
-                    <!-- Output -->
-                    <!--
-                    <xsl:value-of select="$string-mod" />
-                    -->
-
-                       <!-- <xsl:value-of select="dif:Personnel/dif:Role" /> -->
-                    <!--
-                    </xsl:element>
-                    <xsl:element name="mmd:name">
-                        <xsl:value-of select="dif:Personnel/dif:Last_Name" />
-                    </xsl:element>
-                    <xsl:element name="mmd:email">
-                        <xsl:value-of select="dif:Personnel/dif:Email" />
-                    </xsl:element>
-                    <xsl:element name="mmd:phone">
-                        <xsl:value-of select="dif:Personnel/dif:Phone" />
-                    </xsl:element>
-                    <xsl:element name="mmd:fax">
-                        <xsl:value-of select="dif:Personnel/dif:Fax" />
-                    </xsl:element>
-                </xsl:element>
-                    -->
             </xsl:element>
 
             <xsl:element name="mmd:personnel">
@@ -402,12 +491,56 @@ Meaning this should consume both DIF 8, 9 and 10.
                 <xsl:element name="mmd:email">
                     <xsl:value-of select="dif:Personnel/dif:Email"/>
                 </xsl:element>
+                <!-- The validity of this translation depends slightly on the providers as the approaches seen are heterogeneous... Øystein Godøy, METNO/FOU, 2023-04-28 -->
                 <xsl:element name="mmd:organisation">
                     <xsl:value-of select="dif:Long_Name"/>
                 </xsl:element>
             </xsl:element>
         </xsl:template>
 
+        <xsl:template match="dif:Organization">
+            <xsl:if test="dif:Organization_Type[contains(text(),'ARCHIVER')]">
+                <xsl:element name="mmd:data_center">
+                    <xsl:element name="mmd:data_center_name">
+                        <xsl:element name="mmd:short_name">
+                            <xsl:value-of select="dif:Organization_Name/dif:Short_Name" />
+                        </xsl:element>
+                        <xsl:element name="mmd:long_name">
+                            <xsl:value-of select="dif:Organization_Name/dif:Long_Name" />
+                        </xsl:element>
+                    </xsl:element>
+                    <xsl:element name="mmd:data_center_url">
+                        <xsl:value-of select="dif:Organization_URL" />
+                    </xsl:element>
+                </xsl:element>
+
+                <xsl:element name="mmd:personnel">
+                    <xsl:element name="mmd:role">
+                        <xsl:text>Data center contact</xsl:text>
+                    </xsl:element>
+                    <xsl:element name="mmd:name">
+                        <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:First_Name"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Last_Name"/>
+                    </xsl:element>
+                    <xsl:element name="mmd:email">
+                        <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Email"/>
+                    </xsl:element>
+                    <!-- The validity of this translation depends slightly on the providers as the approaches seen are heterogeneous... Øystein Godøy, METNO/FOU, 2023-04-28 -->
+                    <xsl:element name="mmd:organisation">
+                        <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Last_Name"/>
+                    </xsl:element>
+                    <!-- contact_address is not extracted since records harvested differs so much in the implementation that it can't be done in a relieable manner
+                    <xsl:if test="dif:Personnel/dif:Contact_Person/dif:Address">
+                        <xsl:element name="mmd:contact_address">
+                            <xsl:if test="dif:Personnel/dif:Contact_Person/dif:Address/dif:Stree_Address">
+                            </xsl:if>
+                        </xsl:element>
+                        </xsl:if>
+                    -->
+                </xsl:element>
+            </xsl:if>
+        </xsl:template>
 
         <xsl:template match="dif:Reference">
         </xsl:template>
@@ -513,23 +646,69 @@ Meaning this should consume both DIF 8, 9 and 10.
                   </xsl:choose>
                  <!--   <xsl:value-of select="dif:Role"/> -->
                 </xsl:element>
-	      <xsl:element name="mmd:name">
-                    <xsl:value-of select="dif:First_Name"/>
-                    <xsl:text> </xsl:text>
-                    <xsl:value-of select="dif:Last_Name"/>
+                <xsl:element name="mmd:name">
+                    <xsl:choose>
+                        <xsl:when test="dif:Contact_Person">
+                            <xsl:value-of select="dif:Contact_Person/dif:First_Name"/>
+                            <xsl:text> </xsl:text>
+                            <xsl:value-of select="dif:Contact_Person/dif:Last_Name"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="dif:First_Name"/>
+                            <xsl:text> </xsl:text>
+                            <xsl:value-of select="dif:Last_Name"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:element>
                 <xsl:element name="mmd:email">
-                    <xsl:value-of select="dif:Email"/>
+                    <xsl:choose>
+                        <xsl:when test="dif:Contact_Person">
+                            <xsl:value-of select="dif:Contact_Person/dif:Email"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="dif:Email"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:element>
             </xsl:element>
         </xsl:template>
 
-
         <xsl:template match="dif:Metadata_Name">
         </xsl:template>
 
-
         <xsl:template match="dif:Metadata_Version">
+        </xsl:template>
+
+        <!-- For DIF10, no date transformation for now... -->
+        <xsl:template match="dif:Metadata_Dates">
+            <xsl:element name="mmd:last_metadata_update">
+                <xsl:if test="dif:Metadata_Creation" >
+                    <xsl:element name="mmd:update">
+                        <xsl:element name="mmd:datetime">
+                            <xsl:value-of select="dif:Metadata_Creation" />
+                        </xsl:element>
+                        <xsl:element name="mmd:type">
+                            <xsl:text>Created</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="mmd:note">
+                            <xsl:text>Made by transformation from DIF10 record</xsl:text>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:if>
+                <xsl:if test="dif:Metadata_Last_Revision" >
+                    <xsl:element name="mmd:update">
+                        <xsl:element name="mmd:datetime">
+                            <xsl:value-of select="dif:Metadata_Last_Revision" />
+                        </xsl:element>
+                        <xsl:element name="mmd:type">
+                            <xsl:text>Major modification</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="mmd:note">
+                            <xsl:text>Captured from DIF10 record</xsl:text>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:if>
+            </xsl:element>
         </xsl:template>
 
         <xsl:template match="dif:Last_DIF_Revision_Date">
