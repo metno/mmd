@@ -877,6 +877,7 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Platform</skos:prefLabel>
+    <skos:changeNote xml:lang="en">Added NOAA-21 in collection<skos:changeNote>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms"/>
     <skos:definition xml:lang="en">This describes the platform used to collect the data.</skos:definition>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-1A"/>
@@ -891,6 +892,7 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-18"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-19"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-20"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-21"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/SNPP"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Aqua"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Terra"/>
@@ -1061,6 +1063,18 @@
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/586db0b3-5f94-466e-b7c1-a2dbedc0c1fc"/>
   </skos:Concept>
 
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/NOAA-21">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">NOAA-21</skos:prefLabel>
+    <skos:altLabel xml:lang="en">National Oceanic and Atmospheric Administration - 21</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/VIIRS"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/VIIRS"/>
+    <skos:definition xml:lang="en">NOAA 21, previously named JPSS 2, is the third satellite in NOAA’s Joint Polar Satellite System series of weather observatories. It follows the launch of the Suomi NPP and JPSS 1 weather satellites in 2011 and 2017, both on ULA’s now-retired Delta 2 rocket. NOAA 21 will gather data on Earth’s atmosphere and oceans, mapping and monitoring wildfires and volcanoes, and measuring dust and smoke in the air. JPSS 2 will also track the health of the ozone layer.</skos:definition>
+    <dc:source rdf:resource="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2022-150A"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/noaa_21"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/a1bc9381-a17a-4028-813a-14e971917a01"/>
+  </skos:Concept>
+
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/SNPP">
     <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
     <skos:prefLabel xml:lang="en">SNPP</skos:prefLabel>
@@ -1217,8 +1231,10 @@
     <skos:altLabel xml:lang="en">Visible/Infrared Imager Radiometer Suite</skos:altLabel>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/SNPP"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-20"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-21"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/SNPP"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-20"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-21"/>
     <skos:definition xml:lang="en">The Visible Infrared Imaging Radiometer Suite (VIIRS) instrument collects visible and infrared imagery and global observations of land, atmosphere, cryosphere and oceans. VIIRS features daily multi-band imaging capabilities to support the acquisition of high-resolution atmospheric imagery and other instrument products, including visible and infrared imaging of hurricanes and detection of fires, smoke and atmospheric aerosols. </skos:definition>
     <dc:source rdf:resource="https://www.jpss.noaa.gov/viirs.html"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/viirs"/>
