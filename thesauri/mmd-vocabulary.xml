@@ -116,6 +116,43 @@
 
   </skos:Collection>
 
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Spatial_Representation">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Spatial Representation</skos:prefLabel>
+    <skos:definition xml:lang="en">The method used to spatially represent geographic information.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Spatial_Representation/vector">
+        <skos:prefLabel xml:lang="en">vector</skos:prefLabel>
+        <skos:definition xml:lang="en">Vector data is used to represent geographic data.</skos:definition>
+        <skos:exactMatch rdf:resource="http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Spatial_Representation/grid">
+        <skos:prefLabel xml:lang="en">grid</skos:prefLabel>
+        <skos:definition xml:lang="en">Grid data is used to represent geographic data.</skos:definition>
+        <skos:exactMatch rdf:resource="http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/grid"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Spatial_Representation/point">
+        <skos:prefLabel xml:lang="en">point</skos:prefLabel>
+        <skos:definition xml:lang="en">A single data point (having no implied coordinate relationship to other points)</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Spatial_Representation/trajectory">
+        <skos:prefLabel xml:lang="en">trajectory</skos:prefLabel>
+        <skos:definition xml:lang="en">A series of data points along a path through space with monotonically increasing times</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
+
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Use_Constraint">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>

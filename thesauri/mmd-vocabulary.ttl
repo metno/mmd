@@ -91,6 +91,35 @@
   skos:prefLabel "None"@en ;
   skos:definition "This tag should be used to provide keywords that do not belong to a controlled vocabulary."@en .
 
+<https://vocab.met.no/mmd/Spatial_Representation>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:prefLabel "Spatial Representation"@en ;
+  skos:definition "The method used to spatially represent geographic information."@en ;
+  skos:member <https://vocab.met.no/mmd/Spatial_Representation/vector>, <https://vocab.met.no/mmd/Spatial_Representation/grid>, <https://vocab.met.no/mmd/Spatial_Representation/point>, <https://vocab.met.no/mmd/Spatial_Representation/trajectory> .
+
+<https://vocab.met.no/mmd/Spatial_Representation/vector>
+  a skos:Concept ;
+  skos:prefLabel "vector"@en ;
+  skos:exactMatch <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+  skos:definition "Vector data is used to represent geographic data."@en .
+
+<https://vocab.met.no/mmd/Spatial_Representation/grid>
+  a skos:Concept ;
+  skos:prefLabel "grid"@en ;
+  skos:exactMatch <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/grid> ;
+  skos:definition "Grid data is used to represent geographic data."@en .
+
+<https://vocab.met.no/mmd/Spatial_Representation/point>
+  a skos:Concept ;
+  skos:prefLabel "point"@en ;
+  skos:definition "A single data point (having no implied coordinate relationship to other points)"@en .
+
+<https://vocab.met.no/mmd/Spatial_Representation/trajectory>
+  a skos:Concept ;
+  skos:prefLabel "trajectory"@en ;
+  skos:definition "A series of data points along a path through space with monotonically increasing times"@en .
+
 <https://vocab.met.no/mmd/Use_Constraint>
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 

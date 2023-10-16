@@ -207,15 +207,17 @@
 		    <!--use_constraints (M) multiplicity [1..*] -->
                     <xsl:apply-templates select="mmd:use_constraint" />
 
-		    <xsl:element name="gmd:spatialRepresentationType">
-		        <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
-			    <xsl:attribute name="codeList">http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
-			    <xsl:attribute name="codeListValue">
-                                <xsl:value-of select="mmd:spatial_representation" />
-			    </xsl:attribute>
-                                <xsl:value-of select="mmd:spatial_representation" />
+		    <xsl:if test="mmd:spatial_representation = 'grid' or mmd:spatial_representation = 'vector'">
+		        <xsl:element name="gmd:spatialRepresentationType">
+		            <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
+		                <xsl:attribute name="codeList">http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
+		                <xsl:attribute name="codeListValue">
+                                    <xsl:value-of select="mmd:spatial_representation" />
+		                </xsl:attribute>
+                                    <xsl:value-of select="mmd:spatial_representation" />
+		            </xsl:element>
 		        </xsl:element>
-		    </xsl:element>
+		    </xsl:if>
 
 		    <xsl:element name="gmd:language">
 		        <xsl:element name="gmd:LanguageCode">
@@ -824,9 +826,18 @@
                 <xsl:element name="gmd:date">
                     <xsl:choose>
                         <xsl:when test=". !='' ">
-                            <xsl:element name="gco:Date">
-                                <xsl:value-of select="." />
-                            </xsl:element>
+			    <xsl:choose>
+			        <xsl:when test="contains(.,'T')">
+                                    <xsl:element name="gco:Date">
+                                        <xsl:value-of select="substring-before(.,'T')" />
+                                    </xsl:element>
+				</xsl:when>
+				<xsl:otherwise>
+                                    <xsl:element name="gco:Date">
+                                        <xsl:value-of select="." />
+                                    </xsl:element>
+			        </xsl:otherwise>
+			    </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
