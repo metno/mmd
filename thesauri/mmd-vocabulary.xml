@@ -914,7 +914,7 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Platform</skos:prefLabel>
-    <skos:changeNote xml:lang="en">Added NOAA-21 in collection<skos:changeNote>
+    <skos:changeNote xml:lang="en">Added NOAA-21 in collection</skos:changeNote>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms"/>
     <skos:definition xml:lang="en">This describes the platform used to collect the data.</skos:definition>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-1A"/>
@@ -1385,7 +1385,7 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Operational_Status/Scientific">
         <skos:prefLabel xml:lang="en">Scientific</skos:prefLabel>
-        <skos:definition xml:lang="en">This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective. 
+        <skos:definition xml:lang="en">This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective.
         </skos:definition>
       </skos:Concept>
     </skos:member>
