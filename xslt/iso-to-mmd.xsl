@@ -6,7 +6,8 @@
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:gmi="http://www.isotc211.org/2005/gmi"
-    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:gml32="http://www.opengis.net/gml/3.2"
+    xmlns:gml="http://www.opengis.net/gml"
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:srv="http://www.isotc211.org/2005/srv"
@@ -170,10 +171,10 @@
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent">    
         <xsl:element name="mmd:temporal_extent">        
             <xsl:element name="mmd:start_date">
-                <xsl:value-of select="gml:TimePeriod/gml:beginPosition" />
+                <xsl:value-of select="gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition" />
             </xsl:element>
             <xsl:element name="mmd:end_date">
-                <xsl:value-of select="gml:TimePeriod/gml:endPosition" />
+                <xsl:value-of select="gml:TimePeriod/gml:endPosition | gml32:TimePeriod/gml32:endPosition" />
             </xsl:element>
         </xsl:element>    
     </xsl:template>
@@ -197,7 +198,7 @@
     
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon">
         <xsl:element name="mmd:polygon">
-            <xsl:copy-of select="gml:Polygon" />                
+            <xsl:copy-of select="gml:Polygon | gml32:Polygon" />
         </xsl:element>
     </xsl:template>
     
