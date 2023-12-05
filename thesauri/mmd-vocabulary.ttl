@@ -139,7 +139,7 @@
   a skos:Concept ;
   skos:prefLabel "CC-BY-3.0"@en ;
   skos:altLabel "Creative Commons Attribution 3.0 Unported"@en ;
-  skos:exactMatch <https://spdx.org/licenses/CC-BY-3.0>, <https://creativecommons.org/licenses/by/3.0/rdf>, <https://creativecommons.org/licenses/by/3.0/> ;
+  skos:exactMatch <http://spdx.org/licenses/CC-BY-3.0>, <https://creativecommons.org/licenses/by/3.0/rdf>, <https://creativecommons.org/licenses/by/3.0/> ;
   skos:definition "This is an old version of the CC-BY-4.0 license. It is strongly recommend the use of the CC-BY-4.0 license instead."@en .
 
 <https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>
