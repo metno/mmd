@@ -1031,6 +1031,7 @@
 
     <!--Mapping to https://register.geonorge.no/metadata-kodelister/lisenser-->
     <mapping:use_constraint geon="Creative Commons 0" mmd="CC0-1.0" />    
+    <mapping:use_constraint geon="Creative Commons BY 3.0 (CC BY 3.0)" mmd="CC-BY-3.0" />
     <mapping:use_constraint geon="Creative Commons BY 4.0 (CC BY 4.0)" mmd="CC-BY-4.0" />    
     <mapping:use_constraint geon="Creative Commons BY-NC 4.0 (CC BY-NC 4.0)" mmd="CC-BY-NC-4.0" />    
 </xsl:stylesheet>

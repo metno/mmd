@@ -155,6 +155,7 @@
     <xs:simpleType name="use_constraint_identifier_type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="CC0-1.0"></xs:enumeration>
+            <xs:enumeration value="CC-BY-3.0"></xs:enumeration>
             <xs:enumeration value="CC-BY-4.0"></xs:enumeration>
             <xs:enumeration value="CC-BY-SA-4.0"></xs:enumeration>
             <xs:enumeration value="CC-BY-NC-4.0"></xs:enumeration>
@@ -166,6 +167,7 @@
     <xs:simpleType name="use_constraint_resource_type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="http://spdx.org/licenses/CC0-1.0"></xs:enumeration>
+            <xs:enumeration value="http://spdx.org/licenses/CC-BY-3.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-4.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-SA-4.0"></xs:enumeration>
             <xs:enumeration value="http://spdx.org/licenses/CC-BY-NC-4.0"></xs:enumeration>

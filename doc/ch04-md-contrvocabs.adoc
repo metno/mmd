@@ -199,6 +199,8 @@ externally.
 
 | CC0-1.0   | http://spdx.org/licenses/CC0-1.0 | Public domain. All rights for these data are waived. The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. This is relevant to release datasets into the public domain.
 
+| CC-BY-3.0 | http://spdx.org/licenses/CC-BY-3.0| Attribution alone. This is an old version of the CC-BY-4.0 license. It is strongly recommend the use of the CC-BY-4.0 license instead.
+
 | CC-BY-4.0 | http://spdx.org/licenses/CC-BY-4.0| Attribution alone. This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials. 
 
 | CC-BY-SA-4.0 | http://spdx.org/licenses/CC-BY-SA-4.0 | Attribution + ShareAlike. This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects. 
