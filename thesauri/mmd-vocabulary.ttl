@@ -124,8 +124,9 @@
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Use Constraint"@en ;
+  skos:changeNote "Added support for CC-BY-3.0"@en ;
   skos:definition "A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons."@en ;
-  skos:member <https://vocab.met.no/mmd/Use_Constraint/CC0-1.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0> .
+  skos:member <https://vocab.met.no/mmd/Use_Constraint/CC0-1.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-3.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0> .
 
 <https://vocab.met.no/mmd/Use_Constraint/CC0-1.0>
   a skos:Concept ;
@@ -133,6 +134,13 @@
   skos:altLabel "Creative Commons Zero v1.0 Universal"@en, "CC0 – Creative Commons"@en ;
   skos:exactMatch <https://creativecommons.org/share-your-work/public-domain/cc0/feed/rdf/>, <http://spdx.org/licenses/CC0-1.0>, <https://creativecommons.org/share-your-work/public-domain/cc0/> ;
   skos:definition "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law."@en .
+
+<https://vocab.met.no/mmd/Use_Constraint/CC-BY-3.0>
+  a skos:Concept ;
+  skos:prefLabel "CC-BY-3.0"@en ;
+  skos:altLabel "Creative Commons Attribution 3.0 Unported"@en ;
+  skos:exactMatch <http://spdx.org/licenses/CC-BY-3.0>, <https://creativecommons.org/licenses/by/3.0/rdf>, <https://creativecommons.org/licenses/by/3.0/> ;
+  skos:definition "This is an old version of the CC-BY-4.0 license. It is strongly recommend the use of the CC-BY-4.0 license instead."@en .
 
 <https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>
   a skos:Concept ;
