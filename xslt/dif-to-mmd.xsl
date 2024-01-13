@@ -578,6 +578,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                       <xsl:when test="dif:Role[contains(text(),'originator')]">
                           <xsl:text>Investigator</xsl:text>
                       </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'INVESTIGATOR')]">
+                          <xsl:text>Investigator</xsl:text>
+                      </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'Investigaror')]">
                           <xsl:text>Investigator</xsl:text>
                       </xsl:when>
