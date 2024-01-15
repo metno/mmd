@@ -699,17 +699,22 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     </xsl:element>
                 </xsl:if>
                 <xsl:if test="dif:Metadata_Last_Revision" >
-                    <xsl:element name="mmd:update">
-                        <xsl:element name="mmd:datetime">
-                            <xsl:value-of select="dif:Metadata_Last_Revision" />
+                    <xsl:variable name="datetimestr">
+                        <xsl:value-of select="dif:Metadata_Last_Revision" />
+                    </xsl:variable>
+                    <xsl:if test="string-length($datetimestr) = 8 and translate($datetimestr,'0123456789','') = ''">
+                        <xsl:element name="mmd:update">
+                            <xsl:element name="mmd:datetime">
+                                <xsl:value-of select="dif:Metadata_Last_Revision" />
+                            </xsl:element>
+                            <xsl:element name="mmd:type">
+                                <xsl:text>Major modification</xsl:text>
+                            </xsl:element>
+                            <xsl:element name="mmd:note">
+                                <xsl:text>Captured from DIF10 record</xsl:text>
+                            </xsl:element>
                         </xsl:element>
-                        <xsl:element name="mmd:type">
-                            <xsl:text>Major modification</xsl:text>
-                        </xsl:element>
-                        <xsl:element name="mmd:note">
-                            <xsl:text>Captured from DIF10 record</xsl:text>
-                        </xsl:element>
-                    </xsl:element>
+                    </xsl:if>
                 </xsl:if>
             </xsl:element>
         </xsl:template>
