@@ -699,17 +699,23 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     </xsl:element>
                 </xsl:if>
                 <xsl:if test="dif:Metadata_Last_Revision" >
-                    <xsl:element name="mmd:update">
-                        <xsl:element name="mmd:datetime">
-                            <xsl:value-of select="dif:Metadata_Last_Revision" />
+                    <xsl:variable name="datetimestr">
+                        <xsl:value-of select="dif:Metadata_Last_Revision" />
+                    </xsl:variable>
+		    <!--DIF 10 supports also a DateEnum vocabulary that is not datetime type-->
+                    <xsl:if test="$datetimestr != 'Not provided' and $datetimestr !='unknown' and $datetimestr !='present' and $datetimestr !='unbounded' and $datetimestr !='future' and translate($datetimestr, '1234567890', '') != $datetimestr">
+                        <xsl:element name="mmd:update">
+                            <xsl:element name="mmd:datetime">
+                                <xsl:value-of select="dif:Metadata_Last_Revision" />
+                            </xsl:element>
+                            <xsl:element name="mmd:type">
+                                <xsl:text>Major modification</xsl:text>
+                            </xsl:element>
+                            <xsl:element name="mmd:note">
+                                <xsl:text>Captured from DIF10 record</xsl:text>
+                            </xsl:element>
                         </xsl:element>
-                        <xsl:element name="mmd:type">
-                            <xsl:text>Major modification</xsl:text>
-                        </xsl:element>
-                        <xsl:element name="mmd:note">
-                            <xsl:text>Captured from DIF10 record</xsl:text>
-                        </xsl:element>
-                    </xsl:element>
+                    </xsl:if>
                 </xsl:if>
             </xsl:element>
         </xsl:template>
