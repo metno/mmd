@@ -702,7 +702,8 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     <xsl:variable name="datetimestr">
                         <xsl:value-of select="dif:Metadata_Last_Revision" />
                     </xsl:variable>
-                    <xsl:if test="string-length($datetimestr) = 8 and translate($datetimestr,'0123456789','') = ''">
+		    <!--DIF 10 supports also a DateEnum vocabulary that is not datetime type-->
+                    <xsl:if test="$datetimestr != 'Not provided' and $datetimestr !='unknown' and $datetimestr !='present' and $datetimestr !='unbounded' and $datetimestr !='future' and translate($datetimestr, '1234567890', '') != $datetimestr">
                         <xsl:element name="mmd:update">
                             <xsl:element name="mmd:datetime">
                                 <xsl:value-of select="dif:Metadata_Last_Revision" />
