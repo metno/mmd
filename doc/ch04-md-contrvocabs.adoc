@@ -64,6 +64,10 @@ data. This is primarily Sentinel datasets.
 
 |AeN |Datasets from the Arven etter Nansen Project.
 
+|TONE |Datasets from the Troll Observing Network in Antarctica.
+
+|NySMAC |Datasets from Ny-Ålesund in the context of NySMAC (Ny-Ålesund Science Managers Committee).
+
 |=======================================================================
 
 <<collection>>
