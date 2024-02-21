@@ -13,10 +13,13 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:date="http://exslt.org/dates-and-times"
+    xmlns:mapping="http://www.met.no/schema/mmd/dif2mmd"
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
     <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:altLabel"/>
     <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
+    <xsl:key name="accessc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Access_Constraint']/skos:member/skos:Concept/skos:altLabel" use="translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
     <!--
     <xsl:key name="isoc" match="Concept" use="altLabel"/>
 -->
@@ -31,8 +34,8 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             <xsl:element name="mmd:metadata_status">Active</xsl:element>
 	    <xsl:element name="mmd:dataset_production_status">
 		<xsl:choose>
-		    <xsl:when test="dif:Data_Set_Progress">
-                        <xsl:apply-templates select="dif:Data_Set_Progress" />
+		    <xsl:when test="dif:Data_Set_Progress|dif:Dataset_Progress">
+                        <xsl:apply-templates select="dif:Data_Set_Progress|dif:Dataset_Progress" />
 		    </xsl:when>
 		    <xsl:otherwise>
 			<xsl:text>Not available</xsl:text>
@@ -40,7 +43,32 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
 		</xsl:choose>
 	    </xsl:element>
             <xsl:element name="mmd:collection">ADC</xsl:element>
-            <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
+	    <!--Set a default last_metadata_updates if no information provided in dif9-->
+	    <xsl:if test="not(dif:Metadata_Dates)">
+	    <xsl:choose>
+	        <xsl:when test="dif:DIF_Creation_Date !='' or dif:Last_DIF_Revision_Date !=''">
+	            <xsl:element name="mmd:last_metadata_update">
+                        <xsl:apply-templates select="dif:DIF_Creation_Date" />
+                        <xsl:apply-templates select="dif:Last_DIF_Revision_Date" />
+	            </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+	            <xsl:element name="mmd:last_metadata_update">
+                        <xsl:element name="mmd:update">
+                            <xsl:element name="mmd:datetime">
+                                <xsl:value-of select="concat(substring(date:date-time(),1,19),'Z')" />
+                            </xsl:element>
+                            <xsl:element name="mmd:type">
+                                <xsl:text>Minor modification</xsl:text>
+                            </xsl:element>
+                            <xsl:element name="mmd:note">
+                                <xsl:text>Made by transformation from DIF9 record, type is hardcoded.</xsl:text>
+                            </xsl:element>
+                        </xsl:element>
+	            </xsl:element>
+                </xsl:otherwise>
+	    </xsl:choose>
+            </xsl:if>
             <xsl:apply-templates select="dif:Metadata_Dates" />
             <xsl:apply-templates select="dif:Temporal_Coverage" />
             <xsl:choose>
@@ -57,16 +85,19 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                 <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
                 <xsl:apply-templates select="dif:Parameters|dif:Science_Keywords" />
             </xsl:element>
+	    <xsl:if test="dif:Keyword|dif:Ancillary_Keyword">
             <xsl:element name="mmd:keywords">
                 <xsl:attribute name="vocabulary">None</xsl:attribute>
-                <xsl:apply-templates select="dif:Keyword" />
+                <xsl:apply-templates select="dif:Keyword|dif:Ancillary_Keyword" />
             </xsl:element>
+            </xsl:if>
             <xsl:apply-templates select="dif:Project" />
             <xsl:apply-templates select="dif:Spatial_Coverage" />
             <xsl:apply-templates select="dif:Access_Constraints" />
+	    <xsl:apply-templates select="dif:Data_Set_Language|dif:Dataset_Language"/>
             <xsl:apply-templates select="dif:Related_URL" />
             <xsl:apply-templates select="dif:Personnel" />
-            <xsl:apply-templates select="dif:Data_Set_Citation" />
+            <xsl:apply-templates select="dif:Data_Set_Citation|dif:Dataset_Citation" />
             <xsl:apply-templates select="dif:Data_Center" />
             <xsl:apply-templates select="dif:Organization" />
             <!--xsl:apply-templates select="dif:Originating_Center" /-->
@@ -108,7 +139,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
   </xsl:template>
 
 
-  <xsl:template match="dif:Data_Set_Citation">
+  <xsl:template match="dif:Data_Set_Citation|dif:Dataset_Citation">
       <xsl:element name="mmd:dataset_citation">
           <xsl:element name="mmd:author">
               <xsl:value-of select="dif:Dataset_Creator" />
@@ -132,7 +163,12 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
               <xsl:value-of select="dif:Version" />
           </xsl:element>
           <xsl:element name="mmd:doi">
-              <xsl:value-of select="dif:Dataset_DOI" />
+	      <xsl:if test="dif:Dataset_DOI">
+		 <xsl:value-of select="dif:Dataset_DOI" />
+	      </xsl:if>
+	      <xsl:if test="dif:Persistent_Identifier/dif:Type = 'DOI'">
+                 <xsl:value-of select="dif:Persistent_Identifier/dif:Identifier" />
+	      </xsl:if>
           </xsl:element>
           <xsl:element name="mmd:url">
                   <xsl:value-of select="dif:Online_Resource" />
@@ -168,18 +204,27 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
   </xsl:template>
 
   <xsl:template match="dif:ISO_Topic_Category">
-      <xsl:variable name="isov" select="." />
+      <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+      <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+      <xsl:variable name="isov" select="normalize-space(translate(.,$lowercase,$uppercase))" />
       <xsl:for-each select="$isoLUD">
           <xsl:value-of select ="name()" />
           <xsl:variable name="isoe" select="key('isoc',$isov)/skos:prefLabel"/>
 	  <xsl:element name="mmd:iso_topic_category">
-              <xsl:value-of select="$isoe"/>
+	      <xsl:choose>
+		  <xsl:when test="$isoe != ''">
+                      <xsl:value-of select="$isoe"/>
+	          </xsl:when>
+		  <xsl:otherwise>
+		      <xsl:text>Not available</xsl:text>
+	          </xsl:otherwise>
+	      </xsl:choose>
 	  </xsl:element>
       </xsl:for-each>
   </xsl:template>
 
 
-  <xsl:template match="dif:Keyword">
+  <xsl:template match="dif:Keyword|dif:Ancillary_Keyword">
       <!--
       <xsl:element name="mmd:keywords">
       <xsl:attribute name="vocabulary">None</xsl:attribute>
@@ -192,51 +237,76 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
       -->
   </xsl:template>
 
-  <xsl:template match="dif:Data_Set_Progress">
-      <xsl:value-of select="." />
+  <xsl:template match="dif:Data_Set_Progress|dif:Dataset_Progress">
+      <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+      <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+      <xsl:variable name="dif_status" select="normalize-space(translate(.,$lowercase, $uppercase))" />
+      <xsl:variable name="mmd_status_mapping" select="document('')/*/mapping:dataset_status[@dif=$dif_status]/@mmd" />
+      <xsl:choose>
+	 <xsl:when test="$mmd_status_mapping != ''">
+            <xsl:value-of select="$mmd_status_mapping" />
+         </xsl:when>
+	 <xsl:otherwise>
+            <xsl:text>Not available</xsl:text>
+	 </xsl:otherwise>
+      </xsl:choose>
   </xsl:template>
 
   <xsl:template match="dif:Temporal_Coverage">
-      <xsl:element name="mmd:temporal_extent">
-          <xsl:element name="mmd:start_date">
-              <xsl:choose>
-                  <xsl:when test="dif:Periodic_DateTime">
-                      <xsl:call-template name="formatdate">
-                          <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:Start_Date" />
-                      </xsl:call-template>
-                  </xsl:when>
-                  <xsl:when test="dif:Range_DateTime">
-                      <xsl:call-template name="formatdate">
-                          <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Beginning_Date_Time" />
-                      </xsl:call-template>
-                  </xsl:when>
-                  <xsl:otherwise>
-                      <xsl:call-template name="formatdate">
-                          <xsl:with-param name="datestr" select="dif:Start_Date" />
-                      </xsl:call-template>
-                  </xsl:otherwise>
-              </xsl:choose>
+      <xsl:if test="not(dif:Paleo_DateTime)">
+          <xsl:element name="mmd:temporal_extent">
+              <xsl:element name="mmd:start_date">
+                  <xsl:choose>
+                      <xsl:when test="dif:Periodic_DateTime">
+                          <xsl:call-template name="formatdate">
+                              <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:Start_Date" />
+                          </xsl:call-template>
+                      </xsl:when>
+                      <xsl:when test="dif:Range_DateTime">
+                          <xsl:call-template name="formatdate">
+                              <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Beginning_Date_Time" />
+                          </xsl:call-template>
+                      </xsl:when>
+                      <xsl:when test="dif:Single_DateTime">
+                          <xsl:call-template name="formatdate">
+                              <xsl:with-param name="datestr" select="dif:Single_DateTime" />
+                          </xsl:call-template>
+                      </xsl:when>
+                      <xsl:otherwise>
+                          <xsl:call-template name="formatdate">
+                              <xsl:with-param name="datestr" select="dif:Start_Date" />
+                          </xsl:call-template>
+                      </xsl:otherwise>
+                  </xsl:choose>
+              </xsl:element>
+              <xsl:if test="dif:Periodic_DateTime/dif:End_Date !='' or dif:Range_DateTime/dif:Ending_Date_Time !='' or dif:Stop_Date !='' or dif:Single_DateTime">
+                  <xsl:element name="mmd:end_date">
+                      <xsl:choose>
+                          <xsl:when test="dif:Periodic_DateTime">
+                              <xsl:call-template name="formatdate">
+                                  <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:End_Date" />
+                              </xsl:call-template>
+                          </xsl:when>
+                          <xsl:when test="dif:Range_DateTime">
+                              <xsl:call-template name="formatdate">
+                                  <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Ending_Date_Time" />
+                              </xsl:call-template>
+                          </xsl:when>
+                          <xsl:when test="dif:Single_DateTime">
+                              <xsl:call-template name="formatdate">
+                                  <xsl:with-param name="datestr" select="dif:Single_DateTime" />
+                              </xsl:call-template>
+                          </xsl:when>
+                          <xsl:otherwise>
+                              <xsl:call-template name="formatdate">
+                                  <xsl:with-param name="datestr" select="dif:Stop_Date" />
+                              </xsl:call-template>
+                          </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:element>
+              </xsl:if>
           </xsl:element>
-          <xsl:element name="mmd:end_date">
-              <xsl:choose>
-                  <xsl:when test="dif:Periodic_DateTime">
-                      <xsl:call-template name="formatdate">
-                          <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:End_Date" />
-                      </xsl:call-template>
-                  </xsl:when>
-                  <xsl:when test="dif:Range_DateTime">
-                      <xsl:call-template name="formatdate">
-                          <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Ending_Date_Time" />
-                      </xsl:call-template>
-                  </xsl:when>
-                  <xsl:otherwise>
-                      <xsl:call-template name="formatdate">
-                          <xsl:with-param name="datestr" select="dif:Stop_Date" />
-                      </xsl:call-template>
-                  </xsl:otherwise>
-              </xsl:choose>
-          </xsl:element>
-      </xsl:element>
+      </xsl:if>
   </xsl:template>
 
 
@@ -272,7 +342,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                   </xsl:element>
               </xsl:element>
           </xsl:when>
-          <xsl:when test="dif:Geometry/dif:Polygon/dif:Boundary/dif:Point">
+          <xsl:when test="dif:Geometry/dif:Polygon/dif:Boundary/dif:Point or dif:Geometry/dif:Point">
           <!-- For the time being and based on the current search model for MMD, Points are translated into a bounding box. Øystein Godøy, METNO/FOU, 2023-04-27 -->
           <!-- XSLT 2 version, but doesn't help us in python...
               <xsl:element name="mmd:rectangle">
@@ -372,10 +442,29 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                 </xsl:element>
             </xsl:element>
         </xsl:template>
+
         <xsl:template match="dif:Access_Constraints">
-            <xsl:element name="mmd:access_constraint">
-                <xsl:value-of select="." />
-            </xsl:element>
+            <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+            <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+            <xsl:variable name="difaccess" select="translate(., $uppercase, $lowercase)"/>
+	    <xsl:for-each select="$isoLUD" >
+		<xsl:if test="key('accessc', $difaccess)">
+		    <xsl:variable name="prefaccess" select="key('accessc', $difaccess)/../skos:prefLabel"/>
+                    <xsl:element name="mmd:access_constraint">
+                        <xsl:value-of select="$prefaccess" />
+                    </xsl:element>
+		</xsl:if>
+	    </xsl:for-each>
+        </xsl:template>
+
+        <xsl:template match="dif:Data_Set_Language|dif:Dataset_Language">
+           <xsl:variable name="dif_language" select="normalize-space(.)" />
+           <xsl:variable name="mmd_language_mapping" select="document('')/*/mapping:language[@dif=$dif_language]/@mmd" />
+           <xsl:if test="$mmd_language_mapping != ''">
+              <xsl:element name="mmd:dataset_language">
+                 <xsl:value-of select="$mmd_language_mapping" />
+              </xsl:element>
+           </xsl:if>
         </xsl:template>
 
         <xsl:template match="dif:Related_URL">
@@ -431,6 +520,21 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                             </xsl:element>
                         </xsl:when>
                     </xsl:choose>
+                </xsl:when>
+		<xsl:when test="dif:URL_Content_Type/dif:Type = 'DATA SET LANDING PAGE' or dif:URL_Content_Type/dif:Type = 'VIEW DATASET LANDING PAGE'">
+		    <xsl:if test="../dif:Dataset_Citation/dif:Online_Resource = '' or ../dif:Data_Set_Citation/dif:Online_Resource = ''">
+		        <xsl:element name="mmd:related_information">
+		           <xsl:element name="mmd:type">
+                              <xsl:text>Dataset landing page</xsl:text>
+                           </xsl:element>
+		           <xsl:element name="mmd:description">
+                              <xsl:text>Dataset landing page</xsl:text>
+                           </xsl:element>
+		           <xsl:element name="mmd:resource">
+		              <xsl:value-of select="dif:URL" />
+                           </xsl:element>
+                        </xsl:element>
+                    </xsl:if>
                 </xsl:when>
             </xsl:choose>
         </xsl:template>
@@ -519,12 +623,22 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                         <xsl:text>Data center contact</xsl:text>
                     </xsl:element>
                     <xsl:element name="mmd:name">
-                        <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:First_Name"/>
-                        <xsl:text> </xsl:text>
-                        <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Last_Name"/>
+			<xsl:if test="dif:Personnel/dif:Contact_Person">
+                           <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:First_Name"/>
+                           <xsl:text> </xsl:text>
+                           <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Last_Name"/>
+		        </xsl:if>
+			<xsl:if test="dif:Personnel/dif:Contact_Group">
+                           <xsl:value-of select="dif:Personnel/dif:Contact_Group/dif:Name"/>
+		        </xsl:if>
                     </xsl:element>
                     <xsl:element name="mmd:email">
-                        <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Email"/>
+			<xsl:if test="dif:Personnel/dif:Contact_Person">
+                           <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Email"/>
+		        </xsl:if>
+			<xsl:if test="dif:Personnel/dif:Contact_Group">
+                           <xsl:value-of select="dif:Personnel/dif:Contact_Group/dif:Email"/>
+		        </xsl:if>
                     </xsl:element>
                     <!-- The validity of this translation depends slightly on the providers as the approaches seen are heterogeneous... Øystein Godøy, METNO/FOU, 2023-04-28 -->
                     <xsl:element name="mmd:organisation">
@@ -555,6 +669,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:element name="mmd:abstract">
+			<xsl:attribute name="xml:lang">en</xsl:attribute>
                         <xsl:value-of select="." />
                     </xsl:element>
                 </xsl:otherwise>
@@ -568,8 +683,14 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                       <xsl:when test="dif:Role[contains(text(),'DIF Author')]">
                           <xsl:text>Metadata author</xsl:text>
                       </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'METADATA AUTHOR')]">
+                          <xsl:text>Metadata author</xsl:text>
+                      </xsl:when>
                       <!-- Fix for NIPR data, as they are not following the standard. To be extracted and handled as lookup table or SKOS -->
                       <xsl:when test="dif:Role[contains(text(),'pointOfContact')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role = ''">
                           <xsl:text>Technical contact</xsl:text>
                       </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'principalInvestigator')]">
@@ -593,6 +714,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                       <xsl:when test="dif:Role[contains(text(),'publisher')]">
                           <xsl:text>Data center contact</xsl:text>
                       </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'TECHNICAL CONTACT')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'processor')]">
                           <xsl:text>Technical contact</xsl:text>
                       </xsl:when>
@@ -615,6 +739,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                           <xsl:text>Technical contact</xsl:text>
                       </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'Contributor')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'contributor')]">
                           <xsl:text>Technical contact</xsl:text>
                       </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'Station manager')]">
@@ -656,6 +783,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                             <xsl:text> </xsl:text>
                             <xsl:value-of select="dif:Contact_Person/dif:Last_Name"/>
                         </xsl:when>
+                        <xsl:when test="dif:Contact_Group">
+                            <xsl:value-of select="dif:Contact_Group/dif:Name"/>
+                        </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="dif:First_Name"/>
                             <xsl:text> </xsl:text>
@@ -667,6 +797,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     <xsl:choose>
                         <xsl:when test="dif:Contact_Person">
                             <xsl:value-of select="dif:Contact_Person/dif:Email"/>
+                        </xsl:when>
+                        <xsl:when test="dif:Contact_Group">
+                            <xsl:value-of select="dif:Contact_Group/dif:Email"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="dif:Email"/>
@@ -720,51 +853,50 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             </xsl:element>
         </xsl:template>
 
-        <xsl:template match="dif:Last_DIF_Revision_Date">
-            <xsl:choose>
-                <xsl:when test="current()=''">
-                    <xsl:element name="mmd:last_metadata_update">
-                        <xsl:element name="mmd:update">
-                            <xsl:element name="mmd:datetime">
-                                <xsl:choose>
-                                    <xsl:when test="../dif:DIF_Creation_Date[contains(text(),'/')]">
-                                        <xsl:value-of select=                      "translate(../dif:DIF_Creation_Date, '/', '-')" />
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="../dif:DIF_Creation_Date" />
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                                <xsl:text>T00:00:00.001Z</xsl:text>
-                            </xsl:element>
-                            <xsl:element name="mmd:type">
-                                <xsl:text>Created</xsl:text>
-                            </xsl:element>
-                            <xsl:element name="mmd:note">
-                                <xsl:text>Made by transformation from DIF record</xsl:text>
-                            </xsl:element>
-                        </xsl:element>
+        <xsl:template match="dif:DIF_Creation_Date">
+	    <xsl:if test="current() !=''">
+                <xsl:element name="mmd:update">
+                    <xsl:element name="mmd:datetime">
+                        <xsl:choose>
+                            <xsl:when test="contains(.,'/')">
+                               <xsl:call-template name="formatdate">
+                                   <xsl:with-param name="datestr" select="translate(., '/', '-')" />
+                               </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                               <xsl:call-template name="formatdate">
+                                   <xsl:with-param name="datestr" select="." />
+                               </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:element name="mmd:last_metadata_update">
-                        <xsl:element name="mmd:update">
-                            <xsl:element name="mmd:datetime">
-                                <xsl:call-template name="formatdate">
-                                    <xsl:with-param name="datestr" select="." />
+                    <xsl:element name="mmd:type">
+                        <xsl:text>Created</xsl:text>
+                    </xsl:element>
+                    <xsl:element name="mmd:note">
+                        <xsl:text>Made by transformation from DIF record</xsl:text>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:if>
+        </xsl:template>
 
-                                </xsl:call-template>
-                                <!--xsl:text>T00:00:00.001Z</xsl:text-->
-                        </xsl:element>
-                        <xsl:element name="mmd:type">
-                            <xsl:text>Minor modification</xsl:text>
-                        </xsl:element>
-                        <xsl:element name="mmd:note">
-                            <xsl:text>Made by transformation from DIF record, type is hardcoded.</xsl:text>
-                            </xsl:element>
-                        </xsl:element>
+        <xsl:template match="dif:Last_DIF_Revision_Date">
+	    <xsl:if test="current() !=''">
+                <xsl:element name="mmd:update">
+                    <xsl:element name="mmd:datetime">
+                        <xsl:call-template name="formatdate">
+                            <xsl:with-param name="datestr" select="." />
+                        </xsl:call-template>
+                        <!--xsl:text>T00:00:00.001Z</xsl:text-->
                     </xsl:element>
-                </xsl:otherwise>
-            </xsl:choose>
+                    <xsl:element name="mmd:type">
+                        <xsl:text>Minor modification</xsl:text>
+                    </xsl:element>
+                    <xsl:element name="mmd:note">
+                        <xsl:text>Made by transformation from DIF record, type is hardcoded.</xsl:text>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:if>
         </xsl:template>
 
         <xsl:template match="dif:Parent_DIF">
@@ -899,5 +1031,21 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
+
+<!-- Mappings for dataset_production_status -->
+<mapping:dataset_status dif="COMPLETE" mmd="Complete" />
+<mapping:dataset_status dif="FINISHED" mmd="Complete" />
+<mapping:dataset_status dif="IN WORK" mmd="In Work" />
+<mapping:dataset_status dif="INWORK" mmd="In Work" />
+<mapping:dataset_status dif="PLANNED" mmd="Planned" />
+<mapping:dataset_status dif="NOT PROVIDED" mmd="Not available" />
+<mapping:dataset_status dif="NOT APPLICABLE" mmd="Not available" />
+
+<!-- Mappings for dataset_language -->
+<mapping:language dif="English" mmd="en" />
+<mapping:language dif="en" mmd="en" />
+<mapping:language dif="eng" mmd="en" />
+<mapping:language dif="Norwegian" mmd="no" />
+
 
 </xsl:stylesheet>
