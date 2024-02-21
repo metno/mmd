@@ -1414,6 +1414,7 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Collection Keywords</skos:prefLabel>
+    <skos:changeNote xml:lang="en">2024-02-21, Added Concept \"TONE\" and \"NySMAC\" in collection</skos:changeNote>
     <skos:definition xml:lang="en">The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/CC">
@@ -1582,6 +1583,22 @@
         <skos:prefLabel xml:lang="en">AeN</skos:prefLabel>
         <rdfs:seeAlso rdf:resource="https://arvenetternansen.com/"/>
         <skos:definition xml:lang="en">Datasets from the Arven etter Nansen Project.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/TONE">
+        <skos:prefLabel xml:lang="en">TONE</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://www.npolar.no/en/tone/"/>
+        <skos:definition xml:lang="en">Datasets from the Troll Observing Network in Antarctica.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/NySMAC">
+        <skos:prefLabel xml:lang="en">NySMAC</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="https://nyalesundresearch.no/nysmac/"/>
+        <skos:definition xml:lang="en">Datasets from Ny-Ålesund in the context of NySMAC (Ny-Ålesund Science Managers Committee).</skos:definition>
       </skos:Concept>
     </skos:member>
 

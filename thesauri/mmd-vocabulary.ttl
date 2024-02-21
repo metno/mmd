@@ -1071,8 +1071,9 @@
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Collection Keywords"@en ;
+  skos:changeNote "2024-02-21, Added Concept \"TONE\" and \"NySMAC\" in collection"@en ;
   skos:definition "The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository."@en ;
-  skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/NMAP>, <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>, <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>, <https://vocab.met.no/mmd/Collection_Keywords/NSDN>, <https://vocab.met.no/mmd/Collection_Keywords/DOKI>, <https://vocab.met.no/mmd/Collection_Keywords/DAM>, <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>, <https://vocab.met.no/mmd/Collection_Keywords/NBS>, <https://vocab.met.no/mmd/Collection_Keywords/APPL>, <https://vocab.met.no/mmd/Collection_Keywords/YOPP>, <https://vocab.met.no/mmd/Collection_Keywords/METNCS>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2022>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>, <https://vocab.met.no/mmd/Collection_Keywords/CVL>, <https://vocab.met.no/mmd/Collection_Keywords/AeN> .
+  skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/NMAP>, <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>, <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>, <https://vocab.met.no/mmd/Collection_Keywords/NSDN>, <https://vocab.met.no/mmd/Collection_Keywords/DOKI>, <https://vocab.met.no/mmd/Collection_Keywords/DAM>, <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>, <https://vocab.met.no/mmd/Collection_Keywords/NBS>, <https://vocab.met.no/mmd/Collection_Keywords/APPL>, <https://vocab.met.no/mmd/Collection_Keywords/YOPP>, <https://vocab.met.no/mmd/Collection_Keywords/METNCS>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2022>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>, <https://vocab.met.no/mmd/Collection_Keywords/CVL>, <https://vocab.met.no/mmd/Collection_Keywords/AeN>, <https://vocab.met.no/mmd/Collection_Keywords/TONE>, <https://vocab.met.no/mmd/Collection_Keywords/NySMAC> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/CC>
   a skos:Concept ;
@@ -1197,6 +1198,18 @@
   skos:prefLabel "AeN"@en ;
   rdfs:seeAlso <https://arvenetternansen.com/> ; 
   skos:definition "Datasets from the Arven etter Nansen Project."@en .
+
+<https://vocab.met.no/mmd/Collection_Keywords/TONE>
+  a skos:Concept ;
+  skos:prefLabel "TONE"@en ;
+  rdfs:seeAlso <https://www.npolar.no/en/tone/> ;
+  skos:definition "Datasets from the Troll Observing Network in Antarctica."@en .
+
+<https://vocab.met.no/mmd/Collection_Keywords/NySMAC>
+  a skos:Concept ;
+  skos:prefLabel "NySMAC"@en ;
+  rdfs:seeAlso <https://nyalesundresearch.no/nysmac/> ;
+  skos:definition "Datasets from Ny-Ålesund in the context of NySMAC (Ny-Ålesund Science Managers Committee)."@en .
 
 
 <https://vocab.met.no/mmd/Instrument_Modes>
