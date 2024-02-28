@@ -18,6 +18,14 @@ This is a draft implementation for MMD to WMO Core profile conversion.
     version="1.0">
 
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
+    <!--A stringparam path_to_parent_list pointing at an xml file containing the list of metadata_identifier of parent datasets can be passed to the current file. The file structure is:
+         <?xml version="1.0" encoding="utf-8"?>
+           <parent>
+              <id>64db6102-14ce-41e9-b93b-61dbb2cb8b4e</id>
+           </parent>
+    -->
+    <xsl:param name="path_to_parent_list" />
+    <xsl:key name="lookupKey" match="id" use="."/>
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="gmd:MD_Metadata">
@@ -31,16 +39,114 @@ This is a draft implementation for MMD to WMO Core profile conversion.
 		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng">English</gmd:LanguageCode>
             </gmd:language>
             <gmd:characterSet>
-		    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
+		    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCode">utf8</gmd:MD_CharacterSetCode>
             </gmd:characterSet>
-            <gmd:hierarchyLevel>
-		    <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
-            </gmd:hierarchyLevel>
+	    <!--provide parent identifier if existing-->
+	    <xsl:if test="mmd:related_dataset/@relation_type = 'parent'">
+		<gmd:parentIdentifier>
+		    <gco:CharacterString>
+                        <xsl:value-of select="mmd:related_dataset[@relation_type = 'parent']"/>
+		    </gco:CharacterString>
+		</gmd:parentIdentifier>
+            </xsl:if>
+
+	    <xsl:choose>
+	        <xsl:when test="$path_to_parent_list">
+                  <xsl:variable name="lookupDoc" select="document($path_to_parent_list)" />
+	          <xsl:variable name="dataKey" select="mmd:metadata_identifier"/>
+	          <xsl:for-each select="$lookupDoc" >
+	             <xsl:choose>
+	                <xsl:when test="key('lookupKey', $dataKey)">
+                           <gmd:hierarchyLevel>
+	                       <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="series">series</gmd:MD_ScopeCode>
+                           </gmd:hierarchyLevel>
+                           <gmd:hierarchyLevelName>
+                               <gco:CharacterString>collection</gco:CharacterString>
+                           </gmd:hierarchyLevelName>
+	                </xsl:when>
+	                <xsl:otherwise>
+                           <gmd:hierarchyLevel>
+	                       <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+                           </gmd:hierarchyLevel>
+	                </xsl:otherwise>
+	             </xsl:choose>
+                  </xsl:for-each>
+                </xsl:when>
+	        <xsl:otherwise>
+                   <gmd:hierarchyLevel>
+	               <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+                   </gmd:hierarchyLevel>
+	        </xsl:otherwise>
+	    </xsl:choose>
             
             <!--M party responsible for the metadata-->
-            <xsl:element name="gmd:contact">
-	        <xsl:apply-templates select="mmd:personnel[mmd:role = 'Metadata author']" />
-            </xsl:element>
+            <xsl:choose>
+                <xsl:when test="mmd:personnel[mmd:role = 'Metadata author']">
+	            <xsl:for-each select="mmd:personnel[mmd:role = 'Metadata author']">
+                        <xsl:element name="gmd:contact">
+                            <xsl:apply-templates select="." />
+                        </xsl:element>
+	            </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="gmd:contact">
+                        <xsl:element name="gmd:CI_ResponsibleParty">
+                            <xsl:element name="gmd:individualName">
+                                <xsl:element name="gco:CharacterString">
+                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:name" />
+                                </xsl:element>
+                            </xsl:element>
+                            <xsl:element name="gmd:organisationName">
+                                <xsl:element name="gco:CharacterString">
+                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:organisation" />
+                                </xsl:element>
+                            </xsl:element>
+                            <xsl:element name="gmd:contactInfo">
+                                <xsl:element name="gmd:CI_Contact">
+                                    <xsl:element name="gmd:address">
+                                        <xsl:element name="gmd:CI_Address">
+                                            <xsl:element name="gmd:deliveryPoint">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:address" />
+                                                </xsl:element>
+                                            </xsl:element>
+                                            <xsl:element name="gmd:city">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:city" />
+                                                </xsl:element>
+                                            </xsl:element>
+                                            <xsl:element name="gmd:postalCode">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:postal_code" />
+                                                </xsl:element>
+                                            </xsl:element>
+                                            <xsl:element name="gmd:country">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:country" />
+                                                </xsl:element>
+                                            </xsl:element>
+                                            <xsl:element name="gmd:electronicMailAddress">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:email" />
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                            <xsl:element name="gmd:role">
+                                <xsl:element name="gmd:CI_RoleCode">
+		                   <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
+                                   <xsl:attribute name="codeListValue">
+                                       <xsl:text>pointOfContact</xsl:text>
+                                   </xsl:attribute>
+                                   <xsl:text>pointOfContact</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
 
            <xsl:element name="gmd:dateStamp">
                <xsl:element name="gco:Date">
@@ -69,12 +175,24 @@ This is a draft implementation for MMD to WMO Core profile conversion.
                         <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="nor">Norwegian</gmd:LanguageCode>
                     </gmd:languageCode>
                     <gmd:characterEncoding>
-                        <gmd:MD_CharacterSetCode
-                            codeList="resources/Codelist/gmxcodelists.xml#MD_CharacterSetCode"
-                            codeListValue="utf8"/>
+			<gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
                     </gmd:characterEncoding>
                 </gmd:PT_Locale>
             </gmd:locale>            
+
+	   <xsl:element name="gmd:referenceSystemInfo">
+               <xsl:element name="gmd:MD_ReferenceSystem">
+                   <xsl:element name="gmd:referenceSystemIdentifier">
+                       <xsl:element name="gmd:RS_Identifier">
+                           <xsl:element name="gmd:code">
+			       <xsl:element name="gco:CharacterString">
+			           <xsl:value-of select="mmd:geographic_extent/mmd:rectangle/@srsName"/>
+                               </xsl:element>
+		           </xsl:element>
+		       </xsl:element>
+		  </xsl:element>
+              </xsl:element>
+            </xsl:element>
 
             <xsl:element name="gmd:identificationInfo">
                 <xsl:element name="gmd:MD_DataIdentification">
@@ -106,16 +224,35 @@ This is a draft implementation for MMD to WMO Core profile conversion.
                                     </xsl:element>
                                 </xsl:element>
                             </xsl:element>
+                            <xsl:element name="gmd:identifier">
+                                <xsl:element name="gmd:MD_Identifier">
+                                    <xsl:element name="gmd:code">
+                                        <xsl:element name="gco:CharacterString">
+                                            <xsl:value-of select="mmd:metadata_identifier" />
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
                         </xsl:element>
                     </xsl:element>        
 
 		    <!--abstract (M) multiplicity [1] -->
                     <xsl:apply-templates select="mmd:abstract[@xml:lang = 'en']" />
+
+		    <xsl:if test="mmd:dataset_production_status != 'Not available'">
+		        <xsl:apply-templates select="mmd:dataset_production_status" />
+	            </xsl:if>
+
+		    <xsl:for-each select="mmd:personnel[mmd:role != 'Metadata author']">
+                        <xsl:element name="gmd:pointOfContact">
+			    <xsl:apply-templates select="." />
+                        </xsl:element>
+		    </xsl:for-each>
 		    <!--keywords (M) multiplicity [1..*] and requirements 8.2.1, 8.2.2, 8.2.3, 9.1.1-->
                     <gmd:descriptiveKeywords>
                       <gmd:MD_Keywords>
                         <gmd:keyword>
-                          <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">GlobalExchange</gco:CharacterString>
+			  <gmx:Anchor xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="https://wis.wmo.int/2012/codelists/WMOCodeLists.xml#WMO_DistributionScopeCode_OriginatingCentre">OriginatingCentre</gmx:Anchor>
                         </gmd:keyword>
                         <gmd:type>
                           <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="dataCentre">dataCentre</gmd:MD_KeywordTypeCode>
@@ -202,9 +339,46 @@ This is a draft implementation for MMD to WMO Core profile conversion.
 		    <!--format-->
                     <xsl:apply-templates select="mmd:storage_information" />
 
+                    <xsl:element name="gmd:distributor">
+                        <xsl:apply-templates select="mmd:data_center" />
+                    </xsl:element>
+
                     <xsl:element name="gmd:transferOptions">
                         <xsl:element name="gmd:MD_DigitalTransferOptions">
                             <xsl:apply-templates select="mmd:data_access" />
+                            <xsl:element name="gmd:onLine">
+                               <xsl:element name="gmd:CI_OnlineResource">
+                                   <xsl:element name="gmd:linkage">
+                                       <xsl:element name="gmd:URL">
+                                           <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:resource" />
+                                       </xsl:element>
+                                   </xsl:element>
+                                   <xsl:element name="gmd:protocol">
+                                       <xsl:element name="gco:CharacterString">
+                                           <xsl:text>WWW:LINK-1.0-http--link</xsl:text>
+                                       </xsl:element>
+                                   </xsl:element>
+                                   <xsl:element name="gmd:name">
+                                       <xsl:element name="gco:CharacterString">
+                                           <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:type" />
+                                       </xsl:element>
+                                   </xsl:element>
+                                   <xsl:element name="gmd:description">
+                                       <xsl:element name="gco:CharacterString">
+                                           <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:description" />
+                                       </xsl:element>
+                                   </xsl:element>
+                                   <xsl:element name="gmd:function">
+                                       <xsl:element name="gmd:CI_OnLineFunctionCode">
+                                           <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode</xsl:attribute>
+                                           <xsl:attribute name="codeListValue">
+                                               <xsl:text>information</xsl:text>
+                                           </xsl:attribute>
+                                           <xsl:text>information</xsl:text>
+                                       </xsl:element>
+                                   </xsl:element>
+                               </xsl:element>
+                            </xsl:element>
                         </xsl:element>
 		    </xsl:element>
 
@@ -790,6 +964,12 @@ This is a draft implementation for MMD to WMO Core profile conversion.
     <xsl:template match="mmd:personnel">
     
         <xsl:element name="gmd:CI_ResponsibleParty">
+            <xsl:element name="gmd:individualName">
+                <xsl:element name="gco:CharacterString">
+                    <xsl:value-of select="mmd:name" />
+                </xsl:element>
+            </xsl:element>
+
             <xsl:element name="gmd:organisationName">
                 <xsl:element name="gco:CharacterString">
                     <xsl:value-of select="mmd:organisation" />
@@ -852,6 +1032,72 @@ This is a draft implementation for MMD to WMO Core profile conversion.
     
     </xsl:template>
 
+    <xsl:template match="mmd:dataset_production_status">
+        <xsl:element name="gmd:status">
+	    <xsl:element name="gmd:MD_ProgressCode">
+		    <xsl:attribute name="codeList">http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ProgressCode</xsl:attribute>
+                <xsl:variable name="mmd_status" select="normalize-space(.)" />
+                <xsl:variable name="mmd_status_mapping" select="document('')/*/mapping:dataset_status[@mmd=$mmd_status]/@iso" />
+                <xsl:attribute name="codeListValue">
+                    <xsl:value-of select="$mmd_status_mapping" />
+                </xsl:attribute>
+                <xsl:value-of select="$mmd_status_mapping" />
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="mmd:data_center">
+        <xsl:element name="gmd:MD_Distributor">
+           <xsl:element name="gmd:distributorContact">
+              <xsl:element name="gmd:CI_ResponsibleParty">
+                 <xsl:element name="gmd:organisationName">
+                    <xsl:element name="gco:CharacterString">
+                       <xsl:choose>
+                          <xsl:when test="mmd:data_center_name/mmd:long_name != ''">
+                              <xsl:value-of select="concat(mmd:data_center_name/mmd:short_name, ' &gt; ', mmd:data_center_name/mmd:long_name)" />
+                          </xsl:when>
+                          <xsl:otherwise>
+                              <xsl:value-of select="mmd:data_center_name/mmd:short_name" />
+                          </xsl:otherwise>
+                       </xsl:choose>
+                    </xsl:element>
+                 </xsl:element>
+                 <xsl:element name="gmd:contactInfo">
+                    <xsl:element name="gmd:CI_Contact">
+                      <xsl:element name="gmd:address">
+                          <xsl:element name="gmd:CI_Address">
+                              <xsl:element name="gmd:electronicMailAddress">
+                                  <xsl:element name="gco:CharacterString">
+                                          <xsl:value-of select="../mmd:personnel[mmd:role = 'Data center contact']/mmd:email" />
+                                  </xsl:element>
+                              </xsl:element>
+                          </xsl:element>
+                      </xsl:element>
+                       <xsl:element name="gmd:onlineResource">
+                          <xsl:element name="gmd:CI_OnlineResource">
+                             <xsl:element name="gmd:linkage">
+                                <xsl:element name="gmd:URL">
+                                   <xsl:value-of select="mmd:data_center_url" />
+                                </xsl:element>
+                             </xsl:element>
+                          </xsl:element>
+                       </xsl:element>
+                    </xsl:element>
+                 </xsl:element>
+                 <xsl:element name="gmd:role">
+                     <xsl:element name="gmd:CI_RoleCode">
+                         <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
+                             <xsl:attribute name="codeListValue">
+                                 <xsl:text>distributor</xsl:text>
+                             </xsl:attribute>
+                         <xsl:text>distributor</xsl:text>
+                     </xsl:element>
+                 </xsl:element>
+              </xsl:element>
+           </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
     <!-- Mappings for data_access type specification to OSGEO  -->
     <mapping:data_access_type_osgeo iso="OGC:WMS" mmd="OGC WMS" />    
     <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS" />    
@@ -861,5 +1107,11 @@ This is a draft implementation for MMD to WMO Core profile conversion.
     <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
 
     <mapping:language_code iso="eng" mmd="en" />    
+
+    <!-- Mappings for dataset_production_status -->
+    <mapping:dataset_status iso="completed" mmd="Complete" />
+    <mapping:dataset_status iso="obsolete" mmd="Obsolete" />
+    <mapping:dataset_status iso="onGoing" mmd="In Work" />
+    <mapping:dataset_status iso="planned" mmd="Planned" />
 
 </xsl:stylesheet>

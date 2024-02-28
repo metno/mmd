@@ -4,7 +4,12 @@
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" 
     xmlns:mmd="http://www.met.no/schema/mmd"
     xmlns:mapping="http://www.met.no/schema/mmd/mmd2dif"      
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.0">
+
+        <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:prefLabel"/>
+        <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
 	<xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
 	<xsl:template match="/mmd:mmd">
@@ -50,6 +55,7 @@
 			<xsl:apply-templates select="mmd:abstract" />
                         <xsl:apply-templates select="mmd:related_information"/>
 			<xsl:apply-templates select="mmd:data_access" />
+			<xsl:apply-templates select="mmd:related_dataset" />
 			<xsl:apply-templates select="mmd:quality" />
 
 			<xsl:element name="dif:Metadata_Name">CEOS IDN DIF</xsl:element>
@@ -79,6 +85,14 @@
 		            <xsl:value-of select="." />
 			</xsl:element>
 		        <xsl:element name="dif:Purpose" />
+		    </xsl:element>
+	        </xsl:if>
+	</xsl:template>
+
+	<xsl:template match="mmd:related_dataset">
+		<xsl:if test="@relation_type = 'parent' and . !=''">
+		    <xsl:element name="dif:Parent_DIF">
+		        <xsl:value-of select="." />
 		    </xsl:element>
 	        </xsl:if>
 	</xsl:template>
@@ -419,9 +433,14 @@
 	</xsl:template>
 
 	<xsl:template match="mmd:iso_topic_category">
+            <xsl:variable name="isov" select="." />
+            <xsl:for-each select="$isoLUD">
+                <xsl:value-of select ="name()" />
+                <xsl:variable name="isoe" select="key('isoc',$isov)/skos:altLabel"/>
 		<xsl:element name="dif:ISO_Topic_Category">
-			<xsl:value-of select="." />
+		    <xsl:value-of select="$isoe" />
 		</xsl:element>
+            </xsl:for-each>
 	</xsl:template>
 
 	<xsl:template match="mmd:keywords">
@@ -497,9 +516,11 @@
         </xsl:template>
 
         <xsl:template match="mmd:personnel">
+	    <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+	    <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
             <xsl:element name="dif:Personnel">
                 <xsl:element name="dif:Role">
-                    <xsl:value-of select="mmd:role" />
+                    <xsl:value-of select="translate(mmd:role,$lowercase,$uppercase)" />
                 </xsl:element>
                 <!--
                 <xsl:element name="dif:First_Name">
@@ -556,7 +577,7 @@
                     <xsl:element name="dif:Related_URL">
                         <xsl:element name="dif:URL_Content_Type">
                             <xsl:element name="dif:Type">
-                                <xsl:text>VIEW DATASET LANDING PAGE</xsl:text>
+                                <xsl:text>VIEW DATA SET LANDING PAGE</xsl:text>
                             </xsl:element>
                         </xsl:element>
                         <xsl:element name="dif:URL">
