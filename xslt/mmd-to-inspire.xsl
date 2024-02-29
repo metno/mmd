@@ -13,6 +13,14 @@
     xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"      
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
+    <!--A stringparam path_to_parent_list pointing at an xml file containing the list of metadata_identifier of parent datasets can be passed to the current file. The file structure is:
+         <?xml version="1.0" encoding="utf-8"?>
+           <parent>
+              <id>64db6102-14ce-41e9-b93b-61dbb2cb8b4e</id>
+           </parent>
+    -->
+    <xsl:param name="path_to_parent_list" />
+    <xsl:key name="lookupKey" match="id" use="."/>
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="gmd:MD_Metadata">
@@ -29,85 +37,118 @@
             <gmd:characterSet>
 		    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode">utf8</gmd:MD_CharacterSetCode>
             </gmd:characterSet>
+	    <xsl:if test="mmd:related_dataset/@relation_type = 'parent'">
+		<gmd:parentIdentifier>
+		    <gco:CharacterString>
+                        <xsl:value-of select="mmd:related_dataset[@relation_type = 'parent']"/>
+		    </gco:CharacterString>
+		</gmd:parentIdentifier>
+            </xsl:if>
         
             <!--resource type is mandatory, multiplicity [1]-->
-            <gmd:hierarchyLevel>
-		    <gmd:MD_ScopeCode codeList="https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
-            </gmd:hierarchyLevel>
+	    <xsl:choose>
+	        <xsl:when test="$path_to_parent_list">
+                  <xsl:variable name="lookupDoc" select="document($path_to_parent_list)" />
+	          <xsl:variable name="dataKey" select="mmd:metadata_identifier"/>
+	          <xsl:for-each select="$lookupDoc" >
+	             <xsl:choose>
+	                <xsl:when test="key('lookupKey', $dataKey)">
+                           <gmd:hierarchyLevel>
+	                       <gmd:MD_ScopeCode codeList="https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="series">series</gmd:MD_ScopeCode>
+                           </gmd:hierarchyLevel>
+                           <gmd:hierarchyLevelName>
+                               <gco:CharacterString>collection</gco:CharacterString>
+                           </gmd:hierarchyLevelName>
+	                </xsl:when>
+	                <xsl:otherwise>
+                           <gmd:hierarchyLevel>
+	                       <gmd:MD_ScopeCode codeList="https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+                           </gmd:hierarchyLevel>
+	                </xsl:otherwise>
+	             </xsl:choose>
+                  </xsl:for-each>
+                </xsl:when>
+	        <xsl:otherwise>
+                   <gmd:hierarchyLevel>
+	               <gmd:MD_ScopeCode codeList="https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+                   </gmd:hierarchyLevel>
+	        </xsl:otherwise>
+	    </xsl:choose>
             
             <!--Party responsible for the metadata information (M) multiplicity [1..*] -->
-            <xsl:element name="gmd:contact">
-                <xsl:choose>
+            <xsl:choose>
                 <xsl:when test="mmd:personnel[mmd:role = 'Metadata author']">
-                    <xsl:apply-templates select="mmd:personnel[mmd:role = 'Metadata author']" />
+	            <xsl:for-each select="mmd:personnel[mmd:role = 'Metadata author']">
+                        <xsl:element name="gmd:contact">
+                            <xsl:apply-templates select="." />
+                        </xsl:element>
+	            </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:element name="gmd:CI_ResponsibleParty">
-                        <xsl:element name="gmd:individualName">
-                            <xsl:element name="gco:CharacterString">
-				<xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:name" />
+                    <xsl:element name="gmd:contact">
+                        <xsl:element name="gmd:CI_ResponsibleParty">
+                            <xsl:element name="gmd:individualName">
+                                <xsl:element name="gco:CharacterString">
+                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:name" />
+                                </xsl:element>
                             </xsl:element>
-                        </xsl:element>
-	                    
-                        <xsl:element name="gmd:organisationName">
-                            <xsl:element name="gco:CharacterString">
-                                <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:organisation" />
+                            <xsl:element name="gmd:organisationName">
+                                <xsl:element name="gco:CharacterString">
+                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:organisation" />
+                                </xsl:element>
                             </xsl:element>
-                        </xsl:element>            
-                        
-                        <xsl:element name="gmd:contactInfo">
-                            <xsl:element name="gmd:CI_Contact">
-                                <xsl:element name="gmd:address">
-                                    <xsl:element name="gmd:CI_Address">
-                                        <xsl:element name="gmd:deliveryPoint">
-                                            <xsl:element name="gco:CharacterString">
-                                                <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:address" />
+                            <xsl:element name="gmd:contactInfo">
+                                <xsl:element name="gmd:CI_Contact">
+                                    <xsl:element name="gmd:address">
+                                        <xsl:element name="gmd:CI_Address">
+                                            <xsl:element name="gmd:deliveryPoint">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:address" />
+                                                </xsl:element>
                                             </xsl:element>
-                                        </xsl:element>
-                                        <xsl:element name="gmd:city">
-                                            <xsl:element name="gco:CharacterString">
-                                                <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:city" />
+                                            <xsl:element name="gmd:city">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:city" />
+                                                </xsl:element>
                                             </xsl:element>
-                                        </xsl:element>
-                                        <xsl:element name="gmd:postalCode">
-                                            <xsl:element name="gco:CharacterString">
-                                                <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:postal_code" />
+                                            <xsl:element name="gmd:postalCode">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:postal_code" />
+                                                </xsl:element>
                                             </xsl:element>
-                                        </xsl:element>
-                                        <xsl:element name="gmd:country">
-                                            <xsl:element name="gco:CharacterString">
-                                                <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:country" />
+                                            <xsl:element name="gmd:country">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:contact_address/mmd:country" />
+                                                </xsl:element>
                                             </xsl:element>
-                                        </xsl:element>
-	                    	    <!--[1..*] (characterString)-->	
-                                        <xsl:element name="gmd:electronicMailAddress">
-                                            <xsl:element name="gco:CharacterString">
-                                                <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:email" />
+                                            <!--[1..*] (characterString)-->
+                                            <xsl:element name="gmd:electronicMailAddress">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:email" />
+                                                </xsl:element>
                                             </xsl:element>
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
                             </xsl:element>
-                        </xsl:element>
-
-                        <xsl:element name="gmd:role">
-                            <xsl:element name="gmd:CI_RoleCode">
-                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
-                                    <xsl:attribute name="codeListValue">
+                            <xsl:element name="gmd:role">
+                                <xsl:element name="gmd:CI_RoleCode">
+                                    <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">
+                                            <xsl:text>pointOfContact</xsl:text>
+                                        </xsl:attribute>
                                         <xsl:text>pointOfContact</xsl:text>
-                                    </xsl:attribute>
-                                    <xsl:text>pointOfContact</xsl:text>
+                                </xsl:element>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
                 </xsl:otherwise>
-                </xsl:choose>
-            </xsl:element>
+            </xsl:choose>
 
            <xsl:element name="gmd:dateStamp">
                <xsl:element name="gco:Date">
-	           <xsl:variable name="latest">
-		       <xsl:for-each select="mmd:last_metadata_update/mmd:update/mmd:datetime">
+                   <xsl:variable name="latest">
+                       <xsl:for-each select="mmd:last_metadata_update/mmd:update/mmd:datetime">
                            <xsl:sort select="." order="descending" />
                            <xsl:if test="position() = 1">
                                <xsl:value-of select="."/>
@@ -144,7 +185,7 @@
                        <xsl:element name="gmd:RS_Identifier">
                            <xsl:element name="gmd:code">
 			       <xsl:element name="gco:CharacterString">
-			           <xsl:value-of select="mmd:geographic_extent/mmd:rectangle/@srsName"/>
+			           <xsl:value-of select="concat('http://www.opengis.net/def/crs/EPSG/0/', substring-after(mmd:geographic_extent/mmd:rectangle/@srsName,'EPSG:'))"/>
                                </xsl:element>
 		           </xsl:element>
 		       </xsl:element>
@@ -186,7 +227,7 @@
                                     </xsl:element>
                                 </xsl:element>
                             </xsl:if>
-                           <xsl:if test="mmd:last_metadata_update/mmd:update/mmd:type ='Created' ">
+                            <xsl:if test="mmd:last_metadata_update/mmd:update/mmd:type ='Created' ">
                                  <xsl:element name="gmd:date">
                                      <xsl:element name="gmd:CI_Date">
                                          <xsl:element name="gmd:date">
@@ -204,22 +245,32 @@
                                      </xsl:element>
                                  </xsl:element>
                             </xsl:if>
-                           <xsl:if test="(not(mmd:dataset_citation/mmd:publication_date) or not(string(mmd:dataset_citation/mmd:publication_date))) and not(mmd:last_metadata_update/mmd:update/mmd:datetime[../mmd:type ='Created'])">
+                            <xsl:if test="not(mmd:last_metadata_update/mmd:update/mmd:type ='Created') and not(mmd:dataset_citation/mmd:publication_date !='')">
                                 <xsl:element name="gmd:date">
                                     <xsl:element name="gmd:CI_Date">
                                         <xsl:element name="gmd:date">
-                                           <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                            <xsl:element name="gco:Date">
+                                                <xsl:variable name="latest">
+                                                    <xsl:for-each select="mmd:last_metadata_update/mmd:update/mmd:datetime">
+                                                        <xsl:sort select="." order="descending" />
+                                                        <xsl:if test="position() = 1">
+                                                            <xsl:value-of select="."/>
+                                                        </xsl:if>
+                                                    </xsl:for-each>
+                                                </xsl:variable>
+                                                <xsl:value-of select="substring-before($latest,'T')"/>
+                                            </xsl:element>
                                         </xsl:element>
                                         <xsl:element name="gmd:dateType">
                                             <xsl:element name="gmd:CI_DateTypeCode">
                                                 <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
-                                                <xsl:attribute name="codeListValue">publication</xsl:attribute>
-                                                <xsl:text>publication</xsl:text>
+                                                <xsl:attribute name="codeListValue">revision</xsl:attribute>
+                                                <xsl:text>revision</xsl:text>
                                             </xsl:element>
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                           </xsl:if>
+                            </xsl:if>
 			    
                         <!--xsl:apply-templates select="mmd:last_metadata_update" /-->
 			<!--it should be the DOI, or a URL. Identifier for now-->
@@ -431,9 +482,31 @@
  	                <xsl:element name="gmd:DQ_Scope">        
  	                    <xsl:element name="gmd:level">        
 				<xsl:element name="gmd:MD_ScopeCode"> 
-			            <xsl:attribute name="codeListValue">dataset</xsl:attribute>
-			            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
-				    <xsl:text>dataset</xsl:text>
+	                            <xsl:choose>
+	                                <xsl:when test="$path_to_parent_list">
+                                           <xsl:variable name="lookupDoc" select="document($path_to_parent_list)" />
+	                                   <xsl:variable name="dataKey" select="mmd:metadata_identifier"/>
+	                                   <xsl:for-each select="$lookupDoc" >
+	                                      <xsl:choose>
+	                                         <xsl:when test="key('lookupKey', $dataKey)">
+			                            <xsl:attribute name="codeListValue">series</xsl:attribute>
+			                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				                    <xsl:text>series</xsl:text>
+	                                         </xsl:when>
+	                                         <xsl:otherwise>
+			                            <xsl:attribute name="codeListValue">dataset</xsl:attribute>
+			                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				                    <xsl:text>dataset</xsl:text>
+	                                         </xsl:otherwise>
+	                                      </xsl:choose>
+                                           </xsl:for-each>
+				        </xsl:when>
+				        <xsl:otherwise>
+			                     <xsl:attribute name="codeListValue">dataset</xsl:attribute>
+			                     <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode</xsl:attribute>
+				             <xsl:text>dataset</xsl:text>
+				        </xsl:otherwise>
+				    </xsl:choose>
                                 </xsl:element>        
                             </xsl:element>        
                         </xsl:element>        
