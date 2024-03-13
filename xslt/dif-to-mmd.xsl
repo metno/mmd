@@ -179,7 +179,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                 </xsl:element>
                 -->
         </xsl:element>
-        <xsl:if test="dif:Online_Resource != ''">
+        <xsl:if test="dif:Online_Resource and dif:Online_Resource != ''">
             <xsl:element name="mmd:related_information">
                 <xsl:element name="mmd:type">Dataset landing page</xsl:element>
                 <xsl:element name="mmd:description">NA</xsl:element>
@@ -524,7 +524,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     </xsl:choose>
                 </xsl:when>
 		<xsl:when test="dif:URL_Content_Type/dif:Type = 'DATA SET LANDING PAGE' or dif:URL_Content_Type/dif:Type = 'VIEW DATA SET LANDING PAGE'">
-		    <xsl:if test="../dif:Dataset_Citation/dif:Online_Resource = '' or ../dif:Data_Set_Citation/dif:Online_Resource = ''">
+		    <xsl:if test="(not(../dif:Dataset_Citation/dif:Online_Resource) or ../dif:Dataset_Citation/dif:Online_Resource = '') and (not(../dif:Data_Set_Citation/dif:Online_Resource) or ../dif:Data_Set_Citation/dif:Online_Resource = '')">
 		        <xsl:element name="mmd:related_information">
 		           <xsl:element name="mmd:type">
                               <xsl:text>Dataset landing page</xsl:text>
