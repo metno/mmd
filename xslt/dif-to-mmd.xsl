@@ -20,6 +20,8 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
     <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:altLabel"/>
     <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
     <xsl:key name="accessc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Access_Constraint']/skos:member/skos:Concept/skos:altLabel" use="translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
+    <xsl:key name="usec" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:prefLabel"/>
+    <xsl:key name="useca" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:altLabel"/>
     <!--
     <xsl:key name="isoc" match="Concept" use="altLabel"/>
 -->
@@ -94,6 +96,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             <xsl:apply-templates select="dif:Project" />
             <xsl:apply-templates select="dif:Spatial_Coverage" />
             <xsl:apply-templates select="dif:Access_Constraints" />
+            <xsl:apply-templates select="dif:Use_Constraints" />
 	    <xsl:apply-templates select="dif:Data_Set_Language|dif:Dataset_Language"/>
             <xsl:apply-templates select="dif:Related_URL" />
             <xsl:apply-templates select="dif:Personnel" />
@@ -457,6 +460,47 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     </xsl:element>
 		</xsl:if>
 	    </xsl:for-each>
+        </xsl:template>
+
+        <xsl:template match="dif:Use_Constraints">
+            <xsl:variable name="difuse" select="."/>
+	    <xsl:if test="not(normalize-space($difuse)='')">
+	        <xsl:for-each select="$isoLUD" >
+	            <xsl:choose>
+                        <xsl:when test="key('usec', $difuse)">
+                            <xsl:variable name="prefuseid" select="key('usec', $difuse)/skos:prefLabel"/>
+                            <xsl:variable name="prefuseref" select="key('usec', $difuse)/skos:exactMatch/@rdf:resource[contains(.,'spdx')]"/>
+                            <xsl:element name="mmd:use_constraint">
+                                <xsl:element name="mmd:identifier">
+                                    <xsl:value-of select="$prefuseid" />
+                                </xsl:element>
+                                <xsl:element name="mmd:resource">
+                                    <xsl:value-of select="$prefuseref" />
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="key('useca', $difuse)">
+                            <xsl:variable name="prefuseid" select="key('useca', $difuse)/skos:prefLabel"/>
+                            <xsl:variable name="prefuseref" select="key('useca', $difuse)/skos:exactMatch/@rdf:resource[contains(.,'spdx')]"/>
+                            <xsl:element name="mmd:use_constraint">
+                                <xsl:element name="mmd:identifier">
+                                    <xsl:value-of select="$prefuseid" />
+                                </xsl:element>
+                                <xsl:element name="mmd:resource">
+                                    <xsl:value-of select="$prefuseref" />
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:element name="mmd:use_constraint">
+                                <xsl:element name="mmd:license_text">
+                                    <xsl:value-of select="$difuse" />
+                                </xsl:element>
+                            </xsl:element>
+	                </xsl:otherwise>
+	            </xsl:choose>
+	        </xsl:for-each>
+            </xsl:if>
         </xsl:template>
 
         <xsl:template match="dif:Data_Set_Language|dif:Dataset_Language">

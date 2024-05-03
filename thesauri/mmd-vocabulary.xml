@@ -158,15 +158,15 @@
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Use Constraint</skos:prefLabel>
     <skos:changeNote xml:lang="en">Added support for CC-BY-3.0</skos:changeNote>
+    <skos:changeNote xml:lang="en">Added more altLabel</skos:changeNote>
     <skos:definition xml:lang="en">A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC0-1.0">
         <skos:prefLabel xml:lang="en">CC0-1.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Zero v1.0 Universal</skos:altLabel>
-        <skos:altLabel xml:lang="en">CC0 – Creative Commons</skos:altLabel>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/share-your-work/public-domain/cc0/feed/rdf/"/>
+        <skos:altLabel xml:lang="en">CC0 1.0</skos:altLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC0-1.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/share-your-work/public-domain/cc0/"/>
+        <skos:exactMatch rdf:resource="https://creativecommons.org/publicdomain/zero/1.0/"/>
         <skos:definition xml:lang="en">The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -175,8 +175,8 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-3.0">
         <skos:prefLabel xml:lang="en">CC-BY-3.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution 3.0 Unported</skos:altLabel>
+        <skos:altLabel xml:lang="en">CC BY 3.0</skos:altLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-3.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by/3.0/rdf"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by/3.0/"/>
         <skos:definition xml:lang="en">This is an old version of the CC-BY-4.0 license. It is strongly recommend the use of the CC-BY-4.0 license instead.</skos:definition>
       </skos:Concept>
@@ -186,10 +186,10 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution 4.0 International</skos:altLabel>
+        <skos:altLabel xml:lang="en">CC BY 4.0</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution</skos:altLabel>
         <skos:altLabel xml:lang="nb">Navngivelse</skos:altLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-4.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by/4.0/rdf"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <skos:definition xml:lang="en">This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</skos:definition>
       </skos:Concept>
@@ -199,10 +199,10 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-SA-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Share Alike 4.0 International</skos:altLabel>
+        <skos:altLabel xml:lang="en">CC BY-SA 4.0</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-ShareAlike</skos:altLabel>
         <skos:altLabel xml:lang="nb">Navngivelse-DelPåSammeVilkår</skos:altLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-SA-4.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-sa/4.0/rdf"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-sa/4.0/"/>
         <skos:definition xml:lang="en">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</skos:definition>
       </skos:Concept>
@@ -212,10 +212,10 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-NC-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Non Commercial 4.0 International</skos:altLabel>
+        <skos:altLabel xml:lang="en">CC BY-NC 4.0</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NonCommercial</skos:altLabel>
         <skos:altLabel xml:lang="nb">Navngivelse-IkkeKommersiell</skos:altLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-NC-4.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nc/4.0/rdf"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nc/4.0/"/>
         <skos:definition xml:lang="en">This license lets others remix, adapt, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don’t have to license their derivative works on the same terms.</skos:definition>
       </skos:Concept>
@@ -225,10 +225,10 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-NC-SA-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Non Commercial Share Alike 4.0 International</skos:altLabel>
+        <skos:altLabel xml:lang="en">CC BY-NC-SA 4.0</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NonCommercial-ShareAlike</skos:altLabel>
         <skos:altLabel xml:lang="nb">Navngivelse-IkkeKommersiell-DelPåSammeVilkår</skos:altLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-NC-SA-4.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nc-sa/4.0/rdf"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nc-sa/4.0/"/>
         <skos:definition xml:lang="en">This license lets others remix, adapt, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</skos:definition>
       </skos:Concept>
@@ -238,10 +238,10 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-ND-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution No Derivatives 4.0 International</skos:altLabel>
+        <skos:altLabel xml:lang="en">CC BY-ND 4.0</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NoDerivs</skos:altLabel>
         <skos:altLabel xml:lang="nb">Navngivelse-IngenBearbeidelse</skos:altLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-ND-4.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nd/4.0/rdf"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nd/4.0/"/>
         <skos:definition xml:lang="en">This license lets others reuse the work for any purpose, including commercially; however, it cannot be shared with others in adapted form, and credit must be provided to you.</skos:definition>
       </skos:Concept>
@@ -251,10 +251,10 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0">
         <skos:prefLabel xml:lang="en">CC-BY-NC-ND-4.0</skos:prefLabel>
         <skos:altLabel xml:lang="en">Creative Commons Attribution Non Commercial No Derivatives 4.0 International</skos:altLabel>
+        <skos:altLabel xml:lang="en">CC BY-NC-ND 4.0</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution-NonCommercial-NoDerivs</skos:altLabel>
         <skos:altLabel xml:lang="nb">Navngivelse-IkkeKommersiell-IngenBearbeidelser</skos:altLabel>
-        <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-NC-ND4.0"/>
-        <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/rdf"/>
+        <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-NC-ND-4.0"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
         <skos:definition xml:lang="en">This license is the most restrictive of our six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can’t change them in any way or use them commercially.</skos:definition>
       </skos:Concept>
