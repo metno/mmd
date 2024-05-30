@@ -487,6 +487,9 @@
                                     <xsl:when test="contains($myurl,'?SERVICE=WMS&amp;REQUEST=GetCapabilities')">
                                         <xsl:value-of select="mmd:resource" />
                                     </xsl:when>
+                                    <xsl:when test="contains($myurl,'?service=WMS&amp;version=1.3.0&amp;request=GetCapabilities')">
+                                        <xsl:value-of select="mmd:resource" />
+                                    </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:value-of select="concat($myurl,'?SERVICE=WMS&amp;REQUEST=GetCapabilities')" />
                                     </xsl:otherwise>
