@@ -484,10 +484,7 @@
                             <xsl:when test="contains($myprot,'OGC WMS')">
                                 <xsl:variable name="myurl" select="normalize-space(./mmd:resource)" />
                                 <xsl:choose>
-                                    <xsl:when test="contains($myurl,'?SERVICE=WMS&amp;REQUEST=GetCapabilities')">
-                                        <xsl:value-of select="mmd:resource" />
-                                    </xsl:when>
-                                    <xsl:when test="contains($myurl,'?service=WMS&amp;version=1.3.0&amp;request=GetCapabilities')">
+                                    <xsl:when test="(contains($myurl,'?SERVICE=WMS') and contains($myurl, 'REQUEST=GetCapabilities')) or (contains($myurl,'?service=WMS') and contains($myurl, 'request=GetCapabilities'))">
                                         <xsl:value-of select="mmd:resource" />
                                     </xsl:when>
                                     <xsl:otherwise>
