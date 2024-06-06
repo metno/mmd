@@ -68,6 +68,10 @@ data. This is primarily Sentinel datasets.
 
 |NySMAC |Datasets from Ny-Ålesund in the context of NySMAC (Ny-Ålesund Science Managers Committee).
 
+|KSS |Datasets from the Norsk klimaservicesenter (Norwegian Centre for Climate Services).
+
+|GEONOR |Datasets relevant for Geonorge.
+
 |=======================================================================
 
 <<collection>>
