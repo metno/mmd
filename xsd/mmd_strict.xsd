@@ -453,6 +453,8 @@
             <xs:enumeration value="AeN"></xs:enumeration>
             <xs:enumeration value="TONE"></xs:enumeration>
             <xs:enumeration value="NySMAC"></xs:enumeration>
+            <xs:enumeration value="KSS"></xs:enumeration>
+            <xs:enumeration value="GEONOR"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
