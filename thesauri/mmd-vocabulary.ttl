@@ -1216,12 +1216,13 @@
   a skos:Concept ;
   skos:prefLabel "KSS"@en ;
   rdfs:seeAlso <https://klimaservicesenter.no/> ;
-  skos:definition "Datasets from the Norsk klimaservicesenter (Norwegian Centre for Climate Services)."@en .
+  skos:definition "Datasets from the Norwegian Centre for Climate Services (Norsk KlimaServiceSenter)."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/GEONOR>
   a skos:Concept ;
   skos:prefLabel "GEONOR"@en ;
-  skos:definition "Datasets relevant for Geonorge."@en .
+  rdfs:seeAlso <https://geonorge.no/> ;
+  skos:definition "Datasets that shall be findable at Geonorge."@en .
 
 <https://vocab.met.no/mmd/Instrument_Modes>
   a skos:Collection, <http://purl.org/iso25964/skos-thes#ConceptGroup> ;

@@ -1607,14 +1607,15 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/KSS">
         <skos:prefLabel xml:lang="en">KSS</skos:prefLabel>
         <rdfs:seeAlso rdf:resource="https://klimaservicesenter.no/"/>
-        <skos:definition xml:lang="en">Datasets from the Norsk klimaservicesenter (Norwegian Centre for Climate Services).</skos:definition>
+        <skos:definition xml:lang="en">Datasets from the Norwegian Centre for Climate Services (Norsk KlimaServiceSenter).</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/GEONOR">
         <skos:prefLabel xml:lang="en">GENORG</skos:prefLabel>
-        <skos:definition xml:lang="en">Datasets relevant for Geonorge</skos:definition>
+        <rdfs:seeAlso rdf:resource="https://https://www.geonorge.no/"/>
+        <skos:definition xml:lang="en">Datasets that shall be findable at Geonorge.</skos:definition>
       </skos:Concept>
     </skos:member>
 
