@@ -19,6 +19,7 @@
     <xsl:key name="orgeng" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:prefLabel[@xml:lang='en']"/>
     <xsl:key name="orgengh" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:hiddenLabel[@xml:lang='en']"/>
     <xsl:key name="usec" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:prefLabel"/>
+    <xsl:key name="orgdup" match="mmd:personnel[mmd:role = 'Investigator']/mmd:organisation" use="."/>
     <!--A stringparam path_to_parent_list pointing at an xml file containing the list of metadata_identifier of parent datasets can be passed to the current file. The file structure is:
          <?xml version="1.0" encoding="utf-8"?>
            <parent>
@@ -92,43 +93,50 @@
                 </xsl:when>
 		<!--In case there is no Metadata author in mmd, map to Investigator-->
                 <xsl:otherwise>
-		    <xsl:for-each select="mmd:personnel[mmd:role = 'Investigator']">
-			<xsl:if test ="not(preceding::mmd:organisation/text() = current()/mmd:organisation/text())">
-                            <xsl:element name="gmd:contact">
-                                <xsl:element name="gmd:CI_ResponsibleParty">
-                                    <!--xsl:element name="gmd:individualName">
-                                        <xsl:element name="gco:CharacterString">
-                                            <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:name" />
+                    <xsl:choose>
+                        <xsl:when test="mmd:personnel[mmd:role = 'Investigator']">
+		            <xsl:for-each select="mmd:personnel[mmd:role = 'Investigator']">
+                                <xsl:element name="gmd:contact">
+                                    <xsl:element name="gmd:CI_ResponsibleParty">
+                                        <xsl:element name="gmd:individualName">
+                                            <xsl:element name="gco:CharacterString">
+                                                <xsl:value-of select="mmd:name" />
+                                            </xsl:element>
                                         </xsl:element>
-                                    </xsl:element-->
-	                            <xsl:apply-templates select="mmd:organisation" />
-                                    <xsl:element name="gmd:contactInfo">
-                                        <xsl:element name="gmd:CI_Contact">
-                                            <xsl:element name="gmd:address">
-                                                <xsl:element name="gmd:CI_Address">
-                                                    <!--[1..*] (characterString)-->
-                                                    <xsl:element name="gmd:electronicMailAddress">
-                                                        <xsl:element name="gco:CharacterString">
-                                                            <xsl:value-of select="mmd:email" />
+	                                <xsl:apply-templates select="mmd:organisation" />
+                                        <xsl:element name="gmd:contactInfo">
+                                            <xsl:element name="gmd:CI_Contact">
+                                                <xsl:element name="gmd:address">
+                                                    <xsl:element name="gmd:CI_Address">
+                                                        <!--[1..*] (characterString)-->
+                                                        <xsl:element name="gmd:electronicMailAddress">
+                                                            <xsl:element name="gco:CharacterString">
+                                                                <xsl:value-of select="mmd:email" />
+                                                            </xsl:element>
                                                         </xsl:element>
                                                     </xsl:element>
                                                 </xsl:element>
                                             </xsl:element>
                                         </xsl:element>
-                                    </xsl:element>
-                                    <xsl:element name="gmd:role">
-                                        <xsl:element name="gmd:CI_RoleCode">
-                                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
-                                                <xsl:attribute name="codeListValue">
+                                        <xsl:element name="gmd:role">
+                                            <xsl:element name="gmd:CI_RoleCode">
+                                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
+                                                    <xsl:attribute name="codeListValue">
+                                                        <xsl:text>pointOfContact</xsl:text>
+                                                    </xsl:attribute>
                                                     <xsl:text>pointOfContact</xsl:text>
-                                                </xsl:attribute>
-                                                <xsl:text>pointOfContact</xsl:text>
+                                            </xsl:element>
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
+	                    </xsl:for-each>
+	                </xsl:when>
+	                <xsl:otherwise>
+                            <xsl:element name="gmd:contact">
+			        <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
                             </xsl:element>
-		        </xsl:if>
-	            </xsl:for-each>
+	                </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
 
@@ -201,7 +209,14 @@
                                     <xsl:element name="gmd:CI_Date">
                                         <xsl:element name="gmd:date">
                                             <xsl:element name="gco:Date">
-                                                <xsl:value-of select="mmd:dataset_citation/mmd:publication_date" />
+                                                <xsl:choose>
+                                                    <xsl:when test="contains(mmd:dataset_citation/mmd:publication_date,'T')">
+                                                        <xsl:value-of select="substring-before(mmd:dataset_citation/mmd:publication_date, 'T')"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:value-of select="mmd:dataset_citation/mmd:publication_date" />
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
                                             </xsl:element>
                                         </xsl:element>
                                         <xsl:element name="gmd:dateType">
@@ -308,12 +323,14 @@
                        </xsl:for-each>
                     </xsl:variable-->
 
+
 		    <xsl:for-each select="mmd:personnel[mmd:role = 'Investigator']">
-			<xsl:if test ="not(preceding::mmd:organisation/text() = current()/mmd:organisation/text())">
+                        <xsl:variable name="myorg" select="mmd:organisation"/>
+                        <xsl:for-each select="mmd:organisation[generate-id() = generate-id(key('orgdup', $myorg)[1])]">
                             <xsl:element name="gmd:pointOfContact">
                                 <xsl:element name="gmd:CI_ResponsibleParty">
 
-                                    <xsl:apply-templates select="mmd:organisation" />
+                                    <xsl:apply-templates select="." />
 
                                     <xsl:element name="gmd:contactInfo">
                                         <xsl:element name="gmd:CI_Contact">
@@ -322,7 +339,7 @@
                                                     <!--[1..*] (characterString)-->
                                                     <xsl:element name="gmd:electronicMailAddress">
                                                         <xsl:element name="gco:CharacterString">
-                                                            <xsl:value-of select="mmd:email" />
+                                                            <xsl:value-of select="../mmd:email" />
                                                         </xsl:element>
                                                     </xsl:element>
                                                 </xsl:element>
@@ -343,7 +360,7 @@
 
                                 </xsl:element>
                             </xsl:element>
-		        </xsl:if>
+		        </xsl:for-each>
 	            </xsl:for-each>
 		    <!--keywords (M) multiplicity [1..*] -->
                     <xsl:apply-templates select="mmd:keywords" />
