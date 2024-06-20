@@ -1837,4 +1837,60 @@
     </skos:member>
 
   </skos:Collection>
+
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Organisation">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Organisation</skos:prefLabel>
+    <skos:definition xml:lang="en">A controlled vocabulary for organisation names in English and Norwegian</skos:definition>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/METNorway">
+        <skos:prefLabel xml:lang="en">Norwegian Meteorological Institute</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">MET</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">METNO</skos:hiddenLabel>
+        <skos:prefLabel xml:lang="nb">Meteorologisk institutt</skos:prefLabel>
+        <skos:altLabel xml:lang="en">MET Norway</skos:altLabel>
+        <skos:altLabel xml:lang="nb">MET</skos:altLabel>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NVE">
+        <skos:prefLabel xml:lang="en">Norwegian Water Resources and Energy Directorate</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">Norwegian Water Resources and Energy Directorate (NVE)</skos:hiddenLabel>
+        <skos:prefLabel xml:lang="nb">Norges vassdrags- og energidirektorat</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NVE</skos:altLabel>
+        <skos:altLabel xml:lang="nb">NVE</skos:altLabel>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NIVA">
+        <skos:prefLabel xml:lang="en">Norwegian Institute for Water Research</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Norsk institutt for vannforskning</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NIVA</skos:altLabel>
+        <skos:altLabel xml:lang="nb">NIVA</skos:altLabel>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NILU">
+        <skos:prefLabel xml:lang="en">Norwegian Institute for Air Research</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Norsk institutt for luftforskning</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NILU</skos:altLabel>
+        <skos:altLabel xml:lang="nb">NILU</skos:altLabel>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NINA">
+        <skos:prefLabel xml:lang="en">Norwegian Institute for Nature Research</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Norsk institutt for naturforskning</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NINA</skos:altLabel>
+        <skos:altLabel xml:lang="nb">NINA</skos:altLabel>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
 </rdf:RDF>

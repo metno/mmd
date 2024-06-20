@@ -1387,3 +1387,37 @@
   skos:prefLabel "Comprehensive quality control"@en ;
   skos:definition "The dataset has undergone extensive quality control, including but not limited to basic and advanced automatic controls and regular manual control. The result of the quality control follows the data as flags."@en .
 
+<https://vocab.met.no/mmd/Organisation>
+  a skos:Collection, isothes:ConceptGroup> ;
+  skos:inScheme <https://vocab.met.no/mmd> ;
+  skos:prefLabel "Organisation"@en ;
+  skos:definition "A controlled vocabulary for organisation names in English and Norwegian"@en ;
+  skos:member <https://vocab.met.no/mmd/Organisation/METNorway>, <https://vocab.met.no/mmd/Organisation/NVE>, <https://vocab.met.no/mmd/Organisation/NIVA>, <https://vocab.met.no/mmd/Organisation/NILU>, <https://vocab.met.no/mmd/Organisation/NINA> .
+
+<https://vocab.met.no/mmd/Organisation/METNorway>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Meteorological Institute"@en, "Meteorologisk institutt"@nb ;
+  skos:hiddenLabel "MET"@en, "METNO"@en ;
+  skos:altLabel "MET Norway"@en, "MET"@nb .
+
+<https://vocab.met.no/mmd/Organisation/NVE>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Water Resources and Energy Directorate"@en, "Norges vassdrags- og energidirektorat"@nb ;
+  skos:hiddenLabel "Norwegian Water Resources and Energy Directorate (NVE)"@en ;
+  skos:altLabel "NVE"@en, "NVE"@nb .
+
+<https://vocab.met.no/mmd/Organisation/NIVA>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Institute for Water Research"@en, "Norsk institutt for vannforskning"@nb ;
+  skos:altLabel "NIVA"@en, "NIVA"@nb .
+
+<https://vocab.met.no/mmd/Organisation/NILU>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Institute for Air Research"@en, "Norsk institutt for luftforskning"@nb ;
+  skos:altLabel "NILU"@en, "NILU"@nb .
+
+<https://vocab.met.no/mmd/Organisation/NINA>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Institute for Nature Research"@en, "Norsk institutt for naturforskning"@nb ;
+  skos:altLabel "NINA"@en, "NINA"@nb .
+
