@@ -1842,7 +1842,7 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Organisation</skos:prefLabel>
-    <skos:definition xml:lang="en">A controlled vocabulary for the organisations names in English and Norwegian</skos:definition>
+    <skos:definition xml:lang="en">A controlled vocabulary for organisation names in English and Norwegian</skos:definition>
 
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/METNorway">

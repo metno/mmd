@@ -1391,7 +1391,7 @@
   a skos:Collection, isothes:ConceptGroup> ;
   skos:inScheme <https://vocab.met.no/mmd> ;
   skos:prefLabel "Organisation"@en ;
-  skos:definition "A controlled vocabulary for the organisations names in English and Norwegian"@en ;
+  skos:definition "A controlled vocabulary for organisation names in English and Norwegian"@en ;
   skos:member <https://vocab.met.no/mmd/Organisation/METNorway>, <https://vocab.met.no/mmd/Organisation/NVE>, <https://vocab.met.no/mmd/Organisation/NIVA>, <https://vocab.met.no/mmd/Organisation/NILU>, <https://vocab.met.no/mmd/Organisation/NINA> .
 
 <https://vocab.met.no/mmd/Organisation/METNorway>
