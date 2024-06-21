@@ -99,3 +99,14 @@ class TestXSLTs(unittest.TestCase):
         dcatap = ET.tostring(newdom, xml_declaration = True, encoding='UTF-8', pretty_print=True)
         self.assertIsInstance(rdflib.Graph().parse(data=dcatap, format="xml"), rdflib.graph.Graph)
     
+class TestVOCAB(unittest.TestCase):
+
+    def test_mmd_vocab_ttl(self):
+        inputpath = os.path.join(pathlib.Path.cwd(), 'thesauri', 'mmd-vocabulary.ttl')
+        graph = rdflib.Graph()
+        self.assertIsInstance(graph.parse(inputpath, format="turtle"), rdflib.graph.Graph)
+
+    def test_mmd_vocab_xml(self):
+        inputpath = os.path.join(pathlib.Path.cwd(), 'thesauri', 'mmd-vocabulary.xml')
+        graph = rdflib.Graph()
+        self.assertIsInstance(graph.parse(inputpath, format="xml"), rdflib.graph.Graph)
