@@ -1388,7 +1388,7 @@
   skos:definition "The dataset has undergone extensive quality control, including but not limited to basic and advanced automatic controls and regular manual control. The result of the quality control follows the data as flags."@en .
 
 <https://vocab.met.no/mmd/Organisation>
-  a skos:Collection, isothes:ConceptGroup> ;
+  a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd> ;
   skos:prefLabel "Organisation"@en ;
   skos:definition "A controlled vocabulary for organisation names in English and Norwegian"@en ;
