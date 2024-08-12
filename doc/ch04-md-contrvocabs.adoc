@@ -378,6 +378,7 @@ variable.
 |FY-3D      |Feng-Yun 3D | https://www.wmo-sat.info/oscar/satellites/view/fy_3d
 |FY-3E      |Feng-Yun 3E | https://www.wmo-sat.info/oscar/satellites/view/fy_3e
 |GCOM-W1    |Global Change Observation Mission 1st-Water | https://www.wmo-sat.info/oscar/satellites/view/gcom_w
+|Envisat    |Environmental Satellite | https://www.wmo-sat.info/oscar/satellites/view/envisat
 |============================================================================
 
 <<platform>>
@@ -401,6 +402,7 @@ variable.
 |MERSI-2     |Medium Resolution Spectral Imager -2        | https://www.wmo-sat.info/oscar/instruments/view/mersi_2
 |MODIS       |Moderate-resolution Imaging Spectro-radiometer | https://www.wmo-sat.info/oscar/instruments/view/modis
 |AMSR2       |Advanced Microwave Scanning Radiometer 2 | https://www.wmo-sat.info/oscar/instruments/view/amsr2
+|ASAR        |Advanced Synthetic Aperature Radar | https://www.wmo-sat.info/oscar/instruments/view/asar
 |===============================================================================================================
 
 <<platform>>
