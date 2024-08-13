@@ -926,7 +926,8 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Platform</skos:prefLabel>
-    <skos:changeNote xml:lang="en">Added NOAA-21 in collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2023-10-10, Added NOAA-21 in collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2024-07-22, Added Envisat collection</skos:changeNote>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms"/>
     <skos:definition xml:lang="en">This describes the platform used to collect the data.</skos:definition>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-1A"/>
@@ -947,6 +948,7 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Terra"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/FY-3D"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/GCOM-W1"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Envisat"/>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/FY-3E">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
@@ -1183,12 +1185,25 @@
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/8781da14-5ced-4d64-81cd-8daa10a1c30d"/>
   </skos:Concept>
 
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Envisat">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Envisat</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Environmental Satellite</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/ASAR"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/ASAR"/>
+    <skos:definition xml:lang="en">Envisat was ESA's successor to ERS. Launched on 1 March 2002 on an Ariane-5 rocket from Europe's spaceport in French Guiana, Envisat was the largest Earth observation spacecraft ever built with 10 instruments aboard and at eight tonnes was the largest civilian Earth observation mission ever launched. More advanced imaging radar, radar altimeter and temperature-measuring radiometer instruments extended ERS data sets. This was supplemented by new instruments including a medium-resolution spectrometer sensitive to both land features and ocean colour. Envisat also carried two atmospheric sensors monitoring trace gases. The Envisat mission ended on 8 April 2012, following the unexpected loss of contact with the satellite.</skos:definition>
+    <dc:source rdf:resource="https://earth.esa.int/eogateway/missions/envisat"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/envisat"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/a1498dff-002d-4d67-9091-16822c608221"/>
+  </skos:Concept>
+
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Instrument">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Instrument</skos:prefLabel>
     <skos:definition xml:lang="en">TBW</skos:definition>
     <skos:changeNote xml:lang="en">2022-07-20, Added Concept AVHRR and SSM/I in collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2024-07-22, Added Concept ASAR in collection</skos:changeNote>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/SAR-C"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
@@ -1201,6 +1216,7 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MERSI-2"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MODIS"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/AMSR2"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/ASAR"/>
   </skos:Collection>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/SAR-C">
@@ -1365,6 +1381,18 @@
     <dc:source rdf:resource="https://suzaku.eorc.jaxa.jp/GCOM_W/w_amsr2/whats_amsr2.html"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/amsr2"/>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/92d834e1-689c-4d12-8c4a-74ee4cf75b36"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/ASAR">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <skos:prefLabel xml:lang="en">ASAR</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Advanced Synthetic Aperature Radar</skos:altLabel>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Envisat"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Envisat"/>
+    <skos:definition xml:lang="en">The Advanced Synthetic Aperture Radar (ASAR) instrument was an active radar sensor on-board the Envisat satellite, which was operational from March 2002 until the unexpected loss of contact in April 2012. ASAR built upon the Active Microwave Instrument (AMI) carried aboard the ERS satellites.</skos:definition>
+    <dc:source rdf:resource="https://earth.esa.int/eogateway/instruments/asar"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/asar"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/912c3308-23bc-4e12-b7fb-9d82e9fc5fe9"/>
   </skos:Concept>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Operational_Status">

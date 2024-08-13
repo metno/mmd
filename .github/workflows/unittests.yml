@@ -14,4 +14,4 @@ jobs:
 
     - name: run unit tests
       run: |
-        docker-compose -f docker-compose.unittests.yml up --exit-code-from unittests
+        docker compose -f docker-compose.unittests.yml up --exit-code-from unittests

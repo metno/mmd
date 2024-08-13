@@ -18,7 +18,7 @@ jobs:
 
     - name: create html and pdf
       run: |
-        docker-compose -f docker-compose.asciidoctor.yml up
+        docker compose -f docker-compose.asciidoctor.yml up
 
     - name: commit changed files
       run: |
