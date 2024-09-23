@@ -928,6 +928,7 @@
     <skos:prefLabel xml:lang="en">Platform</skos:prefLabel>
     <skos:changeNote xml:lang="en">2023-10-10, Added NOAA-21 in collection</skos:changeNote>
     <skos:changeNote xml:lang="en">2024-07-22, Added Envisat collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2024-09-20, Added NOAA-15 collection</skos:changeNote>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms"/>
     <skos:definition xml:lang="en">This describes the platform used to collect the data.</skos:definition>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-1A"/>
@@ -939,6 +940,7 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Metop-A"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Metop-B"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Metop-C"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-15"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-18"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-19"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-20"/>
@@ -1076,6 +1078,18 @@
     <dc:source rdf:resource="https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/MetOp/About_the_satellite"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/metop-c"/>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/6120cea0-c943-4c7c-bddd-8d8648d58022"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/NOAA-15">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">NOAA-15</skos:prefLabel>
+    <skos:altLabel xml:lang="en">National Oceanic and Atmospheric Administration - 15</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/AVHRR_3"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/AVHRR_3"/>
+    <skos:definition xml:lang="en">NOAA 15, also known as NOAA-K before launch, was an operational, polar orbiting, meteorological satellite operated by the National Oceanic and Atmospheric Administration (NOAA). It was the latest in the Advanced TIROS-N (ATN) series and the design was based on the Defense Meteorological Satellite Program (DMSP). Launched by the Titan II rocket from Vandenberg AFB, NOAA-K replaced the decommissioned NOAA 12 in an afternoon equator-crossing orbit. It provided support to environmental monitoring by complementing the NOAA/NESS geostationary meteorological satellite program (GOES).</skos:definition>
+    <dc:source rdf:resource="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1998-030A"/>
+    <rdfs:seeAlso rdf:resource="https://space.oscar.wmo.int/satellites/view/noaa_15"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/7441d55f-26c8-4f7f-ad75-1402c6a6e470"/>
   </skos:Concept>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/NOAA-18">
@@ -1333,11 +1347,13 @@
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Metop-A"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Metop-B"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Metop-C"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-15"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-18"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-19"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Metop-A"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Metop-B"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Metop-C"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-15"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-18"/>
     <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/NOAA-19"/>
     <skos:definition xml:lang="en">The Advanced Very High Resolution Radiometer (AVHRR/3) is one of the complement of American instruments provided by the National Oceanic and Atmospheric Administration (NOAA) to fly on MetOp-A, B and C. The AVHRR/3 scans the Earth surface in six spectral bands in the range of 0.58 - 12.5 microns. It provides day and night imaging of land, water and clouds, measures sea surface temperature, ice, snow and vegetation cover.</skos:definition>
