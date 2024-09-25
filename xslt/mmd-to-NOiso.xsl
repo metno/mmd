@@ -98,12 +98,16 @@
 		            <xsl:for-each select="mmd:personnel[mmd:role = 'Investigator']">
                                 <xsl:element name="gmd:contact">
                                     <xsl:element name="gmd:CI_ResponsibleParty">
-                                        <xsl:element name="gmd:individualName">
-                                            <xsl:element name="gco:CharacterString">
-                                                <xsl:value-of select="mmd:name" />
+                                        <xsl:if test="mmd:name != mmd:organisation">
+                                            <xsl:element name="gmd:individualName">
+                                                <xsl:element name="gco:CharacterString">
+                                                    <xsl:value-of select="mmd:name" />
+                                                </xsl:element>
                                             </xsl:element>
-                                        </xsl:element>
-	                                <xsl:apply-templates select="mmd:organisation" />
+                                        </xsl:if>
+	                                <xsl:call-template name="organisation">
+                                            <xsl:with-param name="org" select="mmd:organisation" />
+                                        </xsl:call-template>
                                         <xsl:element name="gmd:contactInfo">
                                             <xsl:element name="gmd:CI_Contact">
                                                 <xsl:element name="gmd:address">
@@ -330,7 +334,9 @@
                             <xsl:element name="gmd:pointOfContact">
                                 <xsl:element name="gmd:CI_ResponsibleParty">
 
-                                    <xsl:apply-templates select="." />
+	                            <xsl:call-template name="organisation">
+                                        <xsl:with-param name="org" select="." />
+                                    </xsl:call-template>
 
                                     <xsl:element name="gmd:contactInfo">
                                         <xsl:element name="gmd:CI_Contact">
@@ -1260,13 +1266,17 @@
     <xsl:template match="mmd:personnel">
 
         <xsl:element name="gmd:CI_ResponsibleParty">
-            <xsl:element name="gmd:individualName">
-                <xsl:element name="gco:CharacterString">
-                    <xsl:value-of select="mmd:name" />
+            <xsl:if test="mmd:name != mmd:organisation">
+                <xsl:element name="gmd:individualName">
+                    <xsl:element name="gco:CharacterString">
+                        <xsl:value-of select="mmd:name" />
+                    </xsl:element>
                 </xsl:element>
-            </xsl:element>
+            </xsl:if>
 
-	    <xsl:apply-templates select="mmd:organisation" />
+	    <xsl:call-template name="organisation">
+                <xsl:with-param name="org" select="mmd:organisation" />
+            </xsl:call-template>
 
             <xsl:element name="gmd:contactInfo">
                 <xsl:element name="gmd:CI_Contact">
@@ -1331,18 +1341,9 @@
         <xsl:element name="gmd:MD_Distributor">
            <xsl:element name="gmd:distributorContact">
               <xsl:element name="gmd:CI_ResponsibleParty">
-                 <xsl:element name="gmd:organisationName">
-                    <xsl:element name="gco:CharacterString">
-                       <xsl:choose>
-                          <xsl:when test="mmd:data_center_name/mmd:long_name != ''">
-                              <xsl:value-of select="concat(mmd:data_center_name/mmd:short_name, ' &gt; ', mmd:data_center_name/mmd:long_name)" />
-                          </xsl:when>
-                          <xsl:otherwise>
-                              <xsl:value-of select="mmd:data_center_name/mmd:short_name" />
-                          </xsl:otherwise>
-                       </xsl:choose>
-                    </xsl:element>
-                 </xsl:element>
+                 <xsl:call-template name="organisation">
+                     <xsl:with-param name="org" select="mmd:data_center_name/mmd:long_name" />
+                 </xsl:call-template>
                  <xsl:element name="gmd:contactInfo">
                     <xsl:element name="gmd:CI_Contact">
                       <xsl:element name="gmd:address">
@@ -1379,8 +1380,8 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="mmd:organisation">
-	<xsl:variable name="org" select="."/>
+    <xsl:template name="organisation">
+	<xsl:param name="org"/>
         <xsl:element name="gmd:organisationName">
             <xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
             <xsl:element name="gco:CharacterString">
@@ -1412,6 +1413,7 @@
             </xsl:for-each>
         </xsl:element>
     </xsl:template>
+
 
     <!-- Mappings for data_access type specification to OSGEO  -->
     <mapping:data_access_type_osgeo iso="OGC:WMS" mmd="OGC WMS" />
