@@ -489,7 +489,25 @@
                 <xsl:element name="gmd:MD_Distribution">
 
 		    <!--format-->
-                    <xsl:apply-templates select="mmd:storage_information" />
+                    <xsl:choose>
+                        <xsl:when test="mmd:storage_information and mmd:storage_information/mmd:file_format !=''">
+                            <xsl:apply-templates select="mmd:storage_information" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:choose>
+                                <xsl:when test="mmd:data_access[mmd:type = 'HTTP']">
+	                            <xsl:call-template name="format">
+                                        <xsl:with-param name="ext" select="mmd:data_access[mmd:type = 'HTTP']/mmd:resource" />
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+	                            <xsl:call-template name="format">
+                                         <xsl:with-param name="ext" select="mmd:data_access[mmd:type = 'OPeNDAP']/mmd:resource" />
+                                    </xsl:call-template>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:otherwise>
+                    </xsl:choose>
 
                     <xsl:element name="gmd:distributor">
                         <xsl:apply-templates select="mmd:data_center" />
@@ -766,6 +784,48 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
+
+    <xsl:template name="format">
+        <xsl:param name="ext"/>
+        <xsl:variable name="suffix">
+            <xsl:call-template name="get-file-extension">
+                <xsl:with-param name="path" select="$ext"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:element name="gmd:distributionFormat">
+            <xsl:element name="gmd:MD_Format">
+                <xsl:element name="gmd:name">
+                    <xsl:element name="gco:CharacterString">
+                        <xsl:variable name="format_mapping" select="document('')/*/mapping:file_format[@mmd=$suffix]/@iso" />
+                        <xsl:value-of select="$format_mapping" />
+                    </xsl:element>
+                </xsl:element>
+                <xsl:element name="gmd:version">
+                    <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                </xsl:element>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template name="get-file-extension">
+        <xsl:param name="path"/>
+        <xsl:choose>
+            <xsl:when test="contains($path, '/')">
+                <xsl:call-template name="get-file-extension">
+                    <xsl:with-param name="path" select="substring-after($path, '/')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($path, '.')">
+                <xsl:call-template name="get-file-extension">
+                    <xsl:with-param name="path" select="substring-after($path, '.')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('.',$path)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
 
     <!--iso topic category-->
     <xsl:template match="mmd:iso_topic_category">
@@ -1414,7 +1474,6 @@
         </xsl:element>
     </xsl:template>
 
-
     <!-- Mappings for data_access type specification to OSGEO  -->
     <mapping:data_access_type_osgeo iso="OGC:WMS" mmd="OGC WMS" />
     <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS" />
@@ -1424,6 +1483,8 @@
     <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
 
     <mapping:language_code iso="eng" mmd="en" />
+
+    <mapping:file_format iso="NetCDF" mmd=".nc" />
 
     <!--Mapping to https://register.geonorge.no/metadata-kodelister/lisenser-->
     <mapping:use_constraint geon="Creative Commons 0" mmd="CC0-1.0" />
