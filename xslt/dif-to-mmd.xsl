@@ -567,7 +567,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                         </xsl:when>
                     </xsl:choose>
                 </xsl:when>
-		<xsl:when test="dif:URL_Content_Type/dif:Type = 'DATA SET LANDING PAGE' or dif:URL_Content_Type/dif:Type = 'VIEW DATA SET LANDING PAGE'">
+		<xsl:when test="dif:URL_Content_Type/dif:Type = 'DATA SET LANDING PAGE' or dif:URL_Content_Type/dif:Type = 'DATASET LANDING PAGE' or dif:URL_Content_Type/dif:Type = 'VIEW DATA SET LANDING PAGE'">
 		    <xsl:if test="(not(../dif:Dataset_Citation/dif:Online_Resource) or ../dif:Dataset_Citation/dif:Online_Resource = '') and (not(../dif:Data_Set_Citation/dif:Online_Resource) or ../dif:Data_Set_Citation/dif:Online_Resource = '')">
 		        <xsl:element name="mmd:related_information">
 		           <xsl:element name="mmd:type">
