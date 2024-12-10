@@ -16,7 +16,7 @@ Syntax:
 Tools:
 
 >grep '<action>' dif.xsd | sed "s/.*<action>\(.*\)<\/action>.*/\1/g" | sort | uniq -c
-
+>../resources/verification/run.sh -s dif_v10.2.xsd -x samples/ecse-1474.xml
 
 NOTE: this document is not final.
 
@@ -27,6 +27,10 @@ History:
     2015-10-26 : 10.2 - Milestone.
     2015-01-08 : 10.2 a - Patch, fix /DIF/Additional_Attributes/ParameterRangeBegin
     2016-01-27 : 10.2 b - patch, changed date time types on three fields
+    2021-02-22 : 10.2 c - ECS-942 Updating Use_Constraints
+    2021-03-03 : 10.2 d - CMR-7035 Adding AssociatedDOIs and DirectDistributionInformation
+    2021-11-11 : 10.2 e - ECSE-1122 Adding Free_And_Open_Data
+    2024-02-13 : 10.2 f - patch, adding ECSE-1474 - CMR landing pages
 
 -->
 
@@ -60,6 +64,8 @@ History:
                 <xs:element name="Version_Description"          type="VersionDescriptionType"       minOccurs="0"/>                         <!-- Added from UMM (ECHO) -->
                 <xs:element name="Entry_Title"                  type="EntryTitleType"/>                                                     <!-- None -->
                 <xs:element name="Dataset_Citation"             type="DatasetCitationType"          minOccurs="0"   maxOccurs="unbounded"/> <!-- Renamed -->
+                <xs:element name="Other_Identifiers"            type="OtherIdentifiersType"         minOccurs="0"   maxOccurs="unbounded"/> <!-- Added ECSE-1474-->
+                <xs:element name="Associated_DOIs"              type="AssociatedDOIsType"           minOccurs="0"   maxOccurs="unbounded"/>
                 <xs:element name="Personnel"                    type="PersonnelType"                minOccurs="0"   maxOccurs="unbounded"/> <!-- None -->
                                                                                                                                             <!-- Removed Discipline, is in dif_v9.8.3.xsd -->
                 <xs:element name="Science_Keywords"             type="ScienceKeywordsType"                          maxOccurs="unbounded"/> <!-- Renamed from Keyword in dif_v9.8.3.xsd -->
@@ -75,17 +81,20 @@ History:
                 <xs:element name="Data_Resolution"              type="DataResolutionType"           minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
                 <xs:element name="Project"                      type="ProjectType"                                  maxOccurs="unbounded"/> <!-- Required now, not required in dif_v9.8.3.xsd -->
                 <xs:element name="Quality"                      type="QualityType"                  minOccurs="0"/>                         <!-- None-->
+                <xs:element name="Data_Maturity"                type="DataMaturityEnum"             minOccurs="0"/>                         <!-- Added ECSE-1474 -->
                 <xs:element name="Access_Constraints"           type="AccessConstraintsType"        minOccurs="0"/>                         <!-- None-->
                 <xs:element name="Use_Constraints"              type="UseConstraintsType"           minOccurs="0"/>                         <!-- None-->
                 <xs:element name="Dataset_Language"             type="DatasetLanguageType"          minOccurs="0"   maxOccurs="unbounded"/> <!-- None -->
                 <xs:element name="Originating_Center"           type="OriginatingCenterType"        minOccurs="0"/>                         <!-- None-->
                 <xs:element name="Organization"                 type="OrganizationType"                             maxOccurs="unbounded"/> <!-- Renamed from Data_Center in dif_v9.8.3.xsd -->
                 <xs:element name="Distribution"                 type="DistributionType"             minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
+                <xs:element name="DirectDistributionInformation" type="DirectDistributionInformationType" minOccurs="0" />                  <!-- None-->
                 <xs:element name="Multimedia_Sample"            type="MultimediaSampleType"         minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
                 <xs:element name="Reference"                    type="ReferenceType"                minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
                 <xs:element name="Summary"                      type="SummaryType"/>                                                        <!-- None-->
                 <xs:element name="Related_URL"                  type="RelatedURLType"                               maxOccurs="unbounded"/> <!-- Required now, not required in dif_v9.8.3.xsd -->
                                                                                                                                             <!-- Removed Parent_Metadata , see Metadata_Association -->
+                <xs:element name="File_Naming_Convention"       type="FileNamingConventionType"     minOccurs="0"/>                         <!-- Added ECSE-1474 -->
                 <xs:element name="Metadata_Association"         type="MetadataAssociationType"      minOccurs="0"   maxOccurs="unbounded"/> <!-- Added from UMM (ECHO) -->
                 <xs:element name="IDN_Node"                     type="IDNNodeType"                  minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
                 <xs:element name="Originating_Metadata_Node"    type="OriginatingMetadataNodeType"  minOccurs="0"/>                         <!-- None-->
@@ -136,13 +145,6 @@ History:
             <xs:element name="Short_Name"   type="xs:string"/>
             <xs:element name="Version"      type="xs:string"/>
         </xs:sequence>
-        <!--xs:restriction base="xs:string"/-->
-        
-        <!-- proposed attentions for 10.3 -->
-        <!--
-        <xs:attribute name="uuid" type="UuidType"/>
-        <xs:attribute name="provider" type="xs:string"/>
-        -->
     </xs:complexType>
 
     <!-- *********************************************************** -->
@@ -252,7 +254,112 @@ History:
             <xs:element name="Online_Resource"          type="xs:anyURI"                minOccurs="0"/><!-- changed from xs:string -->
         </xs:sequence>
     </xs:complexType>
+
+    <!-- *********************************************************** -->
+    <!-- #mark Other Identifiers -->
+
+    <xs:complexType name="OtherIdentifiersType">
+        <xs:annotation>
+            <xs:appinfo><details>In support of CMR Landing pages</details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM</src><since>1.17.4</since></xs:appinfo>
+            <xs:documentation>
+            Other Identifiers provides secondary or additional Identifiers of the collection.
+
+            | ECHO 10          | UMM              | DIF 10            |
+            | ---------------- | ---------------- | ----------------- |
+            | OtherIdentifiers | OtherIdentifiers | Other_Identifiers |
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Identifier"                   type="string-1k"/>
+            <xs:element name="Type"                         type="OtherIdentifiersTypeEnum"/>
+            <xs:element name="Description_Of_Other_Type"    type="string-1k"                minOccurs="0"/>
+        </xs:sequence>
+        <!--xs:assert test="not(Type='Other') or Description_Of_Other_Type"/-->
+    </xs:complexType>
     
+    <!-- *********************************************************** -->
+    <!-- #mark Associated DOIs -->
+
+    <xs:complexType name="AssociatedDOIsType">
+        <xs:annotation>
+            <xs:appinfo><details><path>/DIF/Associated_DOIs</path></details></xs:appinfo>
+            <xs:appinfo><action>changed</action><src>UMM</src><since>16.1</since></xs:appinfo>
+            <xs:appinfo>
+                <action>added</action><src>UMM</src><since>1.16.1</since>
+                <note>added Associated DOIs</note>
+            </xs:appinfo>
+            <xs:documentation>
+                This element stores DOIs that are associated with the collection
+                such as from campaigns and other related sources. Note: The values
+                should start with the directory indicator which in ESDIS' case is 10.
+                If the DOI was registered through ESDIS, the beginning of the string
+                should be 10.5067. The DOI URL is not stored here; it should be
+                stored as a RelatedURL. The DOI organization that is responsible
+                for creating the DOI is described in the Authority element. For
+                ESDIS records the value of https://doi.org/ should be used.
+
+                | ECHO 10        |UMM                 | DIF 10           |
+                | -------------- | ------------------ | ---------------- |
+                | AssociatedDOIs | DOI/AssociatedDOIs | Associated_DOIs  |
+                |        -       |            -       |         -        |
+
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="DOI">
+                <xs:annotation>
+                    <xs:documentation>
+                        This element stores the DOI (Digital Object Identifier) that
+                        identifies an associated collection. Note: The values should
+                        start with the directory indicator which in ESDIS' case is 10.
+                        If the DOI was registered through ESDIS, the beginning of the
+                        string should be 10.5067. The DOI URL is not stored here; it
+                        should be stored as an OnlineResource.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1024"/>
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Title" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                    The title of the DOI landing page. The title describes the
+                    DOI object to a user, so they don't have to look it up themselves to
+                    understand the association.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1030"/>
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Authority" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The DOI organization that is responsible for creating the
+                    associated DOI is described in the Authority element.
+                    For ESDIS records the value of https://doi.org/ should be used.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="80" />
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Type"                         type="AssociatedDOITypeEnum"    minOccurs="0"/> <!-- added in ECSE-1474-->
+            <xs:element name="Description_Of_Other_Type"    type="string-1k"                minOccurs="0"/> <!-- added in ECSE-1474-->
+        </xs:sequence>
+        <!--xs:assert test="not(Type = 'Other') or Description_Of_Other_Type"/-->
+    </xs:complexType>
+
     <!-- *********************************************************** -->
     <!-- #mark Personnel -->
     <xs:complexType name="PersonnelType">
@@ -710,12 +817,12 @@ History:
             <xs:appinfo><action>changed</action><src>UMM (ECHO)</src></xs:appinfo>
             <xs:appinfo><action>changed</action><src>CMR</src><since>10.2 b</since><note>CMR-2356 - change date type</note></xs:appinfo>
             <xs:documentation>
-		        This entity contains the name of the temporal period in addition
-		        to the date, time, duration unit, and value, and cycle duration
-		        unit and value. Used at the collection level to describe a
-		        collection having granules, which cover a regularly occurring
-		        period.
-                                
+                This entity contains the name of the temporal period in addition
+                to the date, time, duration unit, and value, and cycle duration
+                unit and value. Used at the collection level to describe a
+                collection having granules, which cover a regularly occurring
+                period.
+
                 * Name : The name given to the recurring time period. e.g. 'spring - north hemi.'
                 * Start_Date : This attribute provides the date (day and time) of the first occurrence of this regularly occurring period which is relevant to the collection, granule, or event coverage.
                 * End_Date : This attribute provides the date (day and time) of the last occurrence of this regularly occurring period which is relevant to the collection, granule, or event coverage.
@@ -765,35 +872,34 @@ History:
         </xs:sequence>
     </xs:complexType>
 
+    <!-- #mark _Temporal_Info -->
     <xs:complexType name="TemporalInfoType">
         <xs:annotation>
             <xs:appinfo><details></details></xs:appinfo>
             <xs:appinfo><action>moved</action><src>UMM</src></xs:appinfo>
             <xs:documentation>
                 * TemporalKeywords : This attribute specifies a word or phrase which serves to summarize the temporal characteristics referenced in the collection.
-                * Temporal_Resolution : UMM still has not decided if this field is to be added here.
-            
-                | DIF 9                     | ECHO 10                  | DIF 10                     | Notes                            |
-                | ------------------------- | ------------------------ | -------------------------- | -------------------------------- |
-                |            -              | TemporalKeywords/Keyword | Ancillary_Temporal_Keyword | Added from ECHO                  |
-                | Temporal_Resolution       |            -             | Temporal_Resolution        | Removed                          |
-                | Temporal_Resolution_Range |            -             |             -              | Still in Data_Resolution         |
+                * TemporalResolution : The Temporal Resolution field describes the amount of time needed between measurements.
+
+                | DIF 9                                | ECHO 10                      | DIF 10                     | Notes                    |
+                | ------------------------------------ | ---------------------------- | -------------------------- | ------------------------ |
+                | -                                    | TemporalKeywords/Keyword     | Ancillary_Temporal_Keyword | Added from ECHO          |
+                | Data_Resolution/Temporal_Resolutions | Temporal/TemporalResolutions | Temporal_Resolutions       | Added back in            |
+                | Temporal_Resolution_Range            | -                            | -                          | Still in Data_Resolution |
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="Ancillary_Temporal_Keyword"   type="xs:string"            minOccurs="0" maxOccurs="unbounded"/>
-            <!--xs:element name="Temporal_Resolution"          type="TemporalResolution"   minOccurs="0" maxOccurs="unbounded"/-->
+            <xs:element name="Ancillary_Temporal_Keyword"   type="xs:string"                minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="Temporal_Resolution"          type="TemporalResolutionType"   minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
-    
-    <!--
-    <xs:complexType name="TemporalResolution">
+
+    <xs:complexType name="TemporalResolutionType">
         <xs:sequence>
-            <xs:element name="Duration" type="xs:string"/>
-            <xs:element name="Unit" type="xs:string"/>
+            <xs:element name="Value"    type="xs:decimal" minOccurs="0"/>
+            <xs:element name="Unit"     type="TemporalResolutionsUnitEnum"/>
         </xs:sequence>
     </xs:complexType>
-    -->
 
     <xs:complexType name="PaleoDateTimeType">
         <xs:annotation>
@@ -801,10 +907,10 @@ History:
             <xs:appinfo><action>renamed</action><src>UMM</src></xs:appinfo>
             <xs:documentation>
                 Was a top level field in DIF 9 but is now one of the choices within the Temporal_Coverage field.
-            
+
                 | DIF 9                   | ECHO     | UMM                   | DIF 10          | Notes                               |
-		        | ----------------------- |----------| --------------------- | --------------- | ------------------------------------|
-		        | Paleo_Temporal_Coverage |     -    | PaleoTemporalCoverage | Paleo_Date_Time | Moved to Temporal_Coverage choice   |
+                | ----------------------- |----------| --------------------- | --------------- | ------------------------------------|
+                | Paleo_Temporal_Coverage |     -    | PaleoTemporalCoverage | Paleo_Date_Time | Moved to Temporal_Coverage choice   |
 
             </xs:documentation>
         </xs:annotation>
@@ -1082,8 +1188,8 @@ History:
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="Minimum_Value" minOccurs="0" type="xs:decimal"/>
-            <xs:element name="Maximum_Value" minOccurs="0" type="xs:decimal"/>
+            <xs:element name="Minimum_Value" minOccurs="0" type="xs:string"/>
+            <xs:element name="Maximum_Value" minOccurs="0" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -1472,24 +1578,142 @@ History:
     <!-- *********************************************************** -->
     <!-- #mark Use_Constraints -->
         
-    <xs:complexType name="UseConstraintsType">
-         <xs:annotation>
+    <xs:complexType name="UseConstraintsType" mixed="true">
+        <xs:annotation>
             <xs:appinfo><details></details></xs:appinfo>
             <xs:appinfo><action>changed</action><src>UMM (DIF)</src></xs:appinfo>
             <xs:documentation>
-            
-            | DIF 9               | ECHO 10 | UMM               | DIF 10             | Notes          |
-            | ------------------- | ------- | ------------------| ------------------ | -------------  |
-            | Use_Constraints     |    -    | UseConstraints    | Use_Constraints    | No change      |
-            
+
+    | ECHO 10                | UMM                    | DIF 10.2                | Notes          |
+    | ---------------------- | -----------------------| ----------------------- | -------------  |
+    |UseConstraints          |UseConstraints          |Use_Constraints          | No change      |
+    | /Description           | /Description           | /Description            |                |
+    | /FreeAndOpenData       | /FreeAndOpenData       | /Free_And_Open_Data     |                |
+    | /EULAIdentifiers       | /EULAIdentifiers       | /EULA_Identifier        |                |
+    | /LicenseURL/URL        | /LicenseURL/Linkage    | /License_URL/URL        |                |
+    | /LicenseURL/Type       | /LicenseURL/Name       | /License_URL/Title      |                |
+    | /LicenseURL/Description| /LicenseURL/Description| /License_URL/Description|                |
+    | /LicenseURL/MimeType   | /LicenseURL/MimeType   | /License_URL/Mime_Type  |                |
+    | /LicenseText           | /LicenseText           | /License_Text           |                |
             </xs:documentation>
+
         </xs:annotation>
-        
-        <xs:simpleContent>
-            <xs:extension base="DisplayableTextTypeBaseType">
-                <xs:attribute type="DisplayableTextEnum" name="mime_type" default="text/markdown"/>
-            </xs:extension>
-        </xs:simpleContent>
+        <xs:sequence>
+            <xs:element name="Description" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        This sub-element either contains a license summary or free-text description that details the permitted use or limitation of this collection.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Free_And_Open_Data" minOccurs="0" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>
+                        This sub-element if true, describes to end users and machines that this collection's data is free of charge and open for any use the user sees fit.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EULA_Identifier" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        This sub-element provides an identifier for an End User License Agreement.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="40" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:choice minOccurs="0">
+                <xs:element name="License_URL">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This entity records the documentation information of
+                            the collection including documentation type and
+                            documentation URL where apply etc.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="URL">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The URL of the resource.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1024" />
+                                        <xs:minLength value="1"></xs:minLength>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="Title">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The type of the resource such as
+                                        'Collection Guide' or 'Campaign Guide'
+                                        etc.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100" />
+                                        <xs:minLength value="1"></xs:minLength>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="Description">
+                                <xs:annotation>
+                                  <xs:documentation>
+                                    Comment about the online resource.
+                                </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="4000" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="Mime_Type">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The mime type of the online resource.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="License_Text" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This element holds the actual license text. If this element is used the LicenseUrl element cannot be used.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                            <xs:maxLength value="20000" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute type="DisplayableTextEnum" name="mime_type" default="text/markdown"/>
     </xs:complexType>
 
     <!-- *********************************************************** -->
@@ -1616,6 +1840,75 @@ History:
             <xs:element name="Distribution_Format"  type="xs:string" minOccurs="0"/>
             <xs:element name="Fees"                 type="xs:string" minOccurs="0"/>
         </xs:sequence>
+    </xs:complexType>
+
+    <!-- *********************************************************** -->
+    <!-- #mark DirectDistributionInformation -->
+
+    <xs:complexType name="DirectDistributionInformationType">
+      <xs:annotation>
+          <xs:appinfo><details></details></xs:appinfo>
+          <xs:appinfo><action>none</action></xs:appinfo>
+          <xs:documentation>
+              Field describes region S3 bucket or object prefix, S3 Credential API Endpoint,
+              S3 Credential API Documentation URL involved in distributing the data set through S3.
+
+            | ECHO 10                      | UMM                          | DIF 10                       | Notes      |
+            | ---------------------------- | ---------------------------- | ---------------------------- | ---------- |
+            | DirectDistributionInformation| DirectDistributionInformation| DirectDistributionInformation|            |
+          </xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="Region">
+          <xs:simpleType>
+            <xs:annotation>
+              <xs:documentation>Defines the possible values for the Amazon Web Service US Regions
+                                where the data product resides.</xs:documentation>
+            </xs:annotation>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="us-east-1"></xs:enumeration>
+              <xs:enumeration value="us-east-2"></xs:enumeration>
+              <xs:enumeration value="us-west-1"></xs:enumeration>
+              <xs:enumeration value="us-west-2"></xs:enumeration>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="S3BucketAndObjectPrefixName" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>Defines the possible values for the Amazon Web Service US S3 bucket
+                              and/or object prefix names.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:minLength value="1" />
+              <xs:maxLength value="1024" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="S3CredentialsAPIEndpoint">
+          <xs:annotation>
+            <xs:documentation>Defines the URL where the credentials are stored.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:anyURI">
+              <xs:minLength value="1" />
+              <xs:maxLength value="1024" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="S3CredentialsAPIDocumentationURL">
+          <xs:annotation>
+            <xs:documentation>Defines the URL where the credential documentation are stored.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:anyURI">
+              <xs:minLength value="1" />
+              <xs:maxLength value="1024" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
     </xs:complexType>
 
     <!-- *********************************************************** -->
@@ -1807,8 +2100,35 @@ History:
     </xs:complexType>
 
     <!-- *********************************************************** -->
+    <!-- #mark File Naming Convention Type -->
+
+    <xs:complexType name="FileNamingConventionType">
+        <xs:annotation>
+            <xs:appinfo><details>In support of CMR Landing pages</details></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM</src><since>1.17.4</since></xs:appinfo>
+            <xs:documentation>
+            The File Naming Convention refers to the naming convention of the
+            granule file along with a description of the granule file
+            construction.
+
+            | DIF 9 | ECHO 10              | UMM                  | DIF 10                 | Notes                     |
+            | ----- | -------------------- | -------------------- | ---------------------- | ------------------------- |
+            | -     | FileNamingConvention | FileNamingConvention | File_Naming_Convention |                           |
+            |                                                                                                          |
+            | -     | >Convention          | > Convention         | > Convention           | Pseudocode                |
+            | -     | >Description         | > Description        | > Description          | Description of pseudocode |
+
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Convention"   type="string-4000"/>
+            <xs:element name="Description"  type="string-4000" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- *********************************************************** -->
     <!-- #mark MetadataAssociation -->
-    
+
     <xs:complexType name="MetadataAssociationType">
         <xs:annotation>
             <xs:appinfo><details></details></xs:appinfo>
