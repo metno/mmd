@@ -1,0 +1,829 @@
+== Mapping between  MMD and DIF (v9.8.4 and v10.2)
+
+The mapping below is used as background information to create the XLST sheets in the xref:../xslt[xslt folder]. It can be used to map from MMD to DIF, but also the other way around.
+
+=== References:
+
+. https://github.com/metno/mmd[MMD]
+. xref:../xsd/dif/9.x/dif_v9.8.4.xsd[DIF 9.8.4]
+. https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/dif_v10.2.xsd[DIF 10.2]
+
+=== Walkthrough table
+
+NOTE: (M) refers to Mandatory fields, while (CM) refers to Conditional-Mandatory
+
+[%header, cols="1,1,1,1", header=True]
+|===
+| MMD
+| DIF 9.8.4
+| DIF 10.2
+| Notes
+
+| metadata_identifier (M)
+| Entry_ID (M)
+| Entry_ID/ShortName (M)
+|
+
+|-
+|-
+|Entry_ID/Version (M)
+| in DIF 10 it could be 'Not applicable' or 'Not provided'
+
+|-
+|Originating_Metadata_Node
+|Originating_Metadata_Node
+|
+
+|alternate_identifier
+|-
+|-
+|
+
+|-
+|-
+|Version_Description
+|
+
+|-
+|IDN_Node
+|IDN_Node
+|
+
+|last_metadata_update/update/datetime (M)
+|DIF_Creation_Date
+Last_DIF_Revision_Date
+|Metadata_Dates/Metadata_Creation (M)
+Metadata_Dates/Metadata_Last_Revision (M)
+|Use DIF_Creation_Date for mmd type is “Created”.
+Use Last_DIF_Revision_Date for mmd type is “Minor modification or Major modification”
+
+|last_metadata_update/update/type (M)
+|-
+|-
+| See last_metadata_update/update/datetime Notes
+
+|last_metadata_update/update/note
+|-
+|-
+|
+
+|-
+|DIF_Revison_History
+|DIF_Revison_History
+| This could probably be mapped to last_metadata_update/update/note
+
+|-
+|Private
+|Private
+|
+
+|metadata_status (M)
+|-
+|-
+| This is an MMD internal element
+
+|collection (M)
+|-
+|-
+| This is an MMD internal element
+
+|title (M)
+|Entry_Title (M)
+|Entry_Title (M)
+|
+
+|abstract (M)
+|Summary/Abstract (M)
+|Summary/Abstract (M)
+|
+
+|temporal_extent/start_date
+|Temporal_Coverage/Start_Date
+|Temporal_Coverage/Range_DateTime/Beginning_Date_Time
+|
+
+|temporal_extent/end_date
+|Temporal_Coverage/Stop_Date
+|Temporal_Coverage/Range_DateTime/Ending_Date_Time
+|
+
+|-
+|-
+|Spatial_Coverage/Spatial_Coverage_Type
+|DIF 10.2 controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[SpatialCoverageTypeEnum]
+
+|-
+|-
+|Spatial_Coverage/Granule_Spatial_Representation (M)
+|DIF 10.2 controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[GranuleSpatialRepresentationEnum]  ("CARTESIAN" is most likely appropriate)
+
+|-
+|-
+|Spatial_Coverage/Geometry/Coordinate_System (CM)
+|DIF 10.2 controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[CoordinateSystemEnum] ("CARTESIAN" is most likely appropriate)
+
+|geographic_extent/rectangle/south (M)
+|Spatial_Coverage/Southernmost_Latitude
+|Spatial_Coverage/Geometry/Bounding_Rectangle/Southernmost_Latitude (CM)
+|Spatial_Coverage/Geometry/Bounding_Rectangle could be Spatial_Coverage/Geometry/Point (if mmd bounding box is representing a point) - Spatial_Coverage/Geometry/Point/Point_Latitude
+
+|geographic_extent/rectangle/north (M)
+|Spatial_Coverage/Northernmost_Latitude
+|Spatial_Coverage/Geometry/Bounding_Rectangle/Northernmost_Latitude (CM)
+|Spatial_Coverage/Geometry/Bounding_Rectangle could be Spatial_Coverage/Geometry/Point (if mmd bounding box is representing a point) - Spatial_Coverage/Geometry/Point/Point_Latitude
+
+|geographic_extent/rectangle/west (M)
+|Spatial_Coverage/Westernmost_Longitude
+|Spatial_Coverage/Geometry/Bounding_Rectangle/Westernmost_Longitude (CM)
+|Spatial_Coverage/Geometry/Bounding_Rectangle could be Spatial_Coverage/Geometry/Point (if mmd bounding box is representing a point) - Spatial_Coverage/Geometry/Point/Point_Longitude
+
+|geographic_extent/rectangle/east (M)
+|Spatial_Coverage/Easternmost_Longitude
+|Spatial_Coverage/Geometry/Bounding_Rectangle/Easternmost_Longitude (CM)
+|Spatial_Coverage/Geometry/Bounding_Rectangle could be Spatial_Coverage/Geometry/Point (if mmd bounding box is representing a point) - Spatial_Coverage/Geometry/Point/Point_Longitude
+
+|geographic_extent/polygon
+|-
+|Spatial_Coverage/Geometry/Polygon/Boundary/Point/Point_Longitude (CM) Spatial_Coverage/Geometry/Polygon/Boundary/Point/Point_Latitude (CM)
+|
+
+|location/location_category
+|Location/Location_Category (CM)
+|Location/Location_Category
+|This is currently not used in MMD
+
+|location/location_type
+|Location/Location_Type
+|Location/Location_Type
+|This is currently not used in MMD
+
+|location/location_subregion1
+|Location/Location_Subregion1
+|Location/Location_Subregion1
+|This is currently not used in MMD
+
+|location/location_subregion2
+|Location/Location_Subregion2
+|Location/Location_Subregion2
+|This is currently not used in MMD
+
+|location/location_subregion3
+|Location/Location_Subregion3
+|Location/Location_Subregion3
+|This is currently not used in MMD
+
+|location/detailed_location
+|Location/Detailed_Location
+|Location/Detailed_Location
+|This is currently not used in MMD
+
+|dataset_production_status (M)
+|Data_Set_Progress
+|Dataset_Progress (M)
+|DIF 10.2 controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[DatasetProgressEnum]
+
+|dataset_language
+|Data_Set_Language
+|Dataset_Language
+|DIF 10.2 controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[DatasetLanguageEnum]
+
+|operational_status
+|-
+|-
+|
+
+|access_constraint
+|Access_Constraints
+|Access_Constraints
+|Both versions of DIF provide uncontrolled string
+
+|use_constraint/identifier
+|Use_Constraints
+|-
+|DIF 9 implements an uncontrolled string (possibly a good mapping would include a concatenation of MMD resource and identifier in the form resource (identifier))
+
+|use_constraint/resource
+|-
+|Use_Constraints/License_URL/URL
+|DIF 9 implements an uncontrolled string (possibly a good mapping would include a concatenation of MMD resource and identifier in the form resource (identifier))
+
+|use_constraint/license_text
+|Use_Constraints
+|Use_Constraints/License_Text
+|DIF 9 implements an uncontrolled string
+
+|personnel/role (M)
+|Personnel/Role (M)
+ Data_Center/Personnel/Role (M)
+|Personnel/Role (CM)
+ Organization/Personnel/Role (M)
+|Dif 10.2 controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[PersonnelRoleEnum]
+And xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[OrganizationPersonnelRoleEnum] for Organization
+If mmd role is “Data center contact” choose DIF Data_Center or Organization otherwise use Personnel
+
+|-
+|-
+|Personnel/Contact_Person or
+Personnel/Contact_Group
+Organization/Personnel/Contact_Person or
+Organization/Personnel/Contact_Group
+|In DIF 10.2 a choice between Person and Group is mandatory
+
+|personnel/name (M)
+|Personnel/First_Name
+Personnel/Middle_Name
+Personnel/Last_Name (M)
+
+Data_Center/Personnel/First_Name
+Data_Center/Personnel/Middle_Name
+Data_Center/Personnel/Last_Name (M)
+|Personnel/Contact_Person/First_Name
+Personnel/Contact_Person/Middle_Name
+Personnel/Contact_Person/Last_Name (M)
+or
+Personnel/Contact_Group/Name
+
+Organization/Personnel/Contact_Person/First_Name
+Organization/Personnel/Contact_Person/Middle_Name
+Organization/Personnel/Contact_Person/Last_Name (M)
+or
+Organization/Personnel/Contact_Group/Name
+
+|
+
+|personnel/email (M)
+|Personnel/Email
+
+Data_Center/Personnel/Email
+
+|Personnel/Contact_Person/Email
+or
+Personnel/Contact_Group/Email
+
+Organization/Personnel/Contact_Person/Email
+or
+Organization/Personnel/Contact_Group/Email
+|
+
+|personnel/phone
+|Personnel/Phone
+
+Data_Center/Personnel/Phone
+
+|Personnel/Contact_Person/Phone/Number
+Personnel/Contact_Person/Phone/Type
+or
+Personnel/Contact_Group/Phone/Number
+Personnel/Contact_Group/Phone/Type
+
+Organization/Personnel/Contact_Person/Phone/Number
+Organization/Personnel/Contact_Person/Phone/Type
+or
+
+Organization/Personnel/Contact_Group/Phone/Number
+Organization/Personnel/Contact_Group/Phone/Type
+|Dif 10.2 controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[PhoneTypeEnum]
+
+|personnel/fax
+|Personnel/Fax
+
+Data_Center/Personnel/Fax
+|-
+|
+
+|personnel/organization
+|-
+|-
+|
+
+|personnel/contact_address/address
+|Personnel/Contact_Address/Address
+
+Data_Center/Personnel/Contact_Address/Address
+|Personnel/Contact_Person/Contact_Address/Street_Address
+or
+Personnel/Contact_Group/Contact_Address/Street_Address
+
+Organization/Personnel/Contact_Person/Contact_Address/Street_Address
+or
+Organization/Personnel/Contact_Group/Contact_Address/Street_Address
+|
+
+|personnel/contact_address/city
+|Personnel/Contact_Address/City
+
+Data_Center/Personnel/Contact_Address/City
+|Personnel/Contact_Person/Contact_Address/City
+or
+Personnel/Contact_Group/Contact_Address/City
+
+Organization/Personnel/Contact_Person/Contact_Address/City
+or
+Organization/Personnel/Contact_Group/Contact_Address/City
+|
+
+|personnel/contact_address/province_or_state
+|Personnel/Contact_Address/Province_or_State
+
+Data_Center/Personnel/Contact_Address/Province_or_State
+|Personnel/Contact_Person/Contact_Address/State_Province
+or
+Personnel/Contact_Group/Contact_Address/State_Province
+
+Organization/Personnel/Contact_Person/Contact_Address/State_Province
+or
+Organization/Personnel/Contact_Group/Contact_Address/State_Province
+|
+
+|personnel/contact_address/postal_code
+|Personnel/Contact_Address/Postal_Code
+
+Data_Center/Personnel/Contact_Address/Postal_Code
+|Personnel/Contact_Person/Contact_Address/Postal_Code
+or
+Personnel/Contact_Group/Contact_Address/Postal_Code
+
+Organization/Personnel/Contact_Person/Contact_Address/Postal_Code
+or
+Organization/Personnel/Contact_Group/Contact_Address/Postal_Code
+|
+
+|personnel/contact_address/country
+|Personnel/Contact_Address/Country
+
+Data_Center/Personnel/Contact_Address/Country
+|Personnel/Contact_Person/Contact_Address/Country
+or
+Personnel/Contact_Group/Contact_Address/Country
+
+Organization/Personnel/Contact_Person/Contact_Address/Country
+or
+Organization/Personnel/Contact_Group/Contact_Address/Country
+|
+
+|-
+|Discipline
+|-
+|
+
+|-
+|-
+|Organization/Organization_Type (M)
+|
+
+|data_center/data_center_name/short_name
+|Data_Center/Data_Center_Name/Short_Name (M)
+
+Originating_Center
+|Organization/Organization_Name/Short_Name (M)
+
+Originating_Center (deprecated)
+|
+
+|data_center/data_center_name/long_name
+
+|Data_Center/Data_Center_Name/Long_Name
+|Organization/Organization_Name/Long_Name
+|
+
+|data_center/data_center_url
+|Data_Center/Data_Center_URL
+|Organization/Organization_URL
+|
+
+|data_access/type
+|Related_URL/URL_Content_Type/Type (CM)
+|Related_URL/URL_Content_Type/Subtype
+|Use appropriate mapping between MMD and combination of DIF type and subtype (see vocabulary mapping document)
+
+|data_access/resource
+|Related_URL/URL (CM)
+|Related_URL/URL
+|
+
+|data_access/description
+|Related_URL/Description
+|Related_URL/Description
+|
+
+|data_access/wms_layer
+|-
+|-
+|
+
+|related_dataset
+|Parent_DIF
+|Metadata_Association/Entry_ID/Short_Name
+Metadata_Association/Type
+|DIF 10.2 Type is using controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[MetadataAssociationTypeEnum].
+
+MMD relation_type attribute “parent” can be mapped
+
+|storage_information/file_name
+|-
+|-
+|
+
+|storage_information/file_location
+|-
+|-
+|
+
+|storage_information/file_format
+|Distribution/Distribution_Format
+|Distribution/Distribution_Format
+|
+
+|storage_information/file_size
+|Distribution/Distribution_Size
+|Distribution/Distribution_Size
+|
+
+|storage_information/checksum
+|-
+|-
+|
+
+|related_information/type
+|Related_URL/URL_Content_Type/Type
+Related_URL/URL_Content_Type/Subtype
+|Related_URL/URL_Content_Type/Type
+Related_URL/URL_Content_Type/Subtype
+|Use appropriate mapping between mmd and combination of DIF type and subtype (see vocabulary mapping documentation)
+
+|related_information/resource
+|Reference/DOI
+
+Reference/Online_Resource
+
+Related_URL/URL
+|Reference/Persistent_Identifier/Type
+Reference/Persistent_Identifier/Identifier 
+
+Reference/Online_Resource
+
+Related_URL/URL
+|For DIF 10.2
+Reference/Persistent_Identifier/Type = DOI
+
+|related_information/description
+|-
+
+Related_URL/Description
+|Reference/Citation
+
+Related_URL/Description
+|
+
+|iso_topic_category
+|ISO_Topic_Category
+|ISO_Topic_Category
+|
+
+|keywords
+|Parameters/Category (M)
+Parameters/Topic (M)
+Parameters/Term (M)
+Parameters/Variable_Level_1
+Parameters/Variable_Level_2
+Parameters/Variable_Level_3
+Parameters/Detailed_Variable
+
+Keyword
+|Science_Keywords/Category (M)
+Science_Keywords/Topic (M)
+Science_Keywords/Term (M)
+Science_Keywords/Variable_Level_1
+Science_Keywords/Variable_Level_2
+Science_Keywords/Variable_Level_3
+Science_Keywords/Detailed_Variable
+
+Ancillary_Keyword
+|For MMD vocabulary attribute = “GCMDSK” use Parameters and Science_Keywords.
+Use Keyword and Ancillary_Keyword for any other vocabulary
+
+|project/short_name
+|Project/Short_Name (CM)
+|Project/Short_Name
+|
+
+|project/long_name
+|Project/Long_Name
+|Project/Long_Name
+|
+
+|-
+|-
+|Platform/Type (M)
+|DIF 10.2 uses controlled voc. xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[PlatformTypeEnum]. Platform is mandatory in DIF 10.2, use "Not provided" or "Not applicable" if record is lacking. Type can be partially mapped to mmd activity_type.
+
+|platform/short_name
+|Source_Name/Short_Name (CM)
+|Platform/Short_Name (M)
+|
+
+|platform/long_name
+|Source_Name/Long_Name
+|Platform/Long_Name
+|
+
+|platform/resource
+|-
+|-
+|
+
+|platform/orbit_relative
+|-
+|-
+|
+
+|platform/orbit_absolute
+|-
+|-
+|
+
+|platform/orbit_direction
+|-
+|-
+|
+
+|platform/instrument/short_name
+|Sensor_Name/Short_Name
+|Platform/Instrument/Short_Name (M)
+|
+
+|platform/instrument/long_name
+|Sensor_Name/Long_Name
+|Platform/Instrument/Long_Name
+|
+
+|platform/instrument/resource
+|-
+|-
+|
+
+|platform/instrument/mode
+|-
+|-
+|
+
+|platform/instrument/polarisation
+|-
+|-
+|
+
+|platform/instrument/product_type
+|-
+|-
+|
+
+|platform/ancillary/cloud_coverage
+|-
+|-
+|
+
+|platform/ancillary/scene_coverage
+|-
+|-
+|
+
+|platform/ancillary/timeliness
+|-
+|-
+|
+
+|spatial_representation
+|-
+|-
+|
+
+|activity_type
+|-
+|-
+|Partial mapping Platform/Type in DIF 10.2, see above
+
+|dataset_citation/author
+|Data_Set_Citation/Dataset_Creator
+|Dataset_Citation/Dataset_Creator
+|
+
+|dataset_citation/publication_date
+|Data_Set_Citation/Dataset_Release_Date
+|Dataset_Citation/Dataset_Release_Date
+|
+
+|dataset_citation/title
+|Data_Set_Citation/Dataset_Title
+|Dataset_Citation/Dataset_Title
+|
+
+|dataset_citation/series
+|Data_Set_Citation/Dataset_Series_Name
+|Dataset_Citation/Dataset_Series_Name
+|
+
+|dataset_citation/edition
+|Data_Set_Citation/Version
+|Dataset_Citation/Version
+|
+
+|dataset_citation/volume
+|-
+|-
+|
+
+|dataset_citation/issue
+|-
+|-
+|
+
+|dataset_citation/publication_place
+|Data_Set_Citation/Dataset_Release_Place
+|Dataset_Citation/Dataset_Release_Place
+|
+
+|dataset_citation/publisher
+|Data_Set_Citation/Dataset_Publisher
+|Dataset_Citation/Dataset_Publisher
+|
+
+|dataset_citation/pages
+|-
+|-
+|
+
+|dataset_citation/isbn
+|-
+|-
+|
+
+|dataset_citation/doi
+|Data_Set_Citation/Dataset_DOI
+|Dataset_Citation/Persistent_Identifier/Type
+Dataset_Citation/Persistent_Identifier/Identifier
+|For DIF 10.2 Dataset_Citation/Persistent_Identifier/Type =DOI
+
+|dataset_citation/url
+|Data_Set_Citation/Online_Resource
+|Dataset_Citation/Online_Resource
+|
+
+|dataset_citation/other
+|Data_Set_Citation/Other_Citation_Details
+|Dataset_Citation/Other_Citation_Details
+|
+
+|quality_control
+|Quality
+|Quality
+|
+
+|-
+|Extended_Metadata
+|Extended_Metadata
+|
+
+|-
+|Metadata_Name (M)
+|Metadata_Name (M)
+|Use “CEOS IDN DIF”
+
+|-
+|Metadata_Version (M)
+|Metadata_Version (M)
+|Use 9.8.4 or 10.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|===

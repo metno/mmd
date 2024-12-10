@@ -1,0 +1,122 @@
+== Vocabulary mapping between MMD and DIF (10.2)
+
+=== References
+. MMD vocabulary: xref:../thesauri/[MMD thresauri] and https://vocab.met.no/mmd/en/groups[vocab.met.no]
+. DIF vocabulary: xref:../xsd/dif/10.x/UmmCommon_1.2.xsd[DIF vocabulary]
+
+=== Dataset production status - DatasetProgressEnum
+For MMD, see:  https://vocab.met.no/mmd/Dataset_Production_Status
+
+[%header, cols="1,1,1", header=True]
+|===
+|MMD      |DIF 10.2      | Notes
+|Planned  |PLANNED       |
+|In Work  |IN WORK       |
+|Complete |COMPLETE      |
+|Obsolete |-             |
+|===
+
+=== Contact roles - PersonnelRoleEnum
+For MMD, see: https://vocab.met.no/mmd/Contact_Roles
+
+[%header, cols="1,1,1", header=True]
+|===
+|MMD             |DIF 10.2          | Notes
+|Investigator    |INVESTIGATOR      |
+|-               |INVESTIGATOR,
+                  TECHNICAL CONTACT |
+|Metadata author |METADATA AUTHOR   |
+|-               |METADATA AUTHOR,
+                  TECHNICAL CONTACT |
+|Techical conact |TECHNICAL CONTACT |
+|===
+
+=== Contact roles - OrganizationPersonnelRoleEnum
+For MMD, see: https://vocab.met.no/mmd/Contact_Roles
+
+[%header, cols="1,1,1", header=True]
+|===
+|MMD                |DIF 10.2            | Notes
+|Data center contact|DATA CENTER CONTACT |
+|===
+
+=== Related dataset (relation_type) - MetadataAssociationTypeEnum
+
+The attribute relation_type is used in MMD within the related_dataset:
+[source,xml]
+----
+<mmd:related_dataset relation_type="parent">UUID</mmd:related_dataset>
+----
+
+[%header, cols="1,1,1", header=True]
+|===
+|MMD      |DIF 10.2          | Notes
+|parent   |Parent            |
+|-        |Child             |
+|-        |Related           |
+|-        |Dependent         |
+|-        |Input             |
+|-        |Science Associated|
+|===
+
+=== Related Information types - Related_URL
+For MMD, see: https://vocab.met.no/mmd/Related_Information_Types
+
+Related_URL DIF example containiny Type and Subtype:
+
+[source,xml]
+----
+<dif:Related_URL>
+   <dif:URL_Content_Type>
+      <dif:Type>VIEW RELATED INFORMATION</dif:Type>
+      <dif:Subtype>PUBLICATIONS</dif:Subtype>
+   </dif:URL_Content_Type>
+   <dif:URL>https://doi.org/10.1007/s10546-023-00840-y</dif:URL>
+   <dif:Description>Henkies, M., Høyland, K.V., Shestov, A. et al. The Arctic Fjord Breeze: Characteristics of a Combined Sea Breeze and Valley Wind in a Svalbard Fjord Valley. Boundary-Layer Meteorol 189, 281–304 (2023). https://doi.org/10.1007/s10546-023-00840-y</dif:Description>
+</dif:Related_URL>
+----
+
+[%header, cols="1,2,1,1", header=True]
+|===
+|MMD                    |DIF 10.2 (Type)           | DIF 10.2 (Subtype)    | Note
+|Project home page      |PROJECT HOME PAGE         |                       |
+|Users guide            |VIEW RELATED INFORMATION  | USER'S GUIDE          |
+|Dataset landing page   |DATA SET LANDING PAGE     |                       |
+|Scientific publication |VIEW RELATED INFORMATION  | PUBLICATIONS          |
+|Data paper             |VIEW RELATED INFORMATION  | PUBLICATIONS          |
+|Data management plan   |-                         |                       |
+|Software               |-                         |                       |
+|Other documentation    |VIEW RELATED INFORMATION  |GENERAL DOCUMENTATION  |
+|Observation facility   |-                         |                       |
+|Extended metadata      |EXTENDED METADATA         |                       |
+|===
+
+=== Data Access Types - Related_URL
+For MMD, see: https://vocab.met.no/mmd/Data_Access_Types
+
+Related_URL DIF example containiny Type and Subtype:
+
+[source,xml]
+----
+<dif:Related_URL>
+   <dif:URL_Content_Type>
+      <dif:Type>USE SERVICE API</dif:Type>
+      <dif:Subtype>OPENDAP DATA</dif:Subtype>
+   </dif:URL_Content_Type>
+   <dif:URL>https://thredds.met.no/thredds/dodsC/norcesnowcover/MODIS_SCF_2016.nc</dif:URL>
+   <dif:Description>Open-source Project for a Network Data Access Protocol</dif:Description>
+</dif:Related_URL>
+----
+
+[%header, cols="1,1,2,1", header=True]
+|===
+|MMD    |DIF 10.2 (Type)  | DIF 10.2 (Subtype)        | Note
+|HTTP   |GET DATA         | DIRECT DOWNLOAD           |
+|OPeNDAP|USE SERVICE API  | OPENDAP DATA              |
+|OCG WMS|USE SERVICE API  | WEB MAP SERVICE (WMS)     |
+|OCG WFS|USE SERVICE API  | WEB FEATURE SERVICE (WFS) |
+|OCG WCS|USE SERVICE API  | WEB COVERAGE SERVICE (WCS)|
+|FTP    |GET DATA         | DIRECT DOWNLOAD           |
+|ODATA  |-                |                           |
+|===
+

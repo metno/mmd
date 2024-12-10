@@ -1,0 +1,527 @@
+== Mapping between  MMD and SCHEMA.ORG (Science on Schema.org)
+
+The mapping below is used as background information to harvest endpoints providing
+Science on schema.org records.  
+
+=== References:
+
+. https://github.com/metno/mmd[MMD]
+. https://schema.org/Dataset[schema.org]
+. https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md[SOSO]
+
+=== Walkthrough table
+
+NOTE: (M) refers to Mandatory fields, while (CM) refers to Conditional-Mandatory
+
+[%header, cols="1,1,1,3", header=True]
+|===
+| MMD
+| SOSO
+| Type/Comment 
+| Example
+
+| metadata_identifier (M)
+| identifier
+| PropertyValue  or Text  or URL (the first is recommended. Extract value to MMD)
+|   "identifier":
+      {
+        "@id": "https://doi.org/10.5066/F7VX0DMQ",
+        "@type": "PropertyValue",
+        "propertyID": "https://registry.identifiers.org/registry/doi",
+        "value": "doi:10.5066/F7VX0DMQ",
+        "url": "https://doi.org/10.5066/F7VX0DMQ"
+      }
+
+
+|alternate_identifier
+|-
+|-
+|
+
+|last_metadata_update/update/datetime (M)
+| dateCreated, dateModified
+| Date or DateTime
+|
+
+
+|last_metadata_update/update/type (M)
+|-
+|Use dateCreated for "Created" and dateModified for "Minor modification"
+| 
+
+|last_metadata_update/update/note
+|-
+| This can be hardcoded as "From original metadata record"
+| 
+
+
+|metadata_status (M)
+|-
+|-
+| This is an MMD internal element
+
+|collection (M)
+|-
+|-
+| This is an MMD internal element
+
+|title (M)
+|name
+|Text
+|
+
+|abstract (M)
+|description
+|Text
+|
+
+|temporal_extent/start_date
+|temporalCoverage
+|Date or DateTime (It can be openended. Geologic times are not supported in MMD)
+|"temporalCoverage": "2020-12-08T23:00:00Z/2020-12-09T23:00:00Z"
+
+|temporal_extent/end_date
+|temporalCoverage
+|Date or DateTime (It can be openended, so this could be empty. Geologic times are not supported in MMD)
+| 
+
+|geographic_extent/rectangle/south (M)
+|spatialCoverage
+|Place -> geo -> GeoShape -> box (The first point is the lower corner, the second point is the upper corner. 
+A box is expressed as two points separated by a space character.), alternatively
+Place -> geo ->  GeoCoordinates -> latitude,longitude 
+
+|“spatialCoverage” : {“@type”: “Place”,
+  “geo” : [{
+      “@type”:  “GeoShape”, 
+“Box”: “latMin lonMin latMax lonMax”
+             }]
+}
+
+“spatialCoverage” : {“@type”: “Place”,
+"geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.75",
+    "longitude": "-73.98"
+  }
+
+
+|geographic_extent/rectangle/north (M)
+|spatialCoverage
+| See above
+|
+
+|geographic_extent/rectangle/west (M)
+|spatialCoverage
+| See above
+|
+
+|geographic_extent/rectangle/east (M)
+|spatialCoverage
+| See above
+|
+
+|geographic_extent/polygon
+|spatialCoverage
+|Place -> geo -> GeoShape -> polygon 
+(A polygon is expressed as a series of four or more space delimited points where the first and final points are identical.)
+| "polygon": "39.3280 120.1633 40.445 123.7878 41 121 39.77 122.42 39.3280 120.1633"
+
+|dataset_production_status (M)
+|-
+|Map to "Not available"
+|-
+
+|dataset_language
+|inLanguage
+|Either text (“English”) or Language type 
+|"inLanguage": [{
+    "@type": "Language",
+    "name": "English"
+  }],
+
+
+
+|operational_status 
+|-
+|Map to "Not available"
+|
+
+|access_constraint
+|conditionsOfAccess
+|Text
+|
+
+|use_constraint/identifier
+|license
+|tipically indicated by a URL (identifier should be extracted)
+|"license": "http://spdx.org/licenses/CC0-1.0"
+
+|use_constraint/resource
+|license
+|see above
+|
+
+|use_constraint/license_text
+|license
+|see above
+|
+
+|personnel/role (M)
+| creator or contributor
+| Organization  or Person (Map MMD investigator to creator and Metadata author and Technical contact to contributor)
+|
+
+|personnel/name (M)
+|creator or contributor
+|map to name
+|"creator": [{ "@type": "Person",
+      "name": "Name FamilyName",
+    }
+
+|personnel/email (M)
+|creator or contributor
+| map to email 
+|
+
+|personnel/phone
+|creator or contributor
+|map to  telephone
+|
+
+|personnel/organization
+|creator or contributor
+|map to affiliation
+|
+
+|personnel/contact_address/address
+|creator or contributor
+|address (PostalAddress/streetAddress)
+|
+
+|personnel/contact_address/city
+|creator or contributor
+| address (PostalAddress/addressLocality)
+|
+
+|personnel/contact_address/province_or_state
+|creator or contributor
+|address (PostalAddress/addressRegion)
+|
+
+|personnel/contact_address/postal_code
+|creator or contributor
+|address (PostalAddress/postalCode)
+|"@type": "Person",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Oslo",
+    "addressRegion": "Oslo",
+    "addressCountry": "Norway",
+    "postalCode": "0371",
+    "streetAddress": " Henrik Mohns Plass 1"
+  },
+  "email": "mailto:example@met.no",
+  "name": "Name FamilyName",
+  "telephone": "11223344",
+  "url": "someurl"
+}
+
+|personnel/contact_address/country
+|creator or countributor
+|address (PostalAddress/addressCountry)
+|
+
+|data_center/data_center_name/short_name
+|publisher
+|Organization  or Person (should map to Organization/name)
+|
+
+|data_center/data_center_name/long_name
+|publisher
+|Organization  or Person (should map to Organization/name or legalName)
+|
+
+|data_center/data_center_url
+|publisher
+|Organization  or Person (should map to Organization/url)
+|
+
+|data_access/type
+|Distribution 
+|DataDownload (map to HTTP in MMD)
+|
+
+|data_access/resource
+|Distribution / contentUrl
+|DataDownload
+|
+
+|data_access/description
+|Distribution / description
+|DataDownload
+|
+
+|data_access/wms_layer
+|-
+|-
+|
+
+|related_dataset
+|isPartOf
+|URL (MMD uses the metadata_identifier for this. So it should be checked that this information is consisten.
+This can be mapped for children dataset using the relation_type="parent")
+|
+
+|storage_information/file_name
+|-
+|-
+|
+
+|storage_information/file_location
+|-
+|-
+|
+
+|storage_information/file_format
+|encodingFormat
+|Text  or URL (this can also belong to a dataset distribution)
+|
+
+|storage_information/file_size
+|-
+|-
+|
+
+|storage_information/checksum
+|-
+|-
+|
+
+|related_information/type
+|url
+|URL (use can be used for type= "Dataset landing page")
+|
+
+|related_information/resource
+|url
+|URL
+|
+
+|related_information/description
+|url
+|URL (this can be hardcoded to "Dataset landing page")
+|
+
+|iso_topic_category
+|-
+|(This can be mapped to "Not available")
+|
+
+|keywords
+|keywords
+|DefinedTerm  or Text  or URL (Multiple entries in a keywords list are typically delimited by commas.
+When DefinedTerm is used it can be mapped to specific vocabulary_type)
+|"keywords": ["ocean acidification", "Dissolved Organic Carbon", "bacterioplankton respiration", "pCO2", "carbon dioxide", "oceans"]
+
+"keywords": [
+    {
+      "@type": "DefinedTerm",
+      "name": "EARTH SCIENCE > OCEANS",
+      "inDefinedTermSet": "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords",
+      "url": "https://gcmd.earthdata.nasa.gov/kms/concept/91697b7d-8f2b-4954-850e-61d5f61c867d",
+      "termCode": "91697b7d-8f2b-4954-850e-61d5f61c867d"
+    },
+
+
+|project/short_name
+|funding
+|Grant/MonetaryGrant (Use name for long_name and alternate name for short_name if possible)
+| "funding": [
+    {
+      "@type": "MonetaryGrant",
+      "name": "Foraging Ecology of Crabeater Seals (Lobodon Carcinophagus)",
+      "alternateName": "ANT-9909933",
+      "url": "https://www.bco-dmo.org/award/54719",
+      "sameAs": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=9909933",
+      "funder": {
+        "@id": "https://doi.org/10.13039/100000162",
+        "@type": "FundingAgency",
+        "name": "NSF Antarctic Sciences",
+        "alternateName": "NSF ANT",
+        "url": "https://www.bco-dmo.org/funding-source/369",
+        "sameAs": "https://doi.org/10.13039/100000162",
+        "parentOrganization": {
+          "@type": "FundingAgency",
+          "name": "National Science Foundation",
+          "alternateName":  "NSF",
+          "sameAs": "https://doi.org/10.13039/100000001"
+        }
+      }
+    },
+
+|project/long_name
+|funding
+|Grant/MonetaryGrant (Use name for long_name and alternate name for short_name if possible)
+|
+
+|platform/short_name
+|-
+|(This might be filled from keywords)
+|
+
+|platform/long_name
+|-
+|(This might be filled from keywords)
+|
+
+|platform/resource
+|-
+|-
+|
+
+|platform/orbit_relative
+|-
+|-
+|
+
+|platform/orbit_absolute
+|-
+|-
+|
+
+|platform/orbit_direction
+|-
+|-
+|
+
+|platform/instrument/short_name
+|-
+|(This might be filled from keywords)
+|
+
+|platform/instrument/long_name
+|-
+|(This might be filled from keywords)
+|
+
+|platform/instrument/resource
+|-
+|-
+|
+
+|platform/instrument/mode
+|-
+|-
+|
+
+|platform/instrument/polarisation
+|-
+|-
+|
+
+|platform/instrument/product_type
+|-
+|-
+|
+
+|platform/ancillary/cloud_coverage
+|-
+|-
+|
+
+|platform/ancillary/scene_coverage
+|-
+|-
+|
+
+|platform/ancillary/timeliness
+|-
+|-
+|
+
+|spatial_representation
+|-
+|-
+|
+
+|activity_type
+|-
+|-
+|
+
+|dataset_citation/author
+|creator
+|Person or Organization
+|
+
+|dataset_citation/publication_date
+|datePublished
+|Date or DateTime
+|
+
+|dataset_citation/title
+|name
+|Text
+|
+
+|dataset_citation/series
+|-
+|-
+|
+
+|dataset_citation/edition
+|-
+|-
+|
+
+|dataset_citation/volume
+|-
+|-
+|
+
+|dataset_citation/issue
+|-
+|-
+|
+
+|dataset_citation/publication_place
+|-
+|-
+|
+
+|dataset_citation/publisher
+|publisher
+|Organization  or Person (should map to Organization/name or legalName)
+|
+
+|dataset_citation/pages
+|-
+|-
+|
+
+|dataset_citation/isbn
+|-
+|-
+|
+
+|dataset_citation/doi
+|
+|(it can probably picked up from the identifier if DOI is provided through identifier/value)
+|
+
+|dataset_citation/url
+|
+|(it can probably picked up from the identifier if url is provided through identifier/url)
+|
+
+|dataset_citation/other
+|-
+|-
+|
+
+|quality_control
+|
+|
+|
+|===
