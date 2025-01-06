@@ -4,7 +4,7 @@ This folder contains different schemas that relates to the MMD respository.
 
 ### MMD
 
-The current folder containts the default MMD schema and its strict profile (MMD strict) as well as xml schema.
+The current folder contains the default MMD schema and its strict profile (MMD strict) as well as xml schema.
 
 ### DIF
 
