@@ -35,20 +35,19 @@
                    </xsl:otherwise>
                 </xsl:choose>
 	    </xsl:element>
-	    <xsl:element name="mmd:iso_topic_category">
+        <xsl:element name="mmd:collection">ADC</xsl:element>
+        <xsl:apply-templates select="gmd:dateStamp" />
+        <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent" />
 		<xsl:choose>
 		    <xsl:when test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode">
-                        <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
+                <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode" />
 		    </xsl:when>
 		    <xsl:otherwise>
-			<xsl:text>Not available</xsl:text>
+	            <xsl:element name="mmd:iso_topic_category">
+			        <xsl:text>Not available</xsl:text>
+	            </xsl:element>
 		    </xsl:otherwise>
 		</xsl:choose>
-	    </xsl:element>
-            <xsl:element name="mmd:collection">ADC</xsl:element>
-            <xsl:apply-templates select="gmd:dateStamp" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent" />
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:keyword/gmd:type/gmd:MD_KeywordTypeCode = 'project']" />
             <xsl:element name="mmd:keywords">
                 <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]" />
@@ -57,6 +56,7 @@
                 <xsl:attribute name="vocabulary">None</xsl:attribute>
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]" />
             </xsl:element>
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode[@codeListValue= 'project']]" />
             <!--
             <mmd:metadata_version>1</mmd:metadata_version>
             -->
@@ -165,22 +165,41 @@
     <mapping:dataset_status iso="underDevelopment" mmd="Planned" />
 
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode">
-        <xsl:value-of select="." />
+        <xsl:element name="mmd:iso_topic_category">
+            <xsl:value-of select="." />
+        </xsl:element>
     </xsl:template>    
     
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent">    
-        <xsl:element name="mmd:temporal_extent">        
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent">
+        <xsl:element name="mmd:temporal_extent">
             <xsl:element name="mmd:start_date">
-                <xsl:value-of select="gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition" />
+                <xsl:choose>
+                    <xsl:when test="contains(gml:TimePeriod/gml:beginPosition, 'T') or contains(gml32:TimePeriod/gml32:beginPosition, 'T')">
+                        <xsl:value-of select="gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat(gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition, 'T12:00:00Z')" />
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:element>
             <xsl:element name="mmd:end_date">
-                <xsl:value-of select="gml:TimePeriod/gml:endPosition | gml32:TimePeriod/gml32:endPosition" />
+                <xsl:choose>
+                    <xsl:when test="contains(gml:TimePeriod/gml:endPosition, 'T') or contains(gml32:TimePeriod/gml32:endPosition, 'T')">
+                        <xsl:value-of select="gml:TimePeriod/gml:endPosition | gml32:TimePeriod/gml32:endPosition" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat(gml:TimePeriod/gml:endPosition | gml32:TimePeriod/gml32:endPosition, 'T12:00:00Z')" />
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:element>
-        </xsl:element>    
+        </xsl:element>
     </xsl:template>
-    
+
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">    
         <xsl:element name="mmd:rectangle">
+            <xsl:attribute name="srsName">
+                <xsl:value-of select="'EPSG:4326'" />
+            </xsl:attribute>
             <xsl:element name="mmd:north">
                 <xsl:value-of select="gmd:northBoundLatitude/gco:Decimal" />
             </xsl:element>
@@ -518,15 +537,17 @@
     </xsl:template>
     -->
 
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode = 'project']">
-        <xsl:element name="mmd:project">
-            <xsl:element name="mmd:short_name">
-                <xsl:value-of select="gmd:keyword/gco:CharacterString" />
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode[@codeListValue = 'project']]">
+        <xsl:for-each select="gmd:keyword/gco:CharacterString">
+            <xsl:element name="mmd:project">
+                <xsl:element name="mmd:short_name">
+                    <xsl:value-of select="." />
+                </xsl:element>
+                <xsl:element name="mmd:long_name">
+                    <xsl:value-of select="." />
+                </xsl:element>
             </xsl:element>
-            <xsl:element name="mmd:long_name">
-                <xsl:value-of select="gmd:keyword/gco:CharacterString" />
-            </xsl:element>
-        </xsl:element>
+        </xsl:for-each>
     </xsl:template>
     
 </xsl:stylesheet>
