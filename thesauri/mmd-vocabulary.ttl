@@ -1109,8 +1109,22 @@
   skos:prefLabel "Collection Keywords"@en ;
   skos:changeNote "2024-02-21, Added Concept \"TONE\" and \"NySMAC\" in collection"@en ;
   skos:changeNote "2024-06-06, Added Concept \"KSS\" and \"GEONOR\" in collection"@en ;
+  skos:changeNote "2025-01-28, Added Concept \"POLARIN\" in collection"@en ;
   skos:definition "The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository."@en ;
-  skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/NMAP>, <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>, <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>, <https://vocab.met.no/mmd/Collection_Keywords/NSDN>, <https://vocab.met.no/mmd/Collection_Keywords/DOKI>, <https://vocab.met.no/mmd/Collection_Keywords/DAM>, <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>, <https://vocab.met.no/mmd/Collection_Keywords/NBS>, <https://vocab.met.no/mmd/Collection_Keywords/APPL>, <https://vocab.met.no/mmd/Collection_Keywords/YOPP>, <https://vocab.met.no/mmd/Collection_Keywords/METNCS>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2022>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>, <https://vocab.met.no/mmd/Collection_Keywords/CVL>, <https://vocab.met.no/mmd/Collection_Keywords/AeN>, <https://vocab.met.no/mmd/Collection_Keywords/TONE>, <https://vocab.met.no/mmd/Collection_Keywords/NySMAC>, <https://vocab.met.no/mmd/Collection_Keywords/KSS>, <https://vocab.met.no/mmd/Collection_Keywords/GEONOR> .
+  skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/NMAP>,
+  <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>,
+  <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>,
+  <https://vocab.met.no/mmd/Collection_Keywords/NSDN>, <https://vocab.met.no/mmd/Collection_Keywords/DOKI>,
+  <https://vocab.met.no/mmd/Collection_Keywords/DAM>, <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>,
+  <https://vocab.met.no/mmd/Collection_Keywords/NBS>, <https://vocab.met.no/mmd/Collection_Keywords/APPL>,
+  <https://vocab.met.no/mmd/Collection_Keywords/YOPP>, <https://vocab.met.no/mmd/Collection_Keywords/METNCS>,
+  <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>,
+  <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2022>,
+  <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>, <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>,
+  <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>, <https://vocab.met.no/mmd/Collection_Keywords/CVL>,
+  <https://vocab.met.no/mmd/Collection_Keywords/AeN>, <https://vocab.met.no/mmd/Collection_Keywords/TONE>,
+  <https://vocab.met.no/mmd/Collection_Keywords/NySMAC>, <https://vocab.met.no/mmd/Collection_Keywords/KSS>,
+  <https://vocab.met.no/mmd/Collection_Keywords/GEONOR>, <https://vocab.met.no/mmd/Collection_Keywords/POLARIN> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/CC>
   a skos:Concept ;
@@ -1259,6 +1273,12 @@
   skos:prefLabel "GEONOR"@en ;
   rdfs:seeAlso <https://geonorge.no/> ;
   skos:definition "Datasets that shall be findable at Geonorge."@en .
+
+<https://vocab.met.no/mmd/Collection_Keywords/POLARIN>
+  a skos:Concept ;
+  skos:prefLabel "POLARIN"@en ;
+  rdfs:seeAlso <https://eu-polarin.eu/> ;
+  skos:definition "Datasets related to the POLARIN Project."@en .
 
 <https://vocab.met.no/mmd/Instrument_Modes>
   a skos:Collection, <http://purl.org/iso25964/skos-thes#ConceptGroup> ;

@@ -455,6 +455,7 @@
             <xs:enumeration value="NySMAC"></xs:enumeration>
             <xs:enumeration value="KSS"></xs:enumeration>
             <xs:enumeration value="GEONOR"></xs:enumeration>
+            <xs:enumeration value="POLARIN"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 

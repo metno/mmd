@@ -72,6 +72,8 @@ data. This is primarily Sentinel datasets.
 
 |GEONOR |Datasets that shall be findable at Geonorge.
 
+|POLARIN |Datasets related to the POLARIN Project.
+
 |=======================================================================
 
 <<collection>>
