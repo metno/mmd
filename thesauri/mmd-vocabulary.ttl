@@ -1278,7 +1278,7 @@
   a skos:Concept ;
   skos:prefLabel "POLARIN"@en ;
   rdfs:seeAlso <https://eu-polarin.eu/> ;
-  skos:definition "Datasets from the POLARIN Project."@en .
+  skos:definition "Datasets related to the POLARIN Project."@en .
 
 <https://vocab.met.no/mmd/Instrument_Modes>
   a skos:Collection, <http://purl.org/iso25964/skos-thes#ConceptGroup> ;

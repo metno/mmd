@@ -1668,7 +1668,7 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/POLARIN">
         <skos:prefLabel xml:lang="en">POLARIN</skos:prefLabel>
         <rdfs:seeAlso rdf:resource="https://eu-polarin.eu/"/>
-        <skos:definition xml:lang="en">Datasets from the POLARIN Project.</skos:definition>
+        <skos:definition xml:lang="en">Datasets related to the POLARIN Project.</skos:definition>
       </skos:Concept>
     </skos:member>
 
