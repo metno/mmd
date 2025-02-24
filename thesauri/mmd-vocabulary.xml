@@ -927,8 +927,9 @@
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Platform</skos:prefLabel>
     <skos:changeNote xml:lang="en">2023-10-10, Added NOAA-21 in collection</skos:changeNote>
-    <skos:changeNote xml:lang="en">2024-07-22, Added Envisat collection</skos:changeNote>
-    <skos:changeNote xml:lang="en">2024-09-20, Added NOAA-15 collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2024-07-22, Added Envisat in collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2024-09-20, Added NOAA-15 in collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2025-02-24, Added Sentinel-1C, Sentinel-1D,Sentinel-2C, Sentinel-2D, Sentinel-3C, Sentinel-3D, Sentinel-6A, Sentinel-6B, Sentinel-6C and Sentinel-5P in collection</skos:changeNote>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms"/>
     <skos:definition xml:lang="en">This describes the platform used to collect the data.</skos:definition>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-1A"/>
@@ -951,6 +952,16 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/FY-3D"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/GCOM-W1"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Envisat"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-1C"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-1D"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2C"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2D"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3C"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3D"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6A"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6B"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6C"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-5P"/>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/FY-3E">
         <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
@@ -997,6 +1008,7 @@
     <skos:prefLabel xml:lang="en">Sentinel-2A</skos:prefLabel>
     <skos:altLabel xml:lang="en">Sentinel-2A</skos:altLabel>
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
     <skos:definition xml:lang="en">Sentinel-2 is a multispectral operational imaging mission within the GMES (Global Monitoring for Environment and Security) program, jointly implemented by the EC (European Commission) and ESA (European Space Agency) for global land observation (data on vegetation, soil and water cover for land, inland waterways and coastal areas, and also provide atmospheric absorption and distortion data corrections) at high resolution with high revisit capability to provide enhanced continuity of data so far provided by SPOT-5 and Landsat-7</skos:definition>
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-2"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2"/>
@@ -1009,6 +1021,7 @@
     <skos:prefLabel xml:lang="en">Sentinel-2B</skos:prefLabel>
     <skos:altLabel xml:lang="en">Sentinel-2B</skos:altLabel>
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
     <skos:definition xml:lang="en">Sentinel-2 is a multispectral operational imaging mission within the GMES (Global Monitoring for Environment and Security) program, jointly implemented by the EC (European Commission) and ESA (European Space Agency) for global land observation (data on vegetation, soil and water cover for land, inland waterways and coastal areas, and also provide atmospheric absorption and distortion data corrections) at high resolution with high revisit capability to provide enhanced continuity of data so far provided by SPOT-5 and Landsat-7</skos:definition>
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-2"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/sentinel-2"/>
@@ -1023,6 +1036,11 @@
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/MWR"/>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/MWR"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
     <skos:definition xml:lang="en">The Sentinel-3 (S3) mission of ESA and the EC is one of the elements of the GMES (Global Monitoring for Environment and Security) program, which responds to the requirements for operational and near-real-time monitoring of ocean, land and ice surfaces over a period of 20 years. The topography element of this mission will serve primarily the marine operational users but will also allow the monitoring of sea ice and land ice, as well as inland water surfaces, using novel observation techniques.The Sentinel-3 mission is designed as a constellation of two identical polar orbiting satellites, separated by 180º, for the provision of long-term operational marine and land monitoring services. The operational character of this mission implies a high level of availability of the data products and fast delivery time, which have been important design drivers for the mission.</skos:definition>
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-3"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3"/>
@@ -1037,6 +1055,11 @@
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
     <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/MWR"/>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/MWR"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
     <skos:definition xml:lang="en">The Sentinel-3 (S3) mission of ESA and the EC is one of the elements of the GMES (Global Monitoring for Environment and Security) program, which responds to the requirements for operational and near-real-time monitoring of ocean, land and ice surfaces over a period of 20 years. The topography element of this mission will serve primarily the marine operational users but will also allow the monitoring of sea ice and land ice, as well as inland water surfaces, using novel observation techniques.The Sentinel-3 mission is designed as a constellation of two identical polar orbiting satellites, separated by 180º, for the provision of long-term operational marine and land monitoring services. The operational character of this mission implies a high level of availability of the data products and fast delivery time, which have been important design drivers for the mission.</skos:definition>
     <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-3"/>
     <rdfs:seeAlso rdf:resource="https://earth.esa.int/web/guest/missions/esa-eo-missions/sentinel-3"/>
@@ -1211,6 +1234,125 @@
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/a1498dff-002d-4d67-9091-16822c608221"/>
   </skos:Concept>
 
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-1C">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-1C</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-1C</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SAR-C"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SAR-C"/>
+    <skos:definition xml:lang="en">Sentinel-1 is a two satellite constellation with the prime objectives of land and ocean monitoring. The goal of the mission is to provide C-Band Synthetic Aperture Radar (SAR) data continuity following the retirement of ERS-2 and the end of the Envisat mission. To accomplish this the satellites carry a C-SAR sensor, which offers medium and high resolution imaging in all weather conditiions. The C-SAR is capable of obtaining night imagery and detecting small movement on the ground, which makes it useful for land and sea monitoring. Sentinel-1 works in a pre-programmed operation mode to avoid conflicts and to produce a consistent long-term data archive built for applications based on long time series. The mission benefits numerous services. For example, services that relate to the monitoring of Arctic sea-ice extent, routine sea-ice mapping, surveillance of the marine environment, including oil-spill monitoring and ship detection for maritime security, monitoring land-surface for motion risks, mapping for forest, water and soil management and mapping to support humanitarian aid and crisis situations. The design of Sentinel-1 with its focus on reliability, operational stability, global coverage and quick data delivery is expected to enable the development of new applications and meet the evolving needs of Copernicus. Sentinel-1C launched in December 2024 to replace 1B.</skos:definition>
+    <dc:source rdf:resource="https://www.un-spider.org/node/13447"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_1c"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/2f6c9a22-7c68-45a4-be75-d6cf8319a9d3"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-1D">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-1D</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-1D</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SAR-C"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SAR-C"/>
+    <skos:definition xml:lang="en">Sentinel-1D is the forthcoming satellite in the European Space Agency's Copernicus Sentinel-1 mission, intended to maintain the continuity of C-band Synthetic Aperture Radar (SAR) data for land and ocean monitoring. Scheduled for launch in 2025, Sentinel-1D will replace Sentinel-1A, ensuring the mission's ongoing capability to deliver high-resolution, all-weather, day-and-night imagery of Earth's surface.</skos:definition>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_1d"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-2C">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-2C</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-2C</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
+    <skos:definition xml:lang="en">Sentinel-2 is a multispectral operational imaging mission within the GMES (Global Monitoring for Environment and Security) program, jointly implemented by the EC (European Commission) and ESA (European Space Agency) for global land observation (data on vegetation, soil and water cover for land, inland waterways and coastal areas, and also provide atmospheric absorption and distortion data corrections) at high resolution with high revisit capability to provide enhanced continuity of data so far provided by SPOT-5 and Landsat-7</skos:definition>
+    <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-2"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_2c"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-2D">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-2D</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-2D</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
+    <skos:definition xml:lang="en">Sentinel-2 is a multispectral operational imaging mission within the GMES (Global Monitoring for Environment and Security) program, jointly implemented by the EC (European Commission) and ESA (European Space Agency) for global land observation (data on vegetation, soil and water cover for land, inland waterways and coastal areas, and also provide atmospheric absorption and distortion data corrections) at high resolution with high revisit capability to provide enhanced continuity of data so far provided by SPOT-5 and Landsat-7</skos:definition>
+    <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-2"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_2d"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-3C">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-3C</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-3C</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
+    <skos:definition xml:lang="en">The Sentinel-3 (S3) mission of ESA and the EC is one of the elements of the GMES (Global Monitoring for Environment and Security) program, which responds to the requirements for operational and near-real-time monitoring of ocean, land and ice surfaces over a period of 20 years. The topography element of this mission will serve primarily the marine operational users but will also allow the monitoring of sea ice and land ice, as well as inland water surfaces, using novel observation techniques.The Sentinel-3 mission is designed as a constellation of two identical polar orbiting satellites, separated by 180º, for the provision of long-term operational marine and land monitoring services. The operational character of this mission implies a high level of availability of the data products and fast delivery time, which have been important design drivers for the mission.</skos:definition>
+    <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-3"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_3c"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-3D">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-3D</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-3D</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SLSTR"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
+    <skos:definition xml:lang="en">The Sentinel-3 (S3) mission of ESA and the EC is one of the elements of the GMES (Global Monitoring for Environment and Security) program, which responds to the requirements for operational and near-real-time monitoring of ocean, land and ice surfaces over a period of 20 years. The topography element of this mission will serve primarily the marine operational users but will also allow the monitoring of sea ice and land ice, as well as inland water surfaces, using novel observation techniques.The Sentinel-3 mission is designed as a constellation of two identical polar orbiting satellites, separated by 180º, for the provision of long-term operational marine and land monitoring services. The operational character of this mission implies a high level of availability of the data products and fast delivery time, which have been important design drivers for the mission.</skos:definition>
+    <dc:source rdf:resource="https://directory.eoportal.org/web/eoportal/satellite-missions/c-missions/copernicus-sentinel-3"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_3d"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-6A">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-6A</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-6A</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/Poseidon-4"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/Poseidon-4"/>
+    <skos:definition xml:lang="en">With global mean sea level rising because of climate change, Copernicus Sentinel-6 Michael Freilich is the next radar altimetry reference mission to extend the legacy of sea-surface height measurements, until at least 2030. Sentinel-6 is a collaborative Copernicus mission, implemented and co-funded by the European Commission, ESA, EUMETSAT and the USA, through NASA and the National Oceanic and Atmospheric Administration (NOAA).</skos:definition>
+    <dc:source rdf:resource="https://sentinels.copernicus.eu/missions/sentinel-6"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_6a"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/1f0f5178-9d7a-41ae-8f04-d6262415c30c"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-6B">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-6B</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-6B</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/Poseidon-4"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/Poseidon-4"/>
+    <skos:definition xml:lang="en">With global mean sea level rising because of climate change, Copernicus Sentinel-6 Michael Freilich is the next radar altimetry reference mission to extend the legacy of sea-surface height measurements, until at least 2030. Sentinel-6 is a collaborative Copernicus mission, implemented and co-funded by the European Commission, ESA, EUMETSAT and the USA, through NASA and the National Oceanic and Atmospheric Administration (NOAA).</skos:definition>
+    <dc:source rdf:resource="https://sentinels.copernicus.eu/missions/sentinel-6"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_6b"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-6C">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-6C</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-6C</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/Poseidon-4"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/Poseidon-4"/>
+    <skos:definition xml:lang="en">With global mean sea level rising because of climate change, Copernicus Sentinel-6 Michael Freilich is the next radar altimetry reference mission to extend the legacy of sea-surface height measurements, until at least 2030. Sentinel-6 is a collaborative Copernicus mission, implemented and co-funded by the European Commission, ESA, EUMETSAT and the USA, through NASA and the National Oceanic and Atmospheric Administration (NOAA).</skos:definition>
+    <dc:source rdf:resource="https://sentinels.copernicus.eu/missions/sentinel-6"/>
+    <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/satellites/view/sentinel_6c"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Platform/Sentinel-5P">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Platform"/>
+    <skos:prefLabel xml:lang="en">Sentinel-5P</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Sentinel-5 precursor</skos:altLabel>
+    <sosa:hosts rdf:resource="https://vocab.met.no/mmd/Instrument/TROPOMI"/>
+    <skos:narrower rdf:resource="https://vocab.met.no/mmd/Instrument/TROPOMI"/>
+    <skos:definition xml:lang="en">Sentinel-5P (S5P) is a satellite mission that is jointly operated by the European Space Agency (ESA) and the Netherlands Space Office (NSO), formerly the European Global Monitoring for Environment and Security program (GMES). The mission was designed to bridge the gap between atmospheric monitoring systems and to succeed the Envisat mission. The satellite launched in October 2017.</skos:definition>
+    <dc:source rdf:resource="https://directory.eoportal.org/satellite-missions/copernicus-sentinel-5p"/>
+    <rdfs:seeAlso rdf:resource="https://space.oscar.wmo.int/satellites/view/sentinel_5p"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/77e9a75e-2c3b-428b-8b21-b6a902dd8fee"/>
+  </skos:Concept>
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Instrument">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
@@ -1218,6 +1360,7 @@
     <skos:definition xml:lang="en">TBW</skos:definition>
     <skos:changeNote xml:lang="en">2022-07-20, Added Concept AVHRR and SSM/I in collection</skos:changeNote>
     <skos:changeNote xml:lang="en">2024-07-22, Added Concept ASAR in collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2025-02-24, Added Concept SRAL, TROPOMI and Poseidon-4 in collection</skos:changeNote>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/SAR-C"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MSI"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/OLCI"/>
@@ -1231,6 +1374,9 @@
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/MODIS"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/AMSR2"/>
     <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/ASAR"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/SRAL"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/TROPOMI"/>
+    <skos:member rdf:resource="https://vocab.met.no/mmd/Instrument/Poseidon-4"/>
   </skos:Collection>
 
   <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/SAR-C">
@@ -1259,6 +1405,12 @@
     <skos:altLabel xml:lang="en">Multi-Spectral Imager for Sentinel-2</skos:altLabel>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2A"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2B"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2C"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2D"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2A"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2B"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2C"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-2D"/>
     <skos:definition xml:lang="en">The design of the Multispectral Instrument (MSI) on-board SENTINEL-2 has been driven by the requirement for large swath high geometrical and spectral performance of the measurements. The MSI measures the Earth's reflected radiance in 13 spectral bands from VNIR to SWIR.</skos:definition>
     <dc:source rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/msi-instrument"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/msi_sentinel_2a"/>
@@ -1271,6 +1423,12 @@
     <skos:altLabel xml:lang="en">Ocean and Land Colour Imager</skos:altLabel>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3A"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3B"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3C"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3D"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3A"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3B"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3C"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3D"/>
     <skos:definition xml:lang="en">The OLCI instrument baseline is the successor to ENVISAT MERIS with additional spectral channels, different camera arrangements and simplified on-board processing. The OLCI is a push-broom instrument with five camera modules sharing the field of view. The field of view of the five cameras is arranged in a fan-shaped configuration in the vertical plane, perpendicular to the platform velocity. Each camera has an individual field of view of 14.2° and a 0.6° overlap with its neighbours. The whole field of view is shifted across track by 12.6° away from the sun to minimise the impact of sun glint.</skos:definition>
     <dc:source rdf:resource="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-3-olci/olci-instrument"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/olci"/>
@@ -1284,6 +1442,12 @@
     <skos:altLabel xml:lang="en">Sea and Land Surface Temperature Radiometer</skos:altLabel>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3A"/>
     <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3B"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3C"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3D"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3A"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3B"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3C"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3D"/>
     <skos:definition xml:lang="en">The principal aim of the SLSTR instrument mission on-board Sentinel-3 is to provide a reference Land Surface Temperature and Sea Surface Temperature dataset for climate data records. SLSTR has been developed to retrieve global coverage sea surface skin temperatures with zero bias and an uncertainty of ± 0.3 K for a 5° by 5° latitude–longitude area, having a temporal stability of 0.1 K/decade. The instrument has been designed to fulfil these mission aims.</skos:definition>
     <dc:source rdf:resource="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-3-slstr/instrument"/>
     <rdfs:seeAlso rdf:resource="https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-3-slstr"/>
@@ -1409,6 +1573,54 @@
     <dc:source rdf:resource="https://earth.esa.int/eogateway/instruments/asar"/>
     <rdfs:seeAlso rdf:resource="https://www.wmo-sat.info/oscar/instruments/view/asar"/>
     <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/912c3308-23bc-4e12-b7fb-9d82e9fc5fe9"/>
+  </skos:Concept>
+
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/SRAL">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <skos:prefLabel xml:lang="en">SRAL</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Synthetic Aperture Radar Altimeter</skos:altLabel>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3A"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3B"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3C"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3D"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3A"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3B"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3C"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-3D"/>
+    <skos:definition xml:lang="en">SRAL is a redundant dual-frequency (C-band + Ku-band) nadir-looking altimeter instrument, and the core instrument of the topographic payload. The overall objectives are to provide altimetric data (basic measurements of surface heights, sea wave heights and sea wind speed) relative to a precise reference frame.</skos:definition>
+    <dc:source rdf:resource="https://space.oscar.wmo.int/instruments/view/sral"/>
+    <rdfs:seeAlso rdf:resource="https://space.oscar.wmo.int/instruments/view/sral"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/7b6e3162-1314-4441-b33a-e2b68ae85bcd"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/TROPOMI">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <skos:prefLabel xml:lang="en">TROPOMI</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Tropospheric Monitoring Instrument</skos:altLabel>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-5P"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-5P"/>
+    <skos:definition xml:lang="en">The TROPOMI instrument is a space-borne, nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument, the single payload of the Sentinel-5P spacecraft, uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from the earth. The instrument operates in a push-broom configuration (non-scanning), with a swath width of ~2600 km on the Earth's surface.</skos:definition>
+    <dc:source rdf:resource="https://space.oscar.wmo.int/instruments/view/tropomi"/>
+    <rdfs:seeAlso rdf:resource="https://space.oscar.wmo.int/instruments/view/tropomi"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/74ee2866-0e9e-4c20-8003-0621af6552f3"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="https://vocab.met.no/mmd/Instrument/Poseidon-4">
+    <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <skos:prefLabel xml:lang="en">Poseidon-4</skos:prefLabel>
+    <skos:altLabel xml:lang="en">Poseidon-4</skos:altLabel>
+    <skos:altLabel xml:lang="en">Poseidon-4 Radar Altimeter</skos:altLabel>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6A"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6B"/>
+    <sosa:isHostedBy rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6C"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6A"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6B"/>
+    <skos:broader rdf:resource="https://vocab.met.no/mmd/Platform/Sentinel-6C"/>
+    <skos:definition xml:lang="en">Radar Altimeter (POSEIDON-4): The primary measurement system of SENTINEL-6 (JASON-CS), POSEIDON-4 is a fully redundant normal incidence Ku and C band pulse-width limited radar altimeter with the capability of acquiring phase coherent measurements of a surface allowing synthetic-aperture processing to improve along-track sampling and reducing range and Significant Wave Height (SWH) noise as a function of SWH. Overall performances will be improved with respect to other ocean topography altimeter missions by means of improvements in the design and in an optiminsed pulse timing pattern. The main characteristics of the POSEIDON-4 (SENTINEL-6 Ku/C radar altimeter) are: Radar measurement modes: Interleaved mode (simultaneous LRM and SAR, plus reduced-data-rate-SAR RMC Ku-band central frequency of 13.575 GHz, total bandwidth of 320 MHz C-band secondary frequency, used for ionosphere corrections, central frequency of 5.41 GHz, total bandwidth of 320 MHz Tracking modes: closed and open-loop Pulse repetition frequency: approximately 9 kHz (variable from 9.076 to 9.280 kHz) With the current POSEIDON-4 design theoretical performances have been assessed which demonstrates that SENTINEL-6 will improve on its required performances for both LRM and SAR processing.</skos:definition>
+    <dc:source rdf:resource="https://space.oscar.wmo.int/instruments/view/poseidon_4"/>
+    <rdfs:seeAlso rdf:resource="https://space.oscar.wmo.int/instruments/view/poseidon_4"/>
+    <skos:exactMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/2092a1b6-776d-45eb-990a-2838a69c5d86"/>
   </skos:Concept>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Operational_Status">
