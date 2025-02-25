@@ -382,6 +382,16 @@ variable.
 |FY-3E      |Feng-Yun 3E | https://www.wmo-sat.info/oscar/satellites/view/fy_3e
 |GCOM-W1    |Global Change Observation Mission 1st-Water | https://www.wmo-sat.info/oscar/satellites/view/gcom_w
 |Envisat    |Environmental Satellite | https://www.wmo-sat.info/oscar/satellites/view/envisat
+|Sentinel-1C  |Sentinel-1C          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1c
+|Sentinel-1D  |Sentinel-1D          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_1d
+|Sentinel-2C  |Sentinel-2C          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2c
+|Sentinel-2D  |Sentinel-2D          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_2d
+|Sentinel-3C  |Sentinel-3C          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3c
+|Sentinel-3D  |Sentinel-3D          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_3d
+|Sentinel-6A  |Sentinel-6A          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_6a
+|Sentinel-6B  |Sentinel-6B          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_6b
+|Sentinel-6C  |Sentinel-6C          | https://www.wmo-sat.info/oscar/satellites/view/sentinel_6c
+|Sentinel-5P  |Sentinel-5 precursor | https://space.oscar.wmo.int/satellites/view/sentinel_5p
 |============================================================================
 
 <<platform>>
@@ -406,6 +416,9 @@ variable.
 |MODIS       |Moderate-resolution Imaging Spectro-radiometer | https://www.wmo-sat.info/oscar/instruments/view/modis
 |AMSR2       |Advanced Microwave Scanning Radiometer 2 | https://www.wmo-sat.info/oscar/instruments/view/amsr2
 |ASAR        |Advanced Synthetic Aperature Radar | https://www.wmo-sat.info/oscar/instruments/view/asar
+|SRAL        |Synthetic Aperture Radar Altimeter | https://space.oscar.wmo.int/instruments/view/sral
+|TROPOMI     |Tropospheric Monitoring Instrument | https://space.oscar.wmo.int/instruments/view/tropomi
+|Poseidon-4  |Poseidon-4 Radar Altimeter | https://space.oscar.wmo.int/instruments/view/poseidon_4
 |===============================================================================================================
 
 <<platform>>
