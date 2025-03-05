@@ -601,6 +601,7 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Related Information Types</skos:prefLabel>
+    <skos:changeNote xml:lang="en">2025-02-28, Added Data server landing page in collection</skos:changeNote>
     <skos:definition xml:lang="en">Description of the type of related information provided.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/ProjectHomePage">
@@ -629,7 +630,7 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/ScientificPublication">
         <skos:prefLabel xml:lang="en">Scientific publication</skos:prefLabel>
-        <skos:broader rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484"/>
+        <skos:broadMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484"/>
         <skos:definition xml:lang="en">A scientific publication.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -637,7 +638,7 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/DataPaper">
         <skos:prefLabel xml:lang="en">Data paper</skos:prefLabel>
-        <skos:broader rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484"/>
+        <skos:broadMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484"/>
         <skos:definition xml:lang="en">A factual and objective publication with a focused intent to identify and describe specific data, sets of data, or data collections to facilitate discoverability.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -679,6 +680,14 @@
       </skos:Concept>
     </skos:member>
 
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Related_Information_Types/DataServerLandingPage">
+        <skos:prefLabel xml:lang="en">Data server landing page</skos:prefLabel>
+        <skos:narrowMatch rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/77cae7cb-4676-4c69-a88b-d78971496f97"/>
+        <skos:definition xml:lang="en">The URL to access an application server (e.g. THREDDS, Hyrax and ERDDAP) landing page or catalog.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
   </skos:Collection>
 
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Data_Access_Types">
@@ -690,7 +699,7 @@
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Data_Access_Types/HTTP">
         <skos:prefLabel xml:lang="en">HTTP</skos:prefLabel>
         <skos:broader rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concept/8e33a2dd-df13-4079-8636-391abb5344c6"/>
-        <skos:definition xml:lang="en">Direct access to the full data file. May require authentication, but should point directly to the data file or a catalogue containing the data.</skos:definition>
+        <skos:definition xml:lang="en">Direct access to the full data file. May require authentication, but should point directly to the data file.</skos:definition>
       </skos:Concept>
     </skos:member>
 

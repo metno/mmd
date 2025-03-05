@@ -447,6 +447,7 @@
             <xs:enumeration value="Other documentation"></xs:enumeration>
             <xs:enumeration value="Observation facility"></xs:enumeration>
             <xs:enumeration value="Extended metadata"></xs:enumeration>
+            <xs:enumeration value="Data server landing page"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 

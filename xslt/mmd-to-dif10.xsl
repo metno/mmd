@@ -119,6 +119,24 @@
                         </xsl:element>
                     </xsl:element>
 	        </xsl:if>
+        <xsl:if test="mmd:type = 'Data server landing page' and contains(mmd:resource,'thredds')">
+            <xsl:element name="dif:Related_URL">
+                <xsl:element name="dif:URL_Content_Type">
+                    <xsl:element name="dif:Type">
+                        <xsl:text>USE SERVICE API</xsl:text>
+                    </xsl:element>
+                    <xsl:element name="dif:Subtype">
+                        <xsl:text>THREDDS DATA</xsl:text>
+                    </xsl:element>
+                </xsl:element>
+                <xsl:element name="dif:URL">
+                    <xsl:value-of select="mmd:resource"/>
+                </xsl:element>
+                <xsl:element name="dif:Description">
+                    <xsl:value-of select="mmd:description"/>
+                </xsl:element>
+            </xsl:element>
+        </xsl:if>
 		<xsl:if test="mmd:type = 'Project home page'">
                     <xsl:element name="dif:Related_URL">
                         <xsl:element name="dif:URL_Content_Type">

@@ -662,6 +662,7 @@ information page containing more detailed information on the observation
 facility following OGC Observations and Measurements or WMO Integrated
 Global Observing System approach.
 |Extended metadata |Additional unspecified metadata on the data. 
+|Data server landing page|The URL to access an application server (e.g. THREDDS, Hyrax and ERDDAP) landing page or catalog.
 |====================================================================
 
 <<related_information>>
@@ -674,8 +675,7 @@ Global Observing System approach.
 |Code |Description
 
 |HTTP |Direct access to the full data file. May require authentication,
-but should point directly to the data file or a catalogue containing the
-data.
+but should point directly to the data file.
 
 |OPeNDAP |Open-source Project for a Network Data Access Protocol
 

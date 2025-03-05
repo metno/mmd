@@ -447,8 +447,9 @@
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>;
   skos:prefLabel "Related Information Types"@en ;
+  skos:changeNote "2025-02-28, Added Data server landing page in collection"@en ;
   skos:definition "Description of the type of related information provided."@en ;
-  skos:member <https://vocab.met.no/mmd/Related_Information_Types/ProjectHomePage>, <https://vocab.met.no/mmd/Related_Information_Types/UsersGuide>, <https://vocab.met.no/mmd/Related_Information_Types/DatasetLandingPage>, <https://vocab.met.no/mmd/Related_Information_Types/ScientificPublication>, <https://vocab.met.no/mmd/Related_Information_Types/DataPaper>, <https://vocab.met.no/mmd/Related_Information_Types/DataManagementPlan>, <https://vocab.met.no/mmd/Related_Information_Types/Software>, <https://vocab.met.no/mmd/Related_Information_Types/OtherDocumentation>, <https://vocab.met.no/mmd/Related_Information_Types/ObservationFacility>, <https://vocab.met.no/mmd/Related_Information_Types/ExtendedMetadata> .
+  skos:member <https://vocab.met.no/mmd/Related_Information_Types/ProjectHomePage>, <https://vocab.met.no/mmd/Related_Information_Types/UsersGuide>, <https://vocab.met.no/mmd/Related_Information_Types/DatasetLandingPage>, <https://vocab.met.no/mmd/Related_Information_Types/ScientificPublication>, <https://vocab.met.no/mmd/Related_Information_Types/DataPaper>, <https://vocab.met.no/mmd/Related_Information_Types/DataManagementPlan>, <https://vocab.met.no/mmd/Related_Information_Types/Software>, <https://vocab.met.no/mmd/Related_Information_Types/OtherDocumentation>, <https://vocab.met.no/mmd/Related_Information_Types/ObservationFacility>, <https://vocab.met.no/mmd/Related_Information_Types/ExtendedMetadata>, <https://vocab.met.no/mmd/Related_Information_Types/DataServerLandingPage> .
 
 <https://vocab.met.no/mmd/Related_Information_Types/ProjectHomePage>
   a skos:Concept ;
@@ -471,13 +472,13 @@
 <https://vocab.met.no/mmd/Related_Information_Types/ScientificPublication>
   a skos:Concept ;
   skos:prefLabel "Scientific publication"@en ;
-  skos:broader <https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484> ;
+  skos:broadMatch <https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484> ;
   skos:definition "A scientific publication."@en .
 
 <https://vocab.met.no/mmd/Related_Information_Types/DataPaper>
   a skos:Concept ;
   skos:prefLabel "Data paper"@en ;
-  skos:broader <https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484> ;
+  skos:broadMatch <https://gcmd.earthdata.nasa.gov/kms/concept/13a4deec-bd22-4864-9804-77fac181f484> ;
   skos:definition "A factual and objective publication with a focused intent to identify and describe specific data, sets of data, or data collections to facilitate discoverability."@en .
 
 <https://vocab.met.no/mmd/Related_Information_Types/DataManagementPlan>
@@ -507,6 +508,12 @@
   skos:exactMatch <https://gcmd.earthdata.nasa.gov/kms/concept/3c9d4493-22fd-48a8-9af5-bf0d16b7ede5> ;
   skos:definition "Additional unspecified metadata on the data."@en .
 
+<https://vocab.met.no/mmd/Related_Information_Types/DataServerLandingPage>
+  a skos:Concept ;
+  skos:prefLabel "Data server landing page"@en ;
+  skos:narrowMatch <https://gcmd.earthdata.nasa.gov/kms/concept/77cae7cb-4676-4c69-a88b-d78971496f97> ;
+  skos:definition "The URL to access an application server (e.g. THREDDS, Hyrax and ERDDAP) landing page or catalog."@en .
+
 <https://vocab.met.no/mmd/Data_Access_Types>
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>;
@@ -518,7 +525,7 @@
   a skos:Concept ;
   skos:prefLabel "HTTP"@en ;
   skos:broader <https://gcmd.earthdata.nasa.gov/kms/concept/8e33a2dd-df13-4079-8636-391abb5344c6> ;
-  skos:definition "Direct access to the full data file. May require authentication, but should point directly to the data file or a catalogue containing the data."@en .
+  skos:definition "Direct access to the full data file. May require authentication, but should point directly to the data file."@en .
 
 <https://vocab.met.no/mmd/Data_Access_Types/OPeNDAP>
   a skos:Concept ;
