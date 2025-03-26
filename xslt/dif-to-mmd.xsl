@@ -154,7 +154,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
               <xsl:value-of select="dif:Dataset_Series_Name" />
           </xsl:element>
           <xsl:element name="mmd:publication_date">
-              <xsl:value-of select="dif:Dataset_Release_Date" />
+              <xsl:if test="string-length(dif:Dataset_Release_Date) &gt;= 10">
+                  <xsl:value-of select="dif:Dataset_Release_Date" />
+              </xsl:if>
           </xsl:element>
           <xsl:element name="mmd:publication_place">
               <xsl:value-of select="dif:Dataset_Release_Place" />
