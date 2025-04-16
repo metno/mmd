@@ -169,10 +169,24 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
           </xsl:element>
           <xsl:element name="mmd:doi">
 	      <xsl:if test="dif:Dataset_DOI">
-		 <xsl:value-of select="dif:Dataset_DOI" />
+              <xsl:choose>
+                  <xsl:when test="contains(dif:Dataset_DOI, 'doi.org/')">
+                      <xsl:value-of select="dif:Dataset_DOI" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                      <xsl:value-of select="concat('https://doi.org/',dif:Dataset_DOI)" />
+                  </xsl:otherwise>
+              </xsl:choose>
 	      </xsl:if>
 	      <xsl:if test="dif:Persistent_Identifier/dif:Type = 'DOI'">
-                 <xsl:value-of select="dif:Persistent_Identifier/dif:Identifier" />
+              <xsl:choose>
+                  <xsl:when test="contains(dif:Persistent_Identifier/dif:Identifier, 'doi.org/')">
+                      <xsl:value-of select="dif:Persistent_Identifier/dif:Identifier" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                      <xsl:value-of select="concat('https://doi.org/', dif:Persistent_Identifier/dif:Identifier)" />
+                  </xsl:otherwise>
+              </xsl:choose>
 	      </xsl:if>
           </xsl:element>
           <xsl:element name="mmd:url">
