@@ -354,17 +354,23 @@
 
 		    <xsl:element name="gmd:spatialRepresentationType">
 			<xsl:choose>
-			    <xsl:when test="mmd:spatial_representation">
-		                <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
-			            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
-			            <xsl:attribute name="codeListValue">
-                                        <xsl:value-of select="mmd:spatial_representation" />
-			            </xsl:attribute>
-                                        <xsl:value-of select="mmd:spatial_representation" />
-		                </xsl:element>
+			    <xsl:when test="mmd:spatial_representation = 'grid'">
+		            <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
+			        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
+			        <xsl:attribute name="codeListValue">
+                        <xsl:value-of select="mmd:spatial_representation" />
+			        </xsl:attribute>
+                        <xsl:value-of select="mmd:spatial_representation" />
+		            </xsl:element>
 			    </xsl:when>
 			    <xsl:otherwise>
-			        <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+		            <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
+			        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
+			        <xsl:attribute name="codeListValue">
+                        <xsl:text>vector</xsl:text>
+			        </xsl:attribute>
+                        <xsl:text>vector</xsl:text>
+		            </xsl:element>
 			    </xsl:otherwise>
 			</xsl:choose>
 		    </xsl:element>

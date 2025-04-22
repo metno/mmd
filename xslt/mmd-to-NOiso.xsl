@@ -383,31 +383,24 @@
                                 </xsl:element>
                             </xsl:element>
 
+                            <!--FIXME access_constraint is not parsed from thredds. Making some hardcoded assumptions-->
                             <xsl:element name="gmd:otherConstraints">
-                                <xsl:choose>
-                                    <xsl:when test="mmd:access_constraint !=''">
-                                        <xsl:choose>
-                                            <xsl:when test="mmd:access_constraint = 'Open'">
-                                                <xsl:element name="gmx:Anchor">
-                                                    <xsl:attribute name="xlink:href">
-                                                        <xsl:text>http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations</xsl:text>
-                                                    </xsl:attribute>
-                                                    <xsl:text>Open data</xsl:text>
-                                                </xsl:element>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:element name="gco:CharacterString">
-                                                    <xsl:value-of select="mmd:access_constraint" />
-                                                </xsl:element>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:element name="gco:CharacterString">
-                                            <xsl:text>conditionsUnknown</xsl:text>
-                                        </xsl:element>
-                                    </xsl:otherwise>
-                                </xsl:choose>
+                                <xsl:if test="mmd:access_constraint = 'Open'">
+                                    <xsl:element name="gmx:Anchor">
+                                        <xsl:attribute name="xlink:href">
+                                            <xsl:text>http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations</xsl:text>
+                                        </xsl:attribute>
+                                        <xsl:text>Open data</xsl:text>
+                                    </xsl:element>
+                                </xsl:if>
+                                <xsl:if test="contains(mmd:data_access/mmd:resource, 'thredds.niva')">
+                                    <xsl:element name="gmx:Anchor">
+                                        <xsl:attribute name="xlink:href">
+                                            <xsl:text>http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations</xsl:text>
+                                        </xsl:attribute>
+                                        <xsl:text>Open data</xsl:text>
+                                    </xsl:element>
+                                </xsl:if>
                             </xsl:element>
 
                         </xsl:element>
@@ -418,17 +411,23 @@
 
 		    <xsl:element name="gmd:spatialRepresentationType">
 			<xsl:choose>
-			    <xsl:when test="mmd:spatial_representation = 'grid' or mmd:spatial_representation = 'vector'">
-		                <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
-			            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
-			            <xsl:attribute name="codeListValue">
-                                        <xsl:value-of select="mmd:spatial_representation" />
-			            </xsl:attribute>
-                                        <xsl:value-of select="mmd:spatial_representation" />
-		                </xsl:element>
+			    <xsl:when test="mmd:spatial_representation = 'grid'">
+		            <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
+			        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
+			        <xsl:attribute name="codeListValue">
+                        <xsl:value-of select="mmd:spatial_representation" />
+			        </xsl:attribute>
+                        <xsl:value-of select="mmd:spatial_representation" />
+		            </xsl:element>
 			    </xsl:when>
 			    <xsl:otherwise>
-			        <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+		            <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
+			        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
+			        <xsl:attribute name="codeListValue">
+                        <xsl:text>vector</xsl:text>
+			        </xsl:attribute>
+                        <xsl:text>vector</xsl:text>
+		            </xsl:element>
 			    </xsl:otherwise>
 			</xsl:choose>
 		    </xsl:element>
