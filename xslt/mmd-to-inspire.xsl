@@ -363,6 +363,15 @@
                         <xsl:value-of select="mmd:spatial_representation" />
 		            </xsl:element>
 			    </xsl:when>
+			    <xsl:when test="not(mmd:spatial_representation) and mmd:data_access/mmd:type = 'OGC WMS'">
+		            <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
+			        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
+			        <xsl:attribute name="codeListValue">
+                        <xsl:text>grid</xsl:text>
+			        </xsl:attribute>
+                        <xsl:text>grid</xsl:text>
+		            </xsl:element>
+			    </xsl:when>
 			    <xsl:otherwise>
 		            <xsl:element name="gmd:MD_SpatialRepresentationTypeCode">
 			        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode</xsl:attribute>
