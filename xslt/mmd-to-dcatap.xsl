@@ -427,7 +427,7 @@ DCAT 3 supersedes DCAT 2 [VOCAB-DCAT-2], but it does not make it obsolete. DCAT 
         <xsl:variable name="mmd_status_mapping" select="document('')/*/mapping:dataset_status[@mmd=$mmd_status]/@adms" />
         <xsl:element name="adms:status">
             <xsl:element name="skos:Concept">
-                <xsl:attribute name="rdf:resource">
+                <xsl:attribute name="rdf:about">
                     <xsl:value-of select="concat('http://purl.org/adms/status/',$mmd_status_mapping)" />
                 </xsl:attribute>
                 <xsl:element name="skos:prefLabel">
@@ -455,18 +455,17 @@ DCAT 3 supersedes DCAT 2 [VOCAB-DCAT-2], but it does not make it obsolete. DCAT 
 
     <xsl:template match="mmd:project">
         <xsl:element name="prov:wasGeneratedBy">
-            <xsl:attribute name="rdf:type">
-                <xsl:text>prov:Activity</xsl:text>
-            </xsl:attribute>
-            <xsl:element name="rdfs:label">
-                <xsl:choose>
-                    <xsl:when test="mmd:short_name != ''">
-                        <xsl:value-of select="concat(mmd:long_name,' (',mmd:short_name,')')"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="mmd:long_name"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+            <xsl:element name="prov:Activity">
+                <xsl:element name="rdfs:label">
+                    <xsl:choose>
+                        <xsl:when test="mmd:short_name != ''">
+                            <xsl:value-of select="concat(mmd:long_name,' (',mmd:short_name,')')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="mmd:long_name"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:element>
             </xsl:element>
         </xsl:element>
     </xsl:template>
