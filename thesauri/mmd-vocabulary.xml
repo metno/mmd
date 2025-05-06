@@ -762,6 +762,8 @@
         <skos:prefLabel xml:lang="en">Open</skos:prefLabel>
         <skos:altLabel xml:lang="en">Free</skos:altLabel>
         <skos:altLabel xml:lang="en">Unrestricted</skos:altLabel>
+        <skos:hiddenLabel xml:lang="en">no limitations to public access</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Open data</skos:hiddenLabel>
         <skos:definition xml:lang="en">These data are freely available to everyone and can be made available without any restrictions.</skos:definition>
       </skos:Concept>
     </skos:member>

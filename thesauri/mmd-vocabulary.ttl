@@ -573,6 +573,7 @@
   a skos:Concept ;
   skos:prefLabel "Open"@en ;
   skos:altLabel "Free"@en, "Unrestricted"@en ;
+  skos:hiddenLabel "no limitations to public access"@en, "Open data"@en ;
   skos:definition "These data are freely available to everyone and can be made available without any restrictions."@en .
 
 <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>
