@@ -146,6 +146,7 @@
   a skos:Concept ;
   skos:prefLabel "CC-BY-4.0"@en ;
   skos:altLabel "Creative Commons Attribution 4.0 International"@en, "CC BY 4.0"@en, "Attribution"@en, "Navngivelse"@nb ;
+  skos:hiddenLabel "CC-BY 4.0"@en, "Creative Commons CC BY 4.0"@en, "Creative Commons CC-BY 4.0"@en;
   skos:exactMatch <http://spdx.org/licenses/CC-BY-4.0>, <https://creativecommons.org/licenses/by/4.0/> ;
   skos:definition "This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."@en .
 

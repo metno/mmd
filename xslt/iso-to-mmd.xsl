@@ -25,6 +25,9 @@
     <xsl:key name="usecalt"
     match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept"
     use="skos:altLabel"/>
+    <xsl:key name="usechidden"
+    match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept"
+    use="skos:hiddenLabel"/>
     <xsl:key name="usecexact"
     match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept/skos:exactMatch"
     use="@rdf:resource"/>
@@ -325,6 +328,18 @@
                     <xsl:when test="key('usecalt', $isouse)">
                         <xsl:variable name="prefuseid" select="key('usecalt', $isouse)/skos:prefLabel"/>
                         <xsl:variable name="prefuseref" select="key('usecalt', $isouse)/skos:exactMatch/@rdf:resource[contains(.,'spdx')]"/>
+                        <xsl:element name="mmd:use_constraint">
+                            <xsl:element name="mmd:identifier">
+                                <xsl:value-of select="$prefuseid" />
+                            </xsl:element>
+                            <xsl:element name="mmd:resource">
+                                <xsl:value-of select="$prefuseref" />
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:when>
+                    <xsl:when test="key('usechidden', $isouse)">
+                        <xsl:variable name="prefuseid" select="key('usechidden', $isouse)/skos:prefLabel"/>
+                        <xsl:variable name="prefuseref" select="key('usechidden', $isouse)/skos:exactMatch/@rdf:resource[contains(.,'spdx')]"/>
                         <xsl:element name="mmd:use_constraint">
                             <xsl:element name="mmd:identifier">
                                 <xsl:value-of select="$prefuseid" />

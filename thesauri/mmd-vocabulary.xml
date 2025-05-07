@@ -189,6 +189,9 @@
         <skos:altLabel xml:lang="en">CC BY 4.0</skos:altLabel>
         <skos:altLabel xml:lang="en">Attribution</skos:altLabel>
         <skos:altLabel xml:lang="nb">Navngivelse</skos:altLabel>
+        <skos:hiddenLabel xml:lang="en">CC-BY 4.0</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Creative Commons CC BY 4.0</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Creative Commons CC-BY 4.0</skos:hiddenLabel>
         <skos:exactMatch rdf:resource="http://spdx.org/licenses/CC-BY-4.0"/>
         <skos:exactMatch rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <skos:definition xml:lang="en">This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</skos:definition>
