@@ -203,14 +203,20 @@
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent">
         <xsl:element name="mmd:temporal_extent">
             <xsl:element name="mmd:start_date">
-                <xsl:choose>
-                    <xsl:when test="contains(gml:TimePeriod/gml:beginPosition, 'T') or contains(gml32:TimePeriod/gml32:beginPosition, 'T')">
-                        <xsl:value-of select="gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition" />
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat(gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition, 'T12:00:00Z')" />
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:variable name="startdate">
+                    <xsl:choose>
+                        <xsl:when test="contains(gml:TimePeriod/gml:beginPosition, 'T') or contains(gml32:TimePeriod/gml32:beginPosition, 'T')">
+                            <xsl:value-of select="gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat(gml:TimePeriod/gml:beginPosition | gml32:TimePeriod/gml32:beginPosition, 'T12:00:00Z')" />
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <!--Make sure the start date is a valid datetime element-->
+                <xsl:if test="not(contains($startdate, 'None')) and not(contains($startdate, 'unknown')) and not(contains($startdate, '--')) and (string-length(normalize-space(substring-before($startdate, 'T'))) = 10)">
+                    <xsl:value-of select="$startdate" />
+                </xsl:if>
             </xsl:element>
             <xsl:variable name="enddate">
                 <xsl:choose>
@@ -222,7 +228,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:if test="not(contains($enddate, 'None')) and not(contains($enddate, 'unknown'))">
+            <xsl:if test="not(contains($enddate, 'None')) and not(contains($enddate, 'unknown')) and not(contains($enddate, '--')) and (string-length(normalize-space(substring-before($enddate, 'T'))) = 10)">
                 <xsl:element name="mmd:end_date">
                     <xsl:value-of select="$enddate" />
                 </xsl:element>
