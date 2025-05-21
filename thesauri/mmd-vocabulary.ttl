@@ -1658,26 +1658,31 @@
   a skos:Concept ;
   skos:prefLabel "Norwegian Meteorological Institute"@en, "Meteorologisk institutt"@nb ;
   skos:hiddenLabel "MET"@en, "METNO"@en ;
-  skos:altLabel "MET Norway"@en, "MET"@nb .
+  skos:altLabel "MET Norway"@en, "MET"@nb ;
+  skos:exactMatch <https://ror.org/001n36p86> .
 
 <https://vocab.met.no/mmd/Organisation/NVE>
   a skos:Concept ;
   skos:prefLabel "Norwegian Water Resources and Energy Directorate"@en, "Norges vassdrags- og energidirektorat"@nb ;
   skos:hiddenLabel "Norwegian Water Resources and Energy Directorate (NVE)"@en ;
-  skos:altLabel "NVE"@en, "NVE"@nb .
+  skos:altLabel "NVE"@en, "NVE"@nb ;
+  skos:exactMatch <https://ror.org/02syy7986> .
 
 <https://vocab.met.no/mmd/Organisation/NIVA>
   a skos:Concept ;
   skos:prefLabel "Norwegian Institute for Water Research"@en, "Norsk institutt for vannforskning"@nb ;
-  skos:altLabel "NIVA"@en, "NIVA"@nb .
+  skos:altLabel "NIVA"@en, "NIVA"@nb ;
+  skos:exactMatch <https://ror.org/03hrf8236> .
 
 <https://vocab.met.no/mmd/Organisation/NILU>
   a skos:Concept ;
   skos:prefLabel "Norwegian Institute for Air Research"@en, "Norsk institutt for luftforskning"@nb ;
-  skos:altLabel "NILU"@en, "NILU"@nb .
+  skos:altLabel "NILU"@en, "NILU"@nb ;
+  skos:exactMatch <https://ror.org/00q7d9z06> .
 
 <https://vocab.met.no/mmd/Organisation/NINA>
   a skos:Concept ;
   skos:prefLabel "Norwegian Institute for Nature Research"@en, "Norsk institutt for naturforskning"@nb ;
-  skos:altLabel "NINA"@en, "NINA"@nb .
+  skos:altLabel "NINA"@en, "NINA"@nb ;
+  skos:exactMatch <https://ror.org/04aha0598> .
 

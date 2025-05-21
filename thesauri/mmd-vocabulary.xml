@@ -2131,6 +2131,7 @@
         <skos:prefLabel xml:lang="nb">Meteorologisk institutt</skos:prefLabel>
         <skos:altLabel xml:lang="en">MET Norway</skos:altLabel>
         <skos:altLabel xml:lang="nb">MET</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/001n36p86"/>
       </skos:Concept>
     </skos:member>
 
@@ -2141,6 +2142,7 @@
         <skos:prefLabel xml:lang="nb">Norges vassdrags- og energidirektorat</skos:prefLabel>
         <skos:altLabel xml:lang="en">NVE</skos:altLabel>
         <skos:altLabel xml:lang="nb">NVE</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/02syy7986"/>
       </skos:Concept>
     </skos:member>
 
@@ -2150,6 +2152,7 @@
         <skos:prefLabel xml:lang="nb">Norsk institutt for vannforskning</skos:prefLabel>
         <skos:altLabel xml:lang="en">NIVA</skos:altLabel>
         <skos:altLabel xml:lang="nb">NIVA</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/03hrf8236"/>
       </skos:Concept>
     </skos:member>
 
@@ -2159,6 +2162,7 @@
         <skos:prefLabel xml:lang="nb">Norsk institutt for luftforskning</skos:prefLabel>
         <skos:altLabel xml:lang="en">NILU</skos:altLabel>
         <skos:altLabel xml:lang="nb">NILU</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/00q7d9z06"/>
       </skos:Concept>
     </skos:member>
 
@@ -2168,6 +2172,7 @@
         <skos:prefLabel xml:lang="nb">Norsk institutt for naturforskning</skos:prefLabel>
         <skos:altLabel xml:lang="en">NINA</skos:altLabel>
         <skos:altLabel xml:lang="nb">NINA</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/04aha0598"/>
       </skos:Concept>
     </skos:member>
 
