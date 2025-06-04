@@ -13,6 +13,11 @@
     <xsl:key name="gemet" match="rdf:Description" use="skos:prefLabel"/>
     <xsl:variable name="northemesmapping" select="document('../thesauri/nasjonal-temainndeling.rdf')"/>
     <xsl:key name="northeme" match="skos:Concept" use="skos:prefLabel"/>
+    <xsl:variable name="vocab" select="document('../thesauri/mmd-vocabulary.xml')"/>
+    <xsl:key name="orgeng" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:prefLabel[@xml:lang='en']"/>
+    <xsl:key name="orgengalt" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:altLabel[@xml:lang='en']"/>
+    <xsl:key name="orgengh" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:hiddenLabel[@xml:lang='en']"/>
+
     <xsl:template match="/mmd:mmd">
         <xsl:element name="gmd:MD_Metadata">
             <xsl:copy-of select="document('')/xsl:stylesheet/namespace::*[name()!='xsl' and name()!='mapping' and name()!='mmd' and name()!='skos' and name()!='rdf' and name()!='dct']"/>
@@ -80,9 +85,9 @@
                                 </xsl:element>
                             </xsl:element>
                             <xsl:element name="gmd:organisationName">
-                                <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="mmd:personnel[mmd:role = 'Investigator']/mmd:organisation"/>
-                                </xsl:element>
+                                <xsl:call-template name="organisation">
+                                    <xsl:with-param name="myorg" select="mmd:personnel[mmd:role = 'Investigator']/mmd:organisation" />
+                                </xsl:call-template>
                             </xsl:element>
                             <xsl:element name="gmd:contactInfo">
                                 <xsl:element name="gmd:CI_Contact">
@@ -151,16 +156,6 @@
                 <gco:CharacterString>1.0</gco:CharacterString>
             </gmd:metadataStandardVersion>
             <xsl:apply-templates select="mmd:related_information[mmd:type = 'Dataset landing page']"/>
-            <gmd:locale>
-                <gmd:PT_Locale id="locale-nor">
-                    <gmd:languageCode>
-                        <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="nor">Norwegian</gmd:LanguageCode>
-                    </gmd:languageCode>
-                    <gmd:characterEncoding>
-                        <gmd:MD_CharacterSetCode codeList="https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
-                    </gmd:characterEncoding>
-                </gmd:PT_Locale>
-            </gmd:locale>
             <xsl:element name="gmd:referenceSystemInfo">
                 <xsl:element name="gmd:MD_ReferenceSystem">
                     <xsl:element name="gmd:referenceSystemIdentifier">
@@ -280,7 +275,271 @@
                         </xsl:element>
                     </xsl:for-each>
                     <!--keywords (M) multiplicity [1..*] -->
-                    <xsl:apply-templates select="mmd:keywords"/>
+                    <xsl:apply-templates select="mmd:keywords[@vocabulary != 'None']"/>
+                    <!--Sometimes we have more entries with None-->
+                    <xsl:if test="mmd:keywords[@vocabulary = 'None']/*">
+                        <xsl:element name="gmd:descriptiveKeywords">
+                            <xsl:element name="gmd:MD_Keywords">
+                                <xsl:for-each select="mmd:keywords[@vocabulary = 'None']/mmd:keyword">
+                                    <xsl:element name="gmd:keyword">
+                                        <xsl:element name="gco:CharacterString">
+                                            <xsl:value-of select="."/>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:for-each>
+                                <xsl:element name="gmd:type">
+                                    <xsl:element name="gmd:MD_KeywordTypeCode">
+                                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">theme</xsl:attribute>
+                                        <xsl:text>theme</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:if>
+                    <xsl:apply-templates select="mmd:related_information[mmd:type = 'Observation facility']" />
+                    <xsl:if test="mmd:platform[contains(mmd:resource, 'satellite')]">
+                        <xsl:element name="gmd:descriptiveKeywords">
+                            <xsl:element name="gmd:MD_Keywords">
+                                <xsl:for-each select="mmd:platform[contains(mmd:resource, 'satellite')]">
+                                    <xsl:element name="gmd:keyword">
+                                        <xsl:element name="gmx:Anchor">
+                                            <xsl:attribute name="xlink:href">
+                                                <xsl:value-of select="mmd:resource"/>
+                                            </xsl:attribute>
+                                            <xsl:value-of select="mmd:long_name"/>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:for-each>
+                                <xsl:element name="gmd:type">
+                                    <xsl:element name="gmd:MD_KeywordTypeCode">
+                                        <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">platform</xsl:attribute>
+                                        <xsl:text>platform</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmd:thesaurusName">
+                                    <xsl:element name="gmd:CI_Citation">
+                                        <xsl:element name="gmd:title">
+                                            <xsl:element name="gmx:Anchor">
+                                                <xsl:attribute name="xlink:href">
+                                                    <xsl:text>https://space.oscar.wmo.int/satellites</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:text>Space-based Capabilities (OSCAR/Space): Satellites</xsl:text>
+                                            </xsl:element>
+                                        </xsl:element>
+                                        <xsl:element name="gmd:date">
+                                            <xsl:element name="gmd:CI_Date">
+                                                <xsl:element name="gmd:date">
+                                                    <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                                </xsl:element>
+                                                <xsl:element name="gmd:dateType">
+                                                    <xsl:element name="gmd:CI_DateTypeCode">
+                                                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                        <xsl:text>publication</xsl:text>
+                                                    </xsl:element>
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:if test="mmd:platform/mmd:instrument">
+                            <xsl:element name="gmd:descriptiveKeywords">
+                                <xsl:element name="gmd:MD_Keywords">
+                                    <xsl:for-each select="mmd:platform/mmd:instrument">
+                                        <xsl:element name="gmd:keyword">
+                                            <xsl:element name="gmx:Anchor">
+                                                <xsl:attribute name="xlink:href">
+                                                    <xsl:value-of select="mmd:resource"/>
+                                                </xsl:attribute>
+                                                <xsl:value-of select="mmd:long_name"/>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:for-each>
+                                    <xsl:element name="gmd:type">
+                                        <xsl:element name="gmd:MD_KeywordTypeCode">
+                                            <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                            <xsl:attribute name="codeListValue">instrument</xsl:attribute>
+                                            <xsl:text>instrument</xsl:text>
+                                        </xsl:element>
+                                    </xsl:element>
+                                    <xsl:element name="gmd:thesaurusName">
+                                        <xsl:element name="gmd:CI_Citation">
+                                            <xsl:element name="gmd:title">
+                                                <xsl:element name="gmx:Anchor">
+                                                    <xsl:attribute name="xlink:href">
+                                                        <xsl:text>https://space.oscar.wmo.int/instruments</xsl:text>
+                                                    </xsl:attribute>
+                                                    <xsl:text>Space-based Capabilities (OSCAR/Space): Instruments</xsl:text>
+                                                </xsl:element>
+                                            </xsl:element>
+                                            <xsl:element name="gmd:date">
+                                                <xsl:element name="gmd:CI_Date">
+                                                    <xsl:element name="gmd:date">
+                                                        <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                                    </xsl:element>
+                                                    <xsl:element name="gmd:dateType">
+                                                        <xsl:element name="gmd:CI_DateTypeCode">
+                                                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                            <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                            <xsl:text>publication</xsl:text>
+                                                        </xsl:element>
+                                                    </xsl:element>
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:if>
+                    </xsl:if>
+                    <xsl:if test="mmd:platform[contains(mmd:resource, 'surface')]">
+                        <xsl:element name="gmd:descriptiveKeywords">
+                            <xsl:element name="gmd:MD_Keywords">
+                                <xsl:for-each select="mmd:platform[contains(mmd:resource, 'surface')]">
+                                    <xsl:element name="gmd:keyword">
+                                        <xsl:element name="gmx:Anchor">
+                                            <xsl:attribute name="xlink:href">
+                                                <xsl:value-of select="mmd:resource"/>
+                                            </xsl:attribute>
+                                            <xsl:value-of select="mmd:long_name"/>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:for-each>
+                                <xsl:element name="gmd:type">
+                                    <xsl:element name="gmd:MD_KeywordTypeCode">
+                                        <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">platform</xsl:attribute>
+                                        <xsl:text>platform</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmd:thesaurusName">
+                                    <xsl:element name="gmd:CI_Citation">
+                                        <xsl:element name="gmd:title">
+                                            <xsl:element name="gmx:Anchor">
+                                                <xsl:attribute name="xlink:href">
+                                                    <xsl:text>https://oscar.wmo.int/surface/</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:text>Surface-based Capabilities (OSCAR/Surface)</xsl:text>
+                                            </xsl:element>
+                                        </xsl:element>
+                                        <xsl:element name="gmd:date">
+                                            <xsl:element name="gmd:CI_Date">
+                                                <xsl:element name="gmd:date">
+                                                    <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                                </xsl:element>
+                                                <xsl:element name="gmd:dateType">
+                                                    <xsl:element name="gmd:CI_DateTypeCode">
+                                                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                        <xsl:text>publication</xsl:text>
+                                                    </xsl:element>
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:if test="mmd:platform/mmd:instrument">
+                            <xsl:element name="gmd:descriptiveKeywords">
+                                <xsl:element name="gmd:MD_Keywords">
+                                    <xsl:for-each select="mmd:platform/mmd:instrument">
+                                        <xsl:element name="gmd:keyword">
+                                            <xsl:element name="gmx:Anchor">
+                                                <xsl:attribute name="xlink:href">
+                                                    <xsl:value-of select="mmd:resource"/>
+                                                </xsl:attribute>
+                                                <xsl:value-of select="mmd:long_name"/>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:for-each>
+                                    <xsl:element name="gmd:type">
+                                        <xsl:element name="gmd:MD_KeywordTypeCode">
+                                            <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                            <xsl:attribute name="codeListValue">instrument</xsl:attribute>
+                                            <xsl:text>instrument</xsl:text>
+                                        </xsl:element>
+                                    </xsl:element>
+                                    <!--xsl:element name="gmd:thesaurusName">
+                                        <xsl:element name="gmd:CI_Citation">
+                                            <xsl:element name="gmd:title">
+                                                <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+                                            </xsl:element>
+                                            <xsl:element name="gmd:date">
+                                                <xsl:element name="gmd:CI_Date">
+                                                    <xsl:element name="gmd:date">
+                                                        <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                                    </xsl:element>
+                                                    <xsl:element name="gmd:dateType">
+                                                        <xsl:element name="gmd:CI_DateTypeCode">
+                                                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                            <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                            <xsl:text>publication</xsl:text>
+                                                        </xsl:element>
+                                                    </xsl:element>
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element-->
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:if>
+                    </xsl:if>
+                    <xsl:if test="mmd:project">
+                        <xsl:element name="gmd:descriptiveKeywords">
+                            <xsl:element name="gmd:MD_Keywords">
+                                <xsl:for-each select="mmd:project">
+                                    <xsl:element name="gmd:keyword">
+                                        <xsl:element name="gco:CharacterString">
+                                            <xsl:choose>
+                                                <xsl:when test="mmd:short_name =''">
+                                                    <xsl:value-of select="mmd:long_name"/>
+                                                </xsl:when>
+                                                <xsl:when test="mmd:long_name =''">
+                                                    <xsl:value-of select="mmd:short_name"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="concat(mmd:long_name, ' (', mmd:short_name,')')"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:for-each>
+                                <xsl:element name="gmd:type">
+                                    <xsl:element name="gmd:MD_KeywordTypeCode">
+                                        <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                        <xsl:attribute name="codeListValue">project</xsl:attribute>
+                                        <xsl:text>project</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                                <!--xsl:element name="gmd:thesaurusName">
+                                    <xsl:element name="gmd:CI_Citation">
+                                        <xsl:element name="gmd:title">
+                                            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+                                        </xsl:element>
+                                        <xsl:element name="gmd:date">
+                                            <xsl:element name="gmd:CI_Date">
+                                                <xsl:element name="gmd:date">
+                                                    <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                                </xsl:element>
+                                                <xsl:element name="gmd:dateType">
+                                                    <xsl:element name="gmd:CI_DateTypeCode">
+                                                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                        <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                        <xsl:text>publication</xsl:text>
+                                                    </xsl:element>
+                                                </xsl:element>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element-->
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:if>
                     <!--access_constraint Conditional: referring to limitations on public access. Mandatory if accessConstraints or classification are not documented, multiplicity [0..*] for otherConstraints per instance of MD_LegalConstraints-->
                     <xsl:element name="gmd:resourceConstraints">
                         <xsl:element name="gmd:MD_LegalConstraints">
@@ -320,7 +579,46 @@
                         </xsl:element>
                     </xsl:element>
                     <!--use_constraints (M) multiplicity [1..*] -->
-                    <xsl:apply-templates select="mmd:use_constraint"/>
+                    <xsl:element name="gmd:resourceConstraints">
+                        <xsl:element name="gmd:MD_LegalConstraints">
+                            <xsl:element name="gmd:useConstraints">
+                                <xsl:element name="gmd:MD_RestrictionCode">
+                                    <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
+                                    <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
+                                    <xsl:text>otherRestrictions</xsl:text>
+                                </xsl:element>
+                            </xsl:element>
+                            <xsl:choose>
+                                <xsl:when test="mmd:use_constraint/mmd:resource != ''">
+                                    <xsl:element name="gmd:otherConstraints">
+                                        <xsl:element name="gmx:Anchor">
+                                            <xsl:attribute name="xlink:href">
+                                                <xsl:value-of select="mmd:use_constraint/mmd:resource"/>
+                                            </xsl:attribute>
+                                            <xsl:value-of select="mmd:use_constraint/mmd:identifier"/>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="mmd:use_constraint/mmd:license_text">
+                                    <xsl:element name="gmd:otherConstraints">
+                                        <xsl:element name="gco:CharacterString">
+                                            <xsl:value-of select="."/>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:element name="gmd:otherConstraints">
+                                        <xsl:element name="gmx:Anchor">
+                                            <xsl:attribute name="xlink:href">
+                                                <xsl:text>http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/conditionsUnknown</xsl:text>
+                                            </xsl:attribute>
+                                            <xsl:text>conditions to access and use unknown</xsl:text>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:element>
+                    </xsl:element>
                     <xsl:element name="gmd:spatialRepresentationType">
                         <xsl:choose>
                             <xsl:when test="mmd:spatial_representation = 'grid'">
@@ -400,7 +698,25 @@
             <xsl:element name="gmd:distributionInfo">
                 <xsl:element name="gmd:MD_Distribution">
                     <!--format-->
-                    <xsl:apply-templates select="mmd:storage_information"/>
+                    <xsl:choose>
+                        <xsl:when test="mmd:storage_information and mmd:storage_information/mmd:file_format !=''">
+                            <xsl:apply-templates select="mmd:storage_information"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:choose>
+                                <xsl:when test="mmd:data_access[mmd:type = 'HTTP']">
+                                    <xsl:call-template name="format">
+                                        <xsl:with-param name="ext" select="mmd:data_access[mmd:type = 'HTTP']/mmd:resource"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:call-template name="format">
+                                        <xsl:with-param name="ext" select="mmd:data_access[mmd:type = 'OPeNDAP']/mmd:resource"/>
+                                    </xsl:call-template>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:element name="gmd:distributor">
                         <xsl:apply-templates select="mmd:data_center"/>
                     </xsl:element>
@@ -408,39 +724,41 @@
                         <xsl:element name="gmd:MD_DigitalTransferOptions">
                             <!--data_access. INSPIRE: Conditional for spatial dataset and spatial dataset series: Mandatory if a URL is available to obtain more information on the resources and/or access related services. multiplicity [0..*]-->
                             <xsl:apply-templates select="mmd:data_access"/>
-                            <xsl:element name="gmd:onLine">
-                                <xsl:element name="gmd:CI_OnlineResource">
-                                    <xsl:element name="gmd:linkage">
-                                        <xsl:element name="gmd:URL">
-                                            <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:resource"/>
+                            <xsl:if test="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:resource != ''">
+                                <xsl:element name="gmd:onLine">
+                                    <xsl:element name="gmd:CI_OnlineResource">
+                                        <xsl:element name="gmd:linkage">
+                                            <xsl:element name="gmd:URL">
+                                                <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:resource"/>
+                                            </xsl:element>
                                         </xsl:element>
-                                    </xsl:element>
-                                    <xsl:element name="gmd:protocol">
-                                        <xsl:element name="gco:CharacterString">
-                                            <xsl:text>WWW:LINK-1.0-http--link</xsl:text>
+                                        <xsl:element name="gmd:protocol">
+                                            <xsl:element name="gco:CharacterString">
+                                                <xsl:text>WWW:LINK-1.0-http--link</xsl:text>
+                                            </xsl:element>
                                         </xsl:element>
-                                    </xsl:element>
-                                    <xsl:element name="gmd:name">
-                                        <xsl:element name="gco:CharacterString">
-                                            <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:type"/>
+                                        <xsl:element name="gmd:name">
+                                            <xsl:element name="gco:CharacterString">
+                                                <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:type"/>
+                                            </xsl:element>
                                         </xsl:element>
-                                    </xsl:element>
-                                    <xsl:element name="gmd:description">
-                                        <xsl:element name="gco:CharacterString">
-                                            <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:description"/>
+                                        <xsl:element name="gmd:description">
+                                            <xsl:element name="gco:CharacterString">
+                                                <xsl:value-of select="mmd:related_information[mmd:type = 'Dataset landing page']/mmd:description"/>
+                                            </xsl:element>
                                         </xsl:element>
-                                    </xsl:element>
-                                    <xsl:element name="gmd:function">
-                                        <xsl:element name="gmd:CI_OnLineFunctionCode">
-                                            <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode</xsl:attribute>
-                                            <xsl:attribute name="codeListValue">
+                                        <xsl:element name="gmd:function">
+                                            <xsl:element name="gmd:CI_OnLineFunctionCode">
+                                                <xsl:attribute name="codeList">http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode</xsl:attribute>
+                                                <xsl:attribute name="codeListValue">
+                                                    <xsl:text>information</xsl:text>
+                                                </xsl:attribute>
                                                 <xsl:text>information</xsl:text>
-                                            </xsl:attribute>
-                                            <xsl:text>information</xsl:text>
+                                            </xsl:element>
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:element>
+                            </xsl:if>
                         </xsl:element>
                     </xsl:element>
                 </xsl:element>
@@ -544,34 +862,16 @@
     <!--title-->
     <xsl:template match="mmd:title">
         <xsl:element name="gmd:title">
-            <xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
             <xsl:element name="gco:CharacterString">
                 <xsl:value-of select="."/>
-            </xsl:element>
-            <xsl:element name="gmd:PT_FreeText">
-                <xsl:element name="gmd:textGroup">
-                    <xsl:element name="gmd:LocalisedCharacterString">
-                        <xsl:attribute name="locale">#locale-nor</xsl:attribute>
-                        <xsl:value-of select="../mmd:title[@xml:lang = 'no']"/>
-                    </xsl:element>
-                </xsl:element>
             </xsl:element>
         </xsl:element>
     </xsl:template>
     <!--abstract-->
     <xsl:template match="mmd:abstract">
         <xsl:element name="gmd:abstract">
-            <xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
             <xsl:element name="gco:CharacterString">
                 <xsl:value-of select="."/>
-            </xsl:element>
-            <xsl:element name="gmd:PT_FreeText">
-                <xsl:element name="gmd:textGroup">
-                    <xsl:element name="gmd:LocalisedCharacterString">
-                        <xsl:attribute name="locale">#locale-nor</xsl:attribute>
-                        <xsl:value-of select="../mmd:abstract[@xml:lang = 'no']"/>
-                    </xsl:element>
-                </xsl:element>
             </xsl:element>
         </xsl:element>
     </xsl:template>
@@ -656,108 +956,159 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
+    <xsl:template name="format">
+        <xsl:param name="ext"/>
+        <xsl:variable name="suffix">
+            <xsl:call-template name="get-file-extension">
+                <xsl:with-param name="path" select="$ext"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:element name="gmd:distributionFormat">
+            <xsl:element name="gmd:MD_Format">
+                <xsl:element name="gmd:name">
+                    <xsl:element name="gco:CharacterString">
+                        <xsl:variable name="format_mapping" select="document('')/*/mapping:file_format[@mmd=$suffix]/@iso"/>
+                        <xsl:value-of select="$format_mapping"/>
+                    </xsl:element>
+                </xsl:element>
+                <xsl:element name="gmd:version">
+                    <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                </xsl:element>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template name="get-file-extension">
+        <xsl:param name="path"/>
+        <xsl:choose>
+            <xsl:when test="contains($path, '/')">
+                <xsl:call-template name="get-file-extension">
+                    <xsl:with-param name="path" select="substring-after($path, '/')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($path, '.')">
+                <xsl:call-template name="get-file-extension">
+                    <xsl:with-param name="path" select="substring-after($path, '.')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($path, 'format=')">
+                <xsl:call-template name="get-file-extension">
+                    <xsl:with-param name="path" select="substring-after($path, 'format=')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('.',$path)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     <!--iso topic category-->
     <xsl:template match="mmd:iso_topic_category">
         <xsl:element name="gmd:topicCategory">
-            <xsl:element name="gmd:MD_TopicCategoryCode">
-                <xsl:value-of select="."/>
-            </xsl:element>
+            <xsl:choose>
+                <xsl:when test=". = 'Not available'">
+                    <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="gmd:MD_TopicCategoryCode">
+                        <xsl:value-of select="."/>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
     <!--keywords required  keyword  from  the  GEMET -  INSPIRE  themes  (for dataset  and  dataset  series) -->
     <xsl:template match="mmd:keywords">
-        <xsl:element name="gmd:descriptiveKeywords">
-            <xsl:element name="gmd:MD_Keywords">
-                <xsl:choose>
-                    <xsl:when test="@vocabulary = 'CFSTDN'">
-                        <xsl:for-each select="mmd:keyword">
-                            <xsl:element name="gmd:keyword">
-                                <xsl:element name="gmx:Anchor">
-                                    <xsl:attribute name="xlink:href">
-                                        <xsl:value-of select="concat('https://vocab.nerc.ac.uk/standard_name/',.)"/>
-                                    </xsl:attribute>
-                                    <xsl:value-of select="."/>
-                                </xsl:element>
-                            </xsl:element>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:when test="@vocabulary = 'GEMET'">
-                        <xsl:for-each select="mmd:keyword">
-                            <xsl:variable name="mygemet" select="normalize-space(.)"/>
-                            <xsl:for-each select="$gemetmapping">
-                                <xsl:if test="key('gemet', $mygemet)">
-                                    <xsl:variable name="gemeturi" select="key('gemet', $mygemet)/dct:identifier"/>
-                                    <xsl:element name="gmd:keyword">
-                                        <xsl:element name="gmx:Anchor">
-                                            <xsl:attribute name="xlink:href">
-                                                <xsl:value-of select="$gemeturi"/>
-                                            </xsl:attribute>
-                                            <xsl:value-of select="$mygemet"/>
-                                        </xsl:element>
+        <xsl:if test="*">
+            <xsl:element name="gmd:descriptiveKeywords">
+                <xsl:element name="gmd:MD_Keywords">
+                    <xsl:choose>
+                        <xsl:when test="@vocabulary = 'CFSTDN'">
+                            <xsl:for-each select="mmd:keyword">
+                                <xsl:element name="gmd:keyword">
+                                    <xsl:element name="gmx:Anchor">
+                                        <xsl:attribute name="xlink:href">
+                                            <xsl:value-of select="concat('https://vocab.nerc.ac.uk/standard_name/',.)"/>
+                                        </xsl:attribute>
+                                        <xsl:value-of select="."/>
                                     </xsl:element>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:when test="@vocabulary = 'NORTHEMES'">
-                        <xsl:for-each select="mmd:keyword">
-                            <xsl:variable name="mynortheme" select="normalize-space(.)"/>
-                            <xsl:for-each select="$northemesmapping">
-                                <xsl:if test="key('northeme', $mynortheme)">
-                                    <xsl:variable name="northemeuri" select="key('northeme', $mynortheme)/@rdf:about"/>
-                                    <xsl:element name="gmd:keyword">
-                                        <xsl:element name="gmx:Anchor">
-                                            <xsl:attribute name="xlink:href">
-                                                <xsl:value-of select="$northemeuri"/>
-                                            </xsl:attribute>
-                                            <xsl:value-of select="$mynortheme"/>
-                                        </xsl:element>
-                                    </xsl:element>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:for-each select="mmd:keyword">
-                            <xsl:element name="gmd:keyword">
-                                <xsl:element name="gco:CharacterString">
-                                    <xsl:value-of select="."/>
                                 </xsl:element>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:when test="@vocabulary = 'GEMET'">
+                            <xsl:for-each select="mmd:keyword">
+                                <xsl:variable name="mygemet" select="normalize-space(.)"/>
+                                <xsl:for-each select="$gemetmapping">
+                                    <xsl:if test="key('gemet', $mygemet)">
+                                        <xsl:variable name="gemeturi" select="key('gemet', $mygemet)/dct:identifier"/>
+                                        <xsl:element name="gmd:keyword">
+                                            <xsl:element name="gmx:Anchor">
+                                                <xsl:attribute name="xlink:href">
+                                                    <xsl:value-of select="$gemeturi"/>
+                                                </xsl:attribute>
+                                                <xsl:value-of select="$mygemet"/>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:when test="@vocabulary = 'NORTHEMES'">
+                            <xsl:for-each select="mmd:keyword">
+                                <xsl:variable name="mynortheme" select="normalize-space(.)"/>
+                                <xsl:for-each select="$northemesmapping">
+                                    <xsl:if test="key('northeme', $mynortheme)">
+                                        <xsl:variable name="northemeuri" select="key('northeme', $mynortheme)/@rdf:about"/>
+                                        <xsl:element name="gmd:keyword">
+                                            <xsl:element name="gmx:Anchor">
+                                                <xsl:attribute name="xlink:href">
+                                                    <xsl:value-of select="$northemeuri"/>
+                                                </xsl:attribute>
+                                                <xsl:value-of select="$mynortheme"/>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:for-each select="mmd:keyword">
+                                <xsl:element name="gmd:keyword">
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:value-of select="."/>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:if test="@vocabulary = 'CFSTDN' or @vocabulary = 'GCMDSK' or @vocabulary = 'GEMET' or @vocabulary = 'NORTHEMES'  or @vocabulary = 'WMOCAT' ">
+                        <xsl:element name="gmd:type">
+                            <xsl:element name="gmd:MD_KeywordTypeCode">
+                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                <xsl:attribute name="codeListValue">theme</xsl:attribute>
+                                <xsl:text>theme</xsl:text>
                             </xsl:element>
-                        </xsl:for-each>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <xsl:if test="@vocabulary = 'CFSTDN' or @vocabulary = 'GCMDSK' or @vocabulary = 'GEMET' or @vocabulary = 'NORTHEMES'  or @vocabulary = 'WMOCAT' ">
-                    <xsl:element name="gmd:type">
-                        <xsl:element name="gmd:MD_KeywordTypeCode">
-                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
-                            <xsl:attribute name="codeListValue">theme</xsl:attribute>
-                            <xsl:text>theme</xsl:text>
                         </xsl:element>
-                    </xsl:element>
-                </xsl:if>
-                <xsl:if test="@vocabulary = 'GCMDLOC'">
-                    <xsl:element name="gmd:type">
-                        <xsl:element name="gmd:MD_KeywordTypeCode">
-                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
-                            <xsl:attribute name="codeListValue">place</xsl:attribute>
-                            <xsl:text>place</xsl:text>
+                    </xsl:if>
+                    <xsl:if test="@vocabulary = 'GCMDLOC'">
+                        <xsl:element name="gmd:type">
+                            <xsl:element name="gmd:MD_KeywordTypeCode">
+                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                <xsl:attribute name="codeListValue">place</xsl:attribute>
+                                <xsl:text>place</xsl:text>
+                            </xsl:element>
                         </xsl:element>
-                    </xsl:element>
-                </xsl:if>
-                <xsl:if test="@vocabulary = 'GCMDPROV'">
-                    <xsl:element name="gmd:type">
-                        <xsl:element name="gmd:MD_KeywordTypeCode">
-                            <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
-                            <xsl:attribute name="codeListValue">dataCentre</xsl:attribute>
-                            <xsl:text>dataCentre</xsl:text>
+                    </xsl:if>
+                    <xsl:if test="@vocabulary = 'GCMDPROV'">
+                        <xsl:element name="gmd:type">
+                            <xsl:element name="gmd:MD_KeywordTypeCode">
+                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                <xsl:attribute name="codeListValue">dataCentre</xsl:attribute>
+                                <xsl:text>dataCentre</xsl:text>
+                            </xsl:element>
                         </xsl:element>
-                    </xsl:element>
-                </xsl:if>
-                <xsl:element name="gmd:thesaurusName">
-                    <xsl:element name="gmd:CI_Citation">
-                        <xsl:choose>
-                            <xsl:when test="@vocabulary = 'GCMDSK'">
+                    </xsl:if>
+                    <xsl:element name="gmd:thesaurusName">
+                        <xsl:element name="gmd:CI_Citation">
+                            <xsl:if test="@vocabulary = 'GCMDSK'">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
@@ -780,8 +1131,8 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="@vocabulary = 'GCMDLOC'">
+                            </xsl:if>
+                            <xsl:if test="@vocabulary = 'GCMDLOC'">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
@@ -804,8 +1155,8 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="@vocabulary = 'GCMDPROV'">
+                            </xsl:if>
+                            <xsl:if test="@vocabulary = 'GCMDPROV'">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
@@ -828,8 +1179,8 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="@vocabulary = 'GEMET'">
+                            </xsl:if>
+                            <xsl:if test="@vocabulary = 'GEMET'">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
@@ -852,8 +1203,8 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="@vocabulary = 'CFSTDN'">
+                            </xsl:if>
+                            <xsl:if test="@vocabulary = 'CFSTDN'">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
@@ -876,8 +1227,8 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="@vocabulary = 'NORTHEMES'">
+                            </xsl:if>
+                            <xsl:if test="@vocabulary = 'NORTHEMES'">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
@@ -900,8 +1251,8 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="@vocabulary = 'WMOCAT'">
+                            </xsl:if>
+                            <xsl:if test="@vocabulary = 'WMOCAT'">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gmx:Anchor">
                                         <xsl:attribute name="xlink:href">
@@ -924,11 +1275,38 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:when>
-                            <xsl:otherwise>
+                            </xsl:if>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="mmd:related_information[mmd:type = 'Observation facility']">
+        <xsl:choose>
+            <xsl:when test="../mmd:collection = 'POLARIN'">
+                <xsl:element name="gmd:descriptiveKeywords">
+                    <xsl:element name="gmd:MD_Keywords">
+                        <xsl:element name="gmd:keyword">
+                            <xsl:element name="gmx:Anchor">
+                                <xsl:attribute name="xlink:href">
+                                    <xsl:value-of select="mmd:resource"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="mmd:description"/>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:element name="gmd:type">
+                            <xsl:element name="gmd:MD_KeywordTypeCode">
+                                <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                <xsl:attribute name="codeListValue">platform</xsl:attribute>
+                                <xsl:text>platform</xsl:text>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:element name="gmd:thesaurusName">
+                            <xsl:element name="gmd:CI_Citation">
                                 <xsl:element name="gmd:title">
                                     <xsl:element name="gco:CharacterString">
-                                        <xsl:value-of select="@vocabulary"/>
+                                        <xsl:text>Polarin Infrastructures</xsl:text>
                                     </xsl:element>
                                 </xsl:element>
                                 <xsl:element name="gmd:date">
@@ -945,12 +1323,56 @@
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:element>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                            </xsl:element>
+                        </xsl:element>
                     </xsl:element>
                 </xsl:element>
-            </xsl:element>
-        </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="gmd:descriptiveKeywords">
+                    <xsl:element name="gmd:MD_Keywords">
+                        <xsl:element name="gmd:keyword">
+                            <xsl:element name="gmx:Anchor">
+                                <xsl:attribute name="xlink:href">
+                                    <xsl:value-of select="mmd:resource"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="mmd:description"/>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:element name="gmd:type">
+                            <xsl:element name="gmd:MD_KeywordTypeCode">
+                                <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                <xsl:attribute name="codeListValue">place</xsl:attribute>
+                                <xsl:text>place</xsl:text>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:element name="gmd:thesaurusName">
+                            <xsl:element name="gmd:CI_Citation">
+                                <xsl:element name="gmd:title">
+                                    <xsl:element name="gco:CharacterString">
+                                        <xsl:text>Observation facilities</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmd:date">
+                                    <xsl:element name="gmd:CI_Date">
+                                        <xsl:element name="gmd:date">
+                                            <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                        </xsl:element>
+                                        <xsl:element name="gmd:dateType">
+                                            <xsl:element name="gmd:CI_DateTypeCode">
+                                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                <xsl:text>publication</xsl:text>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <!--geographical extent-->
     <xsl:template match="mmd:geographic_extent/mmd:rectangle">
@@ -1098,48 +1520,6 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="mmd:use_constraint">
-        <xsl:element name="gmd:resourceConstraints">
-            <xsl:element name="gmd:MD_LegalConstraints">
-                <xsl:element name="gmd:useConstraints">
-                    <xsl:element name="gmd:MD_RestrictionCode">
-                        <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode</xsl:attribute>
-                        <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
-                        <xsl:text>otherRestrictions</xsl:text>
-                    </xsl:element>
-                </xsl:element>
-                <xsl:choose>
-                    <xsl:when test="mmd:resource != ''">
-                        <xsl:element name="gmd:otherConstraints">
-                            <xsl:element name="gmx:Anchor">
-                                <xsl:attribute name="xlink:href">
-                                    <xsl:value-of select="mmd:resource"/>
-                                </xsl:attribute>
-                                <xsl:value-of select="mmd:identifier"/>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:when>
-                    <xsl:when test="mmd:license_text">
-                        <xsl:element name="gmd:otherConstraints">
-                            <xsl:element name="gco:CharacterString">
-                                <xsl:value-of select="."/>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:element name="gmd:otherConstraints">
-                            <xsl:element name="gmx:Anchor">
-                                <xsl:attribute name="xlink:href">
-                                    <xsl:text>http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/conditionsUnknown</xsl:text>
-                                </xsl:attribute>
-                                <xsl:text>conditions to access and use unknown</xsl:text>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
     <xsl:template match="mmd:personnel">
         <xsl:element name="gmd:CI_ResponsibleParty">
             <xsl:element name="gmd:individualName">
@@ -1148,9 +1528,9 @@
                 </xsl:element>
             </xsl:element>
             <xsl:element name="gmd:organisationName">
-                <xsl:element name="gco:CharacterString">
-                    <xsl:value-of select="mmd:organisation"/>
-                </xsl:element>
+                <xsl:call-template name="organisation">
+                    <xsl:with-param name="myorg" select="mmd:organisation" />
+                </xsl:call-template>
             </xsl:element>
             <xsl:element name="gmd:contactInfo">
                 <xsl:element name="gmd:CI_Contact">
@@ -1232,16 +1612,31 @@
             <xsl:element name="gmd:distributorContact">
                 <xsl:element name="gmd:CI_ResponsibleParty">
                     <xsl:element name="gmd:organisationName">
-                        <xsl:element name="gco:CharacterString">
+                        <xsl:choose>
+                            <xsl:when test="mmd:data_center_name/mmd:long_name = ''">
+                                <xsl:call-template name="organisation">
+                                    <xsl:with-param name="myorg" select="mmd:data_center_name/mmd:short_name" />
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="organisation">
+                                    <xsl:with-param name="myorg" select="mmd:data_center_name/mmd:long_name" />
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <!--xsl:element name="gco:CharacterString">
                             <xsl:choose>
-                                <xsl:when test="mmd:data_center_name/mmd:long_name != ''">
-                                    <xsl:value-of select="concat(mmd:data_center_name/mmd:short_name, ' &gt; ', mmd:data_center_name/mmd:long_name)"/>
+                                <xsl:when test="mmd:data_center_name/mmd:long_name = ''">
+                                    <xsl:value-of select="mmd:data_center_name/mmd:short_name"/>
+                                </xsl:when>
+                                <xsl:when test="mmd:data_center_name/mmd:short_name = ''">
+                                    <xsl:value-of select="mmd:data_center_name/mmd:long_name"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="mmd:data_center_name/mmd:short_name"/>
+                                    <xsl:value-of select="concat(mmd:data_center_name/mmd:long_name, ' (', mmd:data_center_name/mmd:short_name, ')')"/>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </xsl:element>
+                        </xsl:element-->
                     </xsl:element>
                     <xsl:element name="gmd:contactInfo">
                         <xsl:element name="gmd:CI_Contact">
@@ -1278,6 +1673,49 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
+    <!--Organisation ROR mapping-->
+    <xsl:template name="organisation">
+    <xsl:param name="myorg"/>
+        <xsl:for-each select="$vocab" >
+            <xsl:choose>
+                <xsl:when test="key('orgeng', $myorg)">
+                    <xsl:element name="gmx:Anchor">
+                        <xsl:variable name="orgpref" select="key('orgeng', $myorg)/skos:prefLabel"/>
+                        <xsl:variable name="orguri" select="key('orgeng', $myorg)/skos:exactMatch/@rdf:resource"/>
+                        <xsl:attribute name="xlink:href">
+                            <xsl:value-of select="$orguri"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="$orgpref"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="key('orgengalt', $myorg)">
+                    <xsl:element name="gmx:Anchor">
+                        <xsl:variable name="orgpref" select="key('orgengalt', $myorg)/skos:prefLabel"/>
+                        <xsl:variable name="orguri" select="key('orgengalt', $myorg)/skos:exactMatch/@rdf:resource"/>
+                        <xsl:attribute name="xlink:href">
+                            <xsl:value-of select="$orguri"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="$orgpref"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="key('orgengh', $myorg)">
+                    <xsl:element name="gmx:Anchor">
+                        <xsl:variable name="orgpref" select="key('orgengh', $myorg)/skos:prefLabel"/>
+                        <xsl:variable name="orguri" select="key('orgengh', $myorg)/skos:exactMatch/@rdf:resource"/>
+                        <xsl:attribute name="xlink:href">
+                            <xsl:value-of select="$orguri"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="$orgpref"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="gco:CharacterString">
+                        <xsl:value-of select="$myorg"/>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
     <!-- Mappings for data_access type specification to OSGEO  -->
     <mapping:data_access_type_osgeo iso="OGC:WMS" mmd="OGC WMS"/>
     <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS"/>
@@ -1286,4 +1724,10 @@
     <mapping:data_access_type_osgeo iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP"/>
     <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP"/>
     <mapping:language_code iso="eng" mmd="en"/>
+    <mapping:file_format iso="NetCDF" mmd=".nc"/>
+    <mapping:file_format iso="csv" mmd=".csv"/>
+    <mapping:file_format iso="json" mmd=".json"/>
+    <mapping:file_format iso="geojson" mmd=".geojson"/>
+    <mapping:file_format iso="ncml" mmd=".ncml"/>
+    <mapping:file_format iso="textfile" mmd=".textfile"/>
 </xsl:stylesheet>

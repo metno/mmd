@@ -2121,13 +2121,16 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Organisation</skos:prefLabel>
-    <skos:definition xml:lang="en">A controlled vocabulary for organisation names in English and Norwegian</skos:definition>
+    <skos:definition xml:lang="en">A controlled vocabulary for organisation names in English and Norwegian. This is used for harmonisation and translation purposes and it not meant to be a constraint to the organisation names in MMD.</skos:definition>
 
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/METNorway">
         <skos:prefLabel xml:lang="en">Norwegian Meteorological Institute</skos:prefLabel>
         <skos:hiddenLabel xml:lang="en">MET</skos:hiddenLabel>
         <skos:hiddenLabel xml:lang="en">METNO</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Norwegian Meteorological Institute (MET)</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">met.no Norwegian Meteorological Institute</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Norwegian Meteorological Institute, MET Norway</skos:hiddenLabel>
         <skos:prefLabel xml:lang="nb">Meteorologisk institutt</skos:prefLabel>
         <skos:altLabel xml:lang="en">MET Norway</skos:altLabel>
         <skos:altLabel xml:lang="nb">MET</skos:altLabel>
@@ -2175,6 +2178,270 @@
         <skos:exactMatch rdf:resource="https://ror.org/04aha0598"/>
       </skos:Concept>
     </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UNIS">
+        <skos:prefLabel xml:lang="en">University Centre in Svalbard</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">The University Centre in Svalbard</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">UNIS</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/03cyjf656"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UiO">
+        <skos:prefLabel xml:lang="en">University of Oslo</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Universitetet i Oslo</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">UiO University of Oslo</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">University of Oslo (UiO)</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">UiO University of Oslo</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">UiO</skos:altLabel>
+        <skos:altLabel xml:lang="nb">UiO</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/01xtthb56"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UiB">
+        <skos:prefLabel xml:lang="en">University of Bergen</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Universitetet i Bergen</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">UiB University of Bergen</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">UiB</skos:altLabel>
+        <skos:altLabel xml:lang="nb">UiB</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/03zga2b32"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UiT">
+        <skos:prefLabel xml:lang="en">UiT The Arctic University of Norway</skos:prefLabel>
+        <skos:altLabel xml:lang="en">UiT</skos:altLabel>
+        <skos:altLabel xml:lang="en">Universitetet i Tromsø - The Arctic University of Norway</skos:altLabel>
+        <skos:altLabel xml:lang="en">University of Tromsø - The Arctic University of Norway</skos:altLabel>
+        <skos:hiddenLabel xml:lang="en">UiT - The Arctic University of Norway</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">UiT- The Arctic University of Norway</skos:hiddenLabel>
+        <skos:prefLabel xml:lang="nb">UiT Noregs arktiske universitet</skos:prefLabel>
+        <skos:altLabel xml:lang="nb">Universitetet i Tromsø - Noregs arktiske universitet</skos:altLabel>
+        <skos:altLabel xml:lang="nb">UiT</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/00wge5k78"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NTNU">
+        <skos:prefLabel xml:lang="en">Norwegian University of Science and Technology</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Norges Teknisk-Naturvitenskapelige Universitet</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NTNU</skos:altLabel>
+        <skos:altLabel xml:lang="nb">NTNU</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/05xg72x27"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UNIMEL">
+        <skos:prefLabel xml:lang="en">The University of Melbourne</skos:prefLabel>
+        <skos:altLabel xml:lang="en">University of Melbourne</skos:altLabel>
+        <skos:altLabel xml:lang="en">Melbourne University</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/01ej9dk98"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UNITOK">
+        <skos:prefLabel xml:lang="en">The University of Tokyo</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">University of Tokyo</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">UT</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/057zh3y96"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UNISIL">
+        <skos:prefLabel xml:lang="en">University of Silesia in Katowice</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en"></skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">University of Silesia</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/SAMS">
+        <skos:prefLabel xml:lang="en">Scottish Association For Marine Science</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">Scottish Association for Marine Science</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">SAMS</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/04ke6ht85"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NPI">
+        <skos:prefLabel xml:lang="en">Norwegian Polar Institute</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Norsk Polarinstitutt</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">Norsk Polarinstitutt</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Polarinstitutt</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">NPI</skos:altLabel>
+        <skos:altLabel xml:lang="nb">NP</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/03avf6522"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/IMR">
+        <skos:prefLabel xml:lang="en">Norwegian Institute of Marine Research</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Havforskningsinstituttet</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">Havforskningsinstituttet</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">IMR Institute of Marine Research</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">IMR</skos:altLabel>
+        <skos:altLabel xml:lang="nb">IMR</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/05vg74d16"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NORCE">
+        <skos:prefLabel xml:lang="en">NORCE Norwegian Research Centre</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NORCE Norwegian Research Centre AS</skos:altLabel>
+        <skos:altLabel xml:lang="en">Norwegian Research Centre</skos:altLabel>
+        <skos:altLabel xml:lang="en">NORCE</skos:altLabel>
+        <skos:hiddenLabel xml:lang="en">NORCE Tromsø</skos:hiddenLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/02gagpf75"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NERSC">
+        <skos:prefLabel xml:lang="en">Nansen Environmental and Remote Sensing Center</skos:prefLabel>
+        <skos:prefLabel xml:lang="nb">Nansensenteret</skos:prefLabel>
+        <skos:altLabel xml:lang="en">Nansen Center</skos:altLabel>
+        <skos:altLabel xml:lang="nb">Stiftelsen Nansen Senter For Miljø og Fjernmåling</skos:altLabel>
+        <skos:altLabel xml:lang="en">NERSC</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/05ey0h058"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/GEM">
+        <skos:prefLabel xml:lang="en">Greenland Ecosystem Monitoring</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GEM</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/001zmxb62"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/FMI">
+        <skos:prefLabel xml:lang="en">Finnish Meteorological Institute</skos:prefLabel>
+        <skos:altLabel xml:lang="en">FMI</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/05hppb561"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/DMI">
+        <skos:prefLabel xml:lang="en">Danish Meteorological Institute</skos:prefLabel>
+        <skos:altLabel xml:lang="en">DMI</skos:altLabel>
+        <skos:altLabel xml:lang="en">National Danish Meteorological Institute</skos:altLabel>
+        <skos:altLabel xml:lang="en">The National Danish Meteorological Institute</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/020m6x732"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/CHALMERS">
+        <skos:prefLabel xml:lang="en">Chalmers University of Technology</skos:prefLabel>
+        <skos:altLabel xml:lang="en">Chalmers</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/040wg7k59"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/ECCC">
+        <skos:prefLabel xml:lang="en">Environment and Climate Change Canada</skos:prefLabel>
+        <skos:altLabel xml:lang="en">ECCC</skos:altLabel>
+        <skos:hiddenLabel xml:lang="en">Environment and Climate Change Canada / Environnement et Changement Climatique Canada</skos:hiddenLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/026ny0e17"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/BSC">
+        <skos:prefLabel xml:lang="en">Barcelona Supercomputing Center</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">Barcelona Supercomputing Centre</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">BSC</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/05sd8tv96"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/AWI">
+        <skos:prefLabel xml:lang="en">Alfred Wegener Institute for Polar and Marine Research</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">Alfred-Wegener-Institut</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Alfred-Wegener-Institut Helmholtz-Zentrum für Polar- und Meeresforschung</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">AWI Alfred Wegener Institute for Polar and Marine Research</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Alfred Wegener Institute, Helmholtz Centre for Polar and Marine Research</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">AWI</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/032e6b942"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/ECMWF">
+        <skos:prefLabel xml:lang="en">European Centre for Medium-Range Weather Forecasts</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">European Centre for Medium-Range Weather Forecasts (ECMWF)</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">ECMWF</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/014w0fd65"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/DWD">
+        <skos:prefLabel xml:lang="en">Deutscher Wetterdienst</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">Deutscher Wetterdienst (DWD)</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">DWD</skos:altLabel>
+        <skos:altLabel xml:lang="en">German Meteorological Service</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/02nrqs528"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/IFREMER">
+        <skos:prefLabel xml:lang="en">Ifremer</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">IFREMER</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">French Research Institute for Exploitation of the Sea</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/044jxhp58"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/IOPAN">
+        <skos:prefLabel xml:lang="en">Institute of Oceanology Polish Academy of Sciences</skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en">IOPAN Instytut Oceanologii, Polska Akademia Nauk</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Institute of Oceanology, Polish Academy of Sciences</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Instytut Oceanologii Polskiej Akademii Nauk</skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">IO PAN</skos:altLabel>
+        <skos:altLabel xml:lang="en">Institute of Oceanology PAN</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/03mp6cc45"/>
+      </skos:Concept>
+    </skos:member>
+
+    <!--skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/IGFPAN">
+        <skos:prefLabel xml:lang="en"></skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en"></skos:hiddenLabel>
+        <skos:altLabel xml:lang="en">IGF PAN</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/"/>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/">
+        <skos:prefLabel xml:lang="en"></skos:prefLabel>
+        <skos:prefLabel xml:lang="nb"></skos:prefLabel>
+        <skos:hiddenLabel xml:lang="en"></skos:hiddenLabel>
+        <skos:altLabel xml:lang="en"></skos:altLabel>
+        <skos:altLabel xml:lang="nb"></skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/"/>
+      </skos:Concept>
+    </skos:member-->
 
   </skos:Collection>
 </rdf:RDF>

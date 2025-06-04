@@ -1651,13 +1651,13 @@
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd> ;
   skos:prefLabel "Organisation"@en ;
-  skos:definition "A controlled vocabulary for organisation names in English and Norwegian"@en ;
-  skos:member <https://vocab.met.no/mmd/Organisation/METNorway>, <https://vocab.met.no/mmd/Organisation/NVE>, <https://vocab.met.no/mmd/Organisation/NIVA>, <https://vocab.met.no/mmd/Organisation/NILU>, <https://vocab.met.no/mmd/Organisation/NINA> .
+  skos:definition "A controlled vocabulary for organisation names in English and Norwegian. This is used for harmonisation and translation purposes and it not meant to be a constraint to the organisation names in MMD."@en ;
+  skos:member <https://vocab.met.no/mmd/Organisation/METNorway>, <https://vocab.met.no/mmd/Organisation/NVE>, <https://vocab.met.no/mmd/Organisation/NIVA>, <https://vocab.met.no/mmd/Organisation/NILU>, <https://vocab.met.no/mmd/Organisation/NINA>, <https://vocab.met.no/mmd/Organisation/UNIS>, <https://vocab.met.no/mmd/Organisation/UiO>, <https://vocab.met.no/mmd/Organisation/UiB>, <https://vocab.met.no/mmd/Organisation/UiT>, <https://vocab.met.no/mmd/Organisation/NTNU>, <https://vocab.met.no/mmd/Organisation/UNIMEL>, <https://vocab.met.no/mmd/Organisation/UNITOK>, <https://vocab.met.no/mmd/Organisation/UNISIL>, <https://vocab.met.no/mmd/Organisation/SAMS>, <https://vocab.met.no/mmd/Organisation/NPI>, <https://vocab.met.no/mmd/Organisation/IMR>, <https://vocab.met.no/mmd/Organisation/NORCE>, <https://vocab.met.no/mmd/Organisation/NERSC>, <https://vocab.met.no/mmd/Organisation/GEM>, <https://vocab.met.no/mmd/Organisation/FMI>, <https://vocab.met.no/mmd/Organisation/DMI>, <https://vocab.met.no/mmd/Organisation/CHALMERS>, <https://vocab.met.no/mmd/Organisation/ECCC>, <https://vocab.met.no/mmd/Organisation/BSC>, <https://vocab.met.no/mmd/Organisation/AWI>, <https://vocab.met.no/mmd/Organisation/ECMWF>, <https://vocab.met.no/mmd/Organisation/DWD>, <https://vocab.met.no/mmd/Organisation/IFREMER>, <https://vocab.met.no/mmd/Organisation/IOPAN> .
 
 <https://vocab.met.no/mmd/Organisation/METNorway>
   a skos:Concept ;
   skos:prefLabel "Norwegian Meteorological Institute"@en, "Meteorologisk institutt"@nb ;
-  skos:hiddenLabel "MET"@en, "METNO"@en ;
+  skos:hiddenLabel "MET"@en, "METNO"@en, "Norwegian Meteorological Institute (MET)"@en, "met.no Norwegian Meteorological Institute"@en, "Norwegian Meteorological Institute, MET Norway"@en ;
   skos:altLabel "MET Norway"@en, "MET"@nb ;
   skos:exactMatch <https://ror.org/001n36p86> .
 
@@ -1686,3 +1686,163 @@
   skos:altLabel "NINA"@en, "NINA"@nb ;
   skos:exactMatch <https://ror.org/04aha0598> .
 
+<https://vocab.met.no/mmd/Organisation/UNIS>
+  a skos:Concept ;
+  skos:prefLabel "University Centre in Svalbard"@en ;
+  skos:hiddenLabel "The University Centre in Svalbard"@en ;
+  skos:altLabel "UNIS"@en ;
+  skos:exactMatch <https://ror.org/03cyjf656> .
+
+<https://vocab.met.no/mmd/Organisation/UiO>
+  a skos:Concept ;
+  skos:prefLabel "University of Oslo"@en, "Universitetet i Oslo"@nb ;
+  skos:hiddenLabel "UiO University of Oslo"@en, "University of Oslo (UiO)"@en ;
+  skos:altLabel "UiO"@en, "UiO"@nb ;
+  skos:exactMatch <https://ror.org/01xtthb56> .
+
+<https://vocab.met.no/mmd/Organisation/UiB>
+  a skos:Concept ;
+  skos:prefLabel "University of Bergen"@en, "Universitetet i Bergen"@nb ;
+  skos:hiddenLabel "UiB University of Bergen"@en ;
+  skos:altLabel "UiB"@en, "UiB"@nb ;
+  skos:exactMatch <https://ror.org/03zga2b32> .
+
+<https://vocab.met.no/mmd/Organisation/UiT>
+  a skos:Concept ;
+  skos:prefLabel "UiT The Arctic University of Norway"@en, "UiT Noregs arktiske universitet"@nb ;
+  skos:altLabel "UiT"@en, "Universitetet i Tromsø - The Arctic University of Norway"@en, "University of Tromsø - The Arctic University of Norway"@en, "Universitetet i Tromsø - Noregs arktiske universitet"@nb, "UiT"@nb ;
+  skos:hiddenLabel "UiT - The Arctic University of Norway"@en, "UiT- The Arctic University of Norway"@en ;
+  skos:exactMatch <https://ror.org/00wge5k78> .
+
+<https://vocab.met.no/mmd/Organisation/NTNU>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian University of Science and Technology"@en, "Norges Teknisk-Naturvitenskapelige Universitet"@nb ;
+  skos:altLabel "NTNU"@en, "NTNU"@nb ;
+  skos:exactMatch <https://ror.org/05xg72x27> .
+
+<https://vocab.met.no/mmd/Organisation/UNIMEL>
+  a skos:Concept ;
+  skos:prefLabel "The University of Melbourne"@en ;
+  skos:altLabel "University of Melbourne"@en, "Melbourne University"@en ;
+  skos:exactMatch <https://ror.org/01ej9dk98> .
+
+<https://vocab.met.no/mmd/Organisation/UNITOK>
+  a skos:Concept ;
+  skos:prefLabel "The University of Tokyo"@en ;
+  skos:hiddenLabel "University of Tokyo"@en ;
+  skos:altLabel "UT"@en ;
+  skos:exactMatch <https://ror.org/057zh3y96> .
+
+<https://vocab.met.no/mmd/Organisation/UNISIL>
+  a skos:Concept ;
+  skos:prefLabel "University of Silesia in Katowice"@en ;
+  skos:hiddenLabel ""@en ;
+  skos:altLabel "University of Silesia"@en ;
+  skos:exactMatch <https://ror.org/> .
+
+<https://vocab.met.no/mmd/Organisation/SAMS>
+  a skos:Concept ;
+  skos:prefLabel "Scottish Association For Marine Science"@en ;
+  skos:hiddenLabel "Scottish Association for Marine Science"@en ;
+  skos:altLabel "SAMS"@en ;
+  skos:exactMatch <https://ror.org/04ke6ht85> .
+
+<https://vocab.met.no/mmd/Organisation/NPI>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Polar Institute"@en, "Norsk Polarinstitutt"@nb ;
+  skos:hiddenLabel "Norsk Polarinstitutt"@en, "Polarinstitutt"@en ;
+  skos:altLabel "NPI"@en, "NP"@nb ;
+  skos:exactMatch <https://ror.org/03avf6522> .
+
+<https://vocab.met.no/mmd/Organisation/IMR>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Institute of Marine Research"@en, "Havforskningsinstituttet"@nb ;
+  skos:hiddenLabel "Havforskningsinstituttet"@en, "IMR Institute of Marine Research"@en ;
+  skos:altLabel "IMR"@en, "IMR"@nb ;
+  skos:exactMatch <https://ror.org/05vg74d16> .
+
+<https://vocab.met.no/mmd/Organisation/NORCE>
+  a skos:Concept ;
+  skos:prefLabel "NORCE Norwegian Research Centre"@en ;
+  skos:altLabel "NORCE Norwegian Research Centre AS"@en, "Norwegian Research Centre"@en, "NORCE"@en ;
+  skos:hiddenLabel "NORCE Tromsø"@en ;
+  skos:exactMatch <https://ror.org/02gagpf75> .
+
+<https://vocab.met.no/mmd/Organisation/NERSC>
+  a skos:Concept ;
+  skos:prefLabel "Nansen Environmental and Remote Sensing Center"@en, "Nansensenteret"@nb ;
+  skos:altLabel "Nansen Center"@en, "Stiftelsen Nansen Senter For Miljø og Fjernmåling"@nb, "NERSC"@en ;
+  skos:exactMatch <https://ror.org/05ey0h058> .
+
+<https://vocab.met.no/mmd/Organisation/GEM>
+  a skos:Concept ;
+  skos:prefLabel "Greenland Ecosystem Monitoring"@en ;
+  skos:altLabel "GEM"@en ;
+  skos:exactMatch <https://ror.org/001zmxb62> .
+
+<https://vocab.met.no/mmd/Organisation/FMI>
+  a skos:Concept ;
+  skos:prefLabel "Finnish Meteorological Institute"@en ;
+  skos:altLabel "FMI"@en ;
+  skos:exactMatch <https://ror.org/05hppb561> .
+
+<https://vocab.met.no/mmd/Organisation/DMI>
+  a skos:Concept ;
+  skos:prefLabel "Danish Meteorological Institute"@en ;
+  skos:altLabel "DMI"@en, "National Danish Meteorological Institute"@en, "The National Danish Meteorological Institute"@en ;
+  skos:exactMatch <https://ror.org/020m6x732> .
+
+<https://vocab.met.no/mmd/Organisation/CHALMERS>
+  a skos:Concept ;
+  skos:prefLabel "Chalmers University of Technology"@en ;
+  skos:altLabel "Chalmers"@en ;
+  skos:exactMatch <https://ror.org/040wg7k59> .
+
+<https://vocab.met.no/mmd/Organisation/ECCC>
+  a skos:Concept ;
+  skos:prefLabel "Environment and Climate Change Canada"@en ;
+  skos:altLabel "ECCC"@en ;
+  skos:hiddenLabel "Environment and Climate Change Canada / Environnement et Changement Climatique Canada"@en ;
+  skos:exactMatch <https://ror.org/026ny0e17> .
+
+<https://vocab.met.no/mmd/Organisation/BSC>
+  a skos:Concept ;
+  skos:prefLabel "Barcelona Supercomputing Center"@en ;
+  skos:hiddenLabel "Barcelona Supercomputing Centre"@en ;
+  skos:altLabel "BSC"@en ;
+  skos:exactMatch <https://ror.org/05sd8tv96> .
+
+<https://vocab.met.no/mmd/Organisation/AWI>
+  a skos:Concept ;
+  skos:prefLabel "Alfred Wegener Institute for Polar and Marine Research"@en ;
+  skos:hiddenLabel "Alfred-Wegener-Institut"@en, "Alfred-Wegener-Institut Helmholtz-Zentrum für Polar- und Meeresforschung"@en, "AWI Alfred Wegener Institute for Polar and Marine Research"@en, "Alfred Wegener Institute, Helmholtz Centre for Polar and Marine Research"@en ;
+  skos:altLabel "AWI"@en ;
+  skos:exactMatch <https://ror.org/032e6b942> .
+
+<https://vocab.met.no/mmd/Organisation/ECMWF>
+  a skos:Concept ;
+  skos:prefLabel "European Centre for Medium-Range Weather Forecasts"@en ;
+  skos:hiddenLabel "European Centre for Medium-Range Weather Forecasts (ECMWF)"@en ;
+  skos:altLabel "ECMWF"@en ;
+  skos:exactMatch <https://ror.org/014w0fd65> .
+
+<https://vocab.met.no/mmd/Organisation/DWD>
+  a skos:Concept ;
+  skos:prefLabel "Deutscher Wetterdienst"@en ;
+  skos:hiddenLabel "Deutscher Wetterdienst (DWD)"@en ;
+  skos:altLabel "DWD"@en, "German Meteorological Service"@en ;
+  skos:exactMatch <https://ror.org/02nrqs528> .
+
+<https://vocab.met.no/mmd/Organisation/IFREMER>
+  a skos:Concept ;
+  skos:prefLabel "Ifremer"@en ;
+  skos:hiddenLabel "IFREMER"@en ;
+  skos:altLabel "French Research Institute for Exploitation of the Sea"@en ;
+  skos:exactMatch <https://ror.org/044jxhp58> .
+
+<https://vocab.met.no/mmd/Organisation/IOPAN>
+  a skos:Concept ;
+  skos:prefLabel "Institute of Oceanology Polish Academy of Sciences"@en ;
+  skos:hiddenLabel "IOPAN Instytut Oceanologii, Polska Akademia Nauk"@en, "Institute of Oceanology, Polish Academy of Sciences"@en, "Instytut Oceanologii Polskiej Akademii Nauk"@en ;
+  skos:altLabel "IO PAN"@en, "Institute of Oceanology PAN"@en ;
+  skos:exactMatch <https://ror.org/03mp6cc45> .
