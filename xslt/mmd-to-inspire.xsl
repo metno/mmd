@@ -602,7 +602,7 @@
                                 <xsl:when test="mmd:use_constraint/mmd:license_text">
                                     <xsl:element name="gmd:otherConstraints">
                                         <xsl:element name="gco:CharacterString">
-                                            <xsl:value-of select="."/>
+                                            <xsl:value-of select="mmd:use_constraint/mmd:license_text"/>
                                         </xsl:element>
                                     </xsl:element>
                                 </xsl:when>
