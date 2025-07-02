@@ -1652,7 +1652,7 @@
   skos:inScheme <https://vocab.met.no/mmd> ;
   skos:prefLabel "Organisation"@en ;
   skos:definition "A controlled vocabulary for organisation names in English and Norwegian. This is used for harmonisation and translation purposes and it not meant to be a constraint to the organisation names in MMD."@en ;
-  skos:member <https://vocab.met.no/mmd/Organisation/METNorway>, <https://vocab.met.no/mmd/Organisation/NVE>, <https://vocab.met.no/mmd/Organisation/NIVA>, <https://vocab.met.no/mmd/Organisation/NILU>, <https://vocab.met.no/mmd/Organisation/NINA>, <https://vocab.met.no/mmd/Organisation/UNIS>, <https://vocab.met.no/mmd/Organisation/UiO>, <https://vocab.met.no/mmd/Organisation/UiB>, <https://vocab.met.no/mmd/Organisation/UiT>, <https://vocab.met.no/mmd/Organisation/NTNU>, <https://vocab.met.no/mmd/Organisation/UNIMEL>, <https://vocab.met.no/mmd/Organisation/UNITOK>, <https://vocab.met.no/mmd/Organisation/UNISIL>, <https://vocab.met.no/mmd/Organisation/SAMS>, <https://vocab.met.no/mmd/Organisation/NPI>, <https://vocab.met.no/mmd/Organisation/IMR>, <https://vocab.met.no/mmd/Organisation/NORCE>, <https://vocab.met.no/mmd/Organisation/NERSC>, <https://vocab.met.no/mmd/Organisation/GEM>, <https://vocab.met.no/mmd/Organisation/FMI>, <https://vocab.met.no/mmd/Organisation/DMI>, <https://vocab.met.no/mmd/Organisation/CHALMERS>, <https://vocab.met.no/mmd/Organisation/ECCC>, <https://vocab.met.no/mmd/Organisation/BSC>, <https://vocab.met.no/mmd/Organisation/AWI>, <https://vocab.met.no/mmd/Organisation/ECMWF>, <https://vocab.met.no/mmd/Organisation/DWD>, <https://vocab.met.no/mmd/Organisation/IFREMER>, <https://vocab.met.no/mmd/Organisation/IOPAN> .
+  skos:member <https://vocab.met.no/mmd/Organisation/METNorway>, <https://vocab.met.no/mmd/Organisation/NVE>, <https://vocab.met.no/mmd/Organisation/NIVA>, <https://vocab.met.no/mmd/Organisation/NILU>, <https://vocab.met.no/mmd/Organisation/NINA>, <https://vocab.met.no/mmd/Organisation/UNIS>, <https://vocab.met.no/mmd/Organisation/UiO>, <https://vocab.met.no/mmd/Organisation/UiB>, <https://vocab.met.no/mmd/Organisation/UiT>, <https://vocab.met.no/mmd/Organisation/NTNU>, <https://vocab.met.no/mmd/Organisation/UNIMEL>, <https://vocab.met.no/mmd/Organisation/UNITOK>, <https://vocab.met.no/mmd/Organisation/UNISIL>, <https://vocab.met.no/mmd/Organisation/SAMS>, <https://vocab.met.no/mmd/Organisation/NPI>, <https://vocab.met.no/mmd/Organisation/IMR>, <https://vocab.met.no/mmd/Organisation/NORCE>, <https://vocab.met.no/mmd/Organisation/NERSC>, <https://vocab.met.no/mmd/Organisation/GEM>, <https://vocab.met.no/mmd/Organisation/FMI>, <https://vocab.met.no/mmd/Organisation/DMI>, <https://vocab.met.no/mmd/Organisation/CHALMERS>, <https://vocab.met.no/mmd/Organisation/ECCC>, <https://vocab.met.no/mmd/Organisation/BSC>, <https://vocab.met.no/mmd/Organisation/AWI>, <https://vocab.met.no/mmd/Organisation/ECMWF>, <https://vocab.met.no/mmd/Organisation/DWD>, <https://vocab.met.no/mmd/Organisation/IFREMER>, <https://vocab.met.no/mmd/Organisation/IOPAN>, <https://vocab.met.no/mmd/Organisation/NCCS> .
 
 <https://vocab.met.no/mmd/Organisation/METNorway>
   a skos:Concept ;
@@ -1846,3 +1846,10 @@
   skos:hiddenLabel "IOPAN Instytut Oceanologii, Polska Akademia Nauk"@en, "Institute of Oceanology, Polish Academy of Sciences"@en, "Instytut Oceanologii Polskiej Akademii Nauk"@en ;
   skos:altLabel "IO PAN"@en, "Institute of Oceanology PAN"@en ;
   skos:exactMatch <https://ror.org/03mp6cc45> .
+
+<https://vocab.met.no/mmd/Organisation/NCCS>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Centre for Climate Services"@en ;
+  skos:altLabel "NCSS"@en ;
+  skos:prefLabel "Norsk klimaservicesenter"@nb ;
+  skos:altLabel "KSS"@nb .

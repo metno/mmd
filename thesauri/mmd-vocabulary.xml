@@ -2423,6 +2423,15 @@
       </skos:Concept>
     </skos:member>
 
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NCCS">
+        <skos:prefLabel xml:lang="en">Norwegian Centre for Climate Services</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NCSS</skos:altLabel>
+        <skos:prefLabel xml:lang="nb">Norsk klimaservicesenter</skos:prefLabel>
+        <skos:altLabel xml:lang="nb">KSS</skos:altLabel>
+      </skos:Concept>
+    </skos:member>
+
     <!--skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/IGFPAN">
         <skos:prefLabel xml:lang="en"></skos:prefLabel>
