@@ -1338,151 +1338,187 @@
 <https://vocab.met.no/mmd/Collection_Keywords/NMAP>
   a skos:Concept ;
   skos:prefLabel "NMAP"@en ;
-  skos:definition "Remote sensing datasets or higher order products based on remote sensing datasets generated in the context of the Norwegian Satellite Earth Observation Database for Marine and Polar Research (NORMAP)."@en .
+  skos:altLabel "Norwegian Satellite Earth Observation Database for Marine and Polar Research"@en ;
+  skos:definition "Remote sensing datasets or higher order products based on remote sensing datasets generated in the context of the Norwegian Satellite Earth Observation Database for Marine and Polar Research (NORMAP)."@en ;
+  rdfs:seeAlso <https://normap.nersc.no/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/ADC>
   a skos:Concept ;
   skos:prefLabel "ADC"@en ;
+  skos:altLabel "Arctic Data Centre"@en ;
   rdfs:seeAlso <https://adc.met.no/> ;
   skos:definition "Datasets related to the Arctic Data Centre. This is the fall back collection, but it might be that some datasets are not officially part of the ADC collection and thus should only be searchable, but not exported using OAI-PMH."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/GCW>
   a skos:Concept ;
   skos:prefLabel "GCW"@en ;
-  skos:definition "Datasets related to the WMO Global Cryosphere Watch."@en .
+  skos:altLabel "Global Cryosphere Watch"@en ;
+  skos:definition "Datasets relevant for WMO Global Cryosphere Watch."@en ;
+  rdfs:seeAlso <https://globalcryospherewatch.org/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/NMDC>
   a skos:Concept ;
   skos:prefLabel "NMDC"@en ;
-  skos:definition "Datasets relevant for the Norwegian Marine Data Centre. This is basically datasets of a marine origin, regardless of whether they are of operational or scientific origin."@en .
+  skos:altLabel "Norwegian Marine Data Centre"@en ;
+  skos:definition "Datasets relevant for the Norwegian Marine Data Centre. This is basically datasets of a marine origin, regardless of whether they are of operational or scientific origin."@en ;
+  rdfs:seeAlso <https://nmdc.no/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SIOS>
   a skos:Concept ;
   skos:prefLabel "SIOS"@en ;
-  rdfs:seeAlso <https://sios-svalbard.org> ;
-  skos:definition "Datasets related to the Svalbard Integrated Arctic Earth Observing System."@en .
+  skos:altLabel "Svalbard Integrated Arctic Earth Observing System"@en ;
+  rdfs:seeAlso "https://sios-svalbard.org/" ;
+  skos:definition "Datasets relevant for the Svalbard Integrated Arctic Earth Observing System."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/NSDN>
   a skos:Concept ;
   skos:prefLabel "NSDN"@en ;
-  skos:definition "Datasets related to the Norwegian Scientific Data Network (NorDataNet)."@en .
+  skos:altLabel "Norwegian Scientific Data Network"@en ;
+  skos:definition "Datasets shown in the context of the Norwegian Scientific Data Network (NorDataNet)."@en ;
+  rdfs:seeAlso <https://www.nordatanet.no/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/DOKI>
   a skos:Concept ;
   skos:prefLabel "DOKI"@en ;
-  skos:definition "Datasets related to the national contribution to the International Polar Year."@en .
+  skos:definition "Datasets provided by projects funded by the Research Council of Norway during the International Polar Year 2007/2008."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/DAM>
   a skos:Concept ;
   skos:prefLabel "DAM"@en ;
-  skos:definition "Datasets in the context of EU FP6 project DAMOCLES."@en .
+  skos:altLabel "DAMOCLES"@en ;
+  skos:definition "Datasets provided through the EU FP6 project DAMOCLES."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/ACCESS>
   a skos:Concept ;
   skos:prefLabel "ACCESS"@en ;
-  skos:definition "Datasets in the context of EU FP7 project ACCESS."@en .
+  skos:altLabel "ACCESS"@en ;
+  skos:definition "Datasets provided in the context of the EU FP7 project ACCESS."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/NBS>
   a skos:Concept ;
   skos:prefLabel "NBS"@en ;
-  skos:definition "Datasets in the context of National Ground Segment for satellite data. This is primarily Sentinel datasets."@en .
+  skos:altLabel "Nasjonalt Bakkesegment for Satellittdata"@en ;
+  skos:definition "Copernicus Sentinel datasets provided in the context of the National Ground Segment for Satellite Data."@en ;
+  rdfs:seeAlso <https://www.satellittdata.no/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/APPL>
   a skos:Concept ;
   skos:prefLabel "APPL"@en ;
-  skos:definition "Datasets in the context of EU H2020 project APPLICATE."@en .
+  skos:altLabel "APPLICATE"@en ;
+  skos:definition "Datasets provided in the context of EU H2020 project APPLICATE."@en ;
+  rdfs:seeAlso <https://applicate-h2020.eu/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/YOPP>
   a skos:Concept ;
   skos:prefLabel "YOPP"@en ;
-  skos:definition "Datasets in the context of YOPP."@en .
+  skos:altLabel "Year Of Polar Prediction"@en ;
+  skos:definition "Datasets provided in the context of WMO Year Of Polar Prediction."@en ;
+  rdfs:seeAlso <https://www.polarprediction.net/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/METNCS>
   a skos:Concept ;
   skos:prefLabel "METNCS"@en ;
-  skos:definition "Datasets related to the core services at MET Norway."@en .
+  skos:altLabel "MET Norway Core Services"@en ;
+  skos:definition "Datasets provided through core services at MET Norway."@en ;
+  rdfs:seeAlso <https://data.met.no/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SESS2018>
   a skos:Concept ;
   skos:prefLabel "SESS2018"@en ;
+  skos:altLabel "State of Environmental Science in Svalbard 2018"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue1> ;
-  skos:definition "Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018."@en .
+  skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2018."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SESS2019>
   a skos:Concept ;
   skos:prefLabel "SESS2019"@en ;
+  skos:altLabel "State of Environmental Science in Svalbard 2019"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue2> ;
-  skos:definition "Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019."@en .
+  skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2019."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SESS2020>
   a skos:Concept ;
   skos:prefLabel "SESS2020"@en ;
+  skos:altLabel "State of Environmental Science in Svalbard 2020"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue3> ;
-  skos:definition "Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020."@en .
+  skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2020."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SESS2022>
   a skos:Concept ;
   skos:prefLabel "SESS2022"@en ;
+  skos:altLabel "State of Environmental Science in Svalbard 2022"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue5> ;
-  skos:definition "Datasets from the State of Environmental Science in Svalbard (SESS) report in 2022."@en .
+  skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2022."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>
   a skos:Concept ;
   skos:prefLabel "SIOSCD"@en ;
-  skos:definition "Datasets that are SIOS Core Data."@en .
+  skos:altLabel "SIOS Core Data"@en ;
+  skos:definition "Datasets that are SIOS Core Data."@en ;
+  rdfs:seeAlso <https://sios-svalbard.org/CoreData> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SIOSAP>
   a skos:Concept ;
   skos:prefLabel "SIOSAP"@en ;
+  skos:altLabel "SIOS Access Programme"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/RIAccess> ;
   skos:definition "Datasets from the SIOS Access Programme."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>
   a skos:Concept ;
   skos:prefLabel "SIOSIN"@en ;
+  skos:altLabel "SIOS InfraNor"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/InfraNor> ;
-  skos:definition "Datasets from the SIOS InfraNor Project"@en .
+  skos:definition "Datasets from the SIOS InfraNor project funded by the Research Council of Norway."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/CVL>
   a skos:Concept ;
   skos:prefLabel "CVL"@en ;
-  skos:definition "Datasets from the ESA Cryosphere Virtual Lab."@en .
+  skos:altLabel "Cryosphere Virtual Lab"@en ;
+  skos:definition "Datasets from the ESA Cryosphere Virtual Lab."@en ;
+  rdfs:seeAlso <https://eo4society.esa.int/resources/cryosphere-virtual-lab/> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/AeN>
   a skos:Concept ;
   skos:prefLabel "AeN"@en ;
-  rdfs:seeAlso <https://arvenetternansen.com/> ; 
-  skos:definition "Datasets from the Arven etter Nansen Project."@en .
+  skos:altLabel "Arven etter Nansen"@en ;
+  rdfs:seeAlso <https://arvenetternansen.com/> ;
+  skos:definition "Datasets provided through the Arven etter Nansen project (Nansen Legacy) funded by the Research Council of Norway."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/TONE>
   a skos:Concept ;
   skos:prefLabel "TONE"@en ;
+  skos:altLabel "Troll Observing Network"@en ;
   rdfs:seeAlso <https://www.npolar.no/en/tone/> ;
   skos:definition "Datasets from the Troll Observing Network in Antarctica."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/NySMAC>
   a skos:Concept ;
   skos:prefLabel "NySMAC"@en ;
+  skos:altLabel "Ny-Ålesund Science Managers Committee"@en ;
   rdfs:seeAlso <https://nyalesundresearch.no/nysmac/> ;
   skos:definition "Datasets from Ny-Ålesund in the context of NySMAC (Ny-Ålesund Science Managers Committee)."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/KSS>
   a skos:Concept ;
   skos:prefLabel "KSS"@en ;
+  skos:altLabel "KlimaServiceSenter"@en ;
   rdfs:seeAlso <https://klimaservicesenter.no/> ;
   skos:definition "Datasets from the Norwegian Centre for Climate Services (Norsk KlimaServiceSenter)."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/GEONOR>
   a skos:Concept ;
   skos:prefLabel "GEONOR"@en ;
-  rdfs:seeAlso <https://geonorge.no/> ;
-  skos:definition "Datasets that shall be findable at Geonorge."@en .
+  skos:altLabel "Geonorge"@en ;
+  rdfs:seeAlso <https://www.geonorge.no/> ;
+  skos:definition "Datasets that shall be discoverable through Geonorge."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/POLARIN>
   a skos:Concept ;
   skos:prefLabel "POLARIN"@en ;
+  skos:altLabel "POLARIN"@en ;
   rdfs:seeAlso <https://eu-polarin.eu/> ;
-  skos:definition "Datasets related to the POLARIN Project."@en .
+  skos:definition "Datasets that are relevant for the EU Horizon Europe project POLARIN."@en .
 
 <https://vocab.met.no/mmd/Instrument_Modes>
   a skos:Collection, <http://purl.org/iso25964/skos-thes#ConceptGroup> ;
