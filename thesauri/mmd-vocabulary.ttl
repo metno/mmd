@@ -2239,7 +2239,7 @@
   skos:prefLabel "TR-L2-O3-TCL"@en ;
   skos:altLabel "Level-2 Ozone tropospheric column"@en ;
   skos:hiddenLabel "L2__O3_TCL"@en ;
-  skos:definition "The TROPOspheric Monitoring Instrument (TROPOMI) tropospheric ozone product is a level-2c product that represents three days of averaged tropospheric ozone columns on a 0.5� by 1� latitude-longitude grid for the tropical region between 20�N and 20�S. The TROPOMI tropospheric ozone column product uses the TROPOMI Level-2 total OZONE and CLOUD products as input."@en ;
+  skos:definition "The TROPOspheric Monitoring Instrument (TROPOMI) tropospheric ozone product is a level-2c product that represents three days of averaged tropospheric ozone columns on a 0.5° by 1° latitude-longitude grid for the tropical region between 20°N and 20°S. The TROPOMI tropospheric ozone column product uses the TROPOMI Level-2 total OZONE and CLOUD products as input."@en ;
   dc:source <https://sentiwiki.copernicus.eu/web/s5p-products> .
 
 <https://vocab.met.no/mmd/Product_Types/TR-L2-O3-PR>
