@@ -6,63 +6,51 @@
 
 [cols="2,8"]
 |=======================================================================
-|CC |Datasets related to the Cryosphere in the context of the CryoClim
-project.
+|CC |Datasets related to the Cryosphere in the context of the CryoClim project.
 
-|NMAP |Remote sensing datasets or higher order products based on remote
-sensing datasets generated in the context of the Norwegian Satellite
-Earth Observation Database for Marine and Polar Research (NORMAP).
+|NMAP |Remote sensing datasets or higher order products based on remote sensing datasets generated in the context of the Norwegian Satellite Earth Observation Database for Marine and Polar Research (NORMAP).
 
-|ADC |Datasets related to the Arctic Data Centre. This is the fall back
-collection, but it might be that some datasets are not officially part
-of the ADC collection and thus should only be searchable, but not
-exported using OAI-PMH.
+|ADC |Datasets related to the Arctic Data Centre. This is the fall back collection, but it might be that some datasets are not officially part of the ADC collection and thus should only be searchable, but not exported using OAI-PMH.
 
-|GCW |Datasets related to the WMO Global Cryosphere Watch.
+|GCW |Datasets relevant for WMO Global Cryosphere Watch.
 
-|NMDC |Datasets relevant for the Norwegian Marine Data Centre. This is
-basically datasets of a marine origin, regardless of whether they are of
-operational or scientific origin.
+|NMDC |Datasets relevant for the Norwegian Marine Data Centre. This is basically datasets of a marine origin, regardless of whether they are of operational or scientific origin.
 
-|SIOS |Datasets related to the Svalbard Integrated Arctic Earth
-Observing System.
+|SIOS |Datasets relevant for the Svalbard Integrated Arctic Earth Observing System.
 
-|NSDN |Datasets related to the Norwegian Scientific Data Network
-(NorDataNet).
+|NSDN |Datasets shown in the context of the Norwegian Scientific Data Network (NorDataNet).
 
-|DOKI |Datasets related to the national contribution to the
-International Polar Year.
+|DOKI |Datasets provided by projects funded by the Research Council of Norway during the International Polar Year 2007/2008.
 
-|DAM |Datasets in the context of EU FP6 project DAMOCLES:
+|DAM |Datasets provided through the EU FP6 project DAMOCLES.
 
-|ACCESS |Datasets in the context of EU FP7 project ACCESS.
+|ACCESS |Datasets provided in the context of the EU FP7 project ACCESS.
 
-|NBS |Datasets in the context of National Ground Segment for satellite
-data. This is primarily Sentinel datasets.
+|NBS |Copernicus Sentinel datasets provided in the context of the National Ground Segment for Satellite Data.
 
-|APPL |Datasets in the context of EU H2020 project APPLICATE.
+|APPL |Datasets provided in the context of EU H2020 project APPLICATE.
 
-|YOPP |Datasets in the context of YOPP.
+|YOPP |Datasets provided in the context of WMO Year Of Polar Prediction.
 
-|METNCS|Datasets related to the core services at MET Norway.
+|METNCS |Datasets provided through core services at MET Norway.
 
-|SESS2018 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018.
+|SESS2018 |Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2018.
 
-|SESS2019 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019.
+|SESS2019 |Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2019.
 
-|SESS2020 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020.
+|SESS2020 |Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2020.
 
-|SESS2022 |Datasets from the State of Environmental Science in Svalbard (SESS) report in 2022.
+|SESS2022 |Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2022.
 
 |SIOSCD |Datasets that are SIOS Core Data.
 
-|SIOSAP |Datasets from the SIOS Access Programme. 
+|SIOSAP |Datasets from the SIOS Access Programme.
 
-|SIOSIN |Datasets from the SIOS InfraNor Project.
+|SIOSIN |Datasets from the SIOS InfraNor project funded by the Research Council of Norway.
 
 |CVL |Datasets from the ESA Cryosphere Virtual Lab.
 
-|AeN |Datasets from the Arven etter Nansen Project.
+|AeN |Datasets provided through the Arven etter Nansen project (Nansen Legacy) funded by the Research Council of Norway.
 
 |TONE |Datasets from the Troll Observing Network in Antarctica.
 
@@ -70,9 +58,9 @@ data. This is primarily Sentinel datasets.
 
 |KSS |Datasets from the Norwegian Centre for Climate Services (Norsk KlimaServiceSenter).
 
-|GEONOR |Datasets that shall be findable at Geonorge.
+|GEONOR |Datasets that shall be discoverable through Geonorge.
 
-|POLARIN |Datasets related to the POLARIN Project.
+|POLARIN |Datasets that are relevant for the EU Horizon Europe project POLARIN.
 
 |=======================================================================
 
