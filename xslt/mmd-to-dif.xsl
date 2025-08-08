@@ -42,7 +42,6 @@
 			<xsl:apply-templates select="mmd:dataset_production_status[. != 'Not available']" />
 			<xsl:apply-templates select="mmd:geographic_extent/mmd:rectangle" />
 			<xsl:apply-templates select="mmd:keywords[@vocabulary = 'GCMDLOC']" />
-			<xsl:apply-templates select="mmd:location" />
 			<xsl:apply-templates select="mmd:project" />
 			<xsl:apply-templates select="mmd:access_constraint" />
 			<xsl:apply-templates select="mmd:use_constraint" />
@@ -288,29 +287,6 @@
                 </xsl:when>
             </xsl:choose>    
         </xsl:template>
-
-	<xsl:template match="mmd:location">
-		<xsl:element name="dif:Location">
-			<xsl:element name="dif:Location_Category">
-				<xsl:value-of select="mmd:location_category" />
-			</xsl:element>
-			<xsl:element name="dif:Location_Type">
-				<xsl:value-of select="mmd:location_type" />
-			</xsl:element>
-			<xsl:element name="dif:Location_Subregion1">
-				<xsl:value-of select="mmd:location_subregion1" />
-			</xsl:element>
-			<xsl:element name="dif:Location_Subregion2">
-				<xsl:value-of select="mmd:location_subregion2" />
-			</xsl:element>
-			<xsl:element name="dif:Location_Subregion3">
-				<xsl:value-of select="mmd:location_subregion3" />
-			</xsl:element>
-			<xsl:element name="dif:Detailed_Location">
-				<xsl:value-of select="mmd:detailed_location" />
-			</xsl:element>
-		</xsl:element>
-	</xsl:template>
 
 	<xsl:template match="mmd:temporal_extent">
 		<xsl:element name="dif:Temporal_Coverage">
