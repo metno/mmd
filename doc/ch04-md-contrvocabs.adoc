@@ -253,37 +253,37 @@ indicator is a "compact" representation of the feature studied (e.g. the
 temporal evolution of area covered by sea ice in the Arctic). Climate
 Indicatorsare frequently linked to GCOS requirements.
 
-|In Situ Land-based station(Land station) (Field Experiment) |This is
+|In Situ Land-based station |This is
 used to tag datasets generated from a site located on land. Thiscan be a
 permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a
 field experiment).
 
-|In Situ Ship-based station(Cruise) |This is used to identify datasets
+|In Situ Ship-based station |This is used to identify datasets
 generated during cruises. Typically it describes a full dataset
 generated in a context, possibly describing both ocean and atmospheric
 conditions.
 
-|In Situ Ocean fixed station(Moored instrument) |This is used to
+|In Situ Ocean fixed station |This is used to
 describe ocean stations that are fixed in space.Typically this is
 moorings, anchored buoys, oil rigs etc.
 
-|In Situ Ocean moving station(Float) |This is used to describe ocean
+|In Situ Ocean moving station |This is used to describe ocean
 stations that are moving around.Typically this is gliders and drifting
 buoys.
 
-|In Situ Ice-based station(Ice station) (Field Experiment) |This is used
+|In Situ Ice-based station |This is used
 to tag datasets generated from a site located on driftingsea ice or some
 other ice sheet (possibly on land but moving). It typically describes a
 temporary site (e.g. a field experiment). It would also be used to
 describe ships frozen in ice and drifting e.g. across the Arctic as well
 as Ice Thethered Platforms (ITP) and Ice Mass BalanceBuoys (IMBB).
 
-|Interview/Questionnaire(Interview) (Questionnaire) |This is not much
+|Interview/Questionnaire |This is not much
 used within environmental science, but comes in usefulsometimes. It is
 used to cover the results of interviews and questionnaires especially in
 interdisciplinary science.
 
-|Maps/Charts/Photographs(Maps) (Charts)(Photographs) |This is used to
+|Maps/Charts/Photographs |This is used to
 tag datasets containing imagery or PDF documents. Thiscould e.g. be a
 time lapse photographic session of a specific site illustrating e.g.
 snow cover or cloud cover. It can also be used to tagdocuments or maps
