@@ -106,6 +106,7 @@
 
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation | gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_Constraints/gmd:useLimitation | gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints" />
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType" />
 
         </xsl:element>
     </xsl:template>
@@ -399,6 +400,14 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType">
+        <xsl:if test="gmd:MD_SpatialRepresentationTypeCode[@codeListValue ='grid' or @codeListValue ='vector']">
+            <xsl:element name="mmd:spatial_representation">
+                <xsl:value-of select="gmd:MD_SpatialRepresentationTypeCode/@codeListValue" />
+            </xsl:element>
         </xsl:if>
     </xsl:template>
 
