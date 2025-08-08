@@ -93,6 +93,12 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                 <xsl:apply-templates select="dif:Keyword|dif:Ancillary_Keyword" />
             </xsl:element>
             </xsl:if>
+	        <xsl:if test="dif:Location">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">GCMDLOC</xsl:attribute>
+                    <xsl:apply-templates select="dif:Location" />
+                </xsl:element>
+            </xsl:if>
             <xsl:apply-templates select="dif:Project" />
             <xsl:apply-templates select="dif:Spatial_Coverage" />
             <xsl:apply-templates select="dif:Access_Constraints" />
@@ -456,6 +462,29 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
 
         <!-- Fix me -->
         <xsl:template match="dif:Location">
+            <xsl:element name="mmd:keyword">
+                <xsl:variable name="gcmdloc">
+                  <xsl:if test='dif:Location_Category'>
+                    <xsl:value-of select="dif:Location_Category" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Type'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Type)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Subregion1'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion1)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Subregion2'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion2)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Subregion3'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion3)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Detailed_Location'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Detailed_Location)" />
+                  </xsl:if>
+              </xsl:variable>
+              <xsl:value-of select="$gcmdloc"/>
+              </xsl:element>
         </xsl:template>
 
         <xsl:template match="dif:Data_Resolution/dif:Latitude_Resolution">
