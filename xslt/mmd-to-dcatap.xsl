@@ -145,7 +145,7 @@ DCAT 3 supersedes DCAT 2 [VOCAB-DCAT-2], but it does not make it obsolete. DCAT 
                             </xsl:element>
                             <xsl:element name="skos:inScheme">
                             <xsl:attribute name="rdf:resource">
-                                <xsl:value-of select="../mmd:resource" />
+                                <xsl:text>https://vocab.nerc.ac.uk/standard_name/</xsl:text>
                              </xsl:attribute>
                             </xsl:element>
                         </xsl:element>
