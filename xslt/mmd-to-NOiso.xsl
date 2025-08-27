@@ -1294,9 +1294,9 @@
             </xsl:when>
             <xsl:when test="mmd:role = 'Data center contact'">
               <xsl:attribute name="codeListValue">
-                <xsl:text>distributor</xsl:text>
+                <xsl:text>publisher</xsl:text>
               </xsl:attribute>
-              <xsl:text>distributor</xsl:text>
+              <xsl:text>publisher</xsl:text>
             </xsl:when>
             <xsl:otherwise>
               <xsl:attribute name="codeListValue">
