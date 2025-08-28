@@ -1679,14 +1679,23 @@
         <xsl:for-each select="$vocab" >
             <xsl:choose>
                 <xsl:when test="key('orgeng', $myorg)">
-                    <xsl:element name="gmx:Anchor">
-                        <xsl:variable name="orgpref" select="key('orgeng', $myorg)/skos:prefLabel"/>
-                        <xsl:variable name="orguri" select="key('orgeng', $myorg)/skos:exactMatch/@rdf:resource"/>
-                        <xsl:attribute name="xlink:href">
-                            <xsl:value-of select="$orguri"/>
-                        </xsl:attribute>
-                        <xsl:value-of select="$orgpref"/>
-                    </xsl:element>
+                    <xsl:variable name="orguri" select="key('orgeng', $myorg)/skos:exactMatch/@rdf:resource"/>
+                    <xsl:choose>
+                        <xsl:when test="$orguri != ''">
+                            <xsl:element name="gmx:Anchor">
+                                <xsl:variable name="orgpref" select="key('orgeng', $myorg)/skos:prefLabel"/>
+                                <xsl:attribute name="xlink:href">
+                                    <xsl:value-of select="$orguri"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="$orgpref"/>
+                            </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:element name="gco:CharacterString">
+                                <xsl:value-of select="$myorg"/>
+                            </xsl:element>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>
                 <xsl:when test="key('orgengalt', $myorg)">
                     <xsl:element name="gmx:Anchor">
