@@ -41,6 +41,10 @@
     <xsl:key name="accesshidden"
     match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Access_Constraint']/skos:member/skos:Concept"
     use="skos:hiddenLabel"/>
+
+    <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+    <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+
     <!--
     <xsl:template match="/[name() = 'gmd:MD_Metadata' or name() = 'gmi:MI_Metadata']">
     -->
@@ -73,15 +77,49 @@
                     </xsl:element>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:element name="mmd:keywords">
-                <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
-                <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]" />
-            </xsl:element>
-            <xsl:element name="mmd:keywords">
-                <xsl:attribute name="vocabulary">None</xsl:attribute>
-                <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]" />
-            </xsl:element>
-            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode[@codeListValue= 'project']]" />
+            <!--Only support for gco keyword and not Anchor for the time being. Although a bit nested, the code below supports the parsing of different thesaurus. All that is not part of a recognised vocabulary ends in None.
+            Since there are no consistet way to define the title of thesaurus, it is based on internal knowledge-->
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)]/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)]/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]">
+                        <xsl:call-template name="gcokeyword">
+                            <xsl:with-param name="k" select="translate(normalize-space(.), $lowercase, $uppercase)"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1.') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast'))]">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">CFSTDN</xsl:attribute>
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*, 'CF Standard Name') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1.') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast'))]/gmd:keyword/gco:CharacterString">
+                        <xsl:call-template name="gcokeyword">
+                            <xsl:with-param name="k" select="normalize-space(.)"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')]">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">GEMET</xsl:attribute>
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')]/gmd:keyword/gco:CharacterString">
+                        <xsl:call-template name="gcokeyword">
+                            <xsl:with-param name="k" select="normalize-space(.)"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue != 'project' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')))]/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">None</xsl:attribute>
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue != 'project' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')))]/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]">
+                        <xsl:call-template name="gcokeyword">
+                            <xsl:with-param name="k" select="normalize-space(.)"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:element>
+            </xsl:if>
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode[@codeListValue = 'project']]" />
             <!--
             <mmd:metadata_version>1</mmd:metadata_version>
             -->
@@ -514,17 +552,19 @@
 
     <!-- get data access from NILU -->
     <xsl:template match="gmd:identificationInfo/srv:SV_ServiceIdentification/srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint">
-        <xsl:element name="mmd:data_access">
-            <xsl:element name="mmd:type">
-                <xsl:variable name="external_name" select="normalize-space(gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString)" />
-                <xsl:variable name="protocol_mapping" select="document('')/*/mapping:protocol_names[@external=$external_name]" />
-                <xsl:value-of select="$protocol_mapping" />
-                <xsl:value-of select="$protocol_mapping/@mmd"></xsl:value-of>
+        <xsl:variable name="external_name" select="normalize-space(gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString)" />
+        <xsl:variable name="protocol_mapping" select="document('')/*/mapping:protocol_names[@external=$external_name]" />
+        <xsl:if test="$protocol_mapping/@mmd != ''">
+            <xsl:element name="mmd:data_access">
+                <xsl:element name="mmd:type">
+                    <xsl:value-of select="$protocol_mapping" />
+                    <xsl:value-of select="$protocol_mapping/@mmd"></xsl:value-of>
+                </xsl:element>
+                <xsl:element name="mmd:resource">
+                    <xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL" />
+                </xsl:element>
             </xsl:element>
-            <xsl:element name="mmd:resource">
-                <xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL" />
-            </xsl:element>
-        </xsl:element>
+        </xsl:if>
     </xsl:template>
 
 
@@ -553,6 +593,7 @@
     <mapping:protocol_names external="file" mmd="HTTP" />
     <mapping:protocol_names external="WWW:FTP" mmd="HTTP" />
     <mapping:protocol_names external="OGC:WMS:getCapabilities" mmd="OGC WMS" />
+    <mapping:protocol_names external="OGC:WMS" mmd="OGC WMS" />
     <mapping:protocol_names external="OGC:WFS" mmd="OGC WFS" />
     <mapping:protocol_names external="OGC:GML" mmd="OGC GML" />
     <mapping:protocol_names external="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP" />
@@ -670,14 +711,10 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]">
+    <xsl:template name="gcokeyword">
+        <xsl:param name="k"/>
         <xsl:element name="mmd:keyword">
-            <xsl:value-of select="."/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]">
-        <xsl:element name="mmd:keyword">
-            <xsl:value-of select="."/>
+            <xsl:value-of select="$k"/>
         </xsl:element>
     </xsl:template>
 
