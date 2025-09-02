@@ -1731,7 +1731,7 @@
     <mapping:data_access_type_osgeo iso="OGC:WFS" mmd="OGC WFS"/>
     <mapping:data_access_type_osgeo iso="ftp" mmd="FTP"/>
     <mapping:data_access_type_osgeo iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP"/>
-    <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP"/>
+    <mapping:data_access_type_osgeo iso="OPeNDAP:OPeNDAP" mmd="OPeNDAP"/>
     <mapping:language_code iso="eng" mmd="en"/>
     <mapping:file_format iso="NetCDF" mmd=".nc"/>
     <mapping:file_format iso="csv" mmd=".csv"/>
