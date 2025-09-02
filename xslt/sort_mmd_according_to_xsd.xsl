@@ -35,14 +35,13 @@
             <xsl:apply-templates select="mmd:project"/>
             <xsl:apply-templates select="mmd:activity_type"/>
             <xsl:apply-templates select="mmd:platform"/>
+            <xsl:apply-templates select="mmd:spatial_representation" />
             <xsl:apply-templates select="mmd:related_information"/>
             <xsl:apply-templates select="mmd:personnel"/>
             <xsl:apply-templates select="mmd:dataset_citation"/>
+            <xsl:apply-templates select="mmd:quality_control" />
             <xsl:apply-templates select="mmd:data_access"/>
-            <xsl:apply-templates select="mmd:reference"/>
             <xsl:apply-templates select="mmd:data_center"/>
-            <xsl:apply-templates select="mmd:system_specific_product_category"/>
-            <xsl:apply-templates select="mmd:system_specific_product_relevance"/>
             <xsl:apply-templates select="mmd:related_dataset"/>
             <xsl:apply-templates select="mmd:storage_information"/>
 
@@ -56,4 +55,84 @@
         </xsl:copy>
     </xsl:template>
 
+    <xsl:template match="mmd:project">
+       <xsl:element name="mmd:project">
+          <xsl:element name="mmd:short_name">
+             <xsl:value-of select="mmd:short_name"/>
+          </xsl:element>
+          <xsl:element name="mmd:long_name">
+             <xsl:value-of select="mmd:long_name"/>
+          </xsl:element>
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="mmd:data_center">
+       <xsl:element name="mmd:data_center">
+           <xsl:element name="mmd:data_center_name">
+              <xsl:element name="mmd:short_name">
+                 <xsl:value-of select="mmd:data_center_name/mmd:short_name"/>
+              </xsl:element>
+              <xsl:element name="mmd:long_name">
+                 <xsl:value-of select="mmd:data_center_name/mmd:long_name"/>
+              </xsl:element>
+          </xsl:element>
+          <xsl:element name="mmd:data_center_url">
+             <xsl:value-of select="mmd:data_center_url"/>
+          </xsl:element>
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="mmd:use_constraint">
+       <xsl:element name="mmd:use_constraint">
+	  <xsl:choose>
+	     <xsl:when test="mmd:license_text">
+                 <xsl:element name="mmd:license_text">
+                     <xsl:value-of select="mmd:license_text"/>
+                 </xsl:element>
+	     </xsl:when>
+	     <xsl:otherwise>
+                 <xsl:element name="mmd:identifier">
+                    <xsl:value-of select="mmd:identifier"/>
+                 </xsl:element>
+                 <xsl:element name="mmd:resource">
+                    <xsl:value-of select="mmd:resource"/>
+                 </xsl:element>
+	     </xsl:otherwise>
+	  </xsl:choose>
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="mmd:related_information">
+       <xsl:element name="mmd:related_information">
+          <xsl:element name="mmd:type">
+             <xsl:value-of select="mmd:type"/>
+          </xsl:element>
+          <xsl:element name="mmd:description">
+             <xsl:value-of select="mmd:description"/>
+          </xsl:element>
+          <xsl:element name="mmd:resource">
+             <xsl:value-of select="mmd:resource"/>
+          </xsl:element>
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="mmd:data_access">
+       <xsl:element name="mmd:data_access">
+          <xsl:element name="mmd:name">
+             <xsl:value-of select="mmd:name"/>
+          </xsl:element>
+          <xsl:element name="mmd:type">
+             <xsl:value-of select="mmd:type"/>
+          </xsl:element>
+          <xsl:element name="mmd:description">
+             <xsl:value-of select="mmd:description"/>
+          </xsl:element>
+          <xsl:element name="mmd:resource">
+             <xsl:value-of select="mmd:resource"/>
+          </xsl:element>
+	      <xsl:if test="mmd:wms_layers">
+             <xsl:apply-templates select="mmd:wms_layers"/>
+	      </xsl:if>
+       </xsl:element>
+    </xsl:template>
 </xsl:stylesheet>

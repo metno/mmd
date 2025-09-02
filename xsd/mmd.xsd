@@ -2,7 +2,7 @@
 <xs:schema elementFormDefault="qualified" targetNamespace="http://www.met.no/schema/mmd"
            xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace"
            xmlns:mmd="http://www.met.no/schema/mmd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xs:import schemaLocation="http://www.w3.org/2001/xml.xsd" namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xs:import schemaLocation="xml.xsd" namespace="http://www.w3.org/XML/1998/namespace"/>
     <xs:element name="mmd" type="mmd:mmd_type"></xs:element>
     <xs:complexType name="personnel_type">
         <xs:all>
@@ -431,6 +431,7 @@
             <xs:enumeration value="NySMAC"></xs:enumeration>
             <xs:enumeration value="KSS"></xs:enumeration>
             <xs:enumeration value="GEONOR"></xs:enumeration>
+            <xs:enumeration value="POLARIN"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
@@ -446,6 +447,7 @@
             <xs:enumeration value="Other documentation"></xs:enumeration>
             <xs:enumeration value="Observation facility"></xs:enumeration>
             <xs:enumeration value="Extended metadata"></xs:enumeration>
+            <xs:enumeration value="Data server landing page"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 

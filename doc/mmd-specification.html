@@ -628,26 +628,25 @@ sections.</p>
 <li><a href="#temporal_extent">2.8. temporal_extent</a></li>
 <li><a href="#geographic_extentrectangle">2.9. geographic_extent/rectangle</a></li>
 <li><a href="#geographic_extentpolygon">2.10. geographic_extent/polygon</a></li>
-<li><a href="#location">2.11. location</a></li>
-<li><a href="#dataset_production_status">2.12. dataset_production_status</a></li>
-<li><a href="#dataset_language">2.13. dataset_language</a></li>
-<li><a href="#operational_status">2.14. operational_status</a></li>
-<li><a href="#access_constraint">2.15. access_constraint</a></li>
-<li><a href="#use_constraint">2.16. use_constraint</a></li>
-<li><a href="#personnel">2.17. personnel</a></li>
-<li><a href="#data_center">2.18. data_center</a></li>
-<li><a href="#data_access">2.19. data_access</a></li>
-<li><a href="#related_dataset">2.20. related_dataset</a></li>
-<li><a href="#storage_information">2.21. storage_information</a></li>
-<li><a href="#related_information">2.22. related_information</a></li>
-<li><a href="#iso_topic_category">2.23. iso_topic_category</a></li>
-<li><a href="#keywords">2.24. keywords</a></li>
-<li><a href="#project">2.25. project</a></li>
-<li><a href="#platform">2.26. platform</a></li>
-<li><a href="#spatial_representation">2.27. spatial_representation</a></li>
-<li><a href="#activity_type">2.28. activity_type</a></li>
-<li><a href="#dataset_citation">2.29. dataset_citation</a></li>
-<li><a href="#quality_control">2.30. quality_control</a></li>
+<li><a href="#dataset_production_status">2.11. dataset_production_status</a></li>
+<li><a href="#dataset_language">2.12. dataset_language</a></li>
+<li><a href="#operational_status">2.13. operational_status</a></li>
+<li><a href="#access_constraint">2.14. access_constraint</a></li>
+<li><a href="#use_constraint">2.15. use_constraint</a></li>
+<li><a href="#personnel">2.16. personnel</a></li>
+<li><a href="#data_center">2.17. data_center</a></li>
+<li><a href="#data_access">2.18. data_access</a></li>
+<li><a href="#related_dataset">2.19. related_dataset</a></li>
+<li><a href="#storage_information">2.20. storage_information</a></li>
+<li><a href="#related_information">2.21. related_information</a></li>
+<li><a href="#iso_topic_category">2.22. iso_topic_category</a></li>
+<li><a href="#keywords">2.23. keywords</a></li>
+<li><a href="#project">2.24. project</a></li>
+<li><a href="#platform">2.25. platform</a></li>
+<li><a href="#spatial_representation">2.26. spatial_representation</a></li>
+<li><a href="#activity_type">2.27. activity_type</a></li>
+<li><a href="#dataset_citation">2.28. dataset_citation</a></li>
+<li><a href="#quality_control">2.29. quality_control</a></li>
 </ul>
 </li>
 <li><a href="#explanations">3. Explanations</a>
@@ -973,7 +972,7 @@ but to be compatible with DIF the following characters are not allowed:</p>
 controlled vocabulary is defined, this should be added once better
 knowledge of domains are known. Initially at least WMO Information
 System (WIS) type identifiers should be supported. This field should <strong>not</strong>
-be used for DOIs. these should go into <a href="#dataset_citation">Section 2.29</a>.</p>
+be used for DOIs. these should go into <a href="#dataset_citation">Section 2.28</a>.</p>
 </dd>
 </dl>
 </div></div></td>
@@ -1129,7 +1128,7 @@ metadata.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Status for the metadata record. This is configuration
 metadata and should not be misinterpreted as
-<a href="#dataset_production_status">Section 2.12</a>. The only purpose of this tag
+<a href="#dataset_production_status">Section 2.11</a>. The only purpose of this tag
 is to determine whether the dataset should be indexed or not.</p></td>
 </tr>
 <tr>
@@ -1686,114 +1685,7 @@ efficient metadata handling and cannot be used directly.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="location"><a class="anchor" href="#location"></a>2.11. location</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Element</th>
-<th class="tableblock halign-left valign-top">/mmd/location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attributes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Repetition allowed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A textual identification of the area covered by the dataset.</p>
-</div>
-<div class="paragraph">
-<p>Describes the name of a place on Earth, a location within the Earth, a
-vertical location, or a location outside of Earth. The &lt;location&gt;<strong>*
-</strong>*keywords are a 5-level hierarchy of controlled keywords. This element
-follows the same format as DIF, but also allows other vocabularies as
-long as they have the same format the DIF vocabulary.</p>
-</div>
-<div class="paragraph">
-<p>location_vocabulary: The name of the vocabulary that is used for
-locations. This element exists to allow different vocabularies to be
-used if the vocabulary provided by GCMD is not sufficient</p>
-</div>
-<div class="paragraph">
-<p>location_reference: URL to the authoritative source, preferably in
-SKOS/RDF.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>location_category: The main category of the location name.</p>
-</li>
-<li>
-<p>location_type: The main type within a specific location category</p>
-</li>
-<li>
-<p>location_subregion1: Subregion1 keyword</p>
-</li>
-<li>
-<p>location_subregion2: Subregion2 keyword</p>
-</li>
-<li>
-<p>location_subregion3: Subregion3 keyword</p>
-</li>
-<li>
-<p>detailed_location: Free text describing the location further</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Vocabularies used should have a well defined description of the area
-names, including geographical boundaries (e.g. like SeaDataNet and ICES
-have).</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Example XML:</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre>&lt;location&gt;
- &lt;location_vocabulary&gt;gcmd&lt;/location_vocabulary&gt;
- &lt;location_category&gt;CONTINENT&lt;/location_category&gt;
- &lt;location_type&gt;NORTH AMERICA&lt;/location_type&gt;
-&lt;location_subregion1&gt;UNITED STATES OF AMERICA&lt;/location_subregion1&gt;
- &lt;location_subregion2&gt;MARYLAND&lt;/location_subregion2&gt;
- &lt;location_subregion3&gt;BALTIMORE&lt;/location_subregion3&gt;
- &lt;detailed_location&gt;Middle River&lt;/detailed_location&gt;
-&lt;/location&gt;</pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DIF equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/Location</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISO equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NA</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MM2 equivalent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">There is no good mapping to MM2 even though the element
-/metadata@name='area' is somewhat similar.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="dataset_production_status"><a class="anchor" href="#dataset_production_status"></a>2.12. dataset_production_status</h3>
+<h3 id="dataset_production_status"><a class="anchor" href="#dataset_production_status"></a>2.11. dataset_production_status</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1856,7 +1748,7 @@ in <a href="#temporal_extent">Section 2.8</a> can (should) be empty.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="dataset_language"><a class="anchor" href="#dataset_language"></a>2.13. dataset_language</h3>
+<h3 id="dataset_language"><a class="anchor" href="#dataset_language"></a>2.12. dataset_language</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1913,7 +1805,7 @@ dataset. The default for all datasets is English.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="operational_status"><a class="anchor" href="#operational_status"></a>2.14. operational_status</h3>
+<h3 id="operational_status"><a class="anchor" href="#operational_status"></a>2.13. operational_status</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1969,7 +1861,7 @@ keywords are listed in <a href="#operational-status">Section 4.5</a>.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="access_constraint"><a class="anchor" href="#access_constraint"></a>2.15. access_constraint</h3>
+<h3 id="access_constraint"><a class="anchor" href="#access_constraint"></a>2.14. access_constraint</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2038,7 +1930,7 @@ keywords are listed in <a href="#operational-status">Section 4.5</a>.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="use_constraint"><a class="anchor" href="#use_constraint"></a>2.16. use_constraint</h3>
+<h3 id="use_constraint"><a class="anchor" href="#use_constraint"></a>2.15. use_constraint</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2120,7 +2012,7 @@ keywords are listed in <a href="#operational-status">Section 4.5</a>.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="personnel"><a class="anchor" href="#personnel"></a>2.17. personnel</h3>
+<h3 id="personnel"><a class="anchor" href="#personnel"></a>2.16. personnel</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2258,7 +2150,7 @@ only partly mapped.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="data_center"><a class="anchor" href="#data_center"></a>2.18. data_center</h3>
+<h3 id="data_center"><a class="anchor" href="#data_center"></a>2.17. data_center</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2300,7 +2192,7 @@ dataset. The element has the following child elements:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Information on the data centre contact person for a data centre is conveyed through the element <a href="#personnel">Section 2.17</a>. See <a href="#personnel">Section 2.17</a> for more information. The role of a data center contact must be “Data center contact”.</p>
+<p>Information on the data centre contact person for a data centre is conveyed through the element <a href="#personnel">Section 2.16</a>. See <a href="#personnel">Section 2.16</a> for more information. The role of a data center contact must be “Data center contact”.</p>
 </div>
 <div class="paragraph">
 <p>If an id is assigned to the dataset by the data center, it can be included as <a href="#alternate_identifier">Section 2.2</a>.</p>
@@ -2339,7 +2231,7 @@ dataset. The element has the following child elements:</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="data_access"><a class="anchor" href="#data_access"></a>2.19. data_access</h3>
+<h3 id="data_access"><a class="anchor" href="#data_access"></a>2.18. data_access</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2437,7 +2329,7 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 </table>
 </div>
 <div class="sect2">
-<h3 id="related_dataset"><a class="anchor" href="#related_dataset"></a>2.20. related_dataset</h3>
+<h3 id="related_dataset"><a class="anchor" href="#related_dataset"></a>2.19. related_dataset</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2513,7 +2405,7 @@ and not the content of the metadata files.NA</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="storage_information"><a class="anchor" href="#storage_information"></a>2.21. storage_information</h3>
+<h3 id="storage_information"><a class="anchor" href="#storage_information"></a>2.20. storage_information</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2615,7 +2507,7 @@ Sample.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="related_information"><a class="anchor" href="#related_information"></a>2.22. related_information</h3>
+<h3 id="related_information"><a class="anchor" href="#related_information"></a>2.21. related_information</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2662,7 +2554,7 @@ the following child elements:</p>
 <div class="paragraph">
 <p>This element should be used for e.g. THREDDS landing pages. i.e. that is the
 pages providing the overview of services (HTTP, OPeNDAP, WMS, &#8230;&#8203;) for a
-dataset. The specific web services for data access are to be added using <a href="#data_access">Section 2.19</a>.
+dataset. The specific web services for data access are to be added using <a href="#data_access">Section 2.18</a>.
 This element should also be used to provide links to related publications, e.g. data papers, scientific publications
 or relevant documentations. The resource should point to the landing page of the publications.</p>
 </div></div></td>
@@ -2717,7 +2609,7 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 </table>
 </div>
 <div class="sect2">
-<h3 id="iso_topic_category"><a class="anchor" href="#iso_topic_category"></a>2.23. iso_topic_category</h3>
+<h3 id="iso_topic_category"><a class="anchor" href="#iso_topic_category"></a>2.22. iso_topic_category</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2777,7 +2669,7 @@ gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="keywords"><a class="anchor" href="#keywords"></a>2.24. keywords</h3>
+<h3 id="keywords"><a class="anchor" href="#keywords"></a>2.23. keywords</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2873,7 +2765,7 @@ could also be used to describe other features.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="project"><a class="anchor" href="#project"></a>2.25. project</h3>
+<h3 id="project"><a class="anchor" href="#project"></a>2.24. project</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2946,7 +2838,7 @@ mapped to /project/long_name)</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="platform"><a class="anchor" href="#platform"></a>2.26. platform</h3>
+<h3 id="platform"><a class="anchor" href="#platform"></a>2.25. platform</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3142,7 +3034,7 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 </table>
 </div>
 <div class="sect2">
-<h3 id="spatial_representation"><a class="anchor" href="#spatial_representation"></a>2.27. spatial_representation</h3>
+<h3 id="spatial_representation"><a class="anchor" href="#spatial_representation"></a>2.26. spatial_representation</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3198,7 +3090,7 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 </table>
 </div>
 <div class="sect2">
-<h3 id="activity_type"><a class="anchor" href="#activity_type"></a>2.28. activity_type</h3>
+<h3 id="activity_type"><a class="anchor" href="#activity_type"></a>2.27. activity_type</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3254,7 +3146,7 @@ machine readable form through SKOS files or <a href="https://codes.wmo.int/wmdr"
 </table>
 </div>
 <div class="sect2">
-<h3 id="dataset_citation"><a class="anchor" href="#dataset_citation"></a>2.29. dataset_citation</h3>
+<h3 id="dataset_citation"><a class="anchor" href="#dataset_citation"></a>2.28. dataset_citation</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3394,7 +3286,7 @@ parts can be put into citation information.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="quality_control"><a class="anchor" href="#quality_control"></a>2.30. quality_control</h3>
+<h3 id="quality_control"><a class="anchor" href="#quality_control"></a>2.29. quality_control</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3557,90 +3449,80 @@ The following mapping is in place:</p>
 <col style="width: 20%;">
 <col style="width: 80%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">CC</th>
+<th class="tableblock halign-left valign-top">Datasets related to the Cryosphere in the context of the CryoClim project.</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the Cryosphere in the context of the CryoClim
-project.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NMAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Remote sensing datasets or higher order products based on remote
-sensing datasets generated in the context of the Norwegian Satellite
-Earth Observation Database for Marine and Polar Research (NORMAP).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remote sensing datasets or higher order products based on remote sensing datasets generated in the context of the Norwegian Satellite Earth Observation Database for Marine and Polar Research (NORMAP).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ADC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the Arctic Data Centre. This is the fall back
-collection, but it might be that some datasets are not officially part
-of the ADC collection and thus should only be searchable, but not
-exported using OAI-PMH.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the Arctic Data Centre. This is the fall back collection, but it might be that some datasets are not officially part of the ADC collection and thus should only be searchable, but not exported using OAI-PMH.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GCW</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the WMO Global Cryosphere Watch.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets relevant for WMO Global Cryosphere Watch.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NMDC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets relevant for the Norwegian Marine Data Centre. This is
-basically datasets of a marine origin, regardless of whether they are of
-operational or scientific origin.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets relevant for the Norwegian Marine Data Centre. This is basically datasets of a marine origin, regardless of whether they are of operational or scientific origin.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SIOS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the Svalbard Integrated Arctic Earth
-Observing System.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets relevant for the Svalbard Integrated Arctic Earth Observing System.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NSDN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the Norwegian Scientific Data Network
-(NorDataNet).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets shown in the context of the Norwegian Scientific Data Network (NorDataNet).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DOKI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the national contribution to the
-International Polar Year.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided by projects funded by the Research Council of Norway during the International Polar Year 2007/2008.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DAM</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets in the context of EU FP6 project DAMOCLES:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided through the EU FP6 project DAMOCLES.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ACCESS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets in the context of EU FP7 project ACCESS.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided in the context of the EU FP7 project ACCESS.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NBS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets in the context of National Ground Segment for satellite
-data. This is primarily Sentinel datasets.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Copernicus Sentinel datasets provided in the context of the National Ground Segment for Satellite Data.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">APPL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets in the context of EU H2020 project APPLICATE.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided in the context of EU H2020 project APPLICATE.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">YOPP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets in the context of YOPP.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided in the context of WMO Year Of Polar Prediction.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">METNCS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets related to the core services at MET Norway.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided through core services at MET Norway.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SESS2018</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2018.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2018.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SESS2019</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2019.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2019.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SESS2020</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2020.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2020.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SESS2022</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the State of Environmental Science in Svalbard (SESS) report in 2022.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2022.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SIOSCD</p></td>
@@ -3652,7 +3534,7 @@ data. This is primarily Sentinel datasets.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SIOSIN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the SIOS InfraNor Project.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the SIOS InfraNor project funded by the Research Council of Norway.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CVL</p></td>
@@ -3660,7 +3542,7 @@ data. This is primarily Sentinel datasets.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AeN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets from the Arven etter Nansen Project.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets provided through the Arven etter Nansen project (Nansen Legacy) funded by the Research Council of Norway.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TONE</p></td>
@@ -3676,7 +3558,11 @@ data. This is primarily Sentinel datasets.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GEONOR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets that shall be findable at Geonorge.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets that shall be discoverable through Geonorge.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POLARIN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasets that are relevant for the EU Horizon Europe project POLARIN.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3730,7 +3616,7 @@ or not provided.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#dataset_production_status">Section 2.12</a></p>
+<p><a href="#dataset_production_status">Section 2.11</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -3868,7 +3754,7 @@ is not available or not provided.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#operational_status">Section 2.14</a></p>
+<p><a href="#operational_status">Section 2.13</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -3918,7 +3804,7 @@ externally.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#access_constraint">Section 2.15</a></p>
+<p><a href="#access_constraint">Section 2.14</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -3980,7 +3866,7 @@ externally.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#use_constraint">Section 2.16</a></p>
+<p><a href="#use_constraint">Section 2.15</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4039,33 +3925,33 @@ temporal evolution of area covered by sea ice in the Arctic). Climate
 Indicatorsare frequently linked to GCOS requirements.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Land-based station(Land station) (Field Experiment)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Land-based station</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is
 used to tag datasets generated from a site located on land. Thiscan be a
 permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a
 field experiment).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ship-based station(Cruise)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ship-based station</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is used to identify datasets
 generated during cruises. Typically it describes a full dataset
 generated in a context, possibly describing both ocean and atmospheric
 conditions.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ocean fixed station(Moored instrument)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ocean fixed station</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is used to
 describe ocean stations that are fixed in space.Typically this is
 moorings, anchored buoys, oil rigs etc.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ocean moving station(Float)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ocean moving station</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is used to describe ocean
 stations that are moving around.Typically this is gliders and drifting
 buoys.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ice-based station(Ice station) (Field Experiment)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ice-based station</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is used
 to tag datasets generated from a site located on driftingsea ice or some
 other ice sheet (possibly on land but moving). It typically describes a
@@ -4074,14 +3960,14 @@ describe ships frozen in ice and drifting e.g. across the Arctic as well
 as Ice Thethered Platforms (ITP) and Ice Mass BalanceBuoys (IMBB).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interview/Questionnaire(Interview) (Questionnaire)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interview/Questionnaire</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is not much
 used within environmental science, but comes in usefulsometimes. It is
 used to cover the results of interviews and questionnaires especially in
 interdisciplinary science.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maps/Charts/Photographs(Maps) (Charts)(Photographs)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maps/Charts/Photographs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is used to
 tag datasets containing imagery or PDF documents. Thiscould e.g. be a
 time lapse photographic session of a specific site illustrating e.g.
@@ -4097,7 +3983,7 @@ available or not provided.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#activity_type">Section 2.28</a></p>
+<p><a href="#activity_type">Section 2.27</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4140,7 +4026,7 @@ observed parameter descriptions can be used. These are available at
 variable.</p>
 </div>
 <div class="paragraph">
-<p><a href="#keywords">Section 2.24</a></p>
+<p><a href="#keywords">Section 2.23</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4197,7 +4083,7 @@ variable.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#keywords">Section 2.24</a></p>
+<p><a href="#keywords">Section 2.23</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4321,10 +4207,60 @@ variable.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Environmental Satellite</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/envisat" class="bare">https://www.wmo-sat.info/oscar/satellites/view/envisat</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-1C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-1C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_1c" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_1c</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-1D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-1D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_1d" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_1d</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-2C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-2C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_2c" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_2c</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-2D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-2D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_2d" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_2d</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-3C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-3C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_3c" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_3c</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-3D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-3D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_3d" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_3d</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-6A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-6A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_6a" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_6a</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-6B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-6B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_6b" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_6b</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-6C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-6C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/satellites/view/sentinel_6c" class="bare">https://www.wmo-sat.info/oscar/satellites/view/sentinel_6c</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-5P</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-5 precursor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://space.oscar.wmo.int/satellites/view/sentinel_5p" class="bare">https://space.oscar.wmo.int/satellites/view/sentinel_5p</a></p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#platform">Section 2.26</a></p>
+<p><a href="#platform">Section 2.25</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4408,10 +4344,25 @@ variable.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Advanced Synthetic Aperature Radar</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.wmo-sat.info/oscar/instruments/view/asar" class="bare">https://www.wmo-sat.info/oscar/instruments/view/asar</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SRAL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://space.oscar.wmo.int/instruments/view/sral" class="bare">https://space.oscar.wmo.int/instruments/view/sral</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TROPOMI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tropospheric Monitoring Instrument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://space.oscar.wmo.int/instruments/view/tropomi" class="bare">https://space.oscar.wmo.int/instruments/view/tropomi</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Poseidon-4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Poseidon-4 Radar Altimeter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://space.oscar.wmo.int/instruments/view/poseidon_4" class="bare">https://space.oscar.wmo.int/instruments/view/poseidon_4</a></p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#platform">Section 2.26</a></p>
+<p><a href="#platform">Section 2.25</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4447,7 +4398,7 @@ variable.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#platform">Section 2.26</a></p>
+<p><a href="#platform">Section 2.25</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4491,7 +4442,7 @@ variable.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#platform">Section 2.26</a></p>
+<p><a href="#platform">Section 2.25</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4513,40 +4464,422 @@ variable.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SLC</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Single Look Complex</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Single Look Complex (SLC) products consist of
-focused SAR data, geo-referenced using orbit and attitude data from the
-satellite, and provided in slant-range geometry.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GRD</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ground Range Detected</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ground Range Detected (GRD) products
-consist of focused SAR data that has been detected, multi-looked and
-projected to ground range using an Earth ellipsoid model such as WGS84.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OCN</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ocean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean (OCN) products for wind, wave and currents
-applications derived from the SAR data.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean (OCN) products for wind, wave and currents applications derived from the SAR data.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S2MSI1C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-WV-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wave Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wave (WV) Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-WV-L2-OCN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wave Level-2 Ocean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wave (WV) Level-2 Ocean (OCN) products for wind, wave and currents applications derived from the SAR data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM1-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 1 Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 1 Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM1-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 1 Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 1 Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM1-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 1 Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 1 Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM2-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 2 Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 2 Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM2-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 2 Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 2 Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM2-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 2 Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 2 Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM3-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 3 Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 3 Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM3-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 3 Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 3 Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM3-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 3 Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 3 Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM4-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 4 Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 4 Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM4-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 4 Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 4 Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM4-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 4 Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 4 Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM5-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 5 Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 5 Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM5-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 5 Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 5 Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM5-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 5 Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 5 Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM6-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 6 Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 6 Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM6-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 6 Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 6 Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-SM6-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 6 Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stripmap (SM) Beam 6 Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-EW-L1-GRDM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath Level-1 Ground Range Detected Medium Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath (EW) Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. Medium resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-EW-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath (EW) Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-EW-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath (EW) Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-EW-L2-OCN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath Level-2 Ocean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath (EW) Level-2 Ocean (OCN) products for wind, wave and currents applications derived from the SAR data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-EW-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra Wide Swath (EW) Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-IW-L1-GRDM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath Level-1 Ground Range Detected Medium Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath (IW) Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. Medium resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-IW-L1-GRDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath Level-1 Ground Range Detected High Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath (IW) Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84. High resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-IW-L1-SLC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath Level-1 Single Look Complex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath (IW) Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-IW-L2-OCN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath Level-2 Ocean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath (IW) Level-2 Ocean (OCN) products for wind, wave and currents applications derived from the SAR data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAR-IW-L0-RAW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath Level-0 Raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interferometric Wide Swath (IW) Level-0 (RAW) products, the basis from which all other high level products are produced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MSI-L1C</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-2 MSI Level-1C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ortho-rectified and UTM geo-coded Top-of-Atmosphere
-Reflectance with sub-pixel multispectral and multi-date registration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-1C ortho-rectified and UTM geo-coded Top-of-Atmosphere Reflectance from the Sentinel 2 Multi-Spectral Imager with sub-pixel multispectral and multi-date registration.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S2MSI2A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MSI-L2A</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel-2 MSI Level-2A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ortho-rectified and UTM geo-coded Bottom-of-Atmosphere
-multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness
-(AOT) map, Water Vapour (WV) map, Scene Classification map together with Quality Indicators data.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2A ortho-rectified and UTM geo-coded Bottom-of-Atmosphere multi-spectral reflectance from the Sentinel 2 Multi-Spectral Imager. Additional outputs are Aerosol Optical Thickness (AOT) map, Water Vapour (WV) map, Scene Classification map together with Quality Indicators data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OL-L1-EFR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean and Land Colour Instrument (OLCI) Level-1 Full Resolution Top of Atmosphere Reflectance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-1 top of atmosphere reflectance from the Ocean and Land Colour Instrument (OLCI) push-broom imaging spectrometer that measures solar radiation reflected by the Earth at a ground spatial resolution of around 300m, over all surfaces, in 21 spectral bands. Full resolution (EFR).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OL-L1-ERR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean and Land Colour Instrument (OLCI) Level-1 Reduced Resolution Top of Atmosphere Reflectance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-1 top of atmosphere reflectance from the Ocean and Land Colour Instrument (OLCI) push-broom imaging spectrometer that measures solar radiation reflected by the Earth at a ground spatial resolution of around 300m, over all surfaces, in 21 spectral bands. Reduced resolution (ERR).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SL-L1-RBT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sea and Land Surface Temperature Radiometer (SLSTR) Level-1 Radiances and Brightness Temperatures</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-1 radiances and brightness temperatures from Sea and Land Surface Temperature Radiometer (SLSTR) observations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L1A-SRA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-1A (SRA-A)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level 1A altimetry data from the Synthetic Aperture Radar Altimeter (SRAL) aboard the European Space Agency (ESA) Sentinel 3 satellites. These products are geo-located bursts of echoes with all calibrations applied.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L1B-SRA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-1B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level 1B altimetry data from the Synthetic Aperture Radar Altimeter (SRAL) aboard the European Space Agency (ESA) Sentinel 3 satellites. These products are geo-located and fully calibrated multi-looked High Resolution power echoes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L1B-SRA-S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-1B Stack Data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level 1B-S altimetry data from the Synthetic Aperture Radar Altimeter (SRAL) aboard the European Space Agency (ESA) Sentinel 3 satellites. The data are fully SAR-processed and calibrated High Resolution complex echoes arranged in stacks after slant range correction and prior to echo multi-look (multi-look processing reduces noise by averaging of adjacent pixels, and thereby reduces the standard deviation of the noise level).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OL-L2-WFR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean and Land Colour Instrument (OLCI) Level-2 Water and Atmosphere Full Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 OLCI (Ocean and Land Colour Instrument) reduced resolution water and atmosphere geophysical products.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OL-L2-WRR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean and Land Colour Instrument (OLCI) Level-2 Water and Atmosphere Reduced Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 OLCI (Ocean and Land Colour Instrument) reduced resolution water and atmosphere geophysical products.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OL-L2-LFR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean and Land Colour Instrument (OLCI) Level-2 Land and Atmosphere Full Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 OLCI (Ocean and Land Colour Instrument) Full Resolution Land and atmosphere geophysical products.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OL-L2-LRR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ocean and Land Colour Instrument (OLCI) Level-2 Land and Atmosphere Reduced Resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 OLCI (Ocean and Land Colour Instrument) Reduced Resolution Land and atmosphere geophysical products.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L2-WAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-2 Marine Data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Sentinel-3 SRAL Level-2 marine altimetry data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L2-LAN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-2 Land Data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Sentinel-3 SRAL Level-2 land altimetry data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L2-LAN-HY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-2 Hydrology</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Sentinel-3 STM Hydrology Thematic Products contain surface topography estimations of lakes and rivers.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L2-LAN-SI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-2 Sea Ice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Sentinel-3 STM Sea Ice Thematic Products contain estimations of the radar freeboard over the Arctic and Antarctic sea ice.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SR-L2-LAN-LI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synthetic Aperture Radar Altimeter (SRAL) Level-2 Land Ice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Sentinel-3 STM Land Ice Thematic Products contain surface topography estimations of the Greenland and Antarctic ice sheets.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SL-L2-WST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sea and Land Surface Temperature Radiometer (SLSTR) Level-2 Sea Surface Temperature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 sea surface temperature derived from Sea and Land Surface Temperature Radiometer (SLSTR) observations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SL-L2-FRP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sea and Land Surface Temperature Radiometer (SLSTR) Level-2 Fire Radiative Power</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 fire radiative power derived from Sea and Land Surface Temperature Radiometer (SLSTR) observations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SL-L2-AOD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sea and Land Surface Temperature Radiometer (SLSTR) Level-2 Aerosol Optical Depth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 aerosol optical depth derived from Sea and Land Surface Temperature Radiometer (SLSTR) observations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SL-L2-LST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sea and Land Surface Temperature Radiometer (SLSTR) Level-2 Land Surface Temperature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 land surface temperature derived from Sea and Land Surface Temperature Radiometer (SLSTR) observations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SY-L2-SYN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synergy Level-2 Synoptic Product</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The SYN branch of Sentinel-3 processing is a synergy of OLCI and SLSTR products. Level-2 surface reflectance and aerosol parameters over Land.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SY-L2-VGP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synergy Level-2 Vegetation Parameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The SYN branch of Sentinel-3 processing is a synergy of OLCI and SLSTR products. Level-2 1 km VEGETATION-Like product (~VGT-P) - TOA Reflectance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SY-L2-AOD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synergy Level-2 Aerosol Optical Depth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 aerosol optical depth derived from Sea and Land Surface Temperature Radiometer (SLSTR) observations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SY-L2-VG10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synergy Level-2 10 day Synthesis Surface Reflectance and NDVI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The SYN branch of Sentinel-3 processing is a synergy of OLCI and SLSTR products. Level-2. 1 km VEGETATION-Like product (~VGT-S10) 10 day synthesis surface reflectance and NDVI (normalised difference vegetation index).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SY-L2-VG1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Synergy Level-2 1 day Synthesis Surface Reflectance and NDVI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The SYN branch of Sentinel-3 processing is a synergy of OLCI and SLSTR products. Level-2 1 km VEGETATION-Like product (~VGT-S1) 1 day synthesis surface reflectance and NDVI (normalised difference vegetation index).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-IR-SIR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Infrared Sounder Level-1B Shortwave Infrared</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level 1B irradiance products from the TROPOMI instrument onboard Sentinel-5 Precursor, containing solar irradiance spectra. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. There are four different spectrometers, each with its own optics and detector: mediumwave ultraviolet (UV), longwave ultraviolet combined with visible (UVIS), near infrared (NIR), and shortwave infrared (SWIR). The spectrometers for UV, UVIS and NIR are jointly referred to as UVN. Radiation for the SWIR spectrometer is transferred by an optical relay part in the UVN system from the telescope to an interface position (the pupil stop) for the SWIR spectrometer. This is done because of the more stringent thermal requirements on the SWIR part of the instrument. L1B_IR_SIR products contain the solar irradiance spectra for the SWIR bands (band 7 and band 8). This covers the spectral range of 2305-2385 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-IR-UVN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Infrared Sounder Level-1B Ultraviolet-Visible-Near Infrared</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level 1B irradiance products from the TROPOMI instrument onboard Sentinel-5 Precursor, containing solar irradiance spectra. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. The spectrometers for ultraviolet (UV), longwave ultraviolet combined with visible (UVIS) and near infrared (NIR) are jointly referred to as UVN. L1B_IR_UVN products contain the solar irradiance spectra for the UVN bands (band 1 through band 6). This covers the spectral range of 270-775 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 1 spans a spectral range of 270-300 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 2 spans a spectral range of 300-320 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 3 spans a spectral range of 320-405 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 4 spans a spectral range of 405-500 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 5 spans a spectral range of 675-725 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 6 spans a spectral range of 725-775 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 7 spans a spectral range of 2305-2355 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L1B-RA-BD8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radar Altimeter Level-1B Band 8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. Band 8 spans a spectral range of 2345-2385 nm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-AER-AI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Aerosol Index</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. TROPOMI aerosol index is referred to as the Ultraviolet Aerosol Index (UVAI). The relatively simple calculation of the Aerosol Index is based on wavelength dependent changes in Rayleigh scattering in the UV spectral range where ozone absorption is very small. UVAI can also be calculated in the presence of clouds so that daily, global coverage is possible. This is ideal for tracking the evolution of episodic aerosol plumes from dust outbreaks, volcanic ash, and biomass burning.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-AER-LH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Layer Height (mid-level pressure)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI Aerosol Layer Height product focuses on retrieval of vertically localised aerosol layers in the free troposphere, such as desert dust, biomass burning aerosol, or volcanic ash plumes. The height of such layers is retrieved for cloud-free conditions.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-CLOUD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Cloud Properties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from the earth. The TROPOMI instrument, single payload onboard Sentinel-5 Precursor, retrieves operationally the most important quantities for cloud correction of satellite trace gas retrievals: cloud fraction, cloud optical thickness (albedo), and cloud-top pressure (height). Cloud parameters from TROPOMI are not only used for enhancing the accuracy of trace gas retrievals, but also to extend the satellite data record of cloud information derived from oxygen A-band measurements initiated with GOME.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-CO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Carbon Monoxide total column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. The TROPOMI instrument, single payload onboard Sentinel-5 Precursor, retrieves the CO global abundance exploiting clear-sky and cloudy-sky Earth radiance measurements in the 2.3 �m spectral range of the shortwave infrared (SWIR) part of the solar spectrum. TROPOMI clear sky observations provide CO total columns with sensitivity to the tropospheric boundary layer. For cloudy atmospheres, the column sensitivity changes according to the light path. The TROPOMI CO retrieval uses the same method employed by SCIAMACHY.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-NO2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Nitrogen Dioxide total column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from Earth. The TROPOMI instrument, single payload onboard Sentinel-5 Precursor, retrieves operationally tropospheric and stratospheric NO2 column products. The TROPOMI NO2 data products pose an improvement over previous NO2 data sets, particularly in their unprecedented spatial resolution, but also in the separation of the stratospheric and tropospheric contributions of the retrieved slant columns, and in the calculation of the air-mass factors used to convert slant to total columns.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-SO2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Sulphor Dioxide total column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Total column Sulphur Dioxide (SO2) data from the TROPOspheric Monitoring Instrument (TROPOMI) aboard the Sentinel 5P satellite.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-CH4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Methane total column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level 2 (geolocated) total column Methane (CH4) data from the TROPOspheric Monitoring Instrument (TROPOMI) aboard the Sentinel 5P satellite.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-HCHO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Formaldehyde total column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Total column Formaldehyde (HCHO) data from the TROPOspheric Monitoring Instrument (TROPOMI) aboard the Sentinel 5P satellite.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-O3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Ozone total column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from the earth. Ozone (O3) is of crucial importance for the equilibrium of the Earth&#8217;s atmosphere. In the stratosphere, the ozone layer shields the biosphere from dangerous solar ultraviolet radiation. In the troposphere, it acts as an efficient cleansing agent, but at high concentration it also becomes harmful to the health of humans, animals, and vegetation. Ozone is also an important greenhouse-gas contributor to ongoing climate change.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-O3-TCL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Ozone tropospheric column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOspheric Monitoring Instrument (TROPOMI) tropospheric ozone product is a level-2c product that represents three days of averaged tropospheric ozone columns on a 0.5° by 1° latitude-longitude grid for the tropical region between 20°N and 20°S. The TROPOMI tropospheric ozone column product uses the TROPOMI Level-2 total OZONE and CLOUD products as input.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-O3-PR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Ozone profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sentinel 5P total column ozone products contain total ozone, ozone temperature, and error information including averaging kernels. These data products are provided in a 7km x 3.5km resolution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-NP-BD3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Neural Network Probability Product Band 3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor (S5P) is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from the earth. The S5P level 2 methane product is dependent on having information on cloud occurrence at spatial resolution finer than that achievable from TROPOMI itself. This information is also useful for other purposes, including assessing the influence of cloud on other L2 products and issues related to spatial co-registration. A level 2 auxiliary product was therefore developed to describe cloud in the TROPOMI field of view (FOV), using co-located observations of VIIRS (Visible Infra-red Imaging Radiometer Suite) on the U.S. S-NPP (Suomi - National Polar-orbiting Partnership). S5P flies in a so-called loose formation with the S-NPP with a temporal separation between them of less than 5 minutes. The main information contained in the S5P-NPP product is: A statistical summary for each S5P FOV of the NPP-VIIRS L2 Cloud Mask (VCM). The mean and standard deviation of the sun-normalised radiance in a number of VIIRS moderate resolution bands. This information is provided for three S5P spectral bands (to account for differences in spatial sampling).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-NP-BD6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Neural Network Probability Product Band 6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor (S5P) is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from the earth. The S5P level 2 methane product is dependent on having information on cloud occurrence at spatial resolution finer than that achievable from TROPOMI itself. This information is also useful for other purposes, including assessing the influence of cloud on other L2 products and issues related to spatial co-registration. A level 2 auxiliary product was therefore developed to describe cloud in the TROPOMI field of view (FOV), using co-located observations of VIIRS (Visible Infra-red Imaging Radiometer Suite) on the U.S. S-NPP (Suomi - National Polar-orbiting Partnership). S5P flies in a so-called loose formation with the S-NPP with a temporal separation between them of less than 5 minutes. The main information contained in the S5P-NPP product is: A statistical summary for each S5P FOV of the NPP-VIIRS L2 Cloud Mask (VCM). The mean and standard deviation of the sun-normalised radiance in a number of VIIRS moderate resolution bands. This information is provided for three S5P spectral bands (to account for differences in spatial sampling).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TR-L2-NP-BD7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level-2 Neural Network Probability Product Band 7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TROPOMI instrument onboard Sentinel-5 Precursor (S5P) is a nadir-viewing, imaging spectrometer covering wavelength bands between the ultraviolet and the shortwave infrared. The instrument uses passive remote sensing techniques to attain its objective by measuring, at the Top Of Atmosphere (TOA), the solar radiation reflected by and radiated from the earth. The S5P level 2 methane product is dependent on having information on cloud occurrence at spatial resolution finer than that achievable from TROPOMI itself. This information is also useful for other purposes, including assessing the influence of cloud on other L2 products and issues related to spatial co-registration. A level 2 auxiliary product was therefore developed to describe cloud in the TROPOMI field of view (FOV), using co-located observations of VIIRS (Visible Infra-red Imaging Radiometer Suite) on the U.S. S-NPP (Suomi - National Polar-orbiting Partnership). S5P flies in a so-called loose formation with the S-NPP with a temporal separation between them of less than 5 minutes. The main information contained in the S5P-NPP product is: A statistical summary for each S5P FOV of the NPP-VIIRS L2 Cloud Mask (VCM). The mean and standard deviation of the sun-normalised radiance in a number of VIIRS moderate resolution bands. This information is provided for three S5P spectral bands (to account for differences in spatial sampling).</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#platform">Section 2.26</a></p>
+<p><a href="#platform">Section 2.25</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4582,7 +4915,7 @@ multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#spatial_representation">Section 2.27</a></p>
+<p><a href="#spatial_representation">Section 2.26</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4627,7 +4960,7 @@ element.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#personnel">Section 2.17</a></p>
+<p><a href="#personnel">Section 2.16</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4805,7 +5138,7 @@ telecommunication, radio, and communication networks.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#iso_topic_category">Section 2.23</a></p>
+<p><a href="#iso_topic_category">Section 2.22</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4868,10 +5201,14 @@ Global Observing System approach.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Extended metadata</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Additional unspecified metadata on the data.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data server landing page</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL to access an application server (e.g. THREDDS, Hyrax and ERDDAP) landing page or catalog.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#related_information">Section 2.22</a></p>
+<p><a href="#related_information">Section 2.21</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4891,8 +5228,7 @@ Global Observing System approach.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Direct access to the full data file. May require authentication,
-but should point directly to the data file or a catalogue containing the
-data.</p></td>
+but should point directly to the data file.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OPeNDAP</p></td>
@@ -4921,7 +5257,7 @@ data.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#data_access">Section 2.19</a></p>
+<p><a href="#data_access">Section 2.18</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -4965,7 +5301,7 @@ data.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-08 11:08:20 UTC
+Last updated 2025-08-08 13:35:55 UTC
 </div>
 </div>
 </body>

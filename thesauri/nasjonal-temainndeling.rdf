@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:adms="http://www.w3.org/ns/adms#" xmlns:dcat="http://www.w3.org/ns/dcat#" xml:base="https://register.geonorge.no/metadata-kodelister/">
+  <skos:ConceptScheme rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling">
+    <skos:prefLabel xml:lang="no">National topic category</skos:prefLabel>
+    <dcterms:description xml:lang="no">
+Overall categorization of spatial data in Norway. Used in Norwegian metadata.
+</dcterms:description>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+  </skos:ConceptScheme>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Samfunnssikkerhet">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Crisis management</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Samfunnssikkerhet</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Samfunnssikkerhet"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Høydedata">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Elevation</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Høydedata</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Høydedata"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Befolkning">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Demography</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Befolkning</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Befolkning"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Natur">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Nature</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Natur</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Natur"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Energi">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Energy</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Energi</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Energi"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Kulturminner">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Cultural heritage</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Kulturminner</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Kulturminner"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Kyst og fiskeri">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Marine activities</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Kyst og fiskeri</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Kyst og fiskeri"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Basis geodata">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Base maps</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Basis geodata</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Basis geodata"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Flyfoto">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Aerial photography</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Flyfoto</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:Temporal>
+      <dcterms:PeriodeOfTime>
+        <dcat:startDate>2018-02-19T00:00:00</dcat:startDate>
+      </dcterms:PeriodeOfTime>
+    </dcterms:Temporal>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Flyfoto"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Geologi">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Geology</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Geologi</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Geologi"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Vær og klima">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Weather and climate</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Vær og klima</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Vær og klima"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Forurensning">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Pollution</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Forurensning</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Forurensning"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Landbruk">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Agriculture</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Landbruk</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Landbruk"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Landskap">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Landscape</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Landskap</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Landskap"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Eiendom">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Property</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Eiendom</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Eiendom"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Samferdsel">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Transportation</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Samferdsel</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Samferdsel"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Friluftsliv">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Outdoor activities</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Friluftsliv</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Friluftsliv"/>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Plan">
+    <skos:inScheme rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:topConceptOf rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling"/>
+    <skos:prefLabel xml:lang="no">Planning</skos:prefLabel>
+    <skos:Definition/>
+    <dcterms:description xml:lang="no"/>
+    <dcterms:identifier>Plan</dcterms:identifier>
+    <adms:status>Valid</adms:status>
+    <dcterms:source rdf:resource="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling/Plan"/>
+  </skos:Concept>
+</rdf:RDF>

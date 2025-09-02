@@ -1045,7 +1045,7 @@
     <mapping:data_access_type_osgeo iso="OGC:WFS" mmd="OGC WFS" />    
     <mapping:data_access_type_osgeo iso="ftp" mmd="FTP" />
     <mapping:data_access_type_osgeo iso="download" mmd="HTTP" />
-    <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP" />
+    <mapping:data_access_type_osgeo iso="OPeNDAP:OPeNDAP" mmd="OPeNDAP" />
 
     <!-- Mappings for data_access type specification to geonetwork  -->
     <mapping:data_access_type_geonetwork iso="OGC:WMS" mmd="OGC WMS" />    

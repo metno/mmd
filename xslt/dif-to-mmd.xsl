@@ -93,6 +93,12 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                 <xsl:apply-templates select="dif:Keyword|dif:Ancillary_Keyword" />
             </xsl:element>
             </xsl:if>
+	        <xsl:if test="dif:Location">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">GCMDLOC</xsl:attribute>
+                    <xsl:apply-templates select="dif:Location" />
+                </xsl:element>
+            </xsl:if>
             <xsl:apply-templates select="dif:Project" />
             <xsl:apply-templates select="dif:Spatial_Coverage" />
             <xsl:apply-templates select="dif:Access_Constraints" />
@@ -154,7 +160,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
               <xsl:value-of select="dif:Dataset_Series_Name" />
           </xsl:element>
           <xsl:element name="mmd:publication_date">
-              <xsl:value-of select="dif:Dataset_Release_Date" />
+              <xsl:if test="string-length(dif:Dataset_Release_Date) &gt;= 10">
+                  <xsl:value-of select="dif:Dataset_Release_Date" />
+              </xsl:if>
           </xsl:element>
           <xsl:element name="mmd:publication_place">
               <xsl:value-of select="dif:Dataset_Release_Place" />
@@ -167,10 +175,24 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
           </xsl:element>
           <xsl:element name="mmd:doi">
 	      <xsl:if test="dif:Dataset_DOI">
-		 <xsl:value-of select="dif:Dataset_DOI" />
+              <xsl:choose>
+                  <xsl:when test="contains(dif:Dataset_DOI, 'doi.org/')">
+                      <xsl:value-of select="dif:Dataset_DOI" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                      <xsl:value-of select="concat('https://doi.org/',dif:Dataset_DOI)" />
+                  </xsl:otherwise>
+              </xsl:choose>
 	      </xsl:if>
 	      <xsl:if test="dif:Persistent_Identifier/dif:Type = 'DOI'">
-                 <xsl:value-of select="dif:Persistent_Identifier/dif:Identifier" />
+              <xsl:choose>
+                  <xsl:when test="contains(dif:Persistent_Identifier/dif:Identifier, 'doi.org/')">
+                      <xsl:value-of select="dif:Persistent_Identifier/dif:Identifier" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                      <xsl:value-of select="concat('https://doi.org/', dif:Persistent_Identifier/dif:Identifier)" />
+                  </xsl:otherwise>
+              </xsl:choose>
 	      </xsl:if>
           </xsl:element>
           <xsl:element name="mmd:url">
@@ -261,53 +283,65 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
       <xsl:if test="not(dif:Paleo_DateTime)">
           <xsl:element name="mmd:temporal_extent">
               <xsl:element name="mmd:start_date">
-                  <xsl:choose>
-                      <xsl:when test="dif:Periodic_DateTime">
-                          <xsl:call-template name="formatdate">
-                              <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:Start_Date" />
-                          </xsl:call-template>
-                      </xsl:when>
-                      <xsl:when test="dif:Range_DateTime">
-                          <xsl:call-template name="formatdate">
-                              <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Beginning_Date_Time" />
-                          </xsl:call-template>
-                      </xsl:when>
-                      <xsl:when test="dif:Single_DateTime">
-                          <xsl:call-template name="formatdate">
-                              <xsl:with-param name="datestr" select="dif:Single_DateTime" />
-                          </xsl:call-template>
-                      </xsl:when>
-                      <xsl:otherwise>
-                          <xsl:call-template name="formatdate">
-                              <xsl:with-param name="datestr" select="dif:Start_Date" />
-                          </xsl:call-template>
-                      </xsl:otherwise>
-                  </xsl:choose>
-              </xsl:element>
-              <xsl:if test="dif:Periodic_DateTime/dif:End_Date !='' or dif:Range_DateTime/dif:Ending_Date_Time !='' or dif:Stop_Date !='' or dif:Single_DateTime">
-                  <xsl:element name="mmd:end_date">
+                  <xsl:variable name="startdate">
                       <xsl:choose>
-                          <xsl:when test="dif:Periodic_DateTime">
+                          <xsl:when test="dif:Periodic_DateTime and dif:Periodic_DateTime/dif:Start_Date != ''">
                               <xsl:call-template name="formatdate">
-                                  <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:End_Date" />
+                                  <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:Start_Date" />
                               </xsl:call-template>
                           </xsl:when>
-                          <xsl:when test="dif:Range_DateTime">
+                          <xsl:when test="dif:Range_DateTime and dif:Range_DateTime/dif:Beginning_Date_Time != ''">
                               <xsl:call-template name="formatdate">
-                                  <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Ending_Date_Time" />
+                                  <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Beginning_Date_Time" />
                               </xsl:call-template>
                           </xsl:when>
-                          <xsl:when test="dif:Single_DateTime">
+                          <xsl:when test="dif:Single_DateTime and dif:Single_DateTime !=''">
                               <xsl:call-template name="formatdate">
                                   <xsl:with-param name="datestr" select="dif:Single_DateTime" />
                               </xsl:call-template>
                           </xsl:when>
                           <xsl:otherwise>
+                              <xsl:if test="dif:Start_Date !=''">
+                                  <xsl:call-template name="formatdate">
+                                      <xsl:with-param name="datestr" select="dif:Start_Date" />
+                                  </xsl:call-template>
+                              </xsl:if>
+                          </xsl:otherwise>
+                      </xsl:choose>
+                  </xsl:variable>
+                  <xsl:if test="not(contains($startdate, 'None')) and not(contains($startdate, 'unknown')) and not(contains($startdate, '--')) and (string-length(normalize-space(substring-before($startdate, 'T'))) = 10)">
+                      <xsl:value-of select="$startdate" />
+                  </xsl:if>
+              </xsl:element>
+              <xsl:variable name="enddate">
+                  <xsl:choose>
+                      <xsl:when test="dif:Periodic_DateTime and dif:Periodic_DateTime/dif:End_Date !=''">
+                          <xsl:call-template name="formatdate">
+                              <xsl:with-param name="datestr" select="dif:Periodic_DateTime/dif:End_Date" />
+                          </xsl:call-template>
+                      </xsl:when>
+                      <xsl:when test="dif:Range_DateTime and dif:Range_DateTime/dif:Ending_Date_Time !=''">
+                          <xsl:call-template name="formatdate">
+                              <xsl:with-param name="datestr" select="dif:Range_DateTime/dif:Ending_Date_Time" />
+                          </xsl:call-template>
+                      </xsl:when>
+                      <xsl:when test="dif:Single_DateTime and dif:Single_DateTime !=''">
+                          <xsl:call-template name="formatdate">
+                              <xsl:with-param name="datestr" select="dif:Single_DateTime" />
+                          </xsl:call-template>
+                      </xsl:when>
+                      <xsl:otherwise>
+                          <xsl:if test="dif:Stop_Date !=''">
                               <xsl:call-template name="formatdate">
                                   <xsl:with-param name="datestr" select="dif:Stop_Date" />
                               </xsl:call-template>
-                          </xsl:otherwise>
-                      </xsl:choose>
+                          </xsl:if>
+                      </xsl:otherwise>
+                  </xsl:choose>
+              </xsl:variable>
+              <xsl:if test="not(contains($enddate, 'None')) and not(contains($enddate, 'unknown')) and not(contains($enddate, '--')) and (string-length(normalize-space(substring-before($enddate, 'T'))) = 10)">
+                  <xsl:element name="mmd:end_date">
+                      <xsl:value-of select="$enddate" />
                   </xsl:element>
               </xsl:if>
           </xsl:element>
@@ -428,6 +462,29 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
 
         <!-- Fix me -->
         <xsl:template match="dif:Location">
+            <xsl:element name="mmd:keyword">
+                <xsl:variable name="gcmdloc">
+                  <xsl:if test='dif:Location_Category'>
+                    <xsl:value-of select="dif:Location_Category" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Type'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Type)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Subregion1'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion1)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Subregion2'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion2)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Location_Subregion3'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion3)" />
+                  </xsl:if>
+                  <xsl:if test='dif:Detailed_Location'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Detailed_Location)" />
+                  </xsl:if>
+              </xsl:variable>
+              <xsl:value-of select="$gcmdloc"/>
+              </xsl:element>
         </xsl:template>
 
         <xsl:template match="dif:Data_Resolution/dif:Latitude_Resolution">
@@ -805,6 +862,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                       <xsl:when test="dif:Role[contains(text(),'Data provider')]">
                           <xsl:text>Technical contact</xsl:text>
                       </xsl:when>
+                      <xsl:when test="dif:Role[contains(text(),'custodian')]">
+                          <xsl:text>Technical contact</xsl:text>
+                      </xsl:when>
                       <xsl:when test="dif:Role[contains(text(),'distributor')]">
                           <xsl:text>Data center contact</xsl:text>
                       </xsl:when>
@@ -972,27 +1032,27 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     <xsl:variable name="SS">
                         <xsl:value-of select="substring($datestr,18,2)" />
                     </xsl:variable>
-                <xsl:variable name="yyyy">
-                    <xsl:value-of select="substring($datestr,1,4)" />
-                </xsl:variable>
-                <xsl:variable name="mm">
-                    <xsl:value-of select="substring($datestr,6,2)" />
-                </xsl:variable>
-                <xsl:variable name="dd">
-                    <xsl:value-of select="substring($datestr,9,2)" />
-                </xsl:variable>
-                <xsl:value-of select="$yyyy" />
-                <xsl:value-of select="'-'" />
-                <xsl:value-of select="$mm" />
-                <xsl:value-of select="'-'" />
-                <xsl:value-of select="$dd" />
-                <xsl:value-of select="'T'" />
-                <xsl:value-of select="$HH" />
-                <xsl:value-of select="':'" />
-                <xsl:value-of select="$MM" />
-                <xsl:value-of select="':'" />
-                <xsl:value-of select="$SS" />
-                <xsl:value-of select="'Z'" />
+                    <xsl:variable name="yyyy">
+                        <xsl:value-of select="substring($datestr,1,4)" />
+                    </xsl:variable>
+                    <xsl:variable name="mm">
+                        <xsl:value-of select="substring($datestr,6,2)" />
+                    </xsl:variable>
+                    <xsl:variable name="dd">
+                        <xsl:value-of select="substring($datestr,9,2)" />
+                    </xsl:variable>
+                    <xsl:value-of select="$yyyy" />
+                    <xsl:value-of select="'-'" />
+                    <xsl:value-of select="$mm" />
+                    <xsl:value-of select="'-'" />
+                    <xsl:value-of select="$dd" />
+                    <xsl:value-of select="'T'" />
+                    <xsl:value-of select="$HH" />
+                    <xsl:value-of select="':'" />
+                    <xsl:value-of select="$MM" />
+                    <xsl:value-of select="':'" />
+                    <xsl:value-of select="$SS" />
+                    <xsl:value-of select="'Z'" />
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="yyyy">
@@ -1013,40 +1073,20 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     <xsl:variable name="SS">
                         <xsl:value-of select="'00'" />
                     </xsl:variable>
-                <xsl:value-of select="$yyyy" />
-                <xsl:value-of select="'-'" />
-                <xsl:value-of select="$mm" />
-                <xsl:value-of select="'-'" />
-                <xsl:value-of select="$dd" />
-                <xsl:value-of select="'T'" />
-                <xsl:value-of select="$HH" />
-                <xsl:value-of select="':'" />
-                <xsl:value-of select="$MM" />
-                <xsl:value-of select="':'" />
-                <xsl:value-of select="$SS" />
-                <xsl:value-of select="'Z'" />
+                    <xsl:value-of select="$yyyy" />
+                    <xsl:value-of select="'-'" />
+                    <xsl:value-of select="$mm" />
+                    <xsl:value-of select="'-'" />
+                    <xsl:value-of select="$dd" />
+                    <xsl:value-of select="'T'" />
+                    <xsl:value-of select="$HH" />
+                    <xsl:value-of select="':'" />
+                    <xsl:value-of select="$MM" />
+                    <xsl:value-of select="':'" />
+                    <xsl:value-of select="$SS" />
+                    <xsl:value-of select="'Z'" />
                 </xsl:otherwise>
-
-                <!--xsl:value-of select="$yyyy" />
-                <xsl:value-of select="'-'" />
-                <xsl:value-of select="$mm" />
-                <xsl:value-of select="'-'" />
-                <xsl:value-of select="$dd" />
-          <xsl:value-of select="'T'" />
-          <xsl:value-of select="$HH" />
-          <xsl:value-of select="':'" />
-          <xsl:value-of select="$MM" />
-          <xsl:value-of select="':'" />
-          <xsl:value-of select="$SS" />
-          <xsl:value-of select="'Z'" /-->
             </xsl:choose>
-      <!--
-      <xsl:value-of select="$yyyy" />
-      <xsl:value-of select="'-'" />
-      <xsl:value-of select="$mm" />
-      <xsl:value-of select="'-'" />
-      <xsl:value-of select="$dd" />
-      -->
         </xsl:template>
 
 <!--
