@@ -1,78 +1,26 @@
 ![html/pdf](https://github.com/metno/mmd/workflows/html/pdf/badge.svg)
 
-# mmd
+# MET Norway Metadata Format (MMD)
 
 ## Background
 Specification of the MET Norway discovery and configuration metadata
 standard. This is compatible with ISO19115 (various profiles), DataCite
-and GCMD DIF. 
+and GCMD DIF.
 
 ## Content
 
-The repository contains the MMD standard (in the `xsd` folder), its
-documentation (in the `docs` folder), xml-files to handle translation
-between various metadata standards and MMD (in the `xslt` folder),
-conversion scripts and examples (in the `src` folder), and example
-metadata for example datasets (in the `input-examples` folder).
+The repository contains the specifications and related tools for the MMD standard.
+
+- the xsd folder contains xsd schemas
+- the doc folder contains the MMD documentation
+- the xslt folder contains XSLT translation sheets
+- the thesauri folder contains MMD and external controlled vocabularies
+- the bin folder contains some executable scripts, some based on the tools in the mmd_utils folder
+- the mmd_utils folder contains MMD related tools
+- the input-examples folder contains some examples of metadata records
+- the test folder contains some tests (see below)
 
 The latest version of the mmd specification is available [here](https://htmlpreview.github.io/?https://github.com/metno/mmd/blob/master/doc/mmd-specification.html).
-
-## Scripts (src-folder)
-
-### convert-to-mmd.py
-This script convert metadata files from either dif,iso or mm2 to mmd format.
-Schema validation is done on input and output documents. Failed validation will
-be logged as warnings to stdout.
-
-```
-./src/convert-to-mmd.py -i <input file> -f <input format> -o <output file>
-```
-
-### convert-from-mmd.py
-This script convert metadata files from mmd format to one of [dif,iso,mm2] format.
-Schema validation is done on input and output documents. Failed validation
-will be logged as warings to stdout.
-
-```
-./src/convert-from-mmd.py -i <input file> -f <output format> - o <output file>
-```
-
-### createMETUUID.py
-This script reads the title and the time of the last metadata update of the
-metadata file, and generate UUID for the dataset.
-
-```
-./createMETUUID.py -i <input file>
-```
-
-add -w to overwrite input file
-
-
-### checkMMD.py
-This script check that the XML file satisfy MMD requirements by means
-of the MMD XSD. It also checks that urls in document points to a valid url.
-
-```
-./checkMMD.py -i <dataset_name>
-```
-
-### nc-to-mmd.py
-Script for parsing metadata conent of NetCDF files and create MET Norway Metadata
-format specification document (MMD) based on the discovery metadata.
-This will work on CF and ACDD compliant files.
-
-```
-see main() method in end of script for usage
-```
-
-### send-to-geonetwork.pl
-Send a list of MMD metadata files to a GeoNetwork instance as ISO19139 metadata.
-Read a file with a liost of URLs to MMD metadata files. For each file, convert
-the file to ISO19139 and then send it to the GeoNetwork instance.
-
-```
-./send-to-geonetwork.pl <file with metadata file urls> <tmp directory>
-```
 
 ## How to build documentation
 Documentation was originally provided in OpenDocumentFormat. This became
@@ -90,7 +38,7 @@ asciidoctor -n mmd-specification.adoc
 ### PDF:
 ```
 asciidoctor-pdf -a pdf-themesdir=./ -a pdf-theme=mmd -n mmd-specification.adoc
-```    
+```
 
 ## Note on testing
 
