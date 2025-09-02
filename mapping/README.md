@@ -11,7 +11,7 @@ The mapping between schemas is provided, as well as dedicated document for vocab
 - MMD/DIF (9 and 10)
 - MMD/schema.org (SOSO)
 - MMD/ACDD (with extended fields) - TDB
-- MMD/ISO Inspire - TBD
+- MMD/ISO Inspire
 - MMD/STACItem - TBD
 - MMD/SolR schema - TBD
 

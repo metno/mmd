@@ -256,7 +256,7 @@ related_url_ext_metadata +
 related_url_scientific_publication +
 related_url_data_paper +
 related_url_data_management_plan +
-Related_url_other_documentation +
+related_url_other_documentation +
 related_url_software
 
 

@@ -1,0 +1,405 @@
+== Mapping between  MMD and ISO Inspire
+
+The mapping below is used as background information to create the XLST sheets in the xref:../xslt[xslt folder]. It can be used to map from MMD to ISO Inspire, but also the other way around.
+
+=== References:
+
+. https://github.com/metno/mmd[MMD]
+. https://inspire-mif.github.io/technical-guidelines/metadata/metadata-iso19139/metadata-iso19139.pdf[Technical Guidance for the implementation of INSPIRE dataset and service metadata based on ISO/TS 19139:2007]
+
+=== Walkthrough table
+
+[%header, cols="1,3,1", header=True]
+|===
+| MMD
+| ISO Inspire
+| Note
+
+| metadata_identifier (M)
+| /gmd:fileIdentifier/gco:CharacterString
+|
+
+|-
+|/gmd:language/gmd:LanguageCode
+|ISO 639-2. Usually codeListValue="eng" and label can be English (see https://www.loc.gov/standards/iso639-2/php/code_list.php)
+
+|-
+|/gmd:characterSet/gmd:MD_CharacterSetCode
+|Usually codeListValue="utf8" and label utf8 (see https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode)
+
+|-
+|gmd:hierarchyLevel/gmd:MD_ScopeCode
+|use codeListValue="series" for parents dataset and codeListValue="dataset" for all other records 
+
+|alternate_identifier
+|-
+|
+
+|last_metadata_update/update/datetime (M)
+|/gmd:dateStamp/gco:Date and /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date with /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode codeListValue="creation" or "revision"
+|The date which specifies when the metadata record was created or updated. Use the type to discriminate the codeListValue
+
+
+|last_metadata_update/update/type (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode
+| for type Created use codeListValue="creation" otherwise "revision".
+
+|last_metadata_update/update/note
+|-
+|
+
+
+|metadata_status (M)
+|
+|
+
+|collection (M)
+|
+|
+
+|title (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString
+|
+
+|abstract (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract/gco:CharacterString
+|
+
+|temporal_extent/start_date
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition
+|
+
+|temporal_extent/end_date
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition
+|In case the time period is open-ended with either the start or the end date unknown, the elements gml:startPosition or gml:endPosition may be used with an empty value and the attribute indeterminatePosition with value "unknown". If the temporal extent is on-going, the gml:endPosition may be used with an empty value and the attribute indeterminatePosition with value "now".
+
+
+|geographic_extent/rectangle/south (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal
+|
+
+|geographic_extent/rectangle/north (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal
+|
+
+|geographic_extent/rectangle/west (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal
+|
+
+|geographic_extent/rectangle/east (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal
+| 
+
+|geographic_extent_rectangle @srsName 
+|/gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString
+|
+
+|geographic_extent/polygon
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon/gml:Polygon
+|
+
+|dataset_production_status (M)
+|-
+|
+
+|dataset_language
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language/gmd:LanguageCode
+|codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"
+
+|operational_status 
+|-
+|
+
+|access_constraint
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode with codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"
+& 
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor with xlink:href=”http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations” for Open data
+|
+
+|use_constraint/identifier
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode with codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"
+& 
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor with xlink:href=use_constraint_resource and text use_constraint_identifier
+|
+
+|use_constraint/resource
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode with codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"
+& 
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor with xlink:href=use_constraint_resource and text use_constraint_identifier
+|
+
+|use_constraint/license_text
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode with codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"
+& 
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString
+|
+
+|personnel/role (M)
+|For Role = ‘Metadata author’
+/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode with codeListValue="pointOfContact"
+For Role = "Investigator"
+/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode with codeListValue="principalInvestigator"
+For Role = "Technical contact"
+/gmd:identificationInfo/gmd:MD_DataIdentification//gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode with codeListValue="pointOfContact"
+|This is mapped to the list https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode. 
+
+|personnel/name (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString
+|
+
+|personnel/email (M)
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString
+|
+
+|personnel/phone
+|-
+|
+
+|personnel/organization
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString
+|
+
+|personnel/contact_address/address
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString
+|
+
+|personnel/contact_address/city
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString
+|
+
+|personnel/contact_address/province_or_state
+|-
+|
+
+|personnel/contact_address/postal_code
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString
+|
+
+|personnel/contact_address/country
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString
+|
+
+|data_center/data_center_name/short_name
+|-
+|
+
+|data_center/data_center_name/long_name
+|/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString
+|use /gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode with codeListValue="distributor" and text "distributor"
+
+|data_center/data_center_url
+|/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:linkage/gmd:URL
+|
+
+|data_access/type
+|/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString
+and 
+/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode 
+|MMD type is mapped to ISO gmd:protocol and gmd:function codeListValue. See vocabulary mapping file.
+
+|data_access/resource
+|/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL
+|see data_access/type for gmd:protocol and gmd:function
+
+|data_access/description
+|/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString
+|
+
+|data_access/wms_layer
+|-
+|
+
+|related_dataset
+|/gmd:parentIdentifier/gco:CharacterString
+|mapped for type parent
+
+|storage_information/file_name
+|-
+|
+
+|storage_information/file_location
+|-
+|
+
+|storage_information/file_format
+|/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name/gco:CharacterString
+|
+
+|storage_information/file_size
+|-
+|
+
+|storage_information/checksum
+|-
+|
+
+|related_information/type
+|
+|
+
+|related_information/resource
+|
+|
+
+|related_information/description
+|
+|
+
+
+|iso_topic_category
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode
+|
+
+|keywords_vocabulary
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:title/gco:CharacterString
+|gmx:Anchor also be used instead of gco:CharacterString. For GCMDKS, NORTHEMES, GEMET and CFSTDN use /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:type/gmd:MD_KeywordTypeCode with codeListValue="theme"
+
+|keywords/keyword
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString
+|gmx:Anchor also be used instead of gco:CharacterString (see keywords/resource)
+
+|keywords/resource
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor
+|This is if gmx:Anchor is used instead of gco:CharacterString 
+
+|keywords/separator
+|-
+|
+
+|project/short_name
+|
+|This could be used concatenated in parenthesis with project/long_name
+
+|project/long_name
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString 
+|gmx:Anchor also be used instead of gco:CharacterString. Use /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:type/gmd:MD_KeywordTypeCode with codeListValue="project"
+
+|platform/short_name
+|-
+|
+
+|platform/long_name
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString 
+|gmx:Anchor also be used instead of gco:CharacterString. Use /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:type/gmd:MD_KeywordTypeCode with codeListValue="platform"
+
+|platform/resource
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor
+|This is if gmx:Anchor is used instead of gco:CharacterString 
+
+|platform/orbit_relative
+|-
+|
+
+|platform/orbit_absolute
+|-
+|
+
+|platform/orbit_direction
+|-
+|
+
+|platform/instrument/short_name
+|
+|
+
+|platform/instrument/long_name
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString
+|gmx:Anchor also be used instead of gco:CharacterString. Use /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:type/gmd:MD_KeywordTypeCode with codeListValue="instrument"
+
+|platform/instrument/resource
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:title/gmx:Anchor
+|This is if gmx:Anchor is used instead of gco:CharacterString
+
+|platform/instrument/mode
+|-
+|
+
+|platform/instrument/polarisation
+|-
+|
+
+|platform/instrument/product_type
+|-
+|
+
+|platform/ancillary/cloud_coverage
+|-
+|
+
+|platform/ancillary/scene_coverage
+|-
+|
+
+|platform/ancillary/timeliness
+|-
+|
+
+|spatial_representation
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode
+|See https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode for ISO value
+
+|activity_type
+|-
+|
+
+|dataset_citation/author
+|-
+|
+
+|dataset_citation/publication_date
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date
+|
+
+|dataset_citation/title
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString   
+|
+
+|dataset_citation/series
+|-
+|
+
+|dataset_citation/edition
+|-
+|
+
+|dataset_citation/volume
+|-
+|
+
+|dataset_citation/issue
+|-
+|
+
+|dataset_citation/publication_place
+|-
+|
+
+|dataset_citation/publisher
+|/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode with codeListValue="publisher"
+|
+
+|dataset_citation/pages
+|-
+|
+
+|dataset_citation/isbn
+|-
+|
+
+|dataset_citation/doi
+|-
+|
+
+|dataset_citation/url
+|-
+|
+
+|dataset_citation/other
+|-
+|
+
+|quality_control
+|-
+|
+
+|===

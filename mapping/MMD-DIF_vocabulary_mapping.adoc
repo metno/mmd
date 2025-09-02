@@ -78,17 +78,18 @@ Related_URL DIF example containiny Type and Subtype:
 
 [%header, cols="1,2,1,1", header=True]
 |===
-|MMD                    |DIF 10.2 (Type)           | DIF 10.2 (Subtype)    | Note
-|Project home page      |PROJECT HOME PAGE         |                       |
-|Users guide            |VIEW RELATED INFORMATION  | USER'S GUIDE          |
-|Dataset landing page   |DATA SET LANDING PAGE     |                       |
-|Scientific publication |VIEW RELATED INFORMATION  | PUBLICATIONS          |
-|Data paper             |VIEW RELATED INFORMATION  | PUBLICATIONS          |
-|Data management plan   |-                         |                       |
-|Software               |-                         |                       |
-|Other documentation    |VIEW RELATED INFORMATION  |GENERAL DOCUMENTATION  |
-|Observation facility   |-                         |                       |
-|Extended metadata      |EXTENDED METADATA         |                       |
+|MMD                     |DIF 10.2 (Type)           | DIF 10.2 (Subtype)    | Note
+|Project home page       |PROJECT HOME PAGE         |                       |
+|Users guide             |VIEW RELATED INFORMATION  | USER'S GUIDE          |
+|Dataset landing page    |DATA SET LANDING PAGE     |                       |
+|Data server landing page|USE SERVICE API           | THREDDS DATA          |
+|Scientific publication  |VIEW RELATED INFORMATION  | PUBLICATIONS          |
+|Data paper              |VIEW RELATED INFORMATION  | PUBLICATIONS          |
+|Data management plan    |-                         |                       |
+|Software                |-                         |                       |
+|Other documentation     |VIEW RELATED INFORMATION  |GENERAL DOCUMENTATION  |
+|Observation facility    |-                         |                       |
+|Extended metadata       |EXTENDED METADATA         |                       |
 |===
 
 === Data Access Types - Related_URL
