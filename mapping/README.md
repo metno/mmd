@@ -9,11 +9,11 @@ The mapping between schemas is provided, as well as dedicated document for vocab
 ### Available documentation
 
 - MMD/DIF (9 and 10)
-- MMD/schema.org (SOSO)
+- MMD/SOSO (Science On Schema.Org)
 - MMD/ACDD (with extended fields) - TDB
 - MMD/ISO Inspire
 - MMD/STACItem - TBD
-- MMD/SolR schema - TBD
+- MMD/SolR schema
 
 ### Note
 All other documentation about mapping will be removed in the future version of MMD and this will remain the

@@ -7,7 +7,17 @@ The mapping below is used as background information to create the XLST sheets in
 . https://github.com/metno/mmd[MMD]
 . https://inspire-mif.github.io/technical-guidelines/metadata/metadata-iso19139/metadata-iso19139.pdf[Technical Guidance for the implementation of INSPIRE dataset and service metadata based on ISO/TS 19139:2007]
 
+There are different levels of requirements and conformance for Inspire:
+
+- Common Requirements for ISO/TC 19139:2007 based INSPIRE metadata records
+- Conformance Class 1: 'Baseline metadata for data sets and data set series'
+- Conformance Class 2: 'INSPIRE data sets and data set series interoperability metadata'
+
+The tag (M) for mandatory elements for ISO Inspire are omitted in the table below, as they depend on the Conformance class.
+
 === Walkthrough table
+
+NOTE: (M) refers to Mandatory fields, while (CM) refers to Conditional-Mandatory
 
 [%header, cols="1,3,1", header=True]
 |===
