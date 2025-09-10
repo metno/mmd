@@ -132,8 +132,19 @@
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox" />
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon" />
             </xsl:element>
-
-            <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor" />
+            <!--generally the codeValue for the distributor section should be "distributor". If that is not present we add support for "publisher". Fall back pointOfContact.
+            Being this related to data_center we should avoid mapping to "owner", "author" or missing role.-->
+            <xsl:choose>
+                <xsl:when test="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor[gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue = 'distributor']">
+                    <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor[gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue = 'distributor']" />
+                </xsl:when>
+                <xsl:when test="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor[gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher']">
+                    <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor[gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher']" />
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor[gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue = 'pointOfContact']" />
+                </xsl:otherwise>
+            </xsl:choose>
             <!--- FIXME merged with next during testing...
             <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine" />
             -->
