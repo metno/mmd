@@ -2431,9 +2431,9 @@
 <https://vocab.met.no/mmd/Organisation/UNISIL>
   a skos:Concept ;
   skos:prefLabel "University of Silesia in Katowice"@en ;
-  skos:hiddenLabel ""@en ;
+  skos:hiddenLabel "University of Silesia of Katowice"@en ;
   skos:altLabel "University of Silesia"@en ;
-  skos:exactMatch <https://ror.org/> .
+  skos:exactMatch <https://ror.org/0104rcc94> .
 
 <https://vocab.met.no/mmd/Organisation/SAMS>
   a skos:Concept ;

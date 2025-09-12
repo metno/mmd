@@ -3115,9 +3115,9 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/UNISIL">
         <skos:prefLabel xml:lang="en">University of Silesia in Katowice</skos:prefLabel>
-        <skos:hiddenLabel xml:lang="en"></skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">University of Silesia of Katowice</skos:hiddenLabel>
         <skos:altLabel xml:lang="en">University of Silesia</skos:altLabel>
-        <skos:exactMatch rdf:resource="https://ror.org/"/>
+        <skos:exactMatch rdf:resource="https://ror.org/0104rcc94"/>
       </skos:Concept>
     </skos:member>
 
