@@ -77,8 +77,8 @@
                     </xsl:element>
                 </xsl:otherwise>
             </xsl:choose>
-            <!--Only support for gco keyword and not Anchor for the time being. Although a bit nested, the code below supports the parsing of different thesaurus. All that is not part of a recognised vocabulary ends in None.
-            Since there are no consistet way to define the title of thesaurus, it is based on internal knowledge-->
+            <!--Only support for gco keyword for GCMD and None. For CFSTDN and GEMET Anchor is also supported. Although a bit nested, the code below supports the parsing of different thesaurus. All that is not part of a recognised vocabulary ends in None.
+            Since there are no consistent way to define the title of thesaurus, it is based on internal knowledge-->
             <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)]/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]">
                 <xsl:element name="mmd:keywords">
                     <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
@@ -92,8 +92,8 @@
             <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1.') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast'))]">
                 <xsl:element name="mmd:keywords">
                     <xsl:attribute name="vocabulary">CFSTDN</xsl:attribute>
-                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*, 'CF Standard Name') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1.') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast'))]/gmd:keyword/gco:CharacterString">
-                        <xsl:call-template name="gcokeyword">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*, 'CF Standard Name') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1.') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast'))]/gmd:keyword">
+                        <xsl:call-template name="gcogmxkeyword">
                             <xsl:with-param name="k" select="normalize-space(.)"/>
                         </xsl:call-template>
                     </xsl:for-each>
@@ -102,8 +102,8 @@
             <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')]">
                 <xsl:element name="mmd:keywords">
                     <xsl:attribute name="vocabulary">GEMET</xsl:attribute>
-                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')]/gmd:keyword/gco:CharacterString">
-                        <xsl:call-template name="gcokeyword">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')]/gmd:keyword">
+                        <xsl:call-template name="gcogmxkeyword">
                             <xsl:with-param name="k" select="normalize-space(.)"/>
                         </xsl:call-template>
                     </xsl:for-each>
@@ -729,13 +729,11 @@
         </xsl:element>
     </xsl:template>
 
-    <!--
-    <xsl:template match="gmd:keyword">
+    <xsl:template name="gcogmxkeyword">
         <xsl:element name="mmd:keyword">
-            <xsl:value-of select="gco:CharacterString" />
+            <xsl:value-of select="gco:CharacterString | gmx:Anchor" />
         </xsl:element>
     </xsl:template>
-    -->
 
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode[@codeListValue = 'project']]">
         <xsl:for-each select="gmd:keyword/gco:CharacterString">
