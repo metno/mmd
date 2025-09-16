@@ -199,7 +199,7 @@ Use Last_DIF_Revision_Date for mmd type is “Minor modification or Major modifi
 
 |use_constraint/identifier
 |Use_Constraints
-|-
+|Use_Constraints/License_URL/Title
 |DIF 9 implements an uncontrolled string (possibly a good mapping would include a concatenation of MMD resource and identifier in the form resource (identifier))
 
 |use_constraint/resource
