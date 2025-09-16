@@ -22,7 +22,7 @@ For MMD, see: https://vocab.met.no/mmd/Contact_Roles
 |MMD                 |ISO                     | Notes
 |Investigator        |principalInvestigator   |
 |Metadata author     |pointOfContact          | use in gmd:contact
-|Techical conact     |pointOfContact          | use in gmd:pointOfContact
+|Technical conact    |pointOfContact          | use in gmd:pointOfContact
 |Data center contact |publisher or distributor| use publisher in gmd:pointOfContact and distributor in gmd:distributor
 |===
 
@@ -55,20 +55,20 @@ In ISO:
 
 ----
 
-[%header, cols="1,1,1,1", header=True]
+[%header, cols="1,1,2,1,1", header=True]
 |===
-|MMD                      |  ISO Inspire gmd:protocol    | ISO Inspire gmd:function    |Note
-|Project home page        | WWW:LINK-1.0-http--link | information|
-|Users guide              | WWW:LINK-1.0-http--link | information|
-|Dataset landing page     | WWW:LINK-1.0-http--link | information| This can also be placed in /gmd:dataSetURI/gco:CharacterString
-|Data server landing page |                         |            |
-|Scientific publication   | WWW:LINK-1.0-http--link | information|
-|Data paper               | WWW:LINK-1.0-http--link | information|
-|Data management plan     | WWW:LINK-1.0-http--link | information|
-|Software                 | WWW:LINK-1.0-http--link | information|
-|Other documentation      | WWW:LINK-1.0-http--link | information|
-|Observation facility     |                         |            | translated into gmd:MD_Keywords of type "place"
-|Extended metadata        | WWW:LINK-1.0-http--link | information|
+|MMD                      | ISO Inspire gmd:protocol (OSGEO) | ISO Inspire gmd:protocol (GeoNetwork)    | ISO Inspire gmd:function    |Note
+|Project home page        | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
+|Users guide              | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
+|Dataset landing page     | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information| This can also be placed in /gmd:dataSetURI/gco:CharacterString
+|Data server landing page |                                  |                                          |            |
+|Scientific publication   | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
+|Data paper               | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
+|Data management plan     | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
+|Software                 | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
+|Other documentation      | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
+|Observation facility     |                                  |                                          |            | translated into gmd:MD_Keywords of type "place"
+|Extended metadata        | WWW:LINK                         | WWW:LINK-1.0-http--link                  | information|
 |===
 
 === Data Access Types - gmd:transferOptions protocol and function
@@ -97,16 +97,16 @@ For ISO Inspire:
           </gmd:onLine>
 ----
 
-[%header, cols="1,1,1,1", header=True]
+[%header, cols="1,1,2,1,1", header=True]
 |===
-|MMD    | ISO Inspire gmd:protocol       | ISO Inspire gmd:function    |Note
-|HTTP   |WWW:DOWNLOAD-1.0-http--download | download    | This might be changed to download
-|OPeNDAP|OPeNDAP:OPeNDAP                 | download    |
-|OCG WMS|OGC:WMS                         | information |
-|OCG WFS|OGC:WFS                         | information |
-|OCG WCS|OGC:WCS                         | information |
-|FTP    |ftp                             | download    |
-|ODATA  |-                               |             |
+|MMD    | ISO Inspire gmd:protocol (OSGEO) | ISO Inspire gmd:protocol (GeoNetwork) | ISO Inspire gmd:function    |Note
+|HTTP   |download                          |WWW:DOWNLOAD-1.0-http--download        | download    | This might be changed to download
+|OPeNDAP|OPeNDAP:OPeNDAP                   |WWW:LINK-1.0-http--opendap             | download    |
+|OCG WMS|OGC:WMS                           |OGC:WMS                                | information |
+|OCG WFS|OGC:WFS                           |OGC:WFS                                | information |
+|OCG WCS|OGC:WCS                           |OGC:WCS                                | information |
+|FTP    |ftp                               |WWW:DOWNLOAD-1.0-ftp--download         | download    |
+|ODATA  |-                                 |-                                      |             |
 |===
 
 === Spatial Representation - gmd:spatialRepresentationType
