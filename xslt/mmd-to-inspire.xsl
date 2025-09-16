@@ -734,7 +734,7 @@
                                         </xsl:element>
                                         <xsl:element name="gmd:protocol">
                                             <xsl:element name="gco:CharacterString">
-                                                <xsl:text>WWW:LINK-1.0-http--link</xsl:text>
+                                                <xsl:text>WWW:LINK</xsl:text>
                                             </xsl:element>
                                         </xsl:element>
                                         <xsl:element name="gmd:name">
@@ -1730,7 +1730,7 @@
     <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS"/>
     <mapping:data_access_type_osgeo iso="OGC:WFS" mmd="OGC WFS"/>
     <mapping:data_access_type_osgeo iso="ftp" mmd="FTP"/>
-    <mapping:data_access_type_osgeo iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP"/>
+    <mapping:data_access_type_osgeo iso="download" mmd="HTTP"/>
     <mapping:data_access_type_osgeo iso="OPeNDAP:OPeNDAP" mmd="OPeNDAP"/>
     <mapping:language_code iso="eng" mmd="en"/>
     <mapping:file_format iso="NetCDF" mmd=".nc"/>
