@@ -393,7 +393,9 @@ Originating_Center (deprecated)
 
 |data_access/type
 |Related_URL/URL_Content_Type/Type (CM)
-|Related_URL/URL_Content_Type/Subtype
+Related_URL/URL_Content_Type/Subtype
+|Related_URL/URL_Content_Type/Type (CM)
+Related_URL/URL_Content_Type/Subtype
 |Use appropriate mapping between MMD and combination of DIF type and subtype (see vocabulary mapping document)
 
 |data_access/resource
