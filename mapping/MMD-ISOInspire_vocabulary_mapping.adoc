@@ -3,15 +3,17 @@
 === References
 . MMD vocabulary: xref:../thesauri/[MMD thresauri] and https://vocab.met.no/mmd/en/groups[vocab.met.no]
 . ISO codelist vocabulary: 
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode
- - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#DQ_EvaluationMethodTypeCode
-
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode[CI_DateTypeCode]
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode[CI_RoleCode]
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode[MD_RestrictionCode]
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode[MD_ScopeCode]
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode[CI_OnLineFunctionCode]
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode[MD_SpatialRepresentationTypeCode]
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode[MD_CharacterSetCode]
+ - http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#DQ_EvaluationMethodTypeCode[DQ_EvaluationMethodTypeCode]
+. Protocol values:
+ - https://github.com/OSGeo/Cat-Interop/blob/master/LinkPropertyLookupTable.csv[OSGEO]
+ - https://docs.geonetwork-opensource.org/3.12/annexes/standards/iso19139/#iso19139-elem-gmd-protocol-447dfb15f197f008cd2326a7dab836e8[GeoNetwork]
 
 
 === Contact roles - CI_RoleCode
@@ -100,7 +102,7 @@ For ISO Inspire:
 [%header, cols="1,1,2,1,1", header=True]
 |===
 |MMD    | ISO Inspire gmd:protocol (OSGEO) | ISO Inspire gmd:protocol (GeoNetwork) | ISO Inspire gmd:function    |Note
-|HTTP   |download                          |WWW:DOWNLOAD-1.0-http--download        | download    | This might be changed to download
+|HTTP   |download                          |WWW:DOWNLOAD-1.0-http--download        | download    |
 |OPeNDAP|OPeNDAP:OPeNDAP                   |WWW:LINK-1.0-http--opendap             | download    |
 |OCG WMS|OGC:WMS                           |OGC:WMS                                | information |
 |OCG WFS|OGC:WFS                           |OGC:WFS                                | information |
