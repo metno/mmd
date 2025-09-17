@@ -12,7 +12,7 @@ The mapping between schemas is provided, as well as dedicated document for vocab
 - MMD/SOSO (Science On Schema.Org)
 - MMD/ACDD (with extended fields) - TDB
 - MMD/ISO Inspire
-- MMD/STACItem - TBD
+- MMD/STACItem
 - MMD/SolR schema
 
 ### Note
