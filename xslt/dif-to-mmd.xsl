@@ -22,6 +22,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
     <xsl:key name="accessc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Access_Constraint']/skos:member/skos:Concept/skos:altLabel" use="translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
     <xsl:key name="usec" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:prefLabel"/>
     <xsl:key name="useca" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:altLabel"/>
+    <xsl:key name="usecexact" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept/skos:exactMatch" use="substring-after(@rdf:resource, '://')"/>
     <!--
     <xsl:key name="isoc" match="Concept" use="altLabel"/>
 -->
@@ -103,14 +104,14 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             <xsl:apply-templates select="dif:Spatial_Coverage" />
             <xsl:apply-templates select="dif:Access_Constraints" />
             <xsl:apply-templates select="dif:Use_Constraints" />
-	    <xsl:apply-templates select="dif:Data_Set_Language|dif:Dataset_Language"/>
+            <xsl:apply-templates select="dif:Data_Set_Language|dif:Dataset_Language"/>
             <xsl:apply-templates select="dif:Related_URL" />
             <xsl:apply-templates select="dif:Personnel" />
             <xsl:apply-templates select="dif:Data_Set_Citation|dif:Dataset_Citation" />
             <xsl:apply-templates select="dif:Data_Center" />
             <xsl:apply-templates select="dif:Organization" />
             <!--xsl:apply-templates select="dif:Originating_Center" /-->
-            <xsl:apply-templates select="dif:Parent_DIF" />
+            <xsl:apply-templates select="dif:Parent_DIF | dif:Metadata_Association[dif:Type ='Parent']" />
             <!-- ... -->
         </xsl:element>
     </xsl:template>
@@ -217,17 +218,24 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
 
     <xsl:template match="dif:Parameters|dif:Science_Keywords">
         <xsl:if test="/dif:DIF[not(contains(dif:Entry_ID,'PANGAEA'))]">
-            <!--
-          <xsl:element name="mmd:keywords">
-              <xsl:attribute name="vocabulary">GCMD</xsl:attribute>
-          -->
-              <xsl:element name="mmd:keyword">
-                  <xsl:value-of select="dif:Category"/> &gt; <xsl:value-of select="dif:Topic"/> &gt; <xsl:value-of select="dif:Term" /><xsl:if test="dif:Variable_Level_1"> &gt; <xsl:value-of select="dif:Variable_Level_1" /></xsl:if><xsl:if test="dif:Variable_Level_2"> &gt; <xsl:value-of select="dif:Variable_Level_2" /></xsl:if><xsl:if test="dif:Variable_Level_3"> &gt; <xsl:value-of select="dif:Variable_Level_3" /></xsl:if>
-              </xsl:element>
-              <!--
-          </xsl:element>
-          -->
-      </xsl:if>
+            <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+            <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+            <xsl:element name="mmd:keyword">
+                <xsl:variable name="gcmdsk">
+                     <xsl:value-of select="concat(translate(normalize-space(dif:Category), $lowercase , $uppercase), ' &gt; ', translate(normalize-space(dif:Topic), $lowercase , $uppercase), ' &gt; ', translate(normalize-space(dif:Term), $lowercase , $uppercase))" />
+                     <xsl:if test="dif:Variable_Level_1 != ''">
+                         <xsl:value-of select="concat(gcmdsk, ' &gt; ', translate(normalize-space(dif:Variable_Level_1), $lowercase , $uppercase))" />
+                     </xsl:if>
+                     <xsl:if test="dif:Variable_Level_2 !=''">
+                         <xsl:value-of select="concat(gcmdsk, ' &gt; ', translate(normalize-space(dif:Variable_Level_2), $lowercase , $uppercase))" />
+                     </xsl:if>
+                     <xsl:if test="dif:Variable_Level_3 !=''">
+                         <xsl:value-of select="concat(gcmdsk, ' &gt; ', translate(normalize-space(dif:Variable_Level_3), $lowercase , $uppercase))" />
+                     </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="$gcmdsk"/>
+            </xsl:element>
+        </xsl:if>
   </xsl:template>
 
   <xsl:template match="dif:ISO_Topic_Category">
@@ -462,25 +470,27 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
 
         <!-- Fix me -->
         <xsl:template match="dif:Location">
+            <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+            <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
             <xsl:element name="mmd:keyword">
                 <xsl:variable name="gcmdloc">
                   <xsl:if test='dif:Location_Category'>
-                    <xsl:value-of select="dif:Location_Category" />
+                    <xsl:value-of select="translate(normalize-space(dif:Location_Category), $lowercase, $uppercase)" />
                   </xsl:if>
-                  <xsl:if test='dif:Location_Type'>
-                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Type)" />
+                  <xsl:if test='dif:Location_Type !=""'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', translate(normalize-space(dif:Location_Type), $lowercase, $uppercase))" />
                   </xsl:if>
-                  <xsl:if test='dif:Location_Subregion1'>
-                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion1)" />
+                  <xsl:if test='dif:Location_Subregion1 !=""'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', translate(normalize-space(dif:Location_Subregion1), $lowercase, $uppercase))" />
                   </xsl:if>
-                  <xsl:if test='dif:Location_Subregion2'>
-                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion2)" />
+                  <xsl:if test='dif:Location_Subregion2 !=""'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', translate(normalize-space(dif:Location_Subregion2), $lowercase, $uppercase))" />
                   </xsl:if>
-                  <xsl:if test='dif:Location_Subregion3'>
-                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Location_Subregion3)" />
+                  <xsl:if test='dif:Location_Subregion3 !=""'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', translate(normalize-space(dif:Location_Subregion3), $lowercase, $uppercase))" />
                   </xsl:if>
-                  <xsl:if test='dif:Detailed_Location'>
-                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', dif:Detailed_Location)" />
+                  <xsl:if test='dif:Detailed_Location !=""'>
+                    <xsl:value-of select="concat(gcmdloc, ' &gt; ', translate(normalize-space(dif:Detailed_Location), $lowercase, $uppercase))" />
                   </xsl:if>
               </xsl:variable>
               <xsl:value-of select="$gcmdloc"/>
@@ -497,10 +507,10 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         <xsl:template match="dif:Project">
             <xsl:element name="mmd:project">
                 <xsl:element name="mmd:short_name">
-                    <xsl:value-of select="dif:Short_Name" />
+                    <xsl:value-of select="normalize-space(dif:Short_Name)" />
                 </xsl:element>
                 <xsl:element name="mmd:long_name">
-                    <xsl:value-of select="dif:Long_Name" />
+                    <xsl:value-of select="normalize-space(dif:Long_Name)" />
                 </xsl:element>
             </xsl:element>
         </xsl:template>
@@ -520,10 +530,19 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         </xsl:template>
 
         <xsl:template match="dif:Use_Constraints">
-            <xsl:variable name="difuse" select="."/>
-	    <xsl:if test="not(normalize-space($difuse)='')">
-	        <xsl:for-each select="$isoLUD" >
-	            <xsl:choose>
+            <xsl:variable name="difuse">
+                <xsl:choose>
+                    <xsl:when test="dif:License_URL">
+                        <xsl:value-of select="dif:License_URL/dif:URL"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="."/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+	        <xsl:if test="not(normalize-space($difuse)='')">
+	            <xsl:for-each select="$isoLUD" >
+	                <xsl:choose>
                         <xsl:when test="key('usec', $difuse)">
                             <xsl:variable name="prefuseid" select="key('usec', $difuse)/skos:prefLabel"/>
                             <xsl:variable name="prefuseref" select="key('usec', $difuse)/skos:exactMatch/@rdf:resource[contains(.,'spdx')]"/>
@@ -548,15 +567,27 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                                 </xsl:element>
                             </xsl:element>
                         </xsl:when>
+                        <xsl:when test="key('usecexact', substring-after($difuse, '://'))">
+                            <xsl:variable name="prefuseid" select="key('usecexact', substring-after($difuse, '://'))/../skos:prefLabel"/>
+                            <xsl:variable name="prefuseref" select="key('usecexact', substring-after($difuse, '://'))/../skos:exactMatch/@rdf:resource[contains(.,'spdx')]"/>
+                            <xsl:element name="mmd:use_constraint">
+                                <xsl:element name="mmd:identifier">
+                                    <xsl:value-of select="$prefuseid" />
+                                </xsl:element>
+                                <xsl:element name="mmd:resource">
+                                    <xsl:value-of select="$prefuseref" />
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:when>
                         <xsl:otherwise>
                             <xsl:element name="mmd:use_constraint">
                                 <xsl:element name="mmd:license_text">
                                     <xsl:value-of select="$difuse" />
                                 </xsl:element>
                             </xsl:element>
-	                </xsl:otherwise>
-	            </xsl:choose>
-	        </xsl:for-each>
+	                    </xsl:otherwise>
+	                </xsl:choose>
+	            </xsl:for-each>
             </xsl:if>
         </xsl:template>
 
@@ -585,7 +616,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                                 </xsl:element>
                             </xsl:element>
                         </xsl:when>
-                        <xsl:when test="not(dif:URL_Content_Type/dif:Subtype) or dif:URL_Content_Type/dif:Subtype = ''">
+                        <xsl:when test="not(dif:URL_Content_Type/dif:Subtype) or dif:URL_Content_Type/dif:Subtype = '' or dif:URL_Content_Type/dif:Subtype = 'DIRECT DOWNLOAD'">
                             <xsl:element name="mmd:data_access">
                                 <xsl:element name="mmd:type">HTTP</xsl:element>
                                 <xsl:element name="mmd:description">
@@ -675,10 +706,10 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             <xsl:element name="mmd:data_center">
                 <xsl:element name="mmd:data_center_name">
                     <xsl:element name="mmd:short_name">
-                        <xsl:value-of select="dif:Data_Center_Name/dif:Short_Name" />
+                        <xsl:value-of select="normalize-space(dif:Data_Center_Name/dif:Short_Name)" />
                     </xsl:element>
                     <xsl:element name="mmd:long_name">
-                        <xsl:value-of select="dif:Data_Center_Name/dif:Long_Name" />
+                        <xsl:value-of select="normalize-space(dif:Data_Center_Name/dif:Long_Name)" />
                     </xsl:element>
                 </xsl:element>
                 <xsl:element name="mmd:data_center_url">
@@ -706,7 +737,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         </xsl:template>
 
         <xsl:template match="dif:Organization">
-            <xsl:if test="dif:Organization_Type[contains(text(),'ARCHIVER')]">
+            <xsl:if test="dif:Organization_Type[contains(text(),'ARCHIVER') or contains(text(),'DISTRIBUTOR')]">
                 <xsl:element name="mmd:data_center">
                     <xsl:element name="mmd:data_center_name">
                         <xsl:element name="mmd:short_name">
@@ -726,22 +757,22 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                         <xsl:text>Data center contact</xsl:text>
                     </xsl:element>
                     <xsl:element name="mmd:name">
-			<xsl:if test="dif:Personnel/dif:Contact_Person">
-                           <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:First_Name"/>
-                           <xsl:text> </xsl:text>
-                           <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Last_Name"/>
-		        </xsl:if>
-			<xsl:if test="dif:Personnel/dif:Contact_Group">
-                           <xsl:value-of select="dif:Personnel/dif:Contact_Group/dif:Name"/>
-		        </xsl:if>
+			            <xsl:if test="dif:Personnel/dif:Contact_Person">
+                            <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:First_Name"/>
+                            <xsl:text> </xsl:text>
+                            <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Last_Name"/>
+		                </xsl:if>
+			            <xsl:if test="dif:Personnel/dif:Contact_Group">
+                            <xsl:value-of select="dif:Personnel/dif:Contact_Group/dif:Name"/>
+		                </xsl:if>
                     </xsl:element>
                     <xsl:element name="mmd:email">
-			<xsl:if test="dif:Personnel/dif:Contact_Person">
-                           <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Email"/>
-		        </xsl:if>
-			<xsl:if test="dif:Personnel/dif:Contact_Group">
-                           <xsl:value-of select="dif:Personnel/dif:Contact_Group/dif:Email"/>
-		        </xsl:if>
+			            <xsl:if test="dif:Personnel/dif:Contact_Person">
+                            <xsl:value-of select="dif:Personnel/dif:Contact_Person/dif:Email"/>
+		                </xsl:if>
+			            <xsl:if test="dif:Personnel/dif:Contact_Group">
+                            <xsl:value-of select="dif:Personnel/dif:Contact_Group/dif:Email"/>
+		                </xsl:if>
                     </xsl:element>
                     <!-- The validity of this translation depends slightly on the providers as the approaches seen are heterogeneous... Øystein Godøy, METNO/FOU, 2023-04-28 -->
                     <xsl:element name="mmd:organisation">
@@ -1005,10 +1036,17 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             </xsl:if>
         </xsl:template>
 
-        <xsl:template match="dif:Parent_DIF">
+        <xsl:template match="dif:Parent_DIF | dif:Metadata_Association[dif:Type ='Parent']">
             <xsl:element name="mmd:related_dataset">
                 <xsl:attribute name="relation_type">parent</xsl:attribute>
-                <xsl:value-of select="." />
+                <xsl:choose>
+                    <xsl:when test="dif:Entry_ID">
+                        <xsl:value-of select="dif:Entry_ID/dif:Short_Name" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="." />
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:element>
         </xsl:template>
 
