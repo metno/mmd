@@ -292,28 +292,14 @@
               <xsl:apply-templates select="."/>
             </xsl:element>
           </xsl:for-each>
-          <!--Account for owner in Norwegian profile-->
-          <!--xsl:variable name="owner">
-                       <xsl:for-each select="mmd:personnel[mmd:role = 'Investigator']">
-               <xsl:if test ="not(preceding::mmd:organisation/text() = current()/mmd:organisation/text())">
-                               <xsl:choose>
-                                   <xsl:when test="position() = 1">
-                                       <xsl:value-of select="mmd:organisation"/>
-                                   </xsl:when>
-                                   <xsl:otherwise>
-                                       <xsl:value-of select="concat('; ',mmd:organisation)"/>
-                                   </xsl:otherwise>
-                               </xsl:choose>
-               </xsl:if>
-                       </xsl:for-each>
-                    </xsl:variable-->
-          <xsl:for-each select="mmd:personnel[mmd:role = 'Investigator']">
-            <xsl:variable name="myorg" select="mmd:organisation"/>
-            <xsl:for-each select="mmd:organisation[generate-id() = generate-id(key('orgdup', $myorg)[1])]">
+          <!--Account for owner in Norwegian profile. This is a mandatory field in GeoNorge. -->
+          <xsl:choose>
+            <!--Temporary HACK for KiN 2025 to solve the issue of multiple owners. This will have to be the same for all children, while children have different creator_institution. The mapping creator_institution/owner is very loose and will not work in this case.-->
+            <xsl:when test="mmd:project/mmd:long_name = 'Klima i Norge 2025'">
               <xsl:element name="gmd:pointOfContact">
                 <xsl:element name="gmd:CI_ResponsibleParty">
                   <xsl:call-template name="organisation">
-                    <xsl:with-param name="org" select="."/>
+                    <xsl:with-param name="org" select="'Norwegian Water Resources and Energy Directorate'"/>
                   </xsl:call-template>
                   <xsl:element name="gmd:contactInfo">
                     <xsl:element name="gmd:CI_Contact">
@@ -322,7 +308,7 @@
                           <!--[1..*] (characterString)-->
                           <xsl:element name="gmd:electronicMailAddress">
                             <xsl:element name="gco:CharacterString">
-                              <xsl:value-of select="../mmd:email"/>
+                              <xsl:text>climatedata@nve.no</xsl:text>
                             </xsl:element>
                           </xsl:element>
                         </xsl:element>
@@ -341,8 +327,77 @@
                   </xsl:element>
                 </xsl:element>
               </xsl:element>
-            </xsl:for-each>
-          </xsl:for-each>
+              <xsl:element name="gmd:pointOfContact">
+                <xsl:element name="gmd:CI_ResponsibleParty">
+                  <xsl:call-template name="organisation">
+                    <xsl:with-param name="org" select="'Norwegian Meteorological Institute'"/>
+                  </xsl:call-template>
+                  <xsl:element name="gmd:contactInfo">
+                    <xsl:element name="gmd:CI_Contact">
+                      <xsl:element name="gmd:address">
+                        <xsl:element name="gmd:CI_Address">
+                          <!--[1..*] (characterString)-->
+                          <xsl:element name="gmd:electronicMailAddress">
+                            <xsl:element name="gco:CharacterString">
+                              <xsl:text>klimavakten@met.no</xsl:text>
+                            </xsl:element>
+                          </xsl:element>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:element>
+                  <!--Mandatory [1] relative to a responsible organisation, but there may be many responsible organisations for a single resource-->
+                  <xsl:element name="gmd:role">
+                    <xsl:element name="gmd:CI_RoleCode">
+                      <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
+                      <xsl:attribute name="codeListValue">
+                        <xsl:text>owner</xsl:text>
+                      </xsl:attribute>
+                      <xsl:text>owner</xsl:text>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:for-each select="mmd:personnel[mmd:role = 'Investigator']">
+                <xsl:variable name="myorg" select="mmd:organisation"/>
+                <xsl:for-each select="mmd:organisation[generate-id() = generate-id(key('orgdup', $myorg)[1])]">
+                  <xsl:element name="gmd:pointOfContact">
+                    <xsl:element name="gmd:CI_ResponsibleParty">
+                      <xsl:call-template name="organisation">
+                        <xsl:with-param name="org" select="."/>
+                      </xsl:call-template>
+                      <xsl:element name="gmd:contactInfo">
+                        <xsl:element name="gmd:CI_Contact">
+                          <xsl:element name="gmd:address">
+                            <xsl:element name="gmd:CI_Address">
+                              <!--[1..*] (characterString)-->
+                              <xsl:element name="gmd:electronicMailAddress">
+                                <xsl:element name="gco:CharacterString">
+                                  <xsl:value-of select="../mmd:email"/>
+                                </xsl:element>
+                              </xsl:element>
+                            </xsl:element>
+                          </xsl:element>
+                        </xsl:element>
+                      </xsl:element>
+                      <!--Mandatory [1] relative to a responsible organisation, but there may be many responsible organisations for a single resource-->
+                      <xsl:element name="gmd:role">
+                        <xsl:element name="gmd:CI_RoleCode">
+                          <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode</xsl:attribute>
+                          <xsl:attribute name="codeListValue">
+                            <xsl:text>owner</xsl:text>
+                          </xsl:attribute>
+                          <xsl:text>owner</xsl:text>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:for-each>
+              </xsl:for-each>
+            </xsl:otherwise>
+          </xsl:choose>
           <!--keywords (M) multiplicity [1..*] -->
           <xsl:apply-templates select="mmd:keywords"/>
           <!--access_constraint Conditional: referring to limitations on public access. Mandatory if accessConstraints or classification are not documented, multiplicity [0..*] for otherConstraints per instance of MD_LegalConstraints-->
@@ -538,7 +593,7 @@
                   </xsl:element>
                   <xsl:element name="gmd:protocol">
                     <xsl:element name="gco:CharacterString">
-                      <xsl:text>WWW:LINK</xsl:text>
+                      <xsl:text>WWW:LINK-1.0-http--link</xsl:text>
                     </xsl:element>
                   </xsl:element>
                   <xsl:element name="gmd:name">
@@ -1386,13 +1441,13 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:template>
-  <!-- Mappings for data_access type specification to OSGEO  -->
+  <!-- Mappings for data_access type specification to geonetwork  -->
   <mapping:data_access_type_osgeo iso="OGC:WMS" mmd="OGC WMS"/>
   <mapping:data_access_type_osgeo iso="OGC:WCS" mmd="OGC WCS"/>
   <mapping:data_access_type_osgeo iso="OGC:WFS" mmd="OGC WFS"/>
   <mapping:data_access_type_osgeo iso="ftp" mmd="FTP"/>
-  <mapping:data_access_type_osgeo iso="download" mmd="HTTP"/>
-  <mapping:data_access_type_osgeo iso="OPeNDAP:OPeNDAP" mmd="OPeNDAP"/>
+  <mapping:data_access_type_osgeo iso="WWW:DOWNLOAD-1.0-http--download" mmd="HTTP"/>
+  <mapping:data_access_type_osgeo iso="OPENDAP:OPENDAP" mmd="OPeNDAP"/>
   <mapping:language_code iso="eng" mmd="en"/>
   <mapping:file_format iso="NetCDF" mmd=".nc"/>
   <!--Mapping to https://register.geonorge.no/metadata-kodelister/lisenser-->
