@@ -7,13 +7,39 @@
     <xs:complexType name="personnel_type">
         <xs:all>
             <xs:element name="role" type="mmd:role_type"></xs:element>
-            <xs:element name="name" type="xs:string"></xs:element>
-            <xs:element name="organisation" type="xs:string" minOccurs="0"></xs:element>
+            <xs:element name="name" type="mmd:name_uri"></xs:element>
+            <xs:element name="organisation" type="mmd:organisation_uri" minOccurs="0"></xs:element>
             <xs:element name="email" type="xs:string"></xs:element>
             <xs:element name="phone" type="xs:string" minOccurs="0"></xs:element>
             <xs:element name="fax" type="xs:string" minOccurs="0"></xs:element>
             <xs:element name="contact_address" type="mmd:contact_address" minOccurs="0"></xs:element>
         </xs:all>
+    </xs:complexType>
+    <xs:complexType name="name_uri">
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="uri" use="optional">
+            <xs:simpleType>
+              <xs:restriction base="xs:anyURI">
+                <xs:pattern value="https?://(orcid.org/|ror.org/).+"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="organisation_uri">
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="uri" use="optional">
+            <xs:simpleType>
+              <xs:restriction base="xs:anyURI">
+                <xs:pattern value="https?://ror.org/.+"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
     </xs:complexType>
     <xs:complexType name="contact_address">
         <xs:all>
