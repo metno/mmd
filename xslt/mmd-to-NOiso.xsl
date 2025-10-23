@@ -8,6 +8,7 @@
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:dcterms="http://purl.org/dc/terms/"
                 xmlns:mmd="http://www.met.no/schema/mmd"
                 xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"
                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd"
@@ -15,6 +16,8 @@
 
   <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
   <xsl:variable name="vocab" select="document('../thesauri/mmd-vocabulary.xml')"/>
+  <xsl:variable name="northemesmapping" select="document('../thesauri/nasjonal-temainndeling.rdf')"/>
+  <xsl:key name="northeme" match="skos:Concept" use="skos:prefLabel"/>
   <xsl:key name="orgeng" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:prefLabel[@xml:lang='en']"/>
   <xsl:key name="orgengh" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:hiddenLabel[@xml:lang='en']"/>
   <xsl:key name="usec" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:prefLabel"/>
@@ -885,13 +888,32 @@
     <xsl:if test="*">
       <xsl:element name="gmd:descriptiveKeywords">
         <xsl:element name="gmd:MD_Keywords">
-          <xsl:for-each select="mmd:keyword">
-            <xsl:element name="gmd:keyword">
-              <xsl:element name="gco:CharacterString">
-                <xsl:value-of select="."/>
-              </xsl:element>
-            </xsl:element>
-          </xsl:for-each>
+          <xsl:choose>
+            <xsl:when test="@vocabulary = 'NORTHEMES'">
+              <xsl:for-each select="mmd:keyword">
+                <xsl:variable name="mynortheme" select="normalize-space(.)"/>
+                <xsl:for-each select="$northemesmapping">
+                  <xsl:if test="key('northeme', $mynortheme)">
+                    <xsl:variable name="northemecode" select="key('northeme', $mynortheme)/dcterms:identifier"/>
+                    <xsl:element name="gmd:keyword">
+                      <xsl:element name="gco:CharacterString">
+                        <xsl:value-of select="$northemecode"/>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:for-each select="mmd:keyword">
+                <xsl:element name="gmd:keyword">
+                  <xsl:element name="gco:CharacterString">
+                    <xsl:value-of select="."/>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:for-each>
+            </xsl:otherwise>
+          </xsl:choose>
           <xsl:if test="@vocabulary = 'CFSTDN' or @vocabulary = 'GCMDSK' or @vocabulary = 'GEMET' or @vocabulary = 'NORTHEMES'  or @vocabulary = 'WMOCAT' ">
             <xsl:element name="gmd:type">
               <xsl:element name="gmd:MD_KeywordTypeCode">
@@ -1048,7 +1070,7 @@
                       <xsl:attribute name="xlink:href">
                         <xsl:text>https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling</xsl:text>
                       </xsl:attribute>
-                      <xsl:text>Norwegian thematic categories</xsl:text>
+                      <xsl:text>Nasjonal tematisk inndeling (DOK-kategori)</xsl:text>
                     </xsl:element>
                   </xsl:element>
                   <xsl:element name="gmd:date">
