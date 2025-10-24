@@ -403,6 +403,52 @@
           </xsl:choose>
           <!--keywords (M) multiplicity [1..*] -->
           <xsl:apply-templates select="mmd:keywords"/>
+          <xsl:if test="mmd:collection = 'KSS'">
+            <xsl:element name="gmd:descriptiveKeywords">
+              <xsl:element name="gmd:MD_Keywords">
+                <xsl:element name="gmd:keyword">
+                  <xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
+                  <xsl:element name="gco:CharacterString">
+                    <xsl:text>Norwegian Centre for Climate Services</xsl:text>
+                  </xsl:element>
+                  <xsl:element name="gmd:PT_FreeText">
+                    <xsl:element name="gmd:textGroup">
+                      <xsl:element name="gmd:LocalisedCharacterString">
+                        <xsl:attribute name="locale">#locale-nor</xsl:attribute>
+                        <xsl:text>Norsk klimaservicesenter</xsl:text>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>
+                <xsl:element name="gmd:thesaurusName">
+                  <xsl:element name="gmd:CI_Citation">
+                    <xsl:element name="gmd:title">
+                      <xsl:element name="gmx:Anchor">
+                        <xsl:attribute name="xlink:href">
+                          <xsl:text>https://register.geonorge.no/metadata-kodelister/samarbeid-og-lover</xsl:text>
+                        </xsl:attribute>
+                        <xsl:text>Nasjonal inndeling i geografiske initiativ og SDI-er</xsl:text>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:element>
+                  <xsl:element name="gmd:date">
+                    <xsl:element name="gmd:CI_Date">
+                      <xsl:element name="gmd:date">
+                        <gco:Date>2014-03-20</gco:Date>
+                      </xsl:element>
+                      <xsl:element name="gmd:dateType">
+                        <xsl:element name="gmd:CI_DateTypeCode">
+                          <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                          <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                          <xsl:text>publication</xsl:text>
+                        </xsl:element>
+                      </xsl:element>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:element>
+            </xsl:element>
+          </xsl:if>
           <!--access_constraint Conditional: referring to limitations on public access. Mandatory if accessConstraints or classification are not documented, multiplicity [0..*] for otherConstraints per instance of MD_LegalConstraints-->
           <xsl:element name="gmd:resourceConstraints">
             <xsl:element name="gmd:MD_LegalConstraints">
@@ -896,8 +942,17 @@
                   <xsl:if test="key('northeme', $mynortheme)">
                     <xsl:variable name="northemecode" select="key('northeme', $mynortheme)/dcterms:identifier"/>
                     <xsl:element name="gmd:keyword">
+                      <xsl:attribute name="xsi:type">gmd:PT_FreeText_PropertyType</xsl:attribute>
                       <xsl:element name="gco:CharacterString">
-                        <xsl:value-of select="$northemecode"/>
+                        <xsl:value-of select="$mynortheme"/>
+                      </xsl:element>
+                      <xsl:element name="gmd:PT_FreeText">
+                        <xsl:element name="gmd:textGroup">
+                          <xsl:element name="gmd:LocalisedCharacterString">
+                            <xsl:attribute name="locale">#locale-nor</xsl:attribute>
+                            <xsl:value-of select="$northemecode"/>
+                          </xsl:element>
+                        </xsl:element>
                       </xsl:element>
                     </xsl:element>
                   </xsl:if>
