@@ -1328,6 +1328,53 @@
                     </xsl:element>
                 </xsl:element>
             </xsl:when>
+            <xsl:when test="mmd:resource[contains(., 'oscar.wmo.int/surface')]">
+                <xsl:element name="gmd:descriptiveKeywords">
+                    <xsl:element name="gmd:MD_Keywords">
+                        <xsl:element name="gmd:keyword">
+                            <xsl:element name="gmx:Anchor">
+                                <xsl:attribute name="xlink:href">
+                                    <xsl:value-of select="mmd:resource"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="mmd:description"/>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:element name="gmd:type">
+                            <xsl:element name="gmd:MD_KeywordTypeCode">
+                                <xsl:attribute name="codeList">https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode</xsl:attribute>
+                                <xsl:attribute name="codeListValue">platform</xsl:attribute>
+                                <xsl:text>platform</xsl:text>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:element name="gmd:thesaurusName">
+                            <xsl:element name="gmd:CI_Citation">
+                                <xsl:element name="gmd:title">
+                                    <xsl:element name="gmx:Anchor">
+                                        <xsl:attribute name="xlink:href">
+                                            <xsl:text>https://oscar.wmo.int/surface/</xsl:text>
+                                        </xsl:attribute>
+                                        <xsl:text>Surface-based Capabilities (OSCAR/Surface)</xsl:text>
+                                    </xsl:element>
+                                </xsl:element>
+                                <xsl:element name="gmd:date">
+                                    <xsl:element name="gmd:CI_Date">
+                                        <xsl:element name="gmd:date">
+                                            <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+                                        </xsl:element>
+                                        <xsl:element name="gmd:dateType">
+                                            <xsl:element name="gmd:CI_DateTypeCode">
+                                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+                                                <xsl:attribute name="codeListValue">publication</xsl:attribute>
+                                                <xsl:text>publication</xsl:text>
+                                            </xsl:element>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="gmd:descriptiveKeywords">
                     <xsl:element name="gmd:MD_Keywords">
