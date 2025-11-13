@@ -694,7 +694,6 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
                     <xsl:value-of select="/dif:DIF/dif:Personnel/dif:Email" />
                 </xsl:element>
                 <xsl:element name="mmd:phone"></xsl:element>
-                <xsl:element name="mmd:fax"></xsl:element>
                 <xsl:element name="mmd:organisation">
                     <xsl:value-of select="."/>
                 </xsl:element>
