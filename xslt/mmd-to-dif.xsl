@@ -450,9 +450,6 @@
                          <xsl:element name="dif:Phone">
 		     	    <xsl:value-of select="../mmd:personnel/mmd:phone[../mmd:role='Data center contact']" />
                          </xsl:element>
-                         <xsl:element name="dif:Fax">
-		     	    <xsl:value-of select="../mmd:personnel/mmd:fax[../mmd:role='Data center contact']" />
-                         </xsl:element>
 
                          <xsl:element name="dif:Contact_Address">
                              <xsl:element name="dif:Address">
