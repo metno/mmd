@@ -667,6 +667,21 @@ element.
 
 <<personnel>>
 
+[[contact-types]]
+=== Contact types
+
+[cols="2,8"]
+|=======================================================================
+|Code |Description
+
+|Person |A person.
+
+|Organisation |An organisation, institution or any other entity that is not referred to as an individual.
+
+|=======================================================================
+
+<<personnel>>
+
 [[mmd-to-iso-mapping-1]]
 === MMD to ISO mapping
 

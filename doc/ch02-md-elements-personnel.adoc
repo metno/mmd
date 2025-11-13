@@ -17,13 +17,14 @@ one entry of personnel specifying the Principal Investigator (role
 Investigator). The contact has the following
 sub elements
 
-* role: The role the person has related to this dataset. The value must * come from <<contact-roles,Contact roles>>.
+* role: The role the person/organisation has related to this dataset. The value must * come from <<contact-roles,Contact roles>>.
+* type: The type of personnel entry. This entriy can only have the value Person or Organisation, following the <<contact-types, Contact types>> controlled vocabulary.
 * name: The full name of the contact. The name field has an optional attribute "uri" to provide persistent identifiers for a person or an organisation. The currently supported schemas are orcid.org and ror.org.
 * email: The email address to the contact.
 * phone: The phone number to the contact. The number should include land codes.
 * fax: The fax number where the contact can receive faxes.
 * organisation: The name of the organisation where the person is employed. The organisation field has an optional attribute "uri" to provide persistent identifiers for an organisation. The currently supported schema for organisation is ror.org.
-* contact_address contain the address information of the person. It consists of: 
+* contact_address contain the address information of the person. It consists of:
     * address is the organization name, department, mail stop, street address, etc. of the person.
     * city: is the city or town of the person.
     * province_or_state: is the province, region or state.
@@ -36,6 +37,7 @@ Only role, name and email are mandatory.
 ----
 <personnel>
      <role>Technical contact</role>
+     <type>Person</type>
      <name uri="https://orcid.org/0000-1111-2222-3333">Ole Dole</name>
      <email>ole.dole@example.com</email>
      <phone>004711111111</phone>

@@ -7,6 +7,7 @@
     <xs:complexType name="personnel_type">
         <xs:all>
             <xs:element name="role" type="mmd:role_type"></xs:element>
+            <xs:element name="type" type="mmd:personnel_type_type" minOccurs="0"></xs:element>
             <xs:element name="name" type="mmd:name_uri"></xs:element>
             <xs:element name="organisation" type="mmd:organisation_uri" minOccurs="0"></xs:element>
             <xs:element name="email" type="xs:string"></xs:element>
@@ -245,6 +246,12 @@
             <xs:enumeration value="Metadata author"></xs:enumeration>
             <xs:enumeration value="Technical contact"></xs:enumeration>
             <xs:enumeration value="Data center contact"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="personnel_type_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Person"></xs:enumeration>
+            <xs:enumeration value="Organisation"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="dataset_production_status_type">
