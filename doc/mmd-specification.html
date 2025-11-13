@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="author" content="Øystein&#160;Godøy, Lara&#160;Ferrighi, Trygve&#160;Halsne, Øystein&#160;Torget, Bard&#160;Saadatnejad, Egil&#160;Støren, Sarfraz&#160;Alam">
 <title>MET Norway Metadata Format Specification</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -117,7 +117,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -220,6 +219,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -674,11 +674,12 @@ sections.</p>
 <li><a href="#product-type">4.15. Product type</a></li>
 <li><a href="#spatial-representation">4.16. Spatial representation</a></li>
 <li><a href="#contact-roles">4.17. Contact roles</a></li>
-<li><a href="#mmd-to-iso-mapping-1">4.18. MMD to ISO mapping</a></li>
-<li><a href="#iso-topic-categories">4.19. ISO Topic categories</a></li>
-<li><a href="#related-information-types">4.20. Related Information types</a></li>
-<li><a href="#data-access-types">4.21. Data Access Types</a></li>
-<li><a href="#quality-control">4.22. Quality Control</a></li>
+<li><a href="#contact-types">4.18. Contact types</a></li>
+<li><a href="#mmd-to-iso-mapping-1">4.19. MMD to ISO mapping</a></li>
+<li><a href="#iso-topic-categories">4.20. ISO Topic categories</a></li>
+<li><a href="#related-information-types">4.21. Related Information types</a></li>
+<li><a href="#data-access-types">4.22. Data Access Types</a></li>
+<li><a href="#quality-control">4.23. Quality Control</a></li>
 </ul>
 </li>
 </ul>
@@ -2048,10 +2049,13 @@ sub elements</p>
 <div class="ulist">
 <ul>
 <li>
-<p>role: The role the person has related to this dataset. The value must * come from <a href="#contact-roles">Contact roles</a>.</p>
+<p>role: The role the person/organisation has related to this dataset. The value must * come from <a href="#contact-roles">Contact roles</a>.</p>
 </li>
 <li>
-<p>name: The full name of the contact.</p>
+<p>type: The type of personnel entry. This entry can only have the value Person or Organisation, following the <a href="#contact-types">Contact types</a> controlled vocabulary.</p>
+</li>
+<li>
+<p>name: The full name of the contact. The name field has an optional attribute "uri" to provide persistent identifiers for a person or an organisation. The currently supported schemas are orcid.org and ror.org.</p>
 </li>
 <li>
 <p>email: The email address to the contact.</p>
@@ -2063,7 +2067,7 @@ sub elements</p>
 <p>fax: The fax number where the contact can receive faxes.</p>
 </li>
 <li>
-<p>organisation: The name of the organisation where the person is employed.</p>
+<p>organisation: The name of the organisation where the person is employed. The organisation field has an optional attribute "uri" to provide persistent identifiers for an organisation. The currently supported schema for organisation is ror.org.</p>
 </li>
 <li>
 <p>contact_address contain the address information of the person. It consists of:</p>
@@ -2095,10 +2099,12 @@ sub elements</p>
 <div class="content">
 <pre>&lt;personnel&gt;
      &lt;role&gt;Technical contact&lt;/role&gt;
-     &lt;name&gt;Ole Dole&lt;/name&gt;
+     &lt;type&gt;Person&lt;/type&gt;
+     &lt;name uri="https://orcid.org/0000-1111-2222-3333"&gt;Ole Dole&lt;/name&gt;
      &lt;email&gt;ole.dole@example.com&lt;/email&gt;
      &lt;phone&gt;004711111111&lt;/phone&gt;
      &lt;fax/&gt;
+     &lt;organisation uri="https://ror.org/001n36p86"&gt;Norwegian Meteorological Institute&lt;/organisation&gt;
      &lt;contact_address&gt;
      &lt;address&gt;Meteorologisk institutt, Henrik Mohnsplass 1&lt;/address&gt;
      &lt;city&gt;Oslo&lt;/city&gt;
@@ -2541,7 +2547,7 @@ the following child elements:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>type: Description of the type of information. A controlled vocabulary is required. See <a href="#related-information-types">Section 4.20</a>.</p>
+<p>type: Description of the type of information. A controlled vocabulary is required. See <a href="#related-information-types">Section 4.21</a>.</p>
 </li>
 <li>
 <p>resource: The URL used.</p>
@@ -2638,7 +2644,7 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ISO topic category fetched from a controlled vocabulary. Valid keywords
-are listed in <a href="#iso-topic-categories">Section 4.19</a>.</p>
+are listed in <a href="#iso-topic-categories">Section 4.20</a>.</p>
 </div>
 <div class="paragraph">
 <p>This field is required for compatibility with DIF and ISO</p>
@@ -3313,7 +3319,7 @@ parts can be put into citation information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The level of quality control performed on the dataset/product. Valid keywords are listed in <a href="#quality-control">Section 4.22</a>.
+<td class="tableblock halign-left valign-top"><p class="tableblock">The level of quality control performed on the dataset/product. Valid keywords are listed in <a href="#quality-control">Section 4.23</a>.
 Additional information about data quality control can be provided through the related_information element providing a URL to the quality control documentation.</p></td>
 </tr>
 <tr>
@@ -4964,7 +4970,35 @@ element.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="mmd-to-iso-mapping-1"><a class="anchor" href="#mmd-to-iso-mapping-1"></a>4.18. MMD to ISO mapping</h3>
+<h3 id="contact-types"><a class="anchor" href="#contact-types"></a>4.18. Contact types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Person</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A person.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organisation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An organisation, institution or any other entity that is not referred to as an individual.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a href="#personnel">Section 2.16</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mmd-to-iso-mapping-1"><a class="anchor" href="#mmd-to-iso-mapping-1"></a>4.19. MMD to ISO mapping</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4997,7 +5031,7 @@ element.</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="iso-topic-categories"><a class="anchor" href="#iso-topic-categories"></a>4.19. ISO Topic categories</h3>
+<h3 id="iso-topic-categories"><a class="anchor" href="#iso-topic-categories"></a>4.20. ISO Topic categories</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
@@ -5142,7 +5176,7 @@ telecommunication, radio, and communication networks.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.20. Related Information types</h3>
+<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.21. Related Information types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 30%;">
@@ -5212,7 +5246,7 @@ Global Observing System approach.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.21. Data Access Types</h3>
+<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.22. Data Access Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -5261,7 +5295,7 @@ but should point directly to the data file.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="quality-control"><a class="anchor" href="#quality-control"></a>4.22. Quality Control</h3>
+<h3 id="quality-control"><a class="anchor" href="#quality-control"></a>4.23. Quality Control</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 28.5714%;">
@@ -5293,7 +5327,7 @@ but should point directly to the data file.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="#quality-control">Section 4.22</a></p>
+<p><a href="#quality-control">Section 4.23</a></p>
 </div>
 </div>
 </div>
@@ -5301,7 +5335,7 @@ but should point directly to the data file.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-08-08 13:35:55 UTC
+Last updated 2025-11-13 09:27:33 UTC
 </div>
 </div>
 </body>
