@@ -2315,6 +2315,23 @@
   skos:prefLabel "Data center contact"@en ;
   skos:definition "An individual affiliated with a data center."@en .
 
+<https://vocab.met.no/mmd/Contact_Types>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:prefLabel "Contact Types"@en ;
+  skos:definition "The type of personnel associated with the dataset."@en ;
+  skos:member <https://vocab.met.no/mmd/Contact_Types/Person>, <https://vocab.met.no/mmd/Contact_Types/Organisation> .
+
+<https://vocab.met.no/mmd/Contact_Types/Person>
+  a skos:Concept ;
+  skos:prefLabel "Person"@en ;
+  skos:definition "A person."@en .
+
+<https://vocab.met.no/mmd/Contact_Types/Organisation>
+  a skos:Concept ;
+  skos:prefLabel "Organisation"@en ;
+  skos:definition "An organisation, institution or any other entity that is not referred to as an individual."@en .
+
 <https://vocab.met.no/mmd/Quality_Control>
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd> ;

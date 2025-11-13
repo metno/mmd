@@ -2938,6 +2938,27 @@
 
   </skos:Collection>
 
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Contact_Types">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Contact Types</skos:prefLabel>
+    <skos:definition xml:lang="en">The type of personnel associated with the dataset.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Contact_Types/Person">
+        <skos:prefLabel xml:lang="en">Person</skos:prefLabel>
+        <skos:definition xml:lang="en">A person.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Contact_Types/Organisation">
+        <skos:prefLabel xml:lang="en">Organisation</skos:prefLabel>
+        <skos:definition xml:lang="en">An organisation, institution or any other entity that is not referred to as an individual.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
+
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Quality_Control">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
