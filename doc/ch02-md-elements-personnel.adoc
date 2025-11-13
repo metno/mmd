@@ -18,7 +18,7 @@ Investigator). The contact has the following
 sub elements
 
 * role: The role the person/organisation has related to this dataset. The value must * come from <<contact-roles,Contact roles>>.
-* type: The type of personnel entry. This entriy can only have the value Person or Organisation, following the <<contact-types, Contact types>> controlled vocabulary.
+* type: The type of personnel entry. This entry can only have the value Person or Organisation, following the <<contact-types, Contact types>> controlled vocabulary.
 * name: The full name of the contact. The name field has an optional attribute "uri" to provide persistent identifiers for a person or an organisation. The currently supported schemas are orcid.org and ror.org.
 * email: The email address to the contact.
 * phone: The phone number to the contact. The number should include land codes.
