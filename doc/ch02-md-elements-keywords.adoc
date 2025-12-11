@@ -7,7 +7,8 @@
 
 |Attributes a| 
 
-* vocabulary: The vocabulary where the keyword is fetched from. The vocabulary “none” is used if the keyword is not from a vocabulary. The recommended vocabularies to use are listed in <<keywords-vocabulary>>, see also <<variable-parameter-descriptions>> for further details. Search services are currently based on GCMD Science keywords (GCMDSK).
+[[keywords_vocabulary]]
+* vocabulary: The vocabulary where the keyword is fetched from. The vocabulary “None” is used if the keyword is not from a vocabulary. The recommended vocabularies to use are listed in <<keywords-vocabulary>>, see also <<variable-parameter-descriptions>> for further details. Search services are currently based on GCMD Science keywords (GCMDSK).
 
 |Required |Yes
 
@@ -23,17 +24,13 @@ element has two child elements:
 
 * resource: URI to machine readable form of the vocabulary used.
 * keyword: A single keyword describing the dataset. This can be hierarchically like GCMD using a separator.
-* separator: the character used as separator. This could be e.g. the GCMD ‘>’, but in XML this is encoded as ‘&gt;’. Other valid separators are: \| / -. 
+* separator: the character used as separator. This could be e.g. the GCMD ‘>’, but in XML this is encoded as ‘&gt;’. Other valid separators are: \| / -.
 
-Additional controlled vocabularies may be used, as WIGOS (https://codes.wmo.int/wmdr/) and SeaDataNet <<anchor-4, (see 12)>> etc. The primary usage for this element is to describe variables in the dataset, but it
-could also be used to describe other features.
+//Additional controlled vocabularies may be used, as WIGOS (https://codes.wmo.int/wmdr/) and SeaDataNet <<anchor-4, (see 12)>> etc.
+The primary usage for this element is to describe variables in the dataset, but it could also be used to describe other features.
 
 |Example XML: a|
 ----
-<keywords vocabulary="MyOwnVocab">
-     <keyword>ice_edge</keyword>
-     <keyword>Manual Generated Ice Edge</keyword>
-</keywords>
 
 <keywords vocabulary="GCMDSK">
     <keyword>Earth Science &gt; Climate Indicators &gt; Teleconnections &gt; North Atlantic Oscillation</keyword>
@@ -46,7 +43,4 @@ could also be used to describe other features.
 
 |ISO equivalent |/gmd:MD_Metadata
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString
-
-|MM2 equivalent |/metadata@name='variable'
-
 |=======================================================================

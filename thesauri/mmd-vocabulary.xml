@@ -82,6 +82,24 @@
     </skos:member>
 
     <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPLT">
+        <skos:prefLabel xml:lang="en">GCMDPLT</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GCMD Platforms</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Platform Keywords list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDINST">
+        <skos:prefLabel xml:lang="en">GCMDINST</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GCMD Instruments</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Instrument Keywords list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN">
         <skos:prefLabel xml:lang="en">CFSTDN</skos:prefLabel>
         <skos:altLabel xml:lang="en">CF Standard Names</skos:altLabel>

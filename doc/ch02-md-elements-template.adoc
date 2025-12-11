@@ -20,6 +20,4 @@
 |DIF equivalent a|
 
 |ISO equivalent a|
-
-|MM2 equivalent a|/metadata@name='???'
 |=======================================================================

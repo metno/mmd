@@ -13,7 +13,7 @@
 
 |Description a|
 ISO topic category fetched from a controlled vocabulary. Valid keywords
-are listed in <<iso-topic-categories>>.
+are listed in <<iso-topic-category>>.
 
 This field is required for compatibility with DIF and ISO
 
@@ -26,7 +26,4 @@ This field is required for compatibility with DIF and ISO
 
 |ISO equivalent |/gmd:MD_Metadata/gmd:identificationInfo/
 gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode
-
-|MM2 equivalent |/MM2/metadata[@name='topiccategory']
-
 |=======================================================================

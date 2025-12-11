@@ -16,15 +16,10 @@ keywords are listed in <<operational-status>>.
 
 |Example XML: a|
 ----
-<operational_status>
-    Pre-Operational
-</operational_status>
+<operational_status>Pre-Operational</operational_status>
 ----
 
 |DIF equivalent |NA
 
 |ISO equivalent |NA
-
-|MM2 equivalent |operational_status
-
 |=======================================================================

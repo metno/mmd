@@ -14,7 +14,7 @@
 |Description a|
 Limitations on the access to the dataset.
 
-See <<access-constraints>> for a list of valid values.
+See <<access-constraint>> for a list of valid values.
 
 |Example XML: a|
 
@@ -33,7 +33,5 @@ and
 
 /gmd:MD_Metadata
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString
-
-|MM2 equivalent |/metadata@name='distribution_statement'
 
 |=======================================================================

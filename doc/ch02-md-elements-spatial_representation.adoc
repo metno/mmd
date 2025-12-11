@@ -20,5 +20,4 @@ Valid entries are: vector, grid, point and trajectory (see <<spatial-representat
 
 |DIF equivalent |NA
 |ISO equivalent |/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType
-|MM2 equivalent |NA
 |===================================================================

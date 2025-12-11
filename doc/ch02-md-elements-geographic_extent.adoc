@@ -20,26 +20,32 @@ elements:
 * west: The westernmost point covered by the dataset.
 * east: The easternmost point covered by the dataset.
 
+The allowed values of east and west (i.e. the longitude values) must be within -180:180, while the allowed values for north and south (i.e. the latitude values),
+must be within -90:90.
+Generally the upper right longitude will be greater than the lower left longitude (i.e. east > west). However when the area crosses the (+/-)180° antimeridian (dateline crossing),
+the value of the lower left longitude will be greater than the value of the upper right longitude (east < west).
+
+It is recommended to provide at least 2 decimals for the values.
+
+The default value of the srsName is "EPSG:4326".
+
+To provide, in addition, more detailed information about the geographic extent see <<geographic_extentpolygon>>.
+
 |Example XML: a|
 ----
-<rectangle srsName="EPSG:4326">
- <north>90</north>
- <south>-90</south>
- <east>180</east>
- <west>-180</west>
-</rectangle>
+<geographic_extent>
+ <rectangle srsName="EPSG:4326">
+  <north>79.95893</north>
+  <south>78.874289</south>
+  <east>23.203125</east>
+  <west>18.105469</west>
+ </rectangle>
+</geographic_extent>
 ----
 |DIF equivalent |/DIF/Spatial_Coverage
 
 |ISO equivalent
 |/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox
-
-|MM2 equivalent a|
-/metadata@name='bounding_box'
-
-For MM2 this is comma separated list so it needs to be split during
-conversion.
-
 |=======================================================================
 
 [[geographic_extentpolygon]]
@@ -62,40 +68,42 @@ The projection of the coordinates can be specified in compliance with
 GML, but for maximum compatibility with internal systems all coordinates
 should be given in EPSG:4326.
 
+If a polygon is provided it should be inclued in the same geographic_extent section as the rectangle of <<geographic_extentrectangle>> (which is always mandatory).
+
+The relation between the rectangle and the polygon is that the rectangle is the smallest box containing all corners of the polygon, as in the figure below:
+
+image::images/geographic-extent-mmd.png[width=50%,align="center"]
+
 |Example XML: a|
 ----
-<polygon>
- <gml:Polygon id="polygon" srsName="EPSG:4326">
- <gml:exterior>
- <gml:LinearRing>
- <gml:pos>
- -180 -90
- </gml:pos>
- <gml:pos>
- 180 -90
- </gml:pos>
- <gml:pos>
- 180 90
- </gml:pos>
- <gml:pos>
- -180 90
- </gml:pos>
- <gml:pos>
- -180 -90
- </gml:pos>
- </gml:LinearRing>
- </gml:exterior>
- </gml:Polygon>
+<geographic_extent>
+ <rectangle srsName="EPSG:4326">
+  <north>79.95893</north>
+  <south>78.874289</south>
+  <east>23.203125</east>
+  <west>18.105469</west>
+ </rectangle>
+ <polygon>
+  <gml:Polygon id="polygon" srsName="EPSG:4326">
+   <gml:exterior>
+    <gml:LinearRing>
+     <gml:pos>78.874289 22.324219</gml:pos>
+     <gml:pos>79.26587 23.203125<gml:pos>
+     <gml:pos>79.831716 21.379395<gml:pos>
+     <gml:pos>79.95893 18.171387<gml:pos>
+     <gml:pos>79.651722 18.105469<gml:pos>
+     <gml:pos>79.651722 18.808594<gml:pos>
+     <gml:pos>79.216649 18.61084<gml:pos>
+     <gml:pos>78.874289 22.324219<gml:pos>
+    </gml:LinearRing>
+   </gml:exterior>
+  </gml:Polygon>
  </polygon>
+</geographic_extent>
 ----
 
 |DIF equivalent |NA
 
 |ISO equivalent |/gmd:MD_Metadata/
 gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon/
-
-|MM2 equivalent |A similar field is found in the associated .xmd file
-under datasetRegion/lonLatPoints but these points are too many for
-efficient metadata handling and cannot be used directly.
-
 |=======================================================================
