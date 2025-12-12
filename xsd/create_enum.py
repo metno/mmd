@@ -36,11 +36,8 @@ import lxml.etree as ET
 
 exclude = ["Organisation", "Platform", "Instrument", "Geographical Areas"]
 
-g = Graph()
-g.parse("../thesauri/mmd-vocabulary.ttl", format="ttl")
-
 #get all collection excluding some if necessary
-def query_collections(exclude):
+def query_collections(g, exclude):
 
     filtercoll = ""
     for exc in exclude:
@@ -73,7 +70,7 @@ def query_collections(exclude):
     return(collections)
 
 #get concepts per collection
-def query_members(collection):
+def query_members(g, collection):
 
     query = '''
         SELECT distinct ?prefLabel ?definition
@@ -92,23 +89,23 @@ def query_members(collection):
     members = []
     for row in results:
         preflabel = row.prefLabel.value
-        altlabels = query_altLabels(preflabel)
+        altlabels = query_altLabels(g, preflabel)
         if row.definition is not None:
             definition = row.definition.value
         else:
             definition = row.definition
         if collection == 'Use Constraint':
-            spdx = query_spdxresource(preflabel)
+            spdx = query_spdxresource(g, preflabel)
             members.append({preflabel: {'altLabel' : altlabels, 'definition': definition, 'resource': spdx}})
         elif collection == 'Platform' or collection == 'Instrument':
-            wmo = query_wmoresource(preflabel)
+            wmo = query_wmoresource(g, preflabel)
             members.append({preflabel: {'altLabel' : altlabels, 'definition': definition, 'resource': wmo}})
         else:
             members.append({preflabel: {'altLabel' : altlabels, 'definition': definition}})
     return(members)
 
 #get altLabel
-def query_altLabels(prefLabel):
+def query_altLabels(g, prefLabel):
 
     query = '''
         SELECT distinct ?altLabel
@@ -129,7 +126,7 @@ def query_altLabels(prefLabel):
     return(altlabels)
 
 #get spdx resource
-def query_spdxresource(prefLabel):
+def query_spdxresource(g, prefLabel):
 
     query = '''
         SELECT distinct ?resource
@@ -150,7 +147,7 @@ def query_spdxresource(prefLabel):
     return(resource)
 
 #get wmo platform and instrument resource
-def query_wmoresource(prefLabel):
+def query_wmoresource(g, prefLabel):
 
     query = '''
         SELECT distinct ?resource
@@ -376,15 +373,18 @@ def create_ch04_adoc(full_voc, collections):
 
 def main():
     try:
+        #load vocabulary
+        g = Graph()
+        g.parse("../thesauri/mmd-vocabulary.ttl", format="ttl")
         #fetch all collections
-        collections = query_collections(exclude)
+        collections = query_collections(g, exclude)
         #fetch all members
         full_voc = {}
         for k in collections.keys():
-            full_voc[k] = query_members(k)
+            full_voc[k] = query_members(g, k)
         #create enumeration schema file
         create_enumerations(full_voc,collections)
-        #create adoc documentation file. Skipping for now.
+        #create adoc documentation file.
         create_ch04_adoc(full_voc, collections)
     except:
         print("Something failed creating the controlled vocabulary schema and/or documentation")
