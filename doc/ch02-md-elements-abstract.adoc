@@ -7,7 +7,7 @@
 
 |Attributes a| 
 
-* xml:lang ISO language code for the language that the abstract is in
+* xml:lang. The ISO 639-1 two letter language code for the language that the abstract is in.
 
 |Required |Yes
 
@@ -57,6 +57,4 @@ Satellite Application Facility (OSI SAF).
 
 |ISO equivalent |/gmd:MD_Metadata/
 gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract/gco:CharacterString
-
-|MM2 equivalent |/metadata@name='abstract'
 |=======================================================================

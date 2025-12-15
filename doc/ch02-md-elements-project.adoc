@@ -31,10 +31,4 @@ These names must be maintained in a controlled vocabulary.
 |DIF equivalent |/DIF/Project
 
 |ISO equivalent |NA
-
-|MM2 equivalent
-|link:../../../../metadata@name[/metadata@name]='project_name' (usually
-mapped to /project/long_name)
-
-
 |=======================================================================

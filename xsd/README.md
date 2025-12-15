@@ -1,6 +1,15 @@
 ## Schemas
 
-This folder contains different schemas that relates to the MMD respository.
+This folder contains different schemas that relates to the MMD respository and a script to generate the enumeration
+of valid controlled vocabulary terms used in MMD.
+
+### Schema enumeration script
+
+The create_enum.py creates the enum_mmd.xsd which is then inclued in the mmd schemas. This script reads the valid terms
+from the thesauri folder (mmd-vocabulary.ttl) and generates the list of valid terms in MMD. The enum_mmd.xsd file must
+not be edited as it is overwritten by running the script.
+
+In addition, the script generates the doc/ch04-md-contrvocabs.adoc which is included in the MMD documentation.
 
 ### MMD
 

@@ -11,21 +11,16 @@
 
 |Repetition allowed |No
 
-|Description |The language used in production, storage etc. of the
-dataset. The default for all datasets is English.
+|Description |The ISO 639-1 two letter language code of the language used in production, storage etc. of the
+dataset. The default for all datasets is English (en).
 
 |Example XML: a|
 ----
-<dataset_language>
-    en
-</dataset_language>
+<dataset_language>en</dataset_language>
 ----
 
 |DIF equivalent |/DIF/Data_Set_Language
 
 |ISO equivalent |/gmd:MD_Metadata
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language/gmd:LanguageCode
-
-|MM2 equivalent |NA
-
 |=======================================================================

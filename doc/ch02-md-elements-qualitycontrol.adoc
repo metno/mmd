@@ -22,6 +22,4 @@ Additional information about data quality control can be provided through the re
 |DIF equivalent a|Quality
 
 |ISO equivalent a|To be defined
-
-|MM2 equivalent a|NA
 |=======================================================================

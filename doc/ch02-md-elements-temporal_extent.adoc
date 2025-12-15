@@ -31,12 +31,4 @@ The extent is defined used two sub elements:
 
 |ISO equivalent |/gmd:MD_Metadata/
 gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent
-
-|MM2 equivalent a|
-/metadata@name='datacollection_period_from'
-
-and
-
-/metadata@name='datacollection_period_to'
-
 |=======================================================================

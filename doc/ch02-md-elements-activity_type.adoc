@@ -20,5 +20,4 @@ Valid keywords are listed in <<activity-type>>.
 
 |DIF equivalent |NA
 |ISO equivalent |NA
-|MM2 equivalent |/metadata@name='activity_type'
 |===================================================================

@@ -33,7 +33,4 @@ The identifier used currently is UUID.
 |DIF equivalent |/DIF/Entry_ID
 
 |ISO equivalent |/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString
-
-|MM2 equivalent |NA
-
 |=======================================================================

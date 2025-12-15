@@ -43,8 +43,4 @@ This mapping is somewhat uncertain since the element is described as:
 “date that metadata was created.” But GeoNetwork automatically updates
 on Save, so we take this to mean that it is last updated time for the
 metadata.
-
-|MM2 equivalent |Fetched from the associated .xmd file:
-/dataset@datestamp
-
 |=======================================================================

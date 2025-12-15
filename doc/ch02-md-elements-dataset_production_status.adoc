@@ -13,14 +13,12 @@
 
 |Description |Production status for the dataset using a controlled
 vocabulary. The valid keywords are listed in
-<<dataset-production-status-types>>. If set as “In Work”, remember that end_date
+<<dataset-production-status>>. If set as “In Work”, remember that end_date
 in <<temporal_extent>> can (should) be empty.
 
 |Example XML a|
 ----
-<dataset_production_status>
-    In Work
-</dataset_production_status>
+<dataset_production_status>In Work</dataset_production_status>
 ----
 
 |DIF equivalent a|
@@ -29,8 +27,4 @@ in <<temporal_extent>> can (should) be empty.
 The defined statuses are the same as in DIF so no mapping is required.
 
 |ISO equivalent |/gmd:MD_Metadata/gmd:status
-
-|MM2 equivalent |NA
-
-
 |=======================================================================

@@ -48,6 +48,4 @@ ad33563f9ab3a6f2ba74ebd72cb1f45fda00d55121a29a29230147e3472ef267c50882b0e0b21ef9
 Sample.
 
 |ISO equivalent a|NA
-
-|MM2 equivalent a|NA
 |=======================================================================

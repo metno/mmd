@@ -32,8 +32,4 @@ identified in the <<metadata_identifier>> element.
 If the relation_type = “parent”. In other cases there are is no mapping.
 
 /gmd:MD_Metadata/gmd:parentIdentifier
-
-|MM2 equivalent |Within MM2 this was determined by a directory structure
-and not the content of the metadata files.NA
-
 |=======================================================================

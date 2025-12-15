@@ -22,6 +22,11 @@ The repository contains the specifications and related tools for the MMD standar
 
 The latest version of the mmd specification is available [here](https://htmlpreview.github.io/?https://github.com/metno/mmd/blob/master/doc/mmd-specification.html).
 
+## Automatically generated content
+The schema enumeration xsd/enum_mmd.xsd and the controlled vocabularies table within the documentation doc/ch04-md-contrvocabs.adoc are automatically built from the
+content of the thesauri folder (mmd-vocabulary.ttl) through the xsd/create_enum.py. These two files MUST NOT be changed or edited as they will be ovewritten when the
+script is running. Any changes to the vocabularies should be done updating the mmd-vocabulary.ttl file.
+
 ## How to build documentation
 Documentation was originally provided in OpenDocumentFormat. This became
 to difficult to maintain in a collaborative environment and it is now

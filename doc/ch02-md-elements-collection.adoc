@@ -1,4 +1,4 @@
-[[collection]]
+[[collection_keywords]]
 === collection
 
 [cols="2,8"]
@@ -23,15 +23,10 @@ NMAP, SIOS, ...). See <<collection-keywords>> for details.
 
 |Example XML a|
 ----
-<collection>
-NMDC
-</collection>
+<collection>NMDC</collection>
 ----
 
 |DIF equivalent |NA
 
 |ISO equivalent |NA
-
-|MM2 equivalent |ownertag (XMD)
-
 |=======================================================================

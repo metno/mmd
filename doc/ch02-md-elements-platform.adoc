@@ -12,42 +12,45 @@
 |Repetition allowed |Yes
 
 |Description a|
-The platform used to collect the data. The element is described using
-the following child elements:
+The platform used to collect the data. Many of the child elements of this group are specifically
+covering remote sensing information. For a more detailed description of this element and suggested vocabularies
+see <<platform-and-instrument-vocabularies>>.
+The element is described using the following child elements:
 
-short_name:: 
-is the abbreviated name of the platform (see <<platform-1>>) used to
-acquire the data 
-long_name:: 
-is the full name of the platform (see <<platform-1>>) used
-to acquire the data.
+short_name::
+is the abbreviated name of the platform (see <<platform-and-instrument-vocabularies>>) used to
+acquire the data (from a controlled vocabulary).
+long_name::
+is the full name of the platform (see <<platform-and-instrument-vocabularies>>) used
+to acquire the data (from a controlled vocabulary).
 resource::
-is a link to further information about the satellite. For this purpose
-descriptions from https://www.wmo-sat.info/oscar/satellites are used (see <<platform-1>>)
+the link to the controlled vocabulary term describing the platform provided above (see <<platform-and-instrument-vocabularies>>).
+//is a link to further information about the satellite. For this purpose
+//descriptions from https://www.wmo-sat.info/oscar/satellites are used (see <<platform-1>>)
 orbit_relative::
 is the relative orbit number for a polar orbiting satellite.
 orbit_absolute::
 is the absolute orbit number for a polar orbiting satellite.
 orbit_direction::
-is either "ascending" or "descending" and defines the orbit direction of
-polar orbiting satellites.
+it defines the orbit direction of polar orbiting satellites. The value can be either "ascending" or "descending".
 instrument::
-is a specification of the instrument. This used to be a separate element,
-but has been incorporated in the platform element to have a more compact
-information model. This element has several children. Similar to for
-platform, one of the child elements are *resource* and for this purpose
-also the WIGOS list https://www.wmo-sat.info/oscar/instruments is used.
-This element was originally used to store information for NBS products (Sentinel
-platforms), but covers a need for a wider range of use cases, including
-internal MET use cases that has been long needed. 
-* short_name is an acronym for the sensor, see <<instruments>>
-* long_name is the full name, see <<instruments>>
-* resource is a link to further information in WIGOS space, see <<instruments>>
-* mode is specific for SAR (can be for other instruments in the future), +
-see <<instrument-modes>>.
-* polarisation is also for SAR, see <<polarisation-modes>>
-* product_type is for the Sentinel satellites, see <<product-type>> for +
-more information.
+this part is providing a specification of the instrument. The instrument information can be filled even if the platform
+information is not provided or not applicable. For more details about this, see <<platform-and-instrument-vocabularies>>.
+//This element has several children. Similar to for
+//platform, one of the child elements are *resource* and for this purpose
+//also the WIGOS list https://www.wmo-sat.info/oscar/instruments is used.
+//This element was originally used to store information for NBS products (Sentinel
+//platforms), but covers a need for a wider range of use cases, including
+//internal MET use cases that has been long needed.
+
+* short_name: this is an acronym for the instrument/sensor (from a controlled vocabulary, see <<platform-and-instrument-vocabularies>>).
+* long_name: this is the full name for the instrument/sensor (from a controlled vocabulary, see <<platform-and-instrument-vocabularies>>).
+* resource: this is a link to the controlled vocabulary term describing the instrument (<<platform-and-instrument-vocabularies>>).
+//in WIGOS space, see <<instruments>>
+* [[instrument_modes]] mode: this is specific for SAR (can be for other instruments in the future), see <<instrument-modes>>.
+* [[polarisation_modes]] polarisation: is also for SAR, see <<polarisation-modes>>
+* [[product_types]] product_type: is for the Sentinel satellites, see <<product-types>> for more information.
+
 |=======================================================================
 [cols="2,8"]
 |=======================================================================
@@ -60,12 +63,14 @@ data that are covered by clouds. This is used for optical satellite data.
 * scene_coverage in percentage which indicates how much of map projected +
 satellite product that actually is covered by the satellite. This is
 useful for e.g. Sentinel-2 data and old AVHRR data at MET.
-* timeliness indicates whether the data are delayed or Near Real Time +
+* timeliness indicates whether the data are delayed (NTC) or Near Real Time +
 (NRT) data.
 
-See <<platform-1,platform>> for list of satellite names. The intention is
-to move towards WIGOS space vocabularies once these become available in
-machine readable form through SKOS files or https://codes.wmo.int/wmdr. 
+//See <<platform-1,platform>> for list of satellite names. The intention is
+//to move towards WIGOS space vocabularies once these become available in
+//machine readable form through SKOS files or https://codes.wmo.int/wmdr. 
+
+To provide a reference to specific observation facilities, use <<related_information>> (with type "Observation facility").
 
 |Example XML: a|
 ----
@@ -73,18 +78,16 @@ machine readable form through SKOS files or https://codes.wmo.int/wmdr.
     <short_name>Sentinel-1A</short_name>
     <long_name>Sentinel-1A</long_name>
     <resource>
-      https://www.wmo-sat.info/oscar/satellites/view/sentinel_1a
+    https://space.oscar.wmo.int/satellites/view/sentinel_1a
     </resource>
     <orbit_relative>121</orbit_relative>
     <orbit_absolute>62391</orbit_absolute>
     <orbit_direction>ascending</orbit_direction>
     <instrument>
          <short_name>SAR-C</short_name>
-         <long_name>
-           Synthetic Aperture Radar (C-band)
-         </long_name>
+         <long_name>Synthetic Aperture Radar (C-band)</long_name>
          <resource>
-           https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1
+         https://space.oscar.wmo.int/instruments/view/sar_c_sentinel_1
          </resource>
          <mode>IW</mode>
          <polarisation>VV+VH</polarisation>
@@ -104,7 +107,4 @@ For ISO we translate platforms to keywords from a specific vocabulary.
 
 /gmd:MD_Metadata
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString
-
-|MM2 equivalent |
-NA
 |=======================================================================

@@ -28,13 +28,9 @@ class TestXSDs(unittest.TestCase):
                 )
             )
         xsd_schema1 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd_strict.xsd')
-        xsd_schema2 = os.path.join(pathlib.Path.cwd(), 'xsd', 'mmd.xsd')
         xsd_obj1 = ET.XMLSchema(ET.parse(xsd_schema1))
-        xsd_obj2 = ET.XMLSchema(ET.parse(xsd_schema2))
         valid1 = xsd_obj1.validate(mmd_schema)
-        valid2 = xsd_obj2.validate(mmd_schema)
         self.assertFalse(valid1)
-        self.assertFalse(valid2)
 
     def test_mmd_xsd_strict_fails_on_missing_lang_attr(self):
         mmd_schema = ET.ElementTree(

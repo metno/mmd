@@ -15,7 +15,8 @@
 Description of related information and how to access it. This element has
 the following child elements:
 
-* type: Description of the type of information. A controlled vocabulary is required. See <<related-information-types>>.
+[[related_information_types]]
+* type: Description of the type of information. A controlled vocabulary is required. See <<related-information-types, Related Information Types>>.
 * resource: The URL used. 
 * description: Textual description on the resource.
 
@@ -29,24 +30,32 @@ or relevant documentations. The resource should point to the landing page of the
 ----
 <related_information>
     <type>Project home page</type>
+    <description>Project home page</description>
     <resource>URI</resource>
 </related_information>
 
 <related_information>
     <type>Dataset landing page</type>
+    <description>Dataset landing page</description>
     <resource>URI</resource>
 </related_information>
 
 <related_information>
     <type>Scientific publication</type>
-    <resource>URI</resource>
     <description>Author, Title (YYYY), Publisher, doi</description>
+    <resource>URI</resource>
 </related_information>
 
 <related_information>
     <type>Other documentation</type>
-    <resource>URI</resource>
     <description>Conference poster</description>
+    <resource>URI</resource>
+</related_information>
+
+<related_information>
+  <type>Observation facility</type>
+  <description>WIGOS Station: KVITOYA (0-20000-0-01011)</description>
+  <resource>https://oscar.wmo.int/surface/#/search/station/stationReportDetails/0-20000-0-01011</resource>
 </related_information>
 
 ----
@@ -58,9 +67,4 @@ View Related Information
 
 |ISO equivalent |/gmd:MD_Metadata/
 gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource
-
-|MM2 equivalent
-|link:../../../../metadata@name[/metadata@name]='dataref'
-
-
 |=======================================================================

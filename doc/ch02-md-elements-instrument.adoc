@@ -50,7 +50,4 @@ specific vocabulary.
 
 /gmd:MD_Metadata
 /gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString
-
-|MM2 equivalent |NA
-
 |=======================================================================

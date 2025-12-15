@@ -23,8 +23,8 @@ metadata available. MMD elements will be translated to Datacite metadata standar
 * edition:  The version of a cited resource.
 * volume: The order or sequence of a resource in a series or set.
 * issue: The issue number of a resource (usually within a volume).
-* publication_place: The name of the city (and state or province and country if needed) where the resource was made available.  This is required if this form is used.
-* publisher: The name of the individual(s) or organization(s) that made the resource available.  This is required if this form is used. This field is required for DOI minting for the dataset.
+* publication_place: The name of the city (and state or province and country if needed) where the resource was made available.
+* publisher: The name of the individual(s) or organization(s) that made the resource available. This field is required for DOI minting for the dataset.
 * pages: The range of pages or total number of pages of a cited resource.
 * isbn: International Standard Book Number (if available).
 * doi: Digital Object Identifier (if available).
@@ -70,7 +70,5 @@ where gmd:CI_DateTypeCode has attribute codeListValue="publication"
 *other_citation_details* can be translated to
 
 gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:otherCitationDetails
-
-|MM2 equivalent |NA
 
 |=======================================================================
