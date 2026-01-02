@@ -1,0 +1,19 @@
+{
+    "name": "metno/mmd",
+    "type": "package",
+    "description": "METNO MMD",
+    "keywords": ["xslt", "xsd", "xml","rdf","skos"],
+    "homepage": "https://github.com/metno/mmd",
+    "license": "GNU General Public License v3.0",
+    "authors": [
+        {
+            "name": "See GitHub contributors",
+            "homepage": "https://github.com/metno/mmd/graphs/contributors"
+        }
+    ],
+    "require": {
+      "ext-dom": "*",
+        "ext-json": "*",
+        "ext-simplexml": "*"
+   }
+}
