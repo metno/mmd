@@ -483,7 +483,7 @@ datasets at the host data centre.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2025-12-15</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Major revision: adding ISO 639-1 language code referece,
+<td class="tableblock halign-left valign-top"><p class="tableblock">Major revision: adding ISO 639-1 language code reference,
 adding personnel type and uri, better description of geographic_extent,
 improved guidance for platform/instrument and links to external vocabularies.
 Addition of GCMDPLT and GCMDINST keywords vocabularies.
@@ -2046,7 +2046,7 @@ sub elements</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Only role, name, organisation and email are mandatory fields.</p>
+<p>Role, name, organisation and email are mandatory fields.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2225,7 +2225,7 @@ element has the following child elements:</p>
 <div id="data_access_types" class="ulist">
 <ul>
 <li>
-<p>type: Description of the type of data access. This is controlled vocabulary <a href="#data-access-types">Data Access Types</a></p>
+<p>type: Description of the type of data access. This is a controlled vocabulary, see <a href="#data-access-types">Data Access Types</a>.</p>
 </li>
 <li>
 <p>description: A short description of the data access type and purpose (if necessary).</p>
@@ -2869,7 +2869,7 @@ satellite product that actually is covered by the satellite. This is
 useful for e.g. Sentinel-2 data and old AVHRR data at MET.</p>
 </li>
 <li>
-<p>timeliness indicates whether the data are delayed (NTC) or Near Real Time<br>
+<p>timeliness indicates whether the data are delayed, i.e. Non-Time Critical (NTC), or Near Real Time<br>
 (NRT) data.</p>
 </li>
 </ul>
@@ -3318,11 +3318,7 @@ The following mapping is in place:</p>
 <div class="sect2">
 <h3 id="variable-parameter-descriptions"><a class="anchor" href="#variable-parameter-descriptions"></a>3.3. Variable/parameter descriptions</h3>
 <div class="paragraph">
-<p>For description of parameters MMD is currently relying on GCMD Science
-Keywords. The GCMD Science Keywords are available in multiple forms.</p>
-</div>
-<div class="paragraph">
-<p>GCMD Science Keywords</p>
+<p>MMD currently relies on the GCMD Science Keywords for parameter descriptions. The GCMD Science Keywords are available in multiple forms, i.e.,</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -3344,10 +3340,10 @@ Keywords. The GCMD Science Keywords are available in multiple forms.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>However many datasets are encoded using the
-<a href="http://cfconventions.org">Climate and Forecast convention</a>. In this CF
+<p>However, many datasets are encoded using the
+<a href="http://cfconventions.org">Climate and Forecast convention</a>, where CF
 Standard Names are used. These are available through
-<a href="http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html" class="bare">http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html</a> and can be converted to GCMD Science Keywords using
+<a href="http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html" class="bare">http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html</a>, and can be converted to GCMD Science Keywords using
 <a href="http://dap.onc.uvic.ca/erddap/convert/keywords.html" class="bare">http://dap.onc.uvic.ca/erddap/convert/keywords.html</a> (further information
 to be provided).</p>
 </div>
@@ -3362,21 +3358,21 @@ variable.</p>
 <h3 id="platform-and-instrument-vocabularies"><a class="anchor" href="#platform-and-instrument-vocabularies"></a>3.4. Platform and Instrument vocabularies</h3>
 <div class="paragraph">
 <p>The platform and instrument used to aquire data are relevant information to describe a dataset.
-The MMD specification uses a complex field platfrom (see <a href="#platform">Section 2.25</a>) to store this.</p>
+The MMD specification uses a complex field platform (see <a href="#platform">Section 2.25</a>) to store this.</p>
 </div>
 <div class="paragraph">
 <p>In order to cover a large variety of use cases, granularity and different vocabularies, some flexibility is added to the field.
-In addition, vocabularies are not always complete, have might have gaps, that cannot be covered using a single source.</p>
+This includes the acceptance of incomplete vocabularies, e.g., with gaps, and information that cannot be covered using a single source vocabulary.</p>
 </div>
 <div class="paragraph">
-<p>Depending on the type of data, some information might not be available. Below an overview of the supported vocabularies, and recommendations
-on how to fill the platform/instrument fields are provided.</p>
+<p>Depending on the type of data, some information might not be available. An overview of the supported vocabularies, and recommendations
+on how to fill the platform/instrument fields are provided below.</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Remote Sensing</dt>
 <dd>
-<p>For remote sensing data, platform and instrument the WMO <a href="https://space.oscar.wmo.int/spacecapabilities">Space-based Capabilities (OSCAR/Space)</a> reference is recommended.</p>
+<p>For remote sensing data, the WMO <a href="https://space.oscar.wmo.int/spacecapabilities">Space-based Capabilities (OSCAR/Space)</a>  controlled vocabulary is recommended for platform and instrument information.</p>
 </dd>
 </dl>
 </div>
@@ -3572,50 +3568,61 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
+<col style="width: 17.647%;">
+<col style="width: 35.2941%;">
+<col style="width: 47.0589%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">code</th>
+<th class="tableblock halign-left valign-top">resource</th>
 <th class="tableblock halign-left valign-top">definition</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GCMDSK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Earth Science Keywords list.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GCMDPLT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Platform Keywords list.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GCMDINST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Instrument Keywords list.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GCMDLOC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Location Keywords list.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GCMDPROV</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers" class="bare">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Data Center/Service Provider Keywords list.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CFSTDN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://vocab.nerc.ac.uk/standard_name/" class="bare">https://vocab.nerc.ac.uk/standard_name/</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The Climate and Forecast (CF) Standard Names tables.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GEMET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://inspire.ec.europa.eu/theme" class="bare">http://inspire.ec.europa.eu/theme</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The GEMET - INSPIRE theme register.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NORTHEMES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling" class="bare">https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This vocabulary should be used to provide keywords from The GeoNorge National topic category list.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This tag should be used to provide keywords that do not belong to a controlled vocabulary.</p></td>
 </tr>
 </tbody>
@@ -3666,7 +3673,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <div class="sect2">
 <h3 id="use-constraint"><a class="anchor" href="#use-constraint"></a>4.3. Use Constraint</h3>
 <div class="paragraph">
-<p>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons.</p>
+<p>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally, as little constraints as needed should be used to allow maximal reuse of the data. The definitions below relate to Creative Commons.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3774,7 +3781,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <div class="sect2">
 <h3 id="activity-type"><a class="anchor" href="#activity-type"></a>4.5. Activity Type</h3>
 <div class="paragraph">
-<p>Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</p>
+<p>Controlled vocabulary to be used to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented through the MMD specifications. This is not an identification of the observation platform, e.g. specific vessel, synoptic (SYNOP) station or satellite, but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3794,7 +3801,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Space Borne Instrument</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded of type imagery or profiles.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded, i.e. images or profiles.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Numerical Simulation</p></td>
@@ -3806,7 +3813,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Land-based station</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to tag datasets generated from a site located on land. This can be a permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a field experiment).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to tag datasets generated from a site located on land. This can be a permanent, e.g. a synoptic (SYNOP) or radiosondes (TEMP) station or a temporary site, e.g. a field experiment.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In Situ Ship-based station</p></td>
@@ -4074,7 +4081,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <div class="sect2">
 <h3 id="access-constraint"><a class="anchor" href="#access-constraint"></a>4.9. Access Constraint</h3>
 <div class="paragraph">
-<p>A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</p>
+<p>A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -4117,7 +4124,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <div class="sect2">
 <h3 id="operational-status"><a class="anchor" href="#operational-status"></a>4.10. Operational Status</h3>
 <div class="paragraph">
-<p>Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time.</p>
+<p>Controlled vocabulary to be used to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a commitment for a specific delivery over time.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -4133,11 +4140,11 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Operational</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to tag datasets that are continously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continous basis with a temporal perspective.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to tag datasets that are continuously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continuous basis with a temporal perspective.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pre-Operational</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continuously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Experimental</p></td>
@@ -4145,7 +4152,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Scientific</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to describe purely scientific products, i.e. products generated through scientific projects and usually with a limited temporal perspective.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
@@ -4160,7 +4167,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <div class="sect2">
 <h3 id="collection-keywords"><a class="anchor" href="#collection-keywords"></a>4.11. Collection Keywords</h3>
 <div class="paragraph">
-<p>The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</p>
+<p>The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -4841,7 +4848,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-12-15 16:22:48 +0100
+Last updated 2026-01-05 11:32:01 +0100
 </div>
 </div>
 </body>

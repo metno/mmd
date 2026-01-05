@@ -30,7 +30,7 @@
   </xs:simpleType>
   <xs:simpleType name="use_constraint_identifier_enum">
     <xs:annotation>
-      <xs:documentation>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons.</xs:documentation>
+      <xs:documentation>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally, as little constraints as needed should be used to allow maximal reuse of the data. The definitions below relate to Creative Commons.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="CC0-1.0"/>
@@ -45,7 +45,7 @@
   </xs:simpleType>
   <xs:simpleType name="use_constraint_resource_http">
     <xs:annotation>
-      <xs:documentation>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons. These are the resources (http) related to the Use Constraint identifiers</xs:documentation>
+      <xs:documentation>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally, as little constraints as needed should be used to allow maximal reuse of the data. The definitions below relate to Creative Commons. These are the resources (http) related to the Use Constraint identifiers</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="http://spdx.org/licenses/CC0-1.0"/>
@@ -60,7 +60,7 @@
   </xs:simpleType>
   <xs:simpleType name="use_constraint_resource_https">
     <xs:annotation>
-      <xs:documentation>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons. These are the resources (https) related to the Use Constraint identifiers</xs:documentation>
+      <xs:documentation>A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally, as little constraints as needed should be used to allow maximal reuse of the data. The definitions below relate to Creative Commons. These are the resources (https) related to the Use Constraint identifiers</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="https://spdx.org/licenses/CC0-1.0"/>
@@ -90,7 +90,7 @@
   </xs:simpleType>
   <xs:simpleType name="activity_type_enum">
     <xs:annotation>
-      <xs:documentation>Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</xs:documentation>
+      <xs:documentation>Controlled vocabulary to be used to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented through the MMD specifications. This is not an identification of the observation platform, e.g. specific vessel, synoptic (SYNOP) station or satellite, but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Aircraft"/>
@@ -170,7 +170,7 @@
   </xs:simpleType>
   <xs:simpleType name="access_constraint_enum">
     <xs:annotation>
-      <xs:documentation>A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</xs:documentation>
+      <xs:documentation>A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Open"/>
@@ -182,7 +182,7 @@
   </xs:simpleType>
   <xs:simpleType name="operational_status_enum">
     <xs:annotation>
-      <xs:documentation>Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time.</xs:documentation>
+      <xs:documentation>Controlled vocabulary to be used to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a commitment for a specific delivery over time.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Operational"/>
@@ -194,7 +194,7 @@
   </xs:simpleType>
   <xs:simpleType name="collection_keywords_enum">
     <xs:annotation>
-      <xs:documentation>The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</xs:documentation>
+      <xs:documentation>The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="CC"/>

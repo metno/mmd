@@ -8,27 +8,27 @@
 
 The vocabulary where the keyword is fetched from.
 
-[cols="2,8"]
+[cols="3,6,8"]
 |===
-| code | definition
+| code | resource | definition
 
-| GCMDSK| This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Earth Science Keywords list.
+| GCMDSK| https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords | This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Earth Science Keywords list.
 
-| GCMDPLT| This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Platform Keywords list.
+| GCMDPLT| https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms | This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Platform Keywords list.
 
-| GCMDINST| This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Instrument Keywords list.
+| GCMDINST| https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments | This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Instrument Keywords list.
 
-| GCMDLOC| This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Location Keywords list.
+| GCMDLOC| https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations | This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Location Keywords list.
 
-| GCMDPROV| This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Data Center/Service Provider Keywords list.
+| GCMDPROV| https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers | This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Data Center/Service Provider Keywords list.
 
-| CFSTDN| This vocabulary should be used to provide keywords from The Climate and Forecast (CF) Standard Names tables.
+| CFSTDN| https://vocab.nerc.ac.uk/standard_name/ | This vocabulary should be used to provide keywords from The Climate and Forecast (CF) Standard Names tables.
 
-| GEMET| This vocabulary should be used to provide keywords from The GEMET - INSPIRE theme register.
+| GEMET| http://inspire.ec.europa.eu/theme | This vocabulary should be used to provide keywords from The GEMET - INSPIRE theme register.
 
-| NORTHEMES| This vocabulary should be used to provide keywords from The GeoNorge National topic category list.
+| NORTHEMES| https://register.geonorge.no/metadata-kodelister/nasjonal-temainndeling | This vocabulary should be used to provide keywords from The GeoNorge National topic category list.
 
-| None| This tag should be used to provide keywords that do not belong to a controlled vocabulary.
+| None| - | This tag should be used to provide keywords that do not belong to a controlled vocabulary.
 
 |===
 
@@ -58,7 +58,7 @@ The method used to spatially represent geographic information.
 [[use-constraint]]
 === Use Constraint
 
-A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons.
+A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally, as little constraints as needed should be used to allow maximal reuse of the data. The definitions below relate to Creative Commons.
 
 [cols="2,5,8"]
 |===
@@ -110,7 +110,7 @@ Production status for the dataset.
 [[activity-type]]
 === Activity Type
 
-Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.
+Controlled vocabulary to be used to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented through the MMD specifications. This is not an identification of the observation platform, e.g. specific vessel, synoptic (SYNOP) station or satellite, but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.
 
 [cols="2,8"]
 |===
@@ -118,13 +118,13 @@ Controlled vocabulary to be used in METAMOD context to describe activity types. 
 
 | Aircraft| Observations made during a flight trajectory. The observations can include remote sensing instruments, dropsondes or in situ measurements. Both manned and unmanned vehicles are covered by this term. The output is typically a trajectory, but could also be profiles or points.
 
-| Space Borne Instrument| Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded of type imagery or profiles.
+| Space Borne Instrument| Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded, i.e. images or profiles.
 
 | Numerical Simulation| Data are generated by the use of a numerical simulation of the atmosphere, the ocean, the climate or similar. Statistical analysis is not covered by this.
 
 | Climate Indicator| This indicates a dataset that has been generated by analysis of some data with the emphasis on being representative in a climate context (e.g. consistent in time). Furthermore, a climate indicator is "compact" representation of the feature studied (e.g. the temporal evolution of area covered by sea ice in the Arctic). Climate Indicators are frequently linked to GCOS requirements.
 
-| In Situ Land-based station| This is used to tag datasets generated from a site located on land. This can be a permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a field experiment).
+| In Situ Land-based station| This is used to tag datasets generated from a site located on land. This can be a permanent, e.g. a synoptic (SYNOP) or radiosondes (TEMP) station or a temporary site, e.g. a field experiment.
 
 | In Situ Ship-based station| This is used to identify datasets generated during cruises. Typically it describes a full dataset generated in a context, possibly describing both ocean and atmospheric conditions.
 
@@ -266,7 +266,7 @@ Description of the type of data access provided.
 [[access-constraint]]
 === Access Constraint
 
-A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.
+A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.
 
 [cols="2,8"]
 |===
@@ -289,20 +289,19 @@ A controlled vocabulary to be used to describe the constraints on accessing spec
 [[operational-status]]
 === Operational Status
 
-Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time.
+Controlled vocabulary to be used to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a commitment for a specific delivery over time.
 
 [cols="2,8"]
 |===
 | code | definition
 
-| Operational| This is used to tag datasets that are continously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continous basis with a temporal perspective.
+| Operational| This is used to tag datasets that are continuously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continuous basis with a temporal perspective.
 
-| Pre-Operational| This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational.
+| Pre-Operational| This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continuously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational.
 
 | Experimental| This is used to describe data that belongs to a development and production chain that provides operational data. It is the first step in the process of becoming operational.
 
-| Scientific| This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective. 
-        
+| Scientific| This is used to describe purely scientific products, i.e. products generated through scientific projects and usually with a limited temporal perspective.
 
 | Not available| This is used when information on the operational status is not available or not provided.
 
@@ -313,7 +312,7 @@ Controlled vocabulary to be used in METAMOD context to describe operational stat
 [[collection-keywords]]
 === Collection Keywords
 
-The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.
+The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.
 
 [cols="2,8"]
 |===
