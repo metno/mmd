@@ -36,7 +36,7 @@ datasets at the host data centre.
 |=======================================================================
 |Version |Date |Comment |Responsible
 
-|4.0 |2025-12-15 | Major revision: adding ISO 639-1 language code referece,
+|4.0 |2025-12-15 | Major revision: adding ISO 639-1 language code reference,
 adding personnel type and uri, better description of geographic_extent,
 improved guidance for platform/instrument and links to external vocabularies.
 Addition of GCMDPLT and GCMDINST keywords vocabularies.

@@ -40,10 +40,8 @@ The following mapping is in place:
 [[variable-parameter-descriptions]]
 === Variable/parameter descriptions
 
-For description of parameters MMD is currently relying on GCMD Science
-Keywords. The GCMD Science Keywords are available in multiple forms.
+MMD currently relies on the GCMD Science Keywords for parameter descriptions. The GCMD Science Keywords are available in multiple forms, i.e.,
 
-GCMD Science Keywords
 
  . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=csv[comma separated file]
  . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=json[JSON file]
@@ -51,10 +49,10 @@ GCMD Science Keywords
  . https://gcmd.earthdata.nasa.gov/kms/capabilities?format=html[API reference]
  . https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science?gtm_scheme=Earth%20Science[interactive Viewer]
 
-However many datasets are encoded using the
-http://cfconventions.org[Climate and Forecast convention]. In this CF
+However, many datasets are encoded using the
+http://cfconventions.org[Climate and Forecast convention], where CF
 Standard Names are used. These are available through
-http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html and can be converted to GCMD Science Keywords using
+http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html, and can be converted to GCMD Science Keywords using
 http://dap.onc.uvic.ca/erddap/convert/keywords.html (further information
 to be provided).
 
@@ -67,17 +65,17 @@ variable.
 === Platform and Instrument vocabularies
 
 The platform and instrument used to aquire data are relevant information to describe a dataset.
-The MMD specification uses a complex field platfrom (see <<platform>>) to store this.
+The MMD specification uses a complex field platform (see <<platform>>) to store this.
 
 In order to cover a large variety of use cases, granularity and different vocabularies, some flexibility is added to the field.
-In addition, vocabularies are not always complete, have might have gaps, that cannot be covered using a single source.
+This includes the acceptance of incomplete vocabularies, e.g., with gaps, and information that cannot be covered using a single source vocabulary.
 
-Depending on the type of data, some information might not be available. Below an overview of the supported vocabularies, and recommendations
-on how to fill the platform/instrument fields are provided.
+Depending on the type of data, some information might not be available. An overview of the supported vocabularies, and recommendations
+on how to fill the platform/instrument fields are provided below.
 
 Remote Sensing::
 
-For remote sensing data, platform and instrument the WMO https://space.oscar.wmo.int/spacecapabilities[Space-based Capabilities (OSCAR/Space)] reference is recommended.
+For remote sensing data, the WMO https://space.oscar.wmo.int/spacecapabilities[Space-based Capabilities (OSCAR/Space)]  controlled vocabulary is recommended for platform and instrument information.
 
 List of resources:
 

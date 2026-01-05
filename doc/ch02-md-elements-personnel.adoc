@@ -30,7 +30,7 @@ sub elements
     * postal_code: is the postal code of the person.
     * country: is the country of the person.
 
-Only role, name, organisation and email are mandatory fields.
+Role, name, organisation and email are mandatory fields.
 
 |Example XML: a|
 ----
