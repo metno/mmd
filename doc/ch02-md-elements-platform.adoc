@@ -63,7 +63,7 @@ data that are covered by clouds. This is used for optical satellite data.
 * scene_coverage in percentage which indicates how much of map projected +
 satellite product that actually is covered by the satellite. This is
 useful for e.g. Sentinel-2 data and old AVHRR data at MET.
-* timeliness indicates whether the data are delayed (NTC) or Near Real Time +
+* timeliness indicates whether the data are delayed, i.e. Non-Time Critical (NTC), or Near Real Time +
 (NRT) data.
 
 //See <<platform-1,platform>> for list of satellite names. The intention is
