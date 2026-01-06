@@ -18,15 +18,10 @@ is to determine whether the dataset should be indexed or not.
 
 |Example XML a|
 ----
-<metadata_status>
-Active
-</metadata_status>
+<metadata_status>Active</metadata_status>
 ----
 
 |DIF equivalent |NA
 
 |ISO equivalent |NA
-
-|MM2 equivalent |This was not in MM2, but in the XMD-files.
-
 |=======================================================================

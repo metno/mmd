@@ -37,3 +37,148 @@ The following mapping is in place:
 
 |=======================================================================
 
+[[variable-parameter-descriptions]]
+=== Variable/parameter descriptions
+
+MMD currently relies on the GCMD Science Keywords for parameter descriptions. The GCMD Science Keywords are available in multiple forms, i.e.,
+
+
+ . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=csv[comma separated file]
+ . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=json[JSON file]
+ . https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=rdf[RDF file]
+ . https://gcmd.earthdata.nasa.gov/kms/capabilities?format=html[API reference]
+ . https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science?gtm_scheme=Earth%20Science[interactive Viewer]
+
+However, many datasets are encoded using the
+http://cfconventions.org[Climate and Forecast convention], where CF
+Standard Names are used. These are available through
+http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html, and can be converted to GCMD Science Keywords using
+http://dap.onc.uvic.ca/erddap/convert/keywords.html (further information
+to be provided).
+
+For observational data WMO Integrated Global Observing System (WIGOS)
+observed parameter descriptions can be used. These are available at
+https://codes.wmo.int/wmdr/. Use information from the sections on observed
+variable.
+
+[[platform-and-instrument-vocabularies]]
+=== Platform and Instrument vocabularies
+
+The platform and instrument used to aquire data are relevant information to describe a dataset.
+The MMD specification uses a complex field platform (see <<platform>>) to store this.
+
+In order to cover a large variety of use cases, granularity and different vocabularies, some flexibility is added to the field.
+This includes the acceptance of incomplete vocabularies, e.g., with gaps, and information that cannot be covered using a single source vocabulary.
+
+Depending on the type of data, some information might not be available. An overview of the supported vocabularies, and recommendations
+on how to fill the platform/instrument fields are provided below.
+
+Remote Sensing::
+
+For remote sensing data, the WMO https://space.oscar.wmo.int/spacecapabilities[Space-based Capabilities (OSCAR/Space)]  controlled vocabulary is recommended for platform and instrument information.
+
+List of resources:
+
+* Platforms: use the https://space.oscar.wmo.int/satellites[List of Satellites] as reference
+* Instruments: use the https://space.oscar.wmo.int/instruments[List of Instruments] as reference
+
+For platform information:
+
+* short_name: use the Acronym from the specific satellite details table (e.g. "Aqua" from https://space.oscar.wmo.int/satellites/view/aqua)
+* long_name: use the Full name from the specific satellite details table (e.g. "Earth Observation System - Aqua" from https://space.oscar.wmo.int/satellites/view/aqua)
+* resource: use the URL of the specific satellite (e.g. https://space.oscar.wmo.int/satellites/view/aqua)
+
+On the specific satellite page, a list of instruments onboard the satellite is provided.
+
+For instrument information:
+
+* short_name: use the Acronym from the specific instrument details table (e.g. "MODIS" from https://space.oscar.wmo.int/instruments/view/modis)
+* long_name: use the Full name from the specific instrument details table (e.g. "Moderate-resolution Imaging Spectro-radiometer" from https://space.oscar.wmo.int/instruments/view/modis)
+* resource: use the URL of the specific instrument (e.g. https://space.oscar.wmo.int/instruments/view/modis)
+
+If different instruments from the same platform are used within the dataset, then the whole platform field should be repeated, where the platform information is the same and the instrument
+information is reporting the different instruments used. Similarly, if the data is referring to the same instuments, but onboard different platforms, the whole field should be repeated.
+
+Other types of platforms and instruments::
+
+Instrument reference can be given also in absence of platform details. For specific sensors, instruments and other types of devices the following vocabularies are recommended:
+
+* the https://vocab.nerc.ac.uk/collection/L05/current/[SeaDataNet device categories]
+* the https://vocab.nerc.ac.uk/collection/L22/current/[SeaVoX Device Catalogue]
+
+For example, for CTD data the following could be used:
+
+----
+<platform>
+    <short_name/>
+    <long_name/>
+    <instrument>
+         <short_name>CTD</short_name>
+         <long_name>Conductivity, temperature and depth package</long_name>
+         <resource>http://vocab.nerc.ac.uk/collection/L22/current/TOOL0001/</resource>
+    </instrument>
+</platform>
+----
+
+For other platforms that do not refer to remote sensing satellites, as for example ships and vessels, the following vocabulary is recommended:
+
+* the https://vocab.nerc.ac.uk/collection/C17/current/[ICES Platform Codes]
+
+For example, for CTD data onboard the Oceania research vessel:
+
+----
+<platform>
+    <short_name/>
+    <long_name>Oceania</long_name>
+    <resource>http://vocab.nerc.ac.uk/collection/C17/current/67CE/</resource>
+    <instrument>
+         <short_name>SBE 911+ CTD</short_name>
+         <long_name>Sea-Bird SBE 911plus CTD</long_name>
+         <resource>http://vocab.nerc.ac.uk/collection/L22/current/TOOL0058/</resource>
+    </instrument>
+</platform>
+----
+
+Using GCMD keywords::
+
+Providing platforms/instruments using the GCMD Platforms and GCMD Instruments keywords is still possible, but it is recommended to use instead the full keyword string and add that
+to the <<keywords, keywords>> field using "GCMDPLT" and "GCMDINST" vocabulary attributes.
+
+For example, referring to the "OCEAN WEATHER STATIONS" GCMD Platform keywords, this is preferred:
+
+----
+<keywords vocabulary="GCMDPLT">
+ <keyword>Platforms > Water-based Platforms > Fixed Platforms > Surface > OCEAN WEATHER STATIONS</keyword>
+ <resource>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms</resource>
+</keywords>
+----
+
+For an instrument, as the "MAGNAPROBE" from the GCMD Instrument keywords, these two approaches can be used:
+
+----
+<keywords vocabulary="GCMDINST">
+ <keyword>Instruments > In Situ/Laboratory Instruments > Probes > MAGNAPROBE</keyword>
+ <resource>https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments</resource>
+</keywords>
+----
+and/or
+----
+<platform>
+    <short_name/>
+    <long_name/>
+    <instrument>
+         <short_name>MAGNAPROBE</short_name>
+         <long_name>MagnaProbe</long_name>
+         <resource>https://gcmd.earthdata.nasa.gov/kms/concept/99b75b86-1e64-4d48-a01f-aa0cc855a4ae</resource>
+    </instrument>
+</platform>
+----
+
+The long and short names are given for all platforms/instruments (if available) are given at the orginal source:
+
+* https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/platforms?gtm_scheme=platforms[Platforms]
+* https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/instruments?gtm_scheme=instruments[Instruments]
+
+and can also be found in different formats (see https://gcmd.earthdata.nasa.gov/static/kms/)
+
+<<platform>>

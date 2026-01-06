@@ -14,9 +14,9 @@
 |Description a|Description of how to access the data in the dataset. This
 element has the following child elements:
 
-* type: Description of the type of data access. Data Access Types
-* name: The name of the data access mechanism.
-• description: A short description of the data access type and purpose (if necessary).
+[[data_access_types]]
+* type: Description of the type of data access. This is a controlled vocabulary, see <<data-access-types, Data Access Types>>.
+* description: A short description of the data access type and purpose (if necessary).
 * resource: The URL used to access the data. E.g. for WMS this should point at the GetCapabilities document. 
 * wms_layers: WMS servers behave very different. Some servers has huge GetCapabilities documents with several thousand entries. The purpose of this element is to predefine a number of WMS layers. If the user requests visualisation, the first WMS layer in the list will be presented first.
 
@@ -36,14 +36,4 @@ element has the following child elements:
 
 |ISO equivalent |/gmd:MD_Metadata/
 gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource
-
-|MM2 equivalent a|
-link:../../../../metadata@name[/metadata@name]='dataref'
-
-link:../../../../metadata@name[/]link:../../../../metadata@name[metadata@name]='dataref_OPENDAP'
-
-link:../../../../metadata@name[/]link:../../../../metadata@name[metadata@name]='dataref_WMS'
-
-WMS layer information is currently available only through XMD documents.
-
 |=======================================================================

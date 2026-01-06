@@ -7,7 +7,7 @@
 
 |Attributes a| 
 
-* xml:lang ISO language code for the language that the title is in
+* xml:lang. The ISO 639-1 two letter language code for the language that the title is in.
 
 |Required |Yes
 
@@ -23,16 +23,11 @@ characters.
 
 |Example XML a|
 ----
-<title xml:lang=”en”>
-OSISAF Northern Hemisphere Ice edge
-</title>
+<title xml:lang="en">OSISAF Northern Hemisphere Ice edge</title>
 ----
 
 |DIF equivalent |/Entry_Title
 
 |ISO equivalent |/gmd:MD_Metadata/
 gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString
-
-|MM2 equivalent |/metadata@name='title'
-
 |=======================================================================

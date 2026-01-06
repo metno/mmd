@@ -59,8 +59,4 @@ Everglades National Park, Florida</Title> +
 |DIF equivalent |/Reference
 
 |ISO equivalent |Not known if this maps to any element in ISO.
-
-|MM2 equivalent |NA
-
-
 |=======================================================================

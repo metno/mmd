@@ -42,7 +42,7 @@
   skos:inScheme <https://vocab.met.no/mmd>;
   skos:prefLabel "Keywords Vocabulary"@en ;
   skos:definition "The vocabulary where the keyword is fetched from."@en ;
-  skos:member <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDSK>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDLOC>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPROV>, <https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GEMET>, <https://vocab.met.no/mmd/Keywords_Vocabulary/NORTHEMES>, <https://vocab.met.no/mmd/Keywords_Vocabulary/None> .
+  skos:member <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDSK>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPLT>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDINST>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDLOC>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPROV>, <https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN>, <https://vocab.met.no/mmd/Keywords_Vocabulary/GEMET>, <https://vocab.met.no/mmd/Keywords_Vocabulary/NORTHEMES>, <https://vocab.met.no/mmd/Keywords_Vocabulary/None> .
 
 <https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDSK>
   a skos:Concept ;
@@ -64,6 +64,20 @@
   skos:altLabel "GCMD Providers"@en ;
   rdfs:seeAlso <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers> ;
   skos:definition "This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Data Center/Service Provider Keywords list."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPLT>
+  a skos:Concept ;
+  skos:prefLabel "GCMDPLT"@en ;
+  skos:altLabel "GCMD Platforms"@en ;
+  rdfs:seeAlso <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms> ;
+  skos:definition "This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Platform Keywords list."@en .
+
+<https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDINST>
+  a skos:Concept ;
+  skos:prefLabel "GCMDINST"@en ;
+  skos:altLabel "GCMD Instruments"@en ;
+  rdfs:seeAlso <https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments> ;
+  skos:definition "This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Instrument Keywords list."@en .
 
 <https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN>
   a skos:Concept ;
@@ -125,7 +139,7 @@
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Use Constraint"@en ;
   skos:changeNote "Added support for CC-BY-3.0"@en, "Added more altLabel"@en ;
-  skos:definition "A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons."@en ;
+  skos:definition "A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally, as little constraints as needed should be used to allow maximal reuse of the data. The definitions below relate to Creative Commons."@en ;
   skos:member <https://vocab.met.no/mmd/Use_Constraint/CC0-1.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-3.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-SA-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-ND-4.0>, <https://vocab.met.no/mmd/Use_Constraint/CC-BY-NC-ND-4.0> .
 
 <https://vocab.met.no/mmd/Use_Constraint/CC0-1.0>
@@ -227,7 +241,7 @@
   a skos:Collection, isothes:ConceptGroup;
   skos:inScheme <https://vocab.met.no/mmd>;
   skos:prefLabel "Activity Type"@en ;
-  skos:definition "Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets."@en ;
+  skos:definition "Controlled vocabulary to be used to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented through the MMD specifications. This is not an identification of the observation platform, e.g. specific vessel, synoptic (SYNOP) station or satellite, but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets."@en ;
   skos:changeNote "2022-03-16, Added Concept \"Not available\" in collection"@en ;
   skos:changeNote "2025-08-08, updated altLabel in collection and added Mapping Properties"@en ;
   skos:member <https://vocab.met.no/mmd/Activity_Type/Aircraft>, <https://vocab.met.no/mmd/Activity_Type/SpaceBorneInstrument>, <https://vocab.met.no/mmd/Activity_Type/NumericalSimulation>, <https://vocab.met.no/mmd/Activity_Type/ClimateIndicator>, <https://vocab.met.no/mmd/Activity_Type/InSituLandBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanFixedStation>, <https://vocab.met.no/mmd/Activity_Type/InSituOceanMovingStation>, <https://vocab.met.no/mmd/Activity_Type/InSituIceBasedStation>, <https://vocab.met.no/mmd/Activity_Type/Interview-Questionnaire>, <https://vocab.met.no/mmd/Activity_Type/Maps-Charts-Photographs>, <https://vocab.met.no/mmd/Activity_Type/NotAvailable> .
@@ -245,7 +259,7 @@
   skos:altLabel "Earth Observation Satellite"@en ;
   skos:relatedMatch <https://cmr.earthdata.nasa.gov/kms/concept/f48231d4-0d47-4208-9830-13a7d0e3c1bb>,
                     <http://codes.wmo.int/wmdr/FacilityType/spaceBased> ;
-  skos:definition "Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded of type imagery or profiles."@en .
+  skos:definition "Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded, i.e. images or profiles."@en .
 
 <https://vocab.met.no/mmd/Activity_Type/NumericalSimulation>
   a skos:Concept ;
@@ -264,7 +278,7 @@
   skos:altLabel "Land station"@en ;
   skos:relatedMatch <https://cmr.earthdata.nasa.gov/kms/concept/245a9adf-2db6-434a-a052-3931c4e18e00>,
                     <http://codes.wmo.int/wmdr/FacilityType/landFixed> ;
-  skos:definition "This is used to tag datasets generated from a site located on land. This can be a permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a field experiment)."@en .
+  skos:definition "This is used to tag datasets generated from a site located on land. This can be a permanent, e.g. a synoptic (SYNOP) or radiosondes (TEMP) station or a temporary site, e.g. a field experiment."@en .
 
 <https://vocab.met.no/mmd/Activity_Type/InSituShipBasedStation>
   a skos:Concept ;
@@ -581,7 +595,7 @@
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Access Constraint"@en ;
-  skos:definition "A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only."@en ;
+  skos:definition "A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only."@en ;
   skos:member <https://vocab.met.no/mmd/Access_Constraint/Open>, <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>, <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>, <https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>, <https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata> .
 
 <https://vocab.met.no/mmd/Access_Constraint/Open>
@@ -1291,19 +1305,19 @@
   a skos:Collection, isothes:ConceptGroup ;
   skos:inScheme <https://vocab.met.no/mmd>; 
   skos:prefLabel "Operational Status"@en ;
-  skos:definition "Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time."@en ;
+  skos:definition "Controlled vocabulary to be used to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a commitment for a specific delivery over time."@en ;
   skos:changeNote "2022-03-16, Added Concept \"Not available\" in collection"@en ;
   skos:member <https://vocab.met.no/mmd/Operational_Status/Operational>, <https://vocab.met.no/mmd/Operational_Status/Pre-Operational>, <https://vocab.met.no/mmd/Operational_Status/Experimental>, <https://vocab.met.no/mmd/Operational_Status/Scientific>, <https://vocab.met.no/mmd/Operational_Status/NotAvailable> .
 
 <https://vocab.met.no/mmd/Operational_Status/Operational>
   a skos:Concept ;
   skos:prefLabel "Operational"@en ;
-  skos:definition "This is used to tag datasets that are continously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continous basis with a temporal perspective."@en .
+  skos:definition "This is used to tag datasets that are continuously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continuous basis with a temporal perspective."@en .
 
 <https://vocab.met.no/mmd/Operational_Status/Pre-Operational>
   a skos:Concept ;
   skos:prefLabel "Pre-Operational"@en ;
-  skos:definition "This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational."@en .
+  skos:definition "This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continuously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational."@en .
 
 <https://vocab.met.no/mmd/Operational_Status/Experimental>
   a skos:Concept ;
@@ -1313,8 +1327,7 @@
 <https://vocab.met.no/mmd/Operational_Status/Scientific>
   a skos:Concept ;
   skos:prefLabel "Scientific"@en ;
-  skos:definition """This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective. 
-        """@en .
+  skos:definition """This is used to describe purely scientific products, i.e. products generated through scientific projects and usually with a limited temporal perspective."""@en .
 
 <https://vocab.met.no/mmd/Operational_Status/NotAvailable>
   a skos:Concept ;
@@ -1328,7 +1341,7 @@
   skos:changeNote "2024-02-21, Added Concept \"TONE\" and \"NySMAC\" in collection"@en ;
   skos:changeNote "2024-06-06, Added Concept \"KSS\" and \"GEONOR\" in collection"@en ;
   skos:changeNote "2025-01-28, Added Concept \"POLARIN\" in collection"@en ;
-  skos:definition "The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository."@en ;
+  skos:definition "The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository."@en ;
   skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/NMAP>,
   <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>,
   <https://vocab.met.no/mmd/Collection_Keywords/NMDC>, <https://vocab.met.no/mmd/Collection_Keywords/SIOS>,

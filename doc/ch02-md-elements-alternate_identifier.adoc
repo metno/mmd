@@ -28,7 +28,4 @@ identifiers depending on the framework data are shared through.
 |DIF equivalent |NA
 
 |ISO equivalent |NA
-
-|MM2 equivalent |NA
-
 |=======================================================================

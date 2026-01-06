@@ -82,6 +82,24 @@
     </skos:member>
 
     <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDPLT">
+        <skos:prefLabel xml:lang="en">GCMDPLT</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GCMD Platforms</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Platform Keywords list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/GCMDINST">
+        <skos:prefLabel xml:lang="en">GCMDINST</skos:prefLabel>
+        <skos:altLabel xml:lang="en">GCMD Instruments</skos:altLabel>
+        <rdfs:seeAlso rdf:resource="https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments"/>
+        <skos:definition xml:lang="en">This vocabulary should be used to provide keywords from The Global Change Master Directory (GCMD) Instrument Keywords list.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Keywords_Vocabulary/CFSTDN">
         <skos:prefLabel xml:lang="en">CFSTDN</skos:prefLabel>
         <skos:altLabel xml:lang="en">CF Standard Names</skos:altLabel>
@@ -160,7 +178,7 @@
     <skos:prefLabel xml:lang="en">Use Constraint</skos:prefLabel>
     <skos:changeNote xml:lang="en">Added support for CC-BY-3.0</skos:changeNote>
     <skos:changeNote xml:lang="en">Added more altLabel</skos:changeNote>
-    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally as little constraints as possible is defined. The definitions below relate to Creative Commons.</skos:definition>
+    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe constraints on the usage of metadata and/or data. Ideally, as little constraints as needed should be used to allow maximal reuse of the data. The definitions below relate to Creative Commons.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Use_Constraint/CC0-1.0">
         <skos:prefLabel xml:lang="en">CC0-1.0</skos:prefLabel>
@@ -315,7 +333,7 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Activity Type</skos:prefLabel>
-    <skos:definition xml:lang="en">Controlled vocabulary to be used in METAMOD context to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented within METAMOD. This is not an identification of the observation platform (e.g. specific vessel, SYNOP station or satellite), but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</skos:definition>
+    <skos:definition xml:lang="en">Controlled vocabulary to be used to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented through the MMD specifications. This is not an identification of the observation platform, e.g. specific vessel, synoptic (SYNOP) station or satellite, but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</skos:definition>
     <skos:changeNote xml:lang="en">2022-03-16, Added Concept &quot;Not available&quot; in collection</skos:changeNote>
     <skos:changeNote xml:lang="en">2025-08-08, updated altLabel in collection and added Mapping Properties</skos:changeNote>
     <skos:member>
@@ -333,7 +351,7 @@
         <skos:altLabel xml:lang="en">Earth Observation Satellite</skos:altLabel>
         <skos:relatedMatch rdf:resource="https://cmr.earthdata.nasa.gov/kms/concept/f48231d4-0d47-4208-9830-13a7d0e3c1bb"/>
         <skos:relatedMatch rdf:resource="http://codes.wmo.int/wmdr/FacilityType/spaceBased"/>
-        <skos:definition xml:lang="en">Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded of type imagery or profiles.</skos:definition>
+        <skos:definition xml:lang="en">Observations or analysed products based upon data from a space borne instrument (typically onboard a satellite). The nature of the output is typically gridded, i.e. images or profiles.</skos:definition>
       </skos:Concept>
     </skos:member>
 
@@ -358,7 +376,7 @@
         <skos:altLabel xml:lang="en">Land station</skos:altLabel>
         <skos:relatedMatch rdf:resource="https://cmr.earthdata.nasa.gov/kms/concept/245a9adf-2db6-434a-a052-3931c4e18e00"/>
         <skos:relatedMatch rdf:resource="http://codes.wmo.int/wmdr/FacilityType/landFixed"/>
-        <skos:definition xml:lang="en">This is used to tag datasets generated from a site located on land. This can be a permanent (e.g. a SYNOP or TEMP station) or a temporary site (e.g. a field experiment).</skos:definition>
+        <skos:definition xml:lang="en">This is used to tag datasets generated from a site located on land. This can be a permanent, e.g. a synoptic (SYNOP) or radiosondes (TEMP) station or a temporary site, e.g. a field experiment.</skos:definition>
       </skos:Concept>
     </skos:member>
 
@@ -773,7 +791,7 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Access Constraint</skos:prefLabel>
-    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or metadata. This is used to determine the exposure of metadata and data internally and externally. Ideallly all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
+    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/Open">
         <skos:prefLabel xml:lang="en">Open</skos:prefLabel>
@@ -1655,19 +1673,19 @@
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
     <skos:prefLabel xml:lang="en">Operational Status</skos:prefLabel>
-    <skos:definition xml:lang="en">Controlled vocabulary to be used in METAMOD context to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a committment for a specific delivery over time.</skos:definition>
+    <skos:definition xml:lang="en">Controlled vocabulary to be used to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a commitment for a specific delivery over time.</skos:definition>
     <skos:changeNote xml:lang="en">2022-03-16, Added Concept &quot;Not available&quot; in collection</skos:changeNote>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Operational_Status/Operational">
         <skos:prefLabel xml:lang="en">Operational</skos:prefLabel>
-        <skos:definition xml:lang="en">This is used to tag datasets that are continously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continous basis with a temporal perspective.</skos:definition>
+        <skos:definition xml:lang="en">This is used to tag datasets that are continuously being evaluated and validated. The production of the data is under the responsibility of an authority and follows a review and documentation process. Operational data are generated on a continuous basis with a temporal perspective.</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Operational_Status/Pre-Operational">
         <skos:prefLabel xml:lang="en">Pre-Operational</skos:prefLabel>
-        <skos:definition xml:lang="en">This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational.</skos:definition>
+        <skos:definition xml:lang="en">This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continuously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational.</skos:definition>
       </skos:Concept>
     </skos:member>
 
@@ -1681,8 +1699,7 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Operational_Status/Scientific">
         <skos:prefLabel xml:lang="en">Scientific</skos:prefLabel>
-        <skos:definition xml:lang="en">This is used to describe purely scientific products. that is products generated through scientific projects and usually with a limited temporal perspective.
-        </skos:definition>
+        <skos:definition xml:lang="en">This is used to describe purely scientific products, i.e. products generated through scientific projects and usually with a limited temporal perspective.</skos:definition>
       </skos:Concept>
     </skos:member>
 
@@ -1701,7 +1718,7 @@
     <skos:changeNote xml:lang="en">2024-02-21, Added Concept \"TONE\" and \"NySMAC\" in collection</skos:changeNote>
     <skos:changeNote xml:lang="en">2024-06-06, Added Concept \"KSS\" and \"GEONOR\" in collection</skos:changeNote>
     <skos:changeNote xml:lang="en">2025-01-28, Added Concept \"POLARIN\" in collection</skos:changeNote>
-    <skos:definition xml:lang="en">The purpose of this vocabulary is to identify which collection a dataset belong to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</skos:definition>
+    <skos:definition xml:lang="en">The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/CC">
         <skos:prefLabel xml:lang="en">CC</skos:prefLabel>

@@ -15,7 +15,9 @@
 Description about the datacenter responsible for the distribution of the
 dataset. The element has the following child elements:
 
-* data_center_name: The name of the data center split into two child elements; short_name and long_name.
+* data_center_name: The name of the data center. This field is split into two child elements:
+  ** short_name: the short name or acronym of the data center.
+  ** long_name: the long name (or full name) of the data center.
 * data_center_url: URL to the data center's main website.
 
 Information on the data centre contact person for a data centre is conveyed through the element <<personnel>>. See <<personnel>> for more information. The role of a data center contact must be “Data center contact”.
@@ -26,10 +28,8 @@ If an id is assigned to the dataset by the data center, it can be included as <<
 ----
 <data_center>
      <data_center_name>
-         <short_name>METNO</short_name>
-         <long_name>
-         Norwegian Meteorological Institute
-         </long_name>
+         <short_name>MET Norway</short_name>
+         <long_name>Norwegian Meteorological Institute</long_name>
      </data_center_name>
      <data_center_url>http://met.no</data_center_url>
 </data_center>
@@ -39,7 +39,4 @@ If an id is assigned to the dataset by the data center, it can be included as <<
 
 |ISO equivalent |/gmd:MD_Metadata
 /gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty
-
-|MM2 equivalent |NA
-
 |=======================================================================
