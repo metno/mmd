@@ -13,7 +13,8 @@
     ],
     "require": {
       "ext-dom": "*",
-        "ext-json": "*",
-        "ext-simplexml": "*"
+      "ext-json": "*",
+      "ext-simplexml": "*"
+      "sweetrdf/easyrdf": "*"
    }
 }
