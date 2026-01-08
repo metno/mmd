@@ -1,0 +1,225 @@
+== Mapping between  MMD and ACDD (v1.3)
+
+The mapping below is used as background information to create MMD records from datasets with ACDD discovery attributes. In addition, an extended list of attributes has been
+created to support data publication through the Arctic Data Centre. The mapping below includes these attributes.
+
+=== References:
+
+. https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3[ACDD 1.3]
+. https://adc.met.no/submit-data-as-netcdf-cf[Arctic Data Centre publication guidelines]
+
+=== Walkthrough table
+
+NOTE: (M) refers to Mandatory fields
+
+[%header, cols="1,1,1", header=True]
+|===
+| MMD
+| ACDD
+| Notes
+
+| metadata_identifier (M)
+| id
+|
+
+
+|last_metadata_update/update/datetime (M)
+|date_created and date_modified
+|See type below.
+
+|last_metadata_update/update/type (M)
+|
+|Use "Created" for date_created and "Mjor modification" for date_modified
+
+|last_metadata_update/update/note
+|
+|
+
+|metadata_status (M)
+|
+|
+
+|collection (M)
+|collection
+|
+
+|title (M)
+|title
+|
+
+|abstract (M)
+|summary
+|
+
+|temporal_extent/start_date
+|time_coverage_start
+|
+
+|temporal_extent/end_date
+|time_coverage_end
+|
+
+
+|geographic_extent/rectangle/south (M)
+|geospatial_lat_min
+|
+
+|geographic_extent/rectangle/north (M)
+|geospatial_lat_max
+|
+
+|geographic_extent/rectangle/west (M)
+|geospatial_lon_min
+|
+
+|geographic_extent/rectangle/east (M)
+|geospatial_lon_max
+|
+
+|geographic_extent/polygon
+|geospatial_bounds
+|
+
+|dataset_production_status (M)
+|
+|Use "Not available"
+
+|dataset_language
+|
+|
+
+|operational_status
+|operational_status
+|
+
+|access_constraint
+|
+|
+
+|use_constraint/identifier
+|license
+|If license is of type "URL (identifier)" use the identifier in parenthesi, otherwise see license_text below.
+
+|use_constraint/resource
+|license
+|If license is of type "URL (identifier)" use the URL, otherwise see license_text below.
+
+|use_constraint/license_text
+|license
+|If license is not parsable as "URL (indentifier)".
+
+|personnel/role (M)
+|
+|If creator_name is present use "Investigator". If contributor_role is present and follows the MMD vocabulary its value can be used, otherwise use "Technical contact".
+For publisher_name use "Data center contact".
+
+|personnel/type
+|creator_type, contributor_type and publisher_type
+|
+
+|personnel/name (M)
+|creator_name, contributor_name and publisher_name
+|
+
+|personnel/name @uri
+|creator_pid, contributor_pid and publisher_pid
+|
+
+|personnel/email (M)
+|creator_email, contributor_email and publisher_pid
+|
+
+|personnel/organization
+|creator_institution, contributor_institution and publisher_institution
+|
+
+|personnel/organization @uri
+|creator_institution_pid, contributor_institution_pid and publisher_institution_pid
+|
+
+|data_center/data_center_name/short_name
+|publisher_name
+|If publisher name is of type "long_name (short_name)" use the short_name in parenthesis. See also personnel.
+
+|data_center/data_center_name/long_name
+|publisher_name
+|If publisher name is of type "long_name (short_name)" use the long_name. See also personnel.
+
+|data_center/data_center_url
+|publisher_url
+|
+
+|related_information/type
+|references and wigosId
+|If references is of type "URL (type)" and type follows the MMD vocabulary its value can be used, otherwise "Other documentation" can be used.
+For wigosId use the type "Observation facility".
+
+|related_information/resource
+|references and wigosId
+|If references is of type "URL (type)" use the URL. For wigos_Id the resource can be extracted.
+
+|related_information/description
+|references and wigosId.
+|If references is of type "URL (type:description)" use the description. For wigosId use "WIGOS Station: station_name (wigosId)" where station_name can be extracted.
+
+|iso_topic_category
+|iso_topic_category
+|
+
+|keywords @vocabulary
+|keywords_vocabulary, platform_vocabulary and instrument vocabulary
+|According to the values they can be translated into the appropriate MMD vocabulary, otherwise "None" can be used.
+
+|keywords
+|keywords, platform and instrument
+|For platform and instrument only keywords from GCMD should be translated here.
+
+|project/short_name
+|project
+|If project is of type "long_name (short_name)" use short_name
+
+|project/long_name
+|project
+|If project is of type "long_name (short_name)" use long_name
+
+|platform/short_name
+|platform
+|If platform is of type "long_name (short_name)" use short_name. See also keywords.
+
+|platform/long_name
+|platform
+|If platform is of type "long_name (short_name)" use long_name. See also keywords.
+
+|platform/resource
+|platform_vocabulary
+|The resource could be extracted from the vocabulary information.
+
+|platform/instrument/short_name
+|instrument
+|If instrument is of type "long_name (short_name)" use short_name. See also keywords.
+
+|platform/instrument/long_name
+|instrument
+|If instrument is of type "long_name (short_name)" use long_name. See also keywords.
+
+|platform/instrument/resource
+|instrument_vocabulary
+|The resource could be extracted from the vocabulary information.
+
+|activity_type
+|activity_type
+|
+
+|dataset_citation/doi
+|dataset_doi
+|
+
+|spatial_representation
+|spatial_representation
+|
+
+|quality_control
+|quality_control
+|
+
+|===

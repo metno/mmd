@@ -1,0 +1,440 @@
+== Mapping between  MMD and SolR Schema
+
+The mapping below is used as background information to index MMD files to SolR
+
+=== References:
+
+. https://github.com/metno/mmd[MMD]
+. [solr schema repo - TO BE fixed]
+
+=== Walkthrough table
+
+NOTE: (M) refers to Mandatory fields
+
+[%header, cols="1,1,3", header=True]
+|===
+| MMD
+| SolR Schema
+| Note
+
+| metadata_identifier (M)
+| metadata_identifier
+|
+
+|alternate_identifier
+|alternate_identifier and alternate_identifier_type
+|alternate_identifier_type represents the attribute "type"
+
+|last_metadata_update/update/datetime (M)
+|last_metadata_update_datetime
+|This is multiValue of type pdate
+
+
+|last_metadata_update/update/type (M)
+|last_metadata_update_type
+| 
+
+|last_metadata_update/update/note
+|last_metadata_update_note
+|
+
+| -
+|last_metadata_update_history
+|Used to show the latest update
+
+| -
+|last_metadata_update
+|Used to show the latest datestamp
+
+|metadata_status (M)
+|metadata_status
+|
+
+|collection (M)
+|collection
+|
+
+|title (M)
+|title, title_en, title_no
+|
+
+|abstract (M)
+|abstract, abstract_en, abstract_no
+|
+
+|temporal_extent/start_date
+|temporal_extent_start_date
+|This is of type pdate
+
+|temporal_extent/end_date
+|temporal_extent_end_date
+|This is of type pdate
+
+|geographic_extent/rectangle/south (M)
+|geographic_extent_rectangle_south
+|
+
+|geographic_extent/rectangle/north (M)
+|geographic_extent_rectangle_north
+|
+
+|geographic_extent/rectangle/west (M)
+|geographic_extent_rectangle_west
+|
+
+|geographic_extent/rectangle/east (M)
+|geographic_extent_rectangle_east
+| 
+
+|-
+|geographic_extent_rectangle_srsName
+|This maps the attribute srsName of geographic_extent/rectangle
+
+|geographic_extent/polygon
+|geographic_extent_polygon_upperLeft, geographic_extent_polygon_upperRight, geographic_extent_polygon_lowerRight, geographic_extent_polygon_lowerLeft and geographic_extent_polygon_closingRing
+|
+
+|-
+|geographic_extent_polygon_srsName
+|This maps the attribute srsName of geographic_extent/polygon
+
+|dataset_production_status (M)
+|dataset_production_status
+|
+
+|dataset_language
+|dataset_language
+|
+
+|operational_status 
+|operational_status
+|
+
+|access_constraint
+|access_constraint
+|
+
+|use_constraint/identifier
+|use_constraint_identifier
+|
+
+|use_constraint/resource
+|use_constraint_resource
+|
+
+|use_constraint/license_text
+|use_constraint_license_text
+|
+
+|personnel/role (M)
+|personnel_role,  +
+personnel_investigator_role,  +
+personnel_technical_role,  +
+personnel_metadata_author_role,  +
+personnel_datacenter_role +
+|personnel_role collects the list of all roles, while personnel_*_role is a single field per role, where * = investigator, metadata_author, technical, datacenter. Example: +
+"personnel_role":["Data center contact","Metadata author"] +
+"personnel_metadata_author_role":["Metadata author"] +
+"personnel_datacenter_role":["Data center contact"]
+
+|personnel/name (M)
+|personnel_name and personnel_*_name
+|See comment about roles
+
+|personnel/email (M)
+|personnel_*_email
+|See comment about roles
+
+|personnel/phone
+|personnel_*_phone
+|See comment about roles
+
+|personnel/organization
+|personnel_organisation and personnel_*_organisation
+|See comment about roles
+
+|personnel/contact_address/address
+|personnel_*_address
+|See comment about roles
+
+|personnel/contact_address/city
+|personnel_*_address_city
+|See comment about roles
+
+|personnel/contact_address/province_or_state
+|personnel_*_address_province_or_state
+|See comment about roles
+
+|personnel/contact_address/postal_code
+|personnel_*_address_postal_code
+|See comment about roles
+
+|personnel/contact_address/country
+|personnel_*_address_country
+|See comment about roles
+
+|data_center/data_center_name/short_name
+|data_center_short_name
+|
+
+|data_center/data_center_name/long_name
+|data_center_long_name
+|
+
+|data_center/data_center_url
+|data_center_url
+|
+
+|data_access/type
+|-
+|See data_access/resource below
+
+|data_access/resource
+|data_access_url_*
+|This field is normalised per type: +
+data_access_url_opendap +
+data_access_url_ogc_wms +
+data_access_url_ogc_wfs +
+data_access_url_ogc_wcs +
+data_access_url_http +
+data_access_url_odata +
+data_access_url_ftp
+
+
+|data_access/description
+|data_access_url_*_desc
+|This field is normalised per type: +
+data_access_url_opendap_desc +
+data_access_url_ogc_wms_desc +
+data_access_url_ogc_wfs_desc +
+data_access_url_ogc_wcs_desc +
+data_access_url_http_desc +
+data_access_url_odata_desc +
+data_access_url_ftp_desc +
+feature_type
+
+|data_access/wms_layer
+|data_access_wms_layers
+|
+
+|related_dataset
+|related_dataset and related_dataset_relation_type
+|related_dataset_relation_type is the attribute of related_dataset
+
+|storage_information/file_name
+|storage_information_file_name
+|
+
+|storage_information/file_location
+|storage_information_file_location
+|
+
+|storage_information/file_format
+|storage_information_file_format and storage_information_file_size_unit
+|storage_information_file_size_unit is the attribute of file_format
+
+|storage_information/file_size
+|storage_information_file_size
+|
+
+|storage_information/checksum
+|storage_information_file_checksum and storage_information_file_checksum_type
+|storage_information_file_checksum_type is the attribute of storage_information_file_checksum
+
+|related_information/type
+|-
+|see note on related_information/resource below
+
+|related_information/resource
+|related_url_*
+|This field is normalised per type: +
+related_url_landing_page +
+related_url_user_guide +
+related_url_home_page +
+related_url_obs_facility +
+related_url_ext_metadata +
+related_url_scientific_publication +
+related_url_data_paper +
+related_url_data_management_plan +
+related_url_other_documentation +
+related_url_software
+
+
+|related_information/description
+|related_url_*_desc
+|This field is normalised per type: +
+related_url_landing_page_desc +
+related_url_user_guide_desc +
+related_url_home_page_desc +
+related_url_obs_facility_desc +
+related_url_ext_metadata_desc +
+related_url_scientific_publication_desc +
+related_url_data_paper_desc +
+related_url_data_management_plan_desc +
+related_url_other_documentation_desc +
+related_url_software_desc
+
+
+|iso_topic_category
+|iso_topic_category
+|
+
+|-
+|keywords_vocabulary
+|This field collects the attribute "vocabulary" of the field keywords
+
+|keywords/keyword
+|keywords_keyword and keywords_*
+|The keywords are also appended in a dedicated list per type: +
+keywords_gcmd +
+keywords_wigos +
+keywords_gcmdloc +
+keywords_gcmdprov +
+keywords_cfstdn +
+keywords_gemet +
+keywords_northemes
+
+|keywords/resource
+|keywords_resource
+|
+
+|keywords/separator
+|keywords_separator
+|
+
+|project/short_name
+|project_short_name
+|
+
+|project/long_name
+|project_long_name
+|
+
+|platform/short_name
+|platform_short_name
+|
+
+|platform/long_name
+|platform_long_name
+|
+
+|platform/resource
+|platform_resource
+|
+
+|platform/orbit_relative
+|platform_orbit_relative
+|
+
+|platform/orbit_absolute
+|platform_orbit_absolute
+|
+
+|platform/orbit_direction
+|platform_orbit_direction
+|
+
+|platform/instrument/short_name
+|platform_instrument_short_name
+|
+
+|platform/instrument/long_name
+|platform_instrument_long_name
+|
+
+|platform/instrument/resource
+|platform_instrument_resource
+|
+
+|platform/instrument/mode
+|platform_instrument_mode
+|
+
+|platform/instrument/polarisation
+|platform_instrument_polarisation
+|
+
+|platform/instrument/product_type
+|platform_instrument_product_type
+|
+
+|platform/ancillary/cloud_coverage
+|platform_ancillary_cloud_coverage
+|
+
+|platform/ancillary/scene_coverage
+|platform_ancillary_scene_coverage
+|
+
+|platform/ancillary/timeliness
+|platform_ancillary_timeliness
+|
+
+|spatial_representation
+|spatial_representation
+|
+
+|activity_type
+|activity_type
+|
+
+|dataset_citation/author
+|dataset_citation_author
+|
+
+|dataset_citation/publication_date
+|dataset_citation_publication_date
+|
+
+|dataset_citation/title
+|dataset_citation_title
+|
+
+|dataset_citation/series
+|dataset_citation_series
+|
+
+|dataset_citation/edition
+|dataset_citation_edition
+|
+
+|dataset_citation/volume
+|dataset_citation_volume
+|
+
+|dataset_citation/issue
+|dataset_citation_issue
+|
+
+|dataset_citation/publication_place
+|dataset_citation_publication_place
+|
+
+|dataset_citation/publisher
+|dataset_citation_publisher
+|
+
+|dataset_citation/pages
+|dataset_citation_pages
+|
+
+|dataset_citation/isbn
+|dataset_citation_isbn
+|
+
+|dataset_citation/doi
+|dataset_citation_doi
+|
+
+|dataset_citation/url
+|dataset_citation_url
+|
+
+|dataset_citation/other
+|dataset_citation_other
+|
+
+|quality_control
+|quality_control
+|
+|===

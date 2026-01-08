@@ -1,6 +1,6 @@
 ## Schemas
 
-This folder contains different schemas that relates to the MMD respository and a script to generate the enumeration
+This folder contains different schemas that relate to the MMD respository and a script to generate the enumeration
 of valid controlled vocabulary terms used in MMD.
 
 ### Schema enumeration script
