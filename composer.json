@@ -14,7 +14,7 @@
     "require": {
       "ext-dom": "*",
       "ext-json": "*",
-      "ext-simplexml": "*"
+      "ext-simplexml": "*",
       "sweetrdf/easyrdf": "*"
    }
 }
