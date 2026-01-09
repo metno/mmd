@@ -84,6 +84,23 @@ A controlled vocabulary to be used to describe constraints on the usage of metad
 
 <<use_constraint>>
 
+[[metadata-source]]
+=== Metadata Source
+
+The type of metadata source. This element refers to the flow of metadata information.
+
+[cols="2,8"]
+|===
+| code | definition
+
+| Internal| Metadata are generated through internal procedures within MET Norway/Arctic Data Centre. This apply to datasets that are produced and/or maintained by MET Norway/Arctic Data Centre.
+
+| External-Harvest| Metadata are generated through harvesting procedure of external data centers. This applies to datasets that are produced and/or maintained by contributing data centers.
+
+|===
+
+<<metadata_source>>
+
 [[dataset-production-status]]
 === Dataset Production Status
 

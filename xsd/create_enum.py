@@ -9,6 +9,7 @@ import lxml.etree as ET
 #'Keywords Vocabulary', -> keywords_vocabulary_enum
 #'Spatial Representation', -> spatial_representation_enum
 #'Dataset Production Status', -> mmd:dataset_production_status_enum
+#'Metadata Source', -> mmd:metadata_source
 #'Activity Type', -> activity_type_enum
 #'ISO Topic Category', -> iso_topic_category_enum
 #'Related Information Types', -> related_information_types_enum

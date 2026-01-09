@@ -199,6 +199,22 @@
   skos:exactMatch <http://spdx.org/licenses/CC-BY-NC-ND-4.0>, <https://creativecommons.org/licenses/by-nc-nd/4.0/> ;
   skos:definition "This license is the most restrictive of our six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can’t change them in any way or use them commercially."@en .
 
+<https://vocab.met.no/mmd/Metadata_Source>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:prefLabel "Metadata Source"@en ;
+  skos:definition "The type of metadata source. This element refers to the flow of metadata information."@en ;
+  skos:member <https://vocab.met.no/mmd/Metadata_Source/Internal>, <https://vocab.met.no/mmd/Metadata_Source/External-Harvest> .
+
+<https://vocab.met.no/mmd/Metadata_Source/Internal>
+  a skos:Concept ;
+  skos:prefLabel "Internal"@en ;
+  skos:definition "Metadata are generated through internal procedures within MET Norway/Arctic Data Centre. This apply to datasets that are produced and/or maintained by MET Norway/Arctic Data Centre."@en .
+
+<https://vocab.met.no/mmd/Metadata_Source/External-Harvest>
+  a skos:Concept ;
+  skos:prefLabel "External-Harvest"@en ;
+  skos:definition "Metadata are generated through harvesting procedure of external data centers. This applies to datasets that are produced and/or maintained by contributing data centers."@en .
 
 <https://vocab.met.no/mmd/Dataset_Production_Status>
   a skos:Collection, isothes:ConceptGroup ;

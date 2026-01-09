@@ -89,6 +89,7 @@
                 <xs:element name="data_center" type="mmd:data_center_type" maxOccurs="1" minOccurs="0"></xs:element>
                 <xs:element name="related_dataset" type="mmd:related_dataset_type" maxOccurs="unbounded" minOccurs="0"/>
                 <xs:element name="storage_information" type="mmd:storage_information_type" maxOccurs="1" minOccurs="0" />
+                <xs:element name="metadata_source" type="mmd:metadata_source_type" maxOccurs="1" minOccurs="0" />
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -342,6 +343,12 @@
             <xs:enumeration value="vector"></xs:enumeration>
             <xs:enumeration value="point"></xs:enumeration>
             <xs:enumeration value="trajectory"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="metadata_source_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Internal"></xs:enumeration>
+            <xs:enumeration value="External-Harvest"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="keywords_type">
