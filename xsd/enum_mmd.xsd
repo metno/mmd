@@ -76,6 +76,15 @@
   <xs:simpleType name="use_constraint_resource_enum">
     <xs:union memberTypes="use_constraint_resource_http use_constraint_resource_https"/>
   </xs:simpleType>
+  <xs:simpleType name="metadata_source_enum">
+    <xs:annotation>
+      <xs:documentation>The type of metadata source. This element refers to the flow of metadata information.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Internal"/>
+      <xs:enumeration value="External-Harvest"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="dataset_production_status_enum">
     <xs:annotation>
       <xs:documentation>Production status for the dataset.</xs:documentation>
