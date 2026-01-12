@@ -1,7 +1,7 @@
 {
     "name": "metno/mmd",
     "type": "package",
-    "description": "METNO MMD",
+    "description": "MET Norway Metadata Format (MMD)",
     "keywords": ["xslt", "xsd", "xml","rdf","skos"],
     "homepage": "https://github.com/metno/mmd",
     "license": "GNU General Public License v3.0",
