@@ -23,7 +23,8 @@ sha512sum) and other higher order approaches. Sub elements include:
 * file_size: Size of file according to the units expressed as attribute
   unit. Valid units are MB, GB and TB.
 * checksum: A checksum for the file. This element require attribute type
-  to be present. 
+  to be present.
+* storage_expiry_date: The date when the dataset reaches end of life cycle management. After this date the dataset can be deleted. When this information is not present, it is implied that the dataset does not have an storage expiration date, and is in active life cycle management and cannot be deleted.
 
 Virtual datasets that are established through aggregation of individual
 files on e.g. an OPeNDAP server are not described with this element. For
@@ -41,6 +42,7 @@ harvested data usually only file format is available, if any.
   <checksum type="sha512sum">
 ad33563f9ab3a6f2ba74ebd72cb1f45fda00d55121a29a29230147e3472ef267c50882b0e0b21ef9ee5ed5cc25e454167cd19a1818f1e13bc044b6fc3ef8f285
   </checksum>
+  <storage_expiry_date>2027-10-24</storage_expiry_date>
 </storage_information>
 ----
 

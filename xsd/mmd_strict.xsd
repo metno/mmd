@@ -514,6 +514,7 @@
             <xs:element name="file_format" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="file_size" type="mmd:value_size"  maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="checksum" type="mmd:value_checksum"  maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="storage_expiry_date" type="xs:date" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="value_size">
