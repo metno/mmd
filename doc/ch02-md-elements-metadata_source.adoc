@@ -13,7 +13,7 @@
 
 |Description | The type of metadata source. This element refers to the flow of metadata information, whether it is from
 internal assets (data produced and/or maintained internally within MET Norway/Arctic Data Centre) or from external data centres through metadata harvesting.
-It follows a controlled vocabulary from <<metadata_source>>.
+It follows a controlled vocabulary from <<metadata-source>>.
 
 |Example XML a|
 ----
