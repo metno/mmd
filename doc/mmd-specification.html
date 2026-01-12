@@ -2388,6 +2388,9 @@ unit. Valid units are MB, GB and TB.</p>
 <p>checksum: A checksum for the file. This element require attribute type
 to be present.</p>
 </li>
+<li>
+<p>storage_expiry_date: The date when the dataset reaches the end of its life cycle management. After this date the dataset can be deleted. When this information is not present, it is implied that the dataset does not have a storage expiration date, that it is in active life cycle management, and that it can not be deleted.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -2410,6 +2413,7 @@ harvested data usually only file format is available, if any.</p>
   &lt;checksum type="sha512sum"&gt;
 ad33563f9ab3a6f2ba74ebd72cb1f45fda00d55121a29a29230147e3472ef267c50882b0e0b21ef9ee5ed5cc25e454167cd19a1818f1e13bc044b6fc3ef8f285
   &lt;/checksum&gt;
+  &lt;storage_expiry_date&gt;2027-10-24&lt;/storage_expiry_date&gt;
 &lt;/storage_information&gt;</pre>
 </div>
 </div></div></td>
@@ -4845,7 +4849,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-01-06 07:26:57 UTC
+Last updated 2026-01-12 11:56:05 UTC
 </div>
 </div>
 </body>
