@@ -4,7 +4,7 @@ This folder contains some executable scripts that can be used to check/manipulat
 
 ### transformrecord
 
-This script transforms an metadata records in xml from/to other schemas, using [XSLT sheets](../xslt/)
+This script transforms metadata records in xml from/to other schemas, using [XSLT sheets](../xslt/)
 
 For example, to translate between MMD and inspire:
 

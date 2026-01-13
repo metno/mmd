@@ -13,15 +13,9 @@
 Unique identifier for the dataset described by the metadata document.
 This identifier is used to identify a dataset across different systems.
 
-The MMD format does not make hard requirements on the format of the ids,
-but to be compatible with DIF the following characters are not allowed:
-
-* Backward Slash '\' 
-* Forward Slash '/'
-* Colon ':'
-* Whitespaces ' '
-
-The identifier used currently is UUID.
+The identifier used currently is UUID. This can also be prefixed by a namespace
+(e.g. no.met.adc:UUID) depending on the data publication workflows. Other types
+of identifiers are also supported (e.g. for harvested records).
 
 
 |Example XML a|
