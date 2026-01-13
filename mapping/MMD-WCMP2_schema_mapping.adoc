@@ -1,0 +1,416 @@
+== Mapping between MMD and WMO Core Metadata Profile (WCMP) Version 2
+
+The mapping below is used as background information to map between MMD specifications and WMO Core Metadata Profile (WCMP) Version 2 specifications.
+
+=== Status: Draft version
+
+=== References:
+
+. https://github.com/metno/mmd[MMD]
+. https://wmo-im.github.io/wcmp2/standard/wcmp2-STABLE.html[WCMP2 documentation]
+. https://docs.ogc.org/is/20-004r1/20-004r1.html[OGC API - Records - Part 1: Core]
+. https://codes.wmo.int/wis/link-type[WIS links type]
+
+=== Walkthrough table
+
+NOTE: (M) refers to Mandatory fields, while (CM) refers to Conditional-Mandatory
+
+[%header, cols="1,1,1,3", header=True]
+|===
+| MMD
+| WCMP2
+| Type/Comment
+| Example
+
+| metadata_identifier (M)
+|id (M)
+|The id property SHALL have the following notation: urn:wmo:md:{centre_id}:{local_identifier}
+|
+
+|-
+|type (M)
+|MUST be set to Feature
+|"type": "Feature"
+
+|-
+|conformsTo (M)
+|
+|"conformsTo": ["http://wis.wmo.int/spec/wcmp/2/conf/core"]
+
+|-
+|properties/type (M)
+|This is a controlled vocabulary. Use "dataset"
+|"properties": { +
+  "type": "dataset" +
+}
+
+|title (M)
+|properties/title (M)
+|
+|
+
+|abstract (M)
+|properties/description (M)
+|
+|
+
+|metadata_status (M)
+|-
+|
+|
+
+|collection (M)
+|-
+|
+|
+
+
+|dataset_production_status (M)
+|-
+|
+|
+
+|keywords
+|properties/themes (M) +
+and +
+properties/keywords
+|Themes are keywords that belong to controlled vocabularies, while keywords are simple strings. Translate MMD keywords from vocabulary attribute "None" to properties/keyword and all other keywords to properties/themes. A WCMP record describing a dataset SHALL provide a themes property identifying all applicable Earth system disciplines as defined in the WIS2 Topic Hierarchy. Currently this type of keyword vocabulary is not present in MMD. See also platform.
+|"properties": { +
+    "themes": [ +
+    { +
+      "concepts": [ +
+        { +
+          "id": "air_temperature", +
+          "url": "https://vocab.nerc.ac.uk/standard_name/air_temperature/" +
+        }}] +
+... +
+  "keywords": [ +
+    "surface", +
+    "observations", +
+    "weather" +
+  ]
+
+|geographic_extent (rectangle/polygon)
+|geometry (M)
+|See also additionalExtents for providing bbox
+|"geometry": { +
+  "type": "Polygon", +
+  "coordinates": [[ +
+    [-142.23, 28.03], +
+    [-142.23, 82.56], +
+    [-52.16, 82.56], +
+    [-52.16, 28.03], +
+    [-142.23, 28.03] +
+  ]] +
+} +
+or +
+"geometry": { +
+  "type": "Point", +
+  "coordinates": [-79.38, 43.65] +
+} +
+
+
+|temporal_extent/start_date (M)
+|time (M)
+|The time property SHALL provide either one date, timestamp, interval, or the value of null when a conformant time cannot be derived. +
+All non-null time values SHALL be valid ISO8601 representations or .. for an open-ended extent.
+|"time": {
+  "interval": ["2018-04-22", ".."],
+}
+
+|temporal_extent/end_date
+|time (M)
+|See temporal_extent/start_date
+|
+
+
+|last_metadata_update/update/datetime (M)
+|properties/created (M) +
+and +
+properties/updated
+|Use properties/created for MMD type="Created" and properties/updated for the lastest updated (from type "Major modification" or "Minor modification").
+|"properties": { +
+  ... +
+  "created": "2021-06-12T23:45:24Z" +
+  ... +
+} +
+
+
+|last_metadata_update/update/type (M)
+|-
+|See last_metadata_update/update/datetime
+|
+
+|last_metadata_update/update/note
+|-
+|
+|
+
+|dataset_language
+|language
+|
+|"language": { +
+     "code": "en" +
+ }, +
+
+|operational_status
+|-
+|
+|
+
+|access_constraint
+|-
+|
+|
+
+
+|
+|properties/wmo:dataPolicy (CM)
+|When the properties/type property is dataset, the record SHALL provide exactly one properties/wmo:dataPolicy property. This can have value "core" or "recommended". When the properties.wmo:dataPolicy property is recommended, data licensing SHALL be provided by at least one links item with link relations (rel) of license. See also use_constraint.
+|"properties": { +
+  ... +
+  "wmo:dataPolicy": "recommended" +
+  ... +
+}, +
+"links": [{ +
+  "rel": "license", +
+  "href": "https://creativecommons.org/publicdomain/zero/1.0/", +
+  "type": "text/html", +
+  "title": "CC0 1.0 Universal" +
+}] +
+
+|use_constraint/identifier
+|links
+|Use links with rel = "license" and use the identifier as title. See also use_constraint/resource and properties/wmo:dataPolicy above.
+|
+
+|use_constraint/resource
+|links
+|Use links with rel = "license" and use the resource as href. See also use_constraint/identifier and properties/wmo:dataPolicy above.
+|
+
+|use_constraint/license_text
+|properties/rights
+|
+|"properties": { +
+ ... +
+ "rights": "Users are granted free and unrestricted access to this data, without charge and with no conditions on use. Users are requested to attribute the producer of this data. WMO Unified Data Policy (Resolution 1 (Cg-Ext 2021))." +
+ ... +
+} +
+
+|personnel/role (M)
+|properties/contacts/roles (M)
+|Map Investigator to producer, Techincal contact to processor. The properties.contacts SHALL provide an organization property.
+|"properties": { +
+  ... +
+  "contacts": [{ +
+    "identifier": "ECCC", +
+    "organization": "Government of Canada; Environment and Climate Change Canada; Meteorological Service of Canada", +
+    "name": "National Inquiry Response Team", +
+    "phones": [{ +
+      "value": "+47 123456789" +
+    }], +
+    "emails": [{ +
+      "value":"example@email.com" +
+    }], +
+    "addresses": [{ +
+      "deliveryPoint": [ "77 Westmorland Street, suite 260" ], +
+      "city": "Fredericton", +
+      "administrativeArea": "NB", +
+      "postalCode": "E3B 6Z4", +
+      "country": "Canada" +
+    }], +
+    "links": [{ +
+      "href": "https://example.org/about", +
+      "rel": "about", +
+      "type": "text/html" +
+    }], +
+    "contactInstructions": "email", +
+    "roles": ["producer"] +
+  }] +
+  ... +
+} +
+
+|personnel/name (M)
+|properties/contacts/name
+|See personnel/role
+|
+
+|personnel/email (M)
+|properties/contacts/emails
+|See personnel/role
+|
+
+|personnel/phone
+|properties/contacts/phones
+|See personnel/role
+|
+
+|personnel/organization
+|properties/contacts/organization (M)
+|See personnel/role
+|
+
+|personnel/contact_address/address
+|properties/contacts/addresses
+|See personnel/role
+|
+
+|personnel/contact_address/city
+|
+|See personnel/role
+|
+
+|personnel/contact_address/province_or_state
+|
+|See personnel/role
+|
+
+|personnel/contact_address/postal_code
+|
+|See personnel/role
+|
+
+|personnel/contact_address/country
+|
+|See personnel/role
+|
+
+|data_center/data_center_name/short_name
+|
+|
+|
+
+|data_center/data_center_name/long_name
+|properties.contacts.name
+|See below. Use roles = host.
+|
+
+|data_center/data_center_url
+|properties.contacts.links
+|
+|"properties": {
+  ...
+  "contacts": [{
+    "name": "Arctic Data Centre",
+    "organization": "Norwegian Meteorological Institute / Arctic Data Centre",
+    "links": [{
+      "href": "https://adc.met.no",
+      "rel": "about",
+      "type": "text/html"
+    }],
+    "roles": ["host"]
+  }]
+}
+
+|data_access/type
+|links
+|Map the type to the field "rel". For data download it is "data", for "OGC WMS" it is "service-desc".
+|
+
+|data_access/resource
+|links
+|Map to "href" in links. See also data_access/type
+|
+
+|data_access/description
+|links
+|It an be mapped to title in in links. See also data_access/type.
+|
+
+|data_access/wms_layer
+|-
+|-
+|
+
+|related_dataset
+|
+|
+|
+
+|related_information/type
+|links
+|Some MMD elements can be mapped. For example for "Dataset landing page" the "rel" field can be mapped to "about".
+|
+
+|related_information/resource
+|links. Map to href. See related_information/type
+|
+|
+
+|related_information/description
+|links. Map to title. See related_information/type
+|
+|
+
+|iso_topic_category (M)
+|-
+|
+|
+
+|project/short_name (M)
+|-
+|
+|
+
+|project/long_name (M)
+|-
+|This could be mapped as keyword or themes if it comes from a controlled vocabulary.
+|
+
+|platform/short_name
+|-
+|
+|
+
+|platform/long_name
+|
+|This could be mapped as themes using e.g https://codes.wmo.int/wis/topic-hierarchy/earth-system-discipline/weather/space-based-observations/ and using sentinel-1a as id.
+|
+
+|platform/resource
+|-
+|See platform/long_name
+|
+
+|platform/instrument/short_name
+|-
+|
+|
+
+|platform/instrument/long_name
+|
+|This could be mapped as themes using e.g http://codes.wmo.int/wis/topic-hierarchy/earth-system-discipline/weather/space-based-observations/sentinel-1a/ and sar-c as id.
+|
+
+|platform/instrument/resource
+|-
+|See platform/instrument/long_name
+|
+
+
+|spatial_representation
+|-
+|-
+|
+
+|activity_type
+|-
+|-
+|
+
+|dataset_citation/doi
+|properties.externalIds and links.
+|Mapping can be inconsistent since MMD can have many records with the same DOI. The doi can also be mapped to links using "cite-as" for "rel"
+|properties": {
+  ...
+  "externalIds": [{
+    "scheme": "https://doi.org",
+    "value": "10.14287/10000001"
+  },
+  ...
+}
+
+
+
+|===
