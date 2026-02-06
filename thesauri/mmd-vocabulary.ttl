@@ -1333,7 +1333,7 @@
 <https://vocab.met.no/mmd/Operational_Status/Pre-Operational>
   a skos:Concept ;
   skos:prefLabel "Pre-Operational"@en ;
-  skos:definition "This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continuously, but not necessarily distributed to users not specifically. It covers the intermediate step between Experimental and Operational."@en .
+  skos:definition "This is used to describe data that are under review for becoming the next operational delivery. It is usually produced continuously, but not necessarily distributed to users. It covers the intermediate step between Experimental and Operational."@en .
 
 <https://vocab.met.no/mmd/Operational_Status/Experimental>
   a skos:Concept ;
