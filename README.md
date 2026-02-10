@@ -17,7 +17,7 @@ The repository contains the specifications and related tools for the MMD standar
 - the thesauri folder contains MMD and external controlled vocabularies
 - the bin folder contains some executable scripts, some based on the tools in the mmd_utils folder
 - the mmd_utils folder contains MMD related tools
-- the mapping folder contains mapping between MMD and metadata standards.
+- the crosswalks folder contains mapping between MMD and metadata standards.
 - the input-examples folder contains some examples of metadata records
 - the test folder contains some tests (see below)
 

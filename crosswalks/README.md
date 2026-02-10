@@ -1,6 +1,6 @@
 ## MMD interoperability
 
-This folder provide a walkthough between MMD and international standards.
+This folder provide a mapping between MMD and international standards.
 It can be used as reference to create create XSLT sheets to map between MMD
 and several metadata standards and vice versa.
 

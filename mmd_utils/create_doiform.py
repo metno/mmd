@@ -294,12 +294,13 @@ def create_dataciteXML(inputfile, outputfile, parsenames, collection):
 
     licenseid =  mmdroot.find("mmd:use_constraint/mmd:identifier", mmdroot.nsmap)
     licenseres =  mmdroot.find("mmd:use_constraint/mmd:resource", mmdroot.nsmap)
-    rightslist = ET.SubElement(root, 'rightsList')
-    rights = ET.SubElement(rightslist, 'rights')
-    rights.set('rightsURI', "https://spdx.org/licenses/")
-    rights.set('rightsIdentifierScheme', "SPDX")
-    rights.set('rightsIdentifier', licenseid.text)
-    rights.set('rightsURI', licenseres.text)
+    if licenseid is not None:
+        rightslist = ET.SubElement(root, 'rightsList')
+        rights = ET.SubElement(rightslist, 'rights')
+        rights.set('rightsURI', "https://spdx.org/licenses/")
+        rights.set('rightsIdentifierScheme', "SPDX")
+        rights.set('rightsIdentifier', licenseid.text)
+        rights.set('rightsURI', licenseres.text)
 
 
     et = ET.ElementTree(root)

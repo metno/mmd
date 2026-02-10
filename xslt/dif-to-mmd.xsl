@@ -175,7 +175,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
               <xsl:value-of select="dif:Version" />
           </xsl:element>
           <xsl:element name="mmd:doi">
-	      <xsl:if test="dif:Dataset_DOI">
+	      <xsl:if test="dif:Dataset_DOI != ''">
               <xsl:choose>
                   <xsl:when test="contains(dif:Dataset_DOI, 'doi.org/')">
                       <xsl:value-of select="dif:Dataset_DOI" />
