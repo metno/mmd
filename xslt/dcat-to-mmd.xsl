@@ -89,6 +89,9 @@ Draft implementation of dcat to mmd mapping
 	<xsl:apply-templates select="dct:language" />
 	<!--probably mapping to alternate_identifier-->
 	<!--xsl:apply-templates select="adms:identifier" /-->
+    <xsl:element name="mmd:metadata_source">
+        <xsl:text>External-Harvest</xsl:text>
+    </xsl:element>
     </xsl:template>
     
 

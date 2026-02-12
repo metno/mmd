@@ -112,6 +112,9 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             <xsl:apply-templates select="dif:Organization" />
             <!--xsl:apply-templates select="dif:Originating_Center" /-->
             <xsl:apply-templates select="dif:Parent_DIF | dif:Metadata_Association[dif:Type ='Parent']" />
+            <xsl:element name="mmd:metadata_source">
+                <xsl:text>External-Harvest</xsl:text>
+            </xsl:element>
             <!-- ... -->
         </xsl:element>
     </xsl:template>

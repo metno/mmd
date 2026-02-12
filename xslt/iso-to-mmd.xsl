@@ -157,6 +157,9 @@
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation | gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_Constraints/gmd:useLimitation | gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType" />
 
+            <xsl:element name="mmd:metadata_source">
+                <xsl:text>External-Harvest</xsl:text>
+            </xsl:element>
         </xsl:element>
     </xsl:template>
 
