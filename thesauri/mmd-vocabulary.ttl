@@ -1357,6 +1357,7 @@
   skos:changeNote "2024-02-21, Added Concept \"TONE\" and \"NySMAC\" in collection"@en ;
   skos:changeNote "2024-06-06, Added Concept \"KSS\" and \"GEONOR\" in collection"@en ;
   skos:changeNote "2025-01-28, Added Concept \"POLARIN\" in collection"@en ;
+  skos:changeNote "2026-02-12, Added Concept \"SESS2023, SESS2024 and SESS2025\" in collection"@en ;
   skos:definition "The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository."@en ;
   skos:member <https://vocab.met.no/mmd/Collection_Keywords/CC>, <https://vocab.met.no/mmd/Collection_Keywords/NMAP>,
   <https://vocab.met.no/mmd/Collection_Keywords/ADC>, <https://vocab.met.no/mmd/Collection_Keywords/GCW>,
@@ -1371,7 +1372,9 @@
   <https://vocab.met.no/mmd/Collection_Keywords/SIOSIN>, <https://vocab.met.no/mmd/Collection_Keywords/CVL>,
   <https://vocab.met.no/mmd/Collection_Keywords/AeN>, <https://vocab.met.no/mmd/Collection_Keywords/TONE>,
   <https://vocab.met.no/mmd/Collection_Keywords/NySMAC>, <https://vocab.met.no/mmd/Collection_Keywords/KSS>,
-  <https://vocab.met.no/mmd/Collection_Keywords/GEONOR>, <https://vocab.met.no/mmd/Collection_Keywords/POLARIN> .
+  <https://vocab.met.no/mmd/Collection_Keywords/GEONOR>, <https://vocab.met.no/mmd/Collection_Keywords/POLARIN> ,
+  <https://vocab.met.no/mmd/Collection_Keywords/SESS2023>, <https://vocab.met.no/mmd/Collection_Keywords/SESS2024>,
+  <https://vocab.met.no/mmd/Collection_Keywords/SESS2025> .
 
 <https://vocab.met.no/mmd/Collection_Keywords/CC>
   a skos:Concept ;
@@ -1492,6 +1495,27 @@
   skos:altLabel "State of Environmental Science in Svalbard 2022"@en ;
   rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue5> ;
   skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2022."@en .
+
+<https://vocab.met.no/mmd/Collection_Keywords/SESS2023>
+  a skos:Concept ;
+  skos:prefLabel "SESS2023"@en ;
+  skos:altLabel "State of Environmental Science in Svalbard 2023"@en ;
+  rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue6> ;
+  skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2023."@en .
+
+<https://vocab.met.no/mmd/Collection_Keywords/SESS2024>
+  a skos:Concept ;
+  skos:prefLabel "SESS2024"@en ;
+  skos:altLabel "State of Environmental Science in Svalbard 2024"@en ;
+  rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue7> ;
+  skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2024."@en .
+
+<https://vocab.met.no/mmd/Collection_Keywords/SESS2025>
+  a skos:Concept ;
+  skos:prefLabel "SESS2025"@en ;
+  skos:altLabel "State of Environmental Science in Svalbard 2025"@en ;
+  rdfs:seeAlso <https://sios-svalbard.org/SESS_Issue8> ;
+  skos:definition "Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2025."@en .
 
 <https://vocab.met.no/mmd/Collection_Keywords/SIOSCD>
   a skos:Concept ;

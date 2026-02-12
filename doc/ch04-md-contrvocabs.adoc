@@ -391,6 +391,12 @@ The purpose of this vocabulary is to identify which collection a dataset belongs
 
 | POLARIN| Datasets that are relevant for the EU Horizon Europe project POLARIN.
 
+| SESS2023| Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2023.
+
+| SESS2024| Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2024.
+
+| SESS2025| Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2025.
+
 |===
 
 <<collection_keywords>>

@@ -234,6 +234,9 @@
       <xs:enumeration value="KSS"/>
       <xs:enumeration value="GEONOR"/>
       <xs:enumeration value="POLARIN"/>
+      <xs:enumeration value="SESS2023"/>
+      <xs:enumeration value="SESS2024"/>
+      <xs:enumeration value="SESS2025"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="instrument_modes_enum">
