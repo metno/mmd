@@ -209,17 +209,27 @@
     </xsl:template>
 
     <xsl:template match="gmd:language">
-        <xsl:element name="mmd:dataset_language">
+        <xsl:variable name="language">
             <xsl:choose>
                 <xsl:when test="gmd:LanguageCode">
-                    <xsl:value-of select="gmd:LanguageCode" />
+                    <xsl:value-of select="gmd:LanguageCode/@codeListValue" />
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="gco:CharacterString" />
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:element>
+        </xsl:variable>
+        <xsl:variable name="language_mapping" select="document('')/*/mapping:language_code[@iso=$language]/@mmd" />
+        <xsl:if test="$language_mapping !=''">
+            <xsl:element name="mmd:dataset_language">
+                <xsl:value-of select="$language_mapping"/>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
+
+    <mapping:language_code iso="eng" mmd="en" />
+    <mapping:language_code iso="en" mmd="en" />
+    <mapping:language_code iso="English" mmd="en" />
 
     <xsl:template match="gmd:status">
         <xsl:variable name="iso_status" select="normalize-space(gmd:MD_ProgressCode/@codeListValue)" />
