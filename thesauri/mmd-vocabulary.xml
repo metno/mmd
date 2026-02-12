@@ -1739,7 +1739,7 @@
     <skos:changeNote xml:lang="en">2024-02-21, Added Concept \"TONE\" and \"NySMAC\" in collection</skos:changeNote>
     <skos:changeNote xml:lang="en">2024-06-06, Added Concept \"KSS\" and \"GEONOR\" in collection</skos:changeNote>
     <skos:changeNote xml:lang="en">2025-01-28, Added Concept \"POLARIN\" in collection</skos:changeNote>
-    <skos:changeNote xml:lang="en">2026-02-12, Added Concept \"SESS2023, SESS2024 and SESS2025\" in collection</skos:changeNote>
+    <skos:changeNote xml:lang="en">2026-02-12, Added Concept \"SESS2023\", \"SESS2024\" and \"SESS2025\" in collection</skos:changeNote>
     <skos:definition xml:lang="en">The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Collection_Keywords/CC">
