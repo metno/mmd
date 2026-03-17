@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Draft implementation of dcat to mmd mapping
+Draft implementation of dcat to mmd mapping.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:mmd="http://www.met.no/schema/mmd"
@@ -20,6 +20,7 @@ Draft implementation of dcat to mmd mapping
     xmlns:locn="http://www.w3.org/ns/locn#"
     xmlns:adms="http://www.w3.org/ns/adms#"
     xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+    xmlns:mapping="http://www.met.no/schema/mmd/dcat2mmd"
     version="1.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
     <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
@@ -34,9 +35,31 @@ Draft implementation of dcat to mmd mapping
     <xsl:template match="dcat:Dataset">
         <xsl:apply-templates select="dct:identifier"/>
         <xsl:apply-templates select="dct:title"/>
-        <xsl:apply-templates select="dct:description"/>
+        <!--abstract sometimes is missing-->
+        <xsl:choose>
+            <xsl:when test="dct:description">
+                <xsl:element name="mmd:abstract">
+                    <xsl:attribute name="xml:lang">en</xsl:attribute>
+                    <xsl:value-of select="dct:description"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="mmd:abstract">
+                    <xsl:attribute name="xml:lang">en</xsl:attribute>
+                    <xsl:value-of select="dct:title"/>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
         <xsl:element name="mmd:metadata_status">
-            <xsl:text>Active</xsl:text>
+            <!--ad-hoc filtering to Inactive for records that are harvested through other means. This is a workaround until a better way is found. -->
+            <xsl:choose>
+                <xsl:when test="contains(dcat:landingPage/foaf:Document/@rdf:about, 'iadc.cnr.it') or contains(dcat:landingPage/foaf:Document/@rdf:about, 'PANGAEA') or contains(dcat:landingPage/foaf:Document/@rdf:about, 'data.g-e-m.dk')">
+                    <xsl:text>Inactive</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>Active</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
         <xsl:element name="mmd:dataset_production_status">
             <xsl:text>Not available</xsl:text>
@@ -44,21 +67,32 @@ Draft implementation of dcat to mmd mapping
         <xsl:element name="mmd:collection">
             <xsl:text>ADC</xsl:text>
         </xsl:element>
+        <xsl:call-template name="collection">
+            <xsl:with-param name="obsfac" select="dcat:theme" />
+        </xsl:call-template>
         <xsl:element name="mmd:last_metadata_update">
             <xsl:if test="dct:issued">
                 <xsl:element name="mmd:update">
                     <xsl:element name="mmd:datetime">
-                        <xsl:value-of select="dct:issued"/>
+                        <!--xsl:value-of select="dct:issued"/-->
+                        <xsl:call-template name="datetime">
+                            <xsl:with-param name="datetime" select="dct:issued" />
+                        </xsl:call-template>
                     </xsl:element>
                     <xsl:element name="mmd:type">
                         <xsl:text>Created</xsl:text>
+                    </xsl:element>
+                    <xsl:element name="mmd:note">
+                        <xsl:text>Information caputured from DCAT record</xsl:text>
                     </xsl:element>
                 </xsl:element>
             </xsl:if>
             <xsl:if test="dct:modified">
                 <xsl:element name="mmd:update">
                     <xsl:element name="mmd:datetime">
-                        <xsl:value-of select="dct:modified"/>
+                        <xsl:call-template name="datetime">
+                            <xsl:with-param name="datetime" select="dct:modified" />
+                        </xsl:call-template>
                     </xsl:element>
                     <xsl:element name="mmd:type">
                         <xsl:text>Major modification</xsl:text>
@@ -69,7 +103,7 @@ Draft implementation of dcat to mmd mapping
                 </xsl:element>
             </xsl:if>
         </xsl:element>
-        <xsl:apply-templates select="dct:temporal"/>
+        <xsl:apply-templates select="dct:temporal[1]"/>
         <xsl:element name="mmd:iso_topic_category">
             <xsl:text>Not available</xsl:text>
         </xsl:element>
@@ -85,6 +119,9 @@ Draft implementation of dcat to mmd mapping
                     <xsl:value-of select="schema:PropertyValue/schema:name"/>
                 </xsl:element>
             </xsl:for-each>
+            <xsl:call-template name="stationnames">
+                <xsl:with-param name="obsfac" select="dcat:theme" />
+            </xsl:call-template>
         </xsl:element>
         <xsl:apply-templates select="dcat:contactPoint"/>
         <!--create also investigator, unique in dcat-->
@@ -104,6 +141,7 @@ Draft implementation of dcat to mmd mapping
                 </xsl:element>
             </xsl:element>
         </xsl:if>
+		<xsl:apply-templates select="dct:publisher[1]" />
         <xsl:for-each select="dcat:distribution">
             <xsl:apply-templates select="dcat:Distribution"/>
         </xsl:for-each>
@@ -122,18 +160,17 @@ Draft implementation of dcat to mmd mapping
         <xsl:apply-templates select="schema:license"/>
         <xsl:apply-templates select="dcat:landingPage"/>
         <xsl:apply-templates select="foaf:page"/>
+        <xsl:call-template name="obsfacility">
+            <xsl:with-param name="obsfac" select="dcat:theme" />
+        </xsl:call-template>
+        <xsl:apply-templates select="schema:citation"/>
         <xsl:element name="mmd:metadata_source">
             <xsl:text>External-Harvest</xsl:text>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="dct:title">
         <xsl:element name="mmd:title">
-            <xsl:attribute name="xml:lang">en</xsl:attribute>
-            <xsl:value-of select="."/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="dct:description">
-        <xsl:element name="mmd:abstract">
             <xsl:attribute name="xml:lang">en</xsl:attribute>
             <xsl:value-of select="."/>
         </xsl:element>
@@ -193,12 +230,34 @@ Draft implementation of dcat to mmd mapping
     </xsl:template>
     <xsl:template match="dct:publisher">
         <!--This can be in different format, as resource for example-->
-        <xsl:if test="foaf:Organization">
-            <xsl:value-of select="foaf:Organization/foaf:name"/>
-        </xsl:if>
-        <xsl:if test="foaf:Agent">
-            <xsl:value-of select="foaf:Agent/foaf:name"/>
-        </xsl:if>
+        <xsl:element name="mmd:data_center">
+            <xsl:element name="mmd:data_center_name">
+                <xsl:element name="mmd:short_name">
+                    <xsl:if test="foaf:Organization">
+                        <xsl:value-of select="foaf:Organization/foaf:name"/>
+                    </xsl:if>
+                    <xsl:if test="foaf:Agent">
+                        <xsl:value-of select="foaf:Agent/foaf:name"/>
+                    </xsl:if>
+                </xsl:element>
+                <xsl:element name="mmd:long_name">
+                    <xsl:if test="foaf:Organization">
+                        <xsl:value-of select="foaf:Organization/foaf:name"/>
+                    </xsl:if>
+                    <xsl:if test="foaf:Agent">
+                        <xsl:value-of select="foaf:Agent/foaf:name"/>
+                    </xsl:if>
+                </xsl:element>
+            </xsl:element>
+            <xsl:element name="mmd:data_center_url">
+                <xsl:if test="foaf:Organization">
+                    <xsl:value-of select="foaf:Organization/foaf:name"/>
+                </xsl:if>
+                <xsl:if test="foaf:Agent">
+                    <xsl:value-of select="foaf:Agent/foaf:homepage/@rdf:resource"/>
+                </xsl:if>
+            </xsl:element>
+        </xsl:element>
     </xsl:template>
     <xsl:template match="dct:spatial">
         <xsl:element name="mmd:geographic_extent">
@@ -227,7 +286,8 @@ Draft implementation of dcat to mmd mapping
                 <xsl:value-of select="substring-before(substring-after(locn:geometry, '(('), '))')"/>
             </xsl:variable>
             <xsl:variable name="commaCount" select="string-length($wkt) - string-length(translate($wkt, ',', ''))"/>
-            <xsl:if test="$commaCount = 4">
+            <!--sometimes a POINT is represented as degerate POLYGON: POLYGON ((-53.5100 69.2510, -53.5100 69.2510, -53.5100 69.2510, -53.5100 69.2510))-->
+            <xsl:if test="$commaCount = 4 or $commaCount = 3">
                 <xsl:element name="mmd:rectangle">
                     <xsl:attribute name="srsName">
                         <xsl:text>EPSG:4326</xsl:text>
@@ -297,7 +357,7 @@ Draft implementation of dcat to mmd mapping
         </xsl:variable>
         <xsl:variable name="maxlong34">
             <xsl:choose>
-                <xsl:when test="$long3 &gt; $long4">
+                <xsl:when test="$long3 &gt; $long4 or $long4 ='NaN'">
                     <xsl:value-of select="$long3"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -327,7 +387,7 @@ Draft implementation of dcat to mmd mapping
         </xsl:variable>
         <xsl:variable name="minlong34">
             <xsl:choose>
-                <xsl:when test="$long3 &gt; $long4">
+                <xsl:when test="$long3 &gt; $long4 or $long4 ='NaN'">
                     <xsl:value-of select="$long4"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -379,7 +439,7 @@ Draft implementation of dcat to mmd mapping
         </xsl:variable>
         <xsl:variable name="maxlat34">
             <xsl:choose>
-                <xsl:when test="$lat3 &gt; $lat4">
+                <xsl:when test="$lat3 &gt; $lat4 or $lat4 = 'NaN'">
                     <xsl:value-of select="$lat3"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -409,7 +469,7 @@ Draft implementation of dcat to mmd mapping
         </xsl:variable>
         <xsl:variable name="minlat34">
             <xsl:choose>
-                <xsl:when test="$lat3 &gt; $lat4">
+                <xsl:when test="$lat3 &gt; $lat4 or $lat4 = 'NaN'">
                     <xsl:value-of select="$lat4"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -439,9 +499,6 @@ Draft implementation of dcat to mmd mapping
         <xsl:element name="mmd:west">
             <xsl:value-of select="$minlong"/>
         </xsl:element>
-    </xsl:template>
-    <!--to be fixed-->
-    <xsl:template name="polygonseparation">
     </xsl:template>
     <xsl:template match="dct:temporal">
         <xsl:element name="mmd:temporal_extent">
@@ -590,4 +647,92 @@ Draft implementation of dcat to mmd mapping
             <xsl:value-of select="."/>
         </xsl:element>
     </xsl:template>
+    <xsl:template name="datetime">
+        <xsl:param name="datetime"/>
+        <xsl:choose>
+            <xsl:when test="contains($datetime, 'T')">
+                <xsl:choose>
+                    <xsl:when test="contains($datetime, 'Z')">
+                        <xsl:value-of select="$datetime"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat($datetime,'Z')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($datetime,'T12:00:00Z')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template name="obsfacility">
+        <xsl:param name="obsfac" select="." />
+        <xsl:variable name="mmd_obsfac_name" select="document('')/*/mapping:station[@dcat=$obsfac]/@mmd" />
+        <xsl:variable name="mmd_obsfac_resource" select="document('')/*/mapping:station[@dcat=$obsfac]/@resource" />
+        <xsl:if test="$mmd_obsfac_resource !=''">
+            <xsl:element name="mmd:related_information">
+                <xsl:element name="mmd:type">
+                    <xsl:text>Observation facility</xsl:text>
+                </xsl:element>
+                <xsl:element name="mmd:description">
+                    <xsl:value-of select="$mmd_obsfac_name" />
+                </xsl:element>
+                <xsl:element name="mmd:resource">
+                    <xsl:value-of select="$mmd_obsfac_resource" />
+                </xsl:element>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template name="collection">
+        <xsl:param name="obsfac" select="." />
+        <xsl:variable name="polarin_collection" select="document('')/*/mapping:station[@dcat=$obsfac]/@polarin" />
+        <xsl:if test="$polarin_collection ='True'">
+            <xsl:element name="mmd:collection">
+                <xsl:text>POLARIN</xsl:text>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template name="stationnames">
+        <xsl:param name="obsfac" select="." />
+        <xsl:variable name="mmd_obsfac_name" select="document('')/*/mapping:station[@dcat=$obsfac]/@mmd" />
+        <xsl:element name="mmd:keyword">
+            <xsl:value-of select="$mmd_obsfac_name" />
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="schema:citation">
+        <xsl:if test="starts-with(., 'http://doi') or starts-with(., 'https://doi')">
+            <xsl:element name="mmd:dataset_citation">
+                <xsl:element name="mmd:doi">
+                    <xsl:value-of select="."/>
+                </xsl:element>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+
+    <!--dedicated interact mapping-->
+    <mapping:station dcat="abisko-scientific-resarch-station" mmd="Abisko Scientific Research Station" polarin="True" resource="https://www.polar.se/en/research-support/abisko-scientific-research-station/"/>
+    <mapping:station dcat="arctic-station" mmd="Arctic Station" polarin="True" resource="https://arktiskstation.ku.dk/"/>
+    <mapping:station dcat="cnr-arctic-station-dirigibile-italia" mmd='CNR Arctic Station "Dirigibile Italia"' polarin="True" resource="https://www.isp.cnr.it/en/infrastructures/research-stations/dirigibile-italia"/>
+    <mapping:station dcat="zackenberg-research-station" mmd="Zackenberg Research Station" polarin="True" resource="https://zackenberg.dk/"/>
+    <mapping:station dcat="kevo-subarctic-research-station" mmd="Kevo Subarctic Research Station" polarin="True" resource="https://sites.utu.fi/kevo/en/"/>
+    <mapping:station dcat="oulanka-research-station" mmd="Oulanka Research Station" polarin="True" resource="https://www.oulu.fi/en/research/research-infrastructures/oulanka-research-station"/>
+    <mapping:station dcat="pallas-sodankyla-stations" mmd="Pallas-Sodankylä Atmosphere-Ecosystem Supersite" polarin="True" resource="https://fmiarc.fmi.fi"/>
+    <mapping:station dcat="tarfala-research-station" mmd="Tarfala Research Station" polarin="True" resource="https://www.su.se/tarfala-research-station/"/>
+    <mapping:station dcat="western-arctic-research-centre" mmd="Western Arctic Research Centre" polarin="True" resource="https://nwtresearch.com/"/>
+    <mapping:station dcat="cen-whapmagoostui-kuujuarapik-research-station" mmd="CEN Whapmagoostui-Kuujuarapik Research Station" polarin="True" resource="https://www.cen.ulaval.ca/en/"/>
+    <mapping:station dcat="greenland-institute-of-natural-resources" mmd="Greenland Institute of Natural Resources" polarin="True" resource="https://natur.gl/?lang=en"/>
+    <!--non polarin-->
+    <mapping:station dcat="churchill-northern-studies-centre" mmd="Churchill Northern Studies Centre" polarin="False"/>
+    <mapping:station dcat="faroe-islands-nature-investigation" mmd="Faroe Islands Nature Investigation" polarin="False"/>
+    <mapping:station dcat="hyytiala-forestry-reseatch-station-smear-ii" mmd="Hyytiälä Forestry Research Station (SMEAR II)" polarin="False" resource="https://www.atm.helsinki.fi/smear/smear-ii/"/>
+    <mapping:station dcat="kainuu-fisheries-research-station" mmd="Kainuu Fisheries Research Station" polarin="False" resource="https://www.luke.fi/en/research/research-infrastructures/kainuu-fisheries-research-station-kfrs-infrastructure" />
+    <mapping:station dcat="kluane-lake-research-station" mmd="Kluane Lake Research Station" polarin="False" resource="https://klrs.ca/" />
+    <mapping:station dcat="mm-klapa-research-station" mmd="M.M. Klapa Research Station" polarin="False" resource="https://www.igipz.pan.pl/hala-gasienicowa-zbg.html"/>
+    <mapping:station dcat="svanhovd-research-station" mmd="NIBIO Svanhovd Research Station" polarin="False"/>
+    <mapping:station dcat="sonnblick-observatory" mmd="Sonnblick Observatory" polarin="False" resource="https://www.sonnblick.net/en/"/>
+    <mapping:station dcat="station-hintereis" mmd="Station Hintereis" polarin="False" resource="https://www.uibk.ac.at/projects/station-hintereis-opal-data/index.html.en"/>
+    <mapping:station dcat="svartberget-research-station" mmd="Svartberget Research Station" polarin="False" resource="https://www.slu.se/en/about-slu/organisation/departments/field-based-forest-research/experiemental-forests-and-stations/svartberget-research-station/"/>
+    <mapping:station dcat="toolik-field-station" mmd="Toolik Field Station" polarin="False" resource="https://www.uaf.edu/toolik/"/>
+    <mapping:station dcat="varrio-subarctic-research-station" mmd="Värriö Subarctic Research Station" polarin="False" resource="https://www.helsinki.fi/en/research-stations/varrio-subarctic-research-station"/>
+
 </xsl:stylesheet>
