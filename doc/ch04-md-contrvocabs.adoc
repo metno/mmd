@@ -383,7 +383,7 @@ The purpose of this vocabulary is to identify which collection a dataset belongs
 
 | TONE| Datasets from the Troll Observing Network in Antarctica.
 
-| NySMAC| Datasets from Ny-Ålesund in the context of NySMAC (Ny-Ålesund Science Managers Committee).
+| NySMAC| Datasets from Ny-Ålesund research station in the context of NySMAC (Ny-Ålesund Science Managers Committee).
 
 | KSS| Datasets from the Norwegian Centre for Climate Services (Norsk KlimaServiceSenter).
 
