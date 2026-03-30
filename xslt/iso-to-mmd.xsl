@@ -150,6 +150,7 @@
             -->
             <xsl:apply-templates select="gmd:identificationInfo/srv:SV_ServiceIdentification/srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint" />
 
+            <xsl:apply-templates select="gmd:parentIdentifier/gco:CharacterString" />
             <xsl:apply-templates select="gmd:dataSetURI/gco:CharacterString" />
             <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource" />
 
@@ -165,6 +166,13 @@
 
     <xsl:template match="gmd:fileIdentifier/gco:CharacterString">
         <xsl:element name="mmd:metadata_identifier">
+            <xsl:value-of select="." />
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="gmd:parentIdentifier/gco:CharacterString">
+        <xsl:element name="mmd:related_dataset">
+            <xsl:attribute name="relation_type">parent</xsl:attribute>
             <xsl:value-of select="." />
         </xsl:element>
     </xsl:template>
@@ -605,6 +613,7 @@
     <!-- Extract information on online resources -->
     <!-- mapping between protocol names -->
     <mapping:protocol_names external="OPeNDAP:OPeNDAP" mmd="OPeNDAP" />
+    <mapping:protocol_names external="OPENDAP:OPENDAP" mmd="OPeNDAP" />
     <mapping:protocol_names external="WWW:OPENDAP" mmd="OPeNDAP" />
     <mapping:protocol_names external="WWW:LINK-1.0-http--opendap" mmd="OPeNDAP" />
     <mapping:protocol_names external="file" mmd="HTTP" />
