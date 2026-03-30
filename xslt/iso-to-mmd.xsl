@@ -51,7 +51,6 @@
     <xsl:template match="gmd:MD_Metadata | gmi:MI_Metadata">
         <xsl:element name="mmd:mmd">
             <xsl:apply-templates select="gmd:fileIdentifier/gco:CharacterString" />
-            <xsl:apply-templates select="gmd:parentIdentifier/gco:CharacterString" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" />
             <xsl:element name="mmd:metadata_status">Active</xsl:element>
@@ -151,6 +150,7 @@
             -->
             <xsl:apply-templates select="gmd:identificationInfo/srv:SV_ServiceIdentification/srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint" />
 
+            <xsl:apply-templates select="gmd:parentIdentifier/gco:CharacterString" />
             <xsl:apply-templates select="gmd:dataSetURI/gco:CharacterString" />
             <xsl:apply-templates select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource" />
 
