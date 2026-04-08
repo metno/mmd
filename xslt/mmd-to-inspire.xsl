@@ -1097,15 +1097,6 @@
                             </xsl:element>
                         </xsl:element>
                     </xsl:if>
-                    <xsl:if test="@vocabulary = 'GCMDPROV'">
-                        <xsl:element name="gmd:type">
-                            <xsl:element name="gmd:MD_KeywordTypeCode">
-                                <xsl:attribute name="codeList">https://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode</xsl:attribute>
-                                <xsl:attribute name="codeListValue">dataCentre</xsl:attribute>
-                                <xsl:text>dataCentre</xsl:text>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:if>
                     <xsl:element name="gmd:thesaurusName">
                         <xsl:element name="gmd:CI_Citation">
                             <xsl:if test="@vocabulary = 'GCMDSK'">
