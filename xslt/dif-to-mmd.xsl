@@ -722,7 +722,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         </xsl:element>
     </xsl:template>
     <xsl:template match="dif:Organization">
-        <xsl:if test="dif:Organization_Type[contains(text(),'ARCHIVER') or contains(text(),'DISTRIBUTOR') or contains(text(),'ORIGINATOR')]">
+        <xsl:if test="dif:Organization_Type[contains(text(),'ARCHIVER') or contains(text(),'DISTRIBUTOR')]">
             <xsl:element name="mmd:data_center">
                 <xsl:element name="mmd:data_center_name">
                     <!--in DIF 10.2 only short_name is mandatory-->
