@@ -674,21 +674,22 @@ sections.</p>
 <li><a href="#keywords-vocabulary">4.1. Keywords Vocabulary</a></li>
 <li><a href="#spatial-representation">4.2. Spatial Representation</a></li>
 <li><a href="#use-constraint">4.3. Use Constraint</a></li>
-<li><a href="#metadata-source">4.4. Metadata Source</a></li>
-<li><a href="#dataset-production-status">4.5. Dataset Production Status</a></li>
-<li><a href="#activity-type">4.6. Activity Type</a></li>
-<li><a href="#iso-topic-category">4.7. ISO Topic Category</a></li>
-<li><a href="#related-information-types">4.8. Related Information Types</a></li>
-<li><a href="#data-access-types">4.9. Data Access Types</a></li>
-<li><a href="#access-constraint">4.10. Access Constraint</a></li>
-<li><a href="#operational-status">4.11. Operational Status</a></li>
-<li><a href="#collection-keywords">4.12. Collection Keywords</a></li>
-<li><a href="#instrument-modes">4.13. Instrument Modes</a></li>
-<li><a href="#polarisation-modes">4.14. Polarisation Modes</a></li>
-<li><a href="#product-types">4.15. Product Types</a></li>
-<li><a href="#contact-roles">4.16. Contact Roles</a></li>
-<li><a href="#contact-types">4.17. Contact Types</a></li>
-<li><a href="#quality-control">4.18. Quality Control</a></li>
+<li><a href="#metadata-status">4.4. Metadata Status</a></li>
+<li><a href="#metadata-source">4.5. Metadata Source</a></li>
+<li><a href="#dataset-production-status">4.6. Dataset Production Status</a></li>
+<li><a href="#activity-type">4.7. Activity Type</a></li>
+<li><a href="#iso-topic-category">4.8. ISO Topic Category</a></li>
+<li><a href="#related-information-types">4.9. Related Information Types</a></li>
+<li><a href="#data-access-types">4.10. Data Access Types</a></li>
+<li><a href="#access-constraint">4.11. Access Constraint</a></li>
+<li><a href="#operational-status">4.12. Operational Status</a></li>
+<li><a href="#collection-keywords">4.13. Collection Keywords</a></li>
+<li><a href="#instrument-modes">4.14. Instrument Modes</a></li>
+<li><a href="#polarisation-modes">4.15. Polarisation Modes</a></li>
+<li><a href="#product-types">4.16. Product Types</a></li>
+<li><a href="#contact-roles">4.17. Contact Roles</a></li>
+<li><a href="#contact-types">4.18. Contact Types</a></li>
+<li><a href="#quality-control">4.19. Quality Control</a></li>
 </ul>
 </li>
 </ul>
@@ -1108,7 +1109,7 @@ metadata.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Status for the metadata record. This is configuration
 metadata and should not be misinterpreted as
 <a href="#dataset_production_status">Section 2.11</a>. The only purpose of this tag
-is to determine whether the dataset should be indexed or not.</p></td>
+is to determine whether the dataset should be indexed or not. It follows a controlled vocabulary from <a href="#metadata-status">Section 4.4</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Example XML</p></td>
@@ -1166,7 +1167,7 @@ all metadata records are in the same repository.</p>
 </div>
 <div class="paragraph">
 <p>The keyword used to identify the collection should be short (e.g. NMDC,
-NMAP, SIOS, &#8230;&#8203;). See <a href="#collection-keywords">Section 4.12</a> for details.</p>
+NMAP, SIOS, &#8230;&#8203;). See <a href="#collection-keywords">Section 4.13</a> for details.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1672,7 +1673,7 @@ gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:ge
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Production status for the dataset using a controlled
 vocabulary. The valid keywords are listed in
-<a href="#dataset-production-status">Section 4.5</a>. If set as “In Work”, remember that end_date
+<a href="#dataset-production-status">Section 4.6</a>. If set as “In Work”, remember that end_date
 in <a href="#temporal_extent">Section 2.8</a> can (should) be empty.</p></td>
 </tr>
 <tr>
@@ -1779,7 +1780,7 @@ dataset. The default for all datasets is English (en).</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The current operational status of the product. Valid
-keywords are listed in <a href="#operational-status">Section 4.11</a>.</p></td>
+keywords are listed in <a href="#operational-status">Section 4.12</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Example XML:</p></td>
@@ -1832,7 +1833,7 @@ keywords are listed in <a href="#operational-status">Section 4.11</a>.</p></td>
 <p>Limitations on the access to the dataset.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="#access-constraint">Section 4.10</a> for a list of valid values.</p>
+<p>See <a href="#access-constraint">Section 4.11</a> for a list of valid values.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2555,7 +2556,7 @@ gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTrans
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ISO topic category fetched from a controlled vocabulary. Valid keywords
-are listed in <a href="#iso-topic-category">Section 4.7</a>.</p>
+are listed in <a href="#iso-topic-category">Section 4.8</a>.</p>
 </div>
 <div class="paragraph">
 <p>This field is required for compatibility with DIF and ISO</p>
@@ -2813,13 +2814,13 @@ information is not provided or not applicable. For more details about this, see 
 <p>resource: this is a link to the controlled vocabulary term describing the instrument (<a href="#platform-and-instrument-vocabularies">Section 3.4</a>).</p>
 </li>
 <li>
-<p><a id="instrument_modes"></a> mode: this is specific for SAR (can be for other instruments in the future), see <a href="#instrument-modes">Section 4.13</a>.</p>
+<p><a id="instrument_modes"></a> mode: this is specific for SAR (can be for other instruments in the future), see <a href="#instrument-modes">Section 4.14</a>.</p>
 </li>
 <li>
-<p><a id="polarisation_modes"></a> polarisation: is also for SAR, see <a href="#polarisation-modes">Section 4.14</a></p>
+<p><a id="polarisation_modes"></a> polarisation: is also for SAR, see <a href="#polarisation-modes">Section 4.15</a></p>
 </li>
 <li>
-<p><a id="product_types"></a> product_type: is for the Sentinel satellites, see <a href="#product-types">Section 4.15</a> for more information.</p>
+<p><a id="product_types"></a> product_type: is for the Sentinel satellites, see <a href="#product-types">Section 4.16</a> for more information.</p>
 </li>
 </ul>
 </div>
@@ -2997,7 +2998,7 @@ useful for e.g. Sentinel-2 data and old AVHRR data at MET.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The type of metadata source. This element refers to the flow of metadata information, whether it is from
 internal assets (data produced and/or maintained internally within MET Norway/Arctic Data Centre) or from external data centres through metadata harvesting.
-It follows a controlled vocabulary from <a href="#metadata-source">Section 4.4</a>.</p></td>
+It follows a controlled vocabulary from <a href="#metadata-source">Section 4.5</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Example XML</p></td>
@@ -3048,7 +3049,7 @@ It follows a controlled vocabulary from <a href="#metadata-source">Section 4.4</
 <p>The activity used to collect the data.</p>
 </div>
 <div class="paragraph">
-<p>Valid keywords are listed in <a href="#activity-type">Section 4.6</a>.</p>
+<p>Valid keywords are listed in <a href="#activity-type">Section 4.7</a>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3234,7 +3235,7 @@ parts can be put into citation information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The level of quality control performed on the dataset/product. Valid keywords are listed in <a href="#quality-control">Section 4.18</a>.
+<td class="tableblock halign-left valign-top"><p class="tableblock">The level of quality control performed on the dataset/product. Valid keywords are listed in <a href="#quality-control">Section 4.19</a>.
 Additional information about data quality control can be provided through the related_information element providing a URL to the quality control documentation.</p></td>
 </tr>
 <tr>
@@ -3773,7 +3774,38 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="metadata-source"><a class="anchor" href="#metadata-source"></a>4.4. Metadata Source</h3>
+<h3 id="metadata-status"><a class="anchor" href="#metadata-status"></a>4.4. Metadata Status</h3>
+<div class="paragraph">
+<p>Status for the metadata record. This is configuration metadata with the only purpose to determine whether the dataset should be indexed or not.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">code</th>
+<th class="tableblock halign-left valign-top">definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The metadata record can be indexed and exposed into catalogues.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inactive</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The metadata record can be indexed, but will not be exposed into catalogues.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a href="#metadata_status">Section 2.4</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="metadata-source"><a class="anchor" href="#metadata-source"></a>4.5. Metadata Source</h3>
 <div class="paragraph">
 <p>The type of metadata source. This element refers to the flow of metadata information.</p>
 </div>
@@ -3804,7 +3836,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="dataset-production-status"><a class="anchor" href="#dataset-production-status"></a>4.5. Dataset Production Status</h3>
+<h3 id="dataset-production-status"><a class="anchor" href="#dataset-production-status"></a>4.6. Dataset Production Status</h3>
 <div class="paragraph">
 <p>Production status for the dataset.</p>
 </div>
@@ -3847,7 +3879,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="activity-type"><a class="anchor" href="#activity-type"></a>4.6. Activity Type</h3>
+<h3 id="activity-type"><a class="anchor" href="#activity-type"></a>4.7. Activity Type</h3>
 <div class="paragraph">
 <p>Controlled vocabulary to be used to describe activity types. Rather than using the term observation type or platform which possibly could describe the nature of observed datasets, activity type is used to filter between both observations and simulations that possibly are describing the same phenomena. Activity types are used to identify the origin of the dataset documented through the MMD specifications. This is not an identification of the observation platform, e.g. specific vessel, synoptic (SYNOP) station or satellite, but more the nature of the generation process (e.g. simulation, in situ observation, remote sensing etc). It is useful in the context of filtering data when searching for relevant datasets.</p>
 </div>
@@ -3918,7 +3950,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="iso-topic-category"><a class="anchor" href="#iso-topic-category"></a>4.7. ISO Topic Category</h3>
+<h3 id="iso-topic-category"><a class="anchor" href="#iso-topic-category"></a>4.8. ISO Topic Category</h3>
 <div class="paragraph">
 <p>Terms defined by ISO describing data themes.</p>
 </div>
@@ -4029,7 +4061,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.8. Related Information Types</h3>
+<h3 id="related-information-types"><a class="anchor" href="#related-information-types"></a>4.9. Related Information Types</h3>
 <div class="paragraph">
 <p>Description of the type of related information provided.</p>
 </div>
@@ -4096,7 +4128,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.9. Data Access Types</h3>
+<h3 id="data-access-types"><a class="anchor" href="#data-access-types"></a>4.10. Data Access Types</h3>
 <div class="paragraph">
 <p>Description of the type of data access provided.</p>
 </div>
@@ -4147,7 +4179,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="access-constraint"><a class="anchor" href="#access-constraint"></a>4.10. Access Constraint</h3>
+<h3 id="access-constraint"><a class="anchor" href="#access-constraint"></a>4.11. Access Constraint</h3>
 <div class="paragraph">
 <p>A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</p>
 </div>
@@ -4190,7 +4222,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="operational-status"><a class="anchor" href="#operational-status"></a>4.11. Operational Status</h3>
+<h3 id="operational-status"><a class="anchor" href="#operational-status"></a>4.12. Operational Status</h3>
 <div class="paragraph">
 <p>Controlled vocabulary to be used to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a commitment for a specific delivery over time.</p>
 </div>
@@ -4233,7 +4265,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="collection-keywords"><a class="anchor" href="#collection-keywords"></a>4.12. Collection Keywords</h3>
+<h3 id="collection-keywords"><a class="anchor" href="#collection-keywords"></a>4.13. Collection Keywords</h3>
 <div class="paragraph">
 <p>The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</p>
 </div>
@@ -4380,7 +4412,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="instrument-modes"><a class="anchor" href="#instrument-modes"></a>4.13. Instrument Modes</h3>
+<h3 id="instrument-modes"><a class="anchor" href="#instrument-modes"></a>4.14. Instrument Modes</h3>
 <div class="paragraph">
 <p>Instrument Modes for Sentinel-1 (SAR-C)</p>
 </div>
@@ -4419,7 +4451,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="polarisation-modes"><a class="anchor" href="#polarisation-modes"></a>4.14. Polarisation Modes</h3>
+<h3 id="polarisation-modes"><a class="anchor" href="#polarisation-modes"></a>4.15. Polarisation Modes</h3>
 <div class="paragraph">
 <p>Polarisation Modes</p>
 </div>
@@ -4458,7 +4490,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="product-types"><a class="anchor" href="#product-types"></a>4.15. Product Types</h3>
+<h3 id="product-types"><a class="anchor" href="#product-types"></a>4.16. Product Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4818,7 +4850,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.16. Contact Roles</h3>
+<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.17. Contact Roles</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4854,7 +4886,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="contact-types"><a class="anchor" href="#contact-types"></a>4.17. Contact Types</h3>
+<h3 id="contact-types"><a class="anchor" href="#contact-types"></a>4.18. Contact Types</h3>
 <div class="paragraph">
 <p>The type of personnel associated with the dataset.</p>
 </div>
@@ -4885,7 +4917,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="quality-control"><a class="anchor" href="#quality-control"></a>4.18. Quality Control</h3>
+<h3 id="quality-control"><a class="anchor" href="#quality-control"></a>4.19. Quality Control</h3>
 <div class="paragraph">
 <p>A controlled vocabulary for the level of quality control performed on the dataset/product.</p>
 </div>
@@ -4928,7 +4960,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-03-23 09:54:15 UTC
+Last updated 2026-04-21 10:17:20 UTC
 </div>
 </div>
 </body>
