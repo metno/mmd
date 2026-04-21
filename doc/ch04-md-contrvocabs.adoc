@@ -84,6 +84,23 @@ A controlled vocabulary to be used to describe constraints on the usage of metad
 
 <<use_constraint>>
 
+[[metadata-status]]
+=== Metadata Status
+
+Status for the metadata record. This is configuration metadata with the only purpose to determine whether the dataset should be indexed or not.
+
+[cols="2,8"]
+|===
+| code | definition
+
+| Active| The metadata record can be indexed and exposed into catalogues.
+
+| Inactive| The metadata record can be indexed, but will not be exposed into catalogues.
+
+|===
+
+<<metadata_status>>
+
 [[metadata-source]]
 === Metadata Source
 

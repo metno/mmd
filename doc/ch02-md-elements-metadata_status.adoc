@@ -14,7 +14,7 @@
 |Description |Status for the metadata record. This is configuration
 metadata and should not be misinterpreted as
 <<dataset_production_status>>. The only purpose of this tag
-is to determine whether the dataset should be indexed or not.
+is to determine whether the dataset should be indexed or not. It follows a controlled vocabulary from <<metadata-status>>.
 
 |Example XML a|
 ----

@@ -284,6 +284,27 @@
 
   </skos:Collection>
 
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Metadata_Status">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Metadata Status</skos:prefLabel>
+    <skos:definition xml:lang="en">Status for the metadata record. This is configuration metadata with the only purpose to determine whether the dataset should be indexed or not.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Metadata_Status/Active">
+        <skos:prefLabel xml:lang="en">Active</skos:prefLabel>
+        <skos:definition xml:lang="en">The metadata record can be indexed and exposed into catalogues.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Metadata_Status/Inactive">
+        <skos:prefLabel xml:lang="en">Inactive</skos:prefLabel>
+        <skos:definition xml:lang="en">The metadata record can be indexed, but will not be exposed into catalogues.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
+
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Metadata_Source">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>

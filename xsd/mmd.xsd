@@ -13,7 +13,7 @@
             <xs:element name="alternate_identifier"       type="mmd:alternate_identifier_type"      maxOccurs="unbounded" minOccurs="0"/>
             <xs:element name="title"                      type="mmd:multilang_string"               maxOccurs="unbounded" minOccurs="1"/>
             <xs:element name="abstract"                   type="mmd:multilang_string"               maxOccurs="unbounded" minOccurs="1"/>
-            <xs:element name="metadata_status"            type="xs:string"                          maxOccurs="1"         minOccurs="1"/>
+            <xs:element name="metadata_status"            type="mmd:metadata_status_enum"           maxOccurs="1"         minOccurs="1"/>
             <xs:element name="dataset_production_status"  type="mmd:dataset_production_status_enum" maxOccurs="1"         minOccurs="1"/>
             <xs:element name="collection"                 type="mmd:collection_keywords_enum"       maxOccurs="unbounded" minOccurs="1"/>
             <xs:element name="last_metadata_update"       type="mmd:last_metadata_update_type"      maxOccurs="1"         minOccurs="1"/>
