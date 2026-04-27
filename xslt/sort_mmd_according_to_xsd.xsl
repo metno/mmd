@@ -44,6 +44,7 @@
             <xsl:apply-templates select="mmd:data_center"/>
             <xsl:apply-templates select="mmd:related_dataset"/>
             <xsl:apply-templates select="mmd:storage_information"/>
+            <xsl:apply-templates select="mmd:metadata_source"/>
 
         </xsl:element>
     </xsl:template>
