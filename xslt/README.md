@@ -40,6 +40,7 @@ from international standards to MMD.
 - mdform-to-mmd.xsl
 - mdformsplit.xslt
 - ecmwf-iso-to-mmd.xsl
+- pansimple-to-mmd.xsl
 
 ### How to convert
 
