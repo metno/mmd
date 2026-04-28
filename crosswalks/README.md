@@ -14,5 +14,6 @@ The mapping between schemas is provided, as well as dedicated document for vocab
 - MMD/ISO Inspire
 - MMD/STACItem
 - MMD/SolR schema
+- MMD/PANSIMPLE
 - MMD/WCMP2 (WMO Core Metadata Profile - Version 2)
 

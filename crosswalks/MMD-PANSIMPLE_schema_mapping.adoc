@@ -1,0 +1,202 @@
+== Mapping between  MMD and PANSIMPLE
+
+The mapping below is used as background information to create the XLST sheets in the xref:../xslt[xslt folder]. It can be used to map from PANSIMPLE to MMD.
+
+=== References:
+
+. https://github.com/metno/mmd[MMD]
+. https://ws.pangaea.de/schemas/pansimple/pansimple.xsd[PANSIMPLE]
+. https://www.dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd[DUBLIN CORE]
+
+=== Walkthrough table
+
+NOTE: (M) refers to Mandatory fields. Fields prefixed with dc are taken from Dublin Core schema.
+
+[%header, cols="1,1,1", header=True]
+|===
+| MMD
+| PANSIMPLE
+| Notes
+
+| metadata_identifier (M)
+| dc:identifier
+|
+
+
+
+|last_metadata_update/update/datetime (M)
+|dc:date
+|This can be used as creation date, although it can also be in a date format instead of datetime.
+
+|last_metadata_update/update/type (M)
+|-
+|Use "Created" when using dc:date
+
+|last_metadata_update/update/note
+|-
+|Use a predefined note as "Information caputured from PANSIMPLE record"
+
+|metadata_status (M)
+|-
+| This is an MMD internal element
+
+|collection (M)
+|-
+| This is an MMD internal element
+
+|title (M)
+|dc:title
+|
+
+|abstract (M)
+|dc:description
+|
+
+|temporal_extent/start_date
+|dc:coverage/startDate
+|for dc:coverage with attribute type="CoverageType"
+
+|temporal_extent/end_date
+|dc:coverage/endDate
+|for dc:coverage with attribute type="CoverageType"
+
+
+|geographic_extent/rectangle/south (M)
+|dc:coverage/southBoundLatitude
+|
+
+|geographic_extent/rectangle/north (M)
+|dc:coverage/northBoundLatitude
+|
+
+|geographic_extent/rectangle/west (M)
+|dc:coverage/westBoundLongitude
+|
+
+|geographic_extent/rectangle/east (M)
+|dc:coverage/eastBoundLongitude
+|
+
+|dataset_production_status (M)
+|-
+|"Not available" can be used in MMD.
+
+|dataset_language
+|dc:language
+|
+
+|operational_status
+|-
+|"Not available" can be used in MMD.
+
+|access_constraint
+|-
+|
+
+|use_constraint/identifier
+|dc:rights
+|Parsing of the string might be necessary to extract the identifier that can be used in MMD
+
+|use_constraint/resource
+|dc:rights
+|Parsing of the string might be necessary to extract the resource that can be used in MMD
+
+|use_constraint/license_text
+|dc:rights
+|If parsing of the string does not match identifier/resource
+
+|personnel/role (M)
+|-
+|Use Investigator for dc:creator, Technical contact for dc:contributor
+
+|personnel/name (M)
+|dc:creator and dc:contributor
+|
+
+|personnel/email (M)
+|-
+|
+
+|personnel/organization (M)
+|-
+|
+
+
+|data_center/data_center_name/short_name
+|dataCenter
+|The dc:publisher could be also used
+
+|data_center/data_center_name/long_name
+|dataCenter
+|The dc:publisher could be also used
+
+|data_center/data_center_url
+|-
+|
+
+|data_access/type
+|-
+|It is not possible to discriminate between the type of access for a linkage with attribute type. A default HTTP could be used, but it might be inconsistent at times.
+
+
+|data_access/resource
+|linkage with attribute "data"
+|
+
+|data_access/description
+|-
+|
+
+|related_dataset
+|parentIdentifier
+|
+
+|storage_information/file_format
+|dc:format
+|
+
+
+|related_information/type
+|-
+|linkage with attribute "metadata" can be used to set "Dataset landing page" and dc:relation can be mapped to "Other documentation"
+
+|related_information/resource
+|linkage with attribute "metadata" and dc:relation
+|See related_information/type
+
+|related_information/description
+|-
+|
+
+
+|iso_topic_category
+|-
+|Use "Not available"
+
+|keywords
+|dc:subject with attribute type "keyword"
+|Map to vocabulary "None"
+
+|project/short_name
+|dc:subject with attribute type "project"
+|
+
+|project/long_name
+|dc:subject with attribute type "project"
+|
+
+
+|dataset_citation/publication_date
+|dc:date
+|
+
+
+|dataset_citation/publisher
+|dc:publisher
+|
+
+|dataset_citation/doi
+|
+|if linkage with attribute type "metadata" contains "doi.org/" it could be mapped.
+
+|===
