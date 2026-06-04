@@ -79,11 +79,11 @@
             </xsl:choose>
             <!--Only support for gco keyword for GCMD and None. For CFSTDN and GEMET Anchor is also supported. Although a bit nested, the code below supports the parsing of different thesaurus. All that is not part of a recognised vocabulary ends in None.
             Since there are no consistent way to define the title of thesaurus, it is based on internal knowledge-->
-            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)]/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]">
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)]/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;') or contains(.,'Earth Science')]">
                 <xsl:element name="mmd:keywords">
                     <xsl:attribute name="vocabulary">GCMDSK</xsl:attribute>
-                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)]/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;')]">
-                        <xsl:call-template name="gcokeyword">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)]/gmd:keyword/gco:CharacterString[contains(.,'EARTH SCIENCE &gt;') or contains(.,'Earth Science')]">
+                        <xsl:call-template name="gcogmxkeyword">
                             <xsl:with-param name="k" select="translate(normalize-space(.), $lowercase, $uppercase)"/>
                         </xsl:call-template>
                     </xsl:for-each>
@@ -94,7 +94,7 @@
                     <xsl:attribute name="vocabulary">CFSTDN</xsl:attribute>
                     <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*, 'CF Standard Name') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1.') or contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast'))]/gmd:keyword">
                         <xsl:call-template name="gcogmxkeyword">
-                            <xsl:with-param name="k" select="normalize-space(.)"/>
+                            <xsl:with-param name="k" select="gco:CharacterString | gmx:Anchor"/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:element>
@@ -104,16 +104,60 @@
                     <xsl:attribute name="vocabulary">GEMET</xsl:attribute>
                     <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')]/gmd:keyword">
                         <xsl:call-template name="gcogmxkeyword">
-                            <xsl:with-param name="k" select="normalize-space(.)"/>
+                            <xsl:with-param name="k" select="gco:CharacterString | gmx:Anchor"/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:element>
             </xsl:if>
-            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue != 'project' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')))]/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]">
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Providers')]">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">GCMDPROV</xsl:attribute>
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Providers')]/gmd:keyword">
+                        <xsl:call-template name="gcogmxkeyword">
+                            <xsl:with-param name="k" select="gco:CharacterString | gmx:Anchor"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Locations')]">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">GCMDLOC</xsl:attribute>
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Locations')]/gmd:keyword">
+                        <xsl:call-template name="gcogmxkeyword">
+                            <xsl:with-param name="k" select="gco:CharacterString | gmx:Anchor"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Norwegian thematic categories')]">
+                <xsl:element name="mmd:keywords">
+                    <xsl:attribute name="vocabulary">NORTHEMES</xsl:attribute>
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue = 'theme' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Norwegian thematic categories')]/gmd:keyword">
+                        <xsl:call-template name="gcogmxkeyword">
+                            <xsl:with-param name="k" select="gco:CharacterString | gmx:Anchor"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue != 'project' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and
+            (not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name')) and
+             not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1')) and
+             not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast')) and
+             not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')) and
+             not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Providers')) and
+             not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Locations')) and
+             not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Norwegian thematic categories')))]/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;') or contains(.,'Earth Science'))]">
                 <xsl:element name="mmd:keywords">
                     <xsl:attribute name="vocabulary">None</xsl:attribute>
-                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue != 'project' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and (not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast')) and not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')))]/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;'))]">
-                        <xsl:call-template name="gcokeyword">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue != 'project' or not(gmd:type/gmd:MD_KeywordTypeCode/@codeListValue)) and
+                    (not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF Standard Name')) and
+                     not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'CF-1')) and
+                     not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Climate and Forecast')) and
+                     not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GEMET')) and
+                     not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Providers')) and
+                     not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'GCMD Locations')) and
+                     not(contains(gmd:thesaurusName/gmd:CI_Citation/gmd:title/*,'Norwegian thematic categories')))]/gmd:keyword/gco:CharacterString[not(contains(.,'EARTH SCIENCE &gt;') or contains(.,'Earth Science'))]">
+                        <xsl:call-template name="gcogmxkeyword">
                             <xsl:with-param name="k" select="normalize-space(.)"/>
                         </xsl:call-template>
                     </xsl:for-each>
@@ -500,12 +544,65 @@
                 </xsl:choose>
             </xsl:element>
 
-            <xsl:element name="mmd:name">
-                <xsl:value-of select="gmd:individualName/gco:CharacterString" />
-            </xsl:element>
+            <xsl:variable name="individualcontact" select="gmd:individualName/gco:CharacterString | gmd:individualName/gmx:Anchor"/>
+            <xsl:variable name="organisationcontact" select="gmd:organisationName/gco:CharacterString | gmd:organisationName/gmx:Anchor"/>
+            <xsl:choose>
+                <xsl:when test="$individualcontact != '' and $individualcontact != $organisationcontact">
+                    <xsl:element name="mmd:name">
+                        <xsl:choose>
+                            <xsl:when test="gmd:individualName/gmx:Anchor">
+                                <xsl:value-of select="gmd:individualName/gmx:Anchor" />
+                                <xsl:if test="contains(gmd:individualName/gmx:Anchor/@xlink:href, 'orcid.org')">
+                                    <xsl:attribute name="uri">
+                                        <xsl:value-of select="gmd:individualName/gmx:Anchor/@xlink:href" />
+                                    </xsl:attribute>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="gmd:individualName/gco:CharacterString" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:element>
+                    <xsl:element name="mmd:type">
+                        <xsl:text>Person</xsl:text>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="mmd:name">
+                        <xsl:choose>
+                            <xsl:when test="gmd:organisationName/gmx:Anchor">
+                                <xsl:value-of select="gmd:organisationName/gmx:Anchor" />
+                                <xsl:if test="contains(gmd:organisationName/gmx:Anchor/@xlink:href, 'ror.org')">
+                                    <xsl:attribute name="uri">
+                                        <xsl:value-of select="gmd:organisationName/gmx:Anchor/@xlink:href" />
+                                    </xsl:attribute>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="gmd:organisationName/gco:CharacterString" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:element>
+                    <xsl:element name="mmd:type">
+                        <xsl:text>Organisation</xsl:text>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
 
             <xsl:element name="mmd:organisation">
-                <xsl:value-of select="gmd:organisationName/gco:CharacterString" />
+                <xsl:choose>
+                    <xsl:when test="gmd:organisationName/gmx:Anchor">
+                        <xsl:value-of select="gmd:organisationName/gmx:Anchor" />
+                        <xsl:if test="contains(gmd:organisationName/gmx:Anchor/@xlink:href, 'ror.org')">
+                            <xsl:attribute name="uri">
+                                <xsl:value-of select="gmd:organisationName/gmx:Anchor/@xlink:href" />
+                            </xsl:attribute>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="gmd:organisationName/gco:CharacterString" />
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:element>
 
             <xsl:element name="mmd:email">
@@ -543,12 +640,67 @@
             <xsl:element name="mmd:role">
                 <xsl:text>Investigator</xsl:text>
             </xsl:element>
-            <xsl:element name="mmd:name">
-                <xsl:value-of select="gmd:individualName/gco:CharacterString" />
-            </xsl:element>
+            <xsl:variable name="individualcontact" select="gmd:individualName/gco:CharacterString | gmd:individualName/gmx:Anchor"/>
+            <xsl:variable name="organisationcontact" select="gmd:organisationName/gco:CharacterString | gmd:organisationName/gmx:Anchor"/>
+            <xsl:choose>
+                <xsl:when test="$individualcontact != '' and $individualcontact != $organisationcontact">
+                    <xsl:element name="mmd:name">
+                        <xsl:choose>
+                            <xsl:when test="gmd:individualName/gmx:Anchor">
+                                <xsl:value-of select="gmd:individualName/gmx:Anchor" />
+                                <xsl:if test="contains(gmd:individualName/gmx:Anchor/@xlink:href, 'orcid.org')">
+                                    <xsl:attribute name="uri">
+                                        <xsl:value-of select="gmd:individualName/gmx:Anchor/@xlink:href" />
+                                    </xsl:attribute>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="gmd:individualName/gco:CharacterString" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:element>
+                    <xsl:element name="mmd:type">
+                        <xsl:text>Person</xsl:text>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="mmd:name">
+                        <xsl:choose>
+                            <xsl:when test="gmd:organisationName/gmx:Anchor">
+                                <xsl:value-of select="gmd:organisationName/gmx:Anchor" />
+                                <xsl:if test="contains(gmd:organisationName/gmx:Anchor/@xlink:href, 'ror.org')">
+                                    <xsl:attribute name="uri">
+                                        <xsl:value-of select="gmd:organisationName/gmx:Anchor/@xlink:href" />
+                                    </xsl:attribute>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="gmd:organisationName/gco:CharacterString" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:element>
+                    <xsl:element name="mmd:type">
+                        <xsl:text>Organisation</xsl:text>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
+
             <xsl:element name="mmd:organisation">
-                <xsl:value-of select="gmd:organisationName/gco:CharacterString" />
+                <xsl:choose>
+                    <xsl:when test="gmd:organisationName/gmx:Anchor">
+                        <xsl:value-of select="gmd:organisationName/gmx:Anchor" />
+                        <xsl:if test="contains(gmd:organisationName/gmx:Anchor/@xlink:href, 'ror.org')">
+                            <xsl:attribute name="uri">
+                                <xsl:value-of select="gmd:organisationName/gmx:Anchor/@xlink:href" />
+                            </xsl:attribute>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="gmd:organisationName/gco:CharacterString" />
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:element>
+
             <xsl:element name="mmd:email">
                 <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString" />
             </xsl:element>
@@ -597,11 +749,32 @@
     <xsl:template match="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor">
         <xsl:element name="mmd:data_center">
             <xsl:element name="mmd:data_center_name">
+                <xsl:variable name="dcname" select="gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
+                <xsl:variable name="dcshort">
+                    <xsl:choose>
+                        <xsl:when test="contains($dcname, '(')">
+                            <xsl:value-of select="normalize-space(substring-before(substring-after($dcname, '('), ')'))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="normalize-space($dcname)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="dclong">
+                    <xsl:choose>
+                        <xsl:when test="contains($dcname, '(')">
+                            <xsl:value-of select="normalize-space(substring-before($dcname, '('))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="normalize-space($dcname)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <xsl:element name="mmd:short_name">
-                    <!--xsl:value-of select=""/-->
+                    <xsl:value-of select="$dcshort"/>
                 </xsl:element>
                 <xsl:element name="mmd:long_name">
-                    <xsl:value-of select="gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
+                    <xsl:value-of select="$dclong"/>
                 </xsl:element>
             </xsl:element>
             <xsl:element name="mmd:data_center_url">
@@ -738,17 +911,13 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template name="gcokeyword">
-        <xsl:param name="k"/>
-        <xsl:element name="mmd:keyword">
-            <xsl:value-of select="$k"/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template name="gcogmxkeyword">
-        <xsl:element name="mmd:keyword">
-            <xsl:value-of select="gco:CharacterString | gmx:Anchor" />
-        </xsl:element>
+        <xsl:param name="k"/>
+        <xsl:if test="normalize-space($k) != ''">
+            <xsl:element name="mmd:keyword">
+                <xsl:value-of select="normalize-space($k)" />
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords[./gmd:type/gmd:MD_KeywordTypeCode[@codeListValue = 'project']]">
