@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  enum:
+    build:
+      context: .
+      dockerfile: Dockerfile.enumeration
+    environment:
+      CI: "${CI}"
+      GITHUB_REF: "${GITHUB_REF}"
+      GITHUB_SHA: "${GITHUB_SHA}"
+      GITHUB_ACTIONS: "${GITHUB_ACTIONS}"
+    volumes:
+      - .:/src
+    command: sh -c "cd xsd && ./create_enum.py && cd .."
+
