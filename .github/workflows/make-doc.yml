@@ -1,12 +1,15 @@
-
-name: 'html/pdf'
+name: 'enumeration and doc'
 
 on:
   push:
     branches:
       - master
+
     paths:
+      - 'thesauri/mmd-vocabulary.ttl'
       - 'doc/**'
+      - 'xsd/create_enum.py'
+      - 'xsd/enum_mmd.xsd'
 
 jobs:
   build:
@@ -14,7 +17,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v5
+
+    - name: enumeration
+      run: |
+        docker compose -f docker-compose.enumeration.yml up
 
     - name: create html and pdf
       run: |
@@ -24,12 +31,13 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git add -f xsd/enum_mmd.xsd
+        git add -f doc/ch04-md-contrvocabs.adoc
         git add -f doc/mmd-specification.html
         git add -f doc/mmd-specification.pdf
-        git commit -m "Automatic updated by GitHub Action"
+        git commit -m "Automatic updated by GitHub Action: generate enum and html/pdf"
 
     - name: push code to ${{ github.ref }}
       run: |
         remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
         git push "${remote_repo}" HEAD:${{ github.ref }} --follow-tags
-
