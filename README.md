@@ -1,4 +1,4 @@
-![html/pdf](https://github.com/metno/mmd/workflows/html/pdf/badge.svg)
+![html/pdf](https://github.com/metno/mmd/workflows/html/pdf/badge.svg) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/metno/mmd)
 
 # MET Norway Metadata Format (MMD)
 
