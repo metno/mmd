@@ -172,8 +172,58 @@
             <xsl:apply-templates select="gmd:contact/gmd:CI_ResponsibleParty" />
             <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty" />
 
+
             <xsl:element name="mmd:geographic_extent">
-                <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox" />
+                <!--xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox" /-->
+                <xsl:variable name="northernmost">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal[normalize-space()]">
+                        <xsl:sort select="." data-type="number" order="descending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="." />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="southernmost">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal[normalize-space()]">
+                        <xsl:sort select="." data-type="number" order="ascending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="." />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="westernmost">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal[normalize-space()]">
+                        <xsl:sort select="." data-type="number" order="ascending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="." />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="easternmost">
+                    <xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal[normalize-space()]">
+                        <xsl:sort select="." data-type="number" order="descending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="." />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:element name="mmd:rectangle">
+                    <xsl:attribute name="srsName">
+                        <xsl:value-of select="'EPSG:4326'"/>
+                    </xsl:attribute>
+                    <xsl:element name="mmd:north">
+                        <xsl:value-of select="$northernmost"/>
+                    </xsl:element>
+                    <xsl:element name="mmd:south">
+                        <xsl:value-of select="$southernmost"/>
+                    </xsl:element>
+                    <xsl:element name="mmd:west">
+                        <xsl:value-of select="$westernmost"/>
+                    </xsl:element>
+                    <xsl:element name="mmd:east">
+                        <xsl:value-of select="$easternmost"/>
+                    </xsl:element>
+                </xsl:element>
                 <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon" />
             </xsl:element>
             <!--generally the codeValue for the distributor section should be "distributor". If that is not present we add support for "publisher". Fall back pointOfContact.
@@ -351,7 +401,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
+    <!--xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
         <xsl:element name="mmd:rectangle">
             <xsl:attribute name="srsName">
                 <xsl:value-of select="'EPSG:4326'" />
@@ -369,7 +419,7 @@
                 <xsl:value-of select="gmd:eastBoundLongitude/gco:Decimal" />
             </xsl:element>
         </xsl:element>
-    </xsl:template>
+    </xsl:template-->
 
     <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon">
         <xsl:element name="mmd:polygon">
