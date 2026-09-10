@@ -6,6 +6,7 @@ from datetime import datetime
 import lxml.etree as ET
 from rdflib import Graph, URIRef
 from rdflib.namespace import SKOS, RDF
+from urllib.parse import urlparse
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
@@ -174,7 +175,8 @@ def create_dataciteXML(inputfile, outputfile, parsenames, collection):
             #work with type or uri if given
             if nametype is None:
                 if name_uri is not None:
-                    if 'orcid.org' in name_uri:
+                    parsed_uri = urlparse(name_uri)
+                    if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "orcid.org":
                         creatorn.text = family_name + ', '+ first_name
                         creatorn.set("nameType","Personal")
                         given = ET.SubElement(creator,'givenName')
@@ -185,7 +187,7 @@ def create_dataciteXML(inputfile, outputfile, parsenames, collection):
                         nameIdentifier.set('schemeURI',"http://orcid.org/")
                         nameIdentifier.set('nameIdentifierScheme',"ORCID")
                         nameIdentifier.text = name_uri.split("://orcid.org/")[1]
-                    elif 'ror.org' in name_uri:
+                    elif parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "ror.org":
                         creatorn.text = name
                         creatorn.set("nameType","Organizational")
                         nameIdentifier = ET.SubElement(creator, 'nameIdentifier')
@@ -211,7 +213,8 @@ def create_dataciteXML(inputfile, outputfile, parsenames, collection):
                     creatorn.text = name
                     creatorn.set("nameType","Organizational")
                     if name_uri is not None:
-                        if 'ror.org' in name_uri:
+                        parsed_uri = urlparse(name_uri)
+                        if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "ror.org":
                             nameIdentifier = ET.SubElement(creator, 'nameIdentifier')
                             nameIdentifier.set('schemeURI',"http://ror.org/")
                             nameIdentifier.set('nameIdentifierScheme',"ROR")
@@ -227,7 +230,8 @@ def create_dataciteXML(inputfile, outputfile, parsenames, collection):
                     family = ET.SubElement(creator,'familyName')
                     family.text = family_name
                     if name_uri is not None:
-                        if 'orcid.org' in name_uri:
+                        parsed_uri = urlparse(name_uri)
+                        if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "orcid.org":
                             nameIdentifier = ET.SubElement(creator, 'nameIdentifier')
                             nameIdentifier.set('schemeURI',"http://orcid.org/")
                             nameIdentifier.set('nameIdentifierScheme',"ORCID")
@@ -241,23 +245,30 @@ def create_dataciteXML(inputfile, outputfile, parsenames, collection):
 
         if organisation is not None:
             #try ror
-            if organisation_uri is not None and 'ror.org' in organisation_uri:
-                #check preferred label from vocab
-                ror = check_prefLabel(organisation_uri)
-                #keep original values
-                if ror is None:
-                   ror  = {'prefLabel' : organisation, 'ror' : organisation_uri }
+            if organisation_uri is not None:
+                parsed_uri = urlparse(organisation_uri)
+                if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "ror.org":
+                    #check preferred label from vocab
+                    ror = check_prefLabel(organisation_uri)
+                    #keep original values
+                    if ror is None:
+                        ror  = {'prefLabel' : organisation, 'ror' : organisation_uri }
             else:
                 ror = get_organisations(organisation)
-            if ror is not None and 'ror.org' in ror['ror']:
-                print("Adding ROR ", ror['ror'], " to affiliation")
-                affiliation = ET.SubElement(creator,'affiliation')
-                affiliation.text = ror['prefLabel']
-                affiliation.set('affiliationIdentifier', ror['ror'])
-                affiliation.set('affiliationIdentifierScheme', 'ROR')
-                affiliation.set("schemeURI", "https://ror.org")
+
+            if ror is not None:
+                parsed_ror_uri = urlparse(ror['ror']) if ror['ror'] else None
+                if parsed_ror_uri and parsed_ror_uri.netloc == "ror.org":
+                    print("Adding ROR ", ror['ror'], " to affiliation")
+                    affiliation = ET.SubElement(creator,'affiliation')
+                    affiliation.text = ror['prefLabel']
+                    affiliation.set('affiliationIdentifier', ror['ror'])
+                    affiliation.set('affiliationIdentifierScheme', 'ROR')
+                    affiliation.set("schemeURI", "https://ror.org")
+                else:
+                    ET.SubElement(creator,'affiliation').text = organisation
             else:
-                ET.SubElement(creator,'affiliation').text = organisation
+                ET.SubElement(creator, 'affiliation').text = organisation
         else:
             print('No organisation found')
 
