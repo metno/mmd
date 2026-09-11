@@ -5,21 +5,22 @@
 |=======================================================================
 |Element |/mmd/access_constraint
 
-|Attributes |None
+|Attributes a|
+
+[[classification_framework]]
+* classification_framework: The vocabulary where the access constraint values are taken from. The values to use are listed in <<classification-framework>>.
 
 |Required |No
 
 |Repetition allowed |No
 
 |Description a|
-Limitations on the access to the dataset.
-
-See <<access-constraint>> for a list of valid values.
+Limitations on the access to the dataset. See <<access-constraint>> for a list of valid values following the classification_framework="general".
 
 |Example XML: a|
 
 ----
-<access_constraint>Open</access_constraint>
+<access_constraint classification_framework="general">Open</access_constraint>
 ----
 
 |DIF equivalent |/DIF/Access_Constraints

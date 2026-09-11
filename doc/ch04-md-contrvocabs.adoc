@@ -297,24 +297,35 @@ Description of the type of data access provided.
 
 <<data_access_types>>
 
-[[access-constraint]]
-=== Access Constraint
+[[classification-framework]]
+=== Classification Framework
 
-A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.
+The vocabulary where the access constraint values are taken from.
 
 [cols="2,8"]
 |===
 | code | definition
 
-| Open| These data are freely available to everyone and can be made available without any restrictions.
+| general| The default access constraint vocabulary available at: https://vocab.met.no/mmd/Access_Constraint
 
-| Registered users only (automated approval)| These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process can be automated.
+|===
 
-| Registered users only (manual approval required)| These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process must be manual.
+<<classification_framework>>
 
-| Restricted to a community| These data are available for users within a restricted community. This community determines the authorization mechansim to utilise whether this being IP-address, community specific users names or other.
+[[access-constraint]]
+=== Access Constraint
 
-| Restricted access to metadata| Information on these data MUST NOT be exposed externally. This implies that neither metadata can be exposed externally.
+The default controlled vocabulary, for the general classification framework, to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.
+
+[cols="2,8"]
+|===
+| code | definition
+
+| Open| Both discovery metadata and data are open.
+
+| Protected| Discovery metadata are openly available, data are protected. Discovery metadata can be made coarser (e.g. protect information on endangered species, hydrological information in the context of WMO etc).
+
+| Closed| Neither discovery metadata nor data are to be made available publicly.
 
 |===
 
@@ -474,10 +485,6 @@ Polarisation Modes
 | GRD| Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model such as WGS84.
 
 | OCN| Ocean (OCN) products for wind, wave and currents applications derived from the SAR data.
-
-| S2MSI1C| Ortho-rectified and UTM geo-coded Top-of-Atmosphere Reflectance with sub-pixel multispectral and multi-date registration.
-
-| S2MSI2A| Ortho-rectified and UTM geo-coded Bottom-of-Atmosphere multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness (AOT) map, Water Vapour (WV) map, Scene Classification map together with Quality Indicators data.
 
 | SAR-WV-L1-SLC| Wave (WV) Level-1 Single Look Complex (SLC) products consist of focused SAR data, geo-referenced using orbit and attitude data from the satellite, and provided in slant-range geometry.
 

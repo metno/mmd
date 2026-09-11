@@ -23,6 +23,7 @@ import lxml.etree as ET
 #'Contact Roles', -> contact_roles_enum
 #'Contact Types', -> contact_types_enum
 #'Quality Control' -> quality_control_enum
+#'Classification Framework' -> classification_framework_enum
 
 # indentifier and resource lists:
 #'Use Constraint'
@@ -80,6 +81,7 @@ def query_members(g, collection):
             ?collection skos:member ?member .
             ?member skos:prefLabel ?prefLabel .
             FILTER (LANG(?prefLabel) = "en")
+            FILTER NOT EXISTS { ?member owl:deprecated true . }
             OPTIONAL {?member skos:definition ?definition} .
         }
     '''
