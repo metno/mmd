@@ -829,25 +829,60 @@
 
   </skos:Collection>
 
+  <skos:Collection rdf:about="https://vocab.met.no/mmd/Classification_Framework">
+    <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
+    <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:prefLabel xml:lang="en">Classification Framework</skos:prefLabel>
+    <skos:definition xml:lang="en">The vocabulary where the access constraint values are taken from.</skos:definition>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Classification_Framework/general">
+        <skos:prefLabel xml:lang="en">general</skos:prefLabel>
+        <skos:definition xml:lang="en">The default access constraint vocabulary available at: https://vocab.met.no/mmd/Access_Constraint</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+  </skos:Collection>
+
   <skos:Collection rdf:about="https://vocab.met.no/mmd/Access_Constraint">
     <rdf:type rdf:resource="http://purl.org/iso25964/skos-thes#ConceptGroup"/>
     <skos:inScheme rdf:resource="https://vocab.met.no/mmd"/>
+    <skos:changeNote xml:lang="en">2026-09-11, List of concepts have been updated as well as their definitions. Old ones are deprecated.</skos:changeNote>
     <skos:prefLabel xml:lang="en">Access Constraint</skos:prefLabel>
-    <skos:definition xml:lang="en">A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
+    <skos:definition xml:lang="en">The default controlled vocabulary, for the general classification framework, to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</skos:definition>
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/Open">
         <skos:prefLabel xml:lang="en">Open</skos:prefLabel>
-        <skos:altLabel xml:lang="en">Free</skos:altLabel>
-        <skos:altLabel xml:lang="en">Unrestricted</skos:altLabel>
         <skos:hiddenLabel xml:lang="en">no limitations to public access</skos:hiddenLabel>
         <skos:hiddenLabel xml:lang="en">Open data</skos:hiddenLabel>
-        <skos:definition xml:lang="en">These data are freely available to everyone and can be made available without any restrictions.</skos:definition>
+        <skos:hiddenLabel xml:lang="en">Free</skos:hiddenLabel>
+        <skos:hiddenLabel xml:lang="en">Unrestricted</skos:hiddenLabel>
+        <skos:definition xml:lang="en">Both discovery metadata and data are open.</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/Protected">
+        <skos:prefLabel xml:lang="en">Protected</skos:prefLabel>
+        <dc:replaces rdf:resource="https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval"/>
+        <dc:replaces rdf:resource="https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval"/>
+        <dc:replaces rdf:resource="https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity"/>
+        <skos:definition xml:lang="en">Discovery metadata are openly available, data are protected. Discovery metadata can be made coarser (e.g. protect information on endangered species, hydrological information in the context of WMO etc).</skos:definition>
+      </skos:Concept>
+    </skos:member>
+
+    <skos:member>
+	  <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/Closed">
+		<skos:prefLabel xml:lang="en">Closed</skos:prefLabel>
+		<dc:replaces rdf:resource="https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata"/>
+		<skos:definition xml:lang="en">Neither discovery metadata nor data are to be made available publicly.</skos:definition>
       </skos:Concept>
     </skos:member>
 
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval">
         <skos:prefLabel xml:lang="en">Registered users only (automated approval)</skos:prefLabel>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+        <dc:isReplacedBy rdf:resource="https://vocab.met.no/mmd/Access_Constraint/Protected"/>
         <skos:definition xml:lang="en">These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process can be automated.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -855,6 +890,8 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval">
         <skos:prefLabel xml:lang="en">Registered users only (manual approval required)</skos:prefLabel>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+        <dc:isReplacedBy rdf:resource="https://vocab.met.no/mmd/Access_Constraint/Protected"/>
         <skos:definition xml:lang="en">These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process must be manual.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -862,6 +899,8 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity">
         <skos:prefLabel xml:lang="en">Restricted to a community</skos:prefLabel>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+        <dc:isReplacedBy rdf:resource="https://vocab.met.no/mmd/Access_Constraint/Protected"/>
         <skos:definition xml:lang="en">These data are available for users within a restricted community. This community determines the authorization mechansim to utilise whether this being IP-address, community specific users names or other.</skos:definition>
       </skos:Concept>
     </skos:member>
@@ -869,6 +908,8 @@
     <skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata">
         <skos:prefLabel xml:lang="en">Restricted access to metadata</skos:prefLabel>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+        <dc:isReplacedBy rdf:resource="https://vocab.met.no/mmd/Access_Constraint/Closed"/>
         <skos:definition xml:lang="en">Information on these data MUST NOT be exposed externally. This implies that neither metadata can be exposed externally.</skos:definition>
       </skos:Concept>
     </skos:member>

@@ -186,16 +186,22 @@
       <xs:enumeration value="ODATA"/>
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="classification_framework_enum">
+    <xs:annotation>
+      <xs:documentation>The vocabulary where the access constraint values are taken from.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="general"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="access_constraint_enum">
     <xs:annotation>
-      <xs:documentation>A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</xs:documentation>
+      <xs:documentation>The default controlled vocabulary, for the general classification framework, to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Open"/>
-      <xs:enumeration value="Registered users only (automated approval)"/>
-      <xs:enumeration value="Registered users only (manual approval required)"/>
-      <xs:enumeration value="Restricted to a community"/>
-      <xs:enumeration value="Restricted access to metadata"/>
+      <xs:enumeration value="Protected"/>
+      <xs:enumeration value="Closed"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="operational_status_enum">
@@ -278,8 +284,6 @@
       <xs:enumeration value="SLC"/>
       <xs:enumeration value="GRD"/>
       <xs:enumeration value="OCN"/>
-      <xs:enumeration value="S2MSI1C"/>
-      <xs:enumeration value="S2MSI2A"/>
       <xs:enumeration value="SAR-WV-L1-SLC"/>
       <xs:enumeration value="SAR-WV-L2-OCN"/>
       <xs:enumeration value="SAR-SM1-L1-GRDH"/>

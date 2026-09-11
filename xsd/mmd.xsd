@@ -24,7 +24,7 @@
                 <xs:element name="operational_status"     type="mmd:operational_status_enum"        maxOccurs="1"         minOccurs="0"/>
                 <xs:element name="dataset_language"       type="xs:string"                          maxOccurs="1"         minOccurs="0" default="en"/>
                 <xs:element name="geographic_extent"      type="mmd:geographic_extent_type"         maxOccurs="1"         minOccurs="1"/>
-                <xs:element name="access_constraint"      type="xs:string"                          maxOccurs="1"         minOccurs="0"/> <!--This should be controlled-->
+                <xs:element name="access_constraint"      type="mmd:access_constraint_type"         maxOccurs="1"         minOccurs="0"/>
                 <xs:element name="use_constraint"         type="mmd:use_constraint_type"            maxOccurs="1"         minOccurs="0"/>
                 <xs:element name="project"                type="mmd:project_type"                   maxOccurs="unbounded" minOccurs="0"/>
                 <xs:element name="activity_type"          type="xs:string"                          maxOccurs="unbounded" minOccurs="0"/> <!--This should be controlled-->
@@ -114,6 +114,16 @@
                 <xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
             </xs:choice>
         </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="access_constraint_type">
+        <xs:simpleContent>
+            <xs:annotation>
+                <xs:documentation>The value "general" of the attribute refers to the default access constraint list</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="mmd:access_constraint_enum">
+                <xs:attribute name="classification_framework" type="mmd:classification_framework_enum" default="general"/>
+            </xs:extension>
+        </xs:simpleContent>
     </xs:complexType>
     <xs:complexType name="use_constraint_type">
         <xs:choice>

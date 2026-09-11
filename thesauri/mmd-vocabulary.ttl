@@ -624,38 +624,76 @@
   skos:prefLabel "ODATA"@en ;
   skos:definition "Open Data Protocol."@en .
 
+<https://vocab.met.no/mmd/Classification_Framework>
+  a skos:Collection, isothes:ConceptGroup ;
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:prefLabel "Classification Framework"@en ;
+  skos:definition "The vocabulary where the access constraint values are taken from."@en ;
+  skos:member <https://vocab.met.no/mmd/Classification_Framework/general> .
+
+<https://vocab.met.no/mmd/Classification_Framework/general>
+  a skos:Concept ;
+  skos:prefLabel "general"@en ;
+  skos:definition "The default access constraint vocabulary available at: https://vocab.met.no/mmd/Access_Constraint"@en .
+
 <https://vocab.met.no/mmd/Access_Constraint>
   a skos:Collection, isothes:ConceptGroup ;
-  skos:inScheme <https://vocab.met.no/mmd>; 
+  skos:inScheme <https://vocab.met.no/mmd>;
+  skos:changeNote "2026-09-11, List of concepts have been updated as well as their definitions. Old ones are deprecated."@en ;
   skos:prefLabel "Access Constraint"@en ;
-  skos:definition "A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only."@en ;
-  skos:member <https://vocab.met.no/mmd/Access_Constraint/Open>, <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>, <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>, <https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>, <https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata> .
+  skos:definition "The default controlled vocabulary, for the general classification framework, to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only."@en ;
+  skos:member <https://vocab.met.no/mmd/Access_Constraint/Open>,
+              <https://vocab.met.no/mmd/Access_Constraint/Protected>,
+              <https://vocab.met.no/mmd/Access_Constraint/Closed>,
+              <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>,
+              <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>,
+              <https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>,
+              <https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata> .
 
 <https://vocab.met.no/mmd/Access_Constraint/Open>
   a skos:Concept ;
   skos:prefLabel "Open"@en ;
-  skos:altLabel "Free"@en, "Unrestricted"@en ;
-  skos:hiddenLabel "no limitations to public access"@en, "Open data"@en ;
-  skos:definition "These data are freely available to everyone and can be made available without any restrictions."@en .
+  skos:hiddenLabel "no limitations to public access"@en, "Open data"@en, "Free"@en, "Unrestricted"@en;
+  skos:definition "Both discovery metadata and data are open."@en .
+
+<https://vocab.met.no/mmd/Access_Constraint/Protected>
+  a skos:Concept ;
+  skos:prefLabel "Protected"@en ;
+  dc:replaces <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>, <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>,<https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity> ;
+  skos:definition "Discovery metadata are openly available, data are protected. Discovery metadata can be made coarser (e.g. protect information on endangered species, hydrological information in the context of WMO etc)."@en .
+
+<https://vocab.met.no/mmd/Access_Constraint/Closed>
+  a skos:Concept ;
+  skos:prefLabel "Closed"@en ;
+  dc:replaces <https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata> ;
+  skos:definition "Neither discovery metadata nor data are to be made available publicly."@en .
 
 <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyAutomatedApproval>
   a skos:Concept ;
   skos:prefLabel "Registered users only (automated approval)"@en ;
+  owl:deprecated true ;
+  dc:isReplacedBy <https://vocab.met.no/mmd/Access_Constraint/Protected> ;
   skos:definition "These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process can be automated."@en .
 
 <https://vocab.met.no/mmd/Access_Constraint/RegisteredUsersOnlyManualApproval>
   a skos:Concept ;
   skos:prefLabel "Registered users only (manual approval required)"@en ;
+  owl:deprecated true ;
+  dc:isReplacedBy <https://vocab.met.no/mmd/Access_Constraint/Protected> ;
   skos:definition "These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process must be manual."@en .
 
 <https://vocab.met.no/mmd/Access_Constraint/RestrictedToACommunity>
   a skos:Concept ;
   skos:prefLabel "Restricted to a community"@en ;
+  owl:deprecated true ;
+  dc:isReplacedBy <https://vocab.met.no/mmd/Access_Constraint/Protected> ;
   skos:definition "These data are available for users within a restricted community. This community determines the authorization mechansim to utilise whether this being IP-address, community specific users names or other."@en .
 
 <https://vocab.met.no/mmd/Access_Constraint/RestrictedAccessToMetadata>
   a skos:Concept ;
   skos:prefLabel "Restricted access to metadata"@en ;
+  owl:deprecated true ;
+  dc:isReplacedBy <https://vocab.met.no/mmd/Access_Constraint/Closed> ;
   skos:definition "Information on these data MUST NOT be exposed externally. This implies that neither metadata can be exposed externally."@en .
 
 
