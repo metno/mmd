@@ -681,15 +681,16 @@ sections.</p>
 <li><a href="#iso-topic-category">4.8. ISO Topic Category</a></li>
 <li><a href="#related-information-types">4.9. Related Information Types</a></li>
 <li><a href="#data-access-types">4.10. Data Access Types</a></li>
-<li><a href="#access-constraint">4.11. Access Constraint</a></li>
-<li><a href="#operational-status">4.12. Operational Status</a></li>
-<li><a href="#collection-keywords">4.13. Collection Keywords</a></li>
-<li><a href="#instrument-modes">4.14. Instrument Modes</a></li>
-<li><a href="#polarisation-modes">4.15. Polarisation Modes</a></li>
-<li><a href="#product-types">4.16. Product Types</a></li>
-<li><a href="#contact-roles">4.17. Contact Roles</a></li>
-<li><a href="#contact-types">4.18. Contact Types</a></li>
-<li><a href="#quality-control">4.19. Quality Control</a></li>
+<li><a href="#classification-framework">4.11. Classification Framework</a></li>
+<li><a href="#access-constraint">4.12. Access Constraint</a></li>
+<li><a href="#operational-status">4.13. Operational Status</a></li>
+<li><a href="#collection-keywords">4.14. Collection Keywords</a></li>
+<li><a href="#instrument-modes">4.15. Instrument Modes</a></li>
+<li><a href="#polarisation-modes">4.16. Polarisation Modes</a></li>
+<li><a href="#product-types">4.17. Product Types</a></li>
+<li><a href="#contact-roles">4.18. Contact Roles</a></li>
+<li><a href="#contact-types">4.19. Contact Types</a></li>
+<li><a href="#quality-control">4.20. Quality Control</a></li>
 </ul>
 </li>
 </ul>
@@ -1167,7 +1168,7 @@ all metadata records are in the same repository.</p>
 </div>
 <div class="paragraph">
 <p>The keyword used to identify the collection should be short (e.g. NMDC,
-NMAP, SIOS, &#8230;&#8203;). See <a href="#collection-keywords">Section 4.13</a> for details.</p>
+NMAP, SIOS, &#8230;&#8203;). See <a href="#collection-keywords">Section 4.14</a> for details.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1780,7 +1781,7 @@ dataset. The default for all datasets is English (en).</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The current operational status of the product. Valid
-keywords are listed in <a href="#operational-status">Section 4.12</a>.</p></td>
+keywords are listed in <a href="#operational-status">Section 4.13</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Example XML:</p></td>
@@ -1817,7 +1818,13 @@ keywords are listed in <a href="#operational-status">Section 4.12</a>.</p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attributes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="classification_framework" class="ulist">
+<ul>
+<li>
+<p>classification_framework: The vocabulary where the access constraint values are taken from. The values to use are listed in <a href="#classification-framework">Section 4.11</a>.</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Required</p></td>
@@ -1830,17 +1837,14 @@ keywords are listed in <a href="#operational-status">Section 4.12</a>.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Limitations on the access to the dataset.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="#access-constraint">Section 4.11</a> for a list of valid values.</p>
+<p>Limitations on the access to the dataset. See <a href="#access-constraint">Section 4.12</a> for a list of valid values following the classification_framework="general".</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Example XML:</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre>&lt;access_constraint&gt;Open&lt;/access_constraint&gt;</pre>
+<pre>&lt;access_constraint classification_framework="general"&gt;Open&lt;/access_constraint&gt;</pre>
 </div>
 </div></div></td>
 </tr>
@@ -2818,13 +2822,13 @@ information is not provided or not applicable. For more details about this, see 
 <p>resource: this is a link to the controlled vocabulary term describing the instrument (<a href="#platform-and-instrument-vocabularies">Section 3.4</a>).</p>
 </li>
 <li>
-<p><a id="instrument_modes"></a> mode: this is specific for SAR (can be for other instruments in the future), see <a href="#instrument-modes">Section 4.14</a>.</p>
+<p><a id="instrument_modes"></a> mode: this is specific for SAR (can be for other instruments in the future), see <a href="#instrument-modes">Section 4.15</a>.</p>
 </li>
 <li>
-<p><a id="polarisation_modes"></a> polarisation: is also for SAR, see <a href="#polarisation-modes">Section 4.15</a></p>
+<p><a id="polarisation_modes"></a> polarisation: is also for SAR, see <a href="#polarisation-modes">Section 4.16</a></p>
 </li>
 <li>
-<p><a id="product_types"></a> product_type: is for the Sentinel satellites, see <a href="#product-types">Section 4.16</a> for more information.</p>
+<p><a id="product_types"></a> product_type: is for the Sentinel satellites, see <a href="#product-types">Section 4.17</a> for more information.</p>
 </li>
 </ul>
 </div>
@@ -3239,7 +3243,7 @@ parts can be put into citation information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The level of quality control performed on the dataset/product. Valid keywords are listed in <a href="#quality-control">Section 4.19</a>.
+<td class="tableblock halign-left valign-top"><p class="tableblock">The level of quality control performed on the dataset/product. Valid keywords are listed in <a href="#quality-control">Section 4.20</a>.
 Additional information about data quality control can be provided through the related_information element providing a URL to the quality control documentation.</p></td>
 </tr>
 <tr>
@@ -4183,9 +4187,36 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="access-constraint"><a class="anchor" href="#access-constraint"></a>4.11. Access Constraint</h3>
+<h3 id="classification-framework"><a class="anchor" href="#classification-framework"></a>4.11. Classification Framework</h3>
 <div class="paragraph">
-<p>A controlled vocabulary to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</p>
+<p>The vocabulary where the access constraint values are taken from.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">code</th>
+<th class="tableblock halign-left valign-top">definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">general</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default access constraint vocabulary available at: <a href="https://vocab.met.no/mmd/Access_Constraint" class="bare">https://vocab.met.no/mmd/Access_Constraint</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a href="#classification_framework">[classification_framework]</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="access-constraint"><a class="anchor" href="#access-constraint"></a>4.12. Access Constraint</h3>
+<div class="paragraph">
+<p>The default controlled vocabulary, for the general classification framework, to be used to describe the constraints on accessing specific metadata and/or data. This is used to determine the exposure of metadata and data internally and externally. Ideally all datasets (metadata and data) are freely available, but it is acknowledged that some metadata and data may have restrictions that limits their visibility to specific communities only.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -4201,23 +4232,15 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Open</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">These data are freely available to everyone and can be made available without any restrictions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both discovery metadata and data are open.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Registered users only (automated approval)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process can be automated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Protected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discovery metadata are openly available, data are protected. Discovery metadata can be made coarser (e.g. protect information on endangered species, hydrological information in the context of WMO etc).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Registered users only (manual approval required)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">These data are available for users as long as they register with name, affiliation, and a valid email address. The verification process must be manual.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Restricted to a community</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">These data are available for users within a restricted community. This community determines the authorization mechansim to utilise whether this being IP-address, community specific users names or other.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Restricted access to metadata</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Information on these data MUST NOT be exposed externally. This implies that neither metadata can be exposed externally.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Closed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Neither discovery metadata nor data are to be made available publicly.</p></td>
 </tr>
 </tbody>
 </table>
@@ -4226,7 +4249,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="operational-status"><a class="anchor" href="#operational-status"></a>4.12. Operational Status</h3>
+<h3 id="operational-status"><a class="anchor" href="#operational-status"></a>4.13. Operational Status</h3>
 <div class="paragraph">
 <p>Controlled vocabulary to be used to describe operational status of datasets handled. This is used in filtering of the information. Typically scientific datasets are generated without a temporal perspective and review process. The review process of scientific products is publications in refereed journals or in data citation papers. Experimental, Pre-Operational and Operational are concepts supported by institutions with a commitment for a specific delivery over time.</p>
 </div>
@@ -4269,7 +4292,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="collection-keywords"><a class="anchor" href="#collection-keywords"></a>4.13. Collection Keywords</h3>
+<h3 id="collection-keywords"><a class="anchor" href="#collection-keywords"></a>4.14. Collection Keywords</h3>
 <div class="paragraph">
 <p>The purpose of this vocabulary is to identify which collection a dataset belongs to. This is used to identify sets when serving metadata through e.g. OAI-PMH or to identify which data to present in e.g. a project specific portal when all metadata records are in the same repository.</p>
 </div>
@@ -4416,7 +4439,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="instrument-modes"><a class="anchor" href="#instrument-modes"></a>4.14. Instrument Modes</h3>
+<h3 id="instrument-modes"><a class="anchor" href="#instrument-modes"></a>4.15. Instrument Modes</h3>
 <div class="paragraph">
 <p>Instrument Modes for Sentinel-1 (SAR-C)</p>
 </div>
@@ -4455,7 +4478,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="polarisation-modes"><a class="anchor" href="#polarisation-modes"></a>4.15. Polarisation Modes</h3>
+<h3 id="polarisation-modes"><a class="anchor" href="#polarisation-modes"></a>4.16. Polarisation Modes</h3>
 <div class="paragraph">
 <p>Polarisation Modes</p>
 </div>
@@ -4494,7 +4517,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="product-types"><a class="anchor" href="#product-types"></a>4.16. Product Types</h3>
+<h3 id="product-types"><a class="anchor" href="#product-types"></a>4.17. Product Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4518,14 +4541,6 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OCN</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ocean (OCN) products for wind, wave and currents applications derived from the SAR data.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S2MSI1C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ortho-rectified and UTM geo-coded Top-of-Atmosphere Reflectance with sub-pixel multispectral and multi-date registration.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S2MSI2A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ortho-rectified and UTM geo-coded Bottom-of-Atmosphere multi-spectral reflectance. Additional outputs are Aerosol Optical Thickness (AOT) map, Water Vapour (WV) map, Scene Classification map together with Quality Indicators data.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SAR-WV-L1-SLC</p></td>
@@ -4854,7 +4869,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.17. Contact Roles</h3>
+<h3 id="contact-roles"><a class="anchor" href="#contact-roles"></a>4.18. Contact Roles</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4890,7 +4905,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="contact-types"><a class="anchor" href="#contact-types"></a>4.18. Contact Types</h3>
+<h3 id="contact-types"><a class="anchor" href="#contact-types"></a>4.19. Contact Types</h3>
 <div class="paragraph">
 <p>The type of personnel associated with the dataset.</p>
 </div>
@@ -4921,7 +4936,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 </div>
 <div class="sect2">
-<h3 id="quality-control"><a class="anchor" href="#quality-control"></a>4.19. Quality Control</h3>
+<h3 id="quality-control"><a class="anchor" href="#quality-control"></a>4.20. Quality Control</h3>
 <div class="paragraph">
 <p>A controlled vocabulary for the level of quality control performed on the dataset/product.</p>
 </div>
@@ -4964,7 +4979,7 @@ to the <a href="#keywords">keywords</a> field using "GCMDPLT" and "GCMDINST" voc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-06-18 12:45:28 UTC
+Last updated 2026-09-11 13:48:49 UTC
 </div>
 </div>
 </body>
