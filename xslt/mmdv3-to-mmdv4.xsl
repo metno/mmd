@@ -7,6 +7,7 @@
     xmlns:date="http://exslt.org/dates-and-times"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:mapping="http://www.met.no/schema/mmd/iso2mmd"
     version="1.0">
 
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
@@ -105,6 +106,26 @@
           <xsl:value-of select="."/>
         </xsl:comment>
     </xsl:template>
+
+    <xsl:template match="mmd:access_constraint">
+        <xsl:variable name="mmd3value" select="text()" />
+        <xsl:variable name="mapped_value" select="document('')/*/mapping:access_constraints/mapping:constraint[@original=$mmd3value]/@mapped" />
+        <xsl:if test="$mapped_value != ''">
+            <xsl:element name="mmd:access_constraint">
+                <xsl:attribute name="classification_framework">general</xsl:attribute>
+                <xsl:value-of select="$mapped_value" />
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- Define the mapping for access constraints general framework-->
+    <mapping:access_constraints>
+      <mapping:constraint original="Open" mapped="Open" />
+      <mapping:constraint original="Registered users only (automated approval)" mapped="Protected" />
+      <mapping:constraint original="Registered users only (manual approval required)" mapped="Protected" />
+      <mapping:constraint original="Restricted to a community" mapped="Protected" />
+      <mapping:constraint original="Restricted access to metadata" mapped="Closed" />
+    </mapping:access_constraints>
 
     <xsl:template match="mmd:use_constraint">
         <xsl:if test= "normalize-space(.) != ''">
