@@ -272,6 +272,138 @@ def create_dataciteXML(inputfile, outputfile, parsenames, collection):
         else:
             print('No organisation found')
 
+    #personnel
+    techcontacts =  mmdroot.findall("mmd:personnel/[mmd:role ='Technical contact']", mmdroot.nsmap)
+    print("Parsing Technical contact. Found ", len(techcontacts))
+    if len(techcontacts) < 1:
+        print("No contributors. Exiting.")
+    else:
+        contributors = ET.SubElement(root,'contributors')
+    #get elements
+    for techcontact in techcontacts:
+        #type
+        nametype = techcontact.find("mmd:type", mmdroot.nsmap)
+        if nametype is not None:
+            nametype = nametype.text
+        #name, uri, fist/last
+        nameet = techcontact.find("mmd:name", mmdroot.nsmap)
+        name = nameet.text
+        name_uri = nameet.get("uri")
+        first_name = name.rsplit(" ",1)[0]
+        family_name = name.rsplit(" ",1)[-1]
+        #organisation, uri
+        organisationet = techcontact.find("mmd:organisation", mmdroot.nsmap)
+        organisation = organisationet.text
+        organisation_uri = organisationet.get("uri")
+        info = {'type': nametype, 'name' : name, 'name_uri' : name_uri, 'first_name' : first_name, 'family_name' : family_name, 'organisation' : organisation, 'organisation_uri' : organisation_uri}
+        print('===========')
+        print('Parsing: ', info)
+
+        contributor = ET.SubElement(contributors,'contributor')
+        contributor.set('contributorType', 'ContactPerson')
+        if name is not None:
+            contributorn = ET.SubElement(contributor,'contributorName')
+            #work with type or uri if given
+            if nametype is None:
+                if name_uri is not None:
+                    parsed_uri = urlparse(name_uri)
+                    if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "orcid.org":
+                        contributorn.text = family_name + ', '+ first_name
+                        contributorn.set("nameType","Personal")
+                        given = ET.SubElement(contributor,'givenName')
+                        given.text = first_name
+                        family = ET.SubElement(contributor,'familyName')
+                        family.text = family_name
+                        nameIdentifier = ET.SubElement(contributor, 'nameIdentifier')
+                        nameIdentifier.set('schemeURI',"http://orcid.org/")
+                        nameIdentifier.set('nameIdentifierScheme',"ORCID")
+                        nameIdentifier.text = name_uri.split("://orcid.org/")[1]
+                    elif parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "ror.org":
+                        contributorn.text = name
+                        contributorn.set("nameType","Organizational")
+                        nameIdentifier = ET.SubElement(contributor, 'nameIdentifier')
+                        nameIdentifier.set('schemeURI',"http://ror.org/")
+                        nameIdentifier.set('nameIdentifierScheme',"ROR")
+                        nameIdentifier.text = name_uri.split("://ror.org/")[1]
+                    else:
+                        print("Could not parse uri. Check input.")
+                        sys.exit()
+                else:
+                    if parsenames == True:
+                        contributorn.text = family_name + ', '+ first_name
+                        contributorn.set("nameType","Personal")
+                        given = ET.SubElement(contributor,'givenName')
+                        given.text = first_name
+                        family = ET.SubElement(contributor,'familyName')
+                        family.text = family_name
+                    else:
+                        print('Parsing name is not requested. First/Last name are not used. Run with -n for splitting names')
+                        contributorn.text = name
+            else:
+                if nametype == 'Organisation':
+                    contributorn.text = name
+                    contributorn.set("nameType","Organizational")
+                    if name_uri is not None:
+                        parsed_uri = urlparse(name_uri)
+                        if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "ror.org":
+                            nameIdentifier = ET.SubElement(contributor, 'nameIdentifier')
+                            nameIdentifier.set('schemeURI',"http://ror.org/")
+                            nameIdentifier.set('nameIdentifierScheme',"ROR")
+                            nameIdentifier.text = name_uri.split("://ror.org/")[1]
+                        else:
+                            print("Type Organisation and uri are inconsistent. Check input")
+                            sys.exit()
+                else:
+                    contributorn.text = family_name + ', '+ first_name
+                    contributorn.set("nameType","Personal")
+                    given = ET.SubElement(contributor,'givenName')
+                    given.text = first_name
+                    family = ET.SubElement(contributor,'familyName')
+                    family.text = family_name
+                    if name_uri is not None:
+                        parsed_uri = urlparse(name_uri)
+                        if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "orcid.org":
+                            nameIdentifier = ET.SubElement(contributor, 'nameIdentifier')
+                            nameIdentifier.set('schemeURI',"http://orcid.org/")
+                            nameIdentifier.set('nameIdentifierScheme',"ORCID")
+                            nameIdentifier.text = name_uri.split("://orcid.org/")[1]
+                        else:
+                            print("Type Person and uri are inconsistent. Check input")
+                            sys.exit()
+        else:
+            print('No contributor name found')
+            sys.exit()
+
+        if organisation is not None:
+            #try ror
+            if organisation_uri is not None:
+                parsed_uri = urlparse(organisation_uri)
+                if parsed_uri.scheme in ["http", "https"] and parsed_uri.netloc == "ror.org":
+                    #check preferred label from vocab
+                    ror = check_prefLabel(organisation_uri)
+                    #keep original values
+                    if ror is None:
+                        ror  = {'prefLabel' : organisation, 'ror' : organisation_uri }
+            else:
+                ror = get_organisations(organisation)
+
+            if ror is not None:
+                parsed_ror_uri = urlparse(ror['ror']) if ror['ror'] else None
+                if parsed_ror_uri and parsed_ror_uri.netloc == "ror.org":
+                    print("Adding ROR ", ror['ror'], " to affiliation")
+                    affiliation = ET.SubElement(contributor,'affiliation')
+                    affiliation.text = ror['prefLabel']
+                    affiliation.set('affiliationIdentifier', ror['ror'])
+                    affiliation.set('affiliationIdentifierScheme', 'ROR')
+                    affiliation.set("schemeURI", "https://ror.org")
+                else:
+                    ET.SubElement(contributor,'affiliation').text = organisation
+            else:
+                ET.SubElement(contributor, 'affiliation').text = organisation
+        else:
+            print('No organisation found')
+
+
     titles = ET.SubElement(root, 'titles')
     titleen =  mmdroot.find("mmd:title[@{http://www.w3.org/XML/1998/namespace}lang = 'en']", namespaces = nsmap)
     if titleen is not None and titleen.text is not None:

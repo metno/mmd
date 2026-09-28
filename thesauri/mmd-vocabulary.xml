@@ -3440,16 +3440,17 @@
       </skos:Concept>
     </skos:member>
 
-    <!--skos:member>
-      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/IGFPAN">
-        <skos:prefLabel xml:lang="en"></skos:prefLabel>
-        <skos:hiddenLabel xml:lang="en"></skos:hiddenLabel>
-        <skos:altLabel xml:lang="en">IGF PAN</skos:altLabel>
-        <skos:exactMatch rdf:resource="https://ror.org/"/>
+    <skos:member>
+      <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/NGI">
+        <skos:prefLabel xml:lang="en">Norwegian Geotechnical Institute</skos:prefLabel>
+        <skos:altLabel xml:lang="en">NGI</skos:altLabel>
+        <skos:prefLabel xml:lang="nb">Norges geotekniske institutt</skos:prefLabel>
+        <skos:altLabel xml:lang="nb">NGI</skos:altLabel>
+        <skos:exactMatch rdf:resource="https://ror.org/032ksge37"/>
       </skos:Concept>
     </skos:member>
 
-    <skos:member>
+    <!--skos:member>
       <skos:Concept rdf:about="https://vocab.met.no/mmd/Organisation/">
         <skos:prefLabel xml:lang="en"></skos:prefLabel>
         <skos:prefLabel xml:lang="nb"></skos:prefLabel>

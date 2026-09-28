@@ -19,8 +19,7 @@
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="mmd:mmd">
-            <xsl:copy-of select="document('')/xsl:stylesheet/namespace::*[name() ='mmd' and name()='gml']"/>
-            <xsl:copy-of select="document('')/xsl:stylesheet/namespace::*[name()='gml']"/>
+            <xsl:copy-of select="namespace::*"/>
             <xsl:apply-templates select="mmd:metadata_identifier"/>
             <xsl:apply-templates select="mmd:alternate_identifier"/>
             <xsl:apply-templates select="mmd:title"/>

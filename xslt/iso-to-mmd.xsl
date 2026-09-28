@@ -853,7 +853,7 @@
     <xsl:template match="gmd:dataSetURI/gco:CharacterString">
         <xsl:element name="mmd:related_information">
             <xsl:element name="mmd:type">Dataset landing page</xsl:element>
-            <xsl:element name="mmd:description">NA</xsl:element>
+            <xsl:element name="mmd:description">URI of the dataset</xsl:element>
             <xsl:element name="mmd:resource">
                 <xsl:value-of select="."/>
             </xsl:element>

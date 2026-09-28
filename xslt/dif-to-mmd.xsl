@@ -21,7 +21,8 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
     <xsl:key name="orgeng" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:prefLabel[@xml:lang='en']"/>
     <xsl:key name="orgengalt" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:altLabel[@xml:lang='en']"/>
     <xsl:key name="orgengh" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Organisation']/skos:member/skos:Concept" use="skos:hiddenLabel[@xml:lang='en']"/>
-    <xsl:key name="accessc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Access_Constraint']/skos:member/skos:Concept/skos:altLabel" use="translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
+    <xsl:key name="accessc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Access_Constraint']/skos:member/skos:Concept/skos:prefLabel" use="translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
+    <xsl:key name="accessch" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Access_Constraint']/skos:member/skos:Concept/skos:hiddenLabel" use="translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
     <xsl:key name="usec" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:prefLabel"/>
     <xsl:key name="useca" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept" use="skos:altLabel"/>
     <xsl:key name="usecexact" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/Use_Constraint']/skos:member/skos:Concept/skos:exactMatch" use="substring-after(@rdf:resource, '://')"/>
@@ -159,7 +160,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
             </xsl:element>
             <xsl:element name="mmd:publication_date">
                 <xsl:if test="string-length(dif:Dataset_Release_Date) &gt;= 10">
-                    <xsl:value-of select="dif:Dataset_Release_Date"/>
+                    <xsl:value-of select="substring(dif:Dataset_Release_Date, 1, 10)"/>
                 </xsl:if>
             </xsl:element>
             <xsl:element name="mmd:publication_place">
@@ -205,7 +206,7 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         <xsl:if test="dif:Online_Resource and dif:Online_Resource != ''">
             <xsl:element name="mmd:related_information">
                 <xsl:element name="mmd:type">Dataset landing page</xsl:element>
-                <xsl:element name="mmd:description">NA</xsl:element>
+                <xsl:element name="mmd:description">Online Resource</xsl:element>
                 <xsl:element name="mmd:resource">
                     <xsl:value-of select="dif:Online_Resource"/>
                 </xsl:element>
@@ -503,7 +504,13 @@ Added more support for DIF 10 Øystein Godøy, METNO/FOU, 2023-04-24
         <xsl:variable name="difaccess" select="translate(., $uppercase, $lowercase)"/>
         <xsl:for-each select="$vocab">
             <xsl:if test="key('accessc', $difaccess)">
-                <xsl:variable name="prefaccess" select="key('accessc', $difaccess)/../skos:prefLabel"/>
+                <xsl:variable name="prefaccess" select="key('accessc', $difaccess)"/>
+                <xsl:element name="mmd:access_constraint">
+                    <xsl:value-of select="$prefaccess"/>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="key('accessch', $difaccess)">
+                <xsl:variable name="prefaccess" select="key('accessch', $difaccess)/../skos:prefLabel"/>
                 <xsl:element name="mmd:access_constraint">
                     <xsl:value-of select="$prefaccess"/>
                 </xsl:element>

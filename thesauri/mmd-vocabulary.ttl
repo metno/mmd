@@ -2675,3 +2675,11 @@
   skos:altLabel "NCSS"@en ;
   skos:prefLabel "Norsk klimaservicesenter"@nb ;
   skos:altLabel "KSS"@nb .
+
+<https://vocab.met.no/mmd/Organisation/NGI>
+  a skos:Concept ;
+  skos:prefLabel "Norwegian Geotechnical Institute"@en ;
+  skos:altLabel "NGI"@en ;
+  skos:prefLabel "Norges geotekniske institutt"@nb ;
+  skos:altLabel "NGI"@nb;
+  skos:exactMatch <https://ror.org/032ksge37> .
