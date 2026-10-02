@@ -252,6 +252,7 @@
       <xs:enumeration value="SESS2023"/>
       <xs:enumeration value="SESS2024"/>
       <xs:enumeration value="SESS2025"/>
+      <xs:enumeration value="SESS2026"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="instrument_modes_enum">

@@ -425,6 +425,8 @@ The purpose of this vocabulary is to identify which collection a dataset belongs
 
 | SESS2025| Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2025.
 
+| SESS2026| Datasets provided in relation to the report State of Environmental Science in Svalbard (SESS) report in 2026.
+
 |===
 
 <<collection_keywords>>
