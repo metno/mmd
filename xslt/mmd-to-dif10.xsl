@@ -8,6 +8,8 @@
     xmlns:mapping="http://www.met.no/schema/mmd/mmd2dif"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/ http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/dif_v10.2.xsd"
     xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.0">
 
     <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:prefLabel"/>
@@ -16,6 +18,7 @@
 
     <xsl:template match="/mmd:mmd">
         <xsl:element name="dif:DIF">
+            <xsl:copy-of select="document('')/*/@xsi:schemaLocation"/>
             <xsl:apply-templates select="mmd:metadata_identifier" />
             <xsl:apply-templates select="mmd:title[@xml:lang = 'en']" />
             <xsl:choose>

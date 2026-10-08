@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" 
+    xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
     xmlns:mmd="http://www.met.no/schema/mmd"
-    xmlns:mapping="http://www.met.no/schema/mmd/mmd2dif"      
+    xmlns:mapping="http://www.met.no/schema/mmd/mmd2dif"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xsi:schemaLocation="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/ http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/dif.xsd"
     xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.0">
 
-        <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:prefLabel"/>
-        <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
-	<xsl:output method="xml" encoding="UTF-8" indent="yes" />
+    <xsl:key name="isoc" match="skos:Collection[@rdf:about='https://vocab.met.no/mmd/ISO_Topic_Category']/skos:member/skos:Concept" use="skos:prefLabel"/>
+    <xsl:variable name="isoLUD" select="document('../thesauri/mmd-vocabulary.xml')"/>
+    <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
 	<xsl:template match="/mmd:mmd">
 		<xsl:element name="dif:DIF">
+            <xsl:copy-of select="document('')/*/@xsi:schemaLocation"/>
 			<xsl:apply-templates select="mmd:metadata_identifier" />
 			<xsl:apply-templates select="mmd:title" />
                         <xsl:choose>
