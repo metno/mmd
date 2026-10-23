@@ -21,6 +21,8 @@ import glob
 import logging
 import os
 
+from mmd_utils.polygon import polygon_problems
+
 class CheckMMD():
     """ Class to verify if MMD file is in compliance with the requirements
 
@@ -112,6 +114,17 @@ class CheckMMD():
         except ValueError:
             print('\t Could not extract valid directions from rectangle. \n')
             return False
+
+    def check_polygon(self, polygon):
+        """ Check geographic extent/polygon: ring orientation (exterior
+            anticlockwise, holes clockwise, also across the antimeridian) """
+        if len(polygon) > 1:
+            print("\t Error: Multiple polygon elements in file. \n")
+            return False
+        problems = polygon_problems(polygon[0])
+        for problem in problems:
+            print('\t Polygon: ' + problem)
+        return not problems
 
     def multipleLanguages(self, languages):
         """ Function to check if array contains several languages
@@ -309,6 +322,11 @@ class CheckMMD():
                     logical_tests[test]=True
                 else:
                     print(('\t ' + test + ' is None '))
+
+        # Optional element: checked only when present
+        polygon = doc.findall('.//mmd:geographic_extent/mmd:polygon', namespaces=root.nsmap)
+        if polygon:
+            logical_tests['polygon'] = self.check_polygon(polygon)
 
         ### Go through results
         print('\nLogical tests:')
