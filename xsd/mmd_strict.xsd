@@ -155,7 +155,7 @@
     </xs:complexType>
     <xs:complexType name="geographic_polygon_type">
         <xs:annotation>
-            <xs:documentation>This allows gml:polygon to be addedd</xs:documentation>
+            <xs:documentation>This allows gml:polygon to be added. The exterior ring must be anticlockwise (the covered area on the left-hand side) and interior rings clockwise, judged along the shortest path between consecutive positions, also across the antimeridian. In EPSG:4326 positions are "latitude longitude". See the MMD specification, geographic_extent/polygon.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:choice>

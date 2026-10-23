@@ -74,6 +74,15 @@ The relation between the rectangle and the polygon is that the rectangle is the 
 
 image::images/geographic-extent-mmd.png[width=50%,align="center"]
 
+In EPSG:4326 each position is written as "latitude longitude", the axis order of that coordinate reference system, as in the examples below.
+
+*Ring orientation.* The exterior ring must list its corners anticlockwise: walking along the ring, the area covered by the dataset is on the left-hand side. Interior rings (holes), if any, must be clockwise. This is the rule of ISO 19107 and of GeoJSON (RFC 7946, "right-hand rule"), and search systems depend on it: Solr, for example, takes a clockwise exterior ring to describe the rest of the Earth, so the dataset is then found by searches anywhere on the globe. Corners taken from a product's footprint are not always in this order and may have to be reversed.
+
+Consecutive corners are joined along the shortest path between them, and are less than 180 degrees of longitude apart (insert intermediate corners if needed). The orientation is judged along those paths, which matters in two cases:
+
+* A polygon crossing the antimeridian keeps its longitudes within -180:180; an edge from longitude 170 to longitude -170 crosses the antimeridian (20 degrees), it does not go round the globe. The ring is anticlockwise along that path, which in plain longitude values looks clockwise (see the second example). As for the rectangle, east < west.
+* A ring that goes once round a pole encloses that pole. Round the North Pole its corners are listed eastward (longitude increasing), round the South Pole westward (longitude decreasing); in both cases the pole is on the left. The rectangle then spans west = -180 to east = 180 and reaches north = 90 or south = -90.
+
 |Example XML: a|
 ----
 <geographic_extent>
@@ -88,13 +97,39 @@ image::images/geographic-extent-mmd.png[width=50%,align="center"]
    <gml:exterior>
     <gml:LinearRing>
      <gml:pos>78.874289 22.324219</gml:pos>
-     <gml:pos>79.26587 23.203125<gml:pos>
-     <gml:pos>79.831716 21.379395<gml:pos>
-     <gml:pos>79.95893 18.171387<gml:pos>
-     <gml:pos>79.651722 18.105469<gml:pos>
-     <gml:pos>79.651722 18.808594<gml:pos>
-     <gml:pos>79.216649 18.61084<gml:pos>
-     <gml:pos>78.874289 22.324219<gml:pos>
+     <gml:pos>79.26587 23.203125</gml:pos>
+     <gml:pos>79.831716 21.379395</gml:pos>
+     <gml:pos>79.95893 18.171387</gml:pos>
+     <gml:pos>79.651722 18.105469</gml:pos>
+     <gml:pos>79.651722 18.808594</gml:pos>
+     <gml:pos>79.216649 18.61084</gml:pos>
+     <gml:pos>78.874289 22.324219</gml:pos>
+    </gml:LinearRing>
+   </gml:exterior>
+  </gml:Polygon>
+ </polygon>
+</geographic_extent>
+----
+
+A polygon crossing the antimeridian (the Bering Sea, from longitude 170 eastward to longitude -170):
+
+----
+<geographic_extent>
+ <rectangle srsName="EPSG:4326">
+  <north>62.0</north>
+  <south>55.0</south>
+  <east>-170.0</east>
+  <west>170.0</west>
+ </rectangle>
+ <polygon>
+  <gml:Polygon id="polygon" srsName="EPSG:4326">
+   <gml:exterior>
+    <gml:LinearRing>
+     <gml:pos>55.0 170.0</gml:pos>
+     <gml:pos>55.0 -170.0</gml:pos>
+     <gml:pos>62.0 -170.0</gml:pos>
+     <gml:pos>62.0 170.0</gml:pos>
+     <gml:pos>55.0 170.0</gml:pos>
     </gml:LinearRing>
    </gml:exterior>
   </gml:Polygon>
